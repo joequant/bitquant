@@ -6,7 +6,9 @@ pushd examples/examples-simulated
 mvn opengamma:server-stop -Dconfig=fullstack
 popd
 git fetch upstream
+git checkout develop
 git rebase upstream/develop
+git checkout asia-fixes
 mvn install 
 pushd examples/examples-simulated
 mvn opengamma:server-start -Dconfig=fullstack
