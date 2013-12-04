@@ -11,6 +11,7 @@ pushd OG-Platform
 git remote add upstream https://github.com/OpenGamma/OG-Platform
 git fetch upstream
 git fetch origin
+git checkout -t origin/develop
 git checkout asia-fixes
 popd
 pushd OG-Tools
