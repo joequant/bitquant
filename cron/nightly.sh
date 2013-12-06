@@ -9,9 +9,12 @@ mvn opengamma:server-stop -Dconfig=fullstack
 popd
 git stash
 git fetch upstream
+git fetch origin
 git checkout develop
+git rebase origin/develop
 git rebase upstream/develop
 git checkout asia-fixes
+git rebase origin/asia-fixes
 git rebase upstream/develop
 mvn install -DskipTests
 pushd examples/examples-simulated
