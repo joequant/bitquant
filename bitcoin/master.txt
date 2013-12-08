@@ -1,0 +1,122 @@
+DRAFT
+
+Yoyodyne Space Products Ltd., a Hong Kong company and _________, a
+Delaware corporation have entered and/or anticipate entering into one
+or more transactions (each a “Transaction”) that are or will be
+governed by this agreement, which includes the ISDA Master Agreement
+("ISDA Master Agreement"), the schedule (the “Schedule”), and the
+documents and other confirming evidence (each a “Confirmation”)
+exchanged between the parties confirming those Transactions.
+
+The Parties hereby agree to be bound by the terms of the 2002 Master
+Agreement published by the International Swaps and Derivatives
+Association, the contents of which are incorporated in full into this
+agreement.
+
+For reference purposes, a non-authoritative Chinese translation of the
+2002 Master Agreement is available at .  The Chinese transation is for
+reference only, and the English version of the Master Agreement is
+legally binding.
+
+For the purpose of Transactions, Parties agree to use the 2011 Equity
+Derivative Definitions published by the International Swaps and
+Derivatives Association.
+
+Schedule
+
+Part 1. 
+
+"Party A" established as a Hong Kong Company with company number ****
+under the laws of *****.
+
+"Party B" a natural person.
+
+Part 2. Tax Representations
+
+(a) Payer Representations: For the purpose of Section 3(e) of this
+Agreement, Party A and Party B do not make any representations.
+
+(b) Payee Representations: For the purpose of Section 3(f) of this
+Agreement, Party A and Party B do not make any representations.
+
+Part 3. Agreement to Deliver Documents.
+
+For the purpose of Sections 4(a)(i) and 4(a)(ii) of this Agreement,
+each party agrees to deliver the following documents, as applicable:
+
+(a) Tax forms, documents or certificates to be delivered are none.
+
+(b) Other documents to be delivered are none.
+
+Part 4. Miscellaneous
+
+(a) Address for Notices.  For the purpose of Section 12(a) of this
+Agreement:
+
+Address for notices or communications to Party A:
+
+Address:
+Attention:
+Telex No:
+Answerback:
+Facsimile No:
+Telephone No:
+E-mail:
+Electronic Messaging System Details:
+Specific Instructions:
+
+Address for notices or communications to Party B:
+
+Address:
+Attention:
+Telex No:
+Answerback:
+Facsimile No:
+Telephone No:
+E-mail:
+Electronic Messaging System Details:
+Specific Instructions:
+
+b) Process Agent. For the purpose of Section 13(c) of this Agreement
+
+Party A appoints as its Process Agent: non applicable
+Party B appoints as its Process Agent: non applicable
+
+c) The provisions of Section 10(a) will not apply to this Agreement
+
+d) For the purpose of Section 10(b) of this Agreement:
+
+Party A is not a multibranch Party.
+Party B is not a multibranch Party.
+
+e) The Calculation Agent is .....
+
+f) Credit Support Dcoument: Details of any Credit Support Document:
+none
+
+g) Credit Support Provider: Credit Support Provider means in relation
+to Party A, none.  Credit Support Provider means in relation to Party
+B, none.
+
+h) Governing Law. This Agreement will be governed by and construed in
+accordance with the law of the Hong Kong Special Administrative
+Region, China.
+
+i) Netting of Payments. "Multiple Transaction Payment Netting" will
+apply for the purpose of Section 2(c) of this Agreement to all
+Transaction.
+
+j) "Affilate" will have the meaning specified in Section 14 of this
+Agreement.
+
+k) Absence of Litigation: For the purpose of Section 3(c)
+'Specified Entity" means in relation to Party A, no one
+"Specified Enitty" means in relation to Party B, no one
+
+l) No Agency.  The provisions of Section 3(g) will not apply to this
+Agreement
+
+m) Additional representations will not apply.
+
+
+
