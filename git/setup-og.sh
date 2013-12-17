@@ -5,7 +5,9 @@ cd $SCRIPT_DIR
 
 pushd ../..
 git clone https://github.com/$MY_NAME/OG-Platform
+git clone https://github.com/$MY_NAME/OG-PlatformNative
 git clone https://github.com/$MY_NAME/OG-Tools
+git clone https://github.com/$MY_NAME/OG-RStats
 
 pushd OG-Platform
 git remote add upstream https://github.com/OpenGamma/OG-Platform
@@ -14,6 +16,15 @@ git fetch origin
 git checkout -t origin/develop
 git checkout asia-fixes
 popd
+
+pushd OG-PlatformNative
+git remote add upstream https://github.com/OpenGamma/OG-PlatformNative
+git fetch upstream
+git fetch origin
+git checkout -t origin/develop
+git checkout asia-fixes
+popd
+
 pushd OG-Tools
 git remote add upstream https://github.com/OpenGamma/OG-Tools
 git fetch upstream
