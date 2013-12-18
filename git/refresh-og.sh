@@ -10,10 +10,14 @@ git fetch origin
 git stash
 git checkout master
 git rebase upstream/master
+git push --set-upstream origin master
 git checkout develop
 git rebase upstream/develop
-git push --set-upstream origin master
 git push --set-upstream origin develop
+git checkout asia-fixes
+git rebase origin/asia-fixes
+git rebase upstream/develop
+git push --force --set-upstream origin asia-fixes
 popd
 
 pushd OG-Platform
@@ -25,4 +29,8 @@ git checkout asia-fixes
 git rebase upstream/develop
 git push --set-upstream origin master
 git push --set-upstream origin develop
+git checkout asia-fixes
+git rebase origin/asia-fixes
+git rebase upstream/develop
+git push --force --set-upstream origin asia-fixes
 popd
