@@ -11,13 +11,13 @@
     <version>2.2.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
   </parent>
-  <artifactId>examples-simulated</artifactId>
+  <artifactId>examples-bitquant</artifactId>
   <packaging>jar</packaging>
-  <name>Examples-Simulated</name>
-  <description>OpenGamma Platform examples and server with simulated market data</description>
+  <name>Examples-Bitquant</name>
+  <description>OpenGamma Platform examples and server with bitcoin data</description>
 
   <scm>
-    <url>https://github.com/OpenGamma/OG-Platform/tree/master/examples/examples-simulated</url>
+    <url>https://github.com/joequant/opengamma/examples-bitquant</url>
   </scm>
 
   <!-- ==================================================================== -->
@@ -123,6 +123,11 @@
     <dependency>
       <groupId>org.hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.3-1100-jdbc41</version>
     </dependency>
     <dependency>
       <groupId>org.apache.xbean</groupId>
