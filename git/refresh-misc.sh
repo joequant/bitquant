@@ -31,4 +31,13 @@ git rebase upstream/master
 git push --set-upstream origin master
 popd
 
+pushd aiotrade
+git fetch upstream
+git fetch origin
+git stash
+git checkout master
+git rebase upstream/master
+git push --set-upstream origin master
+popd
+
 
