@@ -2,14 +2,20 @@
      x86_64 using the ISO type install from a local file.
 -->
 <template>
-  <name>Mageia</name>
+  <name>MageiaStack</name>
   <os>
     <name>Mageia</name>
     <version>4</version>
     <arch>x86_64</arch>
     <install type='iso'>
-      <iso>file:///home/joe/git/oz/Mageia-4-alpha2-x86_64-DVD.iso</iso>
+      <iso>http://ftp.tku.edu.tw/Linux/Mageia/distrib/cauldron/x86_64/install/images/boot-nonfree.iso</iso>
     </install>
   </os>
+  <repositories>
+  <repository name="install">
+  <url>http://free.nchc.org.tw/mageia/distrib/cauldron</url>
+  </repository>
+  </repositories>
   <description>Mageia 4</description>
+  <disk><size>5G</size></disk>
 </template>
