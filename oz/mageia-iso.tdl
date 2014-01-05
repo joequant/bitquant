@@ -8,7 +8,7 @@
     <version>4</version>
     <arch>x86_64</arch>
     <install type='iso'>
-      <iso>file:///home/joe/macmageia/Mageia-4-beta1-x86_64-DVD.iso</iso>
+      <iso>file:///home/joe/downloads/Mageia-4-beta2-x86_64-DVD.iso</iso>
     </install>
   </os>
    <disk><size>10</size></disk>
