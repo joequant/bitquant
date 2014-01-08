@@ -14,7 +14,7 @@ git remote add upstream https://github.com/OpenGamma/OG-Platform
 git fetch upstream
 git fetch origin
 git checkout -t origin/develop
-git checkout asia-fixes
+git checkout bitquant
 popd
 
 pushd OG-PlatformNative
@@ -22,7 +22,7 @@ git remote add upstream https://github.com/OpenGamma/OG-PlatformNative
 git fetch upstream
 git fetch origin
 git checkout -t origin/develop
-git checkout asia-fixes
+git checkout bitquant
 popd
 
 pushd OG-Tools

@@ -18,6 +18,10 @@ git checkout asia-fixes
 git rebase origin/asia-fixes
 git rebase upstream/develop
 git push --force --set-upstream origin asia-fixes
+git checkout bitquant
+git rebase origin/bitquant
+git rebase upstream/develop
+git push --force --set-upstream origin bitquant
 popd
 
 pushd OG-Platform
@@ -33,4 +37,8 @@ git checkout asia-fixes
 git rebase origin/asia-fixes
 git rebase upstream/develop
 git push --force --set-upstream origin asia-fixes
+git checkout bitquant
+git rebase origin/bitquant
+git rebase upstream/develop
+git push --force --set-upstream origin bitquant
 popd
