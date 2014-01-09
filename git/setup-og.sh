@@ -7,7 +7,6 @@ pushd ../..
 git clone https://github.com/$MY_NAME/OG-Platform
 git clone https://github.com/$MY_NAME/OG-PlatformNative
 git clone https://github.com/$MY_NAME/OG-Tools
-git clone https://github.com/$MY_NAME/OG-RStats
 
 pushd OG-Platform
 git remote add upstream https://github.com/OpenGamma/OG-Platform
