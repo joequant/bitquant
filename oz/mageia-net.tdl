@@ -13,7 +13,7 @@
   </os>
   <repositories>
   <repository name="install">
-  <url>http://free.nchc.org.tw/mageia/distrib/cauldron</url>
+  <url>http://ftp.tku.edu.tw/Linux/Mageia/distrib/cauldron</url>
   </repository>
   </repositories>
   <description>Mageia 4</description>

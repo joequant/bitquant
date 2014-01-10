@@ -150,7 +150,7 @@ urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list'
 urpmi.update -a
 urpmi --allow-force --force --auto-update
-urpmi --allow-force --force cloud-init cloud-utils gdisk
+urpmi --allow-force --force cloud-init cloud-utils gdisk zerofree
 urpme --force --auto-orphans
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
@@ -158,8 +158,10 @@ cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
 echo 'login as user mageia password cubswin:)' >> /etc/issue
 EOP
 cat <<EOP >> /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0'
+GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
 EOP
 update-grub2
+mount -o ro,remount /
+zerofree
 "
      };
