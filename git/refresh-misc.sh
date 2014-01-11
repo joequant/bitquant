@@ -13,6 +13,15 @@ git rebase upstream/master
 git push --set-upstream origin master
 popd
 
+pushd Fudge-Python
+git fetch upstream
+git fetch origin
+git stash
+git checkout master
+git rebase upstream/master
+git push --set-upstream origin master
+popd
+
 pushd JSurface3D
 git fetch upstream
 git fetch origin
