@@ -38,11 +38,9 @@ git fetch upstream
 git fetch origin
 popd
 
-git clone https://github.com/$MY_NAME/aiotrade
-pushd aiotrade
-git remote add upstream https://github.com/dcaoyuan/aiotrade
+git clone https://github.com/$MY_NAME/trade-manager
+pushd trade-manager
+git remote add upstream https://code.google.com/p/trade-manager/
 git fetch upstream
 git fetch origin
 popd
-
-

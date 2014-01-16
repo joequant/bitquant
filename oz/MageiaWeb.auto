@@ -171,7 +171,6 @@ pushd web
 popd
 popd
 cd ~mageia
-chown mageia:mageia git
-bash
+chown -R mageia:mageia git
 "
      };
