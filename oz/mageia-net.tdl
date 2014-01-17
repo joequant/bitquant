@@ -2,7 +2,7 @@
      x86_64 using the ISO type install from a local file.
 -->
 <template>
-  <name>MageiaStack</name>
+  <name>Mageia</name>
   <os>
     <name>Mageia</name>
     <version>4</version>
