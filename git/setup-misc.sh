@@ -13,7 +13,6 @@ popd
 
 git clone https://github.com/$MY_NAME/Fudge-Python
 pushd Fudge-Python
-git fetch upstream
 git fetch origin
 popd
 
