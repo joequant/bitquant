@@ -1,5 +1,7 @@
-OG-contrib-joequant
+Bitquant
 =================
 
-OG related scripts and configuration files for http://www.opengamma.com/
+Scripts and installation routines for Bitquant Research Laboratories
+(Asia) Ltd.
+
 
