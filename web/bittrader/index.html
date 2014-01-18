@@ -1,11 +1,31 @@
 <head>
 <title>Bitquant Research Laboratories (Asia) Ltd.</title>
 <meta charset="utf-8">
+ <link rel="stylesheet"
+       href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<script>
+$(function() {
+$( "#tabs" ).tabs();
+});
+</script>
 </head>
+<body>
 <h1>Bittrader</h1>
+<div id="tabs">
 <ul>
-<li><a href="http://localhost:8080/">Risk</a>
-<li><a href="trade.html">Trade</a>
-<li><a href="http://localhost:8069/">Back office</a>
+<li><a href="#data">Data</a>
+<li><a href="#trade">Trade</a>
+<li><a href="#backoffice">Back office</a>
 </ul>
+<div id="data">
+</div>
+<div id="trade">
+</div>
+<div id="backoffice">
+</div>
+</div>
+</body>
