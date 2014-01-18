@@ -1,0 +1,1 @@
+urpmi python-flask apache
