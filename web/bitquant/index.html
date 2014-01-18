@@ -9,7 +9,16 @@
       href="css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="css/local.css">
 
-<link rel="stylesheet" type="text/css" media="screen" href="menu/css/simple_menu.css">
+<link rel="stylesheet" type="text/css" media="screen"
+      href="menu/css/simple_menu.css">
+<!-- Math Jax -->
+<script type="text/javascript"
+  src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'],
+  ['\\(','\\)']]}});
+</script>
 <!-- JS Files -->
 <script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
 <script>
@@ -51,7 +60,16 @@ $(document).ready(function () {
 <div id="container">
 <div id="prod_wrapper">
 <div style="width:100%;float:left">
-<div style="width:66%;float:right;">
+<div class="one-third">
+\(dX_t = \mu_t dt + \sigma_t dB_t\)<p>
+\(df(t, X_t) = \left(\frac{\partial f}{\partial t} +
+\mu_{t}\frac{\partial f}{\partial x} + \frac{1}{2}
+\sigma^2_t\frac{\partial^2 f}{\partial x^2}\right) dt \\ +
+\sigma_t\frac{\partial f}{\partial x} dB_t\)
+<p>
+<a href="aboutito.html">What the heck is this?</a>
+</div>
+<div class="two-third last">
 <h2>Your friendly neighborhood research lab and policy think tank.</h2>
 <p>Bitquant Research Laboratories is a Hong Kong-based startup focusing
 on research and development of high-risk/high-reward open source
