@@ -1,15 +1,56 @@
+<!DOCTYPE HTML>
 <head>
 <title>Bitquant Research Laboratories (Asia) Ltd.</title>
+<meta charset="utf-8">
+<!-- Google Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+<!-- CSS Files -->
+<link rel="stylesheet" type="text/css" media="screen" href="css/style.css">
+<link rel="stylesheet" type="text/css" media="screen" href="menu/css/simple_menu.css">
+<!-- JS Files -->
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+<script>
+$(function () {
+    $("#prod_nav ul").tabs("#panes > div", {
+        effect: 'fade',
+        fadeOutSpeed: 400
+    });
+});
+</script>
+<script>
+$(document).ready(function () {
+    $(".pane-list li").click(function () {
+        window.location = $(this).find("a").attr("href");
+        return false;
+    });
+});
+</script>
 </head>
-
-<a href="contact.html">Contact Us</a>
-
-<div>
-Your friendly neighborhold research lab and policy think tank.
-<div>
-
-<div>
-Bitquant Research Laboratories is a Hong Kong-based startup focusing
+<body>
+<div class="header">
+  <div id="site_title"><a href="index.html"><img src="img/logo.png" alt=""></a></div>
+  <!-- Main Menu -->
+  <ol id="menu">
+    <li class="active_menu_item"><a href="index.html">Home</a>
+      <!-- sub menu -->
+      <ol>
+        <li><a href="nivo.html">Nivo Slider</a></li>
+        <li><a href="ei-slider.html">EI Slider</a></li>
+        <li><a href="fullscreen-gallery.html">Fullscreen Slider</a></li>
+        <li><a href="image-frontpage.html">Static Image</a></li>
+      </ol>
+    </li>
+    <!-- END sub menu -->
+    <li><a href="contact.html">Contact Us</a></li>
+  </ol>
+</div>
+<!-- END header -->
+<div id="container">
+<div id="prod_wrapper">
+<div style="width:100%;float:left">
+<div style="width:66%;float:right;">
+<h2>A mom and pop research lab and policy think tank.</h2>
+<p>Bitquant Research Laboratories is a Hong Kong-based startup focusing
 on research and development of high-risk/high-reward open source
 financial technologies, and to do quantitative and policy research to
 support these technolgies.
@@ -19,38 +60,31 @@ including astrophysics, computer science, and mathematical finance and
 make it useful to individual traders, family offices, and small hedge
 funds.
 </div>
-
-<div>
-Publications:
 </div>
-
-<div>
-Blog: <a href="http://bitquant.wordpress.com">Bitquant blog</a>
+<div style="float:bottom">
+<div class="one-third">
+<h2>Blog</h2>
+<a href="http://bitquant.wordpress.com">Bitquant blog</a>
 </div>
-
-<div>Development
+<div class="one-third">
+<h2>Development</h2>
 <ul>
 <li><a href="https://github.com/joequant/bitquant">Bitquant github</a>
 <li><a href="http://jsfiddle.net/user/joequant/fiddles/">JS fiddles</a>
 </ul>
-
 </div>
-
-
-<div>
-Research and Development Projects:
-
-*
-
-* Bittrader - Our current focus is to develop a trading platform for
+<div class="one-third last">
+<h2>Projects</h2>
+Bittrader - Our current focus is to develop a trading platform for
 individuals and small institutions that will make allow them to deploy
 trading technology previously available only to large investment
 banks.
-
-* Bitcoin options - We are currently are researching the valuation of
+<p>
+Bitcoin options - We are currently are researching the valuation of
 bitcoin options and the legal and regulatory framework which would
 govern option issuance.
 </div>
-
-
-
+</div>
+</div>
+</div>
+<body>
