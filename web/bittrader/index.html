@@ -8,22 +8,18 @@
 <script>
 $(function() {
 $( "#tabs" ).tabs();
+$("a.new_win").click(function(){
+  window.open($(this).attr('href'));
+  return false;
 });
+});
+
 </script>
 </head>
 <body>
-<h1>Bittrader</h1>
-<div id="tabs">
+<h1>Bittrader Trading System</h1>
 <ul>
-<li><a href="#data">Data</a>
-<li><a href="#trade">Trade</a>
-<li><a href="#backoffice">Back office</a>
+<li><a class="new_win" href="market_data.html">Market Data</a>
+<li><a class="new_win" href="trade.html">Trade</a>
+<li><a class="new_win" href="back_office.html">Back office</a>
 </ul>
-<div id="data">
-</div>
-<div id="trade">
-</div>
-<div id="backoffice">
-</div>
-</div>
-</body>
