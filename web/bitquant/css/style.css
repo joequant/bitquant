@@ -34,7 +34,6 @@ body {	font-family: Arial, Helvetica, sans-serif;
 .header {
 	width: 1000px;
 	margin: auto;
-	height: 150px
 }
 
 #site_title {float: left; padding-top: 36px; padding-left:20px}
