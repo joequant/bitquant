@@ -7,8 +7,6 @@
 <!-- CSS Files -->
 <link rel="stylesheet" type="text/css" media="screen"
       href="css/style.css">
-<link rel="stylesheet" type="text/css" media="screen" href="css/local.css">
-
 <link rel="stylesheet" type="text/css" media="screen"
       href="menu/css/simple_menu.css">
 <!-- Math Jax -->
@@ -28,6 +26,7 @@ $(function () {
         effect: 'fade',
         fadeOutSpeed: 400
     });
+    $("#header").load("includes/header.html");
 });
 </script>
 <script>
@@ -40,28 +39,7 @@ $(document).ready(function () {
 </script>
 </head>
 <body>
-<div id="site_title"><a href="index.html">
-<div style="font-family:Georgia,Times,serif;font-size:x-large;font-style:italic">Bitquant
-  Research Laboratories (Asia) Limited</div></a>
-</div>
-
-  <!-- Main Menu -->
-  <ol id="menu">
-    <li class="active_menu_item"><a href="index.html">Home</a>
-      <!-- sub menu -->
-      <ol>
-        <li><a href="nivo.html">Nivo Slider</a></li>
-        <li><a href="ei-slider.html">EI Slider</a></li>
-        <li><a href="fullscreen-gallery.html">Fullscreen Slider</a></li>
-        <li><a href="image-frontpage.html">Static Image</a></li>
-      </ol>
-    </li>
-    <!-- END sub menu -->
-    <li><a href="networking.html">Networking</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-  </ol>
-
-<!-- END header -->
+<div id="header"></div>
 <div id="container">
 <div id="prod_wrapper">
 <div style="width:100%;float:left">
@@ -75,7 +53,7 @@ $(document).ready(function () {
 <a href="aboutito.html">What the heck is this?</a>
 </div>
 <div class="two-third last">
-<h2>Your friendly neighborhood research lab and policy think tank.</h2>
+<h2>Your neighborhood fintech research lab</h2>
 <p>Bitquant Research Laboratories is a Hong Kong-based startup focusing
 on research and development of high-risk/high-reward open source
 financial technologies, and to do quantitative and policy research to
@@ -94,7 +72,7 @@ traders, family offices, and small hedge funds.
 <h2>Development</h2>
 <ul>
 <li><a href="https://github.com/joequant/bitquant">Bitquant github</a>
-<a href="https://github.com/joequant/bitquant/wiki">Bitquant development wiki</a>
+<li><a href="https://github.com/joequant/bitquant/wiki">Bitquant development wiki</a>
 <li><a href="http://jsfiddle.net/user/joequant/fiddles/">JS fiddles</a>
 </ul>
 <h2>Ask a question</h2>
@@ -112,7 +90,7 @@ Ph.D. career consulting - We provide free career consulting and resume
 review for math and physical science Ph.d.'s, particularly those
 interested in entering Wall Street
 <p>
-Bittrader - We are developing an open source trading platform for
+<a href="bittrader/index.html">Bittrader</a> - We are developing an open source trading platform for
 individuals and small institutions that will make allow them to deploy
 trading technology previously available only to large investment
 banks.
