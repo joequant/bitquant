@@ -6,4 +6,5 @@ for i in $SCRIPT_DIR/bitquant/*; do
 echo $(basename $i)
 ln -s -f  ../../..$SCRIPT_DIR/bitquant/$(basename $i) $(basename $i)
 done
-ln -s -f ../../..$SCRIPT_DIR/bittrader bittrader
+
+
