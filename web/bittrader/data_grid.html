@@ -1,0 +1,67 @@
+<head>
+        <link rel="stylesheet"
+        href="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/claro/claro.css"
+        media="screen">
+<script src="http://oria.github.io/gridx/build/dojo/dojo.js"
+        data-dojo-config="async:true, parseOnLoad:true"></script>
+
+<script type="text/javascript">
+require([
+    //Require resources.
+    "dojo/store/Memory",
+    "gridx/core/model/cache/Sync",
+    "gridx/Grid"
+], function(Memory, Cache, Grid){
+var store = new Memory({
+    data: [
+        { id: 1, name: 'John', score: 130, city: 'New York', birthday:
+'1980/2/5'},
+        { id: 2, name: 'Alice', score: 123, city: 'Washington',
+birthday: '1984/3/7'},
+        { id: 3, name: 'Lee', score: 149, city: 'Shanghai', birthday:
+'1986/10/8'},
+        { id: 4, name: 'Mike', score: 100, city: 'London', birthday:
+'1988/8/12'},
+        { id: 5, name: 'Tom', score: 89, city: 'San Francisco',
+birthday: '1990/1/21'}
+    ]});
+var structure = [
+    { id: 'name', field: 'name', name: 'Name', width: '50px'},
+    { id: 'city', field: 'city', name: 'City'},
+    { id: 'score', field: 'score', name: 'Score', width: '80px'}
+];
+//We are using Memory store, so everything is synchronous.
+var cacheClass = "gridx/core/model/cache/Sync";
+    //Create grid widget.
+    var grid = Grid({
+        id: 'grid',
+        cacheClass: Cache,
+        store: store,
+        structure: structure
+    });
+
+    //Put it into the DOM tree. Let's assume there's a node with id
+    //"gridContainer".
+    grid.placeAt('gridContainer');
+
+    //Start it up.
+    grid.startup();
+});
+</script>
+<style type="text/css">
+    /*Import the main CSS file of Gridx.*/
+    @import "http://oria.github.io/gridx/build/gridx/resources/claro/Gridx.css";
+
+    /*import RTL css if you need to support rtl.*/
+    @import
+    "http://oria.github.io/gridx/build/gridx/resources/claro/Gridx_rtl.css";
+
+    #grid {
+    width: 100%;
+    height: 100%;
+    }
+</style>
+</head>
+<body>
+<div id="gridContainer"></div>
+</body>
