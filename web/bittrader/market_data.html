@@ -2,18 +2,187 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Demo: Layout with Dijit</title>
+        <title>Market Data</title>
         <link rel="stylesheet" href="style.css" media="screen">
+<script src="https://raw.github.com/HumbleSoftware/envisionjs/master/envision.js"></script>
         <link rel="stylesheet"
         href="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/claro/claro.css"
         media="screen">
 <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js"
-        data-dojo-config="async:true, parseOnLoad:true">
-</script>
+        data-dojo-config="async:true, parseOnLoad:true"></script>
+
 <script>
     require(["dojo/parser", "dijit/layout/BorderContainer",
     "dijit/layout/TabContainer",
         "dijit/layout/ContentPane"]);
+</script>
+<style>
+#container {
+  width: 400px;
+  margin: 24px auto 0px auto;
+}
+
+/* Dimensions */
+.envision-finance {
+  width: 600px;
+}
+.envision-finance-price .envision-component {
+  height : 200px;
+}
+.envision-finance-volume .envision-component {
+  height : 60px;
+}
+.envision-finance-connection .envision-component {
+  height: 16px;
+}
+.envision-finance-summary .envision-component {
+  cursor: all-scroll;
+  height : 70px;
+  margin-top: -2px;
+}
+
+/* Bubble Borders */
+.envision-finance-price,
+.envision-finance-volume {
+  border: 1px solid #B6D9FF;
+  background: #fff;
+}
+.envision-finance-price {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.envision-finance-volume {
+  border-top: 0px;
+}
+
+/* Connection overlay */
+.envision-finance-connection canvas {
+  z-index: 10;
+  background: #fff;
+}
+.envision-finance-connection canvas object {
+  position: absolute;
+  top: 0px;
+}
+
+/* Y-Axis Labels */
+.envision-finance-price .flotr-grid-label {
+  margin-left: 4px;
+}
+.envision-finance-price .flotr-grid-label.first {
+  margin-top: -6px;
+}
+.envision-finance-price .flotr-grid-label.last {
+  margin-top: 6px;
+}
+
+/* X-Axis Labels */
+.envision-finance-summary .flotr-grid-label {
+  margin-top: 3px;
+}
+
+/* Mouse Tracker */
+.envision-finance-price .flotr-mouse-value {
+    font-size: 12px;
+}
+.envision-finance-volume .flotr-mouse-value {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .envision-finance {
+    width: 100%;
+  }
+  .envision-finance-price .envision-component {
+    height: 120px;
+  }
+  .envision-finance-summary .envision-component,
+  .envision-finance-volume .envision-component {
+    height: 40px;
+  }
+}
+
+/* Dimensions */
+.envision-timeseries {
+  width: auto;
+}
+.envision-timeseries-detail .envision-component {
+  height: 200px;
+}
+.envision-timeseries-connection .envision-component {
+  height: 16px;
+}
+.envision-timeseries-summary .envision-component {
+  cursor: all-scroll;
+  height: 80px;
+}
+
+/* Bubble Borders */
+.envision-timeseries-detail {
+  padding-top: 7px;
+  border: 1px solid #B6D9FF;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom: 0px;
+  background : #e2f0ff;
+}
+
+/* Connection overlay */
+.envision-timeseries-connection canvas {
+  z-index: 10;
+  background: #fff;
+}
+.envision-timeseries-connection canvas object {
+  position: absolute;
+  top: 0px;
+}
+.envision-timeseries-summary .envision-component {
+  margin-top: -2px;
+}
+</style>
+<script type="text/javascript">
+require(["dojo/domReady!"], function(){
+(function () {
+
+var
+  container = document.getElementById('container'),
+  x = [],
+  y1 = [],
+  y2 = [],
+  data, options, i;
+
+// Data Format:
+data = [
+  [x, y1], // First Series
+  [x, y2]  // Second Series
+];
+
+// Sample the sine function for data
+for (i = 0; i < 4 * Math.PI; i += 0.05) {
+  x.push(i);
+  y1.push(Math.sin(i));
+  y2.push(Math.sin(i + Math.PI));
+}
+x.push(4 * Math.PI)
+y1.push(Math.sin(4 * Math.PI));
+y2.push(Math.sin(4 * Math.PI));
+
+// TimeSeries Template Options
+options = {
+  // Container to render inside of
+  container : container,
+  // Data for detail (top chart) and summary (bottom chart)
+  data : {
+    detail : data,
+    summary : data
+  }
+};
+
+// Create the TimeSeries
+new envision.templates.TimeSeries(options);
+
+})();
+});
 </script>
     </head>
 <body class="claro">
@@ -28,14 +197,7 @@
             data-dojo-type="dijit/layout/ContentPane"
             data-dojo-props="title: 'Group 1'">
         <h4>Group 1 Content</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-        aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.</p>
+<div id="container"></div>
     </div>
     <div
             data-dojo-type="dijit/layout/ContentPane"
