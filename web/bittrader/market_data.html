@@ -6,6 +6,8 @@
 <link rel="stylesheet"
       href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script src="https://raw.github.com/HumbleSoftware/envisionjs/master/envision.js"></script>
+<script src="https://raw.github.com/HumbleSoftware/envisionjs/master/demos/data/data.js"></script>
+<script src="http://www.humblesoftware.com/static/js/hsd.js?d3fa1"></script>
 	<style type="text/css">
 
 	p {
@@ -255,10 +257,55 @@
 }
 </style>
 <script type="text/javascript">
+
+$(function() { (function finance_demo (container) {
+
+  var
+    summaryTicks = financeData.summaryTicks,
+    options = {
+    container : container,
+    data : {
+      price : financeData.price,
+      volume : financeData.volume,
+      summary : financeData.price
+    },
+    trackFormatter : function (o) {
+
+      var
+        data = o.series.data,
+        index = data[o.index][0],
+        value;
+
+      value = summaryTicks[index].date + ': $' +
+      summaryTicks[index].close + ", Vol: " +
+      summaryTicks[index].volume;
+
+      return value;
+    },
+    xTickFormatter : function (index) {
+      var date = new Date(financeData.summaryTicks[index].date);
+      return date.getFullYear() + '';
+    },
+    // An initial selection
+    selection : {
+      data : {
+        x : {
+          min : 100,
+          max : 200
+        }
+      }
+    }
+  };
+
+  return new envision.templates.Finance(options);
+}
+)(document.getElementById("container"));
+});
+
 $(function() { (function () {
 
 var
-  container = document.getElementById('container'),
+  container = document.getElementById('container1'),
   x = [],
   y1 = [],
   y2 = [],
@@ -313,6 +360,7 @@ new envision.templates.TimeSeries(options);
 </div>
 <div id="group2">
 <h4>Group 2 Content</h4>
+<div id="container1"></div>
 </div>
 <div id="group3">
 <h4>Group 3 Content</h4>
@@ -321,6 +369,9 @@ new envision.templates.TimeSeries(options);
 <script>
 $("#tabs").tabs();
 </script>
+</div>
+<div class="ui-layout-west">
+	This is the west pane, closable, slidable and resizable
 </div>
 </body>
 </html>
