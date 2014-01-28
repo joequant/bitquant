@@ -1,2 +1,4 @@
-systemctl restart httpd
+#!/bin/bash -v
+
+sudo systemctl restart httpd
 ipython notebook
