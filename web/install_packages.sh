@@ -1,2 +1,3 @@
-#!/bin/bash -v
-urpmi apache apache-mod_wsgi
+#!/bin/bash
+urpmi apache apache-mod_wsgi python-flask ipython
+

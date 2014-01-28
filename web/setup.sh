@@ -13,5 +13,5 @@ mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak
 ln -s -f ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
 popd
 
-systemctl restart httpd
+
 
