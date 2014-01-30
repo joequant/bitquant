@@ -59,12 +59,6 @@
 		else if (!skipAlert)
 			alert( 'This layout will save & restore its last state \nwhen the page is refreshed.' );
 
-		// update text on button
-		var $Btn = $('#btnToggleState'), text = $Btn.html();
-		if (enabled)
-			$Btn.html( text.replace(/Enable/i, "Disable") );
-		else
-			$Btn.html( text.replace(/Disable/i, "Enable") );
 	};
 
 	// set EVERY 'state' here so will undo ALL layout changes
@@ -135,7 +129,27 @@
 		if (!cookieExists) toggleStateManagement( true, false );
 
  	});
-	</script>
+
+$("a.new_win").click(function(){
+  window.open($(this).attr('href'));
+  return false;
+});
+
+// delegate event for performance, and save attaching a million events
+// to each anchor
+document.addEventListener('click', function(event) {
+  var target = event.target;
+  if (target.tagName.toLowerCase() == 'a')
+  {
+      var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
+      if (port)
+      {
+         target.href = port[2];
+         target.port = port[1];
+      }
+  }
+}, false);
+</script>
 </head>
 <body>
 <div class="ui-layout-north" onmouseover="myLayout.allowOverflow('north')" onmouseout="myLayout.resetOverflow(this)">
@@ -145,20 +159,57 @@ Bittrader Trading System
 <div id="tabs">
 <ul>
 <li><a href="#bittrader">Bittrader</a></li>
-<li><a href="#admin">Admin</a></li>
+<li><a href="#technologies">Technologies</a></li>
 <li><a href="#templates">Templates</a></li>
 <li><a href="#resources">Resources</a></li>
 </ul>
 <div id="bittrader">
 <h4>Bittrader</h4>
+Welcome to the garage.  Everything here is massively
+under-construction.
+<p>
+This application is bittrader, a trading system based on pulling
+together open-source javascript applications into a single trading
+system.  All of the code here is BSD licensed and is available via
+our <a href="https://github.com/joequant/bitquant">Github repository</a>
+<p>
+Our target date for alpha for an MVP (minimally viable product) is
+August 2014.  Bittrader will be able to trade bitcoin and also will
+contain an interface with interactive brokers.
+<p>
+
 <ul>
 <li><a class="new_win" href="market_data.html">Market Data</a>
+<li><a class="new_win" href=":8080/">Risk engine</a>
 <li><a class="new_win" href="trade.html">Trade</a>
 <li><a class="new_win" href="back_office.html">Back office</a>
 </ul>
 </div>
-<div id="admin">
-<h4>Admin</h4>
+
+<div id="technologies">
+<h4>Technologies</h4>
+What is unique about bittrader?
+<ul>
+<li>100% open source / BSD licensed / all development on github
+<li>thin javascript client
+<li>distributed as a virtual disk image.  Upload the image to a cloud
+  or run as a virtual machine with VirtualBox.
+</ul>
+<p>
+Bittrader pulls together several different technologies into one
+system
+<ul>
+<li> opengamma - backend engine
+<li> jqueryui (and friends) - display
+<li> flotr2 - plotting
+<li> mageia - infrastructure
+<li> zipline or pyalgotrade - Backtesting
+<li> <a href="http://ramnathv.github.io/rNotebook/">rNotebook</a> -
+  data exploration/reports
+<li> ipython notebooks
+<li> quantlib - algo trading
+</ul> 
+</div>
 <div id="templates">
 <h4>Templates and sandbox</h4>
 <ul>

@@ -14,4 +14,3 @@ ln -s -f ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
 popd
 
 
-
