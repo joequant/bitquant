@@ -1,7 +1,7 @@
 #!/bin/bash
 # Execute as superuser
-rmmod nbd
-modprobe nbd max_part=16
-qemu-nbd -c /dev/nbd0 $1
-zerofree /dev/nbd0p1
-qemu-nbd -d /dev/nbd0
+sudo rmmod nbd
+sudo modprobe nbd max_part=16
+sudo qemu-nbd -c /dev/nbd0 $1
+sudo zerofree /dev/nbd0p1
+sudo qemu-nbd -d /dev/nbd0

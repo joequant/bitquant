@@ -10,7 +10,7 @@ $o = {
        'mkbootdisk' => 0,
        'isUpgrade' => 0,
        'excludedocs' => 1,
-       'autologin' => 'mageia',
+       'autologin' => 'user',
        'miscellaneous' => {
 	   'numlock' => 1,
        },
@@ -88,10 +88,10 @@ $o = {
 			 },
        'users' => [{
 'icon' => 'default',
-'realname' => 'Mageia Cloud User',
+'realname' => 'Cloud User',
 'uid' => undef,
 'groups' => [],
-'name' => 'mageia',
+'name' => 'user',
 'shell' => '/bin/bash',
 'password' => 'cubswin:)',
 'gid' => undef
@@ -147,8 +147,8 @@ $o = {
 			'postInstall' => '
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
-#urpmi.removemedia -a
-#urpmi.addmedia --distrib --mirrorlist "http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list"
+urpmi.removemedia -a
+urpmi.addmedia --distrib --mirrorlist "http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list"
 urpmi --auto-update --auto --force
 urpmi --force task-cinnamon task-astronomy task-lxde
 '

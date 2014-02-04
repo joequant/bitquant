@@ -88,10 +88,10 @@ $o = {
 			 },
        'users' => [{
 'icon' => 'default',
-'realname' => 'Mageia Cloud User',
+'realname' => 'Cloud User',
 'uid' => undef,
 'groups' => [],
-'name' => 'mageia',
+'name' => 'user',
 'shell' => '/bin/bash',
 'password' => 'cubswin:)',
 'gid' => undef
@@ -155,22 +155,23 @@ urpme --force --auto-orphans
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
 cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
-echo 'login as user mageia password cubswin:)' >> /etc/issue
+echo 'login as user user password cubswin:)' >> /etc/issue
 EOP
 cat <<EOP >> /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
 EOP
 update-grub2
-cd ~mageia
+cd ~user
 mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
 pushd bitquant
 pushd web
 ./setup.sh
+cp sshd_config /etc/ssh
 popd
 popd
-cd ~mageia
-chown -R mageia:mageia git
+cd ~user
+chown -R user:user git
 "
      };
