@@ -11,7 +11,8 @@ aether-connector-basic \
 aether-transport-file \
 aether-transport-http \
 aether-transport-wagon \
-fop
+fop zerofree
+
 
 
 
