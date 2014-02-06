@@ -169,6 +169,7 @@ pushd bitquant
 pushd web
 ./setup.sh
 cp sshd_config /etc/ssh
+cp cloud.cfg /etc/cloud
 popd
 popd
 cd ~user
