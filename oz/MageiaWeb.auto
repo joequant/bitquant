@@ -147,10 +147,11 @@ $o = {
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
 urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list'
+urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.4.x86_64.list'
 urpmi.update -a
 urpmi --allow-force --force --auto-update
-urpmi --allow-force --force cloud-init cloud-utils gdisk git python-flask
+urpmi --allow-force --force cloud-init cloud-utils gdisk git
+urpmi --allow-force --force python-flask apache apache apache-mod_wsgi
 urpme --force --auto-orphans
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules

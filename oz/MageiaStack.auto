@@ -147,7 +147,7 @@ $o = {
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
 urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list'
+urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.4.x86_64.list'
 urpmi.update -a
 urpmi --allow-force --force --auto-update
 urpmi --allow-force --force cloud-init cloud-utils gdisk 

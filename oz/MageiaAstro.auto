@@ -148,7 +148,7 @@ $o = {
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
 urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist "http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list"
+urpmi.addmedia --distrib --mirrorlist "http://mirrors.mageia.org/api/mageia.4.x86_64.list"
 urpmi --auto-update --auto --force
 urpmi --force task-cinnamon task-astronomy task-lxde
 '
