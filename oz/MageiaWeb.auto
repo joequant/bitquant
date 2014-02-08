@@ -106,7 +106,9 @@ $o = {
 	                       'urpmi',
                                'sudo', 'grub2',
 	                       'openssh-client', 'btrfs-progs',
-                               'openssh-server', 'vim-minimal'],
+                               'openssh-server', 'vim-minimal',
+       "cloud-init", "cloud-utils", "gdisk", "git",
+       "python-flask", "apache", "apache-mod_wsgi"],
        'superuser' => {
 			'home' => '/root',
 			'shell' => '/bin/bash',
@@ -146,34 +148,12 @@ $o = {
 			'postInstall' => "
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
-urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.4.x86_64.list'
-urpmi.update -a
-urpmi --allow-force --force --auto-update
-urpmi --allow-force --force cloud-init cloud-utils gdisk git
-urpmi --allow-force --force python-flask apache apache apache-mod_wsgi
-urpme --force --auto-orphans
-rm -rf /etc/udev/rules.d/70-persistent-net.rules
-touch /etc/udev/rules.d/70-persistent-net.rules
-cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
-echo 'login as user user password cubswin:)' >> /etc/issue
-EOP
-cat <<EOP >> /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
-EOP
-update-grub2
 cd ~user
 mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
-pushd bitquant
-pushd web
-./setup.sh
-cp sshd_config /etc/ssh
-cp cloud.cfg /etc/cloud
+pushd bitquant/web
+./setup_webapp.sh >& /var/log/oz_setup.log
 popd
-popd
-cd ~user
-chown -R user:user git
 "
      };
