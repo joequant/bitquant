@@ -7,6 +7,8 @@ urpme --force --auto-orphans
 
 pushd $SCRIPT_DIR
 ./setup.sh
+mkdir -p /etc/ssh 
+mkdir -p /etc/cloud
 cp sshd_config /etc/ssh
 cp cloud.cfg /etc/cloud
 popd
