@@ -16,18 +16,31 @@ $(function () {
     $("#header").load("includes/header.html");
 });
 </script>
+<!-- Math Jax -->
+<script type="text/javascript"
+  src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'],
+  ['\\(','\\)']]}});
+</script>
 </head>
 <body>
 <div id="header"></div>
 <div id="container">
+\(dX_t = \mu_t dt + \sigma_t dB_t\)<p>
+\(df(t, X_t) = \left(\frac{\partial f}{\partial t} +
+\mu_{t}\frac{\partial f}{\partial x} + \frac{1}{2}
+\sigma^2_t\frac{\partial^2 f}{\partial x^2}\right) dt + \sigma_t\frac{\partial f}{\partial x} dB_t\)
+<p>
 This is an equation called Ito's Lemma which is very commonly used in
 mathematical finance.  
 <p>
 The first line says that you have a new function over time that has a
 "non-wiggly" part added to a "wiggly" part.  Typically this is a stock
-price which has a "non-wiggly" part and a "wiggly" part.
+price which has a "non-wiggly" part and a "wiggly" part. 
 <p>
-So the first line just defines the process.
+So the first line just defines the process. 
 <p>
 Now I want to calculate a new function that is based on the random
 process.  A trivial example is if I have the equation for one share of
