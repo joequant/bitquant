@@ -100,7 +100,7 @@ $o = {
        'X' => { disabled => 1 },
        'skipped_packages' => [ 'xdm', 'shorewall',
 			       'shorewall-core', 'mageia-gfxboot-theme', 
-			       'rsyslog', 'acpid', 'acpi', 'lilo', 
+			       'acpid', 'acpi', 'lilo', 
 			       'cpupower', 'mandi', 'grub'],
        'default_packages' => [
 			       'basesystem-minimal',
@@ -108,7 +108,7 @@ $o = {
                                'sudo', 'grub2',
 	                       'openssh-client', 
                                'openssh-server', 'vim-minimal',
-       "cloud-init", "gdisk", "git",
+       "cloud-init", "cloud-utils", "gdisk", "git",
        "python-flask", "apache", "apache-mod_wsgi"],
        'superuser' => {
 			'home' => '/root',
