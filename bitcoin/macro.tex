@@ -30,67 +30,78 @@ observation of the bitcoin market.
 
 We begin our money with the equation of exchange where
 \begin{equation}
-M \dot V = P \dot Q
+M \cdot V = P \cdot Q
 \end{equation}
 where
-$$
-M \mbox{is the nominal amount of money}\\
-V \mbox{is the velocity of money}\\
-P \mbox{is the price level}\\
-Q \mbox{is the index of real expenditures}\\
-$$.
+\begin{eqnarray*}
+& M & \mbox{is the nominal amount of money}\\
+& V & \mbox{is the velocity of money}\\
+& P & \mbox{is the price level}\\
+& Q & \mbox{is the index of real expenditures}\\
+\end{eqnarray*}
 
 We now modify the equation in order to take into account the unique
 aspects of bitcoin.  First we express all of our quantities in units
 of fiat currency.  By expressing all of our quantities in terms of
-fiat currency, we can set the $P$ to $1$.
+fiat currency, we can set the $P$ to $1$.  Since we are expressing all
+quantities in units of fiat currency, the value for $M$ is now the
+value of bitcoin as measured in fiat currency units.
 
 We next expand the quantity $M$ in terms of the number of bitcoin in
 circulation $n_b$ and the price of a single bitcoin $p_b$.  The number
-of bitcoin in circulation is externally fixed, whereas the price of a
-single bitcoin is the quantity which we are interested in.
-Substituting $M=n_b p_b$ we and rearranging we get.
+of bitcoin in circulation is externally determined and slowing and
+predictable varying, whereas the price of a single bitcoin will
+fluctuate.  Substituting $M=n_b p_b$ we and rearranging we get.
 
 \begin{equation}
 p_b = \frac{Q}{n_b V}
 \end{equation}
 
-We note that $n_b$ is an externally determined variable.  The key
-variables which determine the price of bitcoin is the interaction
-between the level of bitcoin usage and the velocity of bitcoin.
+We note that $n_b$ is an externally determined and slowing changing
+variable.  The main determinant of the price of bitcoin is the
+interaction between the level of bitcoin usage and the velocity of
+bitcoin.
 
 At this point we have made no assumptions concerning the dynamics of
 bitcoin.  We shall now add some dynamical assumptions concerning the
 relationship between the number of bitcoin expended $Q$ and the
 velocity of an individual bitcoin $V$.
 
-We decompose the velocity of bitcoin into a fraction that is saved
-$f_s$ and a fraction that is involved with transactions $f_t$.  We
-then claim that bitcoin which is saved has a zero velocity whereas
-bitcoins which are spent in transactions have a velocity which is a
-linear function of $Q$.  Therefore
+We decompose the velocity of bitcoin into a portion that is saved and
+portion that is transacted.  We denote the likelihood that a
+invididual bitcoin is saved by $l_s$ and the likelihood that a bitcoin
+is transacted as $l_t$.  These two variables will sum to $1$.  These
+portions have a corresponding set of velocities $v_s$ being the
+velocity of a saved bitcoin and $v_t$ being the velocity of a
+transacted bitcoin.
+
+We now make several claims about the dynamics of bitcoin.  Because
+$v_t \gg v_s$ we claim that we can set the velocity of saved bitcoins
+to $0$.  We further claim that the velocity of transacted bitcoins can
+be modeled as a linear function of $Q$.  We therefore have the
+following expression for the total velocity of bitcoin.
 
 \begin{equation}
-V = f_t\alpha_t Q
+V = l_t\alpha_t Q
 \end{equation}.
 
 Substituting back into the original equation we see that
 \begin{equation}
-p_b = \frac{1}{f_t \alpha_t}
+p_b = \frac{1}{l_t \alpha_t}
 \end{equation}.
 
 We claim that $\alpha_t$ will remain roughly constant over time.  That
-leaves only one term which is the $f_t$ the fraction of bitcoin which
-is transacted.
+leaves only one term which impacts the price of bitcoin, which is the
+$l_t$ the likelihood that a given bitcoin will be transacted rathr
+than saved.
 
 \section{Implications of our model}
 Our model makes very strong claims concerning the price of bitcoins.
 In particular, it states that the price of bitcoin is determined
-almost solely by the willingness of bitcoin users to transact a
-particular bitcoin as opposed to saving that bitcoin.  If a user uses
-bitcoin for transaction purposes then this has no impact on the value
-of bitcoin, while the value of bitcoin rises a given bitcoin is more
-likely to be saved rather than transacted.
+almost solely by the likelihood that a given bitcoin will be saved. If
+a user uses bitcoin for transaction purposes then this has no impact
+on the value of bitcoin, while the value of bitcoin rises a given
+bitcoin is more likely to be saved rather than transacted.
 
 This model seems to agree with the changes in bitcoin pricing in 2013.
 The two events that caused bitcoin prices to increase were the Cyprus
@@ -102,12 +113,13 @@ bitcoin prices have been news reports concerning the convertibility of
 bitcoin, and that news reports concerning the increasing usage of
 bitcoin has made very little impact on its price.
 
-We also note that bitcoin has is prone to sudden changes in price but
-that the price of bitcoin after a sudden shock has returned to stable
-levels.  Although shocks can cause a sudden change in the price of
-bitcoin, to the extent that it does not cause a change in how likely a
-bitcoin is saved or transacted, it will not cause a change in the
-price level of bitcoin.
+We also note that bitcoin has is prone to sudden changes in price due
+to news events but that the price of bitcoin after a sudden shock has
+returned to stable levels.  Our model explains this phenomenon by
+asserting that although shocks can cause a sudden change in the price
+of bitcoin, to the extent that it does not cause a change in how
+likely a bitcoin is saved or transacted, it will not cause a change in
+the long-run price level of bitcoin.
 
 Our model also makes predictions concerning the future price of
 bitcoin.  If our model is correct, then we should expect that
@@ -119,23 +131,31 @@ given bitcoin would be saved rather than transacted.
 Some economists, notably Paul Krugman, are pessimistic about the
 viability of bitcoin as a medium of exchange, because they believe
 that bitcoin will fall into a liquidity trap caused by the fixed
-supply of bitcoin (Krugman, 2013）.  They claim that as the price of
-bitcoin rises, the amount of bitcoin in circulation will decrease
-thereby increasing the price, ultimately creating a situation in which
-bitcoin is completely hoarded.
+supply of bitcoin (Krugman, 2013）.  Krugman claims that as the price
+of bitcoin rises, the amount of bitcoin in circulation will decrease
+thereby increasing the price, ultimately creating a situation in
+which bitcoin is completely hoarded.  This effect has been observed
+in scrip economies such as the Capital Hill Babysitting Co-op
+(Krugman, 1997).
 
-Our model however suggests that bitcoin will be able to avoid a
-liquidity trap.  The mechanism which we claim this will occur involves
-the interaction between bitcoin and fiat currency.  As the price of
+However, our model provides a mechanism by which bitcoin can avoid a
+liquidity trap and explains why bitcoin has not experienced such a
+trap.  The mechanism which we claim this will occur involves the
+interaction between bitcoin and fiat currency.  As the price of
 bitcoin rises, we claim that people will be more likely to spend their
-bitcoin rather than fiat currency, which will cause bitcoin prices to
-fall.  Conversely a fall in the price of bitcoin will increase the
-likelihood that people will spend bitcoin, and more likely to spend
-fiat, and this will cause bitcoin prices to rise.  Krugman's belief
-that bitcoin is destined for a liquidity trap ignores the fact that
-bitcoin exists within an fiat-based economy, and that the ease of
-convertibility to and from fiat prevents a liquidity trap that exists
-when convertibility is difficult.
+bitcoin rather than fiat currency, which will decrease saved bitcoin
+thereby cause bitcoin prices to fall.  Conversely a fall in the price
+of bitcoin will increase the likelihood that people will save bitcoin
+as they will be more likely to spend fiat, and this will cause bitcoin
+prices to rise.  Our models claims that long-run increases or
+decreases in the price of bitcoin will not influenced by the
+transactional use of bitcoin but rather by external factors which
+change the likelihood that a given bitcoin will be saved.
+
+Krugman's belief that bitcoin is destined for a liquidity trap ignores
+the fact that bitcoin exists within an fiat-based economy, and that
+the ease of convertibility to and from fiat prevents a liquidity trap
+that exists when convertibility is difficult.
 
 \section{Conclusion}
 We caution that the correctness of the model will be determined by
@@ -146,6 +166,8 @@ stimulate research and discussion in this area.
 
 \section{References}
 http://krugman.blogs.nytimes.com/2013/04/12/adam-smith-hates-bitcoin/
+
+http://www.pkarchive.org/theory/BabySittingCantAvoidRecessions.html
 
 \end{document}
 
