@@ -8,12 +8,12 @@
     <version>4</version>
     <arch>x86_64</arch>
     <install type='iso'>
-      <iso>http://ftp.twaren.net/Linux/Mageia/distrib/4/x86_64/install/images/boot-nonfree.iso</iso>
+      <iso>http://free.nchc.org.tw/mageia/distrib/4/x86_64/install/images/boot-nonfree.iso</iso>
     </install>
   </os>
   <repositories>
   <repository name="install">
-  <url>http://ftp.twaren.net/Linux/Mageia/distrib/4</url>
+  <url>http://free.nchc.org.tw/mageia/distrib/4</url>
   </repository>
   </repositories>
   <description>Mageia 4</description>

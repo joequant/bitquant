@@ -98,18 +98,14 @@ $o = {
 }],
        'security' => 2,
        'X' => { disabled => 1 },
-       'skipped_packages' => [ 'xdm', 'shorewall',
-			       'shorewall-core', 'mageia-gfxboot-theme', 
-			       'acpid', 'acpi', 'lilo', 
-			       'cpupower', 'mandi', 'grub'],
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
                                'sudo', 'grub2',
 	                       'openssh-client', 
                                'openssh-server', 'vim-minimal',
-       "cloud-init", "cloud-utils", "gdisk", "git",
-       "python-flask", "apache", "apache-mod_wsgi"],
+	   "cloud-init", "cloud-utils", "gdisk", "git",
+	   "python-flask", "apache", "apache-mod_wsgi"],
        'superuser' => {
 			'home' => '/root',
 			'shell' => '/bin/bash',
@@ -146,9 +142,12 @@ $o = {
 		    'XMOUSETYPE' => 'PS/2',
 		    'EMULATEWHEEL' => undef
 		  },
-			'postInstall' => "
+			'postInstall' => '
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
+urpmi.removemedia -a
+urpmi.addmedia --distrib --mirrorlist "http://mirrors.mageia.org/api/mageia.4.x86_64.list"
+urpmi --auto-update --auto --force
 cd ~user
 mkdir git
 cd git
@@ -156,5 +155,5 @@ git clone https://github.com/joequant/bitquant.git
 pushd bitquant/web
 ./setup_webapp.sh >& /var/log/oz_setup.log
 popd
-"
+'
      };
