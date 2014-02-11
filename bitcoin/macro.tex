@@ -1,8 +1,11 @@
-\documentstyle[12pt]{article}
+\documentclass[12pt]{article}
 \title{A simple macroeconomic model of bitcoin}
 \author{Joseph C Wang\\
 \small Bitquant Research Laboratories\\
 \small Working Paper No. 1}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+\usepackage{url}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -131,12 +134,12 @@ given bitcoin would be saved rather than transacted.
 Some economists, notably Paul Krugman, are pessimistic about the
 viability of bitcoin as a medium of exchange, because they believe
 that bitcoin will fall into a liquidity trap caused by the fixed
-supply of bitcoin (Krugman, 2013）.  Krugman claims that as the price
+supply of bitcoin \cite{krugman1}.  Krugman claims that as the price
 of bitcoin rises, the amount of bitcoin in circulation will decrease
 thereby increasing the price, ultimately creating a situation in
 which bitcoin is completely hoarded.  This effect has been observed
-in scrip economies such as the Capital Hill Babysitting Co-op
-(Krugman, 1997).
+in scrip economies such as the Capital Hill Babysitting Co-op 
+\cite{krugman2}.
 
 However, our model provides a mechanism by which bitcoin can avoid a
 liquidity trap and explains why bitcoin has not experienced such a
@@ -164,10 +167,6 @@ to illustrate that the behavior of bitcoin can be modelled using basic
 economic principles, and we hope that this working paper will
 stimulate research and discussion in this area.
 
-\section{References}
-http://krugman.blogs.nytimes.com/2013/04/12/adam-smith-hates-bitcoin/
-
-http://www.pkarchive.org/theory/BabySittingCantAvoidRecessions.html
+\bibliography{macro}
 
 \end{document}
-
