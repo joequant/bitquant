@@ -98,6 +98,8 @@ $o = {
 }],
        'security' => 2,
        'X' => { disabled => 1 },
+       'skipped_packages' => ['shorewall-core', 'mageia-gfxboot-theme',
+       'mandi', 'mandi-ifw'],
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
