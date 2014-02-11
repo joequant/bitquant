@@ -1,25 +1,68 @@
-\documentclass[12pt]{article}
-\title{A simple macroeconomic model of bitcoin}
-\author{Joseph C Wang\\
-\small Bitquant Research Laboratories\\
-\small Working Paper No. 1}
+\documentclass[twoside]{article}
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[hmarginratio=1:1,top=32mm,columnsep=20pt]{geometry} % Document margins
+\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+\usepackage{hyperref} % For hyperlinks in the PDF
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancyhdr} % Headers and footers
+\pagestyle{fancy} % All pages have headers and footers
+\fancyhead{} % Blank out the default header
+\fancyfoot{} % Blank out the default footer
+\fancyhead[C]{Bitquant Research Laboratories Working Paper No. 1} % Custom header text
+\fancyfoot[RO,LE]{\thepage} % Custom footer text
+
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{A simple macroeconomic model of bitcoin}} % Article title
+
+\author{
+\large
+\textsc{Joseph C Wang}
+\normalsize Bitquant Research Laboratories\\
+\normalsize \href{mailto:joequant@gmail.com}{joequant@gmail.com}
+\date{2014 February 11}
+}
+
+
 \usepackage{natbib}
 \bibliographystyle{plainnat}
 \usepackage{url}
 \begin{document}
 \maketitle
+\thispagestyle{fancy}
 \begin{abstract}
 This working paper presents a simple model for the macroeconomic
 behavior of bitcoin based on the economic equation of exchange.
 According to this model, the value of bitcoin is determined largely by
-the willingness of bitcoin holders to hoard bitcoin and not by its
+the willingness of bitcoin holders to save bitcoin and not by its
 transactional use.  This model therefore predicts that increased use
 of bitcoin will not cause its value to rise, but that the value of
-bitcoin will be almost solely determined by the willingness of bitcoin
-holders to pull bitcoin out of circulation.  This model further
-suggests that bitcoin will not fall victim to a liquidity as suggested
-by some economists.
+bitcoin in terms of fiat currency will be almost solely determined by
+the willingness of bitcoin holders to pull bitcoin out of circulation.
+This model suggests that bitcoin will not fall victim to a liquidity
+trap as suggested by some economists.
 \end{abstract}
+
+\begin{multicols}{2}
 
 \section{Introduction} 
 
@@ -168,5 +211,6 @@ economic principles, and we hope that this working paper will
 stimulate research and discussion in this area.
 
 \bibliography{macro}
+\end{multicols}
 
 \end{document}
