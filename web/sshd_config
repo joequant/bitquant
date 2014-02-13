@@ -92,7 +92,7 @@ PasswordAuthentication no
 # Warning: when running under systemd, and PAM usage is disabled, restarting 
 # SSH service will likely kill off any ssh connections, including the
 # current one
-UsePAM yes
+#UsePAM yes
 
 # Accept locale-related environment variables
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
