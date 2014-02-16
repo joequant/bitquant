@@ -1,51 +1,40 @@
 #!/bin/bash -v
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MY_NAME=joequant
+repos="JyNI XChange JSurface3D zipline etherpad-lite ethercalc"
 cd $SCRIPT_DIR
+git config --global credential.helper cache
+declare -A branch
+branch[XChange]="develop"
+branch[etherpad-lite]="develop"
 
 pushd ../..
-pushd XChange
-git fetch upstream
-git fetch origin
-git stash
-git checkout master
-git rebase upstream/master
-git push --set-upstream origin master
-popd
-
+if [ -d Fudge-Python ]
+then
 pushd Fudge-Python
 git pull origin
 popd
+fi
 
-pushd JSurface3D
+for repo in $repos
+do
+if [ -d $repo ]
+then
+pushd $repo
+if [[ ${branch[$repo]} ]]
+then mybranch=${branch[$repo]}
+else mybranch="master"
+fi
+git checkout $mybranch
 git fetch upstream
 git fetch origin
 git stash
-git checkout master
-git rebase upstream/master
-git push --set-upstream origin master
+git rebase upstream/$mybranch
+git push --set-upstream origin $mybranch
 popd
-
-pushd zipline
-git fetch upstream
-git fetch origin
-git stash
-git checkout master
-git rebase upstream/master
-git push --set-upstream origin master
+fi
+done
 popd
-
-pushd trade-manager
-git fetch upstream
-git fetch origin
-git stash
-git checkout master
-git rebase upstream/master
-git push --set-upstream origin master
-popd
-
-
-
 
 
 

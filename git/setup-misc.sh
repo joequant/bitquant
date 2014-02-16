@@ -1,45 +1,40 @@
 #!/bin/bash -v
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MY_NAME=joequant
+declare -A upstream
+repos="JyNI XChange JSurface3D zipline etherpad-lite ethercalc"
+upstream[JyNI]="https://github.com/Stewori/JyNI"
+upstream[XChange]="https://github.com/timmolter/XChange"
+upstream[JSurface3D]="https://github.com/OpenGamma/JSurface3D"
+upstream[zipline]="https://github.com/quantopian/zipline"
+upstream[trade-manager]="https://code.google.com/p/trade-manager"
+upstream[etherpad-lite]="https://github.com/ether/etherpad-lite"
+upstream[ethercalc]="https://github.com/audreyt/ethercalc"
+
 cd $SCRIPT_DIR
-
 pushd ../..
-git clone https://github.com/$MY_NAME/JyNI
-pushd JyNI
-git remote add upstream https://github.com/Stewori/JyNI
-git fetch upstream
-git fetch origin
-popd
 
+if [ ! -d Fudge-Python ]
+then
 git clone https://github.com/$MY_NAME/Fudge-Python
 pushd Fudge-Python
 git fetch origin
 popd
+fi
 
-git clone https://github.com/$MY_NAME/XChange
-pushd XChange
-git remote add upstream https://github.com/timmolter/XChange
+for repo in $repos
+do
+if [ ! -d $repo ] 
+then
+git clone https://github.com/$MY_NAME/$repo
+pushd $repo
+git remote add upstream ${upstream[$repo]}
 git fetch upstream
 git fetch origin
 popd
-
-git clone https://github.com/$MY_NAME/JSurface3D
-pushd JSurface3D
-git remote add upstream https://github.com/OpenGamma/JSurface3D
-git fetch upstream
-git fetch origin
+fi
+done
 popd
 
-git clone https://github.com/$MY_NAME/zipline
-pushd zipline
-git remote add upstream https://github.com/quantopian/zipline
-git fetch upstream
-git fetch origin
-popd
 
-git clone https://github.com/$MY_NAME/trade-manager
-pushd trade-manager
-git remote add upstream https://code.google.com/p/trade-manager/
-git fetch upstream
-git fetch origin
-popd
