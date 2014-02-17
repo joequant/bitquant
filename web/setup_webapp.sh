@@ -6,6 +6,8 @@ urpmi.update -a
 urpme --force --auto-orphans
 
 pushd $SCRIPT_DIR
+../rpm/install-build-deps.sh
+../rpm/install-web-deps.sh
 ./setup.sh
 mkdir -p /etc/ssh 
 mkdir -p /etc/cloud
