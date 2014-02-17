@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash
 
 sudo systemctl stop httpd
 #ipython notebook &

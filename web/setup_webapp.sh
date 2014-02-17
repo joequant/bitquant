@@ -1,7 +1,12 @@
-#!/bin/bash -v
+#!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#VERSION=cauldron
+#USER=joe
+VERSION=4
+USER=user
+
 urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.4.x86_64.list'
+urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.x86_64.list'
 urpmi.update -a
 urpme --force --auto-orphans
 
@@ -23,7 +28,7 @@ cat <<EOP >> /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
 EOP
 update-grub2
-cd ~user
-chown -R user:user git
+cd /home/$USER
+chown -R $USER":"$USER git
 
 
