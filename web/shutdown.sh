@@ -9,5 +9,7 @@ mvn opengamma:server-stop -Dconfig=fullstack
 popd
 fi
 
+killall node
+
 
 
