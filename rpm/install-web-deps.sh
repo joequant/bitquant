@@ -1,3 +1,3 @@
 #!/bin/bash
-urpmi --no-suggests python-flask apache apache apache-mod_wsgi ipython
+urpmi --no-suggests --auto python-flask apache apache apache-mod_wsgi ipython
 

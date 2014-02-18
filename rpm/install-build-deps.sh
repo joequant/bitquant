@@ -1,4 +1,4 @@
-sudo urpmi --no-suggests \
+sudo urpmi --no-suggests --auto \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
