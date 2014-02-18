@@ -1,3 +1,7 @@
 #!/bin/bash
-urpmi --no-suggests --auto python-flask apache apache apache-mod_wsgi ipython
+#
+# Make is etherpad
+
+urpmi --no-suggests --auto python-flask apache apache apache-mod_wsgi ipython \
+make
 

@@ -8,7 +8,7 @@ sudo systemctl restart httpd
 if [ -d ../../OG-Platform ] ; then
 pushd ../../OG-Platform/examples/examples-simulated/
 mvn install >> $SCRIPT_DIR/og.log
-mvn opengamma:server-start -Dconfig=fullstack >> $SCRIPT_DIR/web/og.log &
+mvn opengamma:server-start -Dconfig=fullstack >> $SCRIPT_DIR/og.log &
 popd
 fi
 
