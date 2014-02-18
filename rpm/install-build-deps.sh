@@ -1,4 +1,4 @@
-sudo urpmi --no-suggests \
+sudo urpmi --no-suggests --auto \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
@@ -12,9 +12,10 @@ aether-transport-file \
 aether-transport-http \
 aether-transport-wagon \
 fop zerofree \
-nodejs
+nodejs \
+gcc-c++
 
-
+#gcc-c++ is needed for ethercalc
 
 
 
