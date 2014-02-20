@@ -13,7 +13,7 @@
 <script>
  
 App = Ember.Application.create();
- 
+
 App.Router.map(function() {
 this.resource('index', { path: '/' }, function() {});
 this.resource('hi', { path: '/hi' }, function() {});
@@ -24,7 +24,7 @@ this.resource('hi', { path: '/hi' }, function() {});
 <script type="text/x-handlebars" data-template-name='index'>
 <p>index!</p>
  
-<p>{{#link-to hi}}hi{{/link-to}}</p>
+<p>{{#link-to 'hi'}}hi{{/link-to}}</p>
 </script>
  
 <script type="text/x-handlebars" data-template-name='hi'>
