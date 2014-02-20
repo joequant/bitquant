@@ -14,13 +14,13 @@ fi
 
 if [ -d ../../ethercalc ] ; then
 pushd ../../ethercalc
-make >> $SCRIPT_DIR/ethercalc.log &
+make >> $SCRIPT_DIR/ethercalc.log 2>&1 &
 popd
 fi
 
 if [ -d ../../etherpad-lite ] ; then
 pushd ../../etherpad-lite
-bin/run.sh >> $SCRIPT_DIR/etherpad.log &
+bin/run.sh >> $SCRIPT_DIR/etherpad.log 2>&1 &
 popd
 fi
 

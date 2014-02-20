@@ -155,7 +155,7 @@ mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
 pushd bitquant/web
-./setup_webapp.sh >& /var/log/oz_setup.log
+./setup_webapp.sh >> /var/log/oz_setup.log 2>&1
 popd
 '
      };
