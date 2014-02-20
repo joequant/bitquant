@@ -3,7 +3,7 @@
 # Make is etherpad
 # postgresql-devel for etherpad-lite
 
-urpmi --no-suggests --auto python-flask apache apache apache-mod_wsgi \
+urpmi --no-suggests --auto apache \
 ipython make postgresql-devel
 
 
