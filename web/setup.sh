@@ -1,5 +1,10 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $UID -ne 0 ]]; then
+  echo "$0 must be run as root"
+  exit 1
+fi
+
 pushd /var/www/html
 rm -f *
 for i in $SCRIPT_DIR/bitquant/*; do 
