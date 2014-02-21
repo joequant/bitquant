@@ -12,23 +12,42 @@
 <body>
 <script>
  
-App = Ember.Application.create();
+window.App = Em.Application.create();
 
 App.Router.map(function() {
-this.resource('index', { path: '/' }, function() {});
-this.resource('hi', { path: '/hi' }, function() {});
+this.resource('hi');
 });
  
+App.Data=[];
+App.Data.push("Hello World");
+App.Data.push("Hi World");
+App.Data.push("My World");
+
+App.IndexRoute = Em.Route.extend({
+    model: function(){
+        return App.Data;
+    }
+});
+
+App.ApplicationRoute = Em.Route.extend({
+    model: function(){
+        return ["application"];
+    }
+});
 </script>
  
 <script type="text/x-handlebars" data-template-name='index'>
 <p>index!</p>
  
 <p>{{#link-to 'hi'}}hi{{/link-to}}</p>
+<ul>
+{{#each item in model}}
+<li>{{item}}
+{{/each}}
+</ul>
 </script>
- 
+
 <script type="text/x-handlebars" data-template-name='hi'>
 hello world!
 </script> 
-</body>
-</html> 
+
