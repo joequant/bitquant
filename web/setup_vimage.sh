@@ -10,10 +10,13 @@ urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VE
 urpmi.update -a
 urpme --force --auto-orphans
 
-pushd $SCRIPT_DIR
+pushd $SCRIPT_DIR > /dev/null
+. rootcheck.sh
+. configcheck.sh
+
 ../rpm/install-build-deps.sh
 ../rpm/install-web-deps.sh
-./setup.sh
+./setup.sh $config
 mkdir -p /etc/ssh 
 mkdir -p /etc/cloud
 cp sshd_config /etc/ssh
