@@ -3,7 +3,7 @@ pushd ~/.oz/images
 rm -f Bitstation.vdi Mageia.qcow2
 popd
 # There seems to be a problem with vdi image creates
-oz-install -a MageiaBitstation.auto mageia-net.tdl -c oz-qcow2.cfg  -d3 -t 3600
+oz-install -a MageiaBitstation.auto mageia-net.tdl -c oz-qcow2.cfg  -d3 -t 7200
 
 pushd ~/.oz/images
 export TMPDIR=$HOME/tmp
