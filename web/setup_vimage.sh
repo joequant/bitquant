@@ -34,3 +34,6 @@ update-grub2
 echo $config > /etc/hostname
 cd /home/$USER
 chown -R $USER":"$USER git
+pushd git/bitquant/git
+./bootstrap.sh
+popd
