@@ -1,12 +1,14 @@
-#!/bin/bash -v
+#!/bin/bash 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MY_NAME=joequant
-cd $SCRIPT_DIR
-
-pushd ../..
+pushd $SCRIPT_DIR/../..
+if [ ! -d quantlib ] ; then
 git clone https://github.com/$MY_NAME/quantlib
-pushd quantlib
+pushd quantlib > /dev/null
 git remote add upstream https://github.com/lballabio/quantlib
 git fetch upstream
 git fetch origin
-popd
+popd > /dev/null
+fi
+popd > /dev/null
+
