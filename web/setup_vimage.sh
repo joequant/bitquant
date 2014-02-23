@@ -31,6 +31,7 @@ cat <<EOP >> /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
 EOP
 update-grub2
+echo $config > /etc/hostname
 cd /home/$USER
 chown -R $USER":"$USER git
 

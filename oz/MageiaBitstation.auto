@@ -152,7 +152,7 @@ mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
 pushd bitquant/web
-./setup_vimage.sh >> /var/log/oz_setup.log 2>&1
+./setup_vimage.sh bitstation >> /var/log/oz_setup.log 2>&1
 popd
 '
      };
