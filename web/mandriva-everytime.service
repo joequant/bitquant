@@ -3,7 +3,7 @@ Description=Reconfigure the system on administrator request
 DefaultDependencies=no
 Conflicts=shutdown.target
 Before=basic.target shutdown.target
-After=local-fs.target
+After=local-fs.target systemd-remount-fs.service
 
 [Service]
 ExecStart=-/etc/init.d/mandrake_everytime
