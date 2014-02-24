@@ -18,6 +18,12 @@ mkdir -p /etc/ssh
 mkdir -p /etc/cloud
 cp sshd_config /etc/ssh
 cp cloud.cfg /etc/cloud
+
+# workaround bad mandriva-everytime.service
+# fix Mageia bug 12868
+# https://bugs.mageia.org/show_bug.cgi?id=12868
+
+cp  mandriva-everytime.service  /usr/lib/systemd/system
 popd
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules

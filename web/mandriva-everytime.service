@@ -1,0 +1,13 @@
+[Unit]
+Description=Reconfigure the system on administrator request
+DefaultDependencies=no
+Conflicts=shutdown.target
+Before=basic.target shutdown.target
+After=local-fs.target
+
+[Service]
+ExecStart=-/etc/init.d/mandrake_everytime
+Type=oneshot
+TimeoutSec=0
+StandardInput=tty
+RemainAfterExit=yes
