@@ -13,6 +13,7 @@ urpme --force --auto-orphans
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
+../rpm/install-build-deps.sh
 ./setup.sh $config
 mkdir -p /etc/ssh 
 mkdir -p /etc/cloud
