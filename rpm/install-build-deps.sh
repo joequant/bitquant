@@ -1,4 +1,8 @@
-sudo urpmi --no-suggests --auto \
+#!/bin/bash
+# These are all of the packages that need to be installed before bootstrap
+# is run
+
+urpmi --no-suggests --auto \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
@@ -13,7 +17,8 @@ aether-transport-http \
 aether-transport-wagon \
 fop zerofree \
 nodejs \
-gcc-c++
+gcc-c++ \
+ipython make postgresql-devel
 
 #gcc-c++ is needed for ethercalc
 
