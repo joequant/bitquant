@@ -6,7 +6,9 @@
 
 urpmi --no-suggests --auto \
    oz qemu libguestfs-tools \
-   libvirt-utils tigervnc
+   libvirt-utils tigervnc \
+   dnsmasq dnsmasq-utils
+
 systemctl start libvirtd.service
 
 
