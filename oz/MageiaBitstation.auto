@@ -98,14 +98,15 @@ $o = {
 }],
        'security' => 2,
        'X' => { disabled => 1 },
-       'skipped_packages' => ['shorewall-core', 'shorewall'],
+       'skipped_packages' => ['shorewall-core', 'shorewall', "xdm",
+"acpid", "mandi", "mandi-ifw", "mageia-gfxboot-theme"],
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
                                'sudo', 'grub2',
 	                       'openssh-client', 
                                'openssh-server', 'vim-minimal',
-	   "cloud-init", "cloud-utils", "gdisk", "git",
+	   "cloud-init", "cloud-utils-growpart", "gdisk", "git",
 	   "apache", "screen",
        "krb5-appl-clients", "strace"],
        'superuser' => {

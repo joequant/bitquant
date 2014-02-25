@@ -98,7 +98,7 @@ $o = {
 }],
        'security' => 2,
        'X' => { disabled => 1 },
-       'skipped_packages' => ['shorewall-core', 'shorewall'],
+       'skipped_packages' => ['shorewall-core', 'shorewall', "xdm"],
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
