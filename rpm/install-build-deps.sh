@@ -2,7 +2,7 @@
 # These are all of the packages that need to be installed before bootstrap
 # is run
 
-urpmi --no-suggests --auto \
+sudo urpmi --no-suggests --auto \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
