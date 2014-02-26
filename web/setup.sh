@@ -14,6 +14,13 @@ ln -s -f  ../../..$SCRIPT_DIR/$config/$(basename $i) $(basename $i)
 done
 popd > /dev/null
 
+pushd /var/www/cgi-bin > /dev/null
+rm -f *
+for i in $SCRIPT_DIR/cgi-bin/*; do
+ln -s -f ../../..$SCRIPT_DIR/cgi-bin/$(basename $i) $(basename $i)
+done
+popd > /dev/null
+
 pushd /etc/httpd/conf/webapps.d > /dev/null
 if [ -f 00_default_vhosts.conf ] ; then
 mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak

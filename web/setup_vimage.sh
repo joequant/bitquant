@@ -18,6 +18,7 @@ mkdir -p /etc/ssh
 mkdir -p /etc/cloud
 cp sshd_config /etc/ssh
 cp cloud.cfg /etc/cloud
+cp sudoers /etc
 
 # workaround bad mandriva-everytime.service
 # fix Mageia bug 12868
