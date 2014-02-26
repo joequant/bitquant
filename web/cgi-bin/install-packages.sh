@@ -6,3 +6,4 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd )"
 echo "Running from directory $SCRIPT_DIR"
 . $SCRIPT_DIR/../../rpm/install-build-deps.sh
+echo "Done"
