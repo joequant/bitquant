@@ -1,8 +1,14 @@
 #!/bin/bash
 # Setup and configure website to use giving configuration
 
+
+
+
 set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ME=`stat -c "%U" $SCRIPT_DIR/setup.sh`
+GROUP=`stat -c "%G" $SCRIPT_DIR/setup.sh`
+
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
@@ -25,7 +31,9 @@ pushd /etc/httpd/conf/webapps.d > /dev/null
 if [ -f 00_default_vhosts.conf ] ; then
 mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak
 fi
-ln -s -f ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
+rm  00_bitquant.conf
+cp ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
+sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant.conf
 popd > /dev/null
 popd > /dev/null
 

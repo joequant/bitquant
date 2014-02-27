@@ -18,7 +18,8 @@ aether-transport-wagon \
 fop zerofree \
 nodejs \
 gcc-c++ \
-ipython make postgresql9.3-devel
+ipython make postgresql9.3-devel \
+apache-mod_suexec
 
 #gcc-c++ is needed for ethercalc
 
