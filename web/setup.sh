@@ -28,3 +28,5 @@ fi
 ln -s -f ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
 popd > /dev/null
 popd > /dev/null
+
+chmod a+s $SCRIPT_DIR/cgi-bin/bootstrap.sh
