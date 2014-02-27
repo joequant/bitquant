@@ -20,10 +20,12 @@ ln -s -f  ../../..$SCRIPT_DIR/$config/$(basename $i) $(basename $i)
 done
 popd > /dev/null
 
+# Do a special copy so that suexec works
 pushd /var/www/cgi-bin > /dev/null
-rm -f *
+rm -rf /var/www/cgi-bin/*
 for i in $SCRIPT_DIR/cgi-bin/*; do
-ln -s -f ../../..$SCRIPT_DIR/cgi-bin/$(basename $i) $(basename $i)
+cp -r ../../..$SCRIPT_DIR/cgi-bin/$(basename $i) $(basename $i)
+chown -R $ME:$GROUP $(basename $i)
 done
 popd > /dev/null
 
@@ -37,4 +39,3 @@ sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant.conf
 popd > /dev/null
 popd > /dev/null
 
-chmod a+s $SCRIPT_DIR/cgi-bin/bootstrap.sh
