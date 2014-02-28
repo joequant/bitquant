@@ -19,7 +19,7 @@ fop zerofree \
 nodejs \
 gcc-c++ \
 ipython make postgresql9.3-devel \
-apache-mod_suexec
+apache-mod_suexec 2>&1
 
 #gcc-c++ is needed for ethercalc
 

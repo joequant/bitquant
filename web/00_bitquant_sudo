@@ -73,27 +73,6 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ##
 ## The COMMANDS section may have other options added to it.
 ##
-## Allow root to run any commands anywhere 
-root	ALL=(ALL) 	ALL
+Defaults!SOFTWARE !requiretty
+%USER%  ALL= ALL, NOPASSWD:  SOFTWARE
 
-## Allows members of the 'sys' group to run networking, software, 
-## service management apps and more.
-# %sys ALL = NETWORKING, SOFTWARE, SERVICES, STORAGE, DELEGATING, PROCESSES, LOCATE, DRIVERS
-
-user ALL= NOPASSWD:  SOFTWARE
-
-## Allows people in group wheel to run all commands
-# %wheel	ALL=(ALL)	ALL
-
-## Same thing without a password
-# %wheel	ALL=(ALL)	NOPASSWD: ALL
-
-## Allows members of the users group to mount and unmount the 
-## cdrom as root
-# %users  ALL=/sbin/mount /mnt/cdrom, /sbin/umount /mnt/cdrom
-
-## Allows members of the users group to shutdown this system
-# %users  localhost=/sbin/shutdown -h now
-
-## Read drop-in files from /etc/sudoers.d (the # here does not mean a comment)
-#includedir /etc/sudoers.d

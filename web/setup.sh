@@ -1,9 +1,6 @@
 #!/bin/bash
 # Setup and configure website to use giving configuration
 
-
-
-
 set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`stat -c "%U" $SCRIPT_DIR/setup.sh`
@@ -26,6 +23,7 @@ rm -rf /var/www/cgi-bin/*
 for i in $SCRIPT_DIR/cgi-bin/*; do
 cp -r ../../..$SCRIPT_DIR/cgi-bin/$(basename $i) $(basename $i)
 chown -R $ME:$GROUP $(basename $i)
+find $( basename $i) -type f | xargs sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" -e "s!%SCRIPT_DIR%!$SCRIPT_DIR!g"
 done
 popd > /dev/null
 
@@ -37,5 +35,10 @@ rm  00_bitquant.conf
 cp ../../../..$SCRIPT_DIR/00_bitquant.conf 00_bitquant.conf
 sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant.conf
 popd > /dev/null
+popd > /dev/null
+
+pushd /etc/sudoers.d > /dev/null
+cp ../..$SCRIPT_DIR/00_bitquant_sudo 00_bitquant_sudo
+sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant_sudo
 popd > /dev/null
 
