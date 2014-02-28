@@ -30,7 +30,7 @@
 Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme
 
 ## Services
-# Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig
+Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 
 ## Updating the locate database
 # Cmnd_Alias LOCATE = /usr/bin/updatedb
@@ -74,5 +74,5 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ## The COMMANDS section may have other options added to it.
 ##
 Defaults!SOFTWARE !requiretty
-%USER%  ALL= ALL, NOPASSWD:  SOFTWARE
+%USER%  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES
 
