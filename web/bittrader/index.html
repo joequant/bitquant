@@ -143,6 +143,14 @@ document.addEventListener('click', function(event) {
       {
          target.href = port[2];
          target.port = port[1];
+	 return;
+      } 
+      port = target.getAttribute('href').match(/^([^:]+)::(\d+)(.*)/);
+      if (port) {
+         target.href = port[3];
+         target.port = port[2];
+	 target.protocol = port[1];
+	 return;
       }
   }
 }, false);
@@ -248,6 +256,8 @@ system
 <div id="admin">
 <h4>Admin</h4>
 <ul>
+<li><a target="_blank"
+       href="https::10000/">Webmin</a>
 <li><a target="_blank"
        href="/cgi-bin/bittrader/install-packages.sh">Install
     packages</a>
