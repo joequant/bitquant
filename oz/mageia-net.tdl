@@ -17,5 +17,5 @@
   </repository>
   </repositories>
   <description>Mageia 4</description>
-  <disk><size>5G</size></disk>
+  <disk><size>1G</size></disk>
 </template>
