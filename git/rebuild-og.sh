@@ -1,17 +1,18 @@
-#!/bin/bash -v
+#!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $SCRIPT_DIR
-pushd ../../OG-Platform
-pushd examples/examples-simulated
+pushd ../../OG-Platform  > /dev/null
+pushd examples/examples-simulated  > /dev/null
 mvn opengamma:server-stop -Dconfig=fullstack 
-popd
+popd > /dev/null
 mvn install -Dmaven.test.skip=True
-pushd examples/examples-simulated
+pushd examples/examples-simulated > /dev/null
 mvn opengamma:server-init -Dconfig=fullstack
 mvn opengamma:server-start -Dconfig=fullstack
-popd
-popd
+popd > /dev/null
+popd > /dev/null
 
-pushd ../../OG-PlatformNative
+pushd ../../OG-PlatformNative > /dev/null
 mvn install -Dmaven.test.skip=True
-popd
+popd > /dev/null
+
