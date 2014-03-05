@@ -1,10 +1,17 @@
 #!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+    echo "Illegal number of parameters"
+    echo "  mkimg.sh <config> <format>"
+    exit 1
+fi
+
 CONFIG=$1
 FORMAT=$2
 # There seems to be a problem with vdi image created by oz
 # generate qcow2 image and then convert to vdi
 GENFORMAT=$FORMAT
-if [ $FORMAT = "vdi" ] ; then
+if [ "$FORMAT" == "vdi" ] ; then
 GENFORMAT=qcow2
 fi
 
