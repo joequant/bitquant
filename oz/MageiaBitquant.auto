@@ -107,7 +107,7 @@ $o = {
 	                       'openssh-client', 
                                'openssh-server', 'vim-minimal',
 	   "cloud-init", "cloud-utils-growpart", "gdisk", "git",
-	   "apache"],
+	   "apache", "apache-mod_suexec"],
        'superuser' => {
 			'home' => '/root',
 			'shell' => '/bin/bash',
