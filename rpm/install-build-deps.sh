@@ -25,6 +25,9 @@ screen \
 krb5-appl-clients \
 2>&1
 
+# don't start up server
+sudo systemctl disable hsqldb
+
 #gcc-c++ is needed for ethercalc
 
 
