@@ -98,16 +98,16 @@ $o = {
 }],
        'security' => 2,
        'X' => { disabled => 1 },
-       'skipped_packages' => ['shorewall-core', 'shorewall', "xdm"],
+       'skipped_packages' => ['shorewall-core', 'shorewall', "xdm",
+"acpid", "mandi", "mandi-ifw", "mageia-gfxboot-theme"],
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
                                'sudo', 'grub2',
 	                       'openssh-client', 
                                'openssh-server', 'vim-minimal',
-	   "cloud-init", "cloud-utils", "gdisk", "git",
-	   "apache", "screen",
-       "krb5-appl-clients", "strace"],
+	   "cloud-init", "cloud-utils-growpart", "gdisk", "git",
+	   "apache"],
        'superuser' => {
 			'home' => '/root',
 			'shell' => '/bin/bash',
@@ -152,7 +152,7 @@ mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
 pushd bitquant/web
-./setup_vimage.sh >> /var/log/oz_setup.log 2>&1
+./setup_vimage.sh bitquant >> /var/log/oz_setup.log 2>&1
 popd
 '
      };
