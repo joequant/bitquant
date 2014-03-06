@@ -10,3 +10,5 @@ bitquant:
 install-deps:
 	sudo ./install-deps.sh
 
+clean:
+	rm -f *-*:*:* *~
