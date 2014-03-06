@@ -1,5 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+echo "Running setup_vimage.sh"
 #VERSION=cauldron
 #USER=joe
 VERSION=4
@@ -12,11 +13,13 @@ USER=user
 cd /home/$USER
 chown -R $USER":"$USER git
 
+echo "Resetting urpmi"
 urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.x86_64.list'
 urpmi.update -a
 urpme --force --auto-orphans
 
+echo "Copy configuration files"
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
@@ -25,13 +28,8 @@ mkdir -p /etc/ssh
 mkdir -p /etc/cloud
 cp sshd_config /etc/ssh
 cp cloud.cfg /etc/cloud
-
-# workaround bad mandriva-everytime.service
-# fix Mageia bug 12868
-# https://bugs.mageia.org/show_bug.cgi?id=12868
-
-cp  mandriva-everytime.service  /usr/lib/systemd/system
 popd
+
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
 cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
