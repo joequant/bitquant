@@ -30,13 +30,11 @@ cp sshd_config /etc/ssh
 cp cloud.cfg /etc/cloud
 # don't output cloud into into console output
 cp cloud-init.service /usr/lib/systemd/system
+cp oem /etc/sysconfig
 popd
 
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
-cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
-echo 'login as user user password cubswin:)' >> /etc/issue
-EOP
 cat <<EOP >> /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT='nosplash'
 EOP
