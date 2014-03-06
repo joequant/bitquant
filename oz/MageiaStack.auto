@@ -158,7 +158,7 @@ cat <<EOP >> /etc/rc.d/init.d/mandrake_everytime
 echo 'login as user user password cubswin:)' >> /etc/issue
 EOP
 cat <<EOP >> /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT='console=ttyS0 nosplash'
+GRUB_CMDLINE_LINUX_DEFAULT='nosplash'
 EOP
 update-grub2
 "
