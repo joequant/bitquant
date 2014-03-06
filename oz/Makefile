@@ -7,3 +7,6 @@ bitstation-dsk:
 bitquant:
 	./mkimg.sh Bitquant dsk mageia-net-smalldsk
 
+install-deps:
+	sudo ./install-deps.sh
+
