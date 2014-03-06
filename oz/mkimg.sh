@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -lt 2 ]; then
     echo "Illegal number of parameters"
     echo "  mkimg.sh <config> <format>"
     exit 1
@@ -8,6 +8,13 @@ fi
 
 CONFIG=$1
 FORMAT=$2
+
+if [ "$#" -gt 2 ]; then
+LOADER=$3
+else
+LOADER="mageia-net"
+fi
+
 # There seems to be a problem with vdi image created by oz
 # generate qcow2 image and then convert to vdi
 GENFORMAT=$FORMAT
@@ -19,7 +26,7 @@ pushd ~/.oz/images > /dev/null
 rm -f Mageia.$GENFORMAT $CONFIG.$GENFORMAT
 popd > /dev/null
 # There seems to be a problem with vdi image creates
-oz-install -a Mageia$CONFIG.auto mageia-net.tdl -c oz-$GENFORMAT.cfg  -d3 -t 7200
+oz-install -a Mageia$CONFIG.auto $LOADER.tdl -c oz-$GENFORMAT.cfg  -d3 -t 7200
 
 pushd ~/.oz/images > /dev/null
 export TMPDIR=$HOME/tmp
