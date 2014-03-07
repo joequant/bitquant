@@ -1,8 +1,13 @@
 #!/bin/bash
 # These are all of the packages that need to be installed before bootstrap
 # is run
+#
+# The limit on the speed is to prevent stalls due to bufferbloat
 
-sudo urpmi --no-suggests --auto \
+
+sudo urpmi --no-suggests \
+--auto \
+--limit-rate 1000000 \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
