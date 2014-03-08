@@ -5,12 +5,17 @@
 echo "Content-type: text/html"
 echo ""
 echo "<pre>"
-SCRIPT_DIR=%SCRIPT_DIR%
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ME=`stat -c "%U" $SCRIPT_DIR/setup.sh`
+GROUP=`stat -c "%G" $SCRIPT_DIR/setup.sh`
 export HOME=/home/`whoami`
-echo "Running from directory $SCRIPT_DIR as user "`whoami`
+GIT_DIR=$HOME/git/bitquant
+
+echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Installing packages"
-. $SCRIPT_DIR/../rpm/install-build-deps.sh
+. $GIT_DIR/rpm/install-build-deps.sh
 echo "Doing initial installation"
-. $SCRIPT_DIR/../git/bootstrap.sh
+. $GIT_DIR/git/bootstrap.sh
 echo "(done)"
 echo "</pre>"
