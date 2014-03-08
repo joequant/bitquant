@@ -26,62 +26,12 @@
 	</style>
 
 	<!-- LAYOUT v 1.3.0 -->
-	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
 	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.layout/1.3.0rc30.79/jquery.layout-latest.min.js"></script>
-<script type="text/javascript"
-    src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js">
-</script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.3.1/ember.js"></script>
-</head>
-<body>
-<script type="text/javascript">
-// delegate event for performance, and save attaching a million events
-// to each anchor
-document.addEventListener('click', function(event) {
-  var target = event.target;
-  if (target.tagName.toLowerCase() == 'a')
-  {
-      var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
-      if (port)
-      {
-         target.href = port[2];
-         target.port = port[1];
-	 return;
-      } 
-      port = target.getAttribute('href').match(/^([^:]+)::(\d+)(.*)/);
-      if (port) {
-         target.href = port[3];
-         target.port = port[2];
-	 target.protocol = port[1];
-	 return;
-      }
-  }
-}, false);
-window.App = Em.Application.create();
 
-App.Router.map(function() {
-this.resource('hi');
-});
+	<script type="text/javascript">
 
-App.IndexRoute = Em.Route.extend({
-    model: function(){
-        return App.Data;
-    }
-});
-App.ApplicationRoute = Em.Route.extend({
-    model: function(){
-        return ["application"];
-    }
-});
-
-</script>
-<script type="text/x-handlebars" data-template-name='hi'>
-foo
-</script>
-<script type="text/x-handlebars" data-template-name='index'>
-<script type="text/javascript">
 	function toggleLiveResizing () {
 		$.each( $.layout.config.borderPanes, function (i, pane) {
 			var o = myLayout.options[ pane ];
@@ -182,7 +132,31 @@ foo
  	});
 
 
+// delegate event for performance, and save attaching a million events
+// to each anchor
+document.addEventListener('click', function(event) {
+  var target = event.target;
+  if (target.tagName.toLowerCase() == 'a')
+  {
+      var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
+      if (port)
+      {
+         target.href = port[2];
+         target.port = port[1];
+	 return;
+      } 
+      port = target.getAttribute('href').match(/^([^:]+)::(\d+)(.*)/);
+      if (port) {
+         target.href = port[3];
+         target.port = port[2];
+	 target.protocol = port[1];
+	 return;
+      }
+  }
+}, false);
 </script>
+</head>
+<body>
 <div class="ui-layout-north" onmouseover="myLayout.allowOverflow('north')" onmouseout="myLayout.resetOverflow(this)">
 Bittrader Trading System
 </div>
@@ -209,7 +183,6 @@ under-construction.
 <li><a target="_blank" href=":9001/">Whiteboard</a>
 </ul>
 <p>
-
 This application is bittrader, a trading system based on pulling
 together open-source javascript applications into a single trading
 system.  All of the code here is BSD licensed and is available via
@@ -292,6 +265,5 @@ system
 $("#tabs").tabs();
 </script>
 </div>
-</script>
 </body>
 </html>
