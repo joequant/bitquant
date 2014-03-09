@@ -18,4 +18,5 @@ echo "Installing packages"
 echo "Doing initial installation"
 . $GIT_DIR/git/bootstrap.sh
 echo "(done)"
+touch $GIT_DIR/web/bootstrap.done
 echo "</pre>"

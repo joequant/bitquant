@@ -1,10 +1,11 @@
 #!/usr/bin/python
 from wsgiref.handlers import CGIHandler
-from flask import Flask
+from flask import Flask, Response
 import subprocess
 import sys
 import shutil
 import os
+import json
 app = Flask(__name__)
 
 @app.route('/')
@@ -41,11 +42,16 @@ def refresh_scripts():
 @app.route("/version")
 def version():
     os.chdir(git_root())
-    return subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
-
+    retval = {
+        "version" : subprocess.check_output(["git", "rev-parse",
+                                             "--short", "HEAD"]).strip(),
+        "bootstrapped" : os.path.exists(os.path.join(git_root(),
+                                                     "web", "bootstrap.done"))
+        }
+    return Response(json.dumps(retval), mimetype='application/json')
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)
 elif __name__ == '__main__' and sys.argv[1] == "refresh-scripts":
-    print refresh_scripts() + "\n"
+    print refresh_scripts()
