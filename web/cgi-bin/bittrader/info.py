@@ -18,6 +18,10 @@ def test():
 
 @app.route('/git-root')
 def git_root():
+    return os.path.expanduser(os.path.join("~", "git"))
+
+@app.route('/bitquant-root')
+def bitquant_root():
     return os.path.expanduser(os.path.join("~", "git", "bitquant"))
 
 @app.route('/cgi-root')
@@ -27,7 +31,7 @@ def cgi_root():
 @app.route("/refresh-scripts")
 def refresh_scripts():
     retval = "Refreshing scripts\n"
-    local_cgi_path = os.path.join(git_root(),
+    local_cgi_path = os.path.join(bitquant_root(),
                                   "web", "cgi-bin", "bittrader")
     for file in os.listdir(cgi_root()):
         retval = retval + "removing old " + file + "\n"
@@ -38,14 +42,13 @@ def refresh_scripts():
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
-
 @app.route("/version")
 def version():
-    os.chdir(git_root())
+    os.chdir(bitquant_root())
     retval = {
         "version" : subprocess.check_output(["git", "rev-parse",
                                              "--short", "HEAD"]).strip(),
-        "bootstrapped" : os.path.exists(os.path.join(git_root(),
+        "bootstrapped" : os.path.exists(os.path.join(bitquant_root(),
                                                      "web", "bootstrap.done"))
         }
     return Response(json.dumps(retval), mimetype='application/json')

@@ -5,5 +5,5 @@ cd $SCRIPT_DIR
 
 pushd ../..
 rm -rf ethercalc etherpad-lite OG-Platform OG-PlatformNative \
-   OG-Tools JSurface3D quantlib
+   OG-Tools JSurface3D quantlib web/bootstrap.done
 popd
