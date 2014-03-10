@@ -16,6 +16,7 @@ window.App = Em.Application.create();
 
 App.Router.map(function() {
 this.resource('hi');
+this.resource('load-json');
 });
  
 App.Data=[];
@@ -26,6 +27,21 @@ App.Data.push("My World");
 App.IndexRoute = Em.Route.extend({
     model: function(){
         return App.Data;
+    }
+});
+
+App.LoadJsonRoute = Em.Route.extend({
+    model: function(){
+   return $.getJSON("/cgi-bin/bittrader/info.py/version").then(
+        function(response) {
+         return response;
+        });
+    }
+});
+
+App.HiRoute = Em.Route.extend({
+    model: function(){
+        return {"hi":"foo1", "lo":"foo2"};
     }
 });
 
@@ -50,7 +66,10 @@ foo
 </script>
 
 <script type="text/x-handlebars" data-template-name='hi'>
-hello world!
+{{model.hi}}
+</script>
+<script type="text/x-handlebars" data-template-name='load-json'>
+{{model.version}} {{model.lo}}
 </script>
 <p> 
 </div>
