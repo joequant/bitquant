@@ -36,7 +36,15 @@ App.LoadJsonRoute = Em.Route.extend({
         function(response) {
          return response;
         });
+    },
+    setupController: function(controller, model) {
+      controller.set('control2', "my controller2");
+      controller.set('model', model);
     }
+});
+
+App.LoadJsonController = Em.Controller.extend({
+"control1" : "test me"
 });
 
 App.HiRoute = Em.Route.extend({
@@ -70,6 +78,10 @@ foo
 </script>
 <script type="text/x-handlebars" data-template-name='load-json'>
 {{model.version}} {{model.lo}}
+
+This is my test. {{control1}}
+<p>
+{{control2}}
 </script>
 <p> 
 </div>
