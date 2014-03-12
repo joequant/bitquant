@@ -32,7 +32,7 @@ App.IndexRoute = Em.Route.extend({
 
 App.LoadJsonRoute = Em.Route.extend({
     model: function(){
-   return $.getJSON("/cgi-bin/bittrader/info.py/version").then(
+   return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
         function(response) {
          return response;
         });

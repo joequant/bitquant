@@ -63,9 +63,20 @@ App.Router.map(function() {
 this.resource('hi');
 });
 
+App.IndexController = Em.Controller.extend({});
+
 App.IndexRoute = Em.Route.extend({
     model: function(){
-        return App.Data;
+return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
+function(response) {
+return response;
+});
+    },
+    setupController: function(controller, model) {
+    if (!model["bootstrapped"]) {
+         controller.set('bootstrap-notice', "<b>Trading system must be initialized <a href='/cgi-bin/bittrader/bootstrap.sh' target='_blank'>Click here to initialize</a></b>");
+     }
+      controller.set('model', model);
     }
 });
 App.ApplicationRoute = Em.Route.extend({
@@ -93,7 +104,8 @@ Bittrader Trading System
 <div id="bittrader">
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
-under-construction.
+under-construction.<p>
+{{{bootstrap-notice}}}
 <p>
 <ul>
 <li><a target="_blank" href="market_data.html">Market Data</a>
