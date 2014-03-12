@@ -4,6 +4,8 @@ LOG_DIR=$SCRIPT_DIR/log
 cd $SCRIPT_DIR
 . norootcheck.sh
 
+sudo systemctl start httpd.service
+
 #ipython notebook &
 
 if [ -d ../../OG-Platform ] ; then
