@@ -24,13 +24,8 @@ pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
 ./setup.sh $config
-mkdir -p /etc/ssh 
-mkdir -p /etc/cloud
-cp files/sshd_config /etc/ssh
-cp files/cloud.cfg /etc/cloud
-# don't output cloud into into console output
-cp files/cloud-init.service /usr/lib/systemd/system
-cp files/oem /etc/sysconfig
+for i in `find vimage/* -type d` ; do mkdir -p ${i#files} ;done
+for i in `find vimage/* -type f` ; do cp $i ${i#files} ;done
 popd
 
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
