@@ -26,11 +26,11 @@ pushd $SCRIPT_DIR > /dev/null
 ./setup.sh $config
 mkdir -p /etc/ssh 
 mkdir -p /etc/cloud
-cp sshd_config /etc/ssh
-cp cloud.cfg /etc/cloud
+cp files/sshd_config /etc/ssh
+cp files/cloud.cfg /etc/cloud
 # don't output cloud into into console output
-cp cloud-init.service /usr/lib/systemd/system
-cp oem /etc/sysconfig
+cp files/cloud-init.service /usr/lib/systemd/system
+cp files/oem /etc/sysconfig
 popd
 
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
