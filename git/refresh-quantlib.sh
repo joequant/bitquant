@@ -2,6 +2,12 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MY_NAME=joequant
 cd $SCRIPT_DIR
+if [ "$1" == "--upload" ] ; then
+export UPLOAD=1
+else
+export UPLOAD=0
+fi
+
 
 echo "Refreshing quantlib"
 pushd ../.. > /dev/null
@@ -11,7 +17,7 @@ git fetch origin
 git stash
 git checkout master
 git rebase upstream/master
-git push --set-upstream origin master
+if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
 popd > /dev/null
 popd > /dev/null
 
