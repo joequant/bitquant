@@ -83,6 +83,7 @@ foo
 <p>index!</p>
  
 <p>{{#link-to 'hi'}}hi{{/link-to}}</p>
+<p>{{#link-to 'load-json'}}load-json{{/link-to}}</p>
 <ul>
 {{#each item in model}}
 <li>{{item}}
@@ -94,6 +95,8 @@ foo
 {{model.hi}}
 </script>
 <script type="text/x-handlebars" data-template-name='load-json'>
+{{log record}}
+<p>
 {{model.version}} {{model.lo}}
 
 This is my test. {{control1}}
