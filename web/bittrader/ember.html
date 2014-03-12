@@ -17,6 +17,7 @@ window.App = Em.Application.create();
 App.Router.map(function() {
 this.resource('hi');
 this.resource('load-json');
+this.resource('og-test');
 });
  
 App.Data=[];
@@ -32,7 +33,7 @@ App.IndexRoute = Em.Route.extend({
 
 App.LoadJsonRoute = Em.Route.extend({
     model: function(){
-   return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
+    return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
         function(response) {
          return response;
         });
@@ -44,6 +45,22 @@ App.LoadJsonRoute = Em.Route.extend({
 });
 
 App.LoadJsonController = Em.Controller.extend({
+"control1" : "test me"
+});
+
+App.OgTestRoute = Em.Route.extend({
+    model: function(){
+    return $.get("http://localhost:8080/jax/components.json").then(
+        function(response) {
+         return response;
+        });
+    },
+    setupController: function(controller, model) {
+      controller.set('model', model[0]);
+    }
+});
+
+App.OgTestController = Em.Controller.extend({
 "control1" : "test me"
 });
 
@@ -77,6 +94,13 @@ foo
 {{model.hi}}
 </script>
 <script type="text/x-handlebars" data-template-name='load-json'>
+{{model.version}} {{model.lo}}
+
+This is my test. {{control1}}
+<p>
+{{control2}}
+</script>
+<script type="text/x-handlebars" data-template-name='og-test'>
 {{model.version}} {{model.lo}}
 
 This is my test. {{control1}}
