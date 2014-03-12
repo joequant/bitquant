@@ -6,9 +6,11 @@ import sys
 import shutil
 import os
 import json
-import pam
 import getpass
+
+
 app = Flask(__name__)
+default_password = "cubswin:)"
 
 @app.route('/')
 def index():
