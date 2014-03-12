@@ -1,11 +1,13 @@
 #!/usr/bin/python
 from wsgiref.handlers import CGIHandler
-from flask import Flask, Response
+from flask import Flask, Response, request
 import subprocess
 import sys
 import shutil
 import os
 import json
+import pam
+import getpass
 app = Flask(__name__)
 
 @app.route('/')
@@ -15,6 +17,10 @@ def index():
 @app.route('/foo')
 def test():
     return 'test'
+
+@app.route('/user')
+def user():
+    return getpass.getuser()
 
 @app.route('/git-root')
 def git_root():
@@ -46,13 +52,14 @@ def refresh_scripts():
 def version():
     os.chdir(bitquant_root())
     retval = {
+        "user" : user(),
         "version" : subprocess.check_output(["git", "rev-parse",
                                              "--short", "HEAD"]).strip(),
         "bootstrapped" : os.path.exists(os.path.join(bitquant_root(),
                                                      "web", "bootstrap.done"))
         }
     return Response(json.dumps(retval), mimetype='application/json')
-
+        
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)
