@@ -6,4 +6,5 @@ pushd $SCRIPT_DIR
 ./setup-quantlib.sh 2>&1
 ./rebuild-og.sh 2>&1
 ./rebuild-misc.sh 2>&1
+touch ../web/bootstrap.done
 popd
