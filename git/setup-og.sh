@@ -6,7 +6,7 @@ cd $SCRIPT_DIR
 pushd ../..
 
 if [ ! -d OG-Platform ] ; then
-git clone https://github.com/$MY_NAME/OG-Platform
+git clone --progress https://github.com/$MY_NAME/OG-Platform
 pushd OG-Platform
 git remote add upstream https://github.com/OpenGamma/OG-Platform
 git fetch upstream
@@ -17,7 +17,7 @@ popd
 fi
 
 if [ ! -d OG-PlatformNative ] ; then
-git clone https://github.com/$MY_NAME/OG-PlatformNative
+git clone --progress https://github.com/$MY_NAME/OG-PlatformNative
 pushd OG-PlatformNative
 git remote add upstream https://github.com/OpenGamma/OG-PlatformNative
 git fetch upstream

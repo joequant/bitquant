@@ -1,5 +1,7 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+set -e
+
 pushd $SCRIPT_DIR
 ./setup-misc.sh 2>&1 
 ./setup-og.sh 2>&1
