@@ -28,7 +28,6 @@ apache-mod_suexec \
 strace \
 screen \
 krb5-appl-clients \
-python-flask \
 2>&1
 
 # don't start up server
