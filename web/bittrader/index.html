@@ -76,7 +76,7 @@ return {};
     },
     setupController: function(controller, model) {
     if (!model["bootstrapped"]) {
-         controller.set('bootstrap-notice', "<b>Trading system must be initialized <a href='setup.html' target='_blank'>Click here to initialize</a></b>");
+         controller.set('bootstrap-notice', "<b>Trading system must be initialized</b>");
      }
       controller.set('model', model);
     }
@@ -107,7 +107,7 @@ Bittrader Trading System
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
 under-construction.<p>
-{{{bootstrap-notice}}}
+{{{bootstrap-notice}}}  <a href='setup.html' target='_blank'>System setup</a>
 <p>
 <ul>
 <li><a target="_blank" href="market_data.html">Market Data</a>
