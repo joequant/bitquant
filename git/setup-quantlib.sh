@@ -3,7 +3,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MY_NAME=joequant
 pushd $SCRIPT_DIR/../..
 if [ ! -d quantlib ] ; then
-git clone https://github.com/$MY_NAME/quantlib
+git clone --progress https://github.com/$MY_NAME/quantlib
 pushd quantlib > /dev/null
 git remote add upstream https://github.com/lballabio/quantlib
 git fetch upstream
