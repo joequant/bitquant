@@ -21,18 +21,22 @@ git clone https://github.com/$MY_NAME/Fudge-Python
 pushd Fudge-Python
 git fetch origin
 popd
+else
+echo "Repo $repo already present"
 fi
 
 for repo in $repos
 do
 if [ ! -d $repo ] 
 then
-git clone https://github.com/$MY_NAME/$repo
+git clone --progress https://github.com/$MY_NAME/$repo
 pushd $repo
 git remote add upstream ${upstream[$repo]}
 git fetch upstream
 git fetch origin
 popd
+else
+echo "Repo $repo already present"
 fi
 done
 popd

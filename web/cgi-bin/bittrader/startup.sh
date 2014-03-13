@@ -13,10 +13,6 @@ export HOME=/home/`whoami`
 GIT_DIR=$HOME/git/bitquant
 
 echo "Running from directory $GIT_DIR as user "`whoami`
-echo "Installing packages"
-. $GIT_DIR/web/install-build-deps.sh
-echo "Doing initial installation"
-. $GIT_DIR/git/bootstrap.sh
 echo "Starting up servers"
 . $GIT_DIR/web/startup.sh
 echo "(done)"

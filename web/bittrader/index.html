@@ -70,11 +70,13 @@ App.IndexRoute = Em.Route.extend({
 return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
 function(response) {
 return response;
+}, function(response) {
+return {};
 });
     },
     setupController: function(controller, model) {
     if (!model["bootstrapped"]) {
-         controller.set('bootstrap-notice', "<b>Trading system must be initialized <a href='/cgi-bin/bittrader/bootstrap.sh' target='_blank'>Click here to initialize</a></b>");
+         controller.set('bootstrap-notice', "<b>Trading system must be initialized <a href='setup.html' target='_blank'>Click here to initialize</a></b>");
      }
       controller.set('model', model);
     }
