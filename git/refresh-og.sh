@@ -9,7 +9,8 @@ export UPLOAD=0
 fi
 
 pushd ../..
-pushd OG-PlatformNative
+echo "Processing OG-PlatformNative"
+pushd OG-PlatformNative > /dev/null
 git fetch upstream
 git fetch origin
 git stash
@@ -23,9 +24,10 @@ git checkout bitquant
 git rebase origin/bitquant
 git rebase upstream/develop
 if [ $UPLOAD -eq 1 ] ; then git push --force --set-upstream origin bitquant ; fi
-popd
+popd > /dev/null
 
-pushd OG-Platform
+pushd OG-Platform > /dev/null
+echo "Processing OG-Platform"
 git fetch upstream
 git fetch origin
 git stash
@@ -39,4 +41,5 @@ git checkout bitquant
 git rebase origin/bitquant
 git rebase upstream/develop
 if [ $UPLOAD -eq 1 ] ; then git push --force --set-upstream origin bitquant ; fi
-popd
+popd > /dev/null
+
