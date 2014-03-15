@@ -15,53 +15,68 @@
 window.App = Em.Application.create();
 App.IndexController = Em.Controller.extend({});
 App.IndexRoute = Em.Route.extend({
-    model: function(){
-return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
-function(response) {
-return response;
-}, function(response) {
-return {};
-});
-    },
-    setupController: function(controller, model) {
-    if (!model["bootstrapped"]) {
-         controller.set('bootstrap-notice', "<b>System install not complete</b>");
-     } else {
-         controller.set('bootstrap-notice', "System install complete");
-}
-      controller.set('model', model);
-    }
 });
 </script>
 <script type="text/x-handlebars" data-template-name='index'>
 <ul>
-<li>{{{bootstrap-notice}}} - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="_blank">Complete
+<li><div id="bootstrap-notice"></div> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="_blank">Complete
     installation</a>
 <li><a href="/cgi-bin/bittrader/startup.sh" target="_blank">Startup
     servers</a>
 <li><a href="/cgi-bin/bittrader/shutdown.sh" target="_blank">Shutdown
  servers</a>
 </ul>
+<div id="user-password-input" style="display:none">
 <h4>User password</h4>
-<form action="/cgi-bin/bittrader/model.py/userpasswd" METHOD="POST">
-Old password: <input name="oldpass" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-New Password: <input name="newpass1" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-Confirm Password: <input name="newpass2" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-<input type="submit" value="SUBMIT" />
+<form action='/cgi-bin/bittrader/model.py/userpasswd' METHOD='POST'>
+New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
+Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
+<input type='submit' value='SUBMIT' />
 </form>
-<h4>Admin password</ht>
-<form action="/cgi-bin/bittrader/model.py/rootpasswd" METHOD="POST">
-Old password: <input name="oldpass" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-New Password: <input name="newpass1" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-Confirm Password: <input name="newpass2" type="password" title="Please Enter Your Password"
-		 size="8" /><br />
-<input type="submit" value="SUBMIT" />
+</div>
+<div id="user-password-done" style="display:none">
+User password already set
+</div>
+<p>
+
+<div id="admin-password-input" style="display:none">
+<h4>Admin password</h4>
+<form action='/cgi-bin/bittrader/model.py/adminpasswd' METHOD='POST'>
+New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
+Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
+<input type='submit' value='SUBMIT' />
 </form>
+</div>
+<div id="admin-password-done" style="display:none">
+Admin password already set
+</div>
+<p>
+
+<script>
+$.getJSON("/cgi-bin/bittrader/model.py/version",
+function(data) {
+if (!data["bootstrapped"]) {
+    $('#bootstrap-notice').html("<b>System install not complete</b>");
+} else {
+    $('#bootstrap-notice').html("System install complete");
+}
+
+if (data['default_user_password']) {
+$("#user-password-input").show();
+$("#user-password-done").hide();
+} else {
+$("#user-password-input").hide();
+$("#user-password-done").show();
+};
+
+if (data['default_admin_password']) {
+$("#admin-password-input").show();
+$("#admin-password-done").hide();
+} else {
+$("#admin-password-input").hide();
+$("#admin-password-done").show();
+};
+});
 </script>
 </body>
 </html>

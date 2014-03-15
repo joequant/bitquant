@@ -7,6 +7,7 @@ import shutil
 import os
 import json
 import getpass
+import login
 
 
 app = Flask(__name__)
@@ -58,7 +59,9 @@ def version():
         "version" : subprocess.check_output(["git", "rev-parse",
                                              "--short", "HEAD"]).strip(),
         "bootstrapped" : os.path.exists(os.path.join(bitquant_root(),
-                                                     "web", "bootstrap.done"))
+                                                     "web", "bootstrap.done")),
+        "default_user_password" : login.auth(user(), default_password),
+        "default_admin_password" : login.auth("root", default_password)
         }
     return Response(json.dumps(retval), mimetype='application/json')
         
