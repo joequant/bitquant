@@ -13,32 +13,31 @@ upstream[etherpad-lite]="https://github.com/ether/etherpad-lite"
 upstream[ethercalc]="https://github.com/audreyt/ethercalc"
 
 cd $SCRIPT_DIR
-pushd ../..
+pushd ../.. > /dev/null
 
 if [ ! -d Fudge-Python ]
 then
 git clone https://github.com/$MY_NAME/Fudge-Python
-pushd Fudge-Python
+pushd Fudge-Python > /dev/null
 git fetch origin
-popd
+popd > /dev/null
 else
-echo "Repo $repo already present"
+echo "Repo Fudge-Python already present"
 fi
 
-for repo in $repos
-do
-if [ ! -d $repo ] 
+for repo in $repos ; do
+if [ ! -d "$repo" ] 
 then
 git clone --progress https://github.com/$MY_NAME/$repo
-pushd $repo
+pushd $repo > /dev/null
 git remote add upstream ${upstream[$repo]}
 git fetch upstream
 git fetch origin
-popd
+popd > /dev/null
 else
 echo "Repo $repo already present"
 fi
 done
-popd
+popd > /dev/null
 
 
