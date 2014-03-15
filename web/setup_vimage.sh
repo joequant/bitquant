@@ -24,8 +24,8 @@ pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
 ./setup.sh $config
-for i in `find vimage/* -type d` ; do mkdir -p ${i#files} ;done
-for i in `find vimage/* -type f` ; do cp $i ${i#files} ;done
+for i in `find vimage/* -type d` ; do mkdir -p ${i#vimage} ;done
+for i in `find vimage/* -type f` ; do cp $i ${i#vimage} ;done
 popd
 
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
