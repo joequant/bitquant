@@ -7,7 +7,7 @@
 
 sudo urpmi --no-suggests \
 --auto \
---limit-rate 1000000 \
+--limit-rate 500000 \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \

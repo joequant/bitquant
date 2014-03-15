@@ -108,7 +108,8 @@ $o = {
                                'openssh-server', 'vim-minimal',
 	   "cloud-init", "cloud-utils-growpart", "git",
 	   "apache", "apache-mod_suexec", "avahi", 
-	   "python-flask", "python-pexpect"],
+	   "python-flask", "python-pexpect",
+       "vboxadditions-kernel-desktop-latest"],
        'superuser' => {
 			'home' => '/root',
 			'shell' => '/bin/bash',
