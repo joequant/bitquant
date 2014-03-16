@@ -1,16 +1,12 @@
 <html>
 <head>
+<title>Setup page</title>
 <link href="//cdn.jsdelivr.net/jquery.layout/1.3.0rc30.79/layout-default-latest.css"
         rel="stylesheet" type="text/css">
 <link rel="stylesheet"
       href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
-<script type="text/javascript"
-    src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js">
-</script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.3.1/ember.js"></script>
 <style type="text/css">
 #logframe {
 width: 100%;
@@ -22,28 +18,24 @@ width: 100%;
 </style>
 </head>
 <body>
-<script>
- 
-window.App = Em.Application.create();
-App.IndexController = Em.Controller.extend({});
-App.IndexRoute = Em.Route.extend({
-});
-</script>
-<script type="text/x-handlebars" data-template-name='index'>
 <ul>
 <li><div id="bootstrap-notice"></div> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Complete
     installation</a>
-<li><a href="/cgi-bin/bittrader/startup.sh" target="_blank">Startup
+<li><a href="/cgi-bin/bittrader/startup.sh" target="log">Startup
     servers</a>
-<li><a href="/cgi-bin/bittrader/shutdown.sh" target="_blank">Shutdown
+<li><a href="/cgi-bin/bittrader/shutdown.sh" target="log">Shutdown
  servers</a>
+<li><a href="/cgi-bin/bittrader/sshd.sh/on" target="log">Startup
+    ssh server</a>
+<li><a href="/cgi-bin/bittrader/sshd.sh/off" target="log">Shutdown
+ ssh server</a>
 </ul>
 <div id="user-password-input" style="display:none">
 <h4>User password</h4>
-<form action='/cgi-bin/bittrader/model.py/userpasswd' METHOD='POST'>
+<form action='/cgi-bin/bittrader/model.py/passwd/user' METHOD='POST'>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
-<input type='submit' target='_blank' value='SUBMIT' />
+<input type='submit' target='log' value='SUBMIT' />
 </form>
 </div>
 <div id="user-password-done" style="display:none">
@@ -53,10 +45,10 @@ User password already set.  To reset log into the machine.
 
 <div id="admin-password-input" style="display:none">
 <h4>Admin password</h4>
-<form action='/cgi-bin/bittrader/model.py/adminpasswd' METHOD='POST'>
+<form action='/cgi-bin/bittrader/model.py/passwd/admin' METHOD='POST'>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
-<input type='submit' target='_blank' value='SUBMIT' />
+<input type='submit' target='log' value='SUBMIT' />
 </form>
 </div>
 <div id="admin-password-done" style="display:none">

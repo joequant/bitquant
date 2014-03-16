@@ -8,7 +8,7 @@ import os
 import json
 import getpass
 import login
-
+import traceback
 
 app = Flask(__name__)
 default_password = "cubswin:)"
@@ -52,26 +52,19 @@ def refresh_scripts():
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
-@app.route("/userpasswd", methods = ['POST'])
-def userpasswd():
-    if (not login.auth(user(), default_password)):
+@app.route("/passwd/<ident>", methods = ['POST'])
+def passwd(ident):
+    if ident == "user":
+        myuser = user()
+    elif ident == "admin":
+        myuser = "root"
+    if (not login.auth(myuser, default_password)):
         return "Password not default"
     newpass1 = request.form['newpass1']
     newpass2 = request.form['newpass2']
     if newpass1 != newpass2:
         return "passwords do not match"
-    login.chpasswd(user(), request.form['newpass1'])
-    return "Password changed"
-
-@app.route("/adminpasswd", methods = ['POST'])
-def adminpasswd():
-    if (not login.auth("root", default_password)):
-        return "Password not default"
-    newpass1 = request.form['newpass1']
-    newpass2 = request.form['newpass2']
-    if newpass1 != newpass2:
-        return "passwords do not match"
-    login.chpasswd("root", request.form['newpass1'])
+    login.chpasswd(myuser, request.form['newpass1'])
     return "Password changed"
 
 @app.route("/version")
@@ -87,7 +80,7 @@ def version():
         "default_admin_password" : login.auth("root", default_password)
         }
     return Response(json.dumps(retval), mimetype='application/json')
-        
+
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)

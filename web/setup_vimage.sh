@@ -28,6 +28,8 @@ for i in `find vimage/* -type d` ; do mkdir -p ${i#vimage} ;done
 for i in `find vimage/* -type f` ; do cp $i ${i#vimage} ;done
 popd
 
+# Turn off sshd by default
+systemctl disable sshd.service
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
 cat <<EOP >> /etc/default/grub
