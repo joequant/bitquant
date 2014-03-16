@@ -48,6 +48,7 @@ def refresh_scripts():
     for file in os.listdir(local_cgi_path):
         if file.endswith(".sh") or file.endswith(".py"):
             shutil.copy2(os.path.join(local_cgi_path, file), cgi_root())
+            os.chmod(os.path.join(cgi_root(), file), 0755)
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
