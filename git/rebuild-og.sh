@@ -11,7 +11,7 @@ mvn opengamma:server-start -Dconfig=fullstack
 popd > /dev/null
 popd > /dev/null
 
-pushd ../../OG-PlatformNative > /dev/null
-mvn install -Dmaven.test.skip=True
-popd > /dev/null
+#pushd ../../OG-PlatformNative > /dev/null
+#mvn install -Dmaven.test.skip=True
+#popd > /dev/null
 
