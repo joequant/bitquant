@@ -78,7 +78,7 @@ def version(tag=None):
     if tag == "bootstrapped" or tag == None:
         retval['bootstrapped'] = \
                                os.path.exists(os.path.join(bitquant_root(),
-                                                           "web",
+                                                           "web", "log",
                                                            "bootstrap.done"));
     if tag == "default_password" or tag == None:
         retval["default_password"] = login.auth(user(), default_password)

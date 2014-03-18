@@ -8,5 +8,5 @@ pushd $SCRIPT_DIR > /dev/null
 . ./setup-quantlib.sh
 . ./rebuild-og.sh 
 . ./rebuild-misc.sh 
-touch ../web/bootstrap.done
+touch ../web/log/bootstrap.done
 popd > /dev/null
