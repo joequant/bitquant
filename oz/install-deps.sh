@@ -11,6 +11,9 @@ urpmi --no-suggests --auto \
 
 systemctl start libvirtd.service
 
-
+chmod 0666 /dev/kvm
+cat > /etc/udev/rules.d/65-kvm.rules <<EOF
+KERNEL=="kvm", NAME="%k", MODE="0666"
+EOF
 
 
