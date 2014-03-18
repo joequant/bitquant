@@ -62,19 +62,26 @@ def passwd():
     if newpass1 != newpass2:
         return "passwords do not match"
     return login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
-           login.chpasswd("root", request.form['newpass1']) + "\n" 
+           login.chpasswd("root", request.form['newpass1']) + "\n"
 
+@app.route("/version/<tag>")
 @app.route("/version")
-def version():
+def version(tag=None):
     os.chdir(bitquant_root())
-    retval = {
-        "user" : user(),
-        "version" : subprocess.check_output(["git", "rev-parse",
-                                             "--short", "HEAD"]).strip(),
-        "bootstrapped" : os.path.exists(os.path.join(bitquant_root(),
-                                                     "web", "bootstrap.done")),
-        "default_password" : login.auth(user(), default_password)
-        }
+    retval = {}
+    if tag == "user" or tag == None:
+        retval['user'] = user()
+    if tag == "version" or tag == None:
+        retval['version'] = \
+                          subprocess.check_output(["git", "rev-parse",
+                                                   "--short", "HEAD"]).strip();
+    if tag == "bootstrapped" or tag == None:
+        retval['bootstrapped'] = \
+                               os.path.exists(os.path.join(bitquant_root(),
+                                                           "web",
+                                                           "bootstrap.done"));
+    if tag == "default_password" or tag == None:
+        retval["default_password"] = login.auth(user(), default_password)
     return Response(json.dumps(retval), mimetype='application/json')
 
 if __name__ == '__main__' and len(sys.argv) == 1:

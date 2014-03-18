@@ -1,32 +1,21 @@
 <!DOCTYPE HTML>
 <head>
 <title>Bitstation</title>
-<link href="//cdn.jsdelivr.net/jquery.layout/1.3.0rc30.79/layout-default-latest.css"
-      rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-      href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
 <meta charset="utf-8">
-<style type="text/css">
-#setup {
-width: 100%;
-height: 100%
-}
-#frame {
-width: 100%;
-height: 600px;
-}
-</style>
-</head>
 <body>
-<div id="title">
-<a href="bittrader/index.html">Bittrader</a>
-</div>
-<div id="frame">
-<iframe id=setup src="bittrader/setup.html"></iframe>
-</div>
+<ul>
+<li><a href="bittrader/index.html">Bittrader</a>
+<li><a href="bittrader/setup.html">Bittrader setup page</a>
+</ul>
 <script>
-$( "#frame" ).resizable({});
+$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
+function(data) {
+if (!data["bootstrapped"]) {
+    window.location.replace("bittrader/setup.html");
+} else {
+    window.location.replace("bittrader/index.html");
+}});
 </script>
 </body>

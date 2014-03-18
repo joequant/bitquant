@@ -67,7 +67,7 @@ App.IndexController = Em.Controller.extend({});
 
 App.IndexRoute = Em.Route.extend({
     model: function(){
-return $.getJSON("/cgi-bin/bittrader/model.py/version").then(
+return $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped").then(
 function(response) {
 return response;
 }, function(response) {
@@ -107,9 +107,10 @@ Bittrader Trading System
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
 under-construction.<p>
-{{{bootstrap-notice}}}  <a href='setup.html' target='_blank'>System setup</a>
+
 <p>
 <ul>
+<li><a href='setup.html' target='_blank'>System setup</a> {{{bootstrap-notice}}}  
 <li><a target="_blank" href="market_data.html">Market Data</a>
 <li><a target="_blank" href=":8080/">Analytics engine</a>
 <li><a target="_blank" href="trade.html">Trade</a>

@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Setup page</title>
+<title>Bittrader Setup page</title>
 <link href="//cdn.jsdelivr.net/jquery.layout/1.3.0rc30.79/layout-default-latest.css"
         rel="stylesheet" type="text/css">
 <link rel="stylesheet"
@@ -19,16 +19,12 @@ width: 100%;
 </head>
 <body>
 <ul>
-<li><div id="bootstrap-notice"></div> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Complete
-    installation</a>
-<li><a href="/cgi-bin/bittrader/startup.sh" target="log">Startup
-    servers</a>
-<li><a href="/cgi-bin/bittrader/shutdown.sh" target="log">Shutdown
- servers</a>
-<li><a href="/cgi-bin/bittrader/sshd.sh/on" target="log">Startup
-    ssh server</a>
-<li><a href="/cgi-bin/bittrader/sshd.sh/off" target="log">Shutdown
- ssh server</a>
+<li><a href="index.html">Bittrader main page</a>
+<li><div id="bootstrap-notice"></div> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish installation</a>
+<li>Server: <a href="/cgi-bin/bittrader/startup.sh" target="log">Startup</a>
+<a href="/cgi-bin/bittrader/shutdown.sh" target="log">Shutdown</a>
+<li>Ssh remote access: <a href="/cgi-bin/bittrader/sshd.sh/on"
+ target="log">Startup</a> <a href="/cgi-bin/bittrader/sshd.sh/off" target="log">Shutdown</a>
 </ul>
 <div id="password-input" style="display:none">
 <h4>Password for user and admin</h4>
@@ -52,9 +48,9 @@ Passwords already set.  To reset log into the machine.
 $.getJSON("/cgi-bin/bittrader/model.py/version",
 function(data) {
 if (!data["bootstrapped"]) {
-    $('#bootstrap-notice').html("<b>System install not complete</b>");
+    $('#bootstrap-notice').html("<b>System install not finished</b>");
 } else {
-    $('#bootstrap-notice').html("System install complete");
+    $('#bootstrap-notice').html("System install finished");
 }
 
 if (data['default_password']) {
