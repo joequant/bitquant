@@ -61,8 +61,8 @@ def passwd():
     newpass2 = request.form['newpass2']
     if newpass1 != newpass2:
         return "passwords do not match"
-    return login.chpasswd(myuser, request.form['newpass1']) + \
-           login.chpasswd("root", request.form['newpass1']) 
+    return login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
+           login.chpasswd("root", request.form['newpass1']) + "\n" 
 
 @app.route("/version")
 def version():

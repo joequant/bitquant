@@ -2,6 +2,7 @@
 import pexpect
 import os
 import subprocess
+import traceback
 
 os.environ['LC_ALL']="C"
 
@@ -28,11 +29,11 @@ def chpasswd(username, password):
             child.sendline(password)
             child.expect("password:")
             child.sendline(password)
+            child.expect(['success'])
             child.close()
 	except Exception as err:
-            child.close()
-	    return "exception"
-	return "password changed"
+	    return  traceback.format_exc()
+	return "password changed for %s" % (username)
 	
 if __name__ == '__main__':
         print auth(username='user',password='cubswin:)')
