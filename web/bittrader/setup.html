@@ -12,7 +12,7 @@
 width: 100%;
 }
 #log {
-height: 100%;
+height: 300px;
 width: 100%;
 }
 </style>
@@ -20,11 +20,13 @@ width: 100%;
 <body>
 <ul>
 <li><a href="index.html">Bittrader main page</a>
-<li><div id="bootstrap-notice"></div> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish installation</a>
-<li>Server: <a href="/cgi-bin/bittrader/startup.sh" target="log">Startup</a>
+<li><span id="bootstrap-notice"></span> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish installation</a>
+<li>Auxillary Servers: <a href="/cgi-bin/bittrader/startup.sh" target="log">Startup</a>
 <a href="/cgi-bin/bittrader/shutdown.sh" target="log">Shutdown</a>
+<a href="log" target="_blank">Log files</a>
 <li>Ssh remote access: <a href="/cgi-bin/bittrader/sshd.sh/on"
- target="log">Startup</a> <a href="/cgi-bin/bittrader/sshd.sh/off" target="log">Shutdown</a>
+ target="log">Startup</a> <a href="/cgi-bin/bittrader/sshd.sh/off"
+ target="log">Shutdown</a>
 </ul>
 <div id="password-input" style="display:none">
 <h4>Password for user and admin</h4>
@@ -38,21 +40,21 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 Passwords already set.  To reset log into the machine.
 </div>
 <p>
-
-<div id="logframe">
 <iframe id="log" name="log">
 </iframe>
 </div>
 
 <script>
-$.getJSON("/cgi-bin/bittrader/model.py/version",
+$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
 function(data) {
 if (!data["bootstrapped"]) {
     $('#bootstrap-notice').html("<b>System install not finished</b>");
 } else {
     $('#bootstrap-notice').html("System install finished");
-}
+}});
 
+$.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
+function(data) {
 if (data['default_password']) {
 $("#password-input").show();
 $("#password-done").hide();

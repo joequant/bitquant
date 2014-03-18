@@ -13,7 +13,7 @@ export HOME=/home/`whoami`
 GIT_DIR=$HOME/git/bitquant
 
 echo "Running from directory $GIT_DIR as user "`whoami`
-echo "Starting up servers"
+echo "Shutting down servers"
 . $GIT_DIR/web/shutdown.sh
 echo "(done)"
 echo "</pre>"
