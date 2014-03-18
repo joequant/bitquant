@@ -31,6 +31,7 @@ krb5-appl-clients \
 python-flask \
 python-pexpect \
 R-base \
+vim-minimal \
 2>&1
 
 # don't start up server
