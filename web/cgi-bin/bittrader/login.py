@@ -23,7 +23,7 @@ def auth(username, password):
 
 def chpasswd(username, password):
 	try:
-            child = pexpect.spawn("sudo passwd %s" * username)
+            child = pexpect.spawn("sudo passwd %s" % username)
             child.expect("password:")
             child.sendline(password)
             child.expect("password:")
