@@ -1,4 +1,3 @@
 R='Bitstation development'
 R=$R$'\npowered by '
 R=$R$(cat /etc/release)
-R=$R$'\nlogin as user user password cubswin:)'
