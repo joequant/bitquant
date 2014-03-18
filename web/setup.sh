@@ -29,14 +29,11 @@ pushd /etc/httpd/conf/webapps.d > /dev/null
 if [ -f 00_default_vhosts.conf ] ; then
 mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak
 fi
-rm -f 00_bitquant.conf
-cp ../../../..$SCRIPT_DIR/files/00_bitquant.conf 00_bitquant.conf
-sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant.conf
-popd > /dev/null
 popd > /dev/null
 
-pushd /etc/sudoers.d > /dev/null
-cp ../..$SCRIPT_DIR/files/00_bitquant_sudo 00_bitquant_sudo
-sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" 00_bitquant_sudo
-popd > /dev/null
-
+for i in `find files/* -type d` ; do mkdir -p ${i#files} ;done
+for i in `find files/* -type f` 
+do echo "copying to ${i#files}"
+cp $i ${i#files} 
+sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files} 
+done
