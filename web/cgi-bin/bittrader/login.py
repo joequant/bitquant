@@ -22,14 +22,17 @@ def auth(username, password):
                 return True
 
 def chpasswd(username, password):
-	dev_null = open('/dev/null', 'w')
-	passwd = subprocess.Popen(['sudo', 'passwd', user],
-				  stdin=subprocess.PIPE,
-				  stdout=dev_null.fileno(),
-				  stderr=subprocess.STDOUT)
-	passwd.communicate( ((phrase + '\n')*2).encode('utf-8') )
-	if passwd.returncode != 0:
-		raise OSError('password setting failed')
-	    
+	try:
+            child = pexpect.spawn("sudo passwd %s" * username)
+            child.expect("password:")
+            child.sendline(password)
+            child.expect("password:")
+            child.sendline(password)
+            child.close()
+	except Exception as err:
+            child.close()
+	    return "exception"
+	return "password changed"
+	
 if __name__ == '__main__':
         print auth(username='user',password='cubswin:)')

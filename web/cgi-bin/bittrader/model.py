@@ -52,20 +52,17 @@ def refresh_scripts():
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
-@app.route("/passwd/<ident>", methods = ['POST'])
-def passwd(ident):
-    if ident == "user":
-        myuser = user()
-    elif ident == "admin":
-        myuser = "root"
+@app.route("/passwd", methods = ['POST'])
+def passwd():
+    myuser = user()
     if (not login.auth(myuser, default_password)):
         return "Password not default"
     newpass1 = request.form['newpass1']
     newpass2 = request.form['newpass2']
     if newpass1 != newpass2:
         return "passwords do not match"
-    login.chpasswd(myuser, request.form['newpass1'])
-    return "Password changed"
+    return login.chpasswd(myuser, request.form['newpass1']) + \
+           login.chpasswd("root", request.form['newpass1']) 
 
 @app.route("/version")
 def version():
@@ -76,8 +73,7 @@ def version():
                                              "--short", "HEAD"]).strip(),
         "bootstrapped" : os.path.exists(os.path.join(bitquant_root(),
                                                      "web", "bootstrap.done")),
-        "default_user_password" : login.auth(user(), default_password),
-        "default_admin_password" : login.auth("root", default_password)
+        "default_password" : login.auth(user(), default_password)
         }
     return Response(json.dumps(retval), mimetype='application/json')
 
