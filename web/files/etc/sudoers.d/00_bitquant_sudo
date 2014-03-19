@@ -78,4 +78,4 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 Defaults!SOFTWARE !requiretty
 Defaults!SERVICES !requiretty
 Defaults!USER !requiretty
-joe  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES, NOPASSWD: USER
+%USER%  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES, NOPASSWD: USER
