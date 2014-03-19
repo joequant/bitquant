@@ -47,12 +47,14 @@ $("#password-done").show();
 <ul>
 <li><a href="index.html">Bittrader main page</a>
 <li><span id="bootstrap-notice"></span> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish installation</a>
-<li>Auxillary Servers: <a href="/cgi-bin/bittrader/startup.sh" target="log">Startup</a>
-<a href="/cgi-bin/bittrader/shutdown.sh" target="log">Shutdown</a>
+<li>Auxillary Servers: <a href="/cgi-bin/bittrader/servers.sh/on" target="log">Startup</a>
+<a href="/cgi-bin/bittrader/servers.sh/off" target="log">Shutdown</a>
 <a href="log" target="_blank">Log files</a>
 <li>Ssh remote access: <a href="/cgi-bin/bittrader/sshd.sh/on"
  target="log">Startup</a> <a href="/cgi-bin/bittrader/sshd.sh/off"
  target="log">Shutdown</a>
+<li><a href="/cgi-bin/bittrader/refresh.sh" target="log">Sync cgi-bin scripts</a>
+
 </ul>
 <div id="password-input" style="display:none">
 <h4>Password for user and root</h4>

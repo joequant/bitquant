@@ -4,8 +4,6 @@ LOG_DIR=$SCRIPT_DIR/log
 cd $SCRIPT_DIR
 . norootcheck.sh
 
-sudo systemctl start httpd.service
-
 #ipython notebook &
 
 if [ -d ../../OG-Platform ] ; then
@@ -28,7 +26,6 @@ pushd ../../etherpad-lite > /dev/null
 bin/run.sh >> $LOG_DIR/etherpad.log 2>&1 &
 popd > /dev/null
 fi
-
 
 
 

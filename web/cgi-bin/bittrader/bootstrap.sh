@@ -19,6 +19,7 @@ echo "Installing packages"
 echo "Doing initial installation"
 . $GIT_DIR/git/bootstrap.sh
 echo "Starting up servers"
-. $GIT_DIR/web/startup.sh
+sudo systemctl enable bitquant 2>&1 
+sudo systemctl start bitquant 2>&1 
 echo "(done)"
 echo "</pre>"
