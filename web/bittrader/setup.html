@@ -16,6 +16,32 @@ height: 300px;
 width: 100%;
 }
 </style>
+<script>
+function check_installed() {
+$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
+function(data) {
+if (!data["bootstrapped"]) {
+    $('#bootstrap-notice').html("<b>System install not finished</b>");
+} else {
+    $('#bootstrap-notice').html("System install finished");
+}});
+}
+
+function check_password() {
+$.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
+function(data) {
+if (data['default_password']) {
+$("#password-input").show();
+$("#password-done").hide();
+} else {
+$("#password-input").hide();
+$("#password-done").show();
+};
+});
+}
+
+</script>
+
 </head>
 <body>
 <ul>
@@ -29,42 +55,28 @@ width: 100%;
  target="log">Shutdown</a>
 </ul>
 <div id="password-input" style="display:none">
-<h4>Password for user and admin</h4>
-<form action='/cgi-bin/bittrader/model.py/passwd' METHOD='POST'>
+<h4>Password for user and root</h4>
+Warning: system is currently using default password 'cubswin:)'
+<form action='/cgi-bin/bittrader/model.py/passwd' target='log'
+      METHOD='POST'>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
-<input type='submit' target='log' value='SUBMIT' />
+<input type='submit' value='SUBMIT' />
 </form>
 </div>
 <div id="password-done" style="display:none">
 Passwords already set.  To reset log into the machine.
 </div>
 <p>
-<iframe id="log" name="log">
+<iframe id="log" name="log" onload="check_installed(); check_password()">
 </iframe>
 </div>
-
 <script>
-$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
-function(data) {
-if (!data["bootstrapped"]) {
-    $('#bootstrap-notice').html("<b>System install not finished</b>");
-} else {
-    $('#bootstrap-notice').html("System install finished");
-}});
-
-$.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
-function(data) {
-if (data['default_password']) {
-$("#password-input").show();
-$("#password-done").hide();
-} else {
-$("#password-input").hide();
-$("#password-done").show();
-};
-});
+check_installed();
+check_password();
 $("#logframe").resizable({});
 </script>
+
 </body>
 </html>
 
