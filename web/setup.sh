@@ -32,8 +32,11 @@ fi
 popd > /dev/null
 
 for i in `find files/* -type d` ; do mkdir -p ${i#files} ;done
-for i in `find files/* -type f` 
+for i in `find files/* -type f ! -iname "*~" ` 
 do echo "copying to ${i#files}"
 cp $i ${i#files} 
 sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files} 
 done
+
+systemctl daemon-reload
+
