@@ -1,0 +1,13 @@
+[Unit]
+Description=Bitquant servers
+After=httpd.service
+
+[Service]
+Type=notify
+User=%USER%
+Group=%GROUP%
+ExecStart=/home/%USER%/git/bitquant/web/startup.sh
+ExecStop=/home/%USER%/git/bitquant/web/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
