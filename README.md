@@ -9,6 +9,9 @@ generate the diskimage for the bitstation trading system.  Bitstation
 consists of a disk image which can be run in VirtualBox or uploaded to
 a cloud computing system.
 
+Generating disk image
+=====================
+
 To generate a disk image, type
 
    make
@@ -22,5 +25,17 @@ http://bitstation.lan/
 
 The framework that I use to generate the image can be used for other
 web appliances.
+
+Generate local install
+======================
+
+To install the system local, type
+
+   make local
+
+Set your web browser to
+
+http://localhost/
+
 
 

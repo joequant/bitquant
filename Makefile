@@ -1,6 +1,9 @@
 bitstation-vdi:
 	cd oz ; ./mkimg.sh  Bitstation vdi mageia-net
 
+local:
+	cd web ; sudo ./setup.sh ; ./startup.sh
+
 bitstation-dsk:
 	cd oz ; ./mkimg.sh Bitstation dsk mageia-net-smalldsk
 
