@@ -39,4 +39,7 @@ sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files}
 done
 
 systemctl daemon-reload
+systemctl start bitquant
+systemctl enable bitquant
+
 
