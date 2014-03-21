@@ -71,6 +71,7 @@ Passwords already set.  To reset password log into the machine.
 <div class="bootstrap-yes">
 <form action='/cgi-bin/bittrader/model.py/setup' target='log'
       METHOD='POST'>
+<ul>
 User Password: <input name='password' type='password' title='Please
 		 Enter Your Password' size='8' /><br>
 <li>Auxillary Servers: <input type="submit" name="submit"
@@ -80,11 +81,12 @@ User Password: <input name='password' type='password' title='Please
 <li>Ssh remote access: <input type="submit" name="submit"
 			      value="Startup ssh">
 <input type="submit" name="submit" value="Shutdown ssh">
-
 <li><input type="submit" name="submit" value="Refresh CGI scripts">
+<li><input type="submit" name="submit" value="Remove local install">
+</ul>
 </form>
 </div>
-</ul>
+
 <p>
 <iframe id="log" name="log" onload="check_installed(); check_password()">
 </iframe>

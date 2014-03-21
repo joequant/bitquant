@@ -86,6 +86,8 @@ def setup():
         return subprocess.check_output(["./sshd.sh", "/off"])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
+    elif submit == "Remove local install":
+        return subprocess.check_output(["./clean-to-factory.sh"])
     else:
         return "unknown command"
 
