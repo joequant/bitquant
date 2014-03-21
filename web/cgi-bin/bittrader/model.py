@@ -9,6 +9,7 @@ import json
 import getpass
 import login
 import traceback
+import fcntl
 
 app = Flask(__name__)
 default_password = "cubswin:)"
@@ -102,13 +103,24 @@ def version(tag=None):
         retval['version'] = \
                           subprocess.check_output(["git", "rev-parse",
                                                    "--short", "HEAD"]).strip();
-    if tag == "bootstrapped" or tag == None:
-        retval['bootstrapped'] = \
+    if tag == "bootstrap_finished" or \
+           tag == "bootstrap_status" or tag == None:
+        retval['bootstrap_finished'] = \
                                os.path.exists(os.path.join(bitquant_root(),
                                                            "web", "log",
                                                            "bootstrap.done"));
     if tag == "default_password" or tag == None:
         retval["default_password"] = login.auth(user(), default_password)
+    if tag == "bootstrap_running" or \
+           tag == "bootstrap_status" or tag == None:
+        fp = open(os.path.join(bitquant_root(),
+                               "web", "log",
+                               "bootstrap.lock"), "w")
+        try:
+            fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            retval['bootstrap_running'] = False
+        except IOError:
+            retval['bootstrap_running'] = True
     return Response(json.dumps(retval), mimetype='application/json')
 
 

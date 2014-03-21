@@ -18,12 +18,17 @@ width: 100%;
 </style>
 <script>
 function check_installed() {
-$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
+$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
 function(data) {
-if (!data["bootstrapped"]) {
-    $('#bootstrap-notice').html("<b>System install not finished</b>");
-    $('.bootstrap-yes').hide();
-    $('.bootstrap-no').show();
+if (!data["bootstrap_finished"]) {
+$('.bootstrap-yes').hide();
+$('.bootstrap-no').show();
+if (!data['bootstrap_running']) {
+$('#bootstrap-notice').html("<b>System install not started</b>");
+} else {
+$('#bootstrap-notice').html("<b>System install currently running</b>");
+window.setTimeout(function() { check_installed();}, 10);
+}
 } else {
     $('#bootstrap-notice').html("System install finished");
     $('.bootstrap-yes').show();
@@ -64,8 +69,7 @@ Passwords already set.  To reset password log into the machine.
 <ul>
 <li><a href="index.html">Bittrader main page</a>
 <li><span id="bootstrap-notice"></span>
-  - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish
-    installation</a>
+  - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Start installation</a>
 <li><a href="log" target="_blank">Server log files</a>
 </ul>
 <div class="bootstrap-yes">
