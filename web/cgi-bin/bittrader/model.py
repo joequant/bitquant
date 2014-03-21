@@ -12,6 +12,7 @@ import traceback
 
 app = Flask(__name__)
 default_password = "cubswin:)"
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
 @app.route('/')
 def index():
@@ -64,6 +65,33 @@ def passwd():
     return login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
            login.chpasswd("root", request.form['newpass1']) + "\n"
 
+@app.route("/setup", methods= ['POST'])
+def setup():
+    if (not login.auth(user(), request.values['password'])):
+        return "password invalid"
+    submit = request.values['submit']
+    return request.values['submit']
+    if submit == "Startup servers":
+        os.environ['PATH_INFO'] = "/on"
+        return subprocess.check_output(os.path.join(script_dir,
+                                                    "servers.sh"))
+    elif submit == "Shutdown server":
+        os.environ['PATH_INFO'] = "/off"
+        return subprocess.check_output(os.path.join(script_dir,
+                                                    "servers.sh"))
+    elif submit == "Startup ssh":
+        os.environ['PATH_INFO'] = "/on"
+        return subprocess.check_output(os.path.join(script_dir,
+                                                    "ssh.sh"))
+    elif submit == "Startup ssh":
+        os.environ['PATH_INFO'] = "/off"
+        return subprocess.check_output(os.path.join(script_dir,
+                                                    "ssh.sh"))
+    elif submit == "Refresh CGI scripts":
+        return refresh_scripts()
+    else:
+        return "unknown command"
+
 @app.route("/version/<tag>")
 @app.route("/version")
 def version(tag=None):
@@ -83,6 +111,7 @@ def version(tag=None):
     if tag == "default_password" or tag == None:
         retval["default_password"] = login.auth(user(), default_password)
     return Response(json.dumps(retval), mimetype='application/json')
+
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler

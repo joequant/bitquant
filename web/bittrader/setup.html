@@ -22,8 +22,12 @@ $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped",
 function(data) {
 if (!data["bootstrapped"]) {
     $('#bootstrap-notice').html("<b>System install not finished</b>");
+    $('.bootstrap-yes').hide();
+    $('.bootstrap-no').show();
 } else {
     $('#bootstrap-notice').html("System install finished");
+    $('.bootstrap-yes').show();
+    $('.bootstrap-no').hide();
 }});
 }
 
@@ -44,18 +48,6 @@ $("#password-done").show();
 
 </head>
 <body>
-<ul>
-<li><a href="index.html">Bittrader main page</a>
-<li><span id="bootstrap-notice"></span> - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish installation</a>
-<li>Auxillary Servers: <a href="/cgi-bin/bittrader/servers.sh/on" target="log">Startup</a>
-<a href="/cgi-bin/bittrader/servers.sh/off" target="log">Shutdown</a>
-<a href="log" target="_blank">Log files</a>
-<li>Ssh remote access: <a href="/cgi-bin/bittrader/sshd.sh/on"
- target="log">Startup</a> <a href="/cgi-bin/bittrader/sshd.sh/off"
- target="log">Shutdown</a>
-<li><a href="/cgi-bin/bittrader/refresh.sh" target="log">Sync cgi-bin scripts</a>
-
-</ul>
 <div id="password-input" style="display:none">
 <h4>Password for user and root</h4>
 Warning: system is currently using default password 'cubswin:)'
@@ -67,8 +59,32 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 </form>
 </div>
 <div id="password-done" style="display:none">
-Passwords already set.  To reset log into the machine.
+Passwords already set.  To reset password log into the machine.
 </div>
+<ul>
+<li><a href="index.html">Bittrader main page</a>
+<li><span id="bootstrap-notice"></span>
+  - <a href="/cgi-bin/bittrader/bootstrap.sh"  target="log">Finish
+    installation</a>
+<li><a href="log" target="_blank">Server log files</a>
+</ul>
+<div class="bootstrap-yes">
+<form action='/cgi-bin/bittrader/model.py/setup' target='log'
+      METHOD='POST'>
+User Password: <input name='password' type='password' title='Please
+		 Enter Your Password' size='8' /><br>
+<li>Auxillary Servers: <input type="submit" name="submit"
+			      value="Startup servers">
+<input type="submit" name="submit" value="Shutdown servers">
+
+<li>Ssh remote access: <input type="submit" name="submit"
+			      value="Startup ssh">
+<input type="submit" name="submit" value="Shutdown ssh">
+
+<li><input type="submit" name="submit" value="Refresh CGI scripts">
+</form>
+</div>
+</ul>
 <p>
 <iframe id="log" name="log" onload="check_installed(); check_password()">
 </iframe>
