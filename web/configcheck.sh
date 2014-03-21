@@ -1,5 +1,5 @@
 #!/bin/bash
-config=${1-bitquant}
+config=${1-bitstation}
 
 if [ ! -d $config ] ; then
 echo "Config $config not present"
