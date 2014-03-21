@@ -28,7 +28,7 @@ echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant
 echo "(done)"
-echo 1>&6 6>&~
+exec 1>&6 6>&~
 ) 200> $LOG_DIR/bootstrap.lock &
 echo "See progress in <a href='log/bootstrap.log' target='_blank'>log file</a>" 
 echo "</pre>"
