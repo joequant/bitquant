@@ -67,7 +67,7 @@ App.IndexController = Em.Controller.extend({});
 
 App.IndexRoute = Em.Route.extend({
     model: function(){
-return $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrapped").then(
+return $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_finished").then(
 function(response) {
 return response;
 }, function(response) {
@@ -75,7 +75,7 @@ return {};
 });
     },
     setupController: function(controller, model) {
-    if (!model["bootstrapped"]) {
+    if (!model["bootstrap_finished"]) {
          controller.set('bootstrap-notice', "<b>Trading system must be initialized</b>");
      }
       controller.set('model', model);
