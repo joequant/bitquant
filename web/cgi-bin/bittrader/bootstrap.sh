@@ -18,17 +18,18 @@ echo "Saving to <a href='log/bootstrap.log' target='_blank'>log file</a>"
 rm -f $LOG_DIR/bootstrap.log
 exec 6>&1
 exec > $LOG_DIR/bootstrap.log
+exec 2>&1
 
 echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Installing packages"
-$GIT_DIR/web/install-build-deps.sh 2>&1
-echo "Doing initial installation" 2>&1
+$GIT_DIR/web/install-build-deps.sh
+echo "Doing initial installation"
 $GIT_DIR/git/bootstrap.sh
 echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant
 echo "(done)"
-exec 1>&6 6>&~
+exec 1>&6
 ) 200> $LOG_DIR/bootstrap.lock &
 echo "See progress in <a href='log/bootstrap.log' target='_blank'>log file</a>" 
 echo "</pre>"
