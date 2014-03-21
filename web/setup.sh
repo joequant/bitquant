@@ -39,6 +39,8 @@ sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files}
 done
 
 systemctl daemon-reload
+systemctl enable httpd
+systemctl start httpd
 systemctl start bitquant
 systemctl enable bitquant
 
