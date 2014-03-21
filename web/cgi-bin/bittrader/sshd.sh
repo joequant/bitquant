@@ -2,8 +2,12 @@
 # set setuid so that it is run with the user which checked out the
 # orginal git
 
+if [ $# -eq 1 ] ; then
+export PATH_INFO=$1
+else 
 echo "Content-type: text/html"
 echo ""
+fi
 echo "<pre>"
 if [ "$PATH_INFO" == "/on" ] ; then
 sudo systemctl enable sshd 2>&1 

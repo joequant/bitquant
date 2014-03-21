@@ -70,23 +70,20 @@ def setup():
     if (not login.auth(user(), request.values['password'])):
         return "password invalid"
     submit = request.values['submit']
-    return request.values['submit']
     if submit == "Startup servers":
-        os.environ['PATH_INFO'] = "/on"
-        return subprocess.check_output(os.path.join(script_dir,
-                                                    "servers.sh"))
-    elif submit == "Shutdown server":
-        os.environ['PATH_INFO'] = "/off"
-        return subprocess.check_output(os.path.join(script_dir,
-                                                    "servers.sh"))
+        try:
+            return subprocess.check_output(["./servers.sh", "/on"])
+        except:
+            return traceback.extract_stack()
+    elif submit == "Shutdown servers":
+        try:
+            return subprocess.check_output(["./servers.sh", "/off"])
+        except:
+            return traceback.extract_stack()
     elif submit == "Startup ssh":
-        os.environ['PATH_INFO'] = "/on"
-        return subprocess.check_output(os.path.join(script_dir,
-                                                    "ssh.sh"))
-    elif submit == "Startup ssh":
-        os.environ['PATH_INFO'] = "/off"
-        return subprocess.check_output(os.path.join(script_dir,
-                                                    "ssh.sh"))
+        return subprocess.check_output(["./sshd.sh", "/on"])
+    elif submit == "Shutdown ssh":
+        return subprocess.check_output(["./sshd.sh", "/off"])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
     else:
