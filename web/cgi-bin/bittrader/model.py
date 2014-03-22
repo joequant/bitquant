@@ -10,6 +10,7 @@ import getpass
 import login
 import traceback
 import fcntl
+import tailer
 
 app = Flask(__name__)
 default_password = "cubswin:)"
@@ -92,6 +93,17 @@ def setup():
     else:
         return "unknown command"
 
+def is_locked(tag):
+    fp = open(os.path.join(bitquant_root(),
+                           "web", "log",
+                           tag + ".lock"), "w")
+    try:
+        fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        return False
+    except IOError:
+        return True
+
+
 @app.route("/version/<tag>")
 @app.route("/version")
 def version(tag=None):
@@ -113,15 +125,26 @@ def version(tag=None):
         retval["default_password"] = login.auth(user(), default_password)
     if tag == "bootstrap_running" or \
            tag == "bootstrap_status" or tag == None:
-        fp = open(os.path.join(bitquant_root(),
-                               "web", "log",
-                               "bootstrap.lock"), "w")
-        try:
-            fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
-            retval['bootstrap_running'] = False
-        except IOError:
-            retval['bootstrap_running'] = True
+        retval['bootstrap_running'] = is_locked("bootstrap")
     return Response(json.dumps(retval), mimetype='application/json')
+
+@app.route("/log/<tag>")
+def log(tag="bootstrap"):
+    log_file= os.path.join(bitquant_root(),
+                           "web", "bittrader", "log", tag + ".log")
+    def generate():
+        f = open(log_file, "r")
+        for i in tailer.tail(f, 200):
+            yield(i + "\n")
+        if not is_locked(tag):
+            return
+        generator = tailer.follow(f)
+        for i in generator.next():
+            if not is_locked(tag):
+                break
+            yield(i + "\n")
+        f.close()
+    return Response(generate(), mimetype="text/plain")
 
 
 if __name__ == '__main__' and len(sys.argv) == 1:
