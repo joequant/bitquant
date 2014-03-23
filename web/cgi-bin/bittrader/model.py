@@ -11,6 +11,7 @@ import login
 import traceback
 import fcntl
 import tailer
+import time
 
 app = Flask(__name__)
 default_password = "cubswin:)"
@@ -98,7 +99,7 @@ def is_locked(tag):
                            "web", "log",
                            tag + ".lock"), "w")
     try:
-        fcntl.lockf(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fcntl.flock(fp, fcntl.LOCK_EX | fcntl.LOCK_NB)
         return False
     except IOError:
         return True
@@ -128,6 +129,21 @@ def version(tag=None):
         retval['bootstrap_running'] = is_locked("bootstrap")
     return Response(json.dumps(retval), mimetype='application/json')
 
+@app.route("/bootstrap")
+def bootstrap():
+    try:
+        os.system("./bootstrap.sh > /dev/null &")
+        retry = 0
+        while not is_locked("bootstrap"):
+            if retry >= 15:
+                return "Cannot start bootstrap"
+            time.sleep(1)
+            retry = retry + 1
+        return log("bootstrap")
+    except:
+        return traceback.extract_stack()
+
+
 @app.route("/log/<tag>")
 def log(tag="bootstrap"):
     log_file= os.path.join(bitquant_root(),
@@ -142,7 +158,7 @@ def log(tag="bootstrap"):
         for i in generator.next():
             if not is_locked(tag):
                 break
-            yield(i + "\n")
+            yield(i)
         f.close()
     return Response(generate(), mimetype="text/plain")
 
