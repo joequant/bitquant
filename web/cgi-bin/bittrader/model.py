@@ -10,7 +10,6 @@ import getpass
 import login
 import traceback
 import fcntl
-import tailer
 import time
 
 app = Flask(__name__)
@@ -129,20 +128,24 @@ def version(tag=None):
         retval['bootstrap_running'] = is_locked("bootstrap")
     return Response(json.dumps(retval), mimetype='application/json')
 
+def tail(f, n):
+    assert n >= 0
+    pos, lines = n+1, []
+    while len(lines) <= n:
+        try:
+            f.seek(-pos, 2)
+        except IOError:
+            f.seek(0)
+            break
+        finally:
+            lines = list(f)
+            pos *= 2
+    return lines[-n:]
+
 @app.route("/bootstrap")
 def bootstrap():
-    try:
-        os.system("./bootstrap.sh > /dev/null &")
-        retry = 0
-        while not is_locked("bootstrap"):
-            if retry >= 15:
-                return "Cannot start bootstrap"
-            time.sleep(1)
-            retry = retry + 1
-        return log("bootstrap")
-    except:
-        return traceback.extract_stack()
-
+    os.system("./bootstrap.sh &")
+    return "Bootstrap started"
 
 @app.route("/log/<tag>")
 def log(tag="bootstrap"):
@@ -150,18 +153,21 @@ def log(tag="bootstrap"):
                            "web", "bittrader", "log", tag + ".log")
     def generate():
         f = open(log_file, "r")
-        for i in tailer.tail(f, 200):
-            yield(i + "\n")
-        if not is_locked(tag):
-            return
-        generator = tailer.follow(f)
-        for i in generator.next():
-            if not is_locked(tag):
-                break
+        for i in tail(f, 200):
             yield(i)
+        if not is_locked("bootstrap"):
+            return
+        f.seek(0,2)      # Go to the end of the file
+        while True:
+            line = f.readline()
+            if not line:
+                time.sleep(0.1)    # Sleep briefly
+                continue
+            yield line
+            if not is_locked("bootstrap"):
+                return
         f.close()
     return Response(generate(), mimetype="text/plain")
-
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
