@@ -17,6 +17,7 @@ width: 100%;
 }
 </style>
 <script>
+
 function run_bootstrap() {
 $.get("/cgi-bin/bittrader/model.py/bootstrap",
 function(data) {
@@ -24,6 +25,7 @@ $("#log").attr("src", "/cgi-bin/bittrader/model.py/log/bootstrap");
 });
 }
 
+var interval_id = -1;
 
 function check_installed() {
 $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
@@ -33,14 +35,24 @@ $('.bootstrap-yes').hide();
 $('.bootstrap-no').show();
 if (!data['bootstrap_running']) {
 $('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
+    if (interval_id != -1) {
+       clearInterval(interval_id);
+       interval_id = -1;
+    }
 } else {
 $('#bootstrap-notice').html("<b>System install currently running</b> - <a href='/cgi-bin/bittrader/model.py/log/bootstrap' target='log'>View log</a>");
-window.setTimeout(function() { check_installed();}, 10000);
+if (interval_id == -1) {
+interval_id = setInterval(function() { check_installed();}, 10000);
+}
 }
 } else {
     $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Start installation</a>");
     $('.bootstrap-yes').show();
     $('.bootstrap-no').hide();
+    if (interval_id != -1) {
+       clearInterval(interval_id);
+       interval_id = -1;
+    }
 }});
 }
 
