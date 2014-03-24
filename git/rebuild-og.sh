@@ -1,5 +1,9 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [ -e $HOME/bitquant.conf ] ;  then
+echo "Reading configuration from $HOME/bitquant.conf"
+. $HOME/bitquant.conf
+fi
 cd $SCRIPT_DIR
 . ../web/norootcheck.sh
 pushd ../../OG-Platform  > /dev/null
@@ -11,7 +15,9 @@ mvn opengamma:server-start -Dconfig=fullstack
 popd > /dev/null
 popd > /dev/null
 
-#pushd ../../OG-PlatformNative > /dev/null
-#mvn install -Dmaven.test.skip=True
-#popd > /dev/null
+if [ -n "$OG_COMPILE_PLATFORM_NATIVE" ]; then
+pushd ../../OG-PlatformNative > /dev/null
+mvn install -Dmaven.test.skip=True
+popd > /dev/null
+fi
 
