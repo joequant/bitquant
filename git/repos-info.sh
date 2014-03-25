@@ -1,5 +1,7 @@
 MY_NAME=joequant
 repos_misc="Fudge-Python JyNI XChange JSurface3D zipline etherpad-lite ethercalc"
+repos_quantlib="quantlib"
+repos_og="OG-PlatformNative OG-Tools OG-Platform"
 
 declare -A branch
 branch[XChange]="develop"

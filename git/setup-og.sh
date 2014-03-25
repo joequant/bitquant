@@ -5,31 +5,20 @@ cd $SCRIPT_DIR
 
 pushd ../.. > /dev/null
 
-if [ ! -d OG-Platform ] ; then
-git clone --progress https://github.com/$MY_NAME/OG-Platform
-pushd OG-Platform > /dev/null
-git remote add upstream https://github.com/OpenGamma/OG-Platform
+for repo in OG-Platform OG-PlatformNative ; do
+if [ ! -d $repo ] ; then
+git clone --progress https://github.com/$MY_NAME/$repo
+pushd $repo > /dev/null
+git remote add upstream https://github.com/OpenGamma/$repo
 git fetch upstream
 git fetch origin
 git checkout -t origin/develop
 git checkout bitquant
 popd > /dev/null
 else
-echo "Repo OG-Platform  already present"
+echo "Repo $repo  already present"
 fi
-
-if [ ! -d OG-PlatformNative ] ; then
-git clone --progress https://github.com/$MY_NAME/OG-PlatformNative
-pushd OG-PlatformNative > /dev/null
-git remote add upstream https://github.com/OpenGamma/OG-PlatformNative
-git fetch upstream
-git fetch origin
-git checkout -t origin/develop
-git checkout bitquant
-popd > /dev/null
-else
-echo "Repo OG-Platform Native already present"
-fi
+done
 
 if [ ! -d OG-Tools ] ; then
 git clone https://github.com/$MY_NAME/OG-Tools

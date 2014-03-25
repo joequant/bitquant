@@ -10,7 +10,8 @@ fi
 
 pushd ../..
 echo "Processing OG-PlatformNative"
-pushd OG-PlatformNative > /dev/null
+for repo in OG-Platform OG-PlatformNative ; do
+pushd $repo > /dev/null
 git fetch upstream
 git fetch origin
 git stash
@@ -25,21 +26,6 @@ git rebase origin/bitquant
 git rebase upstream/develop
 if [ $UPLOAD -eq 1 ] ; then git push --force --set-upstream origin bitquant ; fi
 popd > /dev/null
-
-pushd OG-Platform > /dev/null
-echo "Processing OG-Platform"
-git fetch upstream
-git fetch origin
-git stash
-git checkout master
-git rebase upstream/master
-if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
-git checkout develop
-git rebase upstream/develop
-if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin develop ; fi
-git checkout bitquant
-git rebase origin/bitquant
-git rebase upstream/develop
-if [ $UPLOAD -eq 1 ] ; then git push --force --set-upstream origin bitquant ; fi
-popd > /dev/null
+done
+popd
 
