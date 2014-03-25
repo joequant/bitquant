@@ -12,7 +12,7 @@ tag=$1
 echo "Tag $1"
 
 pushd ../.. > /dev/null
-for repo in $repos_misc $repos_quantlib $repos_og ; do
+for repo in bitquant $repos_misc $repos_quantlib $repos_og ; do
 echo git tag $repo $tag
 done
 popd > /dev/null
