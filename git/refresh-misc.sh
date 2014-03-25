@@ -1,27 +1,16 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-MY_NAME=joequant
-repos="JyNI XChange JSurface3D zipline etherpad-lite ethercalc"
 cd $SCRIPT_DIR
+. repos-info.sh
 if [ "$1" == "--upload" ] ; then
 export UPLOAD=1
 else
 export UPLOAD=0
 fi
 git config --global credential.helper cache
-declare -A branch
-branch[XChange]="develop"
-branch[etherpad-lite]="develop"
 
 pushd ../.. > /dev/null
-if [ -d Fudge-Python ]
-then
-pushd Fudge-Python > /dev/null
-git pull origin
-popd > /dev/null
-fi
-
-for repo in $repos
+for repo in $repos_misc
 do
 if [ -d $repo ]
 then
@@ -32,23 +21,16 @@ then mybranch=${branch[$repo]}
 else mybranch="master"
 fi
 git checkout $mybranch
+if [[ ${upstream[$repo]} ]] ; then
 git fetch upstream
+fi
 git fetch origin
 git stash
+if [[ ${upstream[$repo]} ]] ; then
 git rebase upstream/$mybranch
 if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin $mybranch ; fi
+fi
 popd > /dev/null
 fi
 done
 popd > /dev/null
-
-
-
-
-
-
-
-
-
-
-
