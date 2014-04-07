@@ -82,6 +82,9 @@ def setup():
             return subprocess.check_output(["./servers.sh", "/off"])
         except:
             return traceback.extract_stack()
+    elif submit == "Set time zone":
+        timezone = request.values['timezone']
+        return subprocess.check_output(["./timezone.sh", timezone])
     elif submit == "Startup ssh":
         return subprocess.check_output(["./sshd.sh", "/on"])
     elif submit == "Shutdown ssh":
@@ -126,6 +129,15 @@ def version(tag=None):
     if tag == "bootstrap_running" or \
            tag == "bootstrap_status" or tag == None:
         retval['bootstrap_running'] = is_locked("bootstrap")
+    if tag == "timezone" or tag == None:
+        for line in subprocess.check_output(['timedatectl',
+                                              'status']).splitlines():
+            if "Timezone:" in line:
+                retval['timezone'] = line.strip().split()[1]
+        if retval['timezone'] == "n/a":
+            retval['timezone'] = subprocess.check_output(["grep",
+                   "ZONE=",
+                   "/etc/sysconfig/clock"]).strip().replace("ZONE=","")
     return Response(json.dumps(retval), mimetype='application/json')
 
 def tail(f, n):

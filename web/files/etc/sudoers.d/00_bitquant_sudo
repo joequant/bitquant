@@ -48,6 +48,7 @@ Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 # Cmnd_Alias DRIVERS = /sbin/modprobe
 
 Cmnd_Alias USER = /bin/passwd
+Cmnd_Alias TIME = /bin/timedatectl
 
 # Defaults specification
 
@@ -78,4 +79,6 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 Defaults!SOFTWARE !requiretty
 Defaults!SERVICES !requiretty
 Defaults!USER !requiretty
-%USER%  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES, NOPASSWD: USER
+Defaults!TIME !requiretty
+%USER%  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES, NOPASSWD: USER, NOPASSWD: TIME
+

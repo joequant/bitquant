@@ -13,6 +13,8 @@ echo "Tag $1"
 
 pushd ../.. > /dev/null
 for repo in bitquant $repos_misc $repos_quantlib $repos_og ; do
-echo git tag $repo $tag -m \"bitquant tag\"
+pushd $repo > /dev/null
+echo git tag $tag -m \"bitquant tag\"
+popd
 done
 popd > /dev/null
