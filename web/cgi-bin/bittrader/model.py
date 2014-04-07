@@ -62,9 +62,11 @@ def passwd():
         return "Password not default"
     newpass1 = request.form['newpass1']
     newpass2 = request.form['newpass2']
+    timezone = request.form['timezone']
     if newpass1 != newpass2:
         return "passwords do not match"
-    return login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
+    return subprocess.check_output(["./timezone.sh", timezone]) + \
+           login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
            login.chpasswd("root", request.form['newpass1']) + "\n"
 
 @app.route("/setup", methods= ['POST'])

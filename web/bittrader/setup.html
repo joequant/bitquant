@@ -22,6 +22,7 @@ function run_bootstrap() {
 $.get("/cgi-bin/bittrader/model.py/bootstrap",
 function(data) {
 $("#log").attr("src", "/cgi-bin/bittrader/model.py/log/bootstrap");
+check_installed();
 });
 }
 
@@ -86,7 +87,7 @@ $.getJSON("/cgi-bin/bittrader/model.py/version/timezone",
 Warning: system is currently using default password 'cubswin:)'
 <form action='/cgi-bin/bittrader/model.py/passwd' target='log'
       METHOD='POST'>
-Time zone: <span class="timezone"></span>
+Time zone: <span class="timezone"></span><br>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
 <input type='submit' value='SUBMIT' />
