@@ -107,44 +107,41 @@ Bittrader Trading System
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
 under-construction.<p>
-
+The Bittrader trading system is an alert and analysis system designed
+for professional individual traders and small proprietary shops.  It
+consists of a web based system which can be uploaded to a cloud
+server, and is powered by
+the <a href="http://www.opengamma.com/">OpenGamma</a> risks analytics
+engine, and <a href="http://www.r-project.org/">R</a> statistical
+project.  Bitquant is developing this software to support its
+proprietary trading of bitcoin and bitcoin derivatives.
 <p>
+The system completely open source and is distributed as
+a <a href="http://sourceforge.net/projects/bitquant/">disk image</a>
+on sourceforge which can be run via VirtualBox or uploaded to a cloud
+server.  The <a href="https://github.com/joequant/bitquant">source
+code</a> is BSD-licensed and completely available at Github.  Check
+out our <a href="https://github.com/joequant/bitquant/wiki">Wiki</a>
+<p>
+Currently the system is under active development, and the following
+consists of components which are active.
 <ul>
-<li><a href='setup.html' target='_blank'>System setup</a> {{{bootstrap-notice}}}  
-<li><a target="_blank" href="market_data.html">Market Data</a>
-<li><a target="_blank" href=":8080/">Analytics engine</a>
-<li><a target="_blank" href="trade.html">Trade</a>
-<li><a target="_blank" href="back_office.html">Back office</a>
-<li><a target="_blank" href=":8000/_new">Spreadsheet</a>
+<li><a target="_blank" href=":8080/">OpenGamma Analytics engine</a>
+<li><a target="_blank" href=":8000/_new">Collbarative Spreadsheet</a>
 <li><a target="_blank" href=":9001/">Whiteboard</a>
+<li><a target="_blank" href="market_data.html">Market Data</a>
+<li><a target="_blank" href="trade.html">Alert system</a>
 </ul>
-<p>
-
-This application is bittrader, a trading system based on pulling
-together open-source javascript applications into a single trading
-system.  All of the code here is BSD licensed and is available via
-our <a href="https://github.com/joequant/bitquant">Github
-    repository</a> with our
-<a href="https://github.com/joequant/bitquant/wiki">Wiki</a>
+<ul>
+<li><a href='setup.html' target='_blank'>System setup</a>
+  {{{bootstrap-notice}}}  
+</ul>
 <p>
 To check out our progress see
 the <a href="http://bitquant.wordpress.com/">Bitquant blog</a>
 <p>
 Our target date for alpha for an MVP (minimally viable product) is
-August 2014.  The features for the initial release are
-<ul>
-<li>100% open source (BSD licensed)
-<li>most of the business logic
-<li>distributed via a disk image so you can upload it to the cloud
-<li>semi-algorithmic trading. The idea is to fill the niche between
-something totally algo and something non-algo. So what you have is a
-set of prepackaged scripts that you can run when see a trade
-opportunity. or if you see something that you want to run for an hour
-while are looking at the screen.
-<li>works with bitcoin and Shanghai equity options
-</ul>
-<p>
-
+August 2014.
 </div>
 
 <div id="technologies">
