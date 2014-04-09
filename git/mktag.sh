@@ -14,7 +14,7 @@ echo "Tag $1"
 pushd ../.. > /dev/null
 for repo in bitquant $repos_misc $repos_quantlib $repos_og ; do
 pushd $repo > /dev/null
-git tag $tag -m \"bitquant tag\"
+git tag $tag -m 'bitquant tag'
 git push origin $tag
 popd
 done
