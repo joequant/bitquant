@@ -23,7 +23,7 @@ GENFORMAT=qcow2
 fi
 
 pushd ~/.oz/images > /dev/null
-rm -f Mageia.$GENFORMAT $CONFIG.$GENFORMAT
+rm -f $LOADER.$GENFORMAT $CONFIG.$GENFORMAT
 popd > /dev/null
 # There seems to be a problem with vdi image creates
 oz-install -a Mageia$CONFIG.auto $LOADER.tdl -c oz-$GENFORMAT.cfg  -d3 -t 7200
@@ -33,13 +33,13 @@ export TMPDIR=$HOME/tmp
 mkdir $TMPDIR
 
 if [ $FORMAT = "vdi" ] ; then
-virt-sparsify Mageia.$GENFORMAT tmp.$$.$GENFORMAT
+virt-sparsify $LOADER.$GENFORMAT tmp.$$.$GENFORMAT
 qemu-img convert -O vdi tmp.$$.$GENFORMAT $CONFIG.vdi
 rm -f tmp.$$.$GENFORMAT
 else
-virt-sparsify Mageia.$GENFORMAT $CONFIG.$GENFORMAT
+virt-sparsify $LOADER.$GENFORMAT $CONFIG.$GENFORMAT
 fi
-rm -f Mageia.$GENFORMAT
+rm -f $LOADER.$GENFORMAT
 popd > /dev/null
 echo "Image $CONFIG.$FORMAT generated in directory ~/.oz/images"
 
