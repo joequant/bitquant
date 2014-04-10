@@ -103,7 +103,7 @@ $o = {
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
-                               'sudo', "mgarepo",
+                               'sudo', "mgarepo", "bm",
                                "vboxadditions-kernel-desktop-latest"],
        'superuser' => {
 			'home' => '/root',
@@ -144,6 +144,6 @@ $o = {
 			'postInstall' => '
 /etc/rc.d/init.d/network start
 /etc/rc.d/init.d/network-up start
-echo "user ALL=(ALL) ALL" > /etc/sudoers.d/user.sudo
+echo "user ALL=(ALL) ALL" > /etc/sudoers.d/00_user_sudo
 '
      };
