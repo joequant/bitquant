@@ -2,7 +2,7 @@
 
 if [ "$#" -lt 2 ]; then
     echo "Illegal number of parameters"
-    echo "  mkimg.sh <config> <format>"
+    echo "  mkimg.sh <config> <format> <distrofile>"
     exit 1
 fi
 
@@ -26,7 +26,7 @@ pushd ~/.oz/images > /dev/null
 rm -f $LOADER.$GENFORMAT $CONFIG.$GENFORMAT
 popd > /dev/null
 # There seems to be a problem with vdi image creates
-oz-install -a Mageia$CONFIG.auto $LOADER.tdl -c oz-$GENFORMAT.cfg  -d3 -t 7200
+oz-install -a $CONFIG.auto $LOADER.tdl -c oz-$GENFORMAT.cfg  -d3 -t 7200
 
 pushd ~/.oz/images > /dev/null
 export TMPDIR=$HOME/tmp
