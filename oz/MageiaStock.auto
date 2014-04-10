@@ -103,8 +103,7 @@ $o = {
        'default_packages' => [
 			       'basesystem-minimal',
 	                       'urpmi',
-                               'sudo', 'grub2',
-                               'openssh-server',
+                               'sudo', 
                                "vboxadditions-kernel-desktop-latest"],
        'superuser' => {
 			'home' => '/root',
