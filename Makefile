@@ -1,5 +1,5 @@
 bitstation-vdi:
-	cd oz ; ./mkimg.sh  Bitstation vdi mageia-net
+	cd oz ; ./mkimg.sh  Bitstation vdi mageia-net-x86_64
 
 local:
 	cd web ; sudo ./setup.sh ; ./startup.sh
