@@ -27,5 +27,9 @@ bin/run.sh >> $LOG_DIR/etherpad.log 2>&1 &
 popd > /dev/null
 fi
 
+if [ -f /usr/bin/rserver ] ; then
+echo "Restarting rserver"
+/usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
+fi
 
 

@@ -31,7 +31,8 @@ krb5-appl-clients \
 python-flask \
 python-pexpect \
 R-base \
-vim-minimal
+vim-minimal \
+rstudio
 
 # don't start up server
 sudo systemctl disable hsqldb
