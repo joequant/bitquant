@@ -32,7 +32,7 @@ python-flask \
 python-pexpect \
 R-base \
 vim-minimal \
-rstudio
+rstudio-server
 
 # don't start up server
 sudo systemctl disable hsqldb
