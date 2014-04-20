@@ -34,12 +34,12 @@ mkdir $TMPDIR
 
 if [ $FORMAT = "vdi" ] ; then
 virt-sparsify $LOADER.$GENFORMAT tmp.$$.$GENFORMAT
-qemu-img convert -O vdi tmp.$$.$GENFORMAT $CONFIG.vdi
+qemu-img convert -O vdi tmp.$$.$GENFORMAT $CONFIG-$LOADER.vdi
 rm -f tmp.$$.$GENFORMAT
 else
-virt-sparsify $LOADER.$GENFORMAT $CONFIG.$GENFORMAT
+virt-sparsify $LOADER.$GENFORMAT $CONFIG-$LOADER.$GENFORMAT
 fi
 rm -f $LOADER.$GENFORMAT
 popd > /dev/null
-echo "Image $CONFIG.$FORMAT generated in directory ~/.oz/images"
+echo "Image created in directory ~/.oz/images/$CONFIG-$LOADER.$FORMAT"
 
