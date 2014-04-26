@@ -4,6 +4,7 @@
 <title>Bittrader Home Page</title>
         <link href="//cdn.jsdelivr.net/jquery.layout/1.3.0rc30.79/layout-default-latest.css"
         rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/metro-bootstrap.css">
 <link rel="stylesheet"
       href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<style type="text/css">
@@ -32,8 +33,9 @@
 </script>
 <script type="text/javascript"
 	src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.3.1/ember.js"></script>
+<script src="js/metro/metro.min.js"></script>
 </head>
-<body>
+<body class="metro">
 <script type="text/javascript">
 // delegate event for performance, and save attaching a million events
 // to each anchor
@@ -97,13 +99,27 @@ Bittrader Trading System
 <div class="ui-layout-center">
 <div id="tabs">
 <ul>
-<li><a href="#bittrader">Bittrader</a></li>
+<li><a href="#dashboard">Dashboard</a></li>
+<li><a href="#about">About</a></li>
 <li><a href="#technologies">Technologies</a></li>
 <li><a href="#templates">Templates</a></li>
 <li><a href="#resources">Resources</a></li>
 <li><a href="#admin">Admin</a></li>
 </ul>
-<div id="bittrader">
+<div id="dashboard">
+<a class="button primary large" target="_blank" href=":8787/">R statistics engine</a>
+<a class="button primary large" target="_blank" href=":8080/">OpenGamma risk engine</a>
+<a class="button primary large" target="_blank" href=":8000/_new">Spreadsheet</a><br><br>
+<a class="button primary large" target="_blank" href=":9001/">Whiteboard</a>
+<a class="button primary large" target="_blank" href="market_data.html">Market Data</a>
+<a class="button primary large" target="_blank" href="trade.html">Alerts</a>
+<br>
+<br>
+<a class="button danger large">Alert!!!</a>
+<a class="button warning large">Situation warning</a>
+<a class="button success large">Situation normal</a>
+</div>
+<div id="about">
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
 under-construction.<p>
