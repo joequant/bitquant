@@ -9,8 +9,8 @@ export UPLOAD=0
 fi
 
 pushd ../..
-echo "Processing OG-PlatformNative"
 for repo in OG-Platform OG-PlatformNative ; do
+echo "Processing $repo"
 pushd $repo > /dev/null
 git fetch upstream
 git fetch origin
@@ -27,5 +27,18 @@ git rebase upstream/develop
 if [ $UPLOAD -eq 1 ] ; then git push --force --set-upstream origin bitquant ; fi
 popd > /dev/null
 done
+
+for repo in OG-Tools ; do
+echo "Processing $repo"
+pushd $repo > /dev/null
+git fetch upstream
+git fetch origin
+git stash
+git checkout master
+git rebase upstream/master
+if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
+popd > /dev/null
+done
+
 popd
 
