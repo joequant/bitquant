@@ -9,7 +9,9 @@ sudo chmod a+rwx /var/log/OG-RStats
 
 mkdir -p ~/etc/OpenGammaLtd
 
-echo "jvmLibrary=/usr/lib/jvm/java-1.7.0/jre/lib/amd64/server/libjvm.so
+arch=$(test "$(uname -m)" = "x86_64" && echo "amd64" || echo "i386")
+
+echo "jvmLibrary=/usr/lib/jvm/java-1.7.0/jre/lib/$arch/server/libjvm.so
 jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/" > ~/etc/OpenGammaLtd/LanguageIntegration
 
 echo "serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Debug/ServiceRunner
