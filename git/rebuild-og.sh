@@ -22,8 +22,6 @@ pushd ../../OG-Tools/corporate-parent > /dev/null
 mvn install
 popd > /dev/null
 
-pushd ../../OG-PlatformNative > /dev/null
-mvn install -Dmaven.test.skip=True
-popd > /dev/null
+source $SCRIPT_DIR/rebuild-oglang.sh
 fi
 

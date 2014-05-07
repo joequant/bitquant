@@ -15,7 +15,7 @@ jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0
 echo "serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Debug/ServiceRunner
 connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
 
-pushd  ../../OG-PlatformNative
+pushd  $SCRIPT_DIR/../../OG-PlatformNative
 export MVN_ARGS="-Dmaven.test.skip=true"
 export PATH=/home/joe/git/OG-PlatformNative:$PATH
 cat <<EOF > exe-kill
