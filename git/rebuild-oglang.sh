@@ -16,7 +16,7 @@ echo "serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/D
 connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
 
 pushd  ../../OG-PlatformNative
-export MVN_ARGS="-X -Dmaven.test.skip=true"
+export MVN_ARGS="-Dmaven.test.skip=true"
 export PATH=/home/joe/git/OG-PlatformNative:$PATH
 cat <<EOF > exe-kill
 #!/bin/bash
@@ -25,16 +25,18 @@ EOF
 chmod a+x exe-kill
 ant configure -Dprofile.nix=true -Dtool.cpptasks=true 
 # -Dtool.r=true
-ant install -v -Dskip.tests=true
-pushd /home/joe/git/OG-PlatformNative/og-language/target/run/Debug
-./ServiceRunner run >& $SCRIPT_DIR/../web/log/ServiceRunner.log &
-popd
-sleep 10
+ant install -Dskip.tests=true
+#pushd /home/joe/git/OG-PlatformNative/og-language/target/run/Debug
+#./ServiceRunner run >& $SCRIPT_DIR/../web/log/ServiceRunner.log &
+#popd
+#sleep 10
 pushd og-rstats/target/package
 export OG_RSTATS_TARGET=../../../
-R CMD INSTALL OpenGamma
+R CMD INSTALL OpenGamma --no-test-load
 popd
 popd
+#killall ServiceRunner
+
 
 
 

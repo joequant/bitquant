@@ -1,5 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+OG_COMPILE_PLATFORM_NATIVE=1
 if [ -e $HOME/bitquant.conf ] ;  then
 echo "Reading configuration from $HOME/bitquant.conf"
 . $HOME/bitquant.conf
