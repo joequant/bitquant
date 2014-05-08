@@ -225,13 +225,15 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 
 <div id="password-done" style="display:none">
 Passwords already set.  To reset password log into the machine.
-</div>
 <ul>
-<li><a href="index.html">Bittrader main page</a>
 <li><span id="bootstrap-notice"></span>
 <li><a href="log" target="_blank">Server log files</a>
 </ul>
+</div>
 
+<div class="bootstrap-yes">
+<a href="index.html">Bittrader main page</a>
+<p>
 <form action='/cgi-bin/bittrader/model.py/setup' target='log'
       METHOD='POST'>
 User Password: <input name='password' type='password' title='Please
@@ -239,7 +241,7 @@ User Password: <input name='password' type='password' title='Please
 Time zone: <span class="timezone"></span><input type="submit"
 						    name="submit"
 						    value="Set time zone"><br>
-<div class="bootstrap-yes">
+
 Auxillary Servers: <input type="submit" name="submit"
 			      value="Startup servers">
 <input type="submit" name="submit" value="Shutdown servers"><br>
@@ -247,10 +249,11 @@ Auxillary Servers: <input type="submit" name="submit"
 Ssh remote access: <input type="submit" name="submit"
 			      value="Startup ssh">
 <input type="submit" name="submit" value="Shutdown ssh"><br>
-</div>
+
 <input type="submit" name="submit" value="Refresh CGI scripts"><br>
 <input type="submit" name="submit" value="Remove local install"><br>
 </form>
+</div>
 
 <p>
 <iframe id="log" name="log" onload="check_installed(); check_password(); set_timezone()">
