@@ -34,6 +34,10 @@ ant install -Dskip.tests=true
 #sleep 10
 pushd og-rstats/target/package
 export OG_RSTATS_TARGET=../../../
+
+# Without this the installation will try to put the R library in the
+# system directories where it does not have permissions
+mkdir -p ~/R/`uname -m`-mageia-linux-gnu-library/3.0
 R CMD INSTALL OpenGamma --no-test-load
 popd
 popd
