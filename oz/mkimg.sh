@@ -22,6 +22,7 @@ if [ "$FORMAT" == "vdi" ] ; then
 GENFORMAT=qcow2
 fi
 
+mkdir -p ~/.oz/images
 pushd ~/.oz/images > /dev/null
 rm -f $LOADER.$GENFORMAT $CONFIG.$GENFORMAT
 popd > /dev/null
