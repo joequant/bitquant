@@ -5,6 +5,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 #sudo systemctl stop httpd
 #ipython notebook &
 
+killall ServiceRunner
 killall java
 killall node
 

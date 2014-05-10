@@ -13,6 +13,28 @@ pushd ../../OG-Platform/examples/examples-simulated/ > /dev/null
 popd > /dev/null
 fi
 
+if [ -f  ../../OG-PlatformNative/og-language/target/run/Release/ServiceRunner ] ; then
+echo "Restarting language connector"
+sudo mkdir -p /var/run/opengamma
+sudo chmod a+rwx /var/run/opengamma
+
+sudo mkdir -p /var/log/OG-RStats
+sudo chmod a+rwx /var/log/OG-RStats
+
+mkdir -p ~/etc/OpenGammaLtd
+echo "jvmLibrary=/usr/lib/jvm/java-1.7.0/jre/lib/amd64/server/libjvm.so
+jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/" > ~/etc/OpenGammaLtd/LanguageIntegration
+
+#serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
+echo "connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
+
+pushd ../../OG-PlatformNative/og-language/target/run/Release > /dev/null
+killall -9 ServiceRunner
+./ServiceRunner run >> $LOG_DIR/service_runner.log 2>&1 &
+sleep 5
+popd > /dev/null
+fi
+
 if [ -d ../../ethercalc ] ; then
 pushd ../../ethercalc > /dev/null
 echo "Restarting ethercalc"
