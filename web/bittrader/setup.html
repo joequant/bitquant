@@ -90,7 +90,7 @@ Warning: system is currently using default password 'cubswin:)'
 Time zone: <span class="timezone"></span><br>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
-<input type='submit' value='SUBMIT' />
+<input type='submit' value='Start Install' />
 </form>
 </div>
 <div id="timezone-template" style="display:none">
@@ -225,14 +225,13 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 
 <div id="password-done" style="display:none">
 Passwords already set.  To reset password log into the machine.
-<ul>
-<li><span id="bootstrap-notice"></span>
-<li><a href="log" target="_blank">Server log files</a>
-</ul>
+<p>
+<span id="bootstrap-notice"></span>
 </div>
 
 <div class="bootstrap-yes">
-<a href="index.html">Bittrader main page</a>
+<a href="index.html">Bittrader main page</a><br>
+<a href="log" target="_blank">Server log files</a>
 <p>
 <form action='/cgi-bin/bittrader/model.py/setup' target='log'
       METHOD='POST'>
