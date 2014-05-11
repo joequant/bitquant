@@ -28,7 +28,7 @@ jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0
 #serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
 echo "connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
 
-pushd ../../OG-PlatformNative/og-language/target/run/Release > /dev/null
+pushd ../../OG-PlatformNative/og-language/target/run/Debug > /dev/null
 killall -9 ServiceRunner
 ./ServiceRunner run >> $LOG_DIR/service_runner.log 2>&1 &
 sleep 5
