@@ -27,7 +27,8 @@ idleTimeout=0xFFFFFFFF
 jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/" > ~/etc/OpenGammaLtd/LanguageIntegration
 
 #serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
-echo "connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
+echo "connectorLogConfiguration=/home/`whoami`/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties
+connectTimeout=15000" > ~/etc/OpenGammaLtd/OpenGammaR
 
 pushd ../../OG-PlatformNative/og-language/target/run/Debug > /dev/null
 killall -9 ServiceRunner
