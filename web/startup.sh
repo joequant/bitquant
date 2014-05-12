@@ -31,8 +31,7 @@ echo "connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/
 
 pushd ../../OG-PlatformNative/og-language/target/run/Debug > /dev/null
 killall -9 ServiceRunner
-./ServiceRunner run >> $LOG_DIR/service_runner.log 2>&1 &
-sleep 5
+(./ServiceRunner run >> $LOG_DIR/service_runner.log 2>&1) &
 popd > /dev/null
 fi
 

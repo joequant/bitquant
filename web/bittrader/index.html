@@ -41,7 +41,7 @@
 <script type="text/javascript">
 // delegate event for performance, and save attaching a million events
 // to each anchor
-document.addEventListener('click', function(event) {
+$(function() { document.addEventListener('click', function(event) {
   var target = event.target;
   if (target.tagName.toLowerCase() == 'a')
   {
@@ -60,7 +60,7 @@ document.addEventListener('click', function(event) {
 	 return;
       }
   }
-}, false);
+}, false);});
 window.App = Em.Application.create();
 
 App.Router.map(function() {
