@@ -9,7 +9,7 @@ cd $SCRIPT_DIR
 if [ -d ../../OG-Platform ] ; then
 echo "Restarting opengamma"
 pushd ../../OG-Platform/examples/examples-simulated/ > /dev/null
-(mvn install >> $LOG_DIR/og.log; mvn opengamma:server-start -Dconfig=fullstack >> $LOG_DIR/og.log) &
+mvn opengamma:server-start -Dconfig=fullstack >> $LOG_DIR/og.log &
 popd > /dev/null
 fi
 
