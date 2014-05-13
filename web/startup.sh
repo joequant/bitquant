@@ -28,12 +28,9 @@ jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0
 
 #serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
 echo "connectorLogConfiguration=/home/`whoami`/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties
-connectTimeout=15000" > ~/etc/OpenGammaLtd/OpenGammaR
+serviceExecutable=/home/`whoami`/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
+connectTimeout=60000" > ~/etc/OpenGammaLtd/OpenGammaR
 
-pushd ../../OG-PlatformNative/og-language/target/run/Debug > /dev/null
-killall -9 ServiceRunner
-(./ServiceRunner run >> $LOG_DIR/service_runner.log 2>&1) &
-popd > /dev/null
 fi
 
 if [ -d ../../ethercalc ] ; then
