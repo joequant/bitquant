@@ -3,6 +3,15 @@
 <head>
 <title>Bittrader Home Page</title>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
+<link rel="stylesheet" href="css/gh-fork-ribbon.css">
+<!--[if lt IE 9]>
+   <link rel="stylesheet" href="css/gh-fork-ribbon.ie.css">
+<![endif]-->
+<style>
+.right .github-fork-ribbon {
+     background-color: #333;
+}
+</style>
 <link rel="stylesheet"
       href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 	<style type="text/css">
@@ -36,6 +45,11 @@
 <script src="js/clock-overview.js"></script>
 </head>
 <body class="metro">
+<div class="github-fork-ribbon-wrapper right">
+<div class="github-fork-ribbon">
+<a href="https://github.com/joequant/bitquant">Fork me on GitHub</a>
+</div>
+</div>
 <script type="text/javascript">
 // delegate event for performance, and save attaching a million events
 // to each anchor
@@ -101,10 +115,10 @@ Bittrader Trading System
 <div id="tabs">
 <ul>
 <li><a href="#dashboard">Dashboard</a></li>
+<li><a href="#weblinks">Weblinks</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#technologies">Technologies</a></li>
 <li><a href="#templates">Templates</a></li>
-<li><a href="#resources">Resources</a></li>
 <li><a href="#admin">Admin</a></li>
 </ul>
 <div id="dashboard">
@@ -166,7 +180,25 @@ the <a href="http://bitquant.wordpress.com/">Bitquant blog</a>
 Our target date for alpha for an MVP (minimally viable product) is
 August 2014.
 </div>
-
+<div id="weblinks">
+<button>Create pages</button>
+<br>
+<textarea rows="10" cols="80">
+http://www.bitcoinwisdom.com/
+http://www.bitfinex.com/
+http://www.btc-e.com/
+http://www.huobi.com/
+http://www.btcchina.com/
+http://www.anxbtc.com/
+</textarea>
+<hr>
+<button>Create pages</button>
+<br>
+<textarea rows="10" cols="80">
+http://www.bitcashout.com/
+http://www.blockchain.info/
+</textarea>
+</div>
 <div id="technologies">
 <h4>Technologies</h4>
 What is unique about bittrader?
@@ -202,12 +234,6 @@ system
     Api</a>
 <li><a target="_blank" href="ember.html">Ember test</a>
 <li><a target="_blank" href="handlebars.html">Handlebars test</a>
-</ul>
-</div>
-<div id="resources">
-<h4>Resources</h4>
-<ul>
-<li><a target="_blank" href="http://www.bitcoinwisdom.com/">bitcoinwisdom</a>
 </ul>
 </div>
 <div id="admin">
