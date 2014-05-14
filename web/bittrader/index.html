@@ -89,25 +89,30 @@ Bittrader Trading System
 <div class="tab-control" data-role="tab-control">
 <ul class="tabs">
 <li class="active"><a href="#dashboard">Dashboard</a></li>
-<li><a href="#weblinks">Weblinks</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#technologies">Technologies</a></li>
-<li><a href="#templates">Templates</a></li>
+<li><a href="#resources">Resources</a></li>
 <li><a href="#admin">Admin</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#templates">Sandbox</a></li>
 </ul>
 <div class="frames">
 <div class="frame" id="dashboard">
-<a class="button primary large" target="_blank" href=":8787/">R statistics engine</a>
-<a class="button primary large" target="_blank" href=":8080/">OpenGamma risk engine</a>
+<a class="button primary large" target="rstudio" href=":8787/">R statistics engine</a>
+<a class="button primary large" target="opengamma" href=":8080/">OpenGamma risk engine</a>
 <a class="button primary large" target="_blank" href=":8000/_new">Spreadsheet</a><br><br>
 <a class="button primary large" target="_blank" href=":9001/">Whiteboard</a>
 <a class="button primary large" target="_blank" href="market_data.html">Market Data</a>
 <a class="button primary large" target="_blank" href="trade.html">Alerts</a>
 <br>
 <br>
+<div class="panel collapsed" data-role="panel" id="alerts">
+<div class="panel-header">Tickers and Alerts</div>
+<div class="panel-content" style="display:none">
 <a class="button danger large">Alert!!!</a>
 <a class="button warning large">Situation warning</a>
 <a class="button success large">Situation normal</a>
+</div>
+</div>
+<p>
 <div class="panel collapsed" data-role="panel" id="clocklist">
 <div class="panel-header">Clocks</div>
 <div class="panel-content" style="display:none"><div id="clocks"> </div></div>
@@ -133,48 +138,12 @@ server.  The <a href="https://github.com/joequant/bitquant">source
 code</a> is BSD-licensed and completely available at Github.  Check
 out our <a href="https://github.com/joequant/bitquant/wiki">Wiki</a>
 <p>
-Currently the system is under active development, and the following
-consists of components which are active.
-<ul>
-<li><a target="_blank" href=":8787/">R studio statistics engine</a>
-<li><a target="_blank" href=":8080/">OpenGamma Analytics engine</a>
-<li><a target="_blank" href=":8000/_new">Collbarative Spreadsheet</a>
-<li><a target="_blank" href=":9001/">Whiteboard</a>
-<li><a target="_blank" href="market_data.html">Market Data</a>
-<li><a target="_blank" href="trade.html">Alert system</a>
-</ul>
-<ul>
-<li><a href='setup.html' target='_blank'>System setup</a>
-  {{{bootstrap-notice}}}  
-</ul>
-<p>
 To check out our progress see
 the <a href="http://bitquant.wordpress.com/">Bitquant blog</a>
 <p>
 Our target date for alpha for an MVP (minimally viable product) is
 August 2014.
-</div>
-<div class="frame" id="weblinks">
-<button>Create pages</button>
-<br>
-<textarea rows="10" cols="80">
-http://www.bitcoinwisdom.com/
-http://www.bitfinex.com/
-http://www.btc-e.com/
-http://www.huobi.com/
-http://www.btcchina.com/
-http://www.anxbtc.com/
-</textarea>
-<hr>
-<button>Create pages</button>
-<br>
-<textarea rows="10" cols="80">
-http://www.bitcashout.com/
-http://www.blockchain.info/
-</textarea>
-</div>
-<div class="frame" id="technologies">
-<h4>Technologies</h4>
+<p>
 What is unique about bittrader?
 <ul>
 <li>100% open source / BSD licensed / all development on github
@@ -196,6 +165,28 @@ system
 <li> ipython notebooks
 <li> quantlib - algo trading
 </ul> 
+</div>
+<div class="frame" id="resources">
+<button>Create pages</button>
+<br>
+<textarea rows="10" cols="80">
+http://www.bitcoinwisdom.com/
+http://www.bitfinex.com/
+http://www.btc-e.com/
+http://www.huobi.com/
+http://www.btcchina.com/
+http://www.anxbtc.com/
+</textarea>
+<hr>
+<button>Create pages</button>
+<br>
+<textarea rows="10" cols="80">
+http://www.bitcashout.com/
+http://www.blockchain.info/
+</textarea>
+</div>
+<div class="frame" id="technologies">
+<h4>Technologies</h4>
 </div>
 <div class="frame" id="templates">
 <h4>Templates and sandbox</h4>
