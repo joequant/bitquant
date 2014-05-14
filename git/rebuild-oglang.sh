@@ -1,5 +1,9 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ncpus=`nproc`
+if [ $ncpus -gt 4 ]; then
+ncpus=4
+fi
 
 sudo mkdir -p /var/run/opengamma
 sudo chmod a+rwx /var/run/opengamma
@@ -11,14 +15,16 @@ mkdir -p ~/etc/OpenGammaLtd
 
 arch=$(test "$(uname -m)" = "x86_64" && echo "amd64" || echo "i386")
 
-echo "jvmLibrary=/usr/lib/jvm/java-1.7.0/jre/lib/$arch/server/libjvm.so
-jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/" > ~/etc/OpenGammaLtd/LanguageIntegration
+echo "jvmLibrary=/usr/lib/jvm/java/jre/lib/$arch/server/libjvm.so
+jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/
+heartbeatTimeout=60000" > ~/etc/OpenGammaLtd/LanguageIntegration
 
-echo "serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Debug/ServiceRunner
-connectorLogConfiguration=/home/joe/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties" > ~/etc/OpenGammaLtd/OpenGammaR
+echo "connectorLogConfiguration=/home/`whoami`/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties
+serviceExecutable=/home/`whoami`/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
+connectTimeout=60000" > ~/etc/OpenGammaLtd/OpenGammaR
 
 pushd  $SCRIPT_DIR/../../OG-PlatformNative
-export MVN_ARGS="-Dmaven.test.skip=true"
+export MVN_ARGS="-Dmaven.test.skip=true -T$ncpus"
 export PATH=/home/joe/git/OG-PlatformNative:$PATH
 cat <<EOF > exe-kill
 #!/bin/bash
