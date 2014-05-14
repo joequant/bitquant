@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <title>Bittrader Home Page</title>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <link rel="stylesheet" href="css/gh-fork-ribbon.css">
 <!--[if lt IE 9]>
@@ -33,13 +35,9 @@
 
 	</style>
 
-	<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
 <script type="text/javascript"
     src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.js">
 </script>
-<script type="text/javascript"
-	src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.3.1/ember.js"></script>
 <script src="js/metro/metro.min.js"></script>
 <script src="js/tzdata-javascript.js"></script>
 <script src="js/clock-overview.js"></script>
@@ -73,56 +71,32 @@ document.addEventListener('click', function(event) {
       }
   }
 }, false);
-window.App = Em.Application.create();
 
-App.Router.map(function() {
-this.resource('hi');
+$(function() {$( "#title" ).resizable({
+handles: "s"
 });
-
-App.IndexController = Em.Controller.extend({});
-
-App.IndexRoute = Em.Route.extend({
-    model: function(){
-return $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_finished").then(
-function(response) {
-return response;
-}, function(response) {
-return {};
-});
-    },
-    setupController: function(controller, model) {
-    if (!model["bootstrap_finished"]) {
-         controller.set('bootstrap-notice', "<b>Trading system must be initialized</b>");
-     }
-      controller.set('model', model);
-    }
-});
-App.ApplicationRoute = Em.Route.extend({
-    model: function(){
-        return ["application"];
-    }
+init_all_clocks();
 });
 </script>
 <script type="text/x-handlebars" data-template-name='hi'>
 foo
 </script>
-<script type="text/x-handlebars" data-template-name='index'>
 <div id="title">
 Bittrader Trading System
 
 </div>
 <div class="ui-layout-center">
-<div id="tabs">
-<ul>
-<li><a href="#dashboard">Dashboard</a></li>
+<div class="tab-control" data-role="tab-control">
+<ul class="tabs">
+<li class="active"><a href="#dashboard">Dashboard</a></li>
 <li><a href="#weblinks">Weblinks</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#technologies">Technologies</a></li>
 <li><a href="#templates">Templates</a></li>
 <li><a href="#admin">Admin</a></li>
 </ul>
-<div id="dashboard">
-
+<div class="frames">
+<div class="frame" id="dashboard">
 <a class="button primary large" target="_blank" href=":8787/">R statistics engine</a>
 <a class="button primary large" target="_blank" href=":8080/">OpenGamma risk engine</a>
 <a class="button primary large" target="_blank" href=":8000/_new">Spreadsheet</a><br><br>
@@ -134,12 +108,12 @@ Bittrader Trading System
 <a class="button danger large">Alert!!!</a>
 <a class="button warning large">Situation warning</a>
 <a class="button success large">Situation normal</a>
-<div id="clocklist">
-<h3>Clocks</h3>
-<div><div id="clocks"> </div></div>
+<div class="panel collapsed" data-role="panel" id="clocklist">
+<div class="panel-header">Clocks</div>
+<div class="panel-content" style="display:none"><div id="clocks"> </div></div>
 </div>
 </div>
-<div id="about">
+<div class="frame" id="about">
 <h4>Bittrader</h4>
 Welcome to the garage.  Everything here is massively
 under-construction.<p>
@@ -180,7 +154,7 @@ the <a href="http://bitquant.wordpress.com/">Bitquant blog</a>
 Our target date for alpha for an MVP (minimally viable product) is
 August 2014.
 </div>
-<div id="weblinks">
+<div class="frame" id="weblinks">
 <button>Create pages</button>
 <br>
 <textarea rows="10" cols="80">
@@ -199,7 +173,7 @@ http://www.bitcashout.com/
 http://www.blockchain.info/
 </textarea>
 </div>
-<div id="technologies">
+<div class="frame" id="technologies">
 <h4>Technologies</h4>
 What is unique about bittrader?
 <ul>
@@ -223,7 +197,7 @@ system
 <li> quantlib - algo trading
 </ul> 
 </div>
-<div id="templates">
+<div class="frame" id="templates">
 <h4>Templates and sandbox</h4>
 <ul>
 <li><a target="_blank" href="empty_container.html">Empty container</a>
@@ -236,22 +210,14 @@ system
 <li><a target="_blank" href="handlebars.html">Handlebars test</a>
 </ul>
 </div>
-<div id="admin">
+<div class="frame" id="admin">
 <h4>Admin</h4>
 <ul>
 <li><a target="_blank" href="setup.html">Setup page</a>
 </ul>
 </div>
 </div>
-<script>
-$("#tabs").tabs();
-$( "#title" ).resizable({
-handles: "s"
-});
-init_all_clocks();
-$(function() {$("#clocklist").accordion();});
-
-</script>
+</div>
 </div>
 </script>
 </body>
