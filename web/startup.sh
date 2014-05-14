@@ -6,6 +6,11 @@ cd $SCRIPT_DIR
 
 #ipython notebook &
 
+java_arch="i386"
+if [ "`uname -m`" == "x86_64" ] ; then
+java_arch="amd64"
+fi
+
 if [ -d ../../OG-Platform ] ; then
 echo "Restarting opengamma"
 pushd ../../OG-Platform/examples/examples-simulated/ > /dev/null
@@ -22,9 +27,9 @@ sudo mkdir -p /var/log/OG-RStats
 sudo chmod a+rwx /var/log/OG-RStats
 
 mkdir -p ~/etc/OpenGammaLtd
-echo "jvmLibrary=/usr/lib/jvm/java-1.7.0/jre/lib/amd64/server/libjvm.so
-idleTimeout=0xFFFFFFFF
-jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/" > ~/etc/OpenGammaLtd/LanguageIntegration
+echo "jvmLibrary=/usr/lib/jvm/java/jre/lib/${java_arch}/server/libjvm.so
+jvmProperty.opengamma.configuraton.url=http://localhost:8080/jax/configuration/0/
+heartbeatTimeout=60000" > ~/etc/OpenGammaLtd/LanguageIntegration
 
 #serviceExecutable=/home/joe/git/OG-PlatformNative/og-language/target/run/Release/ServiceRunner
 echo "connectorLogConfiguration=/home/`whoami`/git/OG-PlatformNative/og-language/src/package/ai/log4cxx.properties
