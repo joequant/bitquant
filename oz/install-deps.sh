@@ -1,6 +1,7 @@
 #!/bin/bash
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-. ../web/rootcheck.sh
+. $SCRIPT_DIR/../web/rootcheck.sh
 
 # install deps to build oz image
 
