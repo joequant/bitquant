@@ -6,11 +6,10 @@ VBoxManage hostonlyif remove vboxnet0
 VBoxManage hostonlyif create
 VBoxManage hostonlyif ipconfig vboxnet0 --dhcp
 VBoxManage dhcpserver add --ifname vboxnet0 \
-   --ip 192.168.56.100 \
+   --ip 192.168.56.1 \
    --netmask 255.255.255.0 \
    --lowerip 192.168.56.101 \
-   --upperip 192.168.56.255 --enable
-
+   --upperip 192.168.56.254 --enable
 VBoxManage createvm --name "Bitstation" --ostype Other_64 --register
 VBoxManage modifyvm  "Bitstation" --memory 2048 \
    --nic1 nat \
