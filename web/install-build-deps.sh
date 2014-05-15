@@ -4,7 +4,7 @@
 #
 # The limit on the speed is to prevent stalls due to bufferbloat
 
-
+set -e
 sudo urpmi --no-suggests \
 --auto \
 --limit-rate 500000 \

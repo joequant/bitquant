@@ -2,6 +2,7 @@
 # set setuid so that it is run with the user which checked out the
 # orginal git
 
+set -e
 echo "Content-type: text/html"
 echo ""
 echo "<pre>"
@@ -26,7 +27,7 @@ exec 2>&1
 
 echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Installing packages"
-$GIT_DIR/web/install-build-deps.sh
+source $GIT_DIR/web/install-build-deps.sh
 echo "Doing initial installation"
 $GIT_DIR/git/bootstrap.sh
 echo "Starting up servers"

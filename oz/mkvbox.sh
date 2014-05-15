@@ -1,4 +1,5 @@
-VBoxManage modifyvm  Bitstation --hda none
+VBoxManage modifyvm Bitstation --hda none
+VBoxManage closemedium disk ~/.oz/images/bit1.vdi
 VBoxManage unregistervm Bitstation
 rm -rf ~/VirtualBox\ VMs/Bitstation/
 VBoxManage createvm --name "Bitstation" --ostype Other_64 --register
