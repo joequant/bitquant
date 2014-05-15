@@ -7,7 +7,8 @@
 urpmi --no-suggests --auto \
    oz qemu libguestfs-tools \
    libvirt-utils tigervnc \
-   dnsmasq dnsmasq-utils lvm2 make
+   dnsmasq dnsmasq-utils lvm2 make supermin \
+   cdrkit-genisoimage
 
 systemctl start libvirtd.service
 
@@ -16,4 +17,4 @@ cat > /etc/udev/rules.d/65-kvm.rules <<EOF
 KERNEL=="kvm", NAME="%k", MODE="0666"
 EOF
 
-
+chmod a+r /usr/bin/gpasswd
