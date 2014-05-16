@@ -1,14 +1,8 @@
-VBoxManage modifyvm Bitstation --hda none
-VBoxManage unregistervm Bitstation
-rm -rf ~/VirtualBox\ VMs/Bitstation/
-VBoxManage dhcpserver remove --ifname vboxnet0
-VBoxManage hostonlyif remove vboxnet0
 VBoxManage hostonlyif create
-VBoxManage hostonlyif ipconfig vboxnet0 --dhcp
 VBoxManage dhcpserver add --ifname vboxnet0 \
    --ip 192.168.56.1 \
    --netmask 255.255.255.0 \
-   --lowerip 192.168.56.101 \
+   --lowerip 192.168.56.100 \
    --upperip 192.168.56.254 --enable
 VBoxManage createvm --name "Bitstation" --ostype Other_64 --register
 VBoxManage modifyvm  "Bitstation" --memory 2048 \
@@ -24,7 +18,7 @@ VBoxManage modifyvm  "Bitstation" --memory 2048 \
    --rtcuseutc on \
    --mouse usbmultitouch \
    --hostonlyadapter2 vboxnet0
-VBoxManage storagectl Bitstation --name "SATA Controller" --add sata
+VBoxManage storagectl Bitstation --name "SATA Controller" --add sata --portcount 4
 VBoxManage storageattach Bitstation --storagectl "SATA Controller" \
    --port 0 --device 0 --type hdd --medium ~/.oz/images/bit1.vdi
 
