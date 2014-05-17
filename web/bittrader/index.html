@@ -77,6 +77,10 @@ handles: "s"
 });
 init_all_clocks();
 });
+
+function open_page() {
+window.open("/cgi-bin/bittrader/pageset.py/", "_blank", "");
+};
 </script>
 <script type="text/x-handlebars" data-template-name='hi'>
 foo
@@ -166,9 +170,9 @@ system
 </ul> 
 </div>
 <div class="frame" id="resources">
-<button>Create pages</button>
+<button onclick="javascript:open_page()">Create pages</button>
 <br>
-<textarea rows="10" cols="80">
+<textarea id="resource" name="resource" rows="10" cols="80">
 http://www.bitcoinwisdom.com/
 http://www.bitfinex.com/
 http://www.btc-e.com/
