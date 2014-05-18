@@ -12,8 +12,7 @@ template = """
 <body>
 <script type="text/javascript">
 function open_pages() {
-window.open("http://www.bitcoinwisdom.com");
-window.open("http://www.huobi.com");
+%s
 close();
 }
 </script>
@@ -23,7 +22,15 @@ close();
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return template
+    if request.method == "POST":
+        string = resource.form["resource"];
+        open_string = ""
+        for i in string.split("\n"):
+            i = i.strip();
+            open_string += "window.open('%s');\n" % i
+        return template % open_string;
+    else:
+        return template % "";
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
