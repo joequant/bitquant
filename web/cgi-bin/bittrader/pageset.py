@@ -17,20 +17,27 @@ close();
 }
 </script>
 <button onclick="javascript:open_pages()">Open pages</button>
+<br>
+The following links will be open in new tabs.  Drag this tab out to create a new frame<p>
+%s
 </body>
 """
 
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == "POST":
-        string = resource.form["resource"];
+        string = request.form["resource"];
         open_string = ""
+        page_string = ""
         for i in string.split("\n"):
             i = i.strip();
+            if i == "":
+                continue
             open_string += "window.open('%s');\n" % i
-        return template % open_string;
+            page_string += "%s<br>" % i;
+        return template % (open_string, page_string);
     else:
-        return template % "";
+        return template % ("", "");
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
