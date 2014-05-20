@@ -89,6 +89,7 @@ Bittrader Trading System
 <div class="tab-control" data-role="tab-control">
 <ul class="tabs">
 <li class="active"><a href="#dashboard">Dashboard</a></li>
+<li><a href="#data">Data</a></li>
 <li><a href="#resources">Resources</a></li>
 <li><a href="#admin">Admin</a></li>
 <li><a href="#about">About</a></li>
@@ -203,6 +204,14 @@ http://www.blockchain.info/
 <li><a target="_blank" href="ember.html">Ember test</a>
 <li><a target="_blank" href="handlebars.html">Handlebars test</a>
 </ul>
+</div>
+<div class="frame" id="data">
+<button>Dump data</button><br>
+<button>Dump log</button><p>
+<form action="/cgi-bin/bittrader/upload.py" method="POST">
+<input type=file name=upload>
+<input type=submit name=submit value="Do upload">
+</form>
 </div>
 <div class="frame" id="admin">
 <h4>Admin</h4>
