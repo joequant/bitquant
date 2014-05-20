@@ -33,7 +33,8 @@ R-base \
 vim-minimal \
 rstudio-server \
 fudge-devel \
-log4cxx-devel
+log4cxx-devel \
+postgresql9.3-server
 
 # don't start up server
 sudo systemctl disable hsqldb

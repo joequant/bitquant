@@ -41,6 +41,8 @@ done
 systemctl daemon-reload
 systemctl enable httpd
 systemctl start httpd
+systemctl enable postgresql
+systemctl start postgresql
 systemctl start bitquant
 systemctl enable bitquant
 
