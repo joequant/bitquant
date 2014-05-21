@@ -24,7 +24,7 @@ serviceExecutable=/home/`whoami`/git/OG-PlatformNative/og-language/target/run/Re
 connectTimeout=60000" > ~/etc/OpenGammaLtd/OpenGammaR
 
 pushd  $SCRIPT_DIR/../../OG-PlatformNative
-export MVN_ARGS="-Dmaven.test.skip=true -T$ncpus"
+export MVN_ARGS="-Dmaven.test.skip=true"
 export PATH=/home/joe/git/OG-PlatformNative:$PATH
 cat <<EOF > exe-kill
 #!/bin/bash

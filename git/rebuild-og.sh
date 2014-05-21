@@ -21,7 +21,7 @@ popd > /dev/null
 
 if [ -n "$OG_COMPILE_PLATFORM_NATIVE" ]; then
 pushd ../../OG-Tools/corporate-parent > /dev/null
-mvn -T$ncpus install
+mvn install
 popd > /dev/null
 
 source $SCRIPT_DIR/rebuild-oglang.sh
