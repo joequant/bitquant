@@ -14,7 +14,7 @@ cd $SCRIPT_DIR
 . ../web/norootcheck.sh
 pushd ../../OG-Platform  > /dev/null
 pushd examples/examples-simulated > /dev/null
-mvn -T$ncpus install -Dmaven.test.skip=True
+mvn install -Dmaven.test.skip=True
 popd > /dev/null
 popd > /dev/null
 
