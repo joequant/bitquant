@@ -1,5 +1,8 @@
 <html>
 <head>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/metro-bootstrap.css">
 <script>
 // delegate event for performance, and save attaching a million events
 // to each anchor
@@ -15,10 +18,24 @@ document.addEventListener('click', function(event) {
       }
   }
 }, false);
+
+function click_me1() {
+$(alert_data).html("Clicked");
+}
+
+function click_me2() {
+$(alert_data).html("Clicked");
+}
+
 </script>
 </head>
-<body>
+<body class="metro">
+<button onclick="javascript:click_me1()">Click Me 1</button>
+<button onclick="javascript:click_me2()">Click Me 2</button>
+<p>
+<div id="alert_data">Data is here</div>
 
+<h1>Components</h1>
 <ul>
 <li><a href=":8080/jax/components">Components</a> 
 <a href=":8080/jax/components.xml">XML</a>
