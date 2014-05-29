@@ -166,21 +166,21 @@ def log(tag="bootstrap"):
     log_file= os.path.join(bitquant_root(),
                            "web", "bittrader", "log", tag + ".log")
     def generate():
-        f = open(log_file, "r")
-        for i in tail(f, 200):
-            yield(i)
-        if not is_locked("bootstrap"):
-            return
-        f.seek(0,2)      # Go to the end of the file
-        while True:
-            line = f.readline()
-            if not line:
-                time.sleep(0.1)    # Sleep briefly
-                continue
-            yield line
+        f = None
+        with  open(log_file, "r") as f:
+            for i in tail(f, 200):
+                yield(i)
             if not is_locked("bootstrap"):
                 return
-        f.close()
+            f.seek(0,2)      # Go to the end of the file
+            while True:
+                line = f.readline()
+                if not line:
+                    time.sleep(0.1)    # Sleep briefly
+                    continue
+                yield line
+                if not is_locked("bootstrap"):
+                    return
     return Response(generate(), mimetype="text/plain")
 
 if __name__ == '__main__' and len(sys.argv) == 1:
