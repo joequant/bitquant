@@ -1,3 +1,5 @@
+cp ~/.oz/images/Bitstation-mageia-net-x86_64.vdi ~/.oz/images/bit1.vdi
+
 VBoxManage hostonlyif create
 VBoxManage dhcpserver add --ifname vboxnet0 \
    --ip 192.168.56.1 \
@@ -21,5 +23,10 @@ VBoxManage modifyvm  "Bitstation" --memory 2048 \
 VBoxManage storagectl Bitstation --name "SATA Controller" --add sata --portcount 4
 VBoxManage storageattach Bitstation --storagectl "SATA Controller" \
    --port 0 --device 0 --type hdd --medium ~/.oz/images/bit1.vdi
-
-
+#rm -f bitstation.ova
+#VBoxManage export Bitstation --output bitstation.ova \
+#   --vsys 0 \
+#   --product "Bitstation" \
+#   --vendor "Bitquant Research Laboratories" \
+#   --vendorurl "http://www.bitquant.com.hk/"
+#source ./rmvbox.sh
