@@ -2,7 +2,9 @@
 # set setuid so that it is run with the user which checked out the
 # orginal git
 
-set -e
+# would like to set -e, but this causes odd errors
+# set -e
+
 echo "Content-type: text/html"
 echo ""
 echo "<pre>"

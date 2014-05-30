@@ -164,7 +164,7 @@ def bootstrap():
 @app.route("/log/<tag>")
 def log(tag="bootstrap"):
     log_file= os.path.join(bitquant_root(),
-                           "web", "bittrader", "log", tag + ".log")
+                           "web", "log", tag + ".log")
     def generate():
         f = None
         for j in range(1,30):
@@ -185,7 +185,7 @@ def log(tag="bootstrap"):
                         return
             except:
                 pass
-            yield ""
+            yield "opening %s - attempt %d\n" % (log_file, j)
             time.sleep(1)
         return
     return Response(generate(), mimetype="text/plain")
