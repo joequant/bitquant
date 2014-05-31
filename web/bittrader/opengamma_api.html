@@ -10,7 +10,9 @@ og_url = og_url.concat(":8080/jax");
 
 function display_json(url) {
    var url = og_url + url + "?callback=?";
-   $.getJSON(url, function(data) { $("#alert_data").html(data);});
+   $.getJSON(url, function(data) { 
+$("#alert_data").html(data.toString());
+});
 }
 
 // delegate event for performance, and save attaching a million events
@@ -33,23 +35,36 @@ function click_me1() {
 $("#alert_data").html("Clicked");
 }
 
-function click_me2() {
-$("#alert_data").html("Clicked");
-}
-
 function eval_javascript() {
 var val = $("#textbox").val();
 var result = eval(val);
+if (result !== undefined) {
 $("#alert_data").html(result);
 }
+}
+
+function hereDoc(f) {
+  return f.toString().
+      replace(/^[^\/]+\/\*!?/, '').
+      replace(/\*\/[^\/]+$/, '');
+}
+
+$(document).ready(function() {
+$("#clickme1").click(clickme1);
+$("#insert1").click(function() {
+  $("#textbox").val(hereDoc(function() {/*!
+display_json("/livedatasources");
+*/}));
+});
+});
 
 </script>
 </head>
 <body class="metro">
 <button onclick="javascript:eval_javascript()">Eval
   javascript</button>
-<button onclick="javascript:click_me1()">Click Me 1</button>
-<button onclick="javascript:click_me2()">Click Me 2</button>
+<button id="clickme1">Click Me 1</button>
+<button id="insert1">Insert</button>
 <br>
 <div id="alert_data">Data is here</div><br>
 <textarea rows="24" cols="80" id="textbox"></textarea>
