@@ -4,8 +4,18 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <script>
+
+var og_url = location.protocol.concat("//").concat(window.location.hostname);
+og_url = og_url.concat(":8080/jax");
+
+function display_json(url) {
+   var url = og_url + url + "?callback=?";
+   $.getJSON(url, function(data) { $("#alert_data").html(data);});
+}
+
 // delegate event for performance, and save attaching a million events
 // to each anchor
+
 document.addEventListener('click', function(event) {
   var target = event.target;
   if (target.tagName.toLowerCase() == 'a')
