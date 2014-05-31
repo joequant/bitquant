@@ -20,20 +20,32 @@ document.addEventListener('click', function(event) {
 }, false);
 
 function click_me1() {
-$(alert_data).html("Clicked");
+$("#alert_data").html("Clicked");
 }
 
 function click_me2() {
-$(alert_data).html("Clicked");
+$("#alert_data").html("Clicked");
+}
+
+function eval_javascript() {
+var val = $("#textbox").val();
+var result = eval(val);
+$("#alert_data").html(result);
 }
 
 </script>
 </head>
 <body class="metro">
+<button onclick="javascript:eval_javascript()">Eval
+  javascript</button>
 <button onclick="javascript:click_me1()">Click Me 1</button>
 <button onclick="javascript:click_me2()">Click Me 2</button>
+<br>
+<div id="alert_data">Data is here</div><br>
+<textarea rows="24" cols="80" id="textbox"></textarea>
 <p>
-<div id="alert_data">Data is here</div>
+<p>
+
 
 <h1>Components</h1>
 <ul>
