@@ -5,11 +5,8 @@
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <script>
 
-var og_url = location.protocol.concat("//").concat(window.location.hostname);
-og_url = og_url.concat(":8080/jax");
-
 function display_json(url) {
-   var url = og_url + url + "?callback=?";
+   var url = "/jax" + url;
    $.getJSON(url, function(data) { 
 $("#alert_data").html(data.toString());
 });
