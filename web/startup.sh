@@ -21,7 +21,7 @@ fi
 if [ -d ../../ethercalc ] ; then
 pushd ../../ethercalc > /dev/null
 echo "Restarting ethercalc"
-make >> $LOG_DIR/ethercalc.log 2>&1 &
+ETHERCALC_ARGS="--basepath /calc/" make >> $LOG_DIR/ethercalc.log 2>&1 &
 popd > /dev/null
 fi
 
