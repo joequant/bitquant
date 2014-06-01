@@ -24,6 +24,7 @@ nodejs \
 gcc-c++ \
 ipython make postgresql9.3-devel \
 apache-mod_suexec \
+apache-mod_proxy \
 strace \
 screen \
 krb5-appl-clients \
