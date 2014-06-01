@@ -49,29 +49,6 @@
 </div>
 </div>
 <script type="text/javascript">
-// delegate event for performance, and save attaching a million events
-// to each anchor
-document.addEventListener('click', function(event) {
-  var target = event.target;
-  if (target.tagName.toLowerCase() == 'a')
-  {
-      var port = target.getAttribute('href').match(/^:(\d+)(.*)/);
-      if (port)
-      {
-         target.href = port[2];
-         target.port = port[1];
-	 return;
-      } 
-      port = target.getAttribute('href').match(/^([^:]+)::(\d+)(.*)/);
-      if (port) {
-         target.href = port[3];
-         target.port = port[2];
-	 target.protocol = port[1];
-	 return;
-      }
-  }
-}, false);
-
 $(function() {$( "#title" ).resizable({
 handles: "s"
 });
@@ -97,10 +74,10 @@ Bittrader Trading System
 </ul>
 <div class="frames">
 <div class="frame" id="dashboard">
-<a class="button primary large" target="rstudio" href=":8787/">R statistics engine</a>
-<a class="button primary large" target="opengamma" href=":8080/">OpenGamma risk engine</a>
-<a class="button primary large" target="_blank" href=":8000/_new">Spreadsheet</a>
-<a class="button primary large" target="_blank" href=":9001/">Whiteboard</a>
+<a class="button primary large" target="rstudio" href="/rstudio">R statistics engine</a>
+<a class="button primary large" target="opengamma" href="/opengamma">OpenGamma risk engine</a>
+<a class="button primary large" target="_blank" href="/calc/_new">Spreadsheet</a>
+<a class="button primary large" target="_blank" href="/pad">Whiteboard</a>
 <a class="button primary large" target="_blank" href="market_data.html">Market Data</a>
 
 <br>
