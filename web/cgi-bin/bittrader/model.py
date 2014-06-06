@@ -181,8 +181,8 @@ def log(tag="bootstrap"):
                             time.sleep(0.1)    # Sleep briefly
                             continue
                         yield line
-                    if not is_locked("bootstrap"):
-                        return
+                        if not is_locked("bootstrap"):
+                            return
             except:
                 pass
             yield "opening %s - attempt %d\n" % (log_file, j)

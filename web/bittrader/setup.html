@@ -38,10 +38,8 @@ if (data["bootstrap_finished"]) {
     $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Restart installation</a>");
     set_timezone();
     $('.bootstrap-yes').show();
-    $('.bootstrap-no').hide();
 } else if (data['bootstrap_running']) {
    $('.bootstrap-yes').hide();
-   $('.bootstrap-no').show();
     $('#bootstrap-notice').html("<b>System install currently running</b> <a href='log' target='logfiles'>All log files</a>");
     scroll_log();
     interval_id = setTimeout(function() { check_installed();}, 15000);
@@ -244,7 +242,7 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 <span id="bootstrap-notice"></span>
 </div>
 
-<div class="bootstrap-yes">
+<div class="bootstrap-yes" style="display:none">
 <a href="index.html">Bittrader main page</a><br>
 <a href="log" target="_blank">Server log files</a>
 <p>
@@ -270,7 +268,7 @@ Ssh remote access: <input type="submit" name="submit"
 </div>
 
 <p>
-<iframe id="log" name="log" onload="scroll_log();">
+<iframe id="log" name="log">
 </iframe>
 </body>
 </html>
