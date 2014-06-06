@@ -38,11 +38,12 @@ if (data["bootstrap_finished"]) {
     $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Restart installation</a>");
     set_timezone();
     $('.bootstrap-yes').show();
+    scroll_log();
 } else if (data['bootstrap_running']) {
    $('.bootstrap-yes').hide();
     $('#bootstrap-notice').html("<b>System install currently running</b> <a href='log' target='logfiles'>All log files</a>");
+    interval_id = setTimeout(function() { check_installed();}, 5000);
     scroll_log();
-    interval_id = setTimeout(function() { check_installed();}, 15000);
 } else {
     $('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
 }});
@@ -268,7 +269,7 @@ Ssh remote access: <input type="submit" name="submit"
 </div>
 
 <p>
-<iframe id="log" name="log">
+<iframe id="log" name="log" onload="scroll_log();">
 </iframe>
 </body>
 </html>
