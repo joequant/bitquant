@@ -39,24 +39,15 @@ $('.bootstrap-yes').hide();
 $('.bootstrap-no').show();
 if (!data['bootstrap_running']) {
 $('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
-    if (interval_id != -1) {
-       clearInterval(interval_id);
-       interval_id = -1;
-    }
+interval_id = setTimeout(function() { check_installed();}, 15000);
 } else {
 $('#bootstrap-notice').html("<b>System install currently running</b> - <a href='/cgi-bin/bittrader/model.py/log/bootstrap' target='log'>View log</a>");
-if (interval_id == -1) {
-interval_id = setInterval(function() { check_installed();}, 10000);
-}
+interval_id = setTimeout(function() { check_installed();}, 15000);
 }
 } else {
-    $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Start installation</a>");
+    $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Restart installation</a>");
     $('.bootstrap-yes').show();
     $('.bootstrap-no').hide();
-    if (interval_id != -1) {
-       clearInterval(interval_id);
-       interval_id = -1;
-    }
 }});
 }
 
