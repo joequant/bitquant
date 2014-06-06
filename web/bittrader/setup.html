@@ -91,7 +91,9 @@ set_timezone();
 $("#logframe").resizable({});
 function scroll_log() {
   var $contents = $('#log').contents();
-  $contents.scrollTop($contents.height())
+  if ($contents !== null) {
+     $contents.scrollTop($contents.height())
+  }
 }
 </script>
 
