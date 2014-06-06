@@ -20,13 +20,13 @@ width: 100%;
 }
 </style>
 <script>
-
-function run_bootstrap() {
-$.get("/cgi-bin/bittrader/model.py/bootstrap",
-function(data) {
+function check_log() {
 $("#log").attr("src", "/cgi-bin/bittrader/model.py/log/bootstrap");
 check_installed();
-});
+}
+
+function run_bootstrap() {
+$.get("/cgi-bin/bittrader/model.py/bootstrap", check_log);
 }
 
 var interval_id = -1;
@@ -34,20 +34,19 @@ var interval_id = -1;
 function check_installed() {
 $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
 function(data) {
-if (!data["bootstrap_finished"]) {
-$('.bootstrap-yes').hide();
-$('.bootstrap-no').show();
-if (!data['bootstrap_running']) {
-$('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
-interval_id = setTimeout(function() { check_installed();}, 30000);
-} else {
-$('#bootstrap-notice').html("<b>System install currently running</b> - <a href='/cgi-bin/bittrader/model.py/log/bootstrap' target='log'>View log</a>");
-interval_id = setTimeout(function() { check_installed();}, 15000);
-}
-} else {
+if (data["bootstrap_finished"]) {
     $('#bootstrap-notice').html("System install finished - <a href='javascript:run_bootstrap()'>Restart installation</a>");
+    set_timezone();
     $('.bootstrap-yes').show();
     $('.bootstrap-no').hide();
+} else if (data['bootstrap_running']) {
+   $('.bootstrap-yes').hide();
+   $('.bootstrap-no').show();
+    $('#bootstrap-notice').html("<b>System install currently running</b> <a href='log' target='logfiles'>All log files</a>");
+    scroll_log();
+    interval_id = setTimeout(function() { check_installed();}, 15000);
+} else {
+    $('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
 }});
 }
 
@@ -72,6 +71,29 @@ $.getJSON("/cgi-bin/bittrader/model.py/version/timezone",
     });
 }
 
+
+$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
+   function(data) {
+   if (data["bootstrap_running"]) {
+      $("#password-input").hide();
+      $("#password-done").show();
+      check_log();
+   } else if (data['bootstrap_finished']) {
+      $("#password-input").hide();
+      $("#password-done").show();
+      check_installed();
+   } else {
+      check_installed();
+      check_password();
+   }
+});
+
+set_timezone();
+$("#logframe").resizable({});
+function scroll_log() {
+  var $contents = $('#log').contents();
+  $contents.scrollTop($contents.height())
+}
 </script>
 
 </head>
@@ -248,14 +270,8 @@ Ssh remote access: <input type="submit" name="submit"
 </div>
 
 <p>
-<iframe id="log" name="log" onload="check_installed(); check_password(); set_timezone()">
+<iframe id="log" name="log" onload="scroll_log();">
 </iframe>
-<script>
-check_installed();
-check_password();
-set_timezone();
-$("#logframe").resizable({});
-</script>
 </body>
 </html>
 
