@@ -34,17 +34,17 @@ var interval_id = -1;
 function check_installed() {
 $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
 function(data) {
-if (data["bootstrap_finished"]) {
-    $('#bootstrap-notice').html("");
-    set_timezone();
-    $('.bootstrap-yes').show();
-    scroll_log();
-} else if (data['bootstrap_running']) {
+if (data['bootstrap_running']) {
    $('.bootstrap-yes').hide();
     $('#bootstrap-notice').html("<b>System install currently running</b> <a href='log' target='logfiles'>All log files</a>");
     interval_id = setTimeout(function() { check_installed();}, 5000);
     scroll_log();
-} else {
+} else if (data["bootstrap_finished"]) {
+    $('#bootstrap-notice').html("");
+    set_timezone();
+    $('.bootstrap-yes').show();
+    scroll_log();
+} else  {
     $('#bootstrap-notice').html("<b>System install not started</b> - <a href='javascript:run_bootstrap()'>Start installation</a>");
 }});
 }
