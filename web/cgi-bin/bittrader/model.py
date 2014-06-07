@@ -158,7 +158,7 @@ def tail(f, n):
 
 @app.route("/bootstrap")
 def bootstrap():
-    os.system("./bootstrap.sh &")
+    os.system("./bootstrap.sh > /dev/null &")
     return "Bootstrap started"
 
 @app.route("/log/<tag>")
