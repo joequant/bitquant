@@ -28,6 +28,8 @@ exec > $LOG_DIR/bootstrap.log
 exec 2>&1
 
 echo "Running from directory $GIT_DIR as user "`whoami`
+echo "Shutting down servers"
+sudo systemctl stop bitquant
 echo "Installing packages"
 source $GIT_DIR/web/install-build-deps.sh
 echo "Doing initial installation"
