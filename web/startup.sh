@@ -37,4 +37,9 @@ echo "Restarting rserver"
 /usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
 fi
 
+if [ -f /usr/bin/ipython ] ; then
+echo "Restarting ipython"
+/usr/bin/ipython notebook --no-browser >> $LOG_DIR/ipython.log 2>&1 &
+fi
+
 

@@ -35,7 +35,8 @@ vim-minimal \
 rstudio-server \
 fudge-devel \
 log4cxx-devel \
-postgresql9.3-server
+postgresql9.3-server \
+python-pyzmq
 
 # don't start up server
 sudo systemctl disable hsqldb

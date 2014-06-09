@@ -8,6 +8,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 killall ServiceRunner
 killall java
 killall node
+killall ipython
 
 
 
