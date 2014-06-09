@@ -1,4 +1,11 @@
-cp ~/.oz/images/Bitstation-mageia-net-x86_64.vdi ~/.oz/images/bit1.vdi
+if [ "$1" != "" ] ; then
+file=~/.oz/images/Bitstation-mageia-cauldron-x86_64.vdi
+else
+file=~/.oz/images/Bitstation-mageia-net-x86_64.vdi
+fi
+
+echo "Creating vm from $file"
+cp $file ~/.oz/images/bit1.vdi
 
 VBoxManage hostonlyif create
 VBoxManage dhcpserver add --ifname vboxnet0 \
