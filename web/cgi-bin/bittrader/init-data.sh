@@ -23,7 +23,6 @@ fi
 flock -x -n 200 || (echo "process already running" ; exit 1)
 # Redirect STDERR to STDOUT
 exec 6>&1
-exec > $LOG_DIR/$TAG.log
 exec 2>&1
 
 echo "Running from directory $GIT_DIR as user "`whoami`
@@ -32,10 +31,8 @@ sudo systemctl stop bitquant
 echo "Doing init data"
 $GIT_DIR/git/init-og.sh
 echo "Starting up servers"
-sudo systemctl enable bitquant
 sudo systemctl start bitquant
 touch $LOG_DIR/$TAG.done
 echo "(done)"
-exec 1>&6
-) 200> $LOG_DIR/$TAG.lock &
+) 200> $LOG_DIR/$TAG.lock
 

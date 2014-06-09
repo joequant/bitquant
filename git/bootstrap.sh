@@ -7,6 +7,5 @@ pushd $SCRIPT_DIR > /dev/null
 . ./setup-og.sh 
 #. ./setup-quantlib.sh
 . ./rebuild-og.sh 
-. ./init-og.sh
 . ./rebuild-misc.sh 
 popd > /dev/null

@@ -252,10 +252,11 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 
 <div class="bootstrap-yes" style="display:none">
 <a class="button primary large" href="index.html">Bittrader main
-  page</a><br>
-<a href='javascript:run_bootstrap()'>Restart installation</a><br>
-<a href="log" target="_blank">Server log files</a>
-<p>
+  page</a><br><br>
+<a class="button small" href='/cgi-bin/bittrader/init-data.sh' target='log'>Init data</a>
+<a class="button small" href='javascript:run_bootstrap()'>Restart installation</a>
+<a class="button small" href="log" target="_blank">View log files</a>
+<hr>
 <form action='/cgi-bin/bittrader/model.py/setup' target='log'
       METHOD='POST'>
 User Password: <input name='password' type='password' title='Please
@@ -278,7 +279,7 @@ Ssh remote access: <input type="submit" name="submit"
 </div>
 
 <p>
-<iframe id="log" name="log" onload="scroll_log();">
+<iframe id="log" name="log" onload="javascript:scroll_log();">
 </iframe>
 </body>
 </html>
