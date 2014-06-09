@@ -39,7 +39,8 @@ fi
 
 if [ -f /usr/bin/ipython ] ; then
 echo "Restarting ipython"
-/usr/bin/ipython notebook --no-browser >> $LOG_DIR/ipython.log 2>&1 &
+mkdir -p ~/ipython
+/usr/bin/ipython notebook --no-browser --NotebookApp.base_url=ipython --NotebookApp.webapp_settings="{'static_url_prefix':'/ipython/static/'}" --notebook-dir=~/ipython >> $LOG_DIR/ipython.log 2>&1 &
 fi
 
 
