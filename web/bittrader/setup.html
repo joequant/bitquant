@@ -87,12 +87,12 @@ $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
      $("#password-done").show();
      check_installed();
    } else {
+     set_timezone();
      check_installed();
      check_password();
    }
  });
 
-set_timezone();
 $("#logframe").resizable({});
 function scroll_log() {
   var $contents = $('#log').contents();
@@ -279,7 +279,7 @@ Ssh remote access: <input type="submit" name="submit"
 </div>
 
 <p>
-<iframe id="log" name="log" onload="javascript:scroll_log();">
+<iframe id="log" name="log" onload="javascript:scroll_log();check_installed();check_passwd();">
 </iframe>
 </body>
 </html>
