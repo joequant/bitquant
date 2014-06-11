@@ -108,6 +108,7 @@ $o = {
 	   "cloud-init", "cloud-utils-growpart", "git",
 	   "apache", "apache-mod_suexec", 
 	   "apache-mod_proxy",
+	   "apache-mod_php",
 	   "avahi", 
 	   "python-flask", "python-pexpect",
 "vboxadditions-kernel-desktop-latest"],

@@ -1,6 +1,13 @@
 #!/bin/bash
 # These are all of the packages that need to be installed before bootstrap
 # is run
+# 
+# Note that all apache modules should have already been installed
+# in the bootstrap image.  Otherwise you will have the system attempt
+# to reload httpd which causes the httpd connection to go down
+#
+# The apache modules that bitquant needs are
+# mod_suexec, mod_proxy, and mod_php
 
 set -e
 sudo urpmi --no-suggests \
@@ -23,8 +30,6 @@ fop \
 nodejs \
 gcc-c++ \
 ipython make postgresql9.3-devel \
-apache-mod_suexec \
-apache-mod_proxy \
 strace \
 screen \
 krb5-appl-clients \
