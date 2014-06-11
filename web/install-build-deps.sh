@@ -6,8 +6,7 @@
 # in the bootstrap image.  Otherwise you will have the system attempt
 # to reload httpd which causes the httpd connection to go down
 #
-# The apache modules that bitquant needs are
-# mod_suexec, mod_proxy, and mod_php
+# dokuwiki also needs to be in bootstrap for the same reasons
 
 set -e
 sudo urpmi --no-suggests \

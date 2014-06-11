@@ -110,6 +110,7 @@ $o = {
 	   "apache-mod_proxy",
 	   "apache-mod_php",
 	   "avahi", 
+           "dokuwiki",
 	   "python-flask", "python-pexpect",
 "vboxadditions-kernel-desktop-latest"],
        'superuser' => {
