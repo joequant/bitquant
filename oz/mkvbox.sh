@@ -1,3 +1,7 @@
+
+#skip libvirt 
+export LIBGUESTFS_BACKEND=direct
+
 if [ "$1" != "" ] ; then
 file=~/.oz/images/Bitstation-mageia-cauldron-x86_64.vdi
 else
