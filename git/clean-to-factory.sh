@@ -4,6 +4,6 @@ MY_NAME=joequant
 cd $SCRIPT_DIR
 
 pushd ../..
-rm -rf ethercalc etherpad-lite OG-Platform OG-PlatformNative \
-   OG-Tools JSurface3D quantlib bitquant/web/log/bootstrap.done
+rm -rf ethercalc OG-Platform OG-PlatformNative \
+   OG-Tools quantlib bitquant/web/log/bootstrap.done
 popd
