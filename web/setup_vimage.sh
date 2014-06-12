@@ -3,7 +3,15 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Running setup_vimage.sh"
 #VERSION=cauldron
 #USER=joe
+if grep -q Cauldron /etc/release  ; then 
+echo "cauldron" 
+VERSION=cauldron
+else
+echo "version 4"
 VERSION=4
+fi
+
+
 USER=user
 # Change everything to local user so that suexec will work
 # ./setup.sh will take the owner of the scripts to set up the
