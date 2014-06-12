@@ -27,7 +27,7 @@ urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VE
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
 urpmi.update -a
-urpme --force --auto-orphans
+#urpme --force --auto-orphans
 
 echo "Copy configuration files"
 pushd $SCRIPT_DIR > /dev/null
