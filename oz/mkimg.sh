@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#skip libvirt 
-export LIBGUESTFS_BACKEND=direct
-
 if [ "$#" -lt 2 ]; then
     echo "Illegal number of parameters"
     echo "  mkimg.sh <config> <format> <distrofile>"
