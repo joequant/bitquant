@@ -60,7 +60,12 @@ function generate_data_dump() {
    $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
-     $("#log_out").html(data);
+
+     if (data.indexOf("Error:") == -1) {
+       $("#log_out").html(data + "<br><a href='/bittrader/data'>Goto data files</a>"); 
+     } else {
+       $("#log_out").html(data);
+     }
    });
 };
 </script>

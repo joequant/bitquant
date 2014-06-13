@@ -197,7 +197,7 @@ def generate_data_dump():
     def dump_data():
         yield "Generate user data"
         proc = subprocess.Popen([os.path.join(bitquant_root(),
-                                              "web", "script",
+                                              "web", "scripts",
                                               "dump-data.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
