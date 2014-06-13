@@ -196,7 +196,8 @@ def generate_data_dump():
         return "Error: password invalid"
     def dump_data():
         yield "Generate user data"
-        proc = subprocess.Popen(['./dump_data.sh'],
+        proc = subprocess.Popen([os.path.join(bitquant_root(),
+                                              "web", "dump-data.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
             print line.rstrip()
