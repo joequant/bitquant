@@ -190,6 +190,20 @@ def log(tag="bootstrap"):
         return
     return Response(generate(), mimetype="text/plain")
 
+@app.route("/generate-data-dump", methods = ['GET', 'POST'])
+def generate_data_dump():
+    if (not login.auth(user(), request.values['password'])):
+        return "Error: password invalid"
+    def dump_data():
+        yield "Generate user data"
+        proc = subprocess.Popen(['./dump_data.sh'],
+                                stdout=subprocess.PIPE)
+        for line in iter(proc.stdout.readline, ''):
+            print line.rstrip()
+        yield "Return files"
+        return
+    return Response(dump_data(), mimetype="text/plain")
+
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)

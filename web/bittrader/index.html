@@ -54,6 +54,15 @@ handles: "s"
 });
 init_all_clocks();
 });
+
+function generate_data_dump() {
+   $("#log_out").html("connecting...");
+   $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
+	  {password: $("#dump_password").val()},
+	  function (data) {
+     $("#log_out").html(data);
+   });
+};
 </script>
 <script type="text/x-handlebars" data-template-name='hi'>
 foo
@@ -182,13 +191,25 @@ http://www.blockchain.info/
 <li><a target="_blank" href="handlebars.html">Handlebars test</a>
 </ul>
 </div>
+
+<script>
+</script>
+
 <div class="frame" id="data">
-<button>Dump data</button><br>
-<button>Dump log</button><p>
+User Password: <input id='dump_password'
+		      name='password' type='password' title='Please
+		 Enter Your Password' size='8' /><br>
+
+<a class="button" href="javascript:generate_data_dump()">Generate data dump file</a> 
+<a class="button">Generate log file</a><p>
+
 <form action="/cgi-bin/bittrader/upload.py" method="POST">
 <input type=file name=upload>
 <input type=submit name=submit value="Do upload">
 </form>
+<pre>
+<div id="log_out"></div>
+</pre>
 </div>
 <div class="frame" id="admin">
 <h4>Admin</h4>
