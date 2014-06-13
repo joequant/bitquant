@@ -3,7 +3,7 @@
 export LIBGUESTFS_BACKEND=direct
 
 if [ "$1" != "" ] ; then
-file=~/.oz/images/Bitstation-mageia-cauldron-x86_64.vdi
+file=$1
 else
 file=~/.oz/images/Bitstation-mageia-net-x86_64.vdi
 fi
