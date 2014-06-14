@@ -9,6 +9,9 @@
 <!--[if lt IE 9]>
    <link rel="stylesheet" href="css/gh-fork-ribbon.ie.css">
 <![endif]-->
+<link rel="stylesheet"
+      href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
 <style>
 .right .github-fork-ribbon {
      background-color: #333;
@@ -52,42 +55,21 @@ handles: "s"
 });
 init_all_clocks();
 });
-
-function generate_data_dump() {
-   $("#log_out").html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
-	  {password: $("#dump_password").val()},
-	  function (data) {
-
-     if (data.indexOf("Error:") == -1) {
-       $("#log_out").html(data + "<br><a href='/bittrader/data'>Goto data files</a>"); 
-     } else {
-       $("#log_out").html(data);
-     }
-   });
-};
 </script>
 <div id="title">
 Bittrader Analytics System
-
 </div>
-<div class="ui-layout-center">
-<div class="tab-control" data-role="tab-control">
-<ul class="tabs">
-<li class="active"><a href="#dashboard">Dashboard</a></li>
-<li><a href="#resources">Resources</a></li>
-<li><a href="#about">About</a></li>
-</ul>
-<div class="frames">
-<div class="frame" id="dashboard">
+<div>
+<a class="button primary large" target="_blank" href="about.html">About</a>
+<br><br>
 <a class="button primary large" target="_blank" href="/opengamma">OpenGamma risk engine</a>
 <a class="button primary large" target="_blank" href="/rstudio">R statistics engine</a>
 <a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a><br><br>
 <a class="button primary large" target="_blank" href="/calc/_new">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/dokuwiki">Wiki</a>
-
-<br>
-<br>
+<br><br>
+<a class="button" target="_blank" href="resources.html">Resources</a>
+<br><br>
 <div class="panel collapsed" data-role="panel" id="alerts">
 <div class="panel-header">Tickers and Alerts</div>
 <div class="panel-content" style="display:none">
@@ -109,76 +91,6 @@ Bittrader Analytics System
 <a class="button" target="_blank" href="setup.html">Setup page</a>
 <a class="button" target="_blank" href="data.html">Data</a>
 <a class="button" target="_blank" href="sandbox.html">Sandbox</a>
-</div>
-</div>
-<div class="frame" id="about">
-<h4>Bittrader Analytics System</h4>
-Welcome to the garage.  Everything here is massively
-under-construction.<p>
-The Bittrader analytics system is an alert and analytics system designed
-for individual traders and small proprietary shops.  It
-consists of a web based system which can be uploaded to a cloud
-server, and is powered by
-the <a href="http://www.opengamma.com/">OpenGamma</a> risks analytics
-engine, and <a href="http://www.r-project.org/">R</a> statistical
-project.  Bitquant is developing this software to support its
-proprietary trading of bitcoin and bitcoin derivatives.
-<p>
-The system completely open source and is distributed as
-a <a href="http://sourceforge.net/projects/bitquant/">disk image</a>
-on sourceforge which can be run via VirtualBox or uploaded to a cloud
-server.  The <a href="https://github.com/joequant/bitquant">source
-code</a> is BSD-licensed and completely available at Github.  Check
-out our <a href="https://github.com/joequant/bitquant/wiki">Wiki</a>
-<p>
-To check out our progress see
-the <a href="http://bitquant.wordpress.com/">Bitquant blog</a>
-<p>
-Our target date for alpha for an MVP (minimally viable product) is
-August 2014.
-<p>
-What is unique about bittrader?
-<ul>
-<li>100% open source / BSD licensed / all development on github
-<li>thin javascript client
-<li>distributed as a virtual disk image.  Upload the image to a cloud
-  or run as a virtual machine with VirtualBox.
-</ul>
-<p>
-Bittrader pulls together several different technologies into one
-system
-<ul>
-<li> opengamma - backend engine
-<li> jqueryui (and friends) - display
-<li> mageia - infrastructure
-<li> <a href="http://www.rstudio.com/">rstudio</a> -
-  data exploration/reports
-<li> quantlib - algo trading
-</ul> 
-</div>
-<div class="frame" id="resources">
-<form action="/cgi-bin/bittrader/pageset.py/" method="POST" target="_blank">
-<input type="submit" name="submit" value="Create pages">
-<br>
-<textarea id="resource" name="resource" rows="10" cols="80">
-http://www.bitcoinwisdom.com/
-http://www.bitfinex.com/
-http://www.btc-e.com/
-http://www.huobi.com/
-http://www.btcchina.com/
-http://www.anxbtc.com/
-</textarea>
-</form>
-<hr>
-<form action="/cgi-bin/bittrader/pageset.py/" method="POST" target="_blank">
-<input type="submit" name="submit" value="Create pages">
-<br>
-<textarea id="resource" name="resource" rows="10" cols="80">
-http://www.bitcashout.com/
-http://www.blockchain.info/
-</textarea>
-</form>
-</div>
 </div>
 </div>
 </div>
