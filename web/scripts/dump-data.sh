@@ -4,7 +4,7 @@ GIT_DIR=$SCRIPT_DIR/../../..
 TMP_DIR=~/tmp
 MY_FILE=bittrader-dump-`date -u +%Y%m%d-%H%M%S`
 pushd $SCRIPT_DIR > /dev/null
-. ../norootcheck.sh
+. $SCRIPT_DIR/norootcheck.sh
 
 echo "Dumping data"
 mkdir -p $TMP_DIR/$$
@@ -17,6 +17,8 @@ echo "Dumping dokuwiki"
 cp -r -p -a /var/lib/dokuwiki dokuwiki
 rm -rf dokuwiki/cache/*
 rm -rf dokuwiki/locks/*
+echo "Dumping ipython"
+cp -r -p -a $GIT_DIR/../ipython ipython
 popd > /dev/null
 tar cJf $MY_FILE.tar.xz bittrader
 mv $MY_FILE.tar.xz $SCRIPT_DIR/../data
