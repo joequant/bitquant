@@ -1,5 +1,6 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+WEB_DIR=$SCRIPT_DIR/..
 echo "Running setup_vimage.sh"
 #VERSION=cauldron
 #USER=joe
@@ -34,8 +35,10 @@ pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
 ./setup.sh $config
+pushd $WEB_DIR > /dev/null
 for i in `find vimage/* -type d` ; do mkdir -p ${i#vimage} ;done
 for i in `find vimage/* -type f` ; do cp $i ${i#vimage} ;done
+popd
 popd
 
 # Turn off sshd by default
