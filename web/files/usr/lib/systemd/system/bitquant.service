@@ -4,11 +4,11 @@ After=httpd.service
 
 [Service]
 Type=forking
-WorkingDirectory=/home/%USER%/git/bitquant/web
+WorkingDirectory=/home/%USER%/git/bitquant/web/scripts
 User=%USER%
 Group=%GROUP%
-ExecStop=/home/%USER%/git/bitquant/web/shutdown.sh
-ExecStart=/home/%USER%/git/bitquant/web/startup.sh
+ExecStop=/home/%USER%/git/bitquant/web/scripts/shutdown.sh
+ExecStart=/home/%USER%/git/bitquant/web/scripts/startup.sh
 
 
 [Install]

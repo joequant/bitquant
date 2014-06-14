@@ -156,7 +156,7 @@ cd ~user
 mkdir git
 cd git
 git clone https://github.com/joequant/bitquant.git
-pushd bitquant/web
+pushd bitquant/web/scripts
 ./setup_vimage.sh bitstation >> /var/log/oz_setup.log 2>&1
 popd
 '
