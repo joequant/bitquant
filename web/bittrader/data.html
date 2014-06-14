@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>Bittrader Data</title>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/metro-bootstrap.css">
+<script src="js/metro/metro.min.js"></script>
+<script>
+function generate_data_dump() {
+   $("#log_out").html("connecting...");
+   $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
+	  {password: $("#dump_password").val()},
+	  function (data) {
+
+     if (data.indexOf("Error:") == -1) {
+       $("#log_out").html(data + "<br><a href='/bittrader/data'>Goto data files</a>"); 
+     } else {
+       $("#log_out").html(data);
+     }
+   });
+};
+</script>
+</head>
+<body class="metro">
+User Password: <input id='dump_password'
+		      name='password' type='password' title='Please
+		 Enter Your Password' size='8' /><br>
+
+<a class="button" href="javascript:generate_data_dump()">Generate data dump file</a> 
+<a class="button">Generate log file</a><p>
+
+<form action="/cgi-bin/bittrader/upload.py" method="POST">
+<input type=file name=upload>
+<input type=submit name=submit value="Do upload">
+</form>
+<pre>
+<div id="log_out"></div>
+</pre>
+</body>
+
