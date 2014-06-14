@@ -206,6 +206,59 @@ def generate_data_dump():
         return
     return Response(dump_data(), mimetype="text/plain")
 
+@app.route("/generate-log-dump", methods = ['GET', 'POST'])
+def generate_log_dump():
+    if (not login.auth(user(), request.values['password'])):
+        return "Error: password invalid"
+    def dump_data():
+        yield "Generate user data"
+        proc = subprocess.Popen([os.path.join(bitquant_root(),
+                                              "web", "scripts",
+                                              "dump-log.sh")],
+                                stdout=subprocess.PIPE)
+        for line in iter(proc.stdout.readline, ''):
+            print line.rstrip()
+        yield "Return files"
+        return
+    return Response(dump_data(), mimetype="text/plain")
+
+@app.route("/install-data-dump", methods = ['GET', 'POST'])
+def install_data_dump():
+    if (not login.auth(user(), request.values['password'])):
+        return "Error: password invalid"
+    filename = request.values['filename']
+    if "/" in filename:
+        return "Error: bad filename"
+    def dump_data():
+        yield "Generate user data"
+        proc = subprocess.Popen([os.path.join(bitquant_root(),
+                                              "web", "scripts",
+                                              "install-data.sh"),
+                                 os.path.join(bitquant_root(),
+                                              "web", "scripts",
+                                              filename)
+                                 ],
+                                stdout=subprocess.PIPE)
+        for line in iter(proc.stdout.readline, ''):
+            print line.rstrip()
+        yield "Return files"
+        return
+    return Response(dump_data(), mimetype="text/plain")
+
+@app.route("/clear-data-dump", methods = ['GET', 'POST'])
+def clear_data_dump():
+    if (not login.auth(user(), request.values['password'])):
+        return "Error: password invalid"
+    filename = request.values['filename']
+    if "/" in filename:
+        return "Error: bad filename"
+    try:
+        os.remove(os.path.join(bitquant_root(),
+                               "web", "data", filename))
+    except:
+        return "Error: exception thrown in file"
+    return Response(filename + " deleted", mimetype="text/plain")
+
 @app.route("/get-dump-files")
 def get_dump_files():
     filenames = next(os.walk(os.path.join(bitquant_root(), "web", "data")))[2]

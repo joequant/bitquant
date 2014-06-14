@@ -20,6 +20,37 @@ function generate_data_dump() {
    });
 };
 
+function generate_log_dump() {
+   $("#log_out").html("connecting...");
+   $.post("/cgi-bin/bittrader/model.py/generate-log-dump",
+	  {password: $("#dump_password").val()},
+	  function (data) {
+     $("#log_out").html(data);
+     refresh_file_list();
+   });
+};
+
+function clear_data_dump(file) {
+   $("#log_out").html("connecting...");
+   $.post("/cgi-bin/bittrader/model.py/clear-data-dump",
+	  {password: $("#dump_password").val(),
+	   filename: file},
+	  function (data) {
+     $("#log_out").html(data);
+     refresh_file_list();
+   });
+};
+function install_data_dump(file) {
+   $("#log_out").html("connecting...");
+   $.post("/cgi-bin/bittrader/model.py/install-data-dump",
+	  {password: $("#dump_password").val(),
+	   filename: file},
+	  function (data) {
+     $("#log_out").html(data);
+     refresh_file_list();
+   });
+};
+
 function refresh_file_list() {
    $.getJSON("/cgi-bin/bittrader/model.py/get-dump-files",
 	     function(data) { display_file_list(data); });
@@ -29,7 +60,7 @@ function display_file_list(data) {
    var items = []
    $.each(data, function (val, d) {
      items.push("<li>" + d + " <a href='/bittrader/data/" + d + 
-		"'>download</a> <a href='javascript:clear_item(\"" + d + "\")'>clear</a> <a href='javascript:install_item(\"" + d + "\")'>install</a>");
+		"'>download</a> <a href='javascript:clear_data_dump(\"" + d + "\")'>clear</a> <a href='javascript:install_data_dump(\"" + d + "\")'>install</a>");
    });
    $("#list").html("<ul>" + items.join("") + "</ul>");
 }
@@ -44,8 +75,8 @@ User Password: <input id='dump_password'
 		      name='password' type='password' title='Please
 		 Enter Your Password' size='8' /><br>
 
-<a class="button" href="javascript:generate_data_dump()">Generate data dump file</a> 
-<a class="button">Dump log files</a><p>
+<a class="button" href="javascript:generate_data_dump()">Dump data</a> 
+<a class="button" href="javascript:generate_log_dump()">Dump log</a> 
 <div id="list"></div>
 <form action="/cgi-bin/bittrader/upload.py" method="POST">
 <input type=file name=upload>
