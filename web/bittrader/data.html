@@ -11,42 +11,42 @@
 <script src="js/metro/metro.min.js"></script>
 <script>
 function generate_data_dump() {
-   $("#log_out").html("connecting...");
+   $("#log_out").contents().find('html').html("connecting...");
    $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
-     $("#log_out").html(data);
+     $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 
 function generate_log_dump() {
-   $("#log_out").html("connecting...");
+   $("#log_out").contents().find('html').html("connecting...");
    $.post("/cgi-bin/bittrader/model.py/generate-log-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
-     $("#log_out").html(data);
+     $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 
 function clear_data_dump(file) {
-   $("#log_out").html("connecting...");
+   $("#log_out").contents().find('html').html("connecting...");
    $.post("/cgi-bin/bittrader/model.py/clear-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
-     $("#log_out").html(data);
+     $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 function install_data_dump(file) {
-   $("#log_out").html("connecting...");
+   $("#log_out").contents().find('html').html("connecting...");
    $.post("/cgi-bin/bittrader/model.py/install-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
-     $("#log_out").html(data);
+     $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
@@ -65,12 +65,16 @@ function display_file_list(data) {
    $("#list").html("<ul>" + items.join("") + "</ul>");
 }
 
+
 $(function() {
    refresh_file_list();
 })
 </script>
 </head>
 <body class="metro">
+<form id=upform
+      action="/cgi-bin/bittrader/model.py/upload-dump" method="POST"
+      enctype="multipart/form-data" target="log_out">
 User Password: <input id='dump_password'
 		      name='password' type='password' title='Please
 		 Enter Your Password' size='8' /><br>
@@ -78,10 +82,9 @@ User Password: <input id='dump_password'
 <a class="button" href="javascript:generate_data_dump()">Dump data</a> 
 <a class="button" href="javascript:generate_log_dump()">Dump log</a> 
 <div id="list"></div>
-<form action="/cgi-bin/bittrader/upload.py" method="POST">
-<input type=file name=upload>
-<input type=submit name=submit value="Do upload">
+<input type=file name=upload />
+<input type=submit name=upload_button value="Upload file" />
 </form>
-<div id="log_out"></div>
+<iframe id="log_out" name="log_out" onload="refresh_file_list()"></iframe>
 </body>
 

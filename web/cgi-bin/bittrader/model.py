@@ -1,6 +1,7 @@
 #!/usr/bin/python
 from wsgiref.handlers import CGIHandler
 from flask import Flask, Response, request
+from werkzeug.utils import secure_filename
 import subprocess
 import sys
 import shutil
@@ -221,6 +222,22 @@ def generate_log_dump():
         yield "Return files"
         return
     return Response(dump_data(), mimetype="text/plain")
+
+@app.route("/upload-dump", methods = ['GET', 'POST'])
+def upload_dump():
+    if (not login.auth(user(), request.values['password'])):
+        return "Error: password invalid"
+    file = request.files['upload']
+    if not file:
+        return "Error: no file"
+    filename = secure_filename(file.filename)
+    save_file = os.path.join(bitquant_root(),
+                             "web", "data", filename)
+    if os.path.exists(save_file):
+        return "Error: file exists"
+    file.save(os.path.join(bitquant_root(),
+                           "web", "data", filename))
+    return "File uploaded"
 
 @app.route("/install-data-dump", methods = ['GET', 'POST'])
 def install_data_dump():
