@@ -206,6 +206,12 @@ def generate_data_dump():
         return
     return Response(dump_data(), mimetype="text/plain")
 
+@app.route("/get-dump-files")
+def get_dump_files():
+    filenames = next(os.walk(os.path.join(bitquant_root(), "web", "data")))[2]
+    filenames = filter(lambda x: ".tar.xz" in x, filenames)
+    return Response(json.dumps(filenames), mimetype='application/json')
+
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)

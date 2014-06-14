@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
 <title>Bittrader Data</title>
-<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+<script type="text/javascript" 
+	src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+<script type="text/javascript" 
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js">
+</script>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <script src="js/metro/metro.min.js"></script>
 <script>
@@ -12,14 +15,28 @@ function generate_data_dump() {
    $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
-
-     if (data.indexOf("Error:") == -1) {
-       $("#log_out").html(data + "<br><a href='/bittrader/data'>Goto data files</a>"); 
-     } else {
-       $("#log_out").html(data);
-     }
+     $("#log_out").html(data);
+     refresh_file_list();
    });
 };
+
+function refresh_file_list() {
+   $.getJSON("/cgi-bin/bittrader/model.py/get-dump-files",
+	     function(data) { display_file_list(data); });
+}
+
+function display_file_list(data) {
+   var items = []
+   $.each(data, function (val, d) {
+     items.push("<li>" + d + " <a href='/bittrader/data/" + d + 
+		"'>download</a> <a href='javascript:clear_item(\"" + d + "\")'>clear</a> <a href='javascript:install_item(\"" + d + "\")'>install</a>");
+   });
+   $("#list").html("<ul>" + items.join("") + "</ul>");
+}
+
+$(function() {
+   refresh_file_list();
+})
 </script>
 </head>
 <body class="metro">
@@ -28,14 +45,12 @@ User Password: <input id='dump_password'
 		 Enter Your Password' size='8' /><br>
 
 <a class="button" href="javascript:generate_data_dump()">Generate data dump file</a> 
-<a class="button">Generate log file</a><p>
-
+<a class="button">Dump log files</a><p>
+<div id="list"></div>
 <form action="/cgi-bin/bittrader/upload.py" method="POST">
 <input type=file name=upload>
 <input type=submit name=submit value="Do upload">
 </form>
-<pre>
 <div id="log_out"></div>
-</pre>
 </body>
 
