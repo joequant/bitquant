@@ -49,4 +49,9 @@ cat <<EOP >> /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT='nosplash'
 EOP
 update-grub2
+
+echo <<EOF >> /home/$USER/.bash_profile
+. $SCRIPT_DIR/login-message.sh
+EOF
+
 echo $config > /etc/hostname
