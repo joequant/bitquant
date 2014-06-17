@@ -11,7 +11,7 @@ echo "Reading configuration from $HOME/bitquant.conf"
 . $HOME/bitquant.conf
 fi
 cd $SCRIPT_DIR
-. ../web/norootcheck.sh
+. ../web/scripts/norootcheck.sh
 pushd ../../OG-Platform  > /dev/null
 for project in projects/OG-Web examples/examples-simulated ; do
 echo "Building $project"
