@@ -2,7 +2,7 @@
 # Setup and configure website to use giving configuration
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
+ME=`stat -c "%U" $SCRIPT_DIR/install-r-pkgs.sh`
 R_PKGS="bitops caTools digest htmltools httpuv Rcpp RJSONIO xtable shiny"
 
 pushd $SCRIPT_DIR > /dev/null
@@ -16,15 +16,15 @@ else
 LIBDIR="lib"
 fi
 
-LOCAL_R_DIR=~/R/`uname -m`-mageia-linux-gnu-library/3.0
+LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/3.0
 mkdir -p $LOCAL_R_DIR
-mkdir -p ~/attic/$$
+mkdir -p /home/$ME/attic/$$
 
 
 for i in $R_PKGS ; do
-  sudo mv /usr/$LIBDIR/R/library/$i ~/attic/$$ 2>/dev/null
+  sudo mv /usr/$LIBDIR/R/library/$i /home/$ME/attic/$$ 2>/dev/null
 done
-R -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
+/usr/bin/R -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
 
 for i in $R_PKGS ; do
   sudo mv -f $LOCAL_R_DIR/$i /usr/$LIBDIR/R/library 2>/dev/null
