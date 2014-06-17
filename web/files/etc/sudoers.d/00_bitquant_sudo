@@ -30,7 +30,7 @@
 Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme
 
 ## Misc functions needed for bitquant
-Cmnd_Alias MISC = /usr/bin/mkdir
+Cmnd_Alias MISC = /usr/bin/mkdir, /usr/bin/mv, /usr/bin/cp, /usr/bin/make
 
 ## Services
 Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
