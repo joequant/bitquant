@@ -31,9 +31,11 @@ echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Shutting down servers"
 sudo systemctl stop bitquant
 echo "Installing packages"
-source $GIT_DIR/web/script/install-build-deps.sh
+source $GIT_DIR/web/scripts/install-build-deps.sh
 echo "Doing initial installation"
 $GIT_DIR/git/bootstrap.sh
+echo "Installing R packages"
+$GIT_DIR/web/scripts/install-r-pkgs.sh
 echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant
