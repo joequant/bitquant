@@ -19,6 +19,9 @@ rm -rf dokuwiki/cache/*
 rm -rf dokuwiki/locks/*
 echo "Dumping ipython"
 cp -r -p -a $GIT_DIR/../ipython ipython
+echo "Dumping ethercalc"
+mkdir -p ethercalc
+cp -r -p -a $GIT_DIR/ethercalc/dump.json ethercalc
 popd > /dev/null
 tar cJf $MY_FILE.tar.xz bittrader
 mv $MY_FILE.tar.xz $SCRIPT_DIR/../data

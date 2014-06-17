@@ -14,37 +14,49 @@ pushd $SCRIPT_DIR > /dev/null
 echo "Install data"
 mkdir -p $TMP_DIR/$$
 cd $TMP_DIR/$$
+ATTIC_DIR=~/attic/$$
+mkdir -p $ATTIC_DIR
 
 tar xJf $MY_FILE
 if [ ! -e "bittrader" ] ; then
 echo "not dump file"
 exit 1
 fi
+
 pushd bittrader > /dev/null
-echo "Loading"
+echo "Loading data"
 if [ -e $GIT_DIR/OG-Platform/examples/examples-simulated/data ] ; then
 mv $GIT_DIR/OG-Platform/examples/examples-simulated/data \
-   $GIT_DIR/OG-Platform/examples/examples-simulated/data.$$.bak
+   $ATTIC_DIR/og-data
 fi
 
 echo "Loading OG data"
 mv og-data $GIT_DIR/OG-Platform/examples/examples-simulated/data
 sudo chown $ME:$GROUP -R $GIT_DIR/OG-Platform/examples/examples-simulated/data
 
-echo "Loading dokuwiki"
+
 if [ -e /var/lib/dokuwiki ] ; then
-sudo mv /var/lib/dokuwiki  /var/lib/dokuwiki.$$.bak
+echo "Loading dokuwiki"
+sudo mv /var/lib/dokuwiki $ATTIC_DIR
 fi
 sudo mv dokuwiki /var/lib
 sudo chown apache:apache -R  /var/lib/dokuwiki
 
-echo "Loading ipython"
 if [ -e $GIT_DIR/../ipython ] ; then
-sudo mv $GIT_DIR/../ipython $GIT_DIR/../ipython.$$.bak
+echo "Loading ipython"
+sudo mv $GIT_DIR/../ipython $ATTIC_DIR
 fi
-
 mv ipython $GIT_DIR/..
 sudo chown -R $ME:$GROUP $GIT_DIR/../ipython 
+
+
+if [ -d $GIT_DIR/ethercalc ] ; then
+echo "Loading ethercalc"
+mkdir -p $ATTIC_DIR/ethercalc
+mv $GIT_DIR/ethercalc/dump.json $ATTIC_DIR/ethercalc
+sudo mv ethercalc/dump.json $GIT_DIR/ethercalc
+sudo chown $ME:$GROUP $GIT_DIR/ethercalc/dump.json
+fi
 popd > /dev/null
 rm -r $TMP_DIR/$$
 popd > /dev/null
