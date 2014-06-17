@@ -33,3 +33,16 @@ for i in $R_PKGS ; do
 done
 popd > /dev/null
 
+echo "Installing shiny server"
+sudo make -C $ /home/$ME/git/shiny-server install
+sudo ln -s  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
+#Create shiny user. On some systems, you may need to specify the full path to 'useradd'
+sudo useradd -r -m shiny
+
+# Create log, config, and application directories
+sudo mkdir -p /var/log/shiny-server
+sudo mkdir -p /var/www/shiny-server
+sudo mkdir -p /var/lib/shiny-server
+sudo chown shiny /var/log/shiny-server
+sudo mkdir -p /etc/shiny-server
+
