@@ -36,8 +36,6 @@
 
 	</style>
 <script src="js/metro/metro.min.js"></script>
-<script src="js/tzdata-javascript.js"></script>
-<script src="js/clock-overview.js"></script>
 </head>
 <body>
 <div class="github-fork-ribbon-wrapper right">
@@ -49,7 +47,6 @@
 $(function() {$( "#title" ).resizable({
 handles: "s"
 });
-init_all_clocks();
 });
 </script>
 <div id="title">
@@ -76,11 +73,6 @@ Bittrader Analytics System
 </div>
 </div>
 <p>
-<div class="panel collapsed" data-role="panel" id="clocklist">
-<div class="panel-header">Clocks</div>
-<div class="panel-content"
-     style="display:none"><div id="clocks"><table id="clock_table"></table></div></div>
-</div>
 <div class="panel collapsed" data-role="panel" id="admin">
 <div class="panel-header">Admin</div>
 <div class="panel-content" style="display:none">
