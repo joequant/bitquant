@@ -41,7 +41,10 @@ fudge-devel \
 log4cxx-devel \
 postgresql9.3-server \
 python-pyzmq \
-dokuwiki
+dokuwiki \
+php-pam
+
+#php-pam for pam authentication on dokuwiki
 
 # don't start up server
 sudo systemctl disable hsqldb
