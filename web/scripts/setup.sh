@@ -48,5 +48,7 @@ systemctl enable postgresql
 systemctl restart postgresql
 systemctl restart bitquant
 systemctl enable bitquant
+systemctl restart shiny-server
+systemctl enable shiny-server
 
 

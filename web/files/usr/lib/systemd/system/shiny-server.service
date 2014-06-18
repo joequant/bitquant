@@ -1,0 +1,10 @@
+[Unit]
+Description=shiny-server deploys R shiny applications
+
+[Service]
+Type=simple
+User=shiny
+ExecStart=/usr/bin/shiny-server
+
+[Install]
+WantedBy=multi-user.target
