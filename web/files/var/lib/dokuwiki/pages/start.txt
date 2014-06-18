@@ -1,0 +1,34 @@
+<html>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/css/metro-bootstrap.css">
+<script src="/js/metro/metro.min.js"></script>
+<link rel="stylesheet" href="/css/metro-dokuwiki.css">
+<div class="metro">
+<a class="button primary large" target="_blank" href="doku.php?id=about">About</a>
+<br><br>
+<a class="button primary large" target="_blank" href="/opengamma">OpenGamma risk engine</a>
+<a class="button primary large" target="_blank" href="/rstudio">R statistics engine</a>
+<a class="button primary large" target="_blank" href="/shiny">Shiny</a>
+<a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
+<a class="button primary large" target="_blank" href="/calc/_new">Spreadsheet</a>
+<br><br>
+<div class="panel collapsed" data-role="panel" id="alerts">
+<div class="panel-header">Tickers and Alerts</div>
+<div class="panel-content" style="display:none">
+<a class="button danger large">Alert!!!</a>
+<a class="button warning large">Situation warning</a>
+<a class="button success large">Situation normal</a><br><br>
+<a class="button primary large" target="_blank" href="trade.html">Set Alerts</a>
+</div>
+</div>
+<p>
+<div class="panel collapsed" data-role="panel" id="admin">
+<div class="panel-header">Admin</div>
+<div class="panel-content" style="display:none">
+<a class="button" target="_blank" href="/bittrader/setup.html">Setup page</a>
+<a class="button" target="_blank" href="/bittrader/data.html">Data</a>
+<a class="button" target="_blank" href="/bittrader/sandbox.html">Sandbox</a>
+</div>
+</div>
+</html>

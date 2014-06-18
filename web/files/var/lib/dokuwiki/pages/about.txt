@@ -1,0 +1,21 @@
+The Bittrader analytics system is an alert and analytics system designed for individual traders and small proprietary shops. It consists of a web based system which can be uploaded to a cloud server, and is powered by the [[http://www.opengamma.com/|OpenGamma]] risks analytics engine, and [[http://www.r-project.org|R]] statistical project. Bitquant is developing this software to support its proprietary trading of bitcoin and bitcoin derivatives.
+
+The system completely open source and is distributed as a disk image on sourceforge which can be run via VirtualBox or uploaded to a cloud server. The source code is BSD-licensed and completely available at Github. 
+
+To check out our progress see the [[http://bitquant.wordpress.com|Bitquant blog]]
+
+Our target date for alpha for an MVP (minimally viable product) is August 2014.
+
+What is unique about bittrader?
+
+  * 100% open source / BSD licensed / all development on github
+  * thin javascript client
+  * distributed as a virtual disk image. Upload the image to a cloud or run as a virtual machine with VirtualBox. 
+
+Bittrader pulls together several different technologies into one system
+
+  * opengamma - backend engine
+  * jqueryui (and friends) - display
+  * mageia - infrastructure
+  * rstudio - data exploration/reports
+  * quantlib - algo trading 
