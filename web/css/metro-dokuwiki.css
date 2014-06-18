@@ -1,5 +1,7 @@
 .metro .button,
-.metro .button:hover {
+.metro .button:hover,
+.metro .button:active,
+.metro .button:focus {
    background-image: none;
    text-decoration: none;
 }
