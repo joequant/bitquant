@@ -9,16 +9,16 @@ LOG_DIR=$WEB_DIR/log
 
 if [ $# -eq 1 ] ; then
 export PATH_INFO=$1
-else 
+else
 echo "Content-type: text/html"
 echo ""
 fi
 echo "<pre>"
 if [ "$PATH_INFO" == "/lock" ] ; then
-cp $WEB_DIR/dokuwiki/lock/* /etc/dokuwiki
+sudo cp $WEB_DIR/dokuwiki/lock/* /etc/dokuwiki 2>&1
 echo "Wiki locked"
 elif [ "$PATH_INFO" == "/unlock" ] ; then
-cp $WEB_DIR/dokuwiki/unlock/* /etc/dokuwiki
+sudo cp $WEB_DIR/dokuwiki/unlock/* /etc/dokuwiki 2>&1
 echo "Wiki unlocked"
 else
 echo "unknown path $PATH_INFO"
