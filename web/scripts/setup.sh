@@ -41,6 +41,8 @@ sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files}
 done
 popd > /dev/null
 
+chown -R apache:apache /var/lib/dokuwiki/pages
+
 systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
@@ -48,7 +50,6 @@ systemctl enable postgresql
 systemctl restart postgresql
 systemctl restart bitquant
 systemctl enable bitquant
-systemctl restart shiny-server
 systemctl enable shiny-server
-
+systemctl restart shiny-server
 

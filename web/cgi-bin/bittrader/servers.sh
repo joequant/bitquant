@@ -11,10 +11,14 @@ echo "<pre>"
 if [ "$PATH_INFO" == "/on" ] ; then
 sudo systemctl enable bitquant 2>&1 
 sudo systemctl start bitquant 2>&1 
+sudo systemctl enable shiny-server 2>&1
+sudo systemctl start shiny-server 2>&1
 echo "Bitquant servers enabled"
 elif [ "$PATH_INFO" == "/off" ] ; then
 sudo systemctl stop bitquant 2>&1 
 sudo systemctl disable bitquant 2>&1 
+sudo systemctl stop shiny-server 2>&1
+sudo systemctl disable shiny-server 2>&1
 echo "Bitquant servers disabled"
 else
 echo "unknown path $PATH_INFO"

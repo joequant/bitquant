@@ -39,6 +39,8 @@ $GIT_DIR/web/scripts/install-r-pkgs.sh
 echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant
+sudo systemctl enable shiny-server
+sudo systemctl start shiny-server
 touch $LOG_DIR/bootstrap.done
 echo "(done)"
 exec 1>&6
