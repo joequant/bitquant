@@ -13,12 +13,13 @@ fi
 cd $SCRIPT_DIR
 . ../web/scripts/norootcheck.sh
 pushd ../../OG-Platform  > /dev/null
-for project in projects/OG-Web examples/examples-simulated ; do
-echo "Building $project"
-pushd $project > /dev/null
 mvn install -Dmaven.test.skip=True
-popd > /dev/null
-done
+#for project in projects/OG-Web projects/OG-FinancialTypes projects/OG-Master projects/OG-Financial examples/examples-simulated ; do
+#echo "Building $project"
+#pushd $project > /dev/null
+#mvn install -Dmaven.test.skip=True
+#popd > /dev/null
+#done
 popd > /dev/null
 
 if [ -n "$OG_COMPILE_PLATFORM_NATIVE" ]; then
