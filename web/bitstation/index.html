@@ -2,12 +2,11 @@
 <head>
 <title>Bitstation</title>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.js"></script>
 <meta charset="utf-8">
 <body>
 <ul>
-<li><a href="bittrader/index.html">Bittrader</a>
-<li><a href="bittrader/setup.html">Bittrader setup page</a>
+<li><a href="/dokuwiki">Bittrader</a>
+<li><a href="/bittrader/setup.html">Bittrader setup page</a>
 </ul>
 <script>
 $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
@@ -15,7 +14,7 @@ function(data) {
 if (!data["bootstrap_finished"]) {
     window.location.replace("bittrader/setup.html");
 } else {
-    window.location.replace("bittrader/index.html");
+    window.location.replace("/dokuwiki");
 }});
 </script>
 </body>
