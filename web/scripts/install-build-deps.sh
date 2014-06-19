@@ -42,9 +42,9 @@ log4cxx-devel \
 postgresql9.3-server \
 python-pyzmq \
 dokuwiki \
-php-pam
+cmake
 
-#php-pam for pam authentication on dokuwiki
+#cmake is for building shiny-server
 
 # don't start up server
 sudo systemctl disable hsqldb
