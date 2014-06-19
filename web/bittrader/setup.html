@@ -50,7 +50,7 @@ function check_installed() {
        $('.bootstrap-yes').show();
        scroll_log();
      } else  {
-       $('#bootstrap-notice').html("<b>System install not started</b><br><br><a href='javascript:run_bootstrap()' class='button primary large'>Start installation</a>");
+       $('#bootstrap-notice').html("<b>System install incomplete</b><br><br><a href='javascript:run_bootstrap()' class='button primary large'>Start installation</a>");
      }});
  }
 
@@ -112,7 +112,7 @@ Warning: system is currently using default password 'cubswin:)'
 Time zone: <span class="timezone"></span><br>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter Your Password' size='8' /><br />
-<input type='submit' value='Set Password' />
+<input type='submit' class="button large primary" value='Set Password' />
 </form>
 </div>
 <div id="timezone-template" style="display:none">
