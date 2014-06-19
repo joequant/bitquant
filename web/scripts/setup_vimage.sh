@@ -24,9 +24,9 @@ chown -R $USER":"$USER git
 
 echo "Resetting urpmi"
 urpmi.removemedia -a
-urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.x86_64.list'
+urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.'`uname -m`'.list'
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
-urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
+urpmi.update --no-ignore "Core Updates"
 urpmi.update -a
 #urpme --force --auto-orphans
 
