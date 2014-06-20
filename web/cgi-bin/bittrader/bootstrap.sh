@@ -36,6 +36,11 @@ echo "Doing initial installation"
 $GIT_DIR/git/bootstrap.sh
 echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
+
+#set wiki conf
+echo "Set up wiki"
+./wiki.sh /unlock
+./wiki.sh /init
 echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant

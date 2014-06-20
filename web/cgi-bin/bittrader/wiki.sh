@@ -20,6 +20,10 @@ echo "Wiki locked"
 elif [ "$PATH_INFO" == "/unlock" ] ; then
 sudo cp $WEB_DIR/dokuwiki/unlock/* /etc/dokuwiki 2>&1
 echo "Wiki unlocked"
+elif [ "$PATH_INFO" == "/init" ] ; then
+sudo cp -r -f $WEB_DIR/dokuwiki/pages/* /var/lib/dokuwiki/pages
+sudo chown -R apache:apache /var/lib/dokuwiki/pages
+echo "Wiki page init"
 else
 echo "unknown path $PATH_INFO"
 fi

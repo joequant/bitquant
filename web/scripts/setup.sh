@@ -26,9 +26,6 @@ chown -R $ME:$GROUP $(basename $i)
 done
 popd > /dev/null
 
-#set wiki conf
-../../..$WEB_DIR/cgi-bin/bittrader/wiki.sh /unlock
-
 pushd /etc/httpd/conf/webapps.d > /dev/null
 if [ -f 00_default_vhosts.conf ] ; then
 mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak

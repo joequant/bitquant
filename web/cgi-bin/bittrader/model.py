@@ -97,9 +97,9 @@ def setup():
     elif submit == "Remove local install":
         return subprocess.check_output(["./clean-to-factory.sh"])
     elif submit == "Lock wiki":
-        return subprocess.check_output(["./wiki.sh","/lock"])
+        return subprocess.check_output(["./wiki.sh", "lock"])
     elif submit == "Unlock wiki":
-        return subprocess.check_output(["./wiki.sh","/unlock"])
+        return subprocess.check_output(["./wiki.sh", "unlock"])
     else:
         return "unknown command"
 
