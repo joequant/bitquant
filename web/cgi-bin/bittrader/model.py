@@ -12,6 +12,7 @@ import login
 import traceback
 import fcntl
 import time
+import crypt
 
 app = Flask(__name__)
 default_password = "cubswin:)"
@@ -97,9 +98,18 @@ def setup():
     elif submit == "Remove local install":
         return subprocess.check_output(["./clean-to-factory.sh"])
     elif submit == "Lock wiki":
-        return subprocess.check_output(["./wiki.sh", "lock"])
+        password = request.values['password']
+        salt = os.urandom(6).encode('base_64').strip()
+        hashval = crypt.crypt(password, "$1$" + salt + "$")
+        retval = subprocess.check_output(["./wiki.sh", "/conf", "lock"]);
+        retval += subprocess.check_output(["./wiki.sh", "/adduser",
+                                           user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
+        retval += subprocess.check_output(["./wiki.sh", "/superuser",
+                                           user()])
+
+        return retval
     elif submit == "Unlock wiki":
-        return subprocess.check_output(["./wiki.sh", "unlock"])
+        return subprocess.check_output(["./wiki.sh", "/conf", "unlock"])
     else:
         return "unknown command"
 

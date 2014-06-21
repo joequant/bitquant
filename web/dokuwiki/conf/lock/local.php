@@ -5,5 +5,6 @@ $conf['updatecheck'] = 0;
 $conf['title']       = 'Bittrader Analytics';
 $conf['useacl'] = 1;
 $conf['disableactions'] = 'register';
+// end
 ?>
  

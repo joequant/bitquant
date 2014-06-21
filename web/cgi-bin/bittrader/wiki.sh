@@ -7,23 +7,32 @@ export HOME=/home/`whoami`
 WEB_DIR=$HOME/git/bitquant/web
 LOG_DIR=$WEB_DIR/log
 
-if [ $# -eq 1 ] ; then
+if [ $# -ge 1 ] ; then
 export PATH_INFO=$1
 else
 echo "Content-type: text/html"
 echo ""
 fi
 echo "<pre>"
-if [ "$PATH_INFO" == "/lock" ] ; then
-sudo cp $WEB_DIR/dokuwiki/lock/* /etc/dokuwiki 2>&1
-echo "Wiki locked"
-elif [ "$PATH_INFO" == "/unlock" ] ; then
-sudo cp $WEB_DIR/dokuwiki/unlock/* /etc/dokuwiki 2>&1
-echo "Wiki unlocked"
+if [ "$PATH_INFO" == "/conf" ] ; then
+if [ $# -eq 2 ] ; then
+sudo cp $WEB_DIR/dokuwiki/conf/$2/* /etc/dokuwiki 2>&1
+fi
+echo "Wiki switch to conf $2"
 elif [ "$PATH_INFO" == "/init" ] ; then
 sudo cp -r -f $WEB_DIR/dokuwiki/pages/* /var/lib/dokuwiki/pages
 sudo chown -R apache:apache /var/lib/dokuwiki/pages
 echo "Wiki page init"
+elif [ "$PATH_INFO" == "/adduser" ] ; then 
+if [ $# -eq 2 ] ; then
+echo "$2" | sudo tee -a /etc/dokuwiki/users.auth.php > /dev/null
+fi
+echo "User added"
+elif [ "$PATH_INFO" == "/superuser" ] ; then 
+if [ $# -eq 2 ] ; then
+sudo sed -e "s!// end!\$config['superuser'] = '$2;'\n// end!" -i /etc/dokuwiki/local.php
+echo "Superuser $2"
+fi
 else
 echo "unknown path $PATH_INFO"
 fi
