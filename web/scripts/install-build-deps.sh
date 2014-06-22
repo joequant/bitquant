@@ -42,7 +42,8 @@ log4cxx-devel \
 postgresql9.3-server \
 python-pyzmq \
 dokuwiki \
-cmake
+cmake \
+dokuwiki-plugin-s5
 
 #cmake is for building shiny-server
 
