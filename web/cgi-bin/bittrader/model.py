@@ -104,9 +104,6 @@ def setup():
         retval = subprocess.check_output(["./wiki.sh", "/conf", "lock"]);
         retval += subprocess.check_output(["./wiki.sh", "/adduser",
                                            user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
-        retval += subprocess.check_output(["./wiki.sh", "/superuser",
-                                           user()])
-
         return retval
     elif submit == "Unlock wiki":
         return subprocess.check_output(["./wiki.sh", "/conf", "unlock"])

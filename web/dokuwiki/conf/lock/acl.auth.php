@@ -19,6 +19,5 @@
 # delete 16
 
 *               @ALL        1
-*               users       15
-*               admin       31
+*               @users       15
 

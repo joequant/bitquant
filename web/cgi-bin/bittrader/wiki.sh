@@ -28,11 +28,6 @@ if [ $# -eq 2 ] ; then
 echo "$2" | sudo tee -a /etc/dokuwiki/users.auth.php > /dev/null
 fi
 echo "User added"
-elif [ "$PATH_INFO" == "/superuser" ] ; then 
-if [ $# -eq 2 ] ; then
-sudo sed -e "s!// end!\$config['superuser'] = '$2;'\n// end!" -i /etc/dokuwiki/local.php
-echo "Superuser $2"
-fi
 else
 echo "unknown path $PATH_INFO"
 fi
