@@ -102,6 +102,8 @@ def setup():
         salt = os.urandom(6).encode('base_64').strip()
         hashval = crypt.crypt(password, "$1$" + salt + "$")
         retval = subprocess.check_output(["./wiki.sh", "/conf", "lock"]);
+        retval += subprocess.check_output(["./wiki.sh", "/rmuser",
+                                           user()])
         retval += subprocess.check_output(["./wiki.sh", "/adduser",
                                            user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
         return retval
