@@ -43,7 +43,9 @@ postgresql9.3-server \
 python-pyzmq \
 dokuwiki \
 cmake \
-dokuwiki-plugin-s5
+ipython \
+python-tornado \
+dokuwiki-plugin-s5 
 
 #cmake is for building shiny-server
 
