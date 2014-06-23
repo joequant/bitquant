@@ -45,9 +45,11 @@ dokuwiki \
 cmake \
 ipython \
 python-tornado \
+python-mglob \
 dokuwiki-plugin-s5 
 
 #cmake is for building shiny-server
+#tornado and mglob is for ipython
 
 # don't start up server
 sudo systemctl disable hsqldb
