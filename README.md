@@ -19,9 +19,13 @@ To generate a disk image, type
 This will create a VDI disk image with bitquant software.  You can then
 upload it to a cloud or run it locally with a VirtualBox.  
 
-Set your web browser to
+For a system  with zeroconf/bonjour, you can set your web server to
 
 http://bitstation.lan/
+
+For a system  without zeroconf, you can boot the image with VirtualBox
+and the local IP of the system  will be displayed.  The default image
+is configured to grab a local IP starting with http://192.168.56.100
 
 The framework that I use to generate the image can be used for other
 web appliances.
