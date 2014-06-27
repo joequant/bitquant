@@ -44,10 +44,6 @@ popd
 systemctl disable sshd.service
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
-cat <<EOP >> /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT='nosplash'
-EOP
-update-grub2
 
 cat <<EOF >> /home/$USER/.bash_profile
 . $SCRIPT_DIR/login-message.sh
