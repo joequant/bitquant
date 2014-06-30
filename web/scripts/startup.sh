@@ -16,7 +16,7 @@ fi
 if [ -d $GIT_DIR/OG-Platform ] ; then
 echo "Restarting opengamma"
 pushd $GIT_DIR/OG-Platform/examples/examples-simulated/ > /dev/null
-mvn opengamma:server-start -Dconfig=fullstack >> $LOG_DIR/og.log &
+mvn opengamma:server-start -Dconfig=bitquant >> $LOG_DIR/og.log &
 popd > /dev/null
 fi
 
