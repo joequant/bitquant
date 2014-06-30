@@ -47,7 +47,8 @@ ipython \
 python-tornado \
 python-mglob \
 dokuwiki-plugin-s5  \
-python-matplotlib
+python-matplotlib \
+python-py4j
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
