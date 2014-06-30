@@ -25,12 +25,6 @@ connectTimeout=60000" > ~/etc/OpenGammaLtd/OpenGammaR
 
 pushd  $SCRIPT_DIR/../../OG-PlatformNative
 export MVN_ARGS="-Dmaven.test.skip=true"
-export PATH=/home/joe/git/OG-PlatformNative:$PATH
-cat <<EOF > exe-kill
-#!/bin/bash
-echo $*
-EOF
-chmod a+x exe-kill
 ant configure -Dprofile.nix=true -Dtool.cpptasks=true 
 # -Dtool.r=true
 ant install -Dskip.tests=true
