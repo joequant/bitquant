@@ -28,7 +28,7 @@ urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VE
 urpmi.update --no-ignore "Core Updates"
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
-urpmi.addmedia "Backports testing backup" ftp://ftp.sunet.se/pub/Linux/distributions/mageia/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
+urpmi.addmedia "Backports testing backup" ftp://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
 
 urpmi.update -a
 #urpme --force --auto-orphans
