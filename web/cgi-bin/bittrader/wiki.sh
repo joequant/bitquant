@@ -3,8 +3,9 @@
 # orginal git
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export HOME=/home/`whoami`
-WEB_DIR=$HOME/git/bitquant/web
+ME=`stat -c "%U" $SCRIPT_DIR/wiki.sh`
+export MY_HOME=/home/$ME
+WEB_DIR=$MY_HOME/git/bitquant/web
 LOG_DIR=$WEB_DIR/log
 
 if [ $# -ge 1 ] ; then
