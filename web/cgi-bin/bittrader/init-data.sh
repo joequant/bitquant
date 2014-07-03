@@ -10,8 +10,9 @@ echo ""
 
 TAG=init-data
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export HOME=/home/`whoami`
-GIT_DIR=$HOME/git/bitquant
+ME=`stat -c "%U" $SCRIPT_DIR/init-data.sh`
+export MY_HOME=/home/$ME
+GIT_DIR=$MY_HOME/git/bitquant
 LOG_DIR=$GIT_DIR/web/log
 
 if [ -e $LOG_DIR/$TAG.done ] ; then
@@ -30,6 +31,11 @@ echo "Shutting down servers"
 sudo systemctl stop bitquant
 echo "Doing init data"
 $GIT_DIR/git/init-og.sh
+mkdir -p $MY_HOME/ipython
+cp -r $GIT_DIR/web/home/ipython/* $MY_HOME/ipython
+mkdir -p $MY_HOME/R
+cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
+
 echo "Starting up servers"
 sudo systemctl start bitquant
 touch $LOG_DIR/$TAG.done
