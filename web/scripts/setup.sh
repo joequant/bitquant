@@ -41,7 +41,6 @@ sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files}
 done
 popd > /dev/null
 
-$WEB_DIR/cgi-bin/bittrader/wiki.sh /conf unlock 
 chown -R apache:apache /var/lib/dokuwiki/pages
 
 systemctl daemon-reload
