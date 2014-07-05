@@ -12,6 +12,11 @@ echo "Reading configuration from $HOME/bitquant.conf"
 fi
 cd $SCRIPT_DIR
 . ../web/scripts/norootcheck.sh
+
+pushd ../../OG-Tools/corporate-parent > /dev/null
+mvn install
+popd
+
 pushd ../../OG-Platform  > /dev/null
 mvn install -Dmaven.test.skip=True
 #for project in projects/OG-Web projects/OG-FinancialTypes projects/OG-Master projects/OG-Financial examples/examples-simulated ; do
