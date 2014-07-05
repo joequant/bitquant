@@ -20,6 +20,9 @@ mvn install -Dmaven.test.skip=True
 #mvn install -Dmaven.test.skip=True
 #popd > /dev/null
 #done
+pushd examples/examples-simulated > /dev/null
+mvn opengamma:server-init -DclassName=com.opengamma.examples.simulated.tool.ExampleDatabaseInit  -DconfigFile=classpath:/toolcontext/toolcontext-examplessimulated.properties
+popd > /dev/null
 popd > /dev/null
 
 if [ -n "$OG_COMPILE_PLATFORM_NATIVE" ]; then
