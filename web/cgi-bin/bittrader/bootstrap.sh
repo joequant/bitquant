@@ -10,9 +10,7 @@ echo ""
 echo "<pre>"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export HOME=/home/`whoami`
-GIT_DIR=$HOME/git/bitquant
-LOG_DIR=$GIT_DIR/web/log
+. $SCRIPT_DIR/environment.sh
 
 if [ -e $LOG_DIR/bootstrap.done ] ; then
 rm -f $LOG_DIR/bootstrap.done
@@ -41,6 +39,13 @@ $GIT_DIR/web/scripts/install-r-pkgs.sh
 echo "Set up wiki"
 ./wiki.sh /conf unlock
 ./wiki.sh /init
+echo "Set up ipython"
+mkdir -p $MY_HOME/ipython
+cp -r $GIT_DIR/web/home/ipython/* $MY_HOME/ipython
+echo "Set up R"
+mkdir -p $MY_HOME/R
+cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
+
 echo "Starting up servers"
 sudo systemctl enable bitquant
 sudo systemctl start bitquant

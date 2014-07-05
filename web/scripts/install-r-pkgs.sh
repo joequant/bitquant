@@ -37,7 +37,7 @@ echo "Installing shiny server"
 sudo make -C /home/$ME/git/shiny-server install
 sudo ln -s  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
 #Create shiny user. On some systems, you may need to specify the full path to 'useradd'
-sudo useradd -r -m shiny
+sudo useradd -r shiny -s /bin/false -M
 
 # Create log, config, and application directories
 sudo mkdir -p /var/log/shiny-server
