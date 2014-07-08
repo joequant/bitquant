@@ -44,7 +44,7 @@ popd > /dev/null
 chown -R apache:apache /var/lib/dokuwiki/pages
 
 # load in python packages
-pip install --install Quandl
+pip install --upgrade Quandl rpy2
 
 systemctl daemon-reload
 systemctl enable httpd
