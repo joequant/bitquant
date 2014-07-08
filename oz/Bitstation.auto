@@ -109,6 +109,7 @@ $o = {
 	   "apache", "apache-mod_suexec", 
 	   "apache-mod_proxy",
 	   "apache-mod_php",
+	   "apache-mod_authnz_external",
 	   "avahi", 
            "dokuwiki",
 	   "python-flask", "python-pexpect",
