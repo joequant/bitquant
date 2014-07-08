@@ -25,7 +25,7 @@ for i in $R_PKGS ; do
   sudo mv /usr/$LIBDIR/R/library/$i /home/$ME/attic/$$ 
 done
 echo "Generating new modules"
-/usr/bin/R -e "install.packages('shiny', repos='http://cran.rstudio.com/')"
+/usr/bin/R -e "install.packages(c('shiny', 'Quandl'), repos='http://cran.rstudio.com/')"
 
 echo "Installing new modules"
 for i in $R_PKGS ; do
