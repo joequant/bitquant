@@ -22,7 +22,7 @@ export CONFIG=${PATH_INFO#/}
 echo "<pre>"
 pushd $WEB_DIR > /dev/null
 if [ -e "config/$CONFIG" ] ; then
-for i in `find config/$CONFIG/* -type d` ; do sudo mkdir -p ${i#files} ;done
+for i in `find config/$CONFIG/* -type d` ; do sudo mkdir -p ${i#config/$CONFIG} ;done
 for i in `find config/$CONFIG/* -type f ! -iname "*~" ` 
 do TARGET=${i#config/$CONFIG}
 echo "copying to $TARGET"
