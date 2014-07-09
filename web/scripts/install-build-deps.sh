@@ -51,7 +51,8 @@ python-matplotlib \
 python-py4j \
 python-pyro4 \
 python-pytz \
-python-pip
+python-pip \
+python-devel
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
