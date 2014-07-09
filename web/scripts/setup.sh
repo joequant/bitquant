@@ -32,16 +32,7 @@ mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak
 fi
 popd > /dev/null
 
-pushd $WEB_DIR > /dev/null
-for i in `find files/* -type d` ; do mkdir -p ${i#files} ;done
-for i in `find files/* -type f ! -iname "*~" ` 
-do echo "copying to ${i#files}"
-cp $i ${i#files} 
-sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" ${i#files} 
-done
-popd > /dev/null
-
-chown -R apache:apache /var/lib/dokuwiki/pages
+$WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 
 systemctl daemon-reload
 systemctl enable httpd

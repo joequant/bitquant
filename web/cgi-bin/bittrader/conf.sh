@@ -28,7 +28,12 @@ do TARGET=${i#config/$CONFIG}
 echo "copying to $TARGET"
 sudo cp $i $TARGET
 sudo sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" $TARGET
-sudo chown -R apache:apache $TARGET
+if [ -e "config/user/$CONFIG" ] ; then
+OWNER=`cat config/user/$CONFIG | sed -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g"`
+echo "changing owner of $TARGET to $OWNER"
+sudo chown  $OWNER $TARGET
+fi
+
 done
 popd > /dev/null
 else

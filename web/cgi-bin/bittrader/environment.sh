@@ -1,4 +1,5 @@
 ME=`stat -c "%U" ${BASH_SOURCE[0]}`
+GROUP=`stat -c "%G" ${BASH_SOURCE[0]}`
 MY_HOME=$(eval echo ~$ME)
 # needed for building ethercalc
 USERPROFILE=$MY_HOME
