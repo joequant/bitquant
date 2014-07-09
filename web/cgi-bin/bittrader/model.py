@@ -109,6 +109,10 @@ def setup():
         return retval
     elif submit == "Unlock wiki":
         return subprocess.check_output(["./conf.sh", "/wiki-unlock"])
+    elif submit == "Lock httpd":
+        return subprocess.check_output(["./conf.sh", "/httpd-lock"])
+    elif submit == "Unlock httpd":
+        return subprocess.check_output(["./conf.sh", "/httpd-unlock"])
     else:
         return "unknown command"
 

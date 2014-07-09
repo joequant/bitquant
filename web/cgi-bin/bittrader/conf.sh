@@ -35,6 +35,10 @@ sudo chown  $OWNER $TARGET
 fi
 
 done
+if [ -e "config/exec/$CONFIG" ] ; then
+echo "executing config/exec/$CONFIG"
+. config/exec/$CONFIG
+fi
 popd > /dev/null
 else
 echo "Unknown config $CONFIG"
