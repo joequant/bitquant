@@ -47,10 +47,7 @@ pushd $SCRIPT_DIR > /dev/null
 cp $WEB_DIR/config/default-init/etc/sudoers.d/00_bitquant_sudo /etc/sudoers.d
 
 ./setup.sh $config
-pushd $WEB_DIR > /dev/null
-for i in `find vimage/* -type d` ; do mkdir -p ${i#vimage} ;done
-for i in `find vimage/* -type f` ; do cp $i ${i#vimage} ;done
-popd
+$WEB_DIR/cgi-bin/bittrader/conf.sh /vimage
 popd
 
 # Turn off sshd by default
