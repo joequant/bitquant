@@ -46,10 +46,4 @@ chown -R apache:apache /var/lib/dokuwiki/pages
 systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
-systemctl enable postgresql
-systemctl restart postgresql
-systemctl restart bitquant
-systemctl enable bitquant
-systemctl enable shiny-server
-systemctl restart shiny-server
 

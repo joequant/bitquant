@@ -53,6 +53,8 @@ sudo systemctl enable bitquant
 sudo systemctl start bitquant
 sudo systemctl enable shiny-server
 sudo systemctl start shiny-server
+systemctl enable postgresql
+systemctl restart postgresql
 touch $LOG_DIR/bootstrap.done
 echo "(done)"
 exec 1>&6
