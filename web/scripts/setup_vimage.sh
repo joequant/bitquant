@@ -42,6 +42,10 @@ echo "Copy configuration files"
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
+
+# bootstrap sudo
+cp $WEB_DIR/config/default-init/etc/sudoers.d/00_bitquant_sudo /etc/sudoers.d
+
 ./setup.sh $config
 pushd $WEB_DIR > /dev/null
 for i in `find vimage/* -type d` ; do mkdir -p ${i#vimage} ;done
