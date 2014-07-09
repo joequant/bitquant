@@ -52,10 +52,14 @@ python-py4j \
 python-pyro4 \
 python-pytz \
 python-pip \
-python-devel
+python-devel \
+readline-devel \
+lapack-devel
+
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
+#readline-devel, python-devel, lapack-devel are for Rpy
 
 # don't start up server
 sudo systemctl disable hsqldb
