@@ -39,8 +39,8 @@ $GIT_DIR/web/scripts/install-python-pkgs.sh
 
 #set wiki conf
 echo "Set up wiki"
-./wiki.sh /conf unlock
-./wiki.sh /init
+./conf.sh /wiki-unlock
+./conf.sh /wiki-init
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
 cp -r $GIT_DIR/web/home/ipython/* $MY_HOME/ipython

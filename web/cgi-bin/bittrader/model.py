@@ -101,14 +101,14 @@ def setup():
         password = request.values['password']
         salt = os.urandom(6).encode('base_64').strip()
         hashval = crypt.crypt(password, "$1$" + salt + "$")
-        retval = subprocess.check_output(["./wiki.sh", "/conf", "lock"]);
+        retval = subprocess.check_output(["./conf.sh", "/wiki-lock"]);
         retval += subprocess.check_output(["./wiki.sh", "/rmuser",
                                            user()])
         retval += subprocess.check_output(["./wiki.sh", "/adduser",
                                            user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
         return retval
     elif submit == "Unlock wiki":
-        return subprocess.check_output(["./wiki.sh", "/conf", "unlock"])
+        return subprocess.check_output(["./conf.sh", "/wiki-unlock"])
     else:
         return "unknown command"
 

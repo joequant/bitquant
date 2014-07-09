@@ -12,17 +12,7 @@ echo "Content-type: text/html"
 echo ""
 fi
 echo "<pre>"
-if [ "$PATH_INFO" == "/conf" ] ; then
-if [ $# -eq 2 ] ; then
-sudo cp $WEB_DIR/dokuwiki/conf/$2/* /etc/dokuwiki 2>&1
-sudo chown -R apache:apache /etc/dokuwiki/*.php 
-fi
-echo "Wiki switch to conf $2"
-elif [ "$PATH_INFO" == "/init" ] ; then
-sudo cp -r -f $WEB_DIR/dokuwiki/pages/* /var/lib/dokuwiki/pages
-sudo chown -R apache:apache /var/lib/dokuwiki/pages
-echo "Wiki page init"
-elif [ "$PATH_INFO" == "/rmuser" ] ; then 
+if [ "$PATH_INFO" == "/rmuser" ] ; then 
 if [ $# -eq 2 ] ; then
 grep -v "$2:" /etc/dokuwiki/users.auth.php > /tmp/users.auth.php
 sudo cp /tmp/users.auth.php /etc/dokuwiki/users.auth.php
