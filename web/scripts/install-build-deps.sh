@@ -50,7 +50,8 @@ dokuwiki-plugin-s5  \
 python-matplotlib \
 python-py4j \
 python-pyro4 \
-python-pytz
+python-pytz \
+python-pip
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython

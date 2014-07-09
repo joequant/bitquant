@@ -27,7 +27,7 @@
 # Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
 
 ## Installation and management of software
-Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme
+Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme, /bin/pip
 
 ## Misc functions needed for bitquant
 Cmnd_Alias MISC = /bin/mkdir, /bin/mv, /bin/cp, /bin/make, /bin/ln, /sbin/useradd, /bin/tee, /sbin/pwauth
