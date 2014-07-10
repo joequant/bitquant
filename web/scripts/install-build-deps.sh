@@ -54,7 +54,8 @@ python-pytz \
 python-pip \
 python-devel \
 readline-devel \
-lapack-devel
+lapack-devel \
+python-pandas
 
 
 #cmake is for building shiny-server
