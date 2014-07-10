@@ -44,8 +44,6 @@ pushd $SCRIPT_DIR > /dev/null
 . configcheck.sh
 
 # bootstrap sudo
-cp $WEB_DIR/config/default-init/etc/sudoers.d/00_bitquant_sudo /etc/sudoers.d
-
 ./setup.sh $config
 $WEB_DIR/cgi-bin/bittrader/conf.sh /vimage
 popd
