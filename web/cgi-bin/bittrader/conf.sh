@@ -5,6 +5,10 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $SCRIPT_DIR/environment.sh
 
+if [[ $UID -ne 0 ]]; then
+  SUDO=sudo
+fi
+
 if [ $# -ge 1 ] ; then
 export PATH_INFO=$1
 else
@@ -22,16 +26,16 @@ export CONFIG=${PATH_INFO#/}
 echo "<pre>"
 pushd $WEB_DIR > /dev/null
 if [ -e "config/$CONFIG" ] ; then
-for i in `find config/$CONFIG/* -type d` ; do sudo mkdir -p ${i#config/$CONFIG} ;done
+for i in `find config/$CONFIG/* -type d` ; do $SUDO mkdir -p ${i#config/$CONFIG} ;done
 for i in `find config/$CONFIG/* -type f ! -iname "*~" ` 
 do TARGET=${i#config/$CONFIG}
 echo "copying to $TARGET"
-sudo cp $i $TARGET
-sudo sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" $TARGET
+$SUDO cp $i $TARGET
+$SUDO sed -i -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g" $TARGET
 if [ -e "config/user/$CONFIG" ] ; then
 OWNER=`cat config/user/$CONFIG | sed -e "s/%USER%/$ME/g" -e "s/%GROUP%/$GROUP/g"`
 echo "changing owner of $TARGET to $OWNER"
-sudo chown  $OWNER $TARGET
+$SUDO chown  $OWNER $TARGET
 fi
 
 done
