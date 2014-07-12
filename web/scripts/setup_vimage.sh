@@ -48,8 +48,6 @@ pushd $SCRIPT_DIR > /dev/null
 $WEB_DIR/cgi-bin/bittrader/conf.sh /vimage
 popd
 
-# Turn off sshd by default
-systemctl disable sshd.service
 rm -rf /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
 
