@@ -9,5 +9,5 @@ else
 echo "No configuration found.  Please install bitquant.conf.example"
 fi
 
-sudo rsync --numeric-ids -avzH vdi $FUSER@$FHOST:~/bitstation
+sudo rsync --numeric-ids -avzH vdi1/* $FUSER@$FHOST:~/bitstation
 
