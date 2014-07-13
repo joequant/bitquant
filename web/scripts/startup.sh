@@ -42,7 +42,10 @@ fi
 if [ -f /usr/bin/ipython ] ; then
 echo "Restarting ipython"
 mkdir -p ~/ipython
-/usr/bin/ipython notebook --no-browser --NotebookApp.base_url=ipython --NotebookApp.webapp_settings="{'static_url_prefix':'/ipython/static/'}" --notebook-dir=~/ipython >> $LOG_DIR/ipython.log 2>&1 &
+# Override mathjax so that ipython will pull the a secure mathjax to avoid 
+# failures if ipython is pulled through https
+
+/usr/bin/ipython notebook --no-browser --NotebookApp.base_url=ipython --NotebookApp.webapp_settings="{'static_url_prefix':'/ipython/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython >> $LOG_DIR/ipython.log 2>&1 &
 fi
 
 
