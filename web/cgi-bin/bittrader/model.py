@@ -299,8 +299,19 @@ def get_dump_files():
     filenames = filter(lambda x: ".tar.xz" in x, filenames)
     return Response(json.dumps(filenames), mimetype='application/json')
 
-if __name__ == '__main__' and len(sys.argv) == 1:
-    from wsgiref.handlers import CGIHandler
-    CGIHandler().run(app)
-elif __name__ == '__main__' and sys.argv[1] == "refresh-scripts":
-    print refresh_scripts()
+@app.route("/sample-data")
+def sample_data():
+    proc = subprocess.Popen(['./sample-data.sh'],stdout=subprocess.PIPE)
+    def generate():
+        while True:
+          line = proc.stdout.readline()
+          if line != '':
+              #the real code does filtering here
+              yield line
+          else:
+              break
+    return Response(generate(), mimetype='text/plain')
+
+if __name__ == "__main__":
+    app.run()
+

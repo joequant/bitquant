@@ -22,13 +22,13 @@ width: 100%;
 <script>
 function check_log() {
    setTimeout(function() {
-       $("#log").attr("src", "/cgi-bin/bittrader/model.py/log/bootstrap");
+       $("#log").attr("src", "/model/log/bootstrap");
    }, 3000);
    bootstrap_running();
 }
 
 function run_bootstrap() {
-   $.get("/cgi-bin/bittrader/model.py/bootstrap", check_log);
+   $.get("/model/bootstrap", check_log);
 }
 var interval_id = -1;
 
@@ -40,7 +40,7 @@ function bootstrap_running() {
  }
 
 function check_installed() {
-   $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
+   $.getJSON("/model/version/bootstrap_status",
 	     function(data) {
      if (data['bootstrap_running']) {
        bootstrap_running();
@@ -55,7 +55,7 @@ function check_installed() {
  }
 
 function check_password() {
-$.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
+$.getJSON("/model/version/default_password",
 	  function(data) {
      if (data['default_password']) {
        $("#password-input").show();
@@ -69,14 +69,14 @@ $.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
 
 function set_timezone() {
    $('.timezone').html($('#timezone-template').html());
-   $.getJSON("/cgi-bin/bittrader/model.py/version/timezone",
+   $.getJSON("/model/version/timezone",
 	     function(data) {
      $(".timezone select").val(data['timezone']);
    });
  }
 
 
-$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
+$.getJSON("/model/version/bootstrap_status",
 	  function(data) {
    if (data["bootstrap_running"]) {
      $("#password-input").hide();
@@ -107,7 +107,7 @@ function scroll_log() {
 <div id="password-input" style="display:none">
 <h4>Password for user and root</h4>
 Warning: system is currently using default password 'cubswin:)'
-<form action='/cgi-bin/bittrader/model.py/passwd' target='log'
+<form action='/model/passwd' target='log'
       METHOD='POST'>
 Time zone: <span class="timezone"></span><br>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Password' size='8' /><br />
@@ -253,14 +253,14 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 <div class="bootstrap-yes" style="display:none">
 <a class="button primary large" href="index.html">Bittrader main
   page</a><br><br>
-<form action='/cgi-bin/bittrader/model.py/setup' target='log'
+<form action='/model/setup' target='log'
       METHOD='POST'>
 User Password: <input name='password' type='password' title='Please
 		 Enter Your Password' size='8' /><br>
 Time zone: <span class="timezone"></span><input type="submit"
 						    name="submit"
 						    value="Set time zone"><br>
-<a class="button small" href='/cgi-bin/bittrader/sample-data.sh' target='log'>Populate With Sample Data</a>
+<a class="button small" href='/model/sample-data' target='log'>Populate With Sample Data</a>
 <a class="button small" href='javascript:run_bootstrap()'>Restart installation</a>
 <a class="button small" href="log" target="_blank">View log files</a>
 <br><br>

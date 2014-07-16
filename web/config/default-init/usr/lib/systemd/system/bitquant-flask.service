@@ -1,0 +1,13 @@
+[Unit]
+Description=Bitquant flask server
+After=httpd.service
+
+[Service]
+Type=simple
+WorkingDirectory=/home/%USER%/git/bitquant/web/cgi-bin/bittrader
+User=%USER%
+Group=%GROUP%
+ExecStart=/home/%USER%/git/bitquant/web/cgi-bin/bittrader/model.py
+
+[Install]
+WantedBy=multi-user.target

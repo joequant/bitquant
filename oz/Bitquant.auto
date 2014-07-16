@@ -106,7 +106,7 @@ $o = {
                                'sudo', 'grub2',
                                'openssh-server',
 	   "cloud-init", "cloud-utils-growpart", "git",
-	   "apache", "apache-mod_suexec", 
+	   "apache",
 	   "apache-mod_proxy",
 	   "apache-mod_php",
 	   "apache-mod_authnz_external",

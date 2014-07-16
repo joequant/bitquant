@@ -57,7 +57,7 @@ init_all_clocks();
 
 function generate_data_dump() {
    $("#log_out").html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
+   $.post("/model/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
 

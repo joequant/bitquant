@@ -9,7 +9,7 @@
 <li><a href="/bittrader/setup.html">Bittrader setup page</a>
 </ul>
 <script>
-$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
+$.getJSON("/model/version/bootstrap_status",
 function(data) {
 if (!data["bootstrap_finished"]) {
     window.location.replace("/bittrader/setup.html");

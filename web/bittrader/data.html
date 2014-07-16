@@ -12,7 +12,7 @@
 <script>
 function generate_data_dump() {
    $("#log_out").contents().find('html').html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
+   $.post("/model/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
      $("#log_out").contents().find('html').html(data);
@@ -22,7 +22,7 @@ function generate_data_dump() {
 
 function generate_log_dump() {
    $("#log_out").contents().find('html').html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/generate-log-dump",
+   $.post("/model/generate-log-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
      $("#log_out").contents().find('html').html(data);
@@ -32,7 +32,7 @@ function generate_log_dump() {
 
 function clear_data_dump(file) {
    $("#log_out").contents().find('html').html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/clear-data-dump",
+   $.post("/model/clear-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
@@ -42,7 +42,7 @@ function clear_data_dump(file) {
 };
 function install_data_dump(file) {
    $("#log_out").contents().find('html').html("connecting...");
-   $.post("/cgi-bin/bittrader/model.py/install-data-dump",
+   $.post("/model/install-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
@@ -52,7 +52,7 @@ function install_data_dump(file) {
 };
 
 function refresh_file_list() {
-   $.getJSON("/cgi-bin/bittrader/model.py/get-dump-files",
+   $.getJSON("/model/get-dump-files",
 	     function(data) { display_file_list(data); });
 }
 
@@ -73,7 +73,7 @@ $(function() {
 </head>
 <body class="metro">
 <form id=upform
-      action="/cgi-bin/bittrader/model.py/upload-dump" method="POST"
+      action="/model/upload-dump" method="POST"
       enctype="multipart/form-data" target="log_out">
 User Password: <input id='dump_password'
 		      name='password' type='password' title='Please
