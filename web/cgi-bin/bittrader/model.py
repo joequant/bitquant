@@ -67,7 +67,7 @@ def passwd():
     timezone = request.form['timezone']
     if newpass1 != newpass2:
         return "passwords do not match"
-    return subprocess.check_output(["./timezone.sh", timezone]) + \
+    return subprocess.check_output([os.path.join(script_dir, "timezone.sh"), timezone]) + \
            login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
            login.chpasswd("root", request.form['newpass1']) + "\n"
 
@@ -78,41 +78,41 @@ def setup():
     submit = request.values['submit']
     if submit == "Startup servers":
         try:
-            return subprocess.check_output(["./servers.sh", "/on"])
+            return subprocess.check_output([os.path.join(script_dir, "servers.sh"), "/on"])
         except:
             return traceback.extract_stack()
     elif submit == "Shutdown servers":
         try:
-            return subprocess.check_output(["./servers.sh", "/off"])
+            return subprocess.check_output([os.path.join(script_dir, "servers.sh"), "/off"])
         except:
             return traceback.extract_stack()
     elif submit == "Set time zone":
         timezone = request.values['timezone']
-        return subprocess.check_output(["./timezone.sh", timezone])
+        return subprocess.check_output([os.path.join(script_dir, "timezone.sh"), timezone])
     elif submit == "Startup ssh":
-        return subprocess.check_output(["./sshd.sh", "/on"])
+        return subprocess.check_output([os.path.join(script_dir, "sshd.sh"), "/on"])
     elif submit == "Shutdown ssh":
-        return subprocess.check_output(["./sshd.sh", "/off"])
+        return subprocess.check_output([os.path.join(script_dir, "sshd.sh"), "/off"])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
     elif submit == "Remove local install":
-        return subprocess.check_output(["./clean-to-factory.sh"])
+        return subprocess.check_output([os.path.join(script_dir, "clean-to-factory.sh")])
     elif submit == "Lock wiki":
         password = request.values['password']
         salt = os.urandom(6).encode('base_64').strip()
         hashval = crypt.crypt(password, "$1$" + salt + "$")
-        retval = subprocess.check_output(["./conf.sh", "/wiki-lock"]);
-        retval += subprocess.check_output(["./wiki.sh", "/rmuser",
+        retval = subprocess.check_output([os.path.join(script_dir, "conf.sh"), "/wiki-lock"]);
+        retval += subprocess.check_output([os.path.join(script_dir, "wiki.sh"), "/rmuser",
                                            user()])
-        retval += subprocess.check_output(["./wiki.sh", "/adduser",
+        retval += subprocess.check_output([os.path.join(script_dir, "wiki.sh"), "/adduser",
                                            user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
         return retval
     elif submit == "Unlock wiki":
-        return subprocess.check_output(["./conf.sh", "/wiki-unlock"])
+        return subprocess.check_output([os.path.join(script_dir, "conf.sh"), "/wiki-unlock"])
     elif submit == "Lock httpd":
-        return subprocess.check_output(["./conf.sh", "/httpd-lock"])
+        return subprocess.check_output([os.path.join(script_dir, "conf.sh"), "/httpd-lock"])
     elif submit == "Unlock httpd":
-        return subprocess.check_output(["./conf.sh", "/httpd-unlock"])
+        return subprocess.check_output([os.path.join(script_dir, "conf.sh"), "/httpd-unlock"])
     else:
         return "unknown command"
 
@@ -176,7 +176,7 @@ def tail(f, n):
 
 @app.route("/bootstrap")
 def bootstrap():
-    os.system("./bootstrap.sh > /dev/null &")
+    os.system(os.path.join(script_dir, "bootstrap.sh > /dev/null &"))
     return "Bootstrap started"
 
 @app.route("/log/<tag>")
