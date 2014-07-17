@@ -5,9 +5,6 @@
 # would like to set -e, but this causes odd errors
 # set -e
 
-echo "Content-type: text/plain"
-echo ""
-
 TAG=init-data
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`stat -c "%U" ${BASH_SOURCE[0]}`
