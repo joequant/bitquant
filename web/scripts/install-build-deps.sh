@@ -9,7 +9,7 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 
 if grep -q Cauldron /etc/release  ; then 
-JAVA=java-1.8.0-openjdk
+JAVA=java-1.8.0-openjdk-devel
 fi
 
 set -e
