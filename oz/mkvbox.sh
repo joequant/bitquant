@@ -8,8 +8,10 @@ else
 file=~/.oz/images/Bitstation-mageia-cauldron-x86_64.vdi
 fi
 
+fileext=${file##*.}
+
 echo "Creating vm from $file"
-cp $file ~/.oz/images/bit1.vdi
+cp $file ~/.oz/images/bit1.$fileext
 
 VBoxManage hostonlyif create
 VBoxManage dhcpserver add --ifname vboxnet0 \
@@ -33,7 +35,7 @@ VBoxManage modifyvm  "Bitstation" --memory 2048 \
    --hostonlyadapter2 vboxnet0
 VBoxManage storagectl Bitstation --name "SATA Controller" --add sata --portcount 4
 VBoxManage storageattach Bitstation --storagectl "SATA Controller" \
-   --port 0 --device 0 --type hdd --medium ~/.oz/images/bit1.vdi
+   --port 0 --device 0 --type hdd --medium ~/.oz/images/bit1.$fileext
 #rm -f bitstation.ova
 #VBoxManage export Bitstation --output bitstation.ova \
 #   --vsys 0 \
