@@ -61,12 +61,15 @@ readline-devel \
 lapack-devel \
 python-pandas \
 python-zipline \
-$JAVA
+$JAVA \
+python-backports-ssl_match_hostname
 
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
 #readline-devel, python-devel, lapack-devel are for Rpy
+# python-backports-ssl_match_hostname is a require of python-urllib3 which
+#    is required by cloud-init
 
 # don't start up server
 sudo systemctl disable hsqldb
