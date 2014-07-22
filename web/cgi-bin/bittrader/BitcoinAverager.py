@@ -199,7 +199,7 @@ class Forex (object):
                 month = int(month)
                 day = int(day)
                 end_interval = TimeUtil.unix_epoch(tz.localize(datetime(year, month, day, 0, 0, 0)))
-                while epoch <= end_interval:
+                while epoch < end_interval:
                     rate[epoch] = prev_value
                     if epoch == epoch_list[-1]:
                         done = True
