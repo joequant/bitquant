@@ -48,8 +48,13 @@ def refresh_scripts():
     local_cgi_path = os.path.join(bitquant_root(),
                                   "web", "cgi-bin", "bittrader")
     for file in os.listdir(cgi_root()):
-        retval = retval + "removing old " + file + "\n"
-        os.remove(os.path.join(cgi_root(), file))
+        if file.endswith(".sh") \
+           or file.endswith(".py") \
+           or file.endswith(".pyc") \
+           or file.endswith("~") \
+           or file.endswith(".pyo"):
+            retval = retval + "removing old " + file + "\n"
+            os.remove(os.path.join(cgi_root(), file))
     for file in os.listdir(local_cgi_path):
         if file.endswith(".sh") or file.endswith(".py"):
             shutil.copy2(os.path.join(local_cgi_path, file), cgi_root())
