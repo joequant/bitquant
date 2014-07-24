@@ -62,7 +62,8 @@ lapack-devel \
 python-pandas \
 python-zipline \
 $JAVA \
-python-backports-ssl_match_hostname
+python-backports-ssl_match_hostname \
+python-tables
 
 
 #cmake is for building shiny-server
@@ -70,6 +71,10 @@ python-backports-ssl_match_hostname
 #readline-devel, python-devel, lapack-devel are for Rpy
 # python-backports-ssl_match_hostname is a require of python-urllib3 which
 #    is required by cloud-init
+
+# For ipython we including 
+# python-pandas
+# python-tables
 
 # don't start up server
 sudo systemctl disable hsqldb
