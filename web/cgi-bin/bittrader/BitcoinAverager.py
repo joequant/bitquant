@@ -20,6 +20,87 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+import tables
+import os
+import numpy as np
+import csv
+import logging
+import urllib
+
+class TickData(tables.IsDescription):
+    epoch = tables.Float64Col(pos=0)
+    price = tables.Float64Col(pos=1)
+    volume = tables.Float64Col(pos=2)
+    
+class CurrencyData(tables.IsDescription):
+    date = tables.StringCol(10,pos=0)
+    rate = tables.Float64Col(pos=1)
+    high = tables.Float64Col(pos=2)
+    low = tables.Float64Col(pos=3)
+
+
+class BitcoinDataLoader(object):
+    def __init__(self):
+        self.filename = "bitcoin.h5"
+    def init_file(self, keep_existing=True):
+        if os.path.isfile(self.filename):
+            if keep_existing:
+                return
+            os.remove(self.filename)
+        with tables.open_file(self.filename,mode="w") as h5file:
+            self.tick_data = h5file.create_group("/", "tick_data")
+            self.currency_data = h5file.create_group("/", "currency_data")
+    def openfile(self):
+        return tables.open_file(self.filename, mode="a")
+    def download_tick_data(self, exchange):  
+        local_cache = exchange + ".csv.gz"
+        if not os.path.isfile(local_cache):
+            logging.info("retrieving %s" % exchange)
+            testfile = urllib.URLopener()
+            testfile.retrieve("http://api.bitcoincharts.com/v1/csv/" +
+                local_cache,  local_cache)
+        logging.info("done retrieving")
+    def download_currency_data(self, currency):
+        local_cache = currency + ".csv"
+        if not os.path.isfile(local_cache):
+            logging.info("retrieving %s" % currency)
+            testfile = urllib.URLopener()
+            testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % local_cache, 
+                          local_cache)
+        logging.info("done retrieving")
+    def read_csv(self, table, csv_reader):
+        bsize = 5000
+        rows = []
+        for i, row in enumerate(csv_reader):
+            rows.append(tuple(row))
+            if ((i+1) % bsize) == 0:
+                table.append(rows)
+                rows = []
+        if rows:
+            table.append(rows)  
+    def load_tick_data(self, exchange_list):
+        import gzip
+        with tables.open_file(self.filename, mode="a") as h5file:
+            for e in exchange_list:
+                self.download_tick_data(e)
+                tick_table = h5file.create_table("/tick_data", e, TickData)
+                with gzip.open(e + ".csv.gz", "r") as csv_file:
+                    csv_reader = csv.reader(csv_file)
+                    self.read_csv(tick_table, csv_reader)
+                tick_table.cols.epoch.create_index()
+    def load_currency_data(self, currency_list):
+        with tables.open_file("bitcoin.h5", mode="a") as h5file:
+            for c in currency_list:
+                self.download_currency_data(c)
+                currency_table = h5file.create_table("/currency_data", c, CurrencyData)
+                with open(c + ".csv", "r") as csv_file:
+                    csv_reader = csv.reader(csv_file)
+                    csv_reader.next()
+                    self.read_csv(currency_table, csv_reader)
+                    
+data_loader = BitcoinDataLoader()
+data_loader.init_file()
+
 import os
 import logging
 class TimeUtil(object):
@@ -50,73 +131,53 @@ class TimeUtil(object):
 
     
 class BitcoinAverager(object):
+    loader = BitcoinDataLoader()
     def __init__(self, exchange):
         self.exchange = exchange
         self.local_cache = exchange + ".csv"
         self.data = None
-        self.retrieve_data()
-    def retrieve_data(self):
-        if not os.path.isfile(self.local_cache):
-            logging.info("data not cached - downloading")
-            self.download_data()
-    def download_data(self):
-        import urllib
-        import subprocess
-        import gzip
-        import os
-        if not os.path.isfile(self.local_cache):
-            logging.info("retrieving %s" % self.exchange)
-            testfile = urllib.URLopener()
-            testfile.retrieve("http://api.bitcoincharts.com/v1/csv/" +
-                 self.exchange + ".csv.gz", 
-                          self.local_cache + ".gz")
-            with gzip.open(self.local_cache + ".gz", 'rb') as orig_file:
-                with open(self.local_cache, 'wb') as new_file:
-                    new_file.writelines(orig_file)
-                os.remove(self.local_cache + ".gz")
-        logging.info("done retrieving")
+        self.loader.download_tick_data(exchange)
     def clear_cache(self):
         import os
         os.remove(self.local_cache)
-    def create_table(self):
-        import gzip
-        import pandas as pd
-        u_cols = ['timestamp', 'value', 'amount']
-        with open(self.local_cache) as fp:
-            return pd.read_csv(fp, names=u_cols)
     def select(self, start_epoch, end_epoch):
         import pandas as pd
         u_cols = ['timestamp', 'price', 'volume']
         time_list = []
-        value_list = []
+        price_list = []
         volume_list = []
-        with open(self.local_cache) as fp:
-            for line in fp:
-                (timestamp, value, volume) = line.strip().split(",")
-                timestamp = float(timestamp)
-                value = float(value)
-                volume = float(volume)
+        with self.loader.openfile() as h5file:
+            node = h5file.get_node("/tick_data", self.exchange)
+            for line in node.where("(epoch >= %lf) & (epoch < %lf)" % (start_epoch, end_epoch)):
+                timestamp = line['epoch']
+                price = line['price']
+                volume = line['volume']
                 if timestamp >= end_epoch:
                     break
                 if timestamp >= start_epoch:
                     time_list.append(timestamp)
-                    value_list.append(value)
+                    price_list.append(price)
                     volume_list.append(volume)
-        return pd.DataFrame({"price" : value_list, "volume": volume_list},
+        return pd.DataFrame({"price" : price_list, "volume": volume_list},
                             index = time_list)
     def weighted_average(self, epoch_list, index=None):
         import pandas as pd
         epoch_iter = iter(epoch_list)
         start_epoch = None
         end_epoch = next(epoch_iter)
-        sum_value = {}
+        sum_price = {}
         sum_volume = {}
         sum_trades = {}
         done = False
-        with open(self.local_cache) as fp:
-            for line in fp:
-                (timestamp, value, volume) = line.strip().split(",")
-                timestamp = float(timestamp)
+        sum_price[end_epoch] = 0.0
+        sum_volume[end_epoch] = 0.0
+        sum_trades[end_epoch] = 0
+        with self.loader.openfile() as h5file:
+            node = h5file.get_node("/tick_data", self.exchange)
+            for line in node.where("(epoch >= %lf) & (epoch <= %lf)" % (epoch_list[0], epoch_list[-1])):
+                timestamp = line['epoch']
+                price = line['price']
+                volume = line['volume']
                 while timestamp >= end_epoch:
                     if end_epoch == epoch_list[-1]:
                         done = True
@@ -126,23 +187,28 @@ class BitcoinAverager(object):
                     if e < start_epoch:
                         raise RuntimeError
                     end_epoch = e
-                    sum_value[end_epoch] = 0.0
+                    sum_price[end_epoch] = 0.0
                     sum_volume[end_epoch] = 0.0
                     sum_trades[end_epoch] = 0
                 if done:
                     break
                 if start_epoch != None:
-                   sum_value[end_epoch] += float(value) * float(volume)
-                   sum_volume[end_epoch] += float(volume)
+                   sum_price[end_epoch] += price * volume
+                   sum_volume[end_epoch] += volume
                    sum_trades[end_epoch] += 1
         average_list = []
         volume_list = []
         trade_list = []
         for i in epoch_list[1:]:
+           if i not in sum_trades:
+                average_list.append(None)
+                volume_list.append(0)
+                trade_list.append(0)
+                continue
            if sum_trades[i] == 0:
                average_list.append(None)
            else:
-               average_list.append(sum_value[i]/sum_volume[i])
+               average_list.append(sum_price[i]/sum_volume[i])
            volume_list.append(sum_volume[i])
            trade_list.append(sum_trades[i])
         if index is None:
@@ -154,27 +220,12 @@ class BitcoinAverager(object):
         return self.weighted_average(epochs, dates)
 
 class Forex (object):
+    loader = BitcoinDataLoader()
     def __init__(self, exchange):
         self.exchange = exchange
-        self.local_cache = exchange + ".csv"
         self.data = None
-        self.retrieve_data()
+        self.loader.download_currency_data(exchange)
         self.tz = "Europe/London"
-    def retrieve_data(self):
-        if not os.path.isfile(self.local_cache):
-            logging.info("data not cached - downloading")
-            self.download_data()
-    def download_data(self):
-        import urllib
-        import subprocess
-        if not os.path.isfile(self.local_cache):
-            logging.info("retrieving %s" % self.exchange)
-            testfile = urllib.URLopener()
-            testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % self.local_cache, 
-                          self.local_cache)
-        logging.info("done retrieving")
-    def delete_cache(self):
-        os.remove(self.local_cache)
 # The methodology for this system is to assign to the interval
 # the most recent exchange rate.
     def rates(self, epoch_list, index=None):
@@ -188,12 +239,12 @@ class Forex (object):
         prev_value = None
         value = None
         done = False
-        with open(self.local_cache) as fp:
-            fp.readline() # skip header
+        with self.loader.openfile() as h5file:
+            fp = h5file.get_node("/currency_data", self.exchange)
             for line in fp:
                 prev_value = value
-                (datestamp, value, high, low) = line.strip().split(",")
-                value = float(value)
+                datestamp = line['date']
+                value = line['rate']
                 (year, month, day) = datestamp.split("-")
                 year = int(year)
                 month = int(month)
@@ -224,21 +275,22 @@ class PriceCompositor(object):
         if exchange_list != None:
             self.exchange_list = exchange_list
         else:
-            self.exchange_list = {
-        "USD" : ["bitfinex", "bitstamp", "itbit"],
-        "EUR" : ["itbit", "kraken"],
-        "SGD" : ["itbit"],
-        "HKD" : ["anxhk"]
-        }
+            self.exchange_list = ['bitfinexUSD', 'bitstampUSD', 'itbitUSD', 'itbitEUR', 'krakenEUR', 'itbitSGD', 'anxhkHKD']
+        self.exchange_dict = {}
+        for e in self.exchange_list:
+            currency = e[-3:]
+            if not currency in self.exchange_dict:
+                self.exchange_dict[currency] = []
+            self.exchange_dict[currency].append(e[:-3])
         self.base_currency = base_currency
-        self.currencies = self.exchange_list.keys()
+        self.currencies = self.exchange_dict.keys()
         self.currency_cols = []
         self.exchange_cols = []
         for i in self.currencies:
             self.currency_cols.append(i + "_price")
             self.currency_cols.append(i + "_volume")
             self.currency_cols.append(i + "_trade")
-            for j in self.exchange_list[i]:
+            for j in self.exchange_dict[i]:
                 self.exchange_cols.append(j + i)
         self.forex_list = [ self.base_currency + i for i in self.currencies]
         self.averager = {}
@@ -260,15 +312,14 @@ class PriceCompositor(object):
         return self.composite_all(self.currency_table(start, period, intervals))[0]
     def composite_by_exchange(self, avg):
         import pandas
-
         df = pandas.DataFrame(columns=self.currency_cols)
         avg1 = avg.fillna(0.0)
         for i in self.currencies:
-            price_key = [ j + i + "_price" for j in self.exchange_list[i]]
-            volume_key = [ j + i + "_volume" for j in self.exchange_list[i]]
-            trade_key = [ j + i + "_trade" for j in self.exchange_list[i]]
+            price_key = [ j + i + "_price" for j in self.exchange_dict[i]]
+            volume_key = [ j + i + "_volume" for j in self.exchange_dict[i]]
+            trade_key = [ j + i + "_trade" for j in self.exchange_dict[i]]
             map_dict = {}
-            for j in self.exchange_list[i]:
+            for j in self.exchange_dict[i]:
                 map_dict[j + i + "_volume"] = j + i + "_price"
             df[i + "_volume"] = avg1[volume_key].sum(axis=1)
             df[i + "_trade"] = avg1[trade_key].sum(axis=1)
