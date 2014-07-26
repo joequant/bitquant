@@ -44,7 +44,7 @@ import dateutil
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
 from BitcoinAverager import PriceCompositor
-compositor = PriceCompositor()
+
 
 app = Flask(__name__)
 
@@ -68,7 +68,8 @@ Time interval: <input name=interval_length value="3" size=3>
 <option value="minute">minute(s)</option>
 <option value="second">second(s)</option>
 </select><br>
-Intervals: <input name=intervals value="20" size=3>
+Intervals: <input name=intervals value="20" size=3><br>
+Exchanges: <input name=exchanges value="bitfinexUSD,bitstampUSD,itbitUSD,itbitEUR,krakenEUR,itbitSGD,anxhkHKD">
 <p>
 Include:
 <input type="checkbox" name="time_table" value="True">Time/Epoch information
@@ -100,6 +101,7 @@ def generate_data():
     interval_length = int(request.form['interval_length'])
     interval_type = request.form['interval_type']
     intervals = int(request.form['intervals'])
+    exchanges = request.form['exchanges']
 
     time_table = (request.form.get('time_table', '') == 'True')
     currency_table = (request.form.get('currency_table', '') == 'True')
@@ -129,7 +131,7 @@ def generate_data():
         time_delta = dateutil.relativedelta.relativedelta(seconds=interval_length)
     else:
         return "invalid interval_type"
-
+    compositor = PriceCompositor(exchanges.split(","))
     table = compositor.generate(start_date,
                                 time_delta,
                                 intervals,
