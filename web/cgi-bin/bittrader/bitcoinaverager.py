@@ -40,6 +40,10 @@ import datetime
 import time
 import pytz
 import dateutil
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
@@ -73,9 +77,10 @@ Exchanges: <input name=exchanges value="bitfinexUSD,bitstampUSD,itbitUSD,itbitEU
 <p>
 Include:
 <input type="checkbox" name="time_table" value="True">Time/Epoch information
-<input type="checkbox" name="currency_table" value="True">Breakdown by currency
+<input type="checkbox" name="currency_table" value="True">Itemize by currency
 <input type="checkbox" name="conversion_table" value="True">Currency conversion
-<input type="checkbox" name="exchange_table" value="True">Exchange breakdown
+<input type="checkbox" name="exchange_table" value="True">Itemize by exchange
+<input type="checkbox" name="converted_prices" value="True">Itemize converted prices
 <br>
 Format: <select name="format">
 <option value="text/html">HTML</option>
@@ -83,6 +88,10 @@ Format: <select name="format">
 <option value="text/json">JSON</option>
 </select>
 <p>
+<input type="checkbox" name="table" value="True">Table<br>
+<input type="checkbox" name="plot" value="True">Plot<br>
+Price plot fields (comma_separated): <input name="price_plot_fields" value="price"><br>
+Volume plot fields (comma separated): <input name="volume_plot_fields" value="volume"><br>
 <input type="submit" />
 </form>
 """
@@ -107,6 +116,11 @@ def generate_data():
     currency_table = (request.form.get('currency_table', '') == 'True')
     conversion_table = (request.form.get('conversion_table', '') == 'True')
     exchange_table = (request.form.get('exchange_table', '') == 'True')
+    converted_prices = (request.form.get('converted_prices', '') == 'True')
+    show_table = (request.form.get('table', '') == 'True')
+    plot = (request.form.get('plot', '') == 'True')
+    price_plot_fields = request.form.get('price_plot_fields', '')
+    volume_plot_fields = request.form.get('volume_plot_fields', '')
 
     format = request.form.get('format', "text/html")
     local_tz = pytz.timezone(time_zone)
@@ -131,6 +145,7 @@ def generate_data():
         time_delta = dateutil.relativedelta.relativedelta(seconds=interval_length)
     else:
         return "invalid interval_type"
+
     compositor = PriceCompositor(exchanges.split(","))
     table = compositor.generate(start_date,
                                 time_delta,
@@ -138,10 +153,24 @@ def generate_data():
                                 times=time_table,
                                 currency=currency_table,
                                 exchange=exchange_table,
-                                rates=conversion_table)
+                                rates=conversion_table,
+                                converted_prices=converted_prices)
     output = cStringIO.StringIO()
     if format == "text/html":
-        table.to_html(output)
+        if show_table:
+            table.to_html(output)
+        if plot:
+            sio = cStringIO.StringIO()
+            plt.figure(figsize=(6, 6))
+            ax1 = plt.subplot2grid((8,1), (0,0), rowspan=7)
+            ax2 = plt.subplot2grid((8,1), (7,0))
+            ax1.xaxis.set_ticklabels([])
+            table[[x.strip() for x in price_plot_fields.split(",")]].plot(ax=ax1)
+            table[[x.strip() for x in volume_plot_fields.split(",")]].plot(ax=ax2)
+            plt.savefig(sio,format='png')
+            output.write('<img src="data:image/png;base64,%s"/>' % \
+                         sio.getvalue().encode("base64").strip())
+            sio.close()
     elif format == "text/csv":
         table.to_csv(output)
     elif format == "text/json":

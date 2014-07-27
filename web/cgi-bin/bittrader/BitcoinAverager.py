@@ -82,22 +82,26 @@ class BitcoinDataLoader(object):
         import gzip
         with tables.open_file(self.filename, mode="a") as h5file:
             for e in exchange_list:
-                self.download_tick_data(e)
-                tick_table = h5file.create_table("/tick_data", e, TickData)
-                with gzip.open(e + ".csv.gz", "r") as csv_file:
-                    csv_reader = csv.reader(csv_file)
-                    self.read_csv(tick_table, csv_reader)
-                tick_table.cols.epoch.create_index()
+                if not os.path.isfile(e + ".csv.gz"):
+                    self.download_tick_data(e)
+                    tick_table = h5file.create_table("/tick_data",
+                                                     e, TickData)
+                    with gzip.open(e + ".csv.gz", "r") as csv_file:
+                        csv_reader = csv.reader(csv_file)
+                        self.read_csv(tick_table, csv_reader)
+                    tick_table.cols.epoch.create_index()
     def load_currency_data(self, currency_list):
         with tables.open_file("bitcoin.h5", mode="a") as h5file:
             for c in currency_list:
-                self.download_currency_data(c)
-                currency_table = h5file.create_table("/currency_data", c, CurrencyData)
-                with open(c + ".csv", "r") as csv_file:
-                    csv_reader = csv.reader(csv_file)
-                    csv_reader.next()
-                    self.read_csv(currency_table, csv_reader)
-                    
+                if not os.path.isfile(c + ".csv"):
+                    self.download_currency_data(c)
+                    currency_table = h5file.create_table("/currency_data",
+                                                         c, CurrencyData)
+                    with open(c + ".csv", "r") as csv_file:
+                        csv_reader = csv.reader(csv_file)
+                        csv_reader.next()
+                        self.read_csv(currency_table, csv_reader)
+
 data_loader = BitcoinDataLoader()
 data_loader.init_file()
 
@@ -136,7 +140,7 @@ class BitcoinAverager(object):
         self.exchange = exchange
         self.local_cache = exchange + ".csv"
         self.data = None
-        self.loader.download_tick_data(exchange)
+        self.loader.load_tick_data([exchange])
     def clear_cache(self):
         import os
         os.remove(self.local_cache)
@@ -224,7 +228,7 @@ class Forex (object):
     def __init__(self, exchange):
         self.exchange = exchange
         self.data = None
-        self.loader.download_currency_data(exchange)
+        self.loader.load_currency_data([exchange])
         self.tz = "Europe/London"
 # The methodology for this system is to assign to the interval
 # the most recent exchange rate.
@@ -332,6 +336,7 @@ class PriceCompositor(object):
         for f in self.forex_list:
             conversion_table = conversion_table.join(self.forex[f].rates(epochs, df.index).rename(columns={"rates": f}))
         df1 = df.join(conversion_table)
+
         composite = pandas.DataFrame(columns=["price", "volume", "trade"])
         price_key = [i + "_price" for i in self.currencies]
         volume_key = [i + "_volume" for i in self.currencies]
@@ -340,15 +345,22 @@ class PriceCompositor(object):
 
         dict_map = {}
         dict1_map = {}
+        dict2_map = {}
         for i in self.currencies:
             dict_map[self.base_currency + i] = i + "_price"
             dict1_map[i + "_volume"] = i  + "_price"
+            dict2_map[i + "_price"] = self.base_currency + i + "_price"
+
+        converted_price_table = \
+                              (df1[price_key] / df1[currency_key].rename(columns=dict_map)).rename(columns=dict2_map)
         composite["volume"] = df1[volume_key].sum(axis=1)
         composite["trade"] = df1[trade_key].sum(axis=1)
         composite['price'] = (df1[price_key] / df1[currency_key].rename(columns=dict_map) * \
                               df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
-        return (composite, conversion_table)
-    def generate(self, start, period, intervals, times=False, currency=False, exchange=False, rates=False):
+        return (composite, conversion_table, converted_price_table)
+    def generate(self, start, period, intervals, times=False,
+                 currency=False, exchange=False, rates=False,
+                 converted_prices=False):
         """Generate pytable with composite bitcoin information
 @param start - date to start table
 @param period - time delta to iterate over
@@ -356,10 +368,11 @@ class PriceCompositor(object):
 @param times - add time related columns
 @param currency - add currency related columns
 @param exchange - add exchange related columns
+@param converted_prices - add converted prices
 """
         exchange_table = self.exchange_table(start, period, intervals)
         currency_table = self.composite_by_exchange(exchange_table)
-        (composite_table, conversion_table) = self.composite_all(currency_table)
+        (composite_table, conversion_table, converted_price_table) = self.composite_all(currency_table)
         if times:        
             time_table = TimeUtil.time_table(start, period, intervals)
             composite_table = composite_table.join(time_table)
@@ -369,4 +382,6 @@ class PriceCompositor(object):
             composite_table = composite_table.join(conversion_table)
         if exchange:
             composite_table = composite_table.join(exchange_table)
+        if converted_prices:
+            composite_table = composite_table.join(converted_price_table)
         return composite_table
