@@ -63,7 +63,8 @@ python-pandas \
 python-zipline \
 $JAVA \
 python-backports-ssl_match_hostname \
-python-tables
+python-tables \
+python-scipy
 
 
 #cmake is for building shiny-server
@@ -75,6 +76,7 @@ python-tables
 # For ipython we including 
 # python-pandas
 # python-tables
+# python-scipy
 
 # don't start up server
 sudo systemctl disable hsqldb
