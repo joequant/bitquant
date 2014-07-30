@@ -64,7 +64,8 @@ python-zipline \
 $JAVA \
 python-backports-ssl_match_hostname \
 python-tables \
-python-scipy
+python-scipy \
+curl-devel
 
 
 #cmake is for building shiny-server
@@ -77,6 +78,8 @@ python-scipy
 # python-pandas
 # python-tables
 # python-scipy
+
+# curl-devel is needed for Rcurl
 
 # don't start up server
 sudo systemctl disable hsqldb
