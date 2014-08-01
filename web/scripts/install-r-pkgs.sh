@@ -4,7 +4,7 @@
 echo "Running r installation"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`stat -c "%U" $SCRIPT_DIR/install-r-pkgs.sh`
-R_PKGS="bitops caTools digest htmltools httpuv Rcpp RJSONIO xtable shiny"
+R_PKGS="bitops caTools devtools digest evaluate formatR highr jsonlite knitr htmltools httpuv memoise mime Rcpp RJSONIO rmarkdown stringr testthat whisker xtable shiny yaml"
 
 pushd $SCRIPT_DIR > /dev/null
 . norootcheck.sh
@@ -25,7 +25,8 @@ for i in $R_PKGS ; do
   sudo mv /usr/$LIBDIR/R/library/$i /home/$ME/attic/$$ 
 done
 echo "Generating new modules"
-/usr/bin/R -e "install.packages(c('shiny', 'Quandl', 'knitr'), repos='http://cran.rstudio.com/')"
+/usr/bin/R -e "install.packages(c('shiny', 'Quandl', 'knitr', 'devtools', 'yaml'), repos='http://cran.rstudio.com/')"
+/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.rstudio.com/")); library(devtools) ; devtools::install_github("rstudio/rmarkdown")'
 
 echo "Installing new modules"
 for i in $R_PKGS ; do
@@ -35,7 +36,7 @@ popd > /dev/null
 
 echo "Installing shiny server"
 sudo make -C /home/$ME/git/shiny-server install
-sudo ln -s  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
+sudo ln -s -f  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
 #Create shiny user. On some systems, you may need to specify the full path to 'useradd'
 sudo useradd -r shiny -s /bin/false -M
 
