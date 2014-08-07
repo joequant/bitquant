@@ -23,7 +23,7 @@ fi
 if [ -d $GIT_DIR/ethercalc ] ; then
 pushd $GIT_DIR/ethercalc > /dev/null
 echo "Restarting ethercalc"
-ETHERCALC_ARGS="--basepath /calc/" make >> $LOG_DIR/ethercalc.log 2>&1 &
+ETHERCALC_ARGS="--basepath /calc/ --port 8001" make >> $LOG_DIR/ethercalc.log 2>&1 &
 popd > /dev/null
 fi
 

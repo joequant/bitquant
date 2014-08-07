@@ -7,7 +7,7 @@ cd $SCRIPT_DIR
 #ipython notebook &
 
 killall ServiceRunner
-killall java
+killall java-abrt
 killall node
 killall ipython
 

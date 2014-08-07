@@ -65,7 +65,8 @@ $JAVA \
 python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
-curl-devel
+curl-devel \
+ajenti
 
 
 #cmake is for building shiny-server

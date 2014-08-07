@@ -52,12 +52,7 @@ mkdir -p $MY_HOME/R
 cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
 
 echo "Starting up servers"
-sudo systemctl enable bitquant
-sudo systemctl start bitquant
-sudo systemctl enable shiny-server
-sudo systemctl start shiny-server
-sudo systemctl enable postgresql
-sudo systemctl restart postgresql
+$SCRIPT_DIR/servers.sh /on
 touch $LOG_DIR/bootstrap.done
 echo "(done)"
 exec 1>&6
