@@ -1,3 +1,8 @@
+# -*- coding: utf-8 -*-
+# <nbformat>3.0</nbformat>
+
+# <codecell>
+
 # Copyright (c) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
 # Permission is hereby granted, free of charge, to any person
@@ -19,6 +24,8 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+# <codecell>
 
 import tables
 import os
@@ -52,6 +59,9 @@ class BitcoinDataLoader(object):
             self.currency_data = h5file.create_group("/", "currency_data")
     def openfile(self):
         return tables.open_file(self.filename, mode="a")
+    def filedata(self):
+        with self.openfile() as f:
+            print f
     def download_tick_data(self, exchange):  
         local_cache = exchange + ".csv.gz"
         if not os.path.isfile(local_cache):
@@ -65,13 +75,28 @@ class BitcoinDataLoader(object):
         if not os.path.isfile(local_cache):
             logging.info("retrieving %s" % currency)
             testfile = urllib.URLopener()
-            testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % local_cache, 
-                          local_cache)
+            if currency == "USDCNY":
+                testfile.retrieve("http://www.quandl.com/api/v1/datasets/FRED/DEXCHUS.csv?trim_start=2000-01-01&sort_order=asc", 
+                              local_cache)
+            else:
+                testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % local_cache, 
+                              local_cache)
         logging.info("done retrieving")
-    def read_csv(self, table, csv_reader):
+    def read_csv(self, table, csv_reader, fields):
         bsize = 5000
         rows = []
         for i, row in enumerate(csv_reader):
+            if len(row) < fields:
+                row.extend([0.0] * (fields-len(row)))
+            all_floats = True
+            for j in row[1:]:
+                try:
+                    float(j)
+                except ValueError:
+                    all_floats = False
+                    break
+            if not all_floats:
+                continue
             rows.append(tuple(row))
             if ((i+1) % bsize) == 0:
                 table.append(rows)
@@ -84,26 +109,31 @@ class BitcoinDataLoader(object):
             for e in exchange_list:
                 if not os.path.isfile(e + ".csv.gz"):
                     self.download_tick_data(e)
-                    tick_table = h5file.create_table("/tick_data",
-                                                     e, TickData)
+                    if hasattr(h5file.root.tick_data, e):
+                        h5file.remove_node("/tick_data", e)
+                    tick_table = h5file.create_table("/tick_data", e, TickData)
                     with gzip.open(e + ".csv.gz", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
-                        self.read_csv(tick_table, csv_reader)
+                        self.read_csv(tick_table, csv_reader, 3)
                     tick_table.cols.epoch.create_index()
     def load_currency_data(self, currency_list):
         with tables.open_file("bitcoin.h5", mode="a") as h5file:
             for c in currency_list:
                 if not os.path.isfile(c + ".csv"):
                     self.download_currency_data(c)
-                    currency_table = h5file.create_table("/currency_data",
-                                                         c, CurrencyData)
+                    if hasattr(h5file.root.currency_data, c):
+                        h5file.remove_node("/currency_data", c)
+                    currency_table = h5file.create_table("/currency_data", c, CurrencyData)
                     with open(c + ".csv", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         csv_reader.next()
-                        self.read_csv(currency_table, csv_reader)
-
+                        self.read_csv(currency_table, csv_reader, 4)
+                    
 data_loader = BitcoinDataLoader()
 data_loader.init_file()
+
+# <codecell>
+
 
 import os
 import logging
@@ -133,19 +163,34 @@ class TimeUtil(object):
                                 columns=['start_epoch', 'end_epoch', 'start_date', 'end_date'],
                                 index=data['end_date'])
 
-    
-class BitcoinAverager(object):
+import pandas as pd    
+class DataLoaderClient(object):
     loader = BitcoinDataLoader()
-    def __init__(self, exchange):
-        self.exchange = exchange
-        self.local_cache = exchange + ".csv"
-        self.data = None
-        self.loader.load_tick_data([exchange])
+    def reload(self):
+        self.clear_cache()
+        self.load_data()
     def clear_cache(self):
         import os
-        os.remove(self.local_cache)
+        if os.path.isfile(self.local_cache):
+            os.remove(self.local_cache)
+    def load_data(self):
+        raise NotImplementedError
+
+class BitcoinAverager(DataLoaderClient):
+    def __init__(self, exchange):
+        self.exchange = exchange
+        self.local_cache = exchange + ".csv.gz"
+        self.load_data()
+    def load_data(self):
+        self.loader.load_tick_data([self.exchange])
+    def index_range(self):
+        with self.loader.openfile() as h5file:
+            node = h5file.get_node("/tick_data", self.exchange)
+            first_line = node[0]
+            last_line = node[-1]
+            rows = len(node)
+        return [first_line['epoch'], last_line['epoch'], rows] 
     def select(self, start_epoch, end_epoch):
-        import pandas as pd
         u_cols = ['timestamp', 'price', 'volume']
         time_list = []
         price_list = []
@@ -165,7 +210,6 @@ class BitcoinAverager(object):
         return pd.DataFrame({"price" : price_list, "volume": volume_list},
                             index = time_list)
     def weighted_average(self, epoch_list, index=None):
-        import pandas as pd
         epoch_iter = iter(epoch_list)
         start_epoch = None
         end_epoch = next(epoch_iter)
@@ -206,7 +250,7 @@ class BitcoinAverager(object):
         for i in epoch_list[1:]:
            if i not in sum_trades:
                 average_list.append(None)
-                volume_list.append(0)
+                volume_list.append(0.0)
                 trade_list.append(0)
                 continue
            if sum_trades[i] == 0:
@@ -217,25 +261,36 @@ class BitcoinAverager(object):
            trade_list.append(sum_trades[i])
         if index is None:
             index=epoch_list
-        return pd.DataFrame({"price" : average_list, "volume" : volume_list, "trade" : trade_list}, index=index[1:])
+        df = pd.DataFrame({"price" : average_list, "volume" : volume_list, "trade" : trade_list}, index=index[1:])
+        df['price'] = df['price'].astype('float32')  # Force None to NaN's
+        return df
     def intervals(self, start, interval, nintervals):
         dates = TimeUtil.dates(start, interval, nintervals)
         epochs = TimeUtil.epochs(start, interval, nintervals)
         return self.weighted_average(epochs, dates)
 
-class Forex (object):
-    loader = BitcoinDataLoader()
-    def __init__(self, exchange):
+class Forex (DataLoaderClient):
+    def __init__(self, exchange,tz="Europe/London"):
         self.exchange = exchange
-        self.data = None
-        self.loader.load_currency_data([exchange])
-        self.tz = "Europe/London"
+        self.tz = tz
+        if self.exchange[:3] == self.exchange[-3:]:
+            self.local_cache = None
+        self.local_cache = exchange + ".csv"
+        self.load_data()
 # The methodology for this system is to assign to the interval
 # the most recent exchange rate.
+    def load_data(self):
+        if self.exchange[:3] != self.exchange[-3:]:
+            self.loader.load_currency_data([self.exchange])
     def rates(self, epoch_list, index=None):
         import pandas as pd
         import pytz
         from datetime import datetime, timedelta
+        if self.exchange[:3] == self.exchange[-3:]:
+            rate_list = [ 1.0 for i in epoch_list ]
+            if index is None:
+                index=epoch_list
+            return pd.DataFrame({"rates" : rate_list}, index=index)     
         tz = pytz.timezone(self.tz)
         epoch_iter = iter(epoch_list)
         epoch = next(epoch_iter)
@@ -265,7 +320,7 @@ class Forex (object):
                     epoch = e
                 if done:
                     break
-        rate_list = [ rate[i] for i in epoch_list ]
+        rate_list = [ (rate[i] if i in rate else None) for i in epoch_list ]
         if index is None:
             index=epoch_list
         return pd.DataFrame({"rates" : rate_list}, index=index)
@@ -273,7 +328,8 @@ class Forex (object):
         dates = TimeUtil.dates(start, interval, nintervals)
         epochs = TimeUtil.epochs(start, interval, nintervals)
         return self.rates(epochs[1:], dates[1:])             
-                    
+
+import pandas
 class PriceCompositor(object):
     def __init__(self, exchange_list=None, base_currency="GBP"):
         if exchange_list != None:
@@ -297,60 +353,51 @@ class PriceCompositor(object):
             for j in self.exchange_dict[i]:
                 self.exchange_cols.append(j + i)
         self.forex_list = [ self.base_currency + i for i in self.currencies]
-        self.averager = {}
-        for i in self.exchange_cols:
-            self.averager[i] = BitcoinAverager(i)
-        self.forex = {}
-        for f in self.forex_list:
-            self.forex[f] = Forex(f)
-    def exchange_table(self, start, period, intervals):
-        price_table = {}
+        self.averager = { i:BitcoinAverager(i) for i in self.exchange_cols }
+        self.forex = { f:Forex(f) for f in self.forex_list }
+    def reload(self):
         for e in self.exchange_cols:
-           price_table[e] = self.averager[e].intervals(start, period, intervals)
-           price_table[e].rename(columns={"price": e+"_price", "volume" : e+"_volume", 
-                               "trade": e+"_trade"}, inplace=True)
-        return price_table[self.exchange_cols[0]].join([price_table[e] for e in self.exchange_cols[1:]])        
+            self.averager[e].reload()
+        for c in self.forex_list:
+            self.forex[c].reload()
+    def exchange_table(self, start, period, intervals):
+        exchange_table = pandas.DataFrame()
+        for e in self.exchange_cols:
+            table = self.averager[e].intervals(start, period, intervals)
+            exchange_table[e+"_price"] = table["price"]
+            exchange_table[e+"_volume"] = table["volume"]
+            exchange_table[e+"_trade"] = table ["trade"]
+        return exchange_table        
     def currency_table(self, start, period, intervals):
         return self.composite_by_exchange(self.exchange_table(start, period, intervals))  
     def composite_table(self, start, period, intervals):
         return self.composite_all(self.currency_table(start, period, intervals))[0]
     def composite_by_exchange(self, avg):
-        import pandas
         df = pandas.DataFrame(columns=self.currency_cols)
         avg1 = avg.fillna(0.0)
         for i in self.currencies:
             price_key = [ j + i + "_price" for j in self.exchange_dict[i]]
             volume_key = [ j + i + "_volume" for j in self.exchange_dict[i]]
             trade_key = [ j + i + "_trade" for j in self.exchange_dict[i]]
-            map_dict = {}
-            for j in self.exchange_dict[i]:
-                map_dict[j + i + "_volume"] = j + i + "_price"
+            map_dict = {(j+i+"_volume"):(j+i+"_price") for j in self.exchange_dict[i]}
             df[i + "_volume"] = avg1[volume_key].sum(axis=1)
             df[i + "_trade"] = avg1[trade_key].sum(axis=1)
             df[i + "_price"] = (avg1[price_key] * avg1[volume_key].rename(columns=map_dict)).sum(axis=1) / df[i + "_volume"]
         return df
     def composite_all(self,df):
-        import pandas
         epochs = map(TimeUtil.unix_epoch, df.index)
-        conversion_table = pandas.DataFrame(columns =[], index=df.index )
+        conversion_table = pandas.DataFrame()
         for f in self.forex_list:
-            conversion_table = conversion_table.join(self.forex[f].rates(epochs, df.index).rename(columns={"rates": f}))
+            conversion_table[f] = self.forex[f].rates(epochs, df.index)['rates']
         df1 = df.join(conversion_table)
-
         composite = pandas.DataFrame(columns=["price", "volume", "trade"])
-        price_key = [i + "_price" for i in self.currencies]
-        volume_key = [i + "_volume" for i in self.currencies]
-        trade_key = [i + "_trade" for i in self.currencies]
-        currency_key = [ self.base_currency + i for i in self.currencies]
-
-        dict_map = {}
-        dict1_map = {}
-        dict2_map = {}
-        for i in self.currencies:
-            dict_map[self.base_currency + i] = i + "_price"
-            dict1_map[i + "_volume"] = i  + "_price"
-            dict2_map[i + "_price"] = self.base_currency + i + "_price"
-
+        price_key = [(i + "_price") for i in self.currencies]
+        volume_key = [(i + "_volume") for i in self.currencies]
+        trade_key = [(i + "_trade") for i in self.currencies]
+        currency_key = [ (self.base_currency + i) for i in self.currencies]
+        dict_map = {(self.base_currency+i):(i+ "_price") for i in self.currencies}
+        dict1_map = {(i+ "_volume"):(i+ "_price") for i in self.currencies}
+        dict2_map = {(i+"_price"):(self.base_currency + i + "_price") for i in self.currencies}
         converted_price_table = \
                               (df1[price_key] / df1[currency_key].rename(columns=dict_map)).rename(columns=dict2_map)
         composite["volume"] = df1[volume_key].sum(axis=1)
@@ -385,3 +432,13 @@ class PriceCompositor(object):
         if converted_prices:
             composite_table = composite_table.join(converted_price_table)
         return composite_table
+
+# <codecell>
+
+
+# <codecell>
+
+
+# <codecell>
+
+

@@ -43,10 +43,13 @@ import dateutil
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+import getpass
 
-
+me = getpass.getuser()
+sys.path.append(os.path.join("/home", me, "git/bitquant/web/home/ipython/examples"))
 script_dir = os.path.dirname(os.path.realpath(__file__))
 os.chdir(script_dir)
+
 from BitcoinAverager import PriceCompositor
 
 
@@ -88,7 +91,7 @@ Format: <select name="format">
 <option value="text/json">JSON</option>
 </select>
 <p>
-<input type="checkbox" name="table" value="True">Table<br>
+<input type="checkbox" name="table" value="True" checked>Table<br>
 <input type="checkbox" name="plot" value="True">Plot<br>
 Price plot fields (comma_separated): <input name="price_plot_fields" value="price"><br>
 Volume plot fields (comma separated): <input name="volume_plot_fields" value="volume"><br>
@@ -180,6 +183,12 @@ def generate_data():
     string = output.getvalue()
     output.close()
     return Response(string, mimetype=format)
+
+@app.route("/reload")
+def reload():
+    compositor = PriceCompositor()
+    compositor.reload()
+    return "reloaded"
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
