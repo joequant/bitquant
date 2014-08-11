@@ -53,7 +53,12 @@ os.chdir(script_dir)
 from BitcoinAverager import PriceCompositor
 
 
+
 app = Flask(__name__)
+all_exchanges = ['bitfinexUSD','bitstampUSD','itbitUSD',
+                 'itbitEUR','krakenEUR','itbitSGD','anxhkHKD',
+                 'okcoinCNY', 'btcnCNY']
+compositor = PriceCompositor(all_exchanges)
 
 @app.route('/')
 def index():
@@ -61,7 +66,7 @@ def index():
 
 @app.route('/average-form')
 def average_form():
-    return """
+    retval = """
 <form method=POST action="generate-data">
 Start time (yyyy/mm/dd): <input name="year" size=4 value="2014">/
 <input name="month" size=2 value="02">/<input name="day" size=2 value="01">  <input name="hour" size=2 value="00">:<input name="minute" size=2 value="00">:<input name="second" size=2 value="00"><br>
@@ -75,15 +80,28 @@ Time interval: <input name=interval_length value="3" size=3>
 <option value="minute">minute(s)</option>
 <option value="second">second(s)</option>
 </select><br>
-Intervals: <input name=intervals value="20" size=3><br>
-Exchanges: <input name=exchanges value="bitfinexUSD,bitstampUSD,itbitUSD,itbitEUR,krakenEUR,itbitSGD,anxhkHKD">
+Intervals: <input name=intervals value="20" size=3><p>
+Exchanges:<br>
+"""
+    for i in all_exchanges:
+        if i not in compositor.averager:
+            continue
+        index_range = compositor.averager[i].index_range()
+        if 'CNY' in i:
+            c = ''
+        else:
+            c = 'checked'
+        retval += '<input %s type="checkbox" name=exchanges value="%s">%s' % (c, i, i)
+        try:
+            retval += " - %s UTC to %s UTC - %d rows<br>" % ( time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(index_range[0])),
+                                                       time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(index_range[1])), index_range[2])
+        except:
+            retval += "error"
+    retval += """
 <p>
 Include:
-<input type="checkbox" name="time_table" value="True">Time/Epoch information
-<input type="checkbox" name="currency_table" value="True">Itemize by currency
-<input type="checkbox" name="conversion_table" value="True">Currency conversion
-<input type="checkbox" name="exchange_table" value="True">Itemize by exchange
-<input type="checkbox" name="converted_prices" value="True">Itemize converted prices
+<br>
+Base Currency: <input name="base_currency" value="GBP" size="3">
 <br>
 Format: <select name="format">
 <option value="text/html">HTML</option>
@@ -98,6 +116,7 @@ Volume plot fields (comma separated): <input name="volume_plot_fields" value="vo
 <input type="submit" />
 </form>
 """
+    return retval
 
 @app.route('/generate-data', methods = ['POST'])
 def generate_data():
@@ -113,17 +132,18 @@ def generate_data():
     interval_length = int(request.form['interval_length'])
     interval_type = request.form['interval_type']
     intervals = int(request.form['intervals'])
-    exchanges = request.form['exchanges']
 
-    time_table = (request.form.get('time_table', '') == 'True')
-    currency_table = (request.form.get('currency_table', '') == 'True')
-    conversion_table = (request.form.get('conversion_table', '') == 'True')
-    exchange_table = (request.form.get('exchange_table', '') == 'True')
-    converted_prices = (request.form.get('converted_prices', '') == 'True')
+    base_currency = request.form.get('base_currency', 'GBP')
+    time_table = (request.form.get('time_table', 'True') == 'True')
+    currency_table = (request.form.get('currency_table', 'True') == 'True')
+    conversion_table = (request.form.get('conversion_table', 'True') == 'True')
+    exchange_table = (request.form.get('exchange_table', 'True') == 'True')
+    converted_prices = (request.form.get('converted_prices', 'True') == 'True')
     show_table = (request.form.get('table', '') == 'True')
     plot = (request.form.get('plot', '') == 'True')
     price_plot_fields = request.form.get('price_plot_fields', '')
     volume_plot_fields = request.form.get('volume_plot_fields', '')
+
 
     format = request.form.get('format', "text/html")
     local_tz = pytz.timezone(time_zone)
@@ -148,8 +168,8 @@ def generate_data():
         time_delta = dateutil.relativedelta.relativedelta(seconds=interval_length)
     else:
         return "invalid interval_type"
-
-    compositor = PriceCompositor(exchanges.split(","))
+    exchanges = request.form.getlist("exchanges")
+    compositor.set_params(exchanges, base_currency)
     table = compositor.generate(start_date,
                                 time_delta,
                                 intervals,
@@ -161,7 +181,8 @@ def generate_data():
     output = cStringIO.StringIO()
     if format == "text/html":
         if show_table:
-            table.to_html(output)
+            table.to_html(output, classes=["data","compact"])
+            
         if plot:
             sio = cStringIO.StringIO()
             plt.figure(figsize=(6, 6))
@@ -177,11 +198,50 @@ def generate_data():
     elif format == "text/csv":
         table.to_csv(output)
     elif format == "text/json":
-        table.to_json(output)
+        table.to_json(output, orient='split', date_format='iso')
     else:
         return "invalid format"
     string = output.getvalue()
     output.close()
+    if format == "text/html":
+        string = """
+<head>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/fixedcolumns/3.0.0/js/dataTables.fixedColumns.min.js"></script>
+<script>
+$(document).ready(function() {
+    table = $('.data').dataTable({
+        "bFilter": false,
+        "scrollY": "200px",
+        "scrollX": true,
+        "scrollCollapse": true,
+        "paging":         false
+    });
+    new $.fn.dataTable.FixedColumns( table );
+    $( "#currency_table" ).change(function() {
+      if ($(this).prop("checked")) {
+      alert( "show columns" );
+      } else {
+      alert( "hide columns" );
+      }
+    });
+    });
+</script>
+<style type="text/css">
+.data .index {
+ color: fuchsia
+ }
+</style>
+<link href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
+<link href="//cdn.datatables.net/fixedcolumns/3.0.0/css/dataTables.fixedColumns.min.css" rel="stylesheet">
+</head>
+<input type="checkbox" id="currency_table" name="currency_table" value="True">Itemize by currency
+<input type="checkbox" id="conversion_table" name="conversion_table" value="True">Currency conversion
+<input type="checkbox" id="exchange_table" name="exchange_table" value="True">Itemize by exchange
+<input type="checkbox" id="converted_prices" name="converted_prices" value="True">Itemize converted prices
+<input type="checkbox" id="time_table" name="time_table" value="True">Time/Epoch information
+""" + string
     return Response(string, mimetype=format)
 
 @app.route("/reload")

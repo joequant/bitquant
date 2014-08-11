@@ -332,10 +332,11 @@ class Forex (DataLoaderClient):
 import pandas
 class PriceCompositor(object):
     def __init__(self, exchange_list=None, base_currency="GBP"):
-        if exchange_list != None:
-            self.exchange_list = exchange_list
-        else:
-            self.exchange_list = ['bitfinexUSD', 'bitstampUSD', 'itbitUSD', 'itbitEUR', 'krakenEUR', 'itbitSGD', 'anxhkHKD']
+        if exchange_list == None:
+            exchange_list = ['bitfinexUSD', 'bitstampUSD', 'itbitUSD', 'itbitEUR', 'krakenEUR', 'itbitSGD', 'anxhkHKD']
+        self.set_params(exchange_list, base_currency)
+    def set_params(self, exchange_list=None, base_currency="GBP"):
+        self.exchange_list = exchange_list
         self.exchange_dict = {}
         for e in self.exchange_list:
             currency = e[-3:]
@@ -405,6 +406,25 @@ class PriceCompositor(object):
         composite['price'] = (df1[price_key] / df1[currency_key].rename(columns=dict_map) * \
                               df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
         return (composite, conversion_table, converted_price_table)
+    def col_format(self, times=False,
+                   currency=False,
+                   exchange=False,
+                   rates=False,
+                   converted_prices=False):
+        retval = []
+        retval.append(["index", 1])
+        retval.append(['sum', 3])
+        if currency:
+            retval.append(["currency", len(self.currencies)*3])
+        if exchange:
+            retval.append(['exchange', len(self.exchanges)*3])
+        if converted_prices:
+            retval.append(['converted', len(self.currencies)*3])
+        if rates:
+            retval.append(['rates', len(self.rates)])
+        if times:
+            retval.append(['times', 4], )
+        return retval
     def generate(self, start, period, intervals, times=False,
                  currency=False, exchange=False, rates=False,
                  converted_prices=False):
@@ -420,17 +440,17 @@ class PriceCompositor(object):
         exchange_table = self.exchange_table(start, period, intervals)
         currency_table = self.composite_by_exchange(exchange_table)
         (composite_table, conversion_table, converted_price_table) = self.composite_all(currency_table)
-        if times:        
-            time_table = TimeUtil.time_table(start, period, intervals)
-            composite_table = composite_table.join(time_table)
         if currency:
             composite_table = composite_table.join(currency_table)
-        if rates:
-            composite_table = composite_table.join(conversion_table)
         if exchange:
             composite_table = composite_table.join(exchange_table)
         if converted_prices:
             composite_table = composite_table.join(converted_price_table)
+        if rates:
+            composite_table = composite_table.join(conversion_table)
+        if times:        
+            time_table = TimeUtil.time_table(start, period, intervals)
+            composite_table = composite_table.join(time_table)
         return composite_table
 
 # <codecell>
