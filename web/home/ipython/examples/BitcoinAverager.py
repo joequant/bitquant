@@ -406,22 +406,22 @@ class PriceCompositor(object):
         composite['price'] = (df1[price_key] / df1[currency_key].rename(columns=dict_map) * \
                               df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
         return (composite, conversion_table, converted_price_table)
-    def col_format(self, times=False,
-                   currency=False,
-                   exchange=False,
-                   rates=False,
-                   converted_prices=False):
+    def col_format(self, times=True,
+                   currency=True,
+                   exchange=True,
+                   rates=True,
+                   converted_prices=True):
         retval = []
         retval.append(["index", 1])
         retval.append(['sum', 3])
         if currency:
             retval.append(["currency", len(self.currencies)*3])
         if exchange:
-            retval.append(['exchange', len(self.exchanges)*3])
+            retval.append(['exchange', len(self.exchange_list)*3])
         if converted_prices:
-            retval.append(['converted', len(self.currencies)*3])
+            retval.append(['converted', len(self.currencies)])
         if rates:
-            retval.append(['rates', len(self.rates)])
+            retval.append(['rates', len(self.currencies)])
         if times:
             retval.append(['times', 4], )
         return retval

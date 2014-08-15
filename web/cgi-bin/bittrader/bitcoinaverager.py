@@ -204,26 +204,39 @@ def generate_data():
     string = output.getvalue()
     output.close()
     if format == "text/html":
-        string = """
+        header = """
 <head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script src="//cdn.datatables.net/fixedcolumns/3.0.0/js/dataTables.fixedColumns.min.js"></script>
 <script>
 $(document).ready(function() {
-    table = $('.data').dataTable({
+    var table = $('.data').dataTable({
         "bFilter": false,
         "scrollY": "200px",
         "scrollX": true,
         "scrollCollapse": true,
-        "paging":         false
+        "paging":         false,
+        "columns" : [
+    """
+        col_items = []
+        for col in compositor.col_format():
+            for j in range(col[1]):
+                if col[0] != "index" and col[0] != "sum":
+                    visible = ", visible: false"
+                else:
+                    visible = ""
+                col_items.append('{className : "' + col[0] + '"' + visible + '}')
+        header +=  ",\n".join(col_items) + """
+        ]
     });
     new $.fn.dataTable.FixedColumns( table );
-    $( "#currency_table" ).change(function() {
+    $( ".toggle" ).change(function() {
+      item = $(this).attr("item");
       if ($(this).prop("checked")) {
-      alert( "show columns" );
+      table.DataTable().columns(item).visible(true);
       } else {
-      alert( "hide columns" );
+      table.DataTable().columns(item).visible(false);
       }
     });
     });
@@ -236,13 +249,13 @@ $(document).ready(function() {
 <link href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
 <link href="//cdn.datatables.net/fixedcolumns/3.0.0/css/dataTables.fixedColumns.min.css" rel="stylesheet">
 </head>
-<input type="checkbox" id="currency_table" name="currency_table" value="True">Itemize by currency
-<input type="checkbox" id="conversion_table" name="conversion_table" value="True">Currency conversion
-<input type="checkbox" id="exchange_table" name="exchange_table" value="True">Itemize by exchange
-<input type="checkbox" id="converted_prices" name="converted_prices" value="True">Itemize converted prices
-<input type="checkbox" id="time_table" name="time_table" value="True">Time/Epoch information
-""" + string
-    return Response(string, mimetype=format)
+<input type="checkbox" class="toggle" item=".currency" id="currency_table" name="currency_table" value="True">Itemize by currency
+<input type="checkbox" class="toggle" item=".exchange" id="exchange_table" name="exchange_table" value="True">Itemize by exchange
+<input type="checkbox" class="toggle" item=".converted" id="conversion_table" name="conversion_table" value="True">Currency converted prices
+<input type="checkbox" class="toggle" item=".rates" id="conversion_table" name="conversion_table" value="True">Currency rates
+<input type="checkbox" class="toggle" item=".times" id="time_table" name="time_table" value="True">Time/Epoch information
+"""
+    return Response(header+string, mimetype=format)
 
 @app.route("/reload")
 def reload():
