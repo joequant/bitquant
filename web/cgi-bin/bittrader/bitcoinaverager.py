@@ -182,7 +182,6 @@ def generate_data():
     if format == "text/html":
         if show_table:
             table.to_html(output, classes=["data","compact"])
-            
         if plot:
             sio = cStringIO.StringIO()
             plt.figure(figsize=(6, 6))
@@ -204,6 +203,7 @@ def generate_data():
     string = output.getvalue()
     output.close()
     if format == "text/html":
+        string = string.replace('border="1"', '')
         header = """
 <head>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
