@@ -181,9 +181,16 @@ class BitcoinAverager(DataLoaderClient):
         self.exchange = exchange
         self.local_cache = exchange + ".csv.gz"
         self.load_data()
+        self.error_load = False
     def load_data(self):
-        self.loader.load_tick_data([self.exchange])
+        try:
+            self.loader.load_tick_data([self.exchange])
+            self.error_load = False
+        except:
+            self.error_load = True
     def index_range(self):
+        if self.error_load:
+            return None
         with self.loader.openfile() as h5file:
             node = h5file.get_node("/tick_data", self.exchange)
             first_line = node[0]
