@@ -213,7 +213,7 @@ def generate_data():
 $(document).ready(function() {
     var table = $('.data').dataTable({
         "bFilter": false,
-        "scrollY": "200px",
+        "scrollY": "350px",
         "scrollX": true,
         "scrollCollapse": true,
         "paging":         false,
@@ -223,7 +223,7 @@ $(document).ready(function() {
         for col in compositor.col_format():
             for j in range(col[1]):
                 if col[0] != "index" and col[0] != "sum":
-                    visible = ", visible: false"
+                    visible = ", visible: " + '$("#' + col[0] + '_table").prop("checked")'
                 else:
                     visible = ""
                 col_items.append('{className : "' + col[0] + '"' + visible + '}')
@@ -234,16 +234,26 @@ $(document).ready(function() {
     $( ".toggle" ).change(function() {
       item = $(this).attr("item");
       if ($(this).prop("checked")) {
-      table.DataTable().columns(item).visible(true);
+      table.DataTable().columns(item).visible(true, false);
       } else {
-      table.DataTable().columns(item).visible(false);
+      table.DataTable().columns(item).visible(false, false);
       }
+      table.DataTable().draw();
+      new $.fn.dataTable.FixedColumns( table );
     });
     });
 </script>
 <style type="text/css">
 .data .index {
- color: fuchsia
+ white-space: nowrap
+ }
+
+ .times {
+ white-space: nowrap
+ }
+
+td {
+ text-align: right
  }
 </style>
 <link href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
@@ -251,9 +261,9 @@ $(document).ready(function() {
 </head>
 <input type="checkbox" class="toggle" item=".currency" id="currency_table" name="currency_table" value="True">Itemize by currency
 <input type="checkbox" class="toggle" item=".exchange" id="exchange_table" name="exchange_table" value="True">Itemize by exchange
-<input type="checkbox" class="toggle" item=".converted" id="conversion_table" name="conversion_table" value="True">Currency converted prices
-<input type="checkbox" class="toggle" item=".rates" id="conversion_table" name="conversion_table" value="True">Currency rates
-<input type="checkbox" class="toggle" item=".times" id="time_table" name="time_table" value="True">Time/Epoch information
+<input type="checkbox" class="toggle" item=".converted" id="converted_table" name="conversion_table" value="True">Currency converted prices
+<input type="checkbox" class="toggle" item=".rates" id="rates_table" name="conversion_table" value="True">Currency rates
+<input type="checkbox" class="toggle" item=".times" id="times_table" name="time_table" value="True">Time/Epoch information
 """
     return Response(header+string, mimetype=format)
 
