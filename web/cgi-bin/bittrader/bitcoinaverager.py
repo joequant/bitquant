@@ -181,7 +181,7 @@ def generate_data():
     output = cStringIO.StringIO()
     if format == "text/html":
         if show_table:
-            table.to_html(output, classes=["data","compact"])
+            table.to_html(output, classes=["data","compact", "stripe"])
         if plot:
             sio = cStringIO.StringIO()
             plt.figure(figsize=(6, 6))
