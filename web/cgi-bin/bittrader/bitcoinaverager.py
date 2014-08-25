@@ -255,6 +255,10 @@ $(document).ready(function() {
 td {
  text-align: right
  }
+
+th {
+ text-align: center
+ }
 </style>
 <link href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css" type="text/css" rel="stylesheet">
 <link href="//cdn.datatables.net/fixedcolumns/3.0.0/css/dataTables.fixedColumns.min.css" rel="stylesheet">
