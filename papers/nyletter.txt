@@ -110,7 +110,7 @@ when a transaction is considered a "money transmission" and excludes a
 number of situations such if a broker or dealer accepts and transmits
 funds solely for effecting a purchase or sale of real currency or
 other commodities.  FIN-2014-R001 and FIN-2014-R002 issued on 30
-January 2014 clarified that Bitcoin miners, software developers, and
+January 2014 clarified that bitcoin miners, software developers, and
 investment pools would are not money services businesses or money
 transmitters.
 
@@ -180,17 +180,17 @@ subject to licensing, they they will be almost immediately be
 challenged in federal court where they would be struck down.
 
 These regulations are clearly discriminative against out-of-state
-bitcoin businesses.  The requirement that any one doing business with
-non-US entities conduct enhanced due-diligence is clearly
-discriminative on its face for entities outside of the United States.
-In addition, a business that is an another country or another state,
-would find it inconvenient and burdensome to interact with officials
-within the state of New York, and would difficult or impossible to,
-for example, attend a licensing hearing in person or challenge an
-administrative decision in state court.  In such a situation, the
-federal courts will apply strict scrutiny and will only allow the
-regulation if it can be shown that no other regulatory system will
-work.  
+virtual currency businesses.  The requirement that any one doing
+business with non-US entities conduct enhanced due-diligence is
+clearly discriminative on its face for entities outside of the United
+States.  In addition, a business that is an another country or another
+state, would find it inconvenient and burdensome to interact with
+officials within the state of New York, and would difficult or
+impossible to, for example, attend a licensing hearing in person or
+challenge an administrative decision in state court.  In such a
+situation, the federal courts will apply strict scrutiny and will only
+allow the regulation if it can be shown that no other regulatory
+system will work.
 
 While consumer protection and prevention of money laundering is
 clearly a legitimate state interest, we do not believe that the state
@@ -227,8 +227,8 @@ restrictive licensing exists for physical currency and coins.  Yes,
 virtual currencies can be used for illicit purposes but so can
 physical currency and coins.  As the state of New York has not imposed
 mandatory licensing for gold coin dealers or currency exchangers when
-not involved in money transmission, a federal judge will ask why these
-are necessary for virtual coin and virtual currency.
+not involved in money transmission, a federal judge will ask NYDFS why
+these are necessary for virtual coin and virtual currency.
 
 Even if the regulation were non-discriminative, they would impose
 massive and unreasonable burdens on interstate and international
@@ -249,11 +249,11 @@ protection or prevent money laundering and whether the real benefits
 provided by the regulation outweigh the substantial burdens imposed on
 interstate commerce.
 
-The question of what makes it necessary to impose regulations on
-virtual currency and coins that simply do not exist with physical
-currency and coin is not a hypothetical or abstract question.  It is
-one that a federal judge will ask the state of New York in federal
-court should these regulations be challenged.
+Therefore, the question of what makes it necessary to impose licensing
+regulations on virtual currency and coins that simply do not exist
+with physical currency and coin is not a hypothetical or abstract
+question.  It is one that a federal judge will ask the state of New
+York in federal court, and which NYDFS must be prepared to answer.
 
 We do not believe that the state of New York could demonstrate this in
 federal court, and therefore we believe that it would be tremendous
