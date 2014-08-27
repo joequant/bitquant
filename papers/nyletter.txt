@@ -35,34 +35,34 @@ legal challenge in either federal or New York state court.
 We assert and we believe that both state and federal courts would
 agree with us, that the regulatory system that NYDFS has created for
 money transmission businesses arises from a special grant of authority
-under both federal law and state law.  These grants of authority do
-not exist for businesses which are money transmission businesses, and
-as a matter of law, the NYDFS cannot use a discretionary licensing
-system to regulate virtual currency businesses which are not money
-transmission businesses.
+under both federal law and state law.  These grants of authority
+simply do not exist for businesses which are not money transmission
+businesses, and therefore, as a matter of law, the NYDFS cannot use a
+discretionary licensing system to regulate virtual currency businesses
+which are not money transmission businesses.
 
-We believe that in the case of regulation of non-money transmission
-businesses using virtual currency, it would not be possible to resolve
-the legal issues with mere reworking of the regulations, but the the
-NYDFS will be forced to abandon its current approach of discretionary
-licensing.  We respectfully suggest the following alternative
-three-pronged approach.
+We believe that it will not be possible to resolve the legal issues
+with mere reworking of the regulations, but the the NYDFS will be
+forced to abandon its current approach of discretionary licensing.  We
+respectfully suggest the following alternative three-pronged approach.
 
 1) That the proposed regulations be made applicable *only* to
 businesses that under New York state and federal law are subject to
 discretionary licensing by the NYDFS.
 
 2) That for the purpose of consumer protection, that the main
-regulatory system should be aggressive use of the Martin Act by the
+regulatory mechanism should be aggressive use of the Martin Act by the
 Attorney-General of the state of New York.
 
 3) That for the purpose of anti-money laundering that the main
-regulatory system be the Bank Secrecy Act and the registration
-requirements and regulations issued by the United States Department of
-Treasury through FinCEN. 
+regulatory mechanism should be the Bank Secrecy Act and the
+registration requirements and regulations issued by the United States
+Department of Treasury through FinCEN.
 
-THE REGULATORY APPROACH OF TREATING ALL VIRTUAL CURRENCY BUSINESSES AS
-MONEY TRANSMITTERS CONFLICTS WITH THE DORMANT COMMERCE CLAUSE
+We shall now present our legal arguments in detail.
+
+TREATING ALL VIRTUAL CURRENCY BUSINESSES AS MONEY TRANSMITTERS
+CONFLICTS WITH THE DORMANT COMMERCE CLAUSE
 
 NYDFS proposes taking a discretionary licensing system which is
 similar to that of money transmitters and apply it to all businesses
@@ -83,17 +83,18 @@ With respect to money transmitters there is no issue of conflict
 between state and federal laws.  In 18 USC 1960, Congress has
 specifically made operating a money transmission business without a
 license in violation of state law a federal crime.  This expresses a
-clear intention by Congress that a special licensing and intrusive
-system is necessary to combat money laundering, and given that
-Congress has expressed a clear intention that states have the power to
-institute licensing requirements for money transmitters, there is no
-conflict between the powers of NYDFS and Federal law (see Western &
-Southern Life Ins. v. State Board of California, 451 U.S. 648 (1981)).
+clear intention by Congress that a special licensing system is
+necessary to combat money laundering, and given that Congress has
+expressed a clear intention that states have the power to institute
+licensing requirements for money transmitters, there is no conflict
+between the powers of NYDFS and Federal law (see Western & Southern
+Life Ins. v. State Board of California, 451 U.S. 648 (1981)).
 
-The problem is that this regulatory system for money transmitters can
-be legally justified *only* because Congress has expressed a clear
-intention to allow states to license money transmitters.  With respect
-to business which are virtual businesses which are not money
+The problem is that this regulatory system of state licensing of
+out-of-state money transmitters can be legally justified *only*
+because Congress has expressed a clear intention to allow states to
+license money transmitters across state lines.  With respect to
+business which are virtual businesses which are not money
 transmitters, Congress has not expressed such an intention, and
 therefore the rules under the "dormant commerce clause" apply.
 
@@ -263,16 +264,20 @@ IT IS QUESTIONABLE WHETHER VIRTUAL CURRENCIES ARE INDEED A FINANCIAL
 PRODUCT OR SERVICE
 
 There are additional legal difficulties in this proposal under New
-York State law.  First of all, it is very unclear whether virtual
-currencies are in fact "financial products or services."  Virtual
-currencies can be used to store and transmit monetary value, but so
-can postage stamps, gold coin, or bales of cotton.  We believe that
-there is strong question as to whether or not classify virtual
-currencies can be classified as financial products and services, and
-whether NYDFS has any more authority to require licensing of virtual
-currency dealers than it does to require licensing of dealers of
-physical gold coin or currency exchange dealers where there is no
-money transmission involved.
+York State law.  These difficulties are signficant because they would
+impact regulation of virtual currency businesses which are situated
+within the state of New York and which interstate considerations do
+not apply.
+
+First of all, it is very unclear whether virtual currencies are in
+fact "financial products or services."  Virtual currencies can be used
+to store and transmit monetary value, but so can postage stamps, gold
+coin, or bales of cotton.  We believe that there is strong question as
+to whether or not classify virtual currencies can be classified as
+financial products and services, and whether NYDFS has any more
+authority to require licensing of virtual currency dealers than it
+does to require licensing of dealers of physical gold coin or currency
+exchange dealers where there is no money transmission involved.
 
 We very strongly urge that the NYDFS clarify on what basis it
 considers virtual currencies to be a "financial product or service"
