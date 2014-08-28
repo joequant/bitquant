@@ -1,10 +1,33 @@
-DRAFT
+Bitquant Research Laboratories
+HONG KONG
+
+DFS Office of General Counsel
+Dana V. Syracuse
+New York State Department of Financial Services
+One State Street
+New York, NY 10004
+
+Office of the Attorney General
+Division of Appeals & Opinions
+The Capitol
+Albany, NY 12224-0341
+
+Office of the Attorney General
+Investor Protection Bureau
+The State Capitol
+Albany, New York 12224
 
 Greetings:
 
 On 23 July 2014, the New York Department of Financial Services
 ("NYDFS") issued a request for comment on proposed rule-making
-regarding virtual currencies.
+regarding virtual currencies.  We are writing this letter in response
+to this request for comment.  As our response involves issues
+concerning the legal authority of the NYDFS to issue such regulations,
+as well as recommendations concerning the use of the Martin Act, we
+have also forward our comments to both the Division of Appeals and
+Opinions as well as the Investor Protection Bureau within the office
+of the Attorney General.
 
 Our company, Bitquant Research Laboratories (Asia) Ltd. is a Hong Kong
 based company which provides open source analytics and quantitative
@@ -41,18 +64,16 @@ businesses, and therefore, as a matter of law, the NYDFS cannot use a
 discretionary licensing system to regulate virtual currency businesses
 which are not money transmission businesses.
 
-We believe that it will not be possible to resolve the legal issues
-with mere reworking of the regulations, but the the NYDFS will be
-forced to abandon its current approach of discretionary licensing.  We
-respectfully suggest the following alternative three-pronged approach.
+In order to resolve these legal issues, we respectfully recommend the
+following three-pronged approach:
 
 1) That the proposed regulations be made applicable *only* to
-businesses that under New York state and federal law are subject to
-discretionary licensing by the NYDFS.
+businesses that under New York state and federal law are currently
+subject to discretionary licensing by the NYDFS,
 
 2) That for the purpose of consumer protection, that the main
 regulatory mechanism should be aggressive use of the Martin Act by the
-Attorney-General of the state of New York.
+Attorney-General of the state of New York,
 
 3) That for the purpose of anti-money laundering that the main
 regulatory mechanism should be the Bank Secrecy Act and the
@@ -79,24 +100,29 @@ products and services where "where rules or regulations promulgated by
 the superintendent on such financial product or service would be
 preempted by federal law."
 
-With respect to money transmitters there is no issue of conflict
-between state and federal laws.  In 18 USC 1960, Congress has
-specifically made operating a money transmission business without a
-license in violation of state law a federal crime.  This expresses a
+With respect to discretionary licensing of money transmitters there is
+no conflict between state and federal laws.  In 18 USC 1960, Congress
+has specifically made operating a money transmission business without
+a license in violation of state law a federal crime.  This expresses a
 clear intention by Congress that a special licensing system is
 necessary to combat money laundering, and given that Congress has
 expressed a clear intention that states have the power to institute
 licensing requirements for money transmitters, there is no conflict
 between the powers of NYDFS and Federal law (see Western & Southern
-Life Ins. v. State Board of California, 451 U.S. 648 (1981)).
+Life Ins. v. State Board of California, 451 U.S. 648 (1981)), and
+therefore the commerce clause does not limit the authority of NYDFS to
+require licensing of money transmitters under New York state law
+regardless of the impact on interstate commerce.
 
-The problem is that this regulatory system of state licensing of
-out-of-state money transmitters can be legally justified *only*
-because Congress has expressed a clear intention to allow states to
-license money transmitters across state lines.  With respect to
-business which are virtual businesses which are not money
-transmitters, Congress has not expressed such an intention, and
-therefore the rules under the "dormant commerce clause" apply.
+However, it is critical to note that this regulatory system of state
+licensing of out-of-state money transmitters can be legally justified
+*only* because Congress has expressed a clear intention to allow
+states to license money transmitters in 18 USC 1960.  With respect to
+virtual currency businesses which are *not* money transmitters,
+Congress has not expressed such an intention, and therefore the rules
+under the "dormant commerce clause" apply, and there are severe
+restrictions on the ability of a state to issue regulations which
+impact interstate commerce.
 
 One could attempt to argue that all virtual currency businesses are
 money transmission businesses and therefore argue that they all fall
@@ -128,10 +154,15 @@ place those businesses outside of Congressional authorization for
 state licensing in 18 USC 1960, and the "dormant commerce clause"
 would become active.
 
-Given that there are "virtual currency businesses" which Congress has
-not authorized discretionary licensing, we must now perform a "dormant
-commerce clause" analysis, under which we assert a court would find
-NYDFS proposed regulations unconstitutional.
+Given that an agency of th federal government has determined that
+there are virtual currency businesses which are outside of the scope
+of the state licensing system authorized by Congress in 18 USC 1960,
+we must now perform a "dormant commerce clause" analysis to determine
+if the proposed regulations are consistent with federal law with
+respect to those businesses.  It is are firm belief that a court would
+find that the proposed regulations are inconsistent with the dormant
+commerce clause and invalidate the regulations on constitutional
+grounds.
 
 Under the federal system of the United States, the power to regulate
 commerce between the states as well as commerce with foreign nations
@@ -158,20 +189,21 @@ used would be Pike v. Bruce Church, Inc. 397 U.S. 137 (1970).  Under
 this standard a restriction on interstate commerce would be found to
 be in violation of the dormant commerce clause if the burdens on
 commerce are clearly in excess of the local legitimate state interests
-advanced.  Specifically, the Supreme Court has ruled that where the
-state asserts a public health and safety rationale for a regulation,
-the Court will review whether in fact the regulation will advance the
+advanced.  Significantly, the Supreme Court has ruled that federal
+courts must review whether in fact the regulation will advance the
 stated purposes of the regulation ( see Raymond Motor Transportation,
 Inc. v. Rice, 434 U.S. 429 (1978) and Kassel v. Consolidated
-Freightways Corp. 450 US 662 (1981)) rather than relying on the
-"rational basis" test under the equal protection clause which applies
-for regulation that does not have an impact on interstate commerce.
+Freightways Corp. 450 US 662 (1981)).  
 
-In either case, this difference between "Pike balancing" and "rational
-basis" is significant because a regulation that imposes burdens on
-interstate commerce requires the state of New York to provide actual
-evidence that the regulation in fact would advance a state interest
-rather than simply rely on hypothetical arguments.
+In contrast to regulations which do not effect interstate commerce, it
+is insufficient to merely state a "rational basis" for a regulation,
+but rather it is necessary to demonstrate that the regulations do in
+fact promote legitimate state interests.  Where an regulation affects
+interstate commerce, it is insufficient to rely on vague and hypothetical
+arguments as how the proposal might advance state interests, a state
+must provide solid evidence that the regulation does in fact promote
+state interests and that these interests outweigh the burden to
+interstate commerce.
 
 We assert that the regulations proposed by the NYDFS in their current
 form are so clearly in conflict with the dormant commerce clause that
@@ -222,14 +254,15 @@ extremely aggressive and successful at closing down such activities,
 and there has been no suggestion that an intrusive and extensive use
 of licensing would prevent money laundering.  
 
-Finally, the question must be asked of why it is necessary to impose
-restrictive licensing on virtual currencies and coins, when no such
-restrictive licensing exists for physical currency and coins.  Yes,
-virtual currencies can be used for illicit purposes but so can
-physical currency and coins.  As the state of New York has not imposed
-mandatory licensing for gold coin dealers or currency exchangers when
-not involved in money transmission, a federal judge will ask NYDFS why
-these are necessary for virtual coin and virtual currency.
+Finally if these regulations are enacted, a federal judge will ask the
+state of New York why it is necessary to impose restrictive licensing
+on virtual currencies and coins, when no such restrictive licensing
+exists for physical currency and coins.  Yes, virtual currencies can
+be used for illicit purposes but so can physical currency and coins.
+As the state of New York has not imposed mandatory licensing for gold
+coin dealers or currency exchangers when not involved in money
+transmission, a federal judge will ask NYDFS why these are necessary
+for virtual coin and virtual currency.
 
 Even if the regulation were non-discriminative, they would impose
 massive and unreasonable burdens on interstate and international
@@ -239,9 +272,9 @@ laundering, we believe that non-discriminative regulations would be
 found to be overly and unnecessarily intrusive for the same reasons
 that discriminative regulations would be found to be problematic.
 
-We wish to emphasize here that the federal courts would not merely
-subject the regulations to a "rational basis" standard in which the
-state of New York could advance a speculative reason why these
+Again, we wish to emphasize here that the federal courts would not
+merely subject the regulations to a "rational basis" standard in which
+the state of New York could advance a speculative reason why these
 regulations would advance consumer protection or prevent money
 laundering, but would subject the regulations to further scrutiny and
 a "Pike balancing test" in which the state of New York would be
@@ -276,8 +309,9 @@ coin, or bales of cotton.  We believe that there is strong question as
 to whether or not classify virtual currencies can be classified as
 financial products and services, and whether NYDFS has any more
 authority to require licensing of virtual currency dealers than it
-does to require licensing of dealers of physical gold coin or currency
-exchange dealers where there is no money transmission involved.
+does to require licensing of dealers of physical gold coin or physical
+currency exchange dealers where there is no money transmission
+involved.
 
 We very strongly urge that the NYDFS clarify on what basis it
 considers virtual currencies to be a "financial product or service"
@@ -327,10 +361,13 @@ commodity," we believe that it is clear that under New York state law,
 the primary enforcement mechanism against fraud belongs to the
 Attorney General, and that the NYDFS does not have the legislative
 authority to impose licensing requirements on virtual currency
-businesses.
+businesses where those businesses are not involved in money
+transmission as defined by FinCEN.
 
 THE NYDFS DOES NOT HAVE AUTHORITY TO REQUIRE LICENSING OF NON-CONSUMER
 BUSINESSES 
+
+There is yet an addition problem with the proposed regulations.
 
 Under Section 104 of the Financial Services Law, the financial
 products and services which are subject to regulation by the
@@ -380,9 +417,10 @@ not object to the proposed regulations provided that they are limited
 to businesses which are already under the administrative jurisdiction
 of the NYDFS.
 
-We therefore come up with the following recommendations:
+We therefore recommend the following:
 
-1) We strongly recommend that Section 200.3(a) be amended to read
+1) We strongly recommend that Section 200.3(a) of the proposed virtual
+currency regulations be amended to read
 
   No Person may in the course of performing a transaction subject to
   regulation by this agency under the laws of the state of New York
@@ -412,33 +450,37 @@ consistent with the "dormant commerce clause."  In addition, it is
 consistent with New York state law and provides both legal certainty
 and soundness for virtual currency regulation.
 
-With respect to anti-money laundering, virtual currency businesses
+3) With respect to anti-money laundering, virtual currency businesses
 doing business with or in the United States are already required to
 comply with the terms of the Bank Secrecy Act and associated money
-laundering provisions.  Rather add to the regulatory burden, we
-believe that it is wisest to use existing regulations and laws rather
-than create new ones.  To focus efforts at the federal law would
-result in the manageable burden of dealing with one set of standards
-rather than 51 conflicting ones.  In addition, both the Bank Secrecy
-Act and the Martin Act are decades old and have been subject to
-numerous court challenges so that their legal validity is not under
-question, unlike any completely new regulatory system.
+laundering provisions.  We do not see the need to add any further
+restrictions on the use of virtual currencies.  Where such
+restrictions are found to be necessary, they should be initiated at
+the federal level.
+
+We believe that the wisest course of actions to use existing
+regulations and laws rather than create new ones.  To focus efforts at
+the federal law would result in the manageable burden of dealing with
+one set of standards rather than 51 conflicting ones.  In addition,
+both the Bank Secrecy Act and the Martin Act are decades old and have
+been subject to numerous court challenges so that their legal validity
+is not under question, unlike any completely new regulatory system.
 
 We believe that most virtual currency businesses are honest and
-well-meaning people who share the goal with regulators to create a
+well-meaning people who share the goal of regulators in creating a
 vibrant and sound system of virtual currency.  We also believe that
 regulatory activities should be focused on eliminated and punishing
-the few bad actors which seek to defraud or commit illegal activities
-against residents of the state of New York.  Accordingly we believe
-that the proper regulatory mechanism is not through a licensing
-mechanism which imposes burdens on the honest, but through criminal
-and civil fraud sanctions which impose burdens on the dishonest, and
-to not to create new regulatory mechanisms but to use existing ones.
+bad actors which seek to defraud or commit illegal activities against
+residents of the state of New York.  Accordingly we believe that the
+proper regulatory mechanism is not through a licensing mechanism which
+imposes burdens on the honest, but through criminal and civil fraud
+sanctions which impose burdens on the dishonest, and to not to create
+new regulatory mechanisms but to use existing ones.
 
-Although we strongly disagree with the approach taken by the NYDFS, we
-believe that we share common goals with the NYDFS.  We hope that are
-comments are taken seriously and look forward to cooperating with
-NYDFS in any way possible.
+Although we believe the current approach taken by the NYDFS is legally
+unworkable, we believe that we share common goals with the state of
+New York.  We hope that our comments are taken seriously and look
+forward to cooperating with state of New York in any way possible.
 
 Sincerely,
 
