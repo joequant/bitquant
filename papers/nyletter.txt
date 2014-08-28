@@ -2,20 +2,19 @@ Bitquant Research Laboratories
 HONG KONG
 
 DFS Office of General Counsel
-Dana V. Syracuse
 New York State Department of Financial Services
 One State Street
 New York, NY 10004
 
 Office of the Attorney General
 Division of Appeals & Opinions
-The Capitol
-Albany, NY 12224-0341
+The State Capitol
+Albany, NY 12224
 
 Office of the Attorney General
 Investor Protection Bureau
 The State Capitol
-Albany, New York 12224
+Albany, NY 12224
 
 Greetings:
 
@@ -24,10 +23,10 @@ On 23 July 2014, the New York Department of Financial Services
 regarding virtual currencies.  We are writing this letter in response
 to this request for comment.  As our response involves issues
 concerning the legal authority of the NYDFS to issue such regulations,
-as well as recommendations concerning the use of the Martin Act, we
-have also forward our comments to both the Division of Appeals and
-Opinions as well as the Investor Protection Bureau within the office
-of the Attorney General.
+as well as recommendations concerning the use of the Martin Act in
+virtual currency regulation, we have also forwarded our comments to
+both the Division of Appeals and Opinions as well as the Investor
+Protection Bureau within the office of the Attorney General.
 
 Our company, Bitquant Research Laboratories (Asia) Ltd. is a Hong Kong
 based company which provides open source analytics and quantitative
@@ -66,12 +65,12 @@ regulate a virtual currency business, in the event that the federal
 government has determined the business is not a money transmission
 business.
 
-In order to resolve these legal issues, we respectfully recommend the
-following three-pronged approach:
+In order to place the proposed regulations on solid legal ground, we
+respectfully recommend the following three-pronged approach:
 
 1) That the proposed regulations be made applicable *only* to
-businesses that under New York state and federal law are currently
-subject to discretionary licensing by the NYDFS,
+businesses that under New York state law are currently subject to
+discretionary licensing by the NYDFS,
 
 2) That for the purpose of consumer protection, that the main
 regulatory mechanism should be aggressive use of the Martin Act by the
