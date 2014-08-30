@@ -7,9 +7,8 @@
     <name>Mageia</name>
     <version>cauldron</version>
     <arch>i386</arch>
-<!-- use mageia 4 to bootstrap and the install via cauldron -->
     <install type='iso'>
-      <iso>http://free.nchc.org.tw/mageia/distrib/4/i586/install/images/boot-nonfree.iso</iso>
+      <iso>http://free.nchc.org.tw/mageia/distrib/cauldron/i586/install/images/boot-nonfree.iso</iso>
     </install>
   </os>
   <repositories>
