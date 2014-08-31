@@ -81,6 +81,17 @@ regulatory mechanism should be the Bank Secrecy Act and the
 registration requirements and regulations issued by the United States
 Department of Treasury through FinCEN.
 
+Finally, we believe that time of the essence if the NYDFS wishes to
+have a role in the field of virtual currency regulation.  Our legal
+arguments suggest that virtual currencies businesses which involved in
+interstate commerce and which are not money transmitting businesses
+have the legal authority to begin doing business in New York state
+without reference to the NYDFS.  If NYDFS wishes to have any role in
+virtual currency regulation, it must quickly and clearly produce a
+regulatory system which conforms to the legal constraints that we have
+identified in this letter.  We look forward to NYDFS working with the
+virtual currency community in doing so.
+
 We shall now present our legal arguments in detail.
 
 TREATING ALL VIRTUAL CURRENCY BUSINESSES AS MONEY TRANSMITTERS
@@ -459,7 +470,33 @@ restrictions on the use of virtual currencies.  Where such
 restrictions are found to be necessary, they should be initiated at
 the federal level.
 
-We believe that the wisest course of actions to use existing
+Finally, we believe that time of the essence if the NYDFS and the
+state of New York wish to have a role in the field of virtual currency
+regulation.  Our legal arguments suggest that virtual currencies
+businesses which involved in interstate commerce and which are not
+money transmitting businesses have the legal authority to begin doing
+business in New York state without reference to the NYDFS.  It is our
+position that a interstate virtual currency business which is not a
+money transmitting business under federal law, can begin operations in
+New York state immediately without reference to any future regulations
+proposed by the NYDFS, as those future regulations cannot exceed the
+constraints outlined in this letter.
+
+If state of New York wishes to have any role in virtual currency
+regulation, it must quickly and clearly produce a regulatory system
+which conforms to the legal constraints that we have identified in
+this letter.  If there are disputes as to the validity of the
+arguments we have outlined in this letter, it would be in the
+interests of the state of New York to very quickly and forcefully
+challenge the arguments we have outlined.  The legal arguments we have
+outlined are well known in the virtual currency community, and should
+the state of New York not act quickly, it will have the effect of
+giving a green light for interstate non-money transmitting virtual
+currency businesses to operate in the state of New York, which would
+make it far more difficult and expensive should the state of New York
+choose to challenge the arguments at a later time.
+
+We believe that the wisest course of action to use existing
 regulations and laws rather than create new ones.  To focus efforts at
 the federal law would result in the manageable burden of dealing with
 one set of standards rather than 51 conflicting ones.  In addition,
@@ -480,8 +517,10 @@ new regulatory mechanisms but to use existing ones.
 
 Although we believe the current approach taken by the NYDFS is legally
 unworkable, we believe that we share common goals with the state of
-New York.  We hope that our comments are taken seriously and look
-forward to cooperating with state of New York in any way possible.
+New York in preventing consumer fraud and money laundering.  We hope
+that our comments are taken seriously and look forward to cooperating
+with state of New York in any way which is consistent with federal law
+and the laws of the state of New York.
 
 Sincerely,
 
