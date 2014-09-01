@@ -17,7 +17,9 @@ else
 LIBDIR="lib"
 fi
 
-LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/3.0
+R_VERSION=$(R --version | head -1 | cut -d \  -f 3 | awk -F \. {'print $1"."$2'})
+
+LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
 mkdir -p $LOCAL_R_DIR
 mkdir -p /home/$ME/attic/$$
 echo "backing up old modules"
