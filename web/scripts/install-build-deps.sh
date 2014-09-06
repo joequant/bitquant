@@ -66,7 +66,8 @@ python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
 curl-devel \
-ajenti
+ajenti \
+dokuwiki-plugin-auth
 
 
 #cmake is for building shiny-server
