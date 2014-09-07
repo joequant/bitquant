@@ -103,9 +103,10 @@ def setup():
     elif submit == "Remove local install":
         return subprocess.check_output(["./clean-to-factory.sh"])
     elif submit == "Lock wiki":
-        password = request.values['password']
-        salt = os.urandom(6).encode('base_64').strip()
-        hashval = crypt.crypt(password, "$1$" + salt + "$")
+#        password = request.values['password']
+#        salt = os.urandom(6).encode('base_64').strip()
+#        hashval = crypt.crypt(password, "$1$" + salt + "$")
+        hashval = ""
         retval = subprocess.check_output(["./conf.sh", "/wiki-lock"]);
         retval += subprocess.check_output(["./wiki.sh", "/rmuser",
                                            user()])
