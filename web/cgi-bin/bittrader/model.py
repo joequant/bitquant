@@ -157,8 +157,8 @@ def version(tag=None):
     if tag == "timezone" or tag == None:
         for line in subprocess.check_output(['timedatectl',
                                               'status']).splitlines():
-            if "Timezone:" in line:
-                retval['timezone'] = line.strip().split()[1]
+            if "zone:" in line:
+                retval['timezone'] = line.strip().split(":")[1].split()[0]
         if retval['timezone'] == "n/a":
             retval['timezone'] = subprocess.check_output(["grep",
                    "ZONE=",
