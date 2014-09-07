@@ -18,13 +18,13 @@ mvn install
 popd
 
 pushd ../../OG-Platform  > /dev/null
-mvn install -Dmaven.test.skip=True
-#for project in projects/OG-Web projects/OG-FinancialTypes projects/OG-Master projects/OG-Financial examples/examples-simulated ; do
-#echo "Building $project"
-#pushd $project > /dev/null
 #mvn install -Dmaven.test.skip=True
-#popd > /dev/null
-#done
+for project in projects/OG-Web projects/OG-FinancialTypes projects/OG-Master projects/OG-Financial examples/examples-simulated ; do
+echo "Building $project"
+pushd $project > /dev/null
+mvn install -Dmaven.test.skip=True
+popd > /dev/null
+done
 pushd examples/examples-simulated > /dev/null
 mvn opengamma:server-init -DclassName=com.opengamma.examples.simulated.tool.ExampleDatabaseInit  -DconfigFile=classpath:/toolcontext/toolcontext-examplessimulated.properties
 popd > /dev/null
