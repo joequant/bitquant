@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-. $SCRIPT_DIR/../web/rootcheck.sh
+. $SCRIPT_DIR/../web/scripts/rootcheck.sh
 
 # install deps to build oz image
 
@@ -9,7 +9,7 @@ urpmi --no-suggests --auto \
    oz qemu libguestfs-tools \
    libvirt-utils tigervnc \
    dnsmasq dnsmasq-utils lvm2 make supermin \
-   cdrkit-genisoimage
+   cdrkit-genisoimage vdfuse
 
 systemctl start libvirtd.service
 
