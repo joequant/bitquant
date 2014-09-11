@@ -9,6 +9,13 @@ generate the diskimage for the bitstation trading system.  Bitstation
 consists of a disk image which can be run in VirtualBox or uploaded to
 a cloud computing system.
 
+Dependencies
+===========
+
+To install the dependencies, type
+   
+   make install-deps
+
 Generating disk image
 =====================
 
