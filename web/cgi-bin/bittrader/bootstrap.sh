@@ -51,6 +51,11 @@ echo "Set up R"
 mkdir -p $MY_HOME/R
 cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
 
+# Refresh configurations
+# This replaces the ajenti configuration with a 
+# version that does not use ssl
+./conf.sh /default-init
+
 echo "Starting up servers"
 $SCRIPT_DIR/servers.sh /on
 touch $LOG_DIR/bootstrap.done
