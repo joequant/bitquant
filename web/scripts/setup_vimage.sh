@@ -25,15 +25,16 @@ chown -R $USER":"$USER git
 echo "Resetting urpmi"
 urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.'`uname -m`'.list'
-urpmi.update --no-ignore "Core Updates"
+urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
 urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release
 urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates
+urpmi.addmedia "Core updates testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
 urpmi.addmedia "Core backports backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports
-fi
 urpmi.addmedia "Backports testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
+fi
 
 urpmi.update -a
 #urpme --force --auto-orphans

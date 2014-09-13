@@ -67,9 +67,7 @@ python-tables \
 python-scipy \
 curl-devel \
 ajenti \
-dokuwiki-plugin-auth \
-pwauth
-
+dokuwiki-plugin-auth
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
