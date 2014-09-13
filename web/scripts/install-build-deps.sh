@@ -67,7 +67,8 @@ python-tables \
 python-scipy \
 curl-devel \
 ajenti \
-dokuwiki-plugin-auth
+dokuwiki-plugin-auth \
+pwauth
 
 
 #cmake is for building shiny-server
