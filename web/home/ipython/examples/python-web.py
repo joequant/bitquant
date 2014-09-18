@@ -29,11 +29,11 @@ def main():
     http_server.listen(port)
     tornado.ioloop.IOLoop.instance().start()
 
-main()
     
 
 # <codecell>
 
+main()
 
 # <codecell>
 
