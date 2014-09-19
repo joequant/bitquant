@@ -34,6 +34,8 @@ import csv
 import logging
 import urllib
 
+# <codecell>
+
 class TickData(tables.IsDescription):
     epoch = tables.Float64Col(pos=0)
     price = tables.Float64Col(pos=1)
@@ -44,7 +46,18 @@ class CurrencyData(tables.IsDescription):
     rate = tables.Float64Col(pos=1)
     high = tables.Float64Col(pos=2)
     low = tables.Float64Col(pos=3)
+    epoch = tables.Float64Col(pos=4)
 
+# <codecell>
+
+def fill_zeros(fields):
+    def _fill(row):
+            if len(row) < fields:
+                row.extend([0.0] * (fields-len(row)))
+            return row
+    return _fill
+
+# <codecell>
 
 class BitcoinDataLoader(object):
     def __init__(self):
@@ -82,12 +95,11 @@ class BitcoinDataLoader(object):
                 testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % local_cache, 
                               local_cache)
         logging.info("done retrieving")
-    def read_csv(self, table, csv_reader, fields):
+    def read_csv(self, table, csv_reader, row_func):
         bsize = 5000
         rows = []
         for i, row in enumerate(csv_reader):
-            if len(row) < fields:
-                row.extend([0.0] * (fields-len(row)))
+            row = row_func(row)
             all_floats = True
             for j in row[1:]:
                 try:
@@ -114,7 +126,7 @@ class BitcoinDataLoader(object):
                     tick_table = h5file.create_table("/tick_data", e, TickData)
                     with gzip.open(e + ".csv.gz", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
-                        self.read_csv(tick_table, csv_reader, 3)
+                        self.read_csv(tick_table, csv_reader, fill_zeros(3))
                     tick_table.cols.epoch.create_index()
     def load_currency_data(self, currency_list):
         with tables.open_file("bitcoin.h5", mode="a") as h5file:
@@ -127,13 +139,11 @@ class BitcoinDataLoader(object):
                     with open(c + ".csv", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         csv_reader.next()
-                        self.read_csv(currency_table, csv_reader, 4)
-                    
+                        self.read_csv(currency_table, csv_reader, fill_zeros(5))
 data_loader = BitcoinDataLoader()
 data_loader.init_file()
 
 # <codecell>
-
 
 import os
 import logging

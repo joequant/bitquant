@@ -54,7 +54,7 @@ from dateutil.relativedelta import relativedelta
 import pytz
 hkg_time = pytz.timezone("Asia/Hong_Kong")
 start_time = hkg_time.localize(datetime(2014,2,1,6,0,0))
-end_time = start_time + relativedelta(minute=1)
+end_time = start_time + relativedelta(minute=15)
 start_epoch = TimeUtil.unix_epoch(start_time)
 end_epoch = TimeUtil.unix_epoch(end_time)
 selected = averager.select(start_epoch, end_epoch)

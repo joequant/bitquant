@@ -72,7 +72,7 @@ compositor = PriceCompositor(all_exchanges)
 
 @app.route('/')
 def index():
-    return 'index'
+    return average_form()
 
 @app.route('/average-form')
 def average_form():
