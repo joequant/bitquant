@@ -59,6 +59,25 @@ def fill_zeros(fields):
 
 # <codecell>
 
+def fill_epoch(fields, tz_string, time_field):
+    import pytz
+    from datetime import datetime, timedelta
+    tz = pytz.timezone(tz_string)
+    def _fill(row):
+        if len(row) < fields -1:
+              row.extend([0.0] * (fields -len(row)-1))
+        datestamp = row[time_field]
+        (year, month, day) = datestamp.split("-")
+        year = int(year)
+        month = int(month)
+        day = int(day)
+        epoch = TimeUtil.unix_epoch(tz.localize(datetime(year, month, day, 0, 0, 0)))
+        row.append(epoch)
+        return row
+    return _fill
+
+# <codecell>
+
 class BitcoinDataLoader(object):
     def __init__(self):
         self.filename = "bitcoin.h5"
@@ -123,23 +142,25 @@ class BitcoinDataLoader(object):
                     self.download_tick_data(e)
                     if hasattr(h5file.root.tick_data, e):
                         h5file.remove_node("/tick_data", e)
+                if not hasattr(h5file.root.tick_data, e):
                     tick_table = h5file.create_table("/tick_data", e, TickData)
                     with gzip.open(e + ".csv.gz", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         self.read_csv(tick_table, csv_reader, fill_zeros(3))
                     tick_table.cols.epoch.create_index()
-    def load_currency_data(self, currency_list):
+    def load_currency_data(self, currency_list, tz="Europe/London"):
         with tables.open_file("bitcoin.h5", mode="a") as h5file:
             for c in currency_list:
                 if not os.path.isfile(c + ".csv"):
                     self.download_currency_data(c)
                     if hasattr(h5file.root.currency_data, c):
                         h5file.remove_node("/currency_data", c)
+                if not hasattr(h5file.root.currency_data, c):
                     currency_table = h5file.create_table("/currency_data", c, CurrencyData)
                     with open(c + ".csv", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         csv_reader.next()
-                        self.read_csv(currency_table, csv_reader, fill_zeros(5))
+                        self.read_csv(currency_table, csv_reader, fill_epoch(5, tz, 0))
 data_loader = BitcoinDataLoader()
 data_loader.init_file()
 
@@ -319,14 +340,9 @@ class Forex (DataLoaderClient):
             fp = h5file.get_node("/currency_data", self.exchange)
             for line in fp:
                 prev_value = value
-                datestamp = line['date']
+                epoch_currency = line['epoch']
                 value = line['rate']
-                (year, month, day) = datestamp.split("-")
-                year = int(year)
-                month = int(month)
-                day = int(day)
-                end_interval = TimeUtil.unix_epoch(tz.localize(datetime(year, month, day, 0, 0, 0)))
-                while epoch < end_interval:
+                while epoch < epoch_currency:
                     rate[epoch] = prev_value
                     if epoch == epoch_list[-1]:
                         done = True
