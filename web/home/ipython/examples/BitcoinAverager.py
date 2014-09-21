@@ -206,19 +206,35 @@ class DataLoaderClient(object):
             os.remove(self.local_cache)
     def load_data(self):
         raise NotImplementedError
-
+        
 class BitcoinAverager(DataLoaderClient):
-    def __init__(self, exchange):
+    def __init__(self, exchange, base_currency=None):
         self.exchange = exchange
         self.local_cache = exchange + ".csv.gz"
         self.load_data()
         self.error_load = False
+        self.error_currency = False
+        self.base_currency = base_currency
+        self.exchange_currency = exchange[-3:]
+        if self.base_currency != None and \
+            self.exchange_currency != self.base_currency:
+            self.currency_convert = self.base_currency + \
+                self.exchange_currency
+        else:
+            self.currency_convert = None
     def load_data(self):
         try:
             self.loader.load_tick_data([self.exchange])
             self.error_load = False
         except:
             self.error_load = True
+        if self.currency_convert != None:
+        try:
+            self.loader.load_currency_data([self.curren])
+            self.error_currency = False
+        except:
+            self.currency_convert = None
+            self.error_currency = True
     def index_range(self):
         if self.error_load:
             return None
@@ -247,6 +263,22 @@ class BitcoinAverager(DataLoaderClient):
                     volume_list.append(volume)
         return pd.DataFrame({"price" : price_list, "volume": volume_list},
                             index = time_list)
+    def select_currency(self, start_epoch, end_epoch):
+        if self.currency_convert == None:
+            return None
+        time_list = []
+        rate_list = []
+        with self.loader.openfile() as h5file:
+            node = h5file.get_node("/currency_data", self.currency_convert)
+            for line in node.where("(epoch >= %lf) & (epoch < %lf)" % (start_epoch, end_epoch)):
+                timestamp = line['epoch']
+                rate = line['rate']
+                if timestamp >= end_epoch:                    
+                    time_list.append(timestamp)
+                    break
+                if timestamp >= start_epoch:
+                    rate_list.append(rate)
+        return pd.DataFrame({"rate" : rate_list}, index = time_list)        
     def weighted_average(self, epoch_list, index=None):
         epoch_iter = iter(epoch_list)
         start_epoch = None
@@ -260,6 +292,10 @@ class BitcoinAverager(DataLoaderClient):
         sum_trades[end_epoch] = 0
         with self.loader.openfile() as h5file:
             node = h5file.get_node("/tick_data", self.exchange)
+            nodeh = None
+            if self.currency_convert != None:
+                nodec = h5file.get_node("/currency_data", self.currency_convert)
+                nodeh = nodec.where("(epoch <= %lf)" % (epoch_list[-1]))
             for line in node.where("(epoch >= %lf) & (epoch <= %lf)" % (epoch_list[0], epoch_list[-1])):
                 timestamp = line['epoch']
                 price = line['price']
@@ -308,9 +344,8 @@ class BitcoinAverager(DataLoaderClient):
         return self.weighted_average(epochs, dates)
 
 class Forex (DataLoaderClient):
-    def __init__(self, exchange,tz="Europe/London"):
+    def __init__(self, exchange):
         self.exchange = exchange
-        self.tz = tz
         if self.exchange[:3] == self.exchange[-3:]:
             self.local_cache = None
         self.local_cache = exchange + ".csv"
@@ -322,14 +357,12 @@ class Forex (DataLoaderClient):
             self.loader.load_currency_data([self.exchange])
     def rates(self, epoch_list, index=None):
         import pandas as pd
-        import pytz
         from datetime import datetime, timedelta
         if self.exchange[:3] == self.exchange[-3:]:
             rate_list = [ 1.0 for i in epoch_list ]
             if index is None:
                 index=epoch_list
             return pd.DataFrame({"rates" : rate_list}, index=index)     
-        tz = pytz.timezone(self.tz)
         epoch_iter = iter(epoch_list)
         epoch = next(epoch_iter)
         rate = {}
