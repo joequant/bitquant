@@ -102,7 +102,7 @@ class BitcoinDataLoader(object):
             testfile.retrieve("http://api.bitcoincharts.com/v1/csv/" +
                 local_cache,  local_cache)
         logging.info("done retrieving")
-    def download_currency_data(self, currency):
+    def download_currency_data(self, currency, source="QUANDL"):
         local_cache = currency + ".csv"
         if not os.path.isfile(local_cache):
             logging.info("retrieving %s" % currency)
@@ -140,22 +140,22 @@ class BitcoinDataLoader(object):
             for e in exchange_list:
                 if not os.path.isfile(e + ".csv.gz"):
                     self.download_tick_data(e)
-                    if hasattr(h5file.root.tick_data, e):
+                    if ("/tick_data/" + e) in h5file:
                         h5file.remove_node("/tick_data", e)
-                if not hasattr(h5file.root.tick_data, e):
+                if ("/tick_data/" + e) not in h5file:
                     tick_table = h5file.create_table("/tick_data", e, TickData)
                     with gzip.open(e + ".csv.gz", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         self.read_csv(tick_table, csv_reader, fill_zeros(3))
                     tick_table.cols.epoch.create_index()
-    def load_currency_data(self, currency_list, tz="Europe/London"):
+    def load_currency_data(self, currency_list, tz="Europe/London", source="QUANDL"):
         with tables.open_file("bitcoin.h5", mode="a") as h5file:
             for c in currency_list:
                 if not os.path.isfile(c + ".csv"):
                     self.download_currency_data(c)
-                    if hasattr(h5file.root.currency_data, c):
+                    if ("/currency_data/" + c) in h5file:
                         h5file.remove_node("/currency_data", c)
-                if not hasattr(h5file.root.currency_data, c):
+                if ("/currency_data/" + c) not in h5file:
                     currency_table = h5file.create_table("/currency_data", c, CurrencyData)
                     with open(c + ".csv", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
@@ -489,11 +489,10 @@ class PriceCompositor(object):
             volume_key = [ j + i + "_volume" for j in self.exchange_dict[i]]
             trade_key = [ j + i + "_trade" for j in self.exchange_dict[i]]
             map_dict = {(j+i+"_volume"):(j+i+"_price") for j in self.exchange_dict[i]}
-            map_base_dict = {(j+i+"_volume"):(j+i+"_price_base") for j in self.exchange_dict[i]}
             df[i + "_volume"] = avg1[volume_key].sum(axis=1)
             df[i + "_trade"] = avg1[trade_key].sum(axis=1)
             df[i + "_price"] = (avg1[price_key] * avg1[volume_key].rename(columns=map_dict)).sum(axis=1) / df[i + "_volume"]
-            df[i + "_price_base"] = (avg1[price_base_key] * avg1[volume_key].rename(columns=map_base_dict)).sum(axis=1) / df[i + "_volume"]
+            df[i + "_price_base"] = (avg1[price_base_key] * avg1[volume_key].rename(columns=map_dict)).sum(axis=1) / df[i + "_volume"]
         return df
     def composite_all(self,df, method="exchange"):
         epochs = map(TimeUtil.unix_epoch, df.index)
@@ -501,31 +500,27 @@ class PriceCompositor(object):
         for f in self.forex_list:
             conversion_table[f] = self.forex[f].rates(epochs, df.index)['rates']
         df1 = df.join(conversion_table)
-        composite = pandas.DataFrame(columns=["price", "volume", "trade"])
+        composite = pandas.DataFrame(columns=["price", "price_base",  "volume", "trade"])
         price_key = [(i + "_price") for i in self.currencies]
         price_base_key = [(i+"_price_base") for i in self.currencies]
         volume_key = [(i + "_volume") for i in self.currencies]
         trade_key = [(i + "_trade") for i in self.currencies]
-        composite["volume"] = df1[volume_key].sum(axis=1)
-        composite["trade"] = df1[trade_key].sum(axis=1)
         if (method == "exchange"):
             dict_map = {(self.base_currency+i):(i+ "_price_base") for i in self.currencies}
             dict1_map = {(i+ "_volume"):(i+ "_price_base") for i in self.currencies}
-            dict2_map = {(i+"_price_base"):(self.base_currency + i + "_price") for i in self.currencies}
             composite['price'] = (df1[price_base_key] * 
                               df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
-            converted_price_table = \
-                              df1[price_base_key].rename(columns=dict2_map)
         else:
-            currency_key = [ (self.base_currency + i) for i in self.currencies]
-            dict_map = {(self.base_currency+i):(i+ "_price") for i in self.currencies}
-            dict1_map = {(i+ "_volume"):(i+ "_price") for i in self.currencies}
-            dict2_map = {(i+"_price"):(self.base_currency + i + "_price") for i in self.currencies}
-            map_dict = {(j+i+"_volume"):(j+i+"_price") for j in self.exchange_dict[i]}
-            composite['price'] = (df1[price_key]  /  df1[currency_key].rename(columns=dict_map) * \
-                              df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
-            converted_price_table = \
+           currency_key = [ (self.base_currency + i) for i in self.currencies]
+           dict_map = {(self.base_currency+i):(i+ "_price") for i in self.currencies}
+           dict1_map = {(i+ "_volume"):(i+ "_price") for i in self.currencies}
+           dict2_map = {(i+"_price"):(self.base_currency + i + "_price") for i in self.currencies}
+           converted_price_table = \
                               (df1[price_key] / df1[currency_key].rename(columns=dict_map)).rename(columns=dict2_map)
+           composite['price'] = (df1[price_key]  /  df1[currency_key].rename(columns=dict_map) * \
+                              df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
+        composite["volume"] = df1[volume_key].sum(axis=1)
+        composite["trade"] = df1[trade_key].sum(axis=1)
         return (composite, conversion_table, converted_price_table)
     def col_format(self, times=True,
                    currency=True,
