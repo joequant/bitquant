@@ -29,6 +29,7 @@ for e in exchanges:
     averagers[e] = BitcoinAverager(e)
 
 averager = averagers["bitfinexUSD"]
+averager_base = BitcoinAverager("bitfinexUSD", "GBP")
 
 # <codecell>
 
@@ -64,6 +65,11 @@ selected
 
 selected = averager.intervals(start_time, relativedelta(minutes=1),50 )
 selected
+
+# <codecell>
+
+selected_base = averager_base.intervals(start_time, relativedelta(minutes=1),50 )
+selected_base
 
 # <codecell>
 

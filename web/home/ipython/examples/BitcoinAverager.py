@@ -211,17 +211,18 @@ class BitcoinAverager(DataLoaderClient):
     def __init__(self, exchange, base_currency=None):
         self.exchange = exchange
         self.local_cache = exchange + ".csv.gz"
-        self.load_data()
         self.error_load = False
         self.error_currency = False
         self.base_currency = base_currency
         self.exchange_currency = exchange[-3:]
         if self.base_currency != None and \
-            self.exchange_currency != self.base_currency:
+            self.exchange_currency != self.base_currency: \
             self.currency_convert = self.base_currency + \
                 self.exchange_currency
         else:
             self.currency_convert = None
+        print "currency convert", self.currency_convert
+        self.load_data()
     def load_data(self):
         try:
             self.loader.load_tick_data([self.exchange])
@@ -229,12 +230,13 @@ class BitcoinAverager(DataLoaderClient):
         except:
             self.error_load = True
         if self.currency_convert != None:
-        try:
-            self.loader.load_currency_data([self.curren])
-            self.error_currency = False
-        except:
-            self.currency_convert = None
-            self.error_currency = True
+            try:
+                self.loader.load_currency_data([self.currency_convert])
+                self.error_currency = False
+            except:
+                print "error loading currency"
+                self.currency_convert = None
+                self.error_currency = True
     def index_range(self):
         if self.error_load:
             return None
@@ -284,18 +286,29 @@ class BitcoinAverager(DataLoaderClient):
         start_epoch = None
         end_epoch = next(epoch_iter)
         sum_price = {}
+        sum_price_base_currency = {}
         sum_volume = {}
         sum_trades = {}
         done = False
         sum_price[end_epoch] = 0.0
+        sum_price_base_currency[end_epoch] = 0.0
         sum_volume[end_epoch] = 0.0
         sum_trades[end_epoch] = 0
         with self.loader.openfile() as h5file:
             node = h5file.get_node("/tick_data", self.exchange)
             nodeh = None
+            currency_timestamp = None
+            next_currency_timestamp = None
             if self.currency_convert != None:
                 nodec = h5file.get_node("/currency_data", self.currency_convert)
                 nodeh = nodec.where("(epoch <= %lf)" % (epoch_list[-1]))
+                next_currency_data = next(nodeh, None)
+                currency_data = None
+                while next_currency_data != None and \
+                    next_currency_data['epoch'] <= epoch_list[0]:
+                        currency_data = next_currency_data
+                        next_currency_data = next(nodeh, None)
+                print currency_data['epoch'], currency_data['rate']
             for line in node.where("(epoch >= %lf) & (epoch <= %lf)" % (epoch_list[0], epoch_list[-1])):
                 timestamp = line['epoch']
                 price = line['price']
@@ -310,33 +323,65 @@ class BitcoinAverager(DataLoaderClient):
                         raise RuntimeError
                     end_epoch = e
                     sum_price[end_epoch] = 0.0
+                    sum_price_base_currency[end_epoch] = 0.0
                     sum_volume[end_epoch] = 0.0
                     sum_trades[end_epoch] = 0
+                if self.currency_convert != None:
+                    print "in currency convert"
+                    while next_currency_data != None and \
+                        timestamp >= next_currency_data['epoch']:
+                            print currency_data['epoch'], currency_data['rate']
+                            currency_data = next_currency_data
+                            next_currency_data = next(nodeh, None)
+                            if next_currency_data == None:
+                                break
+                            if next_currency_data['epoch'] < \
+                                currency_data['epoch']:
+                                    print "error"
+                                    raise RuntimeError
                 if done:
                     break
+                print "foo"
                 if start_epoch != None:
                    sum_price[end_epoch] += price * volume
+                   if self.currency_convert != None:
+                        rate = currency_data['rate']
+                        if rate != 0.0:
+                            sum_price_base_currency[end_epoch] += price * volume / rate
+                        else:
+                            sum_price_base_currency[end_epoch] = None
                    sum_volume[end_epoch] += volume
                    sum_trades[end_epoch] += 1
         average_list = []
         volume_list = []
         trade_list = []
+        price_base_currency_list = []
         for i in epoch_list[1:]:
            if i not in sum_trades:
                 average_list.append(None)
                 volume_list.append(0.0)
                 trade_list.append(0)
+                price_base_currency_list.append(None)
                 continue
            if sum_trades[i] == 0:
                average_list.append(None)
+               price_base_currency_list.append(None)
            else:
-               average_list.append(sum_price[i]/sum_volume[i])
+                average_list.append(sum_price[i]/sum_volume[i])
+                if self.currency_convert != None:
+                    price_base_currency_list.append(sum_price_base_currency[i]/sum_volume[i])
+                elif self.base_currency == self.exchange_currency:
+                    price_base_currency_list.append(sum_price[i]/sum_volume[i])
+                else:
+                    price_base_currency_list.append(None)
            volume_list.append(sum_volume[i])
            trade_list.append(sum_trades[i])
         if index is None:
             index=epoch_list
-        df = pd.DataFrame({"price" : average_list, "volume" : volume_list, "trade" : trade_list}, index=index[1:])
+        df = pd.DataFrame({"price" : average_list, "volume" : volume_list, "trade" : trade_list,
+                           "price_base": price_base_currency_list}, index=index[1:])
         df['price'] = df['price'].astype('float32')  # Force None to NaN's
+        df['price_base'] = df['price_base'].astype('float32')
         return df
     def intervals(self, start, interval, nintervals):
         dates = TimeUtil.dates(start, interval, nintervals)
