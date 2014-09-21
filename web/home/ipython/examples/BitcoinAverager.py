@@ -221,7 +221,6 @@ class BitcoinAverager(DataLoaderClient):
                 self.exchange_currency
         else:
             self.currency_convert = None
-        print "currency convert", self.currency_convert
         self.load_data()
     def load_data(self):
         try:
@@ -308,7 +307,6 @@ class BitcoinAverager(DataLoaderClient):
                     next_currency_data['epoch'] <= epoch_list[0]:
                         currency_data = next_currency_data
                         next_currency_data = next(nodeh, None)
-                print currency_data['epoch'], currency_data['rate']
             for line in node.where("(epoch >= %lf) & (epoch <= %lf)" % (epoch_list[0], epoch_list[-1])):
                 timestamp = line['epoch']
                 price = line['price']
@@ -327,10 +325,8 @@ class BitcoinAverager(DataLoaderClient):
                     sum_volume[end_epoch] = 0.0
                     sum_trades[end_epoch] = 0
                 if self.currency_convert != None:
-                    print "in currency convert"
                     while next_currency_data != None and \
                         timestamp >= next_currency_data['epoch']:
-                            print currency_data['epoch'], currency_data['rate']
                             currency_data = next_currency_data
                             next_currency_data = next(nodeh, None)
                             if next_currency_data == None:
@@ -341,7 +337,6 @@ class BitcoinAverager(DataLoaderClient):
                                     raise RuntimeError
                 if done:
                     break
-                print "foo"
                 if start_epoch != None:
                    sum_price[end_epoch] += price * volume
                    if self.currency_convert != None:
@@ -465,7 +460,7 @@ class PriceCompositor(object):
             for j in self.exchange_dict[i]:
                 self.exchange_cols.append(j + i)
         self.forex_list = [ self.base_currency + i for i in self.currencies]
-        self.averager = { i:BitcoinAverager(i) for i in self.exchange_cols }
+        self.averager = { i:BitcoinAverager(i,base_currency) for i in self.exchange_cols }
         self.forex = { f:Forex(f) for f in self.forex_list }
     def reload(self):
         for e in self.exchange_cols:
@@ -477,6 +472,7 @@ class PriceCompositor(object):
         for e in self.exchange_cols:
             table = self.averager[e].intervals(start, period, intervals)
             exchange_table[e+"_price"] = table["price"]
+            exchange_table[e+"_price_base"] = table["price_base"]
             exchange_table[e+"_volume"] = table["volume"]
             exchange_table[e+"_trade"] = table ["trade"]
         return exchange_table        
@@ -489,14 +485,17 @@ class PriceCompositor(object):
         avg1 = avg.fillna(0.0)
         for i in self.currencies:
             price_key = [ j + i + "_price" for j in self.exchange_dict[i]]
+            price_base_key = [j+i + "_price_base" for j in self.exchange_dict[i]]
             volume_key = [ j + i + "_volume" for j in self.exchange_dict[i]]
             trade_key = [ j + i + "_trade" for j in self.exchange_dict[i]]
             map_dict = {(j+i+"_volume"):(j+i+"_price") for j in self.exchange_dict[i]}
+            map_base_dict = {(j+i+"_volume"):(j+i+"_price_base") for j in self.exchange_dict[i]}
             df[i + "_volume"] = avg1[volume_key].sum(axis=1)
             df[i + "_trade"] = avg1[trade_key].sum(axis=1)
             df[i + "_price"] = (avg1[price_key] * avg1[volume_key].rename(columns=map_dict)).sum(axis=1) / df[i + "_volume"]
+            df[i + "_price_base"] = (avg1[price_base_key] * avg1[volume_key].rename(columns=map_base_dict)).sum(axis=1) / df[i + "_volume"]
         return df
-    def composite_all(self,df):
+    def composite_all(self,df, method="exchange"):
         epochs = map(TimeUtil.unix_epoch, df.index)
         conversion_table = pandas.DataFrame()
         for f in self.forex_list:
@@ -504,18 +503,29 @@ class PriceCompositor(object):
         df1 = df.join(conversion_table)
         composite = pandas.DataFrame(columns=["price", "volume", "trade"])
         price_key = [(i + "_price") for i in self.currencies]
+        price_base_key = [(i+"_price_base") for i in self.currencies]
         volume_key = [(i + "_volume") for i in self.currencies]
         trade_key = [(i + "_trade") for i in self.currencies]
-        currency_key = [ (self.base_currency + i) for i in self.currencies]
-        dict_map = {(self.base_currency+i):(i+ "_price") for i in self.currencies}
-        dict1_map = {(i+ "_volume"):(i+ "_price") for i in self.currencies}
-        dict2_map = {(i+"_price"):(self.base_currency + i + "_price") for i in self.currencies}
-        converted_price_table = \
-                              (df1[price_key] / df1[currency_key].rename(columns=dict_map)).rename(columns=dict2_map)
         composite["volume"] = df1[volume_key].sum(axis=1)
         composite["trade"] = df1[trade_key].sum(axis=1)
-        composite['price'] = (df1[price_key] / df1[currency_key].rename(columns=dict_map) * \
+        if (method == "exchange"):
+            dict_map = {(self.base_currency+i):(i+ "_price_base") for i in self.currencies}
+            dict1_map = {(i+ "_volume"):(i+ "_price_base") for i in self.currencies}
+            dict2_map = {(i+"_price_base"):(self.base_currency + i + "_price") for i in self.currencies}
+            composite['price'] = (df1[price_base_key] * 
                               df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
+            converted_price_table = \
+                              df1[price_base_key].rename(columns=dict2_map)
+        else:
+            currency_key = [ (self.base_currency + i) for i in self.currencies]
+            dict_map = {(self.base_currency+i):(i+ "_price") for i in self.currencies}
+            dict1_map = {(i+ "_volume"):(i+ "_price") for i in self.currencies}
+            dict2_map = {(i+"_price"):(self.base_currency + i + "_price") for i in self.currencies}
+            map_dict = {(j+i+"_volume"):(j+i+"_price") for j in self.exchange_dict[i]}
+            composite['price'] = (df1[price_key]  /  df1[currency_key].rename(columns=dict_map) * \
+                              df1[volume_key].rename(columns=dict1_map)).sum(axis=1) / composite["volume"]
+            converted_price_table = \
+                              (df1[price_key] / df1[currency_key].rename(columns=dict_map)).rename(columns=dict2_map)
         return (composite, conversion_table, converted_price_table)
     def col_format(self, times=True,
                    currency=True,
