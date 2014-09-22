@@ -106,7 +106,7 @@ class BitcoinDataLoader(object):
     def tick_node(self, exchange):
         return self.h5file.get_node("/tick_data", exchange)
     def currency_node(self, currency, source):
-        return self.h5file.get_node("/currency_data", currency)
+        return self.h5file.get_node("/currency_data/" + source , currency)
     def download_tick_data(self, exchange):  
         local_cache = exchange + ".csv.gz"
         if not os.path.isfile(local_cache):
@@ -162,14 +162,16 @@ class BitcoinDataLoader(object):
                         self.read_csv(tick_table, csv_reader, fill_zeros(3))
                     tick_table.cols.epoch.create_index()
     def load_currency_data(self, currency_list, source, tz="Europe/London"):
-        with tables.open_file("bitcoin.h5", mode="a") as h5file: 
+        with tables.open_file("bitcoin.h5", mode="a") as h5file:
+            if ("/currency_data/" + source) not in h5file:
+                h5file.create_group("/currency_data",  source)
             for c in currency_list:
                 if not os.path.isfile(c + ".csv"):
-                    self.download_currency_data(c)
-                    if ("/currency_data/" + c) in h5file:
-                        h5file.remove_node("/currency_data", c)
-                if ("/currency_data/" + c) not in h5file:
-                    currency_table = h5file.create_table("/currency_data", c, CurrencyData)
+                    self.download_currency_data(c, source)
+                    if ("/currency_data/" +source + "/" + c) in h5file:
+                        h5file.remove_node("/currency_data/" + source, c)
+                if ("/currency_data/" + source + "/" + c) not in h5file:
+                    currency_table = h5file.create_table("/currency_data/" + source, c, CurrencyData)
                     with open(c + ".csv", "r") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         csv_reader.next()
@@ -243,13 +245,8 @@ class BitcoinAverager(DataLoaderClient):
         except:
             self.error_load = True
         if self.currency_convert != None:
-            try:
-                self.loader.load_currency_data([self.currency_convert], self.currency_source)
-                self.error_currency = False
-            except:
-                print "error loading currency"
-                self.currency_convert = None
-                self.error_currency = True
+            self.loader.load_currency_data([self.currency_convert], self.currency_source)
+            self.error_currency = False
     def index_range(self):
         if self.error_load:
             return None
