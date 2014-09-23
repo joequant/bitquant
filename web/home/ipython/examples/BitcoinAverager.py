@@ -539,9 +539,9 @@ class PriceCompositor(object):
         retval.append(["index", 1])
         retval.append(['sum', 3])
         if currency:
-            retval.append(["currency", len(self.currencies)*3])
+            retval.append(["currency", len(self.currencies)*4])
         if exchange:
-            retval.append(['exchange', len(self.exchange_list)*3])
+            retval.append(['exchange', len(self.exchange_list)*4])
         if converted_prices:
             retval.append(['converted', len(self.currencies)])
         if rates:
