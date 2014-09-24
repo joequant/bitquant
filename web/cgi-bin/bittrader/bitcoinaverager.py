@@ -115,6 +115,10 @@ Price plot fields (comma_separated): <input name="price_plot_fields" value="pric
 Volume plot fields (comma separated): <input name="volume_plot_fields" value="volume"><br>
 <input type="submit" />
 </form>
+<p>
+<a href="/cgi-bin/bittrader/bitcoinaverager.py/reload" target="_blank">Reload data (this will take a few minutes)</a>
+
+
 """
     return retval
 
@@ -238,7 +242,7 @@ $(document).ready(function() {
       } else {
       table.DataTable().columns(item).visible(false, false);
       }
-      table.DataTable().draw();
+      table.DataTable().draw(false);
       new $.fn.dataTable.FixedColumns( table );
     });
     });
