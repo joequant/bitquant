@@ -117,6 +117,7 @@ class BitcoinDataLoader(object):
         logging.info("done retrieving")
     def download_currency_data(self, currency, source):
         local_cache = currency + ".csv"
+        local_file_name = currency + "-" + source + ".csv"
         if not os.path.isfile(local_cache):
             logging.info("retrieving %s" % currency)
             testfile = urllib.URLopener()
