@@ -12,7 +12,7 @@ echo "version 4"
 VERSION=4
 fi
 
-
+TESTING=false
 USER=user
 # Change everything to local user so that suexec will work
 # ./setup.sh will take the owner of the scripts to set up the
@@ -25,13 +25,17 @@ chown -R $USER":"$USER git
 echo "Resetting urpmi"
 urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.'`uname -m`'.list'
+if $TESTING ; then
 urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
+fi
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
 urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release
 urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates
+if $TESTING ; then
 urpmi.addmedia "Core updates testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
+fi
 urpmi.addmedia "Core backports backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports
 urpmi.addmedia "Backports testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
 fi
