@@ -185,10 +185,12 @@ data_loader.init_file()
 import os
 import logging
 class TimeUtil(object):
+    import pytz
+    utc_tz = pytz.timezone("UTC")
     @staticmethod
     def unix_epoch(dt):
-        import time
-        return time.mktime(dt.timetuple())
+        import calendar
+        return calendar.timegm(dt.astimezone(TimeUtil.utc_tz).timetuple())
     @staticmethod
     def dates(start, period, intervals):
         return [(start + n * period) for n in range(intervals + 1)]
