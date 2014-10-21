@@ -94,10 +94,6 @@ def setup():
     elif submit == "Set time zone":
         timezone = request.values['timezone']
         return subprocess.check_output(["./timezone.sh", timezone])
-    elif submit == "Startup ssh":
-        return subprocess.check_output(["./sshd.sh", "/on"])
-    elif submit == "Shutdown ssh":
-        return subprocess.check_output(["./sshd.sh", "/off"])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
     elif submit == "Remove local install":
