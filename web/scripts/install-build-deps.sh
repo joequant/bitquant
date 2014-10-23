@@ -12,8 +12,13 @@ if grep -q Cauldron /etc/release  ; then
 JAVA=java-1.8.0-openjdk-devel
 fi
 
+if [[ $UID -ne 0 ]]; then
+  SUDO=sudo
+fi
+
+
 set -e
-sudo urpmi --no-suggests \
+$SUDO urpmi --no-recommends \
 --auto \
 --downloader "curl" \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
@@ -83,7 +88,7 @@ dokuwiki-plugin-auth
 # curl-devel is needed for Rcurl
 
 # don't start up server
-sudo systemctl disable hsqldb
+$SUDO systemctl disable hsqldb
 
 #gcc-c++ is needed for ethercalc
 
