@@ -32,6 +32,12 @@ mv -f 00_default_vhosts.conf 00_default_vhosts.conf.bak
 fi
 popd > /dev/null
 
+# Create root copy of scripts
+mkdir -p /usr/share/bitquant
+cp $WEB_DIR/scripts/* /usr/share/bitquant
+cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
+chmod o-w /usr/share/bitquant/*.sh
+
 $WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 
 systemctl daemon-reload
