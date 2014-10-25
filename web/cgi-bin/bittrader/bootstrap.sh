@@ -29,7 +29,7 @@ echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Shutting down servers"
 sudo systemctl stop bitquant
 echo "Installing packages"
-source $GIT_DIR/web/scripts/install-build-deps.sh
+sudo /usr/share/bitquant/install-build-deps.sh
 echo "Doing initial installation"
 $GIT_DIR/git/bootstrap.sh
 echo "Installing R packages"

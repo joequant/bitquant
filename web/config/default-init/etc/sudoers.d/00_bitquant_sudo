@@ -32,10 +32,10 @@
 Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh,  /usr/share/bitquant/install-r-pkgs-sudo.sh
 
 ## Installation and management of software
-Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme, /bin/pip
+#Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme, /bin/pip
 
 ## Services
-#Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
+Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 
 ## Updating the locate database
 # Cmnd_Alias LOCATE = /usr/bin/updatedb
