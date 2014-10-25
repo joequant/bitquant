@@ -24,16 +24,18 @@
 ## These are groups of related commands...
 
 ## Networking
-# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm, /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+# Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping,
+# /sbin/dhclient, /usr/bin/net, /sbin/iptables, /usr/bin/rfcomm,
+# /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
+
+## Bitquant install
+Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh,  /usr/share/bitquant/install-r-pkgs-sudo.sh
 
 ## Installation and management of software
 Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme, /bin/pip
 
-## Misc functions needed for bitquant
-Cmnd_Alias MISC = /bin/mkdir, /bin/mv, /bin/cp, /bin/make, /bin/ln, /sbin/useradd, /bin/tee, /sbin/pwauth, /bin/sed
-
 ## Services
-Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
+#Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 
 ## Updating the locate database
 # Cmnd_Alias LOCATE = /usr/bin/updatedb
@@ -42,7 +44,7 @@ Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 # Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
 
 ## Delegating permissions
-Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
+#Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
 
 ## Processes
 # Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
@@ -51,7 +53,6 @@ Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp
 # Cmnd_Alias DRIVERS = /sbin/modprobe
 
 Cmnd_Alias USER = /bin/passwd
-Cmnd_Alias TIME = /bin/timedatectl
 
 # Defaults specification
 
@@ -79,12 +80,9 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ##
 ## The COMMANDS section may have other options added to it.
 ##
-Defaults!SOFTWARE !requiretty
-Defaults!SERVICES !requiretty
-Defaults!DELEGATING !requiretty
-Defaults!MISC !requiretty
+Defaults!BITQUANT !requiretty
 Defaults!USER !requiretty
 Defaults!TIME !requiretty
-%USER%  ALL= ALL, NOPASSWD:  SOFTWARE, NOPASSWD: SERVICES, NOPASSWD: USER, NOPASSWD: TIME, NOPASSWD: MISC, NOPASSWD: DELEGATING
+%USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER
 
 

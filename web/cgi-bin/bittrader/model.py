@@ -93,7 +93,7 @@ def setup():
             return traceback.extract_stack()
     elif submit == "Set time zone":
         timezone = request.values['timezone']
-        return subprocess.check_output(["./timezone.sh", timezone])
+        return subprocess.check_output(["sudo" "/usr/share/bitquant/timezone.sh", timezone])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
     elif submit == "Remove local install":
@@ -103,18 +103,18 @@ def setup():
 #        salt = os.urandom(6).encode('base_64').strip()
 #        hashval = crypt.crypt(password, "$1$" + salt + "$")
         hashval = ""
-        retval = subprocess.check_output(["./conf.sh", "/wiki-lock"]);
+        retval = subprocess.check_output(["sudo", "/usr/share/bitquant/conf.sh", "/wiki-lock"]);
         retval += subprocess.check_output(["./wiki.sh", "/rmuser",
                                            user()])
         retval += subprocess.check_output(["./wiki.sh", "/adduser",
                                            user() + ":" + hashval + ":Dokuwiki Admin:foo@example.com:admin,users,upload"])
         return retval
     elif submit == "Unlock wiki":
-        return subprocess.check_output(["./conf.sh", "/wiki-unlock"])
+        return subprocess.check_output(["sudo", "/usr/share/bitquant/conf.sh", "/wiki-unlock"])
     elif submit == "Lock httpd":
-        return subprocess.check_output(["./conf.sh", "/httpd-lock"])
+        return subprocess.check_output(["sudo", "/usr/share/bitquant/conf.sh", "/httpd-lock"])
     elif submit == "Unlock httpd":
-        return subprocess.check_output(["./conf.sh", "/httpd-unlock"])
+        return subprocess.check_output(["sudo", "/usr/share/bitquant/conf.sh", "/httpd-unlock"])
     else:
         return "unknown command"
 

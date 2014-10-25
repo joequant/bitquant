@@ -39,8 +39,8 @@ $GIT_DIR/web/scripts/install-python-pkgs.sh
 
 #set wiki conf
 echo "Set up wiki"
-./conf.sh /wiki-unlock
-./conf.sh /wiki-init
+sudo /usr/share/bitquant/conf.sh /wiki-unlock
+sudo /usr/share/bitquant/conf.sh /wiki-init
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
 if [ -d $MY_HOME/ipython/examples ] ; then
@@ -54,7 +54,7 @@ cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
 # Refresh configurations
 # This replaces the ajenti configuration with a 
 # version that does not use ssl
-./conf.sh /default-init
+sudo /usr/share/bitquant/conf.sh /default-init
 
 echo "Starting up servers"
 $SCRIPT_DIR/servers.sh /on
