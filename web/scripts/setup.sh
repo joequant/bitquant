@@ -33,8 +33,10 @@ fi
 popd > /dev/null
 
 # Create root copy of scripts
+rm -rf /usr/share/bitquant
 mkdir -p /usr/share/bitquant
-cp $WEB_DIR/scripts/* /usr/share/bitquant
+cp $WEB_DIR/scripts/*-sudo.sh /usr/share/bitquant
+cp $WEB_DIR/scripts/*root*.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 chmod o-w /usr/share/bitquant/*.sh
 
