@@ -23,40 +23,4 @@ echo "not dump file"
 exit 1
 fi
 
-pushd bittrader > /dev/null
-echo "Loading data"
-if [ -e $GIT_DIR/OG-Platform/examples/examples-simulated/data ] ; then
-mv $GIT_DIR/OG-Platform/examples/examples-simulated/data \
-   $ATTIC_DIR/og-data
-fi
-
-echo "Loading OG data"
-mv og-data $GIT_DIR/OG-Platform/examples/examples-simulated/data
-sudo chown $ME:$GROUP -R $GIT_DIR/OG-Platform/examples/examples-simulated/data
-
-
-if [ -e /var/lib/dokuwiki ] ; then
-echo "Loading dokuwiki"
-sudo mv /var/lib/dokuwiki $ATTIC_DIR
-fi
-sudo mv dokuwiki /var/lib
-sudo chown apache:apache -R  /var/lib/dokuwiki
-
-if [ -e $GIT_DIR/../ipython ] ; then
-echo "Loading ipython"
-sudo mv $GIT_DIR/../ipython $ATTIC_DIR
-fi
-mv ipython $GIT_DIR/..
-sudo chown -R $ME:$GROUP $GIT_DIR/../ipython 
-
-
-if [ -d $GIT_DIR/ethercalc ] ; then
-echo "Loading ethercalc"
-mkdir -p $ATTIC_DIR/ethercalc
-mv $GIT_DIR/ethercalc/dump.json $ATTIC_DIR/ethercalc
-sudo mv ethercalc/dump.json $GIT_DIR/ethercalc
-sudo chown $ME:$GROUP $GIT_DIR/ethercalc/dump.json
-fi
-popd > /dev/null
-rm -r $TMP_DIR/$$
-popd > /dev/null
+sudo /usr/share/bitquant/install-data-sudo.sh $SCRIPT_DIR $ME $GROUP $ATTIC_DIR
