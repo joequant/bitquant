@@ -5,9 +5,6 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $SCRIPT_DIR/environment.sh
 
-
-
-
 if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
@@ -17,11 +14,6 @@ export PATH_INFO=$1
 else
 echo "Content-type: text/html"
 echo ""
-fi
-
-if [[ $ME == "root" ]] ; then
-echo "Owner of conf.sh should not be root"
-exit 1
 fi
 
 if [ "$PATH_INFO" = "" ] ; then
