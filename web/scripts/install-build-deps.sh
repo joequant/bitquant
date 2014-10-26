@@ -72,7 +72,8 @@ python-tables \
 python-scipy \
 curl-devel \
 ajenti \
-dokuwiki-plugin-auth
+dokuwiki-plugin-auth \
+icu-devel
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
@@ -86,6 +87,7 @@ dokuwiki-plugin-auth
 # python-scipy
 
 # curl-devel is needed for Rcurl
+# icu-i18n-devel is needed for Rpy
 
 # don't start up server
 $SUDO systemctl disable hsqldb
