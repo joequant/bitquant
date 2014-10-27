@@ -1,5 +1,17 @@
-docker-image:
+bitstation:
+	sudo docker build -t bitstation .
+
+mageia-import: rootfs-systemd.tar.xz
+	sudo cat rootfs-systemd.tar.xz | sudo docker import - bitstation
+
+mageia-image: rootfs-systemd.tar.xz
+
+rootfs-systemd.tar.xz:
 	sudo ./mkimage-urpmi.sh --rootfs=`pwd` --with-systemd
+
+clean:
+	rm rootfs-systemd.tar.xz
+	sudo docker rmi bitstation
 
 refresh-script:
 	rm mkimage-urpmi.sh .febootstrap-minimize
