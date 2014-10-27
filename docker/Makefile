@@ -1,6 +1,9 @@
 bitstation:
 	sudo docker build -t bitstation .
 
+bitstation-clean-docker:
+	sudo docker build -rm=true - < Dockerfile
+
 mageia-import: rootfs-systemd.tar.xz
 	sudo cat rootfs-systemd.tar.xz | sudo docker import - bitstation
 
