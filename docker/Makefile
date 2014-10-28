@@ -1,5 +1,5 @@
 bitstation:
-	sudo docker build -t bitstation .
+	sudo docker build -t bitstation . 
 
 bitstation-clean-docker:
 	sudo docker build -rm=true - < Dockerfile
@@ -21,3 +21,5 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/mkimage-urpmi.sh
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
+
+.PHONY: bitstation
