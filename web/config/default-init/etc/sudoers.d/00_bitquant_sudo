@@ -29,7 +29,8 @@
 # /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
 
 ## Bitquant install
-Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh,  /usr/share/bitquant/install-r-pkgs-sudo.sh, /usr/share/bitquant/install-build-deps.sh
+Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh, /usr/share/bitquant/install-r-pkgs-sudo.sh, /usr/share/bitquant/install-build-deps.sh
+
 
 ## Installation and management of software
 #Cmnd_Alias SOFTWARE = /bin/rpm, /usr/bin/up2date, /usr/bin/yum, /usr/sbin/urpmi, /usr/sbin/urpme, /bin/pip
@@ -82,7 +83,7 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ##
 Defaults!BITQUANT !requiretty
 Defaults!USER !requiretty
-Defaults!TIME !requiretty
+Defaults!SERVICES !requiretty
 %USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER
 
 
