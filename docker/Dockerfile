@@ -6,5 +6,16 @@ RUN ["urpmi", "--no-suggests", "--auto", "sudo", "openssh-server", "git", "apach
 RUN ["useradd", "user"]
 RUN echo 'cubswin:)' | passwd user --stdin
 RUN cd ~user ; mkdir git ; cd git ; git clone https://github.com/joequant/bitquant.git
-RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitquant >> /var/log/oz_setup.log 2>&1
+RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation >> /var/log/oz_setup.log 2>&1
+RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/*
 
+RUN /usr/bin/systemctl enable httpd.service
+VOLUME [ "/sys/fs/cgroup" ]
+EXPOSE 80
+CMD ["/usr/sbin/init"]
