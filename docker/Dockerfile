@@ -1,6 +1,8 @@
 FROM mageia:cauldron
 MAINTAINER Joseph C Wang <joequant@gmail.com>
-RUN ["urpmi", "--no-suggests", "--auto", "--auto-update"]
+#RUN ["urpmi", "--no-suggests", "--auto", "--auto-update"]
+RUN ["urpmi.update", "-a"]
+RUN ["urpmi", "--no-suggests", "--auto", "urpmi" ]
 RUN ["urpme", "--auto-orphans", "--auto"]
 RUN ["urpmi", "--no-suggests", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python-flask", "python-pexpect"]
 RUN ["useradd", "user"]
@@ -14,6 +16,7 @@ rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*
+RUN /usr/share/bitquant/install-build-deps.sh
 USER user
 RUN ~user/git/bitquant/web/scripts/bootstrap.sh
 USER root
