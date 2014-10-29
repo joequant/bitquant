@@ -19,7 +19,7 @@ popd
 
 pushd ../../OG-Platform  > /dev/null
 #mvn install -Dmaven.test.skip=True
-for project in projects/OG-Web projects/OG-FinancialTypes projects/OG-Master projects/OG-Financial examples/examples-simulated ; do
+for project in projects/OG-Master examples/examples-simulated ; do
 echo "Building $project"
 pushd $project > /dev/null
 mvn install -Dmaven.test.skip=True
