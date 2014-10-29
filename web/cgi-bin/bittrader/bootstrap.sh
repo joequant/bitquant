@@ -24,6 +24,10 @@ echo "Saving to <a href='/cgi-bin/bittrader/log/bootstrap' target='_blank'>log f
 exec 6>&1
 exec > $LOG_DIR/bootstrap.log
 exec 2>&1
+echo "Shutting down servers"
+sudo systemctl stop bitquant
+echo "Installing packages"
+sudo /usr/share/bitquant/install-build-deps.sh
 $WEB_DIR/scripts/bootstrap.sh
 echo "Starting up servers"
 $SCRIPT_DIR/servers.sh /on
