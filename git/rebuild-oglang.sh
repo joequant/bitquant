@@ -5,12 +5,7 @@ if [ $ncpus -gt 4 ]; then
 ncpus=4
 fi
 
-sudo mkdir -p /var/run/opengamma
-sudo chmod a+rwx /var/run/opengamma
-
-sudo mkdir -p /var/log/OG-RStats
-sudo chmod a+rwx /var/log/OG-RStats
-
+sudo /usr/share/bitquant/mkogdirs-sudo.sh
 mkdir -p ~/etc/OpenGammaLtd
 
 arch=$(test "$(uname -m)" = "x86_64" && echo "amd64" || echo "i386")

@@ -29,7 +29,7 @@
 # /usr/bin/wvdial, /sbin/iwconfig, /sbin/mii-tool
 
 ## Bitquant install
-Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh, /usr/share/bitquant/install-r-pkgs-sudo.sh, /usr/share/bitquant/install-build-deps.sh
+Cmnd_Alias BITQUANT = /usr/share/bitquant/conf.sh,/usr/share/bitquant/install-python-pkgs-sudo.sh, /usr/share/bitquant/install-r-pkgs-sudo.sh, /usr/share/bitquant/install-build-deps.sh, /usr/share/bitquant/mkogdirs-sudo.sh
 
 
 ## Installation and management of software
