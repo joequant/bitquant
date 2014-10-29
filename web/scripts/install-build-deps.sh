@@ -38,8 +38,6 @@ fop \
 nodejs \
 gcc-c++ \
 ipython make postgresql9.3-devel \
-strace \
-screen \
 krb5-appl-clients \
 python-flask \
 python-pexpect \
