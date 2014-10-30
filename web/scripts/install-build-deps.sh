@@ -22,6 +22,7 @@ $SUDO urpmi --no-recommends \
 --auto \
 --downloader "curl" \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
+$URPMI_OPTIONS \
 maven \
 maven-clean-plugin \
 maven-assembly-plugin \
