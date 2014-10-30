@@ -7,10 +7,10 @@ RUN urpmi.removemedia -a ;\
     urpmi.addmedia --distrib \
        --mirrorlist \
        'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list' ; \
-   urpmi --no-suggests --auto urpmi ; \
+   urpmi --no-suggests --auto urpmi --excludedocs ; \
    urpme --auto-orphans --auto
 
-RUN ["urpmi", "--no-suggests", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python-flask", "python-pexpect"]
+RUN ["urpmi", "--no-suggests", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python-flask", "python-pexpect"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
    cd ~user ; mkdir git ; cd git ; \
@@ -23,7 +23,7 @@ rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/* 
-RUN  /usr/share/bitquant/install-build-deps.sh ;\
+RUN  URPMI_OPTIONS="--excludedocs" /usr/share/bitquant/install-build-deps.sh ;\
 su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
 su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
 ~user/git/bitquant/web/scripts/remove-build-deps.sh 
