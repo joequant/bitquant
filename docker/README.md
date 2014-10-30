@@ -6,6 +6,7 @@ To run docker
 
    run-docker.sh
 
+You can then connect to the system via the localhost port 80
 
 
 Docker script from
