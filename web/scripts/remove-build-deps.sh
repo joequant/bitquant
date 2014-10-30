@@ -19,7 +19,6 @@ fi
 
 $SUDO urpme \
 --auto \
-make \
 postgresql9.3-devel \
 cmake \
 gcc-c++
