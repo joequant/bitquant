@@ -1,6 +1,9 @@
 bitstation:
 	sudo docker build -t bitstation . 
 
+bitstation-nocache:
+	sudo docker build --no-cache=true -t bitstation . 
+
 bitstation-clean-docker:
 	sudo docker build -rm=true - < Dockerfile
 
