@@ -5,9 +5,16 @@ Scripts and installation routines for Bitquant Research Laboratories
 (Asia) Ltd.
 
 In addition to paper drafts, this repository contains the script to
-generate the diskimage for the bitstation trading system.  Bitstation
-consists of a disk image which can be run in VirtualBox or uploaded to
-a cloud computing system.
+generate the diskimage for the bitstation trading system as well as a
+docker image.
+
+Bitstation consists of a disk image which can be run in VirtualBox or
+uploaded to a cloud computing system.
+
+Docker image creation is in docker
+
+Disk Image
+==========
 
 Dependencies
 ===========
