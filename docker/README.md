@@ -1,4 +1,10 @@
-To install the image
+Downloading an image
+
+   docker pull joequant/bitstation
+   docker tag joequant/bitstation bitstation
+   run-docker.sh
+
+To build the image
 
    make
 
