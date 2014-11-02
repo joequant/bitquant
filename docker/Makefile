@@ -1,23 +1,23 @@
 bitstation:
-	sudo docker build -t bitstation . 
+	 docker build -t bitstation . 
 
 bitstation-nocache:
-	sudo docker build --no-cache=true -t bitstation . 
+	 docker build --no-cache=true -t bitstation . 
 
 bitstation-clean-docker:
-	sudo docker build -rm=true - < Dockerfile
+	 docker build -rm=true - < Dockerfile
 
 mageia-import: rootfs-systemd.tar.xz
-	sudo cat rootfs-systemd.tar.xz | sudo docker import - mageia:systemd
+	 cat rootfs-systemd.tar.xz |  docker import - mageia:systemd
 
 mageia-image: rootfs-systemd.tar.xz
 
 rootfs-systemd.tar.xz:
-	sudo ./mkimage-urpmi.sh --rootfs=`pwd` --with-systemd
+	 ./mkimage-urpmi.sh --rootfs=`pwd` --with-systemd
 
 clean:
 	rm rootfs-systemd.tar.xz
-	sudo docker rmi bitstation
+	docker rmi bitstation
 
 refresh-script:
 	rm mkimage-urpmi.sh .febootstrap-minimize

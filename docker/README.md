@@ -2,6 +2,8 @@ To install the image
 
    make
 
+You may need to run make with "sudo make" if docker can only run under root
+
 To run docker
 
    run-docker.sh
