@@ -16,6 +16,37 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
+OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$@")
+
+eval set -- "$OPTS"
+
+MIFOS_PKGS="tomcat mysql"
+OPENGAMMA_PKGS="maven \
+  maven-clean-plugin \
+  maven-assembly-plugin \
+  maven-compiler-plugin \
+  maven-dependency-plugin \
+  maven-install-plugin \
+  maven-release-plugin \
+  aether \
+  aether-connector-basic \
+  aether-transport-file \
+  aether-transport-http \
+  aether-transport-wagon"
+
+MY_MIFOS_PKGS=""
+MY_OPENGAMMA_PKGS=$OPENGAMMA_PKGS
+
+while true; do
+   case "$1" in
+      --with-mifos )  MY_MIFOS_PKGS=$MIFOS_PKGS ; shift ;;
+      --with-opengamma ) MY_OPENGAMMA_PKGS=$MY_OPENGAMMA_PKGS; shift ;;
+      --no-mifos )  MY_MIFOS_PKGS="" ; shift ;;
+      --no-opengamma ) MY_OPENGAMMA_PKGS=""; shift ;;
+      -- ) shift ; break ;;
+      * ) break ;;
+   esac
+done
 
 set -e
 $SUDO urpmi --no-recommends \
@@ -23,18 +54,8 @@ $SUDO urpmi --no-recommends \
 --downloader "curl" \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
 $URPMI_OPTIONS \
-maven \
-maven-clean-plugin \
-maven-assembly-plugin \
-maven-compiler-plugin \
-maven-dependency-plugin \
-maven-install-plugin \
-maven-release-plugin \
-aether \
-aether-connector-basic \
-aether-transport-file \
-aether-transport-http \
-aether-transport-wagon \
+$MY_MIFOS_PKGS \
+$MY_OPENGAMMA_PKGS \
 fop \
 nodejs \
 gcc-c++ \
@@ -72,7 +93,8 @@ python-scipy \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
-icu-devel
+icu-devel \
+python-sympy
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
