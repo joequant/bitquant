@@ -50,3 +50,6 @@ systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
 
+if [ -e /bin/mysqladmin ] ; then
+mysqladmin password mysql
+fi
