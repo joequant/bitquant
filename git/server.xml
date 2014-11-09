@@ -50,7 +50,7 @@
             driverClassName="com.mysql.jdbc.Driver"
             url="jdbc:mysql://localhost:3306/mifosplatform-tenants"
             username="root"
-            password="[root mysql password]"
+            password="mysql"
             initialSize="3"
             maxActive="10"
             maxIdle="6"
