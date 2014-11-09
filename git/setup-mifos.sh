@@ -11,9 +11,6 @@ pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 mysql -uroot -pmysql mifostenant-default <  database/migrations/sample_data/load_sample_data.sql
 
-sudo mkdir $TOMCAT_HOME/logs
-sudo mkdir $TOMCAT_HOME/lib
-
 sudo cp mifosng-provider.war $TOMCAT_HOME/webapps
 sudo mkdir $TOMCAT_HOME/webapps/ROOT
 sudo cp -r api-docs $TOMCAT_HOME/webapps/ROOT

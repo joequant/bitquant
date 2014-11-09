@@ -50,6 +50,9 @@ systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
 
+# Mifos set up
 if [ -e /bin/mysqladmin ] ; then
 mysqladmin password mysql
 fi
+usermod -a -G tomcat $ME
+
