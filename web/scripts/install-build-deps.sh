@@ -49,6 +49,24 @@ while true; do
 done
 
 set -e
+
+#repeat packages in setup
+$SUDO urpmi --no-recommends \
+--auto \
+--downloader "curl" \
+--curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
+apache \
+apache-mod_suexec \
+apache-mod_proxy \
+apache-mod_php \
+apache-mod_authnz_external \
+apache-mod_ssl \
+avahi \
+dokuwiki \
+python-flask \
+python-pexpect
+
+#other packages
 $SUDO urpmi --no-recommends \
 --auto \
 --downloader "curl" \
