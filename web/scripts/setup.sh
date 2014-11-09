@@ -55,4 +55,5 @@ if [ -e /bin/mysqladmin ] ; then
 mysqladmin password mysql
 fi
 usermod -a -G tomcat $ME
+sed -i -e s/^skip-networking/#skip-networking/ /etc/my.cnf
 
