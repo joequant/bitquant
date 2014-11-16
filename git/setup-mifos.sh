@@ -11,6 +11,12 @@ pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 mysql -uroot -pmysql mifostenant-default <  database/migrations/sample_data/load_sample_data.sql
 
+if [ ! -e /usr/share/tomcat/.keystore ] ; then 
+echo "" | sudo keytool -genkey -alias mifostom -keyalg RSA \
+  -storepass changeit -noprompt \
+  -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown,S=Unknown, C=Unknown" \
+  -keystore /usr/share/tomcat/.keystore
+fi
 sudo cp mifosng-provider.war $TOMCAT_HOME/webapps
 sudo mkdir $TOMCAT_HOME/webapps/ROOT
 sudo cp -r api-docs $TOMCAT_HOME/webapps/ROOT
