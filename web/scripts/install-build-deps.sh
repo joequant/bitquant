@@ -34,7 +34,7 @@ OPENGAMMA_PKGS="maven \
   aether-transport-http \
   aether-transport-wagon"
 
-MY_MIFOS_PKGS=""
+MY_MIFOS_PKGS=$MIFOS_PKGS
 MY_OPENGAMMA_PKGS=$OPENGAMMA_PKGS
 
 while true; do

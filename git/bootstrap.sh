@@ -5,6 +5,7 @@ set -e
 pushd $SCRIPT_DIR > /dev/null
 . ./setup-misc.sh 
 . ./setup-og.sh 
+. ./setup-mifos.sh
 #. ./setup-quantlib.sh
 . ./rebuild-og.sh 
 . ./rebuild-misc.sh 
