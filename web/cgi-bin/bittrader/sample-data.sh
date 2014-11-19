@@ -31,6 +31,7 @@ echo "Shutting down servers"
 sudo systemctl stop bitquant
 echo "Doing init data"
 $GIT_DIR/git/init-og.sh
+$GIT_DIR/git/init-mifos.sh
 echo "Starting up servers"
 sudo systemctl start bitquant
 touch $LOG_DIR/$TAG.done

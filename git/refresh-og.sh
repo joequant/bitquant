@@ -15,12 +15,15 @@ pushd $repo > /dev/null
 git fetch upstream
 git fetch origin
 git stash
+git branch master origin/master
 git checkout master
 git rebase upstream/master
 if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
+git branch develop origin/develop
 git checkout develop
 git rebase upstream/develop
 if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin develop ; fi
+git branch bitquant origin/bitquant
 git checkout bitquant
 git rebase origin/bitquant
 git rebase upstream/develop

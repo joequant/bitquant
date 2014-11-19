@@ -1,4 +1,5 @@
 #!/bin/bash
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if ! $(groups $(whoami) | grep &>/dev/null '\btomcat\b'); then
     echo "User not in tomcat group"
     exit
@@ -16,7 +17,7 @@ unzip mifosplatform-1.25.1.RELEASE.zip
 fi
 pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
-mysql -uroot -pmysql mifostenant-default <  database/migrations/sample_data/load_sample_data.sql
+
 
 if [ ! -e /usr/share/tomcat/.keystore ] ; then 
 echo "" | sudo keytool -genkey -alias mifostom -keyalg RSA \
@@ -29,5 +30,5 @@ mkdir $TOMCAT_HOME/webapps/ROOT
 cp -r api-docs $TOMCAT_HOME/webapps/ROOT
 cp -r apps/community-app $TOMCAT_HOME/webapps/ROOT
 popd
-cp server.xml /etc/tomcat
+cp $SCRIPT_DIR/server.xml /etc/tomcat
 popd

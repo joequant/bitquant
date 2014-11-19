@@ -20,6 +20,7 @@ if [[ ${branch[$repo]} ]]
 then mybranch=${branch[$repo]}
 else mybranch="master"
 fi
+git branch $mybranch origin/$mybranch
 git checkout $mybranch
 if [[ ${upstream[$repo]} ]] ; then
 git fetch upstream

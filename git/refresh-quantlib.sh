@@ -15,6 +15,7 @@ pushd quantlib > /dev/null
 git fetch upstream
 git fetch origin
 git stash
+git branch master origin/master
 git checkout master
 git rebase upstream/master
 if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
