@@ -45,5 +45,5 @@ RUN /usr/bin/systemctl enable httpd ; \
 /usr/bin/systemctl enable ajenti
 
 VOLUME [ "/sys/fs/cgroup" ]
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/usr/sbin/init"]

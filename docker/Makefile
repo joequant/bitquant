@@ -1,11 +1,17 @@
 bitstation:
-	 docker build -t bitstation . 
+	 docker build -t bitstation bitstation 
+
+bitstation-example:
+	 docker build -t bitstation-example bitstation-example
 
 bitstation-nocache:
-	 docker build --no-cache=true -t bitstation . 
+	 docker build --no-cache=true -t bitstation bitstation
+
+bitstation-example-nocache:
+	 docker build --no-cache=true -t bitstation-example bitstation-example
 
 bitstation-clean-docker:
-	 docker build -rm=true - < Dockerfile
+	 docker build -rm=true - < bitstation/Dockerfile
 
 mageia-import: rootfs-systemd.tar.xz
 	 cat rootfs-systemd.tar.xz |  docker import - mageia:systemd
@@ -25,4 +31,5 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
-.PHONY: bitstation
+.PHONY: bitstation bitstation-example
+
