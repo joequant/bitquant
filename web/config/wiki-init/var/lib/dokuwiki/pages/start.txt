@@ -7,11 +7,22 @@
 <div class="metro">
 <a class="button primary large" target="_blank" href="doku.php?id=about">About</a>
 <br><br>
-<a class="button primary large" target="_blank" href="/opengamma">OpenGamma risk engine</a>
+<a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
+
 <a class="button primary large" target="_blank" href="/rstudio">R statistics engine</a>
 <a class="button primary large" target="_blank" href="/shiny">Shiny</a>
-<a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
-<a class="button primary large" target="_blank" href="/calc/_new">Spreadsheet</a>
+
+<a class="button primary large" target="_blank"
+href="/calc/_new">Spreadsheet</a>
+<br><br>
+
+<script language="JavaScript">
+document.write('<a class="button primary large" target="_blank" href="https://' +
+window.location.hostname + '/community-app?baseApiUrl=/mifosng-provider/api/v1/">' );
+</script>
+Mifos X</a>
+<a class="button primary large" target="_blank"
+href="/opengamma">OpenGamma risk engine</a>
 <br><br>
 <div class="panel collapsed" data-role="panel" id="alerts">
 <div class="panel-header">Tickers and Alerts</div>
