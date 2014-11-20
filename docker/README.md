@@ -1,6 +1,11 @@
 Downloading an image
 --------------------
 
+There are several images in joequant.  
+
+* bitstation is a clean image
+* bitstation-example has preincluded data
+
     docker pull joequant/bitstation
     docker tag joequant/bitstation bitstation
     run-docker.sh
