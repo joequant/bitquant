@@ -1,5 +1,9 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ME=`stat -c "%U" $SCRIPT_DIR/install-mifos.sh`
+
+sudo /usr/share/bitquant/install-mifos-sudo.sh $SCRIPT_DIR $ME
+
 if ! $(groups $(whoami) | grep &>/dev/null '\btomcat\b'); then
     echo "User not in tomcat group"
     exit
@@ -26,7 +30,7 @@ echo "" | sudo keytool -genkey -alias mifostom -keyalg RSA \
   -keystore /usr/share/tomcat/.keystore
 fi
 cp mifosng-provider.war $TOMCAT_HOME/webapps
-mkdir $TOMCAT_HOME/webapps/ROOT
+mkdir -p $TOMCAT_HOME/webapps/ROOT
 cp -r api-docs $TOMCAT_HOME/webapps/ROOT
 cp -r apps/community-app $TOMCAT_HOME/webapps/ROOT
 popd

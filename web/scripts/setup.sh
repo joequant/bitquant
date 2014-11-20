@@ -49,11 +49,3 @@ $WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
-
-# Mifos set up
-if [ -e /bin/mysqladmin ] ; then
-mysqladmin password mysql
-fi
-usermod -a -G tomcat $ME
-sed -i -e s/^skip-networking/#skip-networking/ /etc/my.cnf
-

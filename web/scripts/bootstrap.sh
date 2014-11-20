@@ -9,6 +9,8 @@ echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
 echo "Installing python packages"
 $GIT_DIR/web/scripts/install-python-pkgs.sh
+echo "Installing mifos"
+$GIT_DIR/web/scripts/install-mifos.sh
 
 #set wiki conf
 echo "Set up wiki"
