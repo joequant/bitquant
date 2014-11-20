@@ -1,18 +1,20 @@
 Downloading an image
+--------------------
 
-   docker pull joequant/bitstation
-   docker tag joequant/bitstation bitstation
-   run-docker.sh
+    docker pull joequant/bitstation
+    docker tag joequant/bitstation bitstation
+    run-docker.sh
 
 To build the image
+------------------
 
-   make
+    make
 
 You may need to run make with "sudo make" if docker can only run under root
 
 To run docker
 
-   run-docker.sh
+    run-docker.sh
 
 You can then connect to the system via the localhost port 80
 
