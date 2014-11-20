@@ -5,6 +5,8 @@ ME=$2
 
 . $ROOT_SCRIPT_DIR/rootcheck.sh
 # Mifos set up
+systemctl enable mysqld
+systemctl restart mysqld
 if [ -e /bin/mysqladmin ] ; then
 mysqladmin password mysql
 fi
