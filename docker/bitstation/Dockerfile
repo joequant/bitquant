@@ -40,6 +40,7 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python2.7/site-packages/mpl_toolkits/tests
 RUN /usr/bin/systemctl enable httpd ; \
 /usr/bin/systemctl enable bitquant ; \
+/usr/bin/systemctl enable tomcat ; \
 /usr/bin/systemctl enable shiny-server ; \
 /usr/bin/systemctl enable postgresql ; \
 /usr/bin/systemctl enable ajenti
