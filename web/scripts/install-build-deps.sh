@@ -112,7 +112,10 @@ curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
 icu-devel \
-python-sympy
+python-sympy \
+libpcre-devel \
+liblzma-devel \
+libbzip2-devel 
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
@@ -133,7 +136,7 @@ $SUDO systemctl disable hsqldb
 
 #gcc-c++ is needed for ethercalc
 
-
+# Compression libraries needed for Rpy
 
 
 
