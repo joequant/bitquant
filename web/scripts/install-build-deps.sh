@@ -20,7 +20,7 @@ OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$
 
 eval set -- "$OPTS"
 
-MIFOS_PKGS="tomcat mysql mysql-connector-java"
+MIFOS_PKGS="tomcat mysql mysql-connector-java unzip"
 OPENGAMMA_PKGS="maven \
   maven-clean-plugin \
   maven-assembly-plugin \

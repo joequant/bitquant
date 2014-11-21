@@ -13,4 +13,10 @@ systemctl enable mysqld
 mysqladmin password mysql
 fi
 usermod -a -G tomcat $ME
+if [ ! -e /usr/share/tomcat/.keystore ] ; then 
+echo "" | keytool -genkey -alias mifostom -keyalg RSA \
+  -storepass changeit -noprompt \
+  -dname "CN=Unknown, OU=Unknown, O=Unknown, L=Unknown,S=Unknown, C=Unknown" \
+  -keystore /usr/share/tomcat/.keystore
+fi
 
