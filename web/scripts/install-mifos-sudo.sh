@@ -9,6 +9,7 @@ if [ -e /bin/mysqladmin ] ; then
 sed -i -e s/^skip-networking/#skip-networking/ /etc/my.cnf
 /usr/sbin/mysqld-prepare-db-dir
 /usr/bin/mysqld_safe &
+sleep 10
 systemctl enable mysqld
 mysqladmin password mysql
 fi
