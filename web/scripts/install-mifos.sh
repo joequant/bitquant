@@ -19,5 +19,3 @@ pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 popd
 popd
-
-
