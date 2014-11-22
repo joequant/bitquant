@@ -9,9 +9,12 @@ if ! $(groups $(whoami) | grep &>/dev/null '\btomcat\b'); then
     exit
 fi
 
+echo "Creating mifos databases"
 mysqladmin -uroot -pmysql create 'mifosplatform-tenants'
 mysqladmin -uroot -pmysql create 'mifostenant-default'
+
 pushd /home/$ME/tmp
+echo "Initializing mifos database from "`pwd`
 pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 popd
