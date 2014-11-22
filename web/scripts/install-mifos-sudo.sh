@@ -30,7 +30,6 @@ curl --location http://downloads.sourceforge.net/project/mifos/Mifos%20X/mifospl
 unzip mifosplatform-1.25.1.RELEASE.zip
 fi
 pushd mifosplatform-1.25.1.RELEASE
-mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 
 cp mifosng-provider.war $TOMCAT_HOME/webapps
 mkdir -p $TOMCAT_HOME/webapps/ROOT
