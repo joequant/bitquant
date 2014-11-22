@@ -7,6 +7,8 @@
 # to reload httpd which causes the httpd connection to go down
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. $SCRIPT_DIR/environment.sh
 
 if grep -q Cauldron /etc/release  ; then 
 JAVA=java-1.8.0-openjdk-devel
@@ -33,8 +35,17 @@ OPENGAMMA_PKGS="maven \
   aether-transport-http \
   aether-transport-wagon"
 
+if [[ "$INSTALL_MIFOS" == "true" ]] ; then
 MY_MIFOS_PKGS=$MIFOS_PKGS
+else
+MY_MIFOS_PKGS=""
+fi
+
+if [[ "$INSTALL_OPENGAMMA" == "true" ]] ; then
 MY_OPENGAMMA_PKGS=$OPENGAMMA_PKGS
+else
+MY_OPENGAMMA_PKGS=""
+fi
 
 while true; do
    case "$1" in
