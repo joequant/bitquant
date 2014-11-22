@@ -22,9 +22,9 @@ echo "" | keytool -genkey -alias mifostom -keyalg RSA \
 fi
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.40-4.b02.4.mga5.x86_64/jre
 export TOMCAT_HOME=/var/lib/tomcat
-mkdir -p /home/$ME/tmp
-chmod a+rwx /home/$ME/tmp
-pushd /home/$ME/tmp
+mkdir -p /home/$ME/tmp-mifos
+
+pushd /home/$ME/tmp-mifos
 echo "Unzipping mifos database in "`pwd`
 if [ ! -d mifosplatform-1.25.1.RELEASE ] ; then
 curl --location http://downloads.sourceforge.net/project/mifos/Mifos%20X/mifosplatform-1.25.1.RELEASE.zip -O mifosplatform-1.25.1.RELEASE.zip
@@ -41,4 +41,5 @@ popd
 cp $SCRIPT_DIR/server.xml /etc/tomcat
 popd
 echo "Done with sudo install of mifos"
+chmod a+rw -R /home/$ME/tmp-mifos
 

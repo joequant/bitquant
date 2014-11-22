@@ -13,9 +13,10 @@ echo "Creating mifos databases"
 mysqladmin -uroot -pmysql create 'mifosplatform-tenants'
 mysqladmin -uroot -pmysql create 'mifostenant-default'
 
-pushd /home/$ME/tmp
+pushd /home/$ME/tmp-mifos
 echo "Initializing mifos database from "`pwd`
 pushd mifosplatform-1.25.1.RELEASE
 mysql -uroot -pmysql mifosplatform-tenants < database/mifospltaform-tenants-first-time-install.sql
 popd
 popd
+rm -rf /home/$ME/tmp-mifos
