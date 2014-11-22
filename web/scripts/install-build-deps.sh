@@ -27,7 +27,6 @@ OPENGAMMA_PKGS="maven \
   maven-compiler-plugin \
   maven-dependency-plugin \
   maven-install-plugin \
-  maven-release-plugin \
   aether \
   aether-connector-basic \
   aether-transport-file \
