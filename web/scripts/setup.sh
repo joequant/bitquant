@@ -38,8 +38,8 @@ mkdir -p /usr/share/bitquant
 cp $WEB_DIR/scripts/*-sudo.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/install-build-deps.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/*root*.sh /usr/share/bitquant
+cp $WEB_DIR/scripts/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
-cp $WEB_DIR/cgi-bin/bittrader/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
