@@ -35,6 +35,17 @@ OPENGAMMA_PKGS="maven \
   aether-transport-http \
   aether-transport-wagon"
 
+while true; do
+   case "$1" in
+      --with-mifos )  MY_MIFOS_PKGS=$MIFOS_PKGS ; shift ;;
+      --with-opengamma ) MY_OPENGAMMA_PKGS=$MY_OPENGAMMA_PKGS; shift ;;
+      --no-mifos )  MY_MIFOS_PKGS="" ; shift ;;
+      --no-opengamma ) MY_OPENGAMMA_PKGS=""; shift ;;
+      -- ) shift ; break ;;
+      * ) break ;;
+   esac
+done
+
 if [[ "$INSTALL_MIFOS" == "true" ]] ; then
 MY_MIFOS_PKGS=$MIFOS_PKGS
 else
@@ -46,17 +57,6 @@ MY_OPENGAMMA_PKGS=$OPENGAMMA_PKGS
 else
 MY_OPENGAMMA_PKGS=""
 fi
-
-while true; do
-   case "$1" in
-      --with-mifos )  MY_MIFOS_PKGS=$MIFOS_PKGS ; shift ;;
-      --with-opengamma ) MY_OPENGAMMA_PKGS=$MY_OPENGAMMA_PKGS; shift ;;
-      --no-mifos )  MY_MIFOS_PKGS="" ; shift ;;
-      --no-opengamma ) MY_OPENGAMMA_PKGS=""; shift ;;
-      -- ) shift ; break ;;
-      * ) break ;;
-   esac
-done
 
 set -e
 
