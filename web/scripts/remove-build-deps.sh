@@ -16,12 +16,20 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
+lib="lib"
+if [ "`uname -m`" == "x86_64" ] ; then
+lib="lib64"
+fi
+
 
 $SUDO urpme \
 --auto \
 postgresql9.3-devel \
 cmake \
-gcc-c++
+gcc-c++ \
+${lib}bzip2-devel \
+${lib}curl-devel \
+${lib}zip-devel
 
 
 $SUDO urpme --auto-orphans --auto
