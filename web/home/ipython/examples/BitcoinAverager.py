@@ -125,7 +125,7 @@ class BitcoinDataLoader(object):
                 testfile.retrieve("http://www.quandl.com/api/v1/datasets/FRED/DEXCHUS.csv?trim_start=2000-01-01&sort_order=asc", 
                               local_cache)
             else:
-                testfile.retrieve("http://www.quandl.com/api/v1/datasets/QUANDL/%s?sort_order=asc" % local_cache, 
+                testfile.retrieve("http://www.quandl.com/api/v1/datasets/CURRFX/%s?sort_order=asc" % local_cache, 
                               local_cache)
         logging.info("done retrieving")
     def read_csv(self, table, csv_reader, row_func):
