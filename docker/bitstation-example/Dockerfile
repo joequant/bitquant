@@ -1,5 +1,6 @@
 FROM bitstation:latest
 MAINTAINER Joseph C Wang <joequant@gmail.com>
 
-RUN cd ~user/git/bitquant ; git/bitquant/git/init-og.sh ; \
-   git/bitquant/git/init-mifos.sh 
+RUN /usr/bin/mysqld_safe & sleep 5; \
+   cd ~user/git/bitquant ; \
+   git pull ; git/init-mifos.sh 
