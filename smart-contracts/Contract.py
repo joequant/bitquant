@@ -87,8 +87,8 @@ class LoanContract(object):
         interest shall be paid in the form of Bitcoin with the interest rate
         calculated in Hong Kong dollars"""
         loan_engine.payment(on=self.final_payment_date,
-                amount= loan_engine.remaining_principal(self.final_payment_date))
-        loan_engine.payment(
-            on=self.final_payment_date,
-                amount= loan_engine.accrued_interest(self.final_payment_date))
+                            amount= loan_engine.remaining_principal(self.final_payment_date))
+        loan_engine.payment(on=self.final_payment_date,
+                            amount= loan_engine.accrued_interest(self.final_payment_date),
+                            payment_type=["interest"])
         

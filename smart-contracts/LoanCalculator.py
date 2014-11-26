@@ -50,7 +50,7 @@ class LoanCalculator(object):
         if "principal" in payment_type:
             self.principal = self.principal - payment
         if "interest" in payment_type:
-            self.interest = self.interest - interest
+            self.interest = self.interest - payment
         print "Payment"
         print on, payment, self.principal, self.interest
 
