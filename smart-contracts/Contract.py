@@ -68,19 +68,19 @@ class LoanContract(object):
                   amount = loan_engine.remaining_principal(payment_date))
             loan_engine.payment(on=payment_date,
                   amount = loan_engine.accrued_interest(payment_date))
-        elif (self.kickstarter_revenue > Money(58000, "USD")):
-            payment_date = self.kickstarter_payment_date + \
-                           relativedelta(months=2)
-            loan_engine.payment(on=payment_date,
-            amount = loan_engine.remaining_principal(payment_date),
-            payment_type="HKD")
         else:
+            if (self.kickstarter_revenue > Money(58000, "USD")):
+                payment_date = self.kickstarter_payment_date + \
+                               relativedelta(months=2)
+                loan_engine.payment(on=payment_date,
+                        amount = loan_engine.remaining_principal(payment_date)/8 * 4.0)
             start_payment_date = self.kickstarter_payment_date + \
                            relativedelta(months=4)
-            for i in range(0,7):
-                loan_engine.payment(on=start_payment_date + \
-                     relativedelta(months=i),
-                     amount=self.total_loan_amount / Decimal(8))
+            loan_engine.amortize(on=start_payment_date,
+                    amount = loan_engine.remaining_balance(),
+                                 payments=8,
+                                 interval=relativedelta(months=1))
+
         """The borrower agrees to pay back the any remaining principal
         and accrued interest one year after the loan is issued.  The
         principal amount will be paid in Hong Kong dollars.  Any accured
@@ -89,6 +89,5 @@ class LoanContract(object):
         loan_engine.payment(on=self.final_payment_date,
                             amount= loan_engine.remaining_principal(self.final_payment_date))
         loan_engine.payment(on=self.final_payment_date,
-                            amount= loan_engine.accrued_interest(self.final_payment_date),
-                            payment_type=["interest"])
+                            amount= loan_engine.accrued_interest(self.final_payment_date))
         
