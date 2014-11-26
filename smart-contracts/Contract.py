@@ -65,14 +65,14 @@ class LoanContract(object):
             payment_date = self.kickstarter_payment_date + \
                            relativedelta(months=2)
             loan_engine.payment(on=payment_date,
-                  amount = self.remaining_principal(payment_date))
+                  amount = loan_engine.remaining_principal(payment_date))
             loan_engine.payment(on=payment_date,
-                  amount = self.remaining_interest(payment_date))
+                  amount = loan_engine.accrued_interest(payment_date))
         elif (self.kickstarter_revenue > Money(58000, "USD")):
             payment_date = self.kickstarter_payment_date + \
                            relativedelta(months=2)
             loan_engine.payment(on=payment_date,
-            amount = self.remaining_principal(payment_date),
+            amount = loan_engine.remaining_principal(payment_date),
             payment_type="HKD")
         else:
             start_payment_date = self.kickstarter_payment_date + \
