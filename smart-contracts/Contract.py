@@ -74,7 +74,7 @@ class LoanContract(object):
                                relativedelta(months=2)
                 loan_engine.payment(on=payment_date,
                         amount = loan_engine.remaining_principal(payment_date)/8 * 4.0)
-            start_payment_date = self.kickstarter_payment_date + \
+            start_payment_date = self.initial_loan_date + \
                            relativedelta(months=4)
             loan_engine.amortize(on=start_payment_date,
                     amount = loan_engine.remaining_balance(),
