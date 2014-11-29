@@ -4,6 +4,7 @@ from money import Money
 from dateutil.relativedelta import relativedelta
 from decimal import Decimal
 import findates
+import collections
 
 class LoanContract(object):
     def __init__(self):
@@ -25,7 +26,7 @@ class LoanContract(object):
     def interest(self, from_date, to_date, principal_func):
         """The interest will be 10 percent per annum compounded monthly
         using the 30/360 US day count convention ."""
-        if callable(principal_func):
+        if isinstance(principal_func, collections.Callable):
             principal = principal_func()
         else:
             principal = principal_func

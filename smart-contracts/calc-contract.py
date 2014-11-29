@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 from datetime import date
 from money import Money
 from dateutil.relativedelta import relativedelta
@@ -16,7 +17,7 @@ my_contract.set_events({"kickstarter_success":True,
                         "early_payments":[]})
 calculator = LoanCalculator.LoanCalculator()
 calculator.show_payments(my_contract)
-print
+print()
 print ("Kickstarter success")
 my_contract.set_events({"kickstarter_success":True,
                         "kickstarter_start_date": date(2015,1,1),

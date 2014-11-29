@@ -1,9 +1,12 @@
+from __future__ import print_function
 from datetime import date
 from money import Money
 from dateutil.relativedelta import relativedelta
 from decimal import Decimal
 import findates
 from money import Money, xrates
+import collections
+
 
 xrates.install('money.exchange.SimpleBackend')
 xrates.base = 'USD'
@@ -30,15 +33,15 @@ class LoanCalculator(object):
             interest = self.contract.interest(self.prev_event_date,
                                    on, self.balance)
             self.balance = self.balance + interest
-        if callable(amount):
+        if isinstance(amount, collections.Callable):
             payment = amount()
         else:
             payment = amount
         self.balance = self.balance + payment
         self.principal = self.principal + payment
         self.prev_event_date = on
-        print "Funding"
-        print on, payment, self.principal, interest, self.balance
+        print("Funding")
+        print(on, payment, self.principal, interest, self.balance)
     def payment(self, on,
                 amount,
                 settlement_ccy=None,
@@ -49,7 +52,7 @@ class LoanCalculator(object):
                                               on,
                                               self.balance)
             self.balance = self.balance + interest
-        if callable(amount):
+        if isinstance(amount, collections.Callable):
             payment = amount()
         else:
             payment = amount
@@ -58,8 +61,8 @@ class LoanCalculator(object):
 
         self.balance = self.balance - payment
         self.prev_event_date = on
-        print "Payment"
-        print on, payment, self.principal, interest, self.balance
+        print("Payment")
+        print(on, payment, self.principal, interest, self.balance)
     def remaining_principal(self, d2):
         return lambda : self.principal
     def accrued_interest(self, d1):
@@ -70,14 +73,14 @@ class LoanCalculator(object):
         return lambda : self.balance
     def add_to_balance(self, on, amount):
         def add_balance():
-            if callable(amount):
+            if isinstance(amount, collections.Callable):
                 payment = amount()
             else:
                 payment = amount
             self.balance = self.balance + payment
         return add_balance
     def convert_to_ccy(self, a, ccy):
-        if callable(a):
+        if isinstance(a, collections.Callable):
             return lambda: a().to(ccy)
         else:
             return a.to(ccy)
