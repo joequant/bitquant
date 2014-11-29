@@ -13,8 +13,7 @@ xrates.setrate('XBT', Decimal('350'))
 
 class LoanCalculator(object):
     def __init__(self):
-        self.principal = None
-        self.interest = None
+        pass
     def calculate(self, contract):
         self.currency = contract.currency
         self.principal = Money(0.0, self.currency)
@@ -26,15 +25,15 @@ class LoanCalculator(object):
         self.calculate(contract)
     def fund(self, on, amount,
              payment_type=None):
-        if callable(amount):
-            payment = amount()
-        else:
-            payment = amount
         interest = 0.0
         if self.prev_event_date != None:
             interest = self.contract.interest(self.prev_event_date,
                                    on, self.balance)
             self.balance = self.balance + interest
+        if callable(amount):
+            payment = amount()
+        else:
+            payment = amount
         self.balance = self.balance + payment
         self.principal = self.principal + payment
         self.prev_event_date = on
@@ -44,21 +43,20 @@ class LoanCalculator(object):
                 amount,
                 settlement_ccy=None,
                 optional=False):
-        if callable(amount):
-            payment = amount()
-        else:
-            payment = amount
         interest = 0.0
         if self.prev_event_date != None:
             interest = self.contract.interest(self.prev_event_date,
                                               on,
                                               self.balance)
             self.balance = self.balance + interest
+        if callable(amount):
+            payment = amount()
+        else:
+            payment = amount
+        if (payment >  (self.balance-self.principal)):
+            self.principal = self.principal - (payment - self.balance + self.principal)
+
         self.balance = self.balance - payment
-        if interest == None:
-            self.principal = self.principal - paymet
-        if (payment > interest):
-            self.principal = self.principal - payment + interest
         self.prev_event_date = on
         print "Payment"
         print on, payment, self.principal, interest, self.balance
@@ -66,8 +64,18 @@ class LoanCalculator(object):
         return lambda : self.principal
     def accrued_interest(self, d1):
         return lambda : self.balance - self.principal
+    def interest(self, start, end, amount):
+        return lambda : self.contract.interest(self, start, end, amount)
     def remaining_balance(self):
         return lambda : self.balance
+    def add_to_balance(self, on, amount):
+        def add_balance():
+            if callable(amount):
+                payment = amount()
+            else:
+                payment = amount
+            self.balance = self.balance + payment
+        return add_balance
     def convert_to_ccy(self, a, ccy):
         if callable(a):
             return lambda: a().to(ccy)

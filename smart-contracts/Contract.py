@@ -22,9 +22,13 @@ class LoanContract(object):
         self.kickstarter_revenue = events['kickstarter_revenue']
         self.early_payments = events['early_payments']
         
-    def interest(self, from_date, to_date, principal):
+    def interest(self, from_date, to_date, principal_func):
         """The interest will be 10 percent per annum compounded monthly
         using the 30/360 US day count convention ."""
+        if callable(principal_func):
+            principal = principal_func()
+        else:
+            principal = principal_func
         yearfrac = findates.daycount.yearfrac(from_date,
                                               to_date,
                                               "30/360 US")
@@ -64,10 +68,12 @@ class LoanContract(object):
         if (self.kickstarter_revenue > Money(65000, "USD")):
             payment_date = self.kickstarter_payment_date + \
                            relativedelta(months=2)
+            loan_engine.add_to_balance(on=payment_date,
+                  amount = loan_engine.interest(payment_date,
+                                                self.final_payment_date,
+                                                loan_engine.remaining_balance()))
             loan_engine.payment(on=payment_date,
-                  amount = loan_engine.remaining_principal(payment_date))
-            loan_engine.payment(on=payment_date,
-                  amount = loan_engine.accrued_interest(payment_date))
+                  amount = loan_engine.remaining_balance())
         else:
             if (self.kickstarter_revenue > Money(58000, "USD")):
                 payment_date = self.kickstarter_payment_date + \
@@ -90,4 +96,3 @@ class LoanContract(object):
                             amount= loan_engine.remaining_principal(self.final_payment_date))
         loan_engine.payment(on=self.final_payment_date,
                             amount= loan_engine.accrued_interest(self.final_payment_date))
-        
