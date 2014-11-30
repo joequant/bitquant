@@ -8,6 +8,10 @@ import findates
 from Contract import LoanContract
 import LoanCalculator
 
+calculator = LoanCalculator.LoanCalculator()
+calculator.test_wrapper()
+exit
+
 print("Standard Payments")
 my_contract = LoanContract()
 my_contract.set_events({"kickstarter_success":True,
@@ -16,7 +20,7 @@ my_contract.set_events({"kickstarter_success":True,
                         "kickstarter_revenue":50000,
                         "early_payments":[]})
 calculator = LoanCalculator.LoanCalculator()
-calculator.show_payments(my_contract)
+calculator.calculate(my_contract)
 print()
 print ("Kickstarter success")
 my_contract.set_events({"kickstarter_success":True,
@@ -25,5 +29,4 @@ my_contract.set_events({"kickstarter_success":True,
                         "kickstarter_revenue":100000,
                         "early_payments":[]})
 calculator = LoanCalculator.LoanCalculator()
-calculator.show_payments(my_contract)
-
+calculator.calculate(my_contract)
