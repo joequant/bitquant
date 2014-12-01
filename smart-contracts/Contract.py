@@ -82,7 +82,7 @@ class LoanContract(object):
                 payment_date = self.kickstarter_payment_date + \
                                relativedelta(months=2)
                 loan.payment(on=payment_date,
-                        amount = loan.remaining_principal(payment_date)/8 * 4.0)
+                        amount = lambda : loan.remaining_principal()() * Decimal(0.5))
             start_payment_date = self.initial_loan_date + \
                            relativedelta(months=4)
             loan.amortize(on=start_payment_date,

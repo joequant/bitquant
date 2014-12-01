@@ -143,9 +143,9 @@ class LoanCalculator(object):
         for i in range(1, payments+1):
             self.payment_prepend(on+interval * i,
                                 payment)
-    def remaining_principal(self, d2):
+    def remaining_principal(self):
         return lambda : self.principal
-    def accrued_interest(self, d1):
+    def accrued_interest(self):
         return lambda : self.balance - self.principal
     def interest(self, start, end, amount):
         return lambda : self.contract.interest(start, end) * amount()

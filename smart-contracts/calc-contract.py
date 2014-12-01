@@ -22,11 +22,21 @@ my_contract.set_events({"kickstarter_success":True,
 calculator = LoanCalculator.LoanCalculator()
 calculator.calculate(my_contract)
 print()
-print ("Kickstarter success")
+
+print ("Kickstarter success #1")
 my_contract.set_events({"kickstarter_success":True,
                         "kickstarter_start_date": date(2015,1,1),
                         "kickstarter_payment_date":date(2015,1,15),
                         "kickstarter_revenue":100000,
+                        "early_payments":[]})
+calculator = LoanCalculator.LoanCalculator()
+calculator.calculate(my_contract)
+print ()
+print ("Kickstarter success #2")
+my_contract.set_events({"kickstarter_success":True,
+                        "kickstarter_start_date": date(2015,1,1),
+                        "kickstarter_payment_date":date(2015,1,15),
+                        "kickstarter_revenue":60000,
                         "early_payments":[]})
 calculator = LoanCalculator.LoanCalculator()
 calculator.calculate(my_contract)
