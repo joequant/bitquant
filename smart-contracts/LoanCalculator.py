@@ -131,16 +131,19 @@ class LoanCalculator(object):
             payment = amount
         principal = self.principal
         interest_accrued = self.balance - self.principal
+        if (payment > self.balance):
+            payment = self.balance
         if (payment >  (self.balance-self.principal)):
             self.principal = self.principal - (payment - self.balance + self.principal)
 
         self.balance = self.balance - payment
-        return {"event":"Payment",
-                "on":on,
-                "payment":payment,
-                "principal":principal,
-                "interest_accrued": interest_accrued,
-                "balance":self.balance}
+        if payment > 0:
+            return {"event":"Payment",
+                    "on":on,
+                    "payment":payment,
+                    "principal":principal,
+                    "interest_accrued": interest_accrued,
+                    "balance":self.balance}
     @event_table
     def add_to_balance(self, on, amount):
         if isinstance(amount, collections.Callable):
@@ -179,6 +182,8 @@ class LoanCalculator(object):
         return lambda : self.balance - self.principal
     def interest(self, start, end, amount):
         return lambda : self.contract.interest(start, end) * amount()
+    def multiply(self, a, b):
+        return lambda: a() * Decimal(b)
     def remaining_balance(self):
         return lambda : self.balance
 
