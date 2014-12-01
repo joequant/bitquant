@@ -11,8 +11,8 @@ import sortedcontainers
 
 xrates.install('money.exchange.SimpleBackend')
 xrates.base = 'USD'
-xrates.setrate('HKD', Decimal('1.0') / Decimal('7.75'))
-xrates.setrate('XBT', Decimal('350'))
+xrates.setrate('HKD', Decimal('7.75'))
+xrates.setrate('XBT', Decimal("1.0") / Decimal('350'))
 
 def event_table(func):
     def func_wrapper(*args, **kwargs):
@@ -62,11 +62,28 @@ class LoanCalculator(object):
         print("type", "payment", "beginning principal",
               "interest", "end_balance")
         for i in payment_schedule:
-            print (i[0], i[1], i[2], i[3], i[4], i[5])
+            print (i["event"], i["on"], i["payment"],
+                   i["principal"], i["interest_accrued"],
+                   i["balance"])
+            if self.currency_interest != self.currency and \
+                   i["event"] == "Payment":
+                if i["payment"] > i["interest_accrued"]:
+                    principal_payment = i['payment'] - i['interest_accrued']
+                    interest_payment =  i['interest_accrued']
+                else:
+                    principal_payment = i['payment'] - i['payment']
+                    interest_payment =  i['payment']
+                print ("   Pay payment of ", principal_payment)
+                print ("   Pay payment of ", interest_payment,
+                       " as ", interest_payment.to("XBT"))
     def run_events(self, contract=None):
         payment_schedule = []
         if contract != None:
             self.currency = contract.currency
+            if hasattr(contract, "currency_interest"):
+                self.currency_interest = contract.currency_interest
+            else:
+                self.currency_interest = contract.currency
             self.principal = Money(0.0, self.currency)
             self.balance = Money(0.0, self.currency)
         else:
@@ -95,8 +112,12 @@ class LoanCalculator(object):
 
         self.balance = self.balance + payment
         self.principal = self.principal + payment
-        return ["Funding", on, payment, principal,
-                interest_accrued, self.balance]
+        return {"event":"Funding",
+                "on":on,
+                "payment":payment,
+                "principal":principal,
+                "interest_accrued": interest_accrued,
+                "balance":self.balance}
     @event_table
     def payment(self, *args, **kwargs):
         return self._payment(*args, **kwargs)
@@ -114,8 +135,12 @@ class LoanCalculator(object):
             self.principal = self.principal - (payment - self.balance + self.principal)
 
         self.balance = self.balance - payment
-        return ["Payment", on, payment, principal,
-                interest_accrued, self.balance]
+        return {"event":"Payment",
+                "on":on,
+                "payment":payment,
+                "principal":principal,
+                "interest_accrued": interest_accrued,
+                "balance":self.balance}
     @event_table
     def add_to_balance(self, on, amount):
         if isinstance(amount, collections.Callable):
@@ -123,8 +148,13 @@ class LoanCalculator(object):
         else:
             payment = amount
         self.balance = self.balance + payment
-        return ["Balance add", on, payment, self.principal,
-                0.0, self.balance]
+        return {"event": "Balance add",
+                "on": on,
+                "payment": payment,
+                "principal": self.principal,
+                "interest_accrued": 0.0,
+                "balance": self.balance}
+
     @event_table
     def amortize(self, on,
                  amount,

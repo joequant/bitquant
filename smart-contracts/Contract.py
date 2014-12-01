@@ -38,7 +38,7 @@ class LoanContract(object):
         Kong dollars.  Any accured interest shall be paid in the form
         of Bitcoin with the interest rate calculated in Hong Kong
         dollars"""
-#        loan.process_payment(loan.settle_interest_with("XBT"))
+        self.currency_interest = "XBT"
         
         """The lender agrees to provide the borrower half of the loan amount
         on the initial loan on the initial date"""
