@@ -33,15 +33,21 @@ class LoanContract(object):
         return Decimal((1.0 + \
                self.annual_interest_rate / 12.0) ** months - 1.0) 
         
-    def payments(self, loan_engine):
+    def payments(self, loan):
+        """Any principal amounts in this loan will be paid in Hong
+        Kong dollars.  Any accured interest shall be paid in the form
+        of Bitcoin with the interest rate calculated in Hong Kong
+        dollars"""
+#        loan.process_payment(loan.settle_interest_with("XBT"))
+        
         """The lender agrees to provide the borrower half of the loan amount
         on the initial loan on the initial date"""
-        loan_engine.fund(on=self.initial_loan_date,
+        loan.fund(on=self.initial_loan_date,
                          amount=self.total_loan_amount * \
                          Decimal(0.5))
         """The lender agrees to pledge the remaining loan amount toward
         the kickstarter campaign of the borrower."""
-        loan_engine.fund(on=self.kickstarter_payment_date,
+        loan.fund(on=self.kickstarter_payment_date,
                          amount=self.total_loan_amount * \
                          Decimal(0.5))
         """ Standard payment schedule - The borrower intends to
@@ -65,31 +71,25 @@ class LoanContract(object):
         if (self.kickstarter_revenue > Money(65000, "USD")):
             payment_date = self.kickstarter_payment_date + \
                            relativedelta(months=2)
-            loan_engine.add_to_balance(on=payment_date,
-                  amount = loan_engine.interest(payment_date,
+            loan.add_to_balance(on=payment_date,
+                  amount = loan.interest(payment_date,
                                                 self.final_payment_date,
-                                                loan_engine.remaining_balance()))
-            loan_engine.payment(on=payment_date,
-                  amount = loan_engine.remaining_balance())
+                                                loan.remaining_balance()))
+            loan.payment(on=payment_date,
+                  amount = loan.remaining_balance())
         else:
             if (self.kickstarter_revenue > Money(58000, "USD")):
                 payment_date = self.kickstarter_payment_date + \
                                relativedelta(months=2)
-                loan_engine.payment(on=payment_date,
-                        amount = loan_engine.remaining_principal(payment_date)/8 * 4.0)
+                loan.payment(on=payment_date,
+                        amount = loan.remaining_principal(payment_date)/8 * 4.0)
             start_payment_date = self.initial_loan_date + \
                            relativedelta(months=4)
-            loan_engine.amortize(on=start_payment_date,
-                    amount = loan_engine.remaining_balance(),
+            loan.amortize(on=start_payment_date,
+                    amount = loan.remaining_balance(),
                                  payments=8,
                                  interval=relativedelta(months=1))
-
         """The borrower agrees to pay back the any remaining principal
-        and accrued interest one year after the loan is issued.  The
-        principal amount will be paid in Hong Kong dollars.  Any accured
-        interest shall be paid in the form of Bitcoin with the interest rate
-        calculated in Hong Kong dollars"""
-        loan_engine.payment(on=self.final_payment_date,
-                            amount= loan_engine.remaining_principal(self.final_payment_date))
-        loan_engine.payment(on=self.final_payment_date,
-                            amount= loan_engine.accrued_interest(self.final_payment_date))
+        and accrued interest one year after the loan is issued."""
+        loan.payment(on=self.final_payment_date,
+                            amount= loan.remaining_balance())

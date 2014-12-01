@@ -41,21 +41,30 @@ def event_table_prepend(func):
 class LoanCalculator(object):
     def __init__(self):
         self.events = {}
+        self.process_payment_func = self.dump_payment_schedule
     def test_wrapper(self):
         self.test(date(2014, 12, 1))
         print("running events")
         self.run_events()
+    def process_payment(self, func):
+        self.process_payment_func = func
     @event_table
     def test(self, on):
         print("test result")
         return 2+2;
-    
     def calculate(self, contract):
         self.contract = contract
         self.events = sortedcontainers.SortedDict()
         contract.payments(self)
-        self.run_events(contract)
+        payment_schedule = self.run_events(contract)
+        self.process_payment_func(payment_schedule)
+    def dump_payment_schedule(self, payment_schedule):
+        print("type", "payment", "beginning principal",
+              "interest", "end_balance")
+        for i in payment_schedule:
+            print (i[0], i[1], i[2], i[3], i[4], i[5])
     def run_events(self, contract=None):
+        payment_schedule = []
         if contract != None:
             self.currency = contract.currency
             self.principal = Money(0.0, self.currency)
@@ -70,11 +79,13 @@ class LoanCalculator(object):
                                                   k) * self.balance
                 self.balance = self.balance + interest
             for i in v:
-                i()
+                payment = i()
+                if payment != None:
+                    payment_schedule.append(payment)
             prev_date = k
+        return payment_schedule
     @event_table
-    def fund(self, on, amount,
-             payment_type=None):
+    def fund(self, on, amount):
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
@@ -84,18 +95,15 @@ class LoanCalculator(object):
 
         self.balance = self.balance + payment
         self.principal = self.principal + payment
-        print("Funding")
-        print(on, payment, principal, interest_accrued, self.balance)
+        return ["Funding", on, payment, principal,
+                interest_accrued, self.balance]
     @event_table
     def payment(self, *args, **kwargs):
-        self._payment(*args, **kwargs)
+        return self._payment(*args, **kwargs)
     @event_table_prepend
     def payment_prepend(self, *args, **kwargs):
-        self._payment(*args, **kwargs)
-    def _payment(self, on,
-                amount,
-                settlement_ccy=None,
-                optional=False):
+        return self._payment(*args, **kwargs)
+    def _payment(self, on, amount):
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
@@ -106,18 +114,17 @@ class LoanCalculator(object):
             self.principal = self.principal - (payment - self.balance + self.principal)
 
         self.balance = self.balance - payment
-        print("Payment")
-        print(on, payment, principal,
-              interest_accrued, self.balance)
+        return ["Payment", on, payment, principal,
+                interest_accrued, self.balance]
     @event_table
     def add_to_balance(self, on, amount):
-        def add_balance():
-            if isinstance(amount, collections.Callable):
-                payment = amount()
-            else:
-                payment = amount
-            self.balance = self.balance + payment
-        return add_balance
+        if isinstance(amount, collections.Callable):
+            payment = amount()
+        else:
+            payment = amount
+        self.balance = self.balance + payment
+        return ["Balance add", on, payment, self.principal,
+                0.0, self.balance]
     @event_table
     def amortize(self, on,
                  amount,
@@ -131,7 +138,7 @@ class LoanCalculator(object):
         payment = self.contract.interest(on,
               on + interval) / \
               Decimal(Decimal(1.0) - (1 + self.contract.interest(on,
-                                                                                            on+interval)) ** (Decimal(-payments))) * p
+                     on+interval)) ** (Decimal(-payments))) * p
 
         for i in range(1, payments+1):
             self.payment_prepend(on+interval * i,
@@ -141,12 +148,7 @@ class LoanCalculator(object):
     def accrued_interest(self, d1):
         return lambda : self.balance - self.principal
     def interest(self, start, end, amount):
-        return lambda : self.contract.interest(self, start, end, amount)
+        return lambda : self.contract.interest(start, end) * amount()
     def remaining_balance(self):
         return lambda : self.balance
-    def convert_to_ccy(self, a, ccy):
-        if isinstance(a, collections.Callable):
-            return lambda: a().to(ccy)
-        else:
-            return a.to(ccy)
 
