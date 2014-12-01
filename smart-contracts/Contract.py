@@ -23,18 +23,14 @@ class LoanContract(object):
         self.kickstarter_revenue = events['kickstarter_revenue']
         self.early_payments = events['early_payments']
         
-    def interest(self, from_date, to_date, principal_func):
+    def interest(self, from_date, to_date):
         """The interest will be 10 percent per annum compounded monthly
         using the 30/360 US day count convention ."""
-        if isinstance(principal_func, collections.Callable):
-            principal = principal_func()
-        else:
-            principal = principal_func
         yearfrac = findates.daycount.yearfrac(from_date,
                                               to_date,
                                               "30/360 US")
         months = yearfrac * 12
-        return principal * Decimal((1.0 + \
+        return Decimal((1.0 + \
                self.annual_interest_rate / 12.0) ** months - 1.0) 
         
     def payments(self, loan_engine):

@@ -6,6 +6,7 @@ from decimal import Decimal
 import findates
 from money import Money, xrates
 import collections
+import sortedcontainers
 
 
 xrates.install('money.exchange.SimpleBackend')
@@ -25,7 +26,17 @@ def event_table(func):
         self.events[on].append(lambda: func(*args, **kwargs))
     return func_wrapper
 
-
+def event_table_prepend(func):
+    def func_wrapper(*args, **kwargs):
+        self = args[0]
+        if "on" in kwargs:
+            on = kwargs["on"]
+        else:
+            on = args[1]
+        if on not in self.events:
+            self.events[on] = []
+        self.events[on].insert(0, lambda: func(*args, **kwargs))
+    return func_wrapper
 
 class LoanCalculator(object):
     def __init__(self):
@@ -40,59 +51,64 @@ class LoanCalculator(object):
         return 2+2;
     
     def calculate(self, contract):
-        self.currency = contract.currency
-        self.principal = Money(0.0, self.currency)
-        self.balance = Money(0.0, self.currency)
-        self.prev_event_date = None
         self.contract = contract
-        self.events = {}
+        self.events = sortedcontainers.SortedDict()
         contract.payments(self)
-        self.run_events()
-    def run_events(self):
-        for k, v in iter(sorted(self.events.iteritems())):
+        self.run_events(contract)
+    def run_events(self, contract=None):
+        if contract != None:
+            self.currency = contract.currency
+            self.principal = Money(0.0, self.currency)
+            self.balance = Money(0.0, self.currency)
+        else:
+            self.principal = 0.0
+            self.balance = 0.0
+        prev_date = None
+        for k, v in self.events.iteritems():
+            if prev_date != None:
+                interest = self.contract.interest(prev_date,
+                                                  k) * self.balance
+                self.balance = self.balance + interest
             for i in v:
                 i()
+            prev_date = k
     @event_table
     def fund(self, on, amount,
              payment_type=None):
-        interest = 0.0
-        if self.prev_event_date != None:
-            interest = self.contract.interest(self.prev_event_date,
-                                   on, self.balance)
-            self.balance = self.balance + interest
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
             payment = amount
+        principal = self.principal
+        interest_accrued = self.balance - self.principal
+
         self.balance = self.balance + payment
         self.principal = self.principal + payment
-        self.prev_event_date = on
         print("Funding")
-        print(on, payment, self.principal, interest, self.balance)
+        print(on, payment, principal, interest_accrued, self.balance)
     @event_table
     def payment(self, *args, **kwargs):
+        self._payment(*args, **kwargs)
+    @event_table_prepend
+    def payment_prepend(self, *args, **kwargs):
         self._payment(*args, **kwargs)
     def _payment(self, on,
                 amount,
                 settlement_ccy=None,
                 optional=False):
-        interest = 0.0
-        if self.prev_event_date != None:
-            interest = self.contract.interest(self.prev_event_date,
-                                              on,
-                                              self.balance)
-            self.balance = self.balance + interest
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
             payment = amount
+        principal = self.principal
+        interest_accrued = self.balance - self.principal
         if (payment >  (self.balance-self.principal)):
             self.principal = self.principal - (payment - self.balance + self.principal)
 
         self.balance = self.balance - payment
-        self.prev_event_date = on
         print("Payment")
-        print(on, payment, self.principal, interest, self.balance)
+        print(on, payment, principal,
+              interest_accrued, self.balance)
     @event_table
     def add_to_balance(self, on, amount):
         def add_balance():
@@ -107,15 +123,18 @@ class LoanCalculator(object):
                  amount,
                  payments,
                  interval):
+        if isinstance(amount, collections.Callable):
+            p = amount()
+        else:
+            p = amount
+
         payment = self.contract.interest(on,
-                                         on + interval,
-                                         self.balance) / \
-                                         Decimal(Decimal(1.0) - (1 + self.contract.interest(on,
-                                                                                            on+interval,
-                                                                                            Decimal(1.0))) ** (Decimal(-payments)))
+              on + interval) / \
+              Decimal(Decimal(1.0) - (1 + self.contract.interest(on,
+                                                                                            on+interval)) ** (Decimal(-payments))) * p
 
         for i in range(1, payments+1):
-            self._payment(on+interval * i,
+            self.payment_prepend(on+interval * i,
                                 payment)
     def remaining_principal(self, d2):
         return lambda : self.principal
