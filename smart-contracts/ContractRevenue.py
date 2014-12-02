@@ -80,7 +80,7 @@ class LoanContract(object):
                return
 
         """ Bonus - If the total revenues from the product exceeds the
-        bonus taarget, the borrower will be required to pay a
+        bonus target, the borrower will be required to pay a
         specified fraction of the outstanding balance in addition to a
         specified fraction of the interest had the balance been
         carried to the end of the contract.  This payment will be done
@@ -106,8 +106,6 @@ class LoanContract(object):
             bonus_date = bonus_dates[i]
             if bonus_date == None:
                 break
-            print("Bonus #", i+1, " will be paid on ",
-                   bonus_date)
             bonus_multiplier = self.bonus_multiplers[i]
             payment_date = bonus_date + \
                            relativedelta(months=1)
