@@ -16,9 +16,11 @@ class LoanContract(object):
         self.line_of_credit = Money('50000.00', 'HKD')
         self.final_payment_date = self.initial_loan_date + \
                                        relativedelta(years=1)
+        self.bonus_targets = [Money('750000.00', 'HKD'),
+                              Money('1500000.00', 'HKD')]
+        self.bonus_multiplers = [0.5, 1.0]
     def set_events(self, events):
-        self.revenue_event_date1 = events['revenue_event_date1']
-        self.revenue_event_date2 = events['revenue_event_date2']
+        self.revenues = events['revenues']
         self.early_payments = events['early_payments']
         self.credit_draws = events['credit_draws']
     def interest(self, from_date, to_date):
@@ -48,6 +50,16 @@ class LoanContract(object):
             loan.fund(on=i['on'],
                       amount=i['amount'])
 
+        """The borrower agrees to pay back the any remaining principal
+        and accrued interest one year after the loan is issued."""
+        loan.payment(on=self.final_payment_date,
+                            amount= loan.remaining_balance())
+
+        """The borrower make early payments at any time."""
+        for i in self.early_payments:
+            loan.payment(on=i['on'],
+                         amount=i['amount'])
+
         """ Standard payment schedule - The borrower intends to
         payback period will be separated into 8 installments and
         completed in 8 months.  The payback will begin in the 5th
@@ -62,50 +74,49 @@ class LoanContract(object):
                       interval=relativedelta(months=1))
 
 
-        """ Bonus #1 - The borrower agrees to pay back
-        50% of the outstanding balance in addition to 50% of the
-        interest that would have accrued to the final payment date
-        within one month after the gross revenue of the product
-        exceeds HKD 1.0 million or the final payment date whichever
-        is earlier"""
-        if self.revenue_event_date1 != None:
-            payment_date = self.revenue_event_date1 + \
+
+        if self.revenues == None or \
+           self.bonus_targets == None:
+               return
+
+        """ Bonus - If the total revenues from the product exceeds the
+        bonus taarget, the borrower will be required to pay a
+        specified fraction of the outstanding balance in addition to a
+        specified fraction of the interest had the balance been
+        carried to the end of the contract.  This payment will be done
+        within one month after the date the bonus target is reached"""
+
+        bonus_dates = [None ] * len(self.bonus_targets)
+        total_revenue = None
+        revenue_idx = 0
+        for i in self.revenues:
+
+            if revenue_idx >= len(self.bonus_targets):
+                break
+            date = i['on']
+            if total_revenue == None:
+                total_revenue = i['amount']
+            else:
+                total_revenue = total_revenue + i['amount']
+            if total_revenue >= self.bonus_targets[revenue_idx]:
+                bonus_dates[revenue_idx] = i['on']
+                revenue_idx = revenue_idx + 1
+
+        for i in range(0, len(bonus_dates)):
+            bonus_date = bonus_dates[i]
+            if bonus_date == None:
+                break
+            print("Bonus #", i+1, " will be paid on ",
+                   bonus_date)
+            bonus_multiplier = self.bonus_multiplers[i]
+            payment_date = bonus_date + \
                            relativedelta(months=1)
             if payment_date > self.final_payment_date:
                 payment_date = self.final_payment_date
-            loan.add_to_balance(on=self.revenue_event_date1,
-                  amount = loan.multiply(loan.interest(self.revenue_event_date1,
+            loan.add_to_balance(on=payment_date,
+                  amount = loan.multiply(loan.interest(bonus_date,
                                 self.final_payment_date,
-                                loan.remaining_balance()), 0.5))
+                                loan.remaining_balance()), bonus_multiplier))
             loan.payment(on=payment_date,
                   amount = loan.multiply(loan.remaining_balance(),
-                                         0.5))
-            
-        """ Bonus #2 - The borrower agrees to pay back
-        50% of the outstanding balance in addition to 50% of the
-        interest that would have accrued to the final payment date
-        within one month after the gross revenue of the product
-        exceeds HKD 1.5 million or the final payment date whichever
-        is earlier"""
-        if self.revenue_event_date2 != None:
-            payment_date = self.revenue_event_date2 + \
-                           relativedelta(months=1)
-            if payment_date > self.final_payment_date:
-                payment_date = self.final_payment_date
-            loan.add_to_balance(on=self.revenue_event_date2,
-                  amount = loan.interest(self.revenue_event_date2,
-                                self.final_payment_date,
-                                loan.remaining_balance()))
-            loan.payment(on=payment_date,
-                  amount = loan.remaining_balance())
-
-        """The borrower agrees to pay back the any remaining principal
-        and accrued interest one year after the loan is issued."""
-        loan.payment(on=self.final_payment_date,
-                            amount= loan.remaining_balance())
-
-        """The borrower make early payments at any time."""
-        for i in self.early_payments:
-            loan.payment(on=i['on'],
-                         amount=i['amount'])
-        
+                                         bonus_multiplier))
