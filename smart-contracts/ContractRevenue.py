@@ -23,6 +23,10 @@ class LoanContract(object):
         self.revenues = events['revenues']
         self.early_payments = events['early_payments']
         self.credit_draws = events['credit_draws']
+        if "skip_payments" in events:
+            self.skip_payments = events['skip_payments']
+        else:
+            self.skip_payments = []
     def interest(self, from_date, to_date):
         """The interest will be 10 percent per annum compounded monthly
         using the 30/360 US day count convention ."""
@@ -76,7 +80,8 @@ class LoanContract(object):
                       amount = loan.remaining_balance(),
                       payments=8,
                       interval=relativedelta(months=1),
-                      note="Optional payment")
+                      note="Optional payment",
+                      skip=self.skip_payments)
 
         if self.revenues == None or \
            self.bonus_targets == None:
