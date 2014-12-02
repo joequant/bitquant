@@ -65,6 +65,8 @@ class LoanCalculator(object):
             print (i["event"], i["on"], i["payment"],
                    i["principal"], i["interest_accrued"],
                    i["balance"])
+            if i['note'] != None:
+                print ("  ", i['note'])
             if self.currency_interest != self.currency and \
                    i["event"] == "Payment":
                 if i["payment"] > i["interest_accrued"]:
@@ -73,8 +75,8 @@ class LoanCalculator(object):
                 else:
                     principal_payment = i['payment'] - i['payment']
                     interest_payment =  i['payment']
-                print ("   Pay payment of ", principal_payment)
-                print ("   Pay payment of ", interest_payment,
+                print ("     Pay payment of ", principal_payment)
+                print ("     Pay payment of ", interest_payment,
                        " as ", interest_payment.to("XBT"))
     def run_events(self, contract=None):
         payment_schedule = []
@@ -102,7 +104,7 @@ class LoanCalculator(object):
             prev_date = k
         return payment_schedule
     @event_table
-    def fund(self, on, amount):
+    def fund(self, on, amount, note=None):
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
@@ -117,14 +119,15 @@ class LoanCalculator(object):
                 "payment":payment,
                 "principal":principal,
                 "interest_accrued": interest_accrued,
-                "balance":self.balance}
+                "balance":self.balance,
+                "note":note}
     @event_table
     def payment(self, *args, **kwargs):
         return self._payment(*args, **kwargs)
     @event_table_prepend
     def payment_prepend(self, *args, **kwargs):
         return self._payment(*args, **kwargs)
-    def _payment(self, on, amount):
+    def _payment(self, on, amount, note=None):
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
@@ -143,9 +146,11 @@ class LoanCalculator(object):
                     "payment":payment,
                     "principal":principal,
                     "interest_accrued": interest_accrued,
-                    "balance":self.balance}
+                    "balance":self.balance,
+                    "note":note}
     @event_table
-    def add_to_balance(self, on, amount):
+    def add_to_balance(self, on, amount,
+                       note=None):
         if isinstance(amount, collections.Callable):
             payment = amount()
         else:
@@ -156,13 +161,15 @@ class LoanCalculator(object):
                 "payment": payment,
                 "principal": self.principal,
                 "interest_accrued": 0.0,
-                "balance": self.balance}
+                "balance": self.balance,
+                "note": note}
 
     @event_table
     def amortize(self, on,
                  amount,
                  payments,
-                 interval):
+                 interval,
+                 note=None):
         if isinstance(amount, collections.Callable):
             p = amount()
         else:
@@ -175,7 +182,7 @@ class LoanCalculator(object):
 
         for i in range(1, payments+1):
             self.payment_prepend(on+interval * i,
-                                payment)
+                                payment, note=note)
     def remaining_principal(self):
         return lambda : self.principal
     def accrued_interest(self):

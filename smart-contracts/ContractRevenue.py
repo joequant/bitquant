@@ -43,22 +43,26 @@ class LoanContract(object):
         """The lender agrees to provide the borrower the initial loan
         amount on the initial date"""
         loan.fund(on=self.initial_loan_date,
-                         amount=self.initial_loan_amount)
+                  amount=self.initial_loan_amount,
+                  note="Initial funding")
         """The lender agrees to provide up the the line of credit amount
         for the duration of the loan."""
         for i in self.credit_draws:
             loan.fund(on=i['on'],
-                      amount=i['amount'])
+                      amount=i['amount'],
+                      note="Credit draw")
 
         """The borrower agrees to pay back the any remaining principal
         and accrued interest one year after the loan is issued."""
         loan.payment(on=self.final_payment_date,
-                            amount= loan.remaining_balance())
+                            amount= loan.remaining_balance(),
+                     note="Required final payment")
 
         """The borrower make early payments at any time."""
         for i in self.early_payments:
             loan.payment(on=i['on'],
-                         amount=i['amount'])
+                         amount=i['amount'],
+                         note="Early payment")
 
         """ Standard payment schedule - The borrower intends to
         payback period will be separated into 8 installments and
@@ -71,9 +75,8 @@ class LoanContract(object):
         loan.amortize(on=start_payment_date,
                       amount = loan.remaining_balance(),
                       payments=8,
-                      interval=relativedelta(months=1))
-
-
+                      interval=relativedelta(months=1),
+                      note="Optional payment")
 
         if self.revenues == None or \
            self.bonus_targets == None:
@@ -114,7 +117,9 @@ class LoanContract(object):
             loan.add_to_balance(on=payment_date,
                   amount = loan.multiply(loan.interest(bonus_date,
                                 self.final_payment_date,
-                                loan.remaining_balance()), bonus_multiplier))
+                                loan.remaining_balance()), bonus_multiplier),
+                                note=("Required bonus payment %d" % (i+1)))
             loan.payment(on=payment_date,
                   amount = loan.multiply(loan.remaining_balance(),
-                                         bonus_multiplier))
+                                         bonus_multiplier),
+                         note=("Required bonus payment %d" % (i+1)))
