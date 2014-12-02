@@ -81,32 +81,13 @@ class LoanContract(object):
         if self.revenues == None or \
            self.bonus_targets == None:
                return
-
         """ Bonus - If the total revenues from the product exceeds the
         bonus target, the borrower will be required to pay a
         specified fraction of the outstanding balance in addition to a
         specified fraction of the interest had the balance been
         carried to the end of the contract.  This payment will be done
         within one month after the date the bonus target is reached"""
-
-        bonus_dates = [None ] * len(self.bonus_targets)
-        total_revenue = None
-        revenue_idx = 0
-        for i in self.revenues:
-
-            if revenue_idx >= len(self.bonus_targets):
-                break
-            date = i['on']
-            if total_revenue == None:
-                total_revenue = i['amount']
-            else:
-                total_revenue = total_revenue + i['amount']
-            if total_revenue >= self.bonus_targets[revenue_idx]:
-                bonus_dates[revenue_idx] = i['on']
-                revenue_idx = revenue_idx + 1
-
-        for i in range(0, len(bonus_dates)):
-            bonus_date = bonus_dates[i]
+        for i, bonus_date in enumerate(self.get_bonus_dates()):
             if bonus_date == None:
                 break
             bonus_multiplier = self.bonus_multiplers[i]
@@ -123,3 +104,21 @@ class LoanContract(object):
                   amount = loan.multiply(loan.remaining_balance(),
                                          bonus_multiplier),
                          note=("Required bonus payment %d" % (i+1)))
+    def get_bonus_dates(self):
+        """This routine returns the dates at which the bonus
+        targets are hit."""
+        bonus_dates = [None ] * len(self.bonus_targets)
+        total_revenue = None
+        revenue_idx = 0
+        for i in self.revenues:
+            if revenue_idx >= len(self.bonus_targets):
+                break
+            date = i['on']
+            if total_revenue == None:
+                total_revenue = i['amount']
+            else:
+                total_revenue = total_revenue + i['amount']
+            if total_revenue >= self.bonus_targets[revenue_idx]:
+                bonus_dates[revenue_idx] = i['on']
+                revenue_idx = revenue_idx + 1
+        return bonus_dates
