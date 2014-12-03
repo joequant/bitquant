@@ -28,15 +28,16 @@ class LoanContract(object):
         else:
             self.skip_payments = []
     def interest(self, from_date, to_date):
-        """The interest will be 10 percent per annum compounded monthly
-        using the 30/360 US day count convention ."""
-        yearfrac = findates.daycount.yearfrac(from_date,
-                                              to_date,
-                                              "30/360 US")
+        """The interest will be 10 percent per annum compounded monthly"""
+        yearfrac = self.year_frac(from_date, to_date)
         months = yearfrac * 12
         return Decimal((1.0 + \
-               self.annual_interest_rate / 12.0) ** months - 1.0) 
-        
+               self.annual_interest_rate / 12.0) ** months - 1.0)
+    def year_frac(self,from_date, to_date):
+        """This contract will use the 30/360 US day count convention."""
+        return findates.daycount.yearfrac(from_date,
+                                          to_date,
+                                          "30/360 US")
     def payments(self, loan):
         """Any principal amounts in this loan will be paid in Hong
         Kong dollars.  Any accured interest shall be paid in the form

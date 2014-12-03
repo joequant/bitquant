@@ -78,6 +78,17 @@ class LoanCalculator(object):
                 print ("     Pay payment of ", principal_payment)
                 print ("     Pay payment of ", interest_payment,
                        " as ", interest_payment.to("XBT"))
+        prev_event = None
+        total_year_frac = Decimal(0.0)
+        total_interest = Decimal(0.0)
+        for i in payment_schedule:
+            if prev_event != None and i['principal'].amount > 0.0:
+                year_frac = self.contract.year_frac(prev_event, i['on'])
+                interest = Decimal(i['interest_accrued'].amount) / i['principal'].amount
+                total_year_frac = total_year_frac + Decimal(year_frac)
+                total_interest = total_interest + interest
+            prev_event = i['on']
+        print("Return %.3f %% " %(total_interest / total_year_frac * Decimal(100.0)))
     def run_events(self, contract=None):
         payment_schedule = []
         if contract != None:
@@ -160,7 +171,7 @@ class LoanCalculator(object):
                 "on": on,
                 "payment": payment,
                 "principal": self.principal,
-                "interest_accrued": 0.0,
+                "interest_accrued": self.balance-self.balance,
                 "balance": self.balance,
                 "note": note}
 
