@@ -30,19 +30,22 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 var Decimal = require("decimal");
 var moment = require("moment");
+function money(a, b) {
+    return {"amount": new Decimal(a), "ccy" : b};
+}
 
 function TermSheet() {
     this.annual_interest_rate = 10.0 / 100.0;
     this.initial_loan_date = moment("2014-12-01");
     this.currency = 'HKD';
     this.inital_loan_amount = 
-	{"amount" : new Decimal("50000.00"), "ccy": "HKD"};
+	{"amount" : money("50000.00", "HKD")};
     this.inital_line_of_credit = 
-	{"amount" : new Decimal("50000.00"), "ccy": "HKD"};
+	{"amount" : money("50000.00", "HKD")};
     this.accelerated_payment_targets =
 	[
-	    {"amount" : new Decimal("750000.00"), "ccy": "HKD"},
-	    {"amount" : new Decimal("1500000.00"), "ccy" : "HKD"}
+	    {"amount" : money("750000.00", "HKD")},
+	    {"amount" : money("1500000.00", "HKD")}
 	];
     this.accelerated_payment_multipliers =
 	[0.5, 1.0];
