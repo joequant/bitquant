@@ -94,9 +94,9 @@ TermSheet.prototype.payments = function(loan) {
 
     /* The lender agrees to provide up the the line of credit amount
        for the duration of the loan. */
-    for (i in this.credit_draws) {
+    this.credit_draws.forEach(function (i) {
         loan.fund(i);
-    };
+    });
     /* The borrower agrees to pay back the any remaining principal
        and accrued interest one year after the loan is issued.*/
     loan.payment({"on":this.final_payment_date,
@@ -104,9 +104,9 @@ TermSheet.prototype.payments = function(loan) {
                   "note":"Required final payment"});
 
     /* The borrower make early payments at any time. */
-    for (i in this.early_payments) {
+    this.early_payments.forEach(function(i) {
         loan.payment(i);
-    };
+    });
 
     /* Standard payments - The borrower intends to payback period will
        be separated into 8 installments and completed in 8 months.
