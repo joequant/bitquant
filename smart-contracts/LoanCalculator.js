@@ -15,9 +15,9 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
     return function(param) {
 	on = param["on"];
 	if (!(on  in o.events)) {
-	    o.events[on] = [];
+	    o.events.set(on, []);
 	}
-	o.events[on].push(function() { func(param); });
+	o.events.get(on).push(function() { func(param); });
     };
 }
 
@@ -25,17 +25,48 @@ LoanCalculator.prototype.prepend_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	on = param["on"];
-	if (!(on in this.events)) {
-	    o.events[on] = [];
+	if (!(on in o.events)) {
+	    o.events.set(on, []);
 	}
-	o.events[on].unshift(function() { func(param); });
+	o.events.get(on).unshift(function() { func(param); });
     };
 }
 
 LoanCalculator.prototype.run_events = function(term_sheet) {
+    payment_schedule = [];
+    this.currency = term_sheet.currency;
+    this.principal = 0.0;
+    this.balance = 0.0;
+    prev_date = undefined;
+    this.events.forEach (function(i) {
+        if (prev_date !== undefined) {
+            interest = term_sheet.interest(prev_date,
+                                           i) * this.balance;
+            this.balance = this.balance + interest;
+            for (var j in this.events[i]) {
+                payment = j();
+                if (payment != undefined) {
+                    payment_schedule.push(payment);
+		}
+	    }
+            prev_date = i;
+	}
+    });
+    return payment_schedule;
 }
 
-LoanCalculator.prototype.show_payments = function(term_sheet) {
+LoanCalculator.prototype.show_payments = function(payment_schedule) {
+    console.log("type", "payment", "beginning principal",
+		"interest", "end_balance");
+    payment_schedule.forEach (function(i) {
+        console.log(i["event"], i["on"], i["payment"],
+                   i["principal"], i["interest_accrued"],
+                    i["balance"]);
+        if(i['note'] != undefined) {
+            console.log("  ", i['note']);
+	}
+    }
+    );
 }
 
 
