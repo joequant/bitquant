@@ -3,21 +3,19 @@ var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 
 
-calculator = LoanCalculator.LoanCalculator()
-/*
+calculator = new LoanCalculator.LoanCalculator();
 calculator.test_wrapper()
-exit
 
-print("Standard Payments")
-my_contract = LoanContract()
-my_contract.set_events({
+console.log("Standard Payments")
+my_term_sheet = new TermSheet.TermSheet()
+my_term_sheet.set_events({
     "revenues":[],
     "early_payments":[],
     "credit_draws":[]})
-calculator = LoanCalculator.LoanCalculator()
-calculator.calculate(my_contract)
-print()
-
+calculator = new LoanCalculator.LoanCalculator()
+calculator.calculate(my_term_sheet)
+console.log()
+/*
 print("Assume revenue hit on 2015-05-15")
 my_contract = LoanContract()
 my_contract.set_events({

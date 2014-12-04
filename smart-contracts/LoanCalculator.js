@@ -1,3 +1,117 @@
+var SortedArrayMap = require("collections/sorted-array-map");
+
+function LoanCalculator() {
+    this.events = new SortedArrayMap();
+}
+
+LoanCalculator.prototype.test_wrapper = function() {
+    console.log("Hello world");
+};
+
+module.exports.LoanCalculator = LoanCalculator;
+
+LoanCalculator.prototype.add_to_event_table = function(func) {
+    var o = this;
+    return function(param) {
+	on = param["on"];
+	if (!(on  in o.events)) {
+	    o.events[on] = [];
+	}
+	o.events[on].push(function() { func(param); });
+    };
+}
+
+LoanCalculator.prototype.prepend_to_event_table = function(func) {
+    var o = this;
+    return function(param) {
+	on = param["on"];
+	if (!(on in this.events)) {
+	    o.events[on] = [];
+	}
+	o.events[on].unshift(function() { func(param); });
+    };
+}
+
+LoanCalculator.prototype.run_events = function(term_sheet) {
+}
+
+LoanCalculator.prototype.show_payments = function(term_sheet) {
+}
+
+
+LoanCalculator.prototype.calculate = function(term_sheet) {
+    this.term_sheet = term_sheet;
+    term_sheet.payments(this);
+    payment_schedule = this.run_events(term_sheet);
+    this.show_payments(payment_schedule);
+}
+
+LoanCalculator.prototype.fund = function(params) {
+    var _fund = function(params) {
+	if (is_callable(params['amount'])) {
+	    payment = amount();
+	} else {
+	    payment = amount;
+	}
+	principal = self.principal;
+	interest_accrued = self.balance - self.principal;    
+    }
+    this.add_to_event_table(_fund)(params);
+}
+
+LoanCalculator.prototype.payment = function(params) {
+    var _payment = function(params) {
+	if (is_callable(params['amount'])) {
+	    payment = amount();
+	} else {
+	    payment = amount;
+	}
+	principal = self.principal;
+	interest_accrued = self.balance - self.principal;    
+    }
+    this.add_to_event_table(_payment)(params);
+}
+
+LoanCalculator.prototype.amortize = function(params) {
+    var _payment = function(params) {
+	if (is_callable(params['amount'])) {
+	    payment = amount();
+	} else {
+	    payment = amount;
+	}
+	principal = self.principal;
+	interest_accrued = self.balance - self.principal;    
+    }
+    this.add_to_event_table(_payment)(params);
+}
+
+LoanCalculator.prototype.remaining_principal = function() {
+    o = this;
+    return function() { o.principal; }
+}
+
+LoanCalculator.prototype.accrued_interest = function() {
+    o = this;
+    return function() { o.balance - o.principal; }
+}
+
+LoanCalculator.prototype.remaining_balance = function() {
+    o = this;
+    return function() { o.balance; }
+}
+
+
+/*
+    def accrued_interest(self):
+        return lambda : self.balance - self.principal
+    def interest(self, start, end, amount):
+        return lambda : self.contract.interest(start, end) * amount()
+    def multiply(self, a, b):
+        return lambda: a() * Decimal(b)
+    def remaining_balance(self):
+        return lambda : self.balance
+*/
+
 /*from __future__ import print_function
 from datetime import date
 from money import Money
@@ -13,30 +127,6 @@ xrates.install('money.exchange.SimpleBackend')
 xrates.base = 'USD'
 xrates.setrate('HKD', Decimal('7.75'))
 xrates.setrate('XBT', Decimal("1.0") / Decimal('350'))
-
-def event_table(func):
-    def func_wrapper(*args, **kwargs):
-        self = args[0]
-        if "on" in kwargs:
-            on = kwargs["on"]
-        else:
-            on = args[1]
-        if on not in self.events:
-            self.events[on] = []
-        self.events[on].append(lambda: func(*args, **kwargs))
-    return func_wrapper
-
-def event_table_prepend(func):
-    def func_wrapper(*args, **kwargs):
-        self = args[0]
-        if "on" in kwargs:
-            on = kwargs["on"]
-        else:
-            on = args[1]
-        if on not in self.events:
-            self.events[on] = []
-        self.events[on].insert(0, lambda: func(*args, **kwargs))
-    return func_wrapper
 
 class LoanCalculator(object):
     def __init__(self):
@@ -195,15 +285,5 @@ class LoanCalculator(object):
             if on+interval*i not in skip:
                 self.payment_prepend(on+interval * i,
                                      payment, note=note)
-    def remaining_principal(self):
-        return lambda : self.principal
-    def accrued_interest(self):
-        return lambda : self.balance - self.principal
-    def interest(self, start, end, amount):
-        return lambda : self.contract.interest(start, end) * amount()
-    def multiply(self, a, b):
-        return lambda: a() * Decimal(b)
-    def remaining_balance(self):
-        return lambda : self.balance
 
 */

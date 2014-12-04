@@ -28,13 +28,13 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-var Decimal = require("./decimal.js");
-var moment = require("./moment.js");
+var Decimal = require("decimal");
+var moment = require("moment");
 
 function TermSheet() {
     this.annual_interest_rate = 10.0 / 100.0;
     this.initial_loan_date = moment("2014-12-01");
-    this.current = 'HKD';
+    this.currency = 'HKD';
     this.inital_loan_amount = 
 	{"amount" : new Decimal("50000.00"), "ccy": "HKD"};
     this.inital_line_of_credit = 
@@ -49,7 +49,7 @@ function TermSheet() {
     this.final_payment_date = this.initial_loan_date.add(1, 'year');
 }
 
-TermSheet.prototype.setEvents = function(events) {
+TermSheet.prototype.set_events = function(events) {
     this.revenues = events['revenues'];
     this.early_payments = events['early_payments'];
     this.credit_draws = events['credit_draws'];
@@ -101,7 +101,7 @@ TermSheet.prototype.payments = function(loan) {
                   "note":"Required final payment"});
 
     /* The borrower make early payments at any time. */
-    for (i in self.early_payments) {
+    for (i in this.early_payments) {
         loan.payment(i);
     };
 
@@ -111,15 +111,15 @@ TermSheet.prototype.payments = function(loan) {
        special conditions are triggered, the borrower is required to
        only pay the interest on the loan until the final payment
        date. */
-    start_payment_date = this.initial_loan_date; // + relativedelta(months=4)
+    start_payment_date = this.initial_loan_date.add(4, "months");
     loan.amortize({"on":start_payment_date,
                    "amount": loan.remaining_balance(),
                    "payments" : 8,
-                   "interval" : relativedelta(months=1),
+                   "interval" : moment.duration(1, "month"),
                    "note" : "Optional payment",
                    "skip" : this.skip_payments});
     
-    if (this.revenues == undef || this.bonus_targets == undef) {
+    if (this.revenues == undefined || this.bonus_targets == undefined) {
 	return;
     }
     /* Accelerated payment - If the total revenues from the product exceeds the
@@ -129,8 +129,8 @@ TermSheet.prototype.payments = function(loan) {
        carried to the end of the contract.  This payment will be done
        within one month after the date the bonus target is reached */
     i = 0;
-    for (bonus_date in enumerate(self.getTargetHitDates())) {
-        if (bonus_date == undef) {
+    for (bonus_date in enumerate(this.getTargetHitDates())) {
+        if (bonus_date == undefined) {
             break;
 	}
         multiplier = this.accelerated_payment_multiplers[i];
@@ -161,12 +161,12 @@ TermSheet.prototype.getTargetHitDates = function () {
     total_revenue = 0.0;
     revenue_idx = 0;
     for (i in this.revenues) {
-	if (revenue_idx > self.accelerated_payment_targets.length) {
+	if (revenue_idx > this.accelerated_payment_targets.length) {
 	    break;
 	}
 	date = i['on'];
 	total_revenue += i['amount']['amount'];
-	if (total_revenue >= self.accelerated_targets[revenue_idx]) {
+	if (total_revenue >= this.accelerated_targets[revenue_idx]) {
 	    bonus_dates[revenue_idx] = i['on'];
             revenue_idx = revenue_idx + 1;
 	}
@@ -174,4 +174,5 @@ TermSheet.prototype.getTargetHitDates = function () {
     }
 }
 
-test = TermSheet();
+module.exports.TermSheet = TermSheet;
+
