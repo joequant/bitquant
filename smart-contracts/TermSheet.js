@@ -1,5 +1,5 @@
 #!/usr/bin/node
-
+"use strict";
 /*
 Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
 All rights reserved.
@@ -30,6 +30,8 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 var Decimal = require("decimal");
 var moment = require("moment");
+var YEARFRAC = require("./YEARFRAC.js");
+
 function money(a, b) {
     return {"amount": new Decimal(a), "ccy" : b};
 }
@@ -38,18 +40,16 @@ function TermSheet() {
     this.annual_interest_rate = 10.0 / 100.0;
     this.initial_loan_date = moment("2014-12-01");
     this.currency = 'HKD';
-    this.inital_loan_amount = 
-	{"amount" : money("50000.00", "HKD")};
-    this.inital_line_of_credit = 
-	{"amount" : money("50000.00", "HKD")};
+    this.initial_loan_amount = money("50000.00", "HKD");
+    this.initial_line_of_credit = money("50000.00", "HKD");
     this.accelerated_payment_targets =
 	[
-	    {"amount" : money("750000.00", "HKD")},
-	    {"amount" : money("1500000.00", "HKD")}
+	    money("750000.00", "HKD"),
+	    money("1500000.00", "HKD")
 	];
     this.accelerated_payment_multipliers =
 	[0.5, 1.0];
-    this.final_payment_date = this.initial_loan_date.add(1, 'year');
+    this.final_payment_date = moment(this.initial_loan_date).add(1, 'year');
 }
 
 TermSheet.prototype.set_events = function(events) {
@@ -66,19 +66,15 @@ TermSheet.prototype.set_events = function(events) {
 /* The interest will be 10 percent per annum compounded monthly */
 TermSheet.prototype.interest = function(from_date,
 					to_date) {
-    /* yearfrac = self.year_frac(from_date, to_date)
-        months = yearfrac * 12
-        return Decimal((1.0 + \
-        self.annual_interest_rate / 12.0) ** months - 1.0) */
+    var yearfrac = this.year_frac(from_date, to_date);
+    var months = yearfrac * 12;
+    return Math.pow((1.0 + this.annual_interest_rate / 12.0), months) - 1.0;
 }
 
 /* This contract will use the 30/360 US day count convention. */
 TermSheet.prototype.year_frac = function(from_date,
 					 to_date) {
-/*         return findates.daycount.yearfrac(from_date,
-                                          to_date,
-                                          "30/360 US")
-*/
+    return YEARFRAC.YEARFRAC(from_date, to_date, 1);
 }
 
 TermSheet.prototype.payments = function(loan) {
@@ -114,7 +110,7 @@ TermSheet.prototype.payments = function(loan) {
        special conditions are triggered, the borrower is required to
        only pay the interest on the loan until the final payment
        date. */
-    start_payment_date = this.initial_loan_date.add(4, "months");
+    var start_payment_date = moment(this.initial_loan_date).add(4, "months");
     loan.amortize({"on":start_payment_date,
                    "amount": loan.remaining_balance(),
                    "payments" : 8,
@@ -137,7 +133,7 @@ TermSheet.prototype.payments = function(loan) {
             break;
 	}
         multiplier = this.accelerated_payment_multiplers[i];
-        payment_date = bonus_date.add(1, "month");
+        payment_date = moment(bonus_date).add(1, "month");
         if (payment_date > this.final_payment_date) {
             payment_date = this.final_payment_date;
 	}

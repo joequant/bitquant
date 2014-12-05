@@ -14,10 +14,11 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	on = param["on"];
-	if (!(on  in o.events)) {
+	if (!o.events.has(on)) {
 	    o.events.set(on, []);
 	}
 	o.events.get(on).push(function() { return func(param); });
+
     };
 }
 
@@ -25,7 +26,7 @@ LoanCalculator.prototype.prepend_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	on = param["on"];
-	if (!(on in o.events)) {
+	if (!o.events.has(on)) {
 	    o.events.set(on, []);
 	}
 	o.events.get(on).unshift(function() { return func(param); });
@@ -59,7 +60,7 @@ LoanCalculator.prototype.show_payments = function(payment_schedule) {
     console.log("type", "payment", "beginning principal",
 		"interest", "end_balance");
     payment_schedule.forEach (function(i) {
-        console.log(i["event"], i["on"], i["payment"],
+        console.log(i["event"], i["on"].format("YYYY-MM-DD"), i.payment,
                    i["principal"], i["interest_accrued"],
                     i["balance"]);
         if(i['note'] != undefined) {
@@ -78,6 +79,8 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
 }
 
 LoanCalculator.prototype.fund = function(params) {
+    var o = this;
+
     var _fund = function(params) {
 	if (typeof(params.amount) == "function") {
 	    payment = params.amount();
@@ -87,24 +90,29 @@ LoanCalculator.prototype.fund = function(params) {
 	if (payment.hasOwnProperty("amount")) {
 	    payment = payment.amount;
 	}
-	principal = this.principal;
-	interest_accrued = this.balance - this.principal;
-	this.balance = this.balance + payment;
-	this.principal = this.principal + payment;
+	if (payment.hasOwnProperty("toNumber")) {
+	    payment = payment.toNumber();
+	}
+
+	principal = o.principal;
+	interest_accrued = o.balance - o.principal;
+	o.balance = o.balance + payment;
+	o.principal = o.principal + payment;
         retval = {"event":"Funding",
                 "on":params.on,
                 "payment":payment,
-                "principal": this.principal,
+                "principal": o.principal,
                 "interest_accrued": interest_accrued,
-                "balance":this.balance,
+                "balance":o.balance,
                 "note":params.note};
-	console.log(retval);
 	return(retval);
     }
     this.add_to_event_table(_fund)(params);
 }
 
 LoanCalculator.prototype.payment = function(params) {
+    var o = this;
+    console.log(params);
     var _payment = function(params) {
 	if (typeof(params.amount) == "function") {
 	    payment = params.amount();
@@ -114,9 +122,29 @@ LoanCalculator.prototype.payment = function(params) {
 	if (payment.hasOwnProperty("amount")) {
 	    payment = payment.amount;
 	}
+	if (payment.hasOwnProperty("toNumber")) {
+	    payment = payment.toNumber();
+	}
 
-	principal = this.principal;
-	interest_accrued = this.balance - this.principal;
+	principal = o.principal;
+	interest_accrued = o.balance - o.principal;
+        if (payment > o.balance) {
+            payment = o.balance;
+	}
+        if (payment >  (o.balance-o.principal)) {
+            o.principal = o.principal - (payment - o.balance + o.principal);
+	}
+        o.balance = o.balance - payment;
+        if (payment > 0) {
+            return {"event":"Payment",
+                    "on":on,
+                    "payment":payment,
+                    "principal":principal,
+                    "interest_accrued": interest_accrued,
+                    "balance":o.balance,
+                    "note":params.note}
+	}
+
     }
     this.add_to_event_table(_payment)(params);
 }
