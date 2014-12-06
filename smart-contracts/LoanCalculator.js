@@ -1,7 +1,9 @@
 var SortedArrayMap = require("collections/sorted-array-map");
 
 function LoanCalculator() {
-    this.events = new SortedArrayMap();
+    this.events = {};
+    this.event_list = [];
+    this.current_event = 0;
 }
 
 LoanCalculator.prototype.test_wrapper = function() {
@@ -14,11 +16,17 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	on = param["on"];
-	if (!o.events.has(on)) {
-	    o.events.set(on, []);
+	if (!(on in o.events)) {
+	    if (o.event_list.length > 0 && 
+		on < o.event_list[o.current_event]) {
+		throw "Event already past";
+	    }
+	    o.event_list.push(on);
+	    o.event_list.sort();
+	    o.events[on] = [];
+	    console.log(o.event_list);
 	}
-	o.events.get(on).push(function() { return func(param); });
-
+	o.events[on].push(function() { return func(param); });
     };
 }
 
@@ -26,10 +34,16 @@ LoanCalculator.prototype.prepend_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	on = param["on"];
-	if (!o.events.has(on)) {
-	    o.events.set(on, []);
+	if (!(on in o.events)) {
+	    if (o.event_list.length > 0 && 
+		on < o.event_list[o.current_event]) {
+		throw "Event already past";
+	    }
+	    o.event_list.push(on);
+	    o.event_list.sort();
+	    o.events[on] = [];
 	}
-	o.events.get(on).unshift(function() { return func(param); });
+	o.events[om].unshift(function() { return func(param); });
     };
 }
 
@@ -38,8 +52,11 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     this.currency = term_sheet.currency;
     this.principal = 0.0;
     this.balance = 0.0;
+    this.current_event = 0;
     prev_date = undefined;
-    this.events.forEach (function(i, k) {
+    while (this.current_event < this.event_list.length) {
+	k = this.event_list[this.current_event];
+	i = this.events[k];
         if (prev_date !== undefined) {
             interest = term_sheet.interest(prev_date,
                                            k) * this.balance;
@@ -52,7 +69,8 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 	    }
 	});
         prev_date = k;
-    });
+	this.current_event++;
+    }
     return payment_schedule;
 }
 
@@ -112,7 +130,6 @@ LoanCalculator.prototype.fund = function(params) {
 
 LoanCalculator.prototype.payment = function(params) {
     var o = this;
-    console.log(params);
     var _payment = function(params) {
 	if (typeof(params.amount) == "function") {
 	    payment = params.amount();
