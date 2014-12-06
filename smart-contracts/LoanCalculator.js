@@ -3,6 +3,7 @@
 
 var Decimal = require("decimal");
 var moment = require("moment");
+var YEARFRAC = require("./YEARFRAC.js");
 "use strict";
 function LoanCalculator() {
     this.events = {};
@@ -65,10 +66,10 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 	k = this.event_list[this.current_event];
 	i = this.events[k];
         if (prev_date !== undefined) {
-            interest = term_sheet.interest(prev_date,
-                                           k) * calculator.balance;
-            calculator.balance = calculator.balance + interest;
-	    calculator.balance = Number(calculator.balance.toFixed("2"));
+            interest = this.interest(term_sheet, prev_date,
+                                     k) * this.balance;
+            this.balance = this.balance + interest;
+	    this.balance = Number(this.balance.toFixed("2"));
 	}
         i.forEach(function(j){
             payment = j();
@@ -177,9 +178,9 @@ LoanCalculator.prototype.amortize = function(params) {
 	var on = params.on;
 	var forward_date = 
 	    moment(on).add(params.interval).toDate();
-	payment = o.term_sheet.interest(on, forward_date) / 
-	    (1.0 - Math.pow(1 + o.term_sheet.interest(on,
-						    forward_date), 
+	payment = o.interest(o.term_sheet, on, forward_date) / 
+	    (1.0 - Math.pow(1 + o.interest(o.term_sheet, on,
+					   forward_date), 
 			    -npayments)) * p
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
@@ -192,6 +193,23 @@ LoanCalculator.prototype.amortize = function(params) {
 	}
     }
     this.add_to_event_table(_amortize)(params);
+}
+
+LoanCalculator.prototype.interest = function(term_sheet, from_date,
+					    to_date) {
+    var yearfrac = this.year_frac(term_sheet, from_date, to_date);
+    var periods = yearfrac * term_sheet.compound_per_year;
+    return Math.pow((1.0 + term_sheet.annual_interest_rate / 
+		    term_sheet.compound_per_year), periods) - 1.0;
+}
+
+LoanCalculator.prototype.year_frac = function(term_sheet, from_date,
+					      to_date) {
+    if (term_sheet.day_count_convention === "30/360US") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 1);
+    } else {
+	throw "unknown day count convention";
+    }
 }
 
 LoanCalculator.prototype.remaining_principal = function() {

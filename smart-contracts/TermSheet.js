@@ -1,18 +1,21 @@
 #!/usr/bin/node
-
-/*  Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
- Licensed under the Simplified BSD License */
+// Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
+// Licensed under the Simplified BSD License */
 
 var Decimal = require("decimal");
 var moment = require("moment");
-var YEARFRAC = require("./YEARFRAC.js");
+
 
 function money(a, b) {
     return {"amount": new Decimal(a), "ccy" : b};
 }
 
 function TermSheet() {
+/* The interest will be 10 percent per annum compounded monthly */
     this.annual_interest_rate = 10.0 / 100.0;
+    this.compound_per_year = 12;
+/* This contract will use the 30/360 US day count convention. */
+    this.day_count_convention = "30/360US";
     this.initial_loan_date = new Date(2014, 12, 1);
     this.currency = 'HKD';
     this.initial_loan_amount = money("50000.00", "HKD");
@@ -37,20 +40,6 @@ TermSheet.prototype.set_events = function(events) {
     } else {
 	this.skip_payments = [];
     }
-}
-
-/* The interest will be 10 percent per annum compounded monthly */
-TermSheet.prototype.interest = function(from_date,
-					to_date) {
-    var yearfrac = this.year_frac(from_date, to_date);
-    var months = yearfrac * 12;
-    return Math.pow((1.0 + this.annual_interest_rate / 12.0), months) - 1.0;
-}
-
-/* This contract will use the 30/360 US day count convention. */
-TermSheet.prototype.year_frac = function(from_date,
-					 to_date) {
-    return YEARFRAC.YEARFRAC(from_date, to_date, 1);
 }
 
 TermSheet.prototype.payments = function(loan) {
