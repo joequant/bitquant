@@ -205,7 +205,15 @@ LoanCalculator.prototype.interest = function(from_date,
 LoanCalculator.prototype.year_frac = function(from_date,
 					      to_date) {
     if (this.term_sheet.day_count_convention === "30/360US") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 0);
+    } else if (this.term_sheet.day_count_convention === "Actual/Actual") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 1);
+    } else if (this.term_sheet.day_count_convention === "Actual/360") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 2);
+    } else if (this.term_sheet.day_count_convention === "Actual/365") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 3);
+    } else if (this.term_sheet.day_count_convention === "30/360EUR") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 4);
     } else {
 	throw "unknown day count convention";
     }
