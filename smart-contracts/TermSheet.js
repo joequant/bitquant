@@ -1,32 +1,7 @@
 #!/usr/bin/node
-"use strict";
-/*
-Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
-All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-1. Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
-
-2. Redistributions in binary form must reproduce the above copyright
-notice, this list of conditions and the following disclaimer in the
-documentation and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+/*  Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
+ Licensed under the Simplified BSD License */
 
 var Decimal = require("decimal");
 var moment = require("moment");
@@ -38,7 +13,7 @@ function money(a, b) {
 
 function TermSheet() {
     this.annual_interest_rate = 10.0 / 100.0;
-    this.initial_loan_date = moment("2014-12-01");
+    this.initial_loan_date = new Date(2014, 12, 1);
     this.currency = 'HKD';
     this.initial_loan_amount = money("50000.00", "HKD");
     this.initial_line_of_credit = money("50000.00", "HKD");
@@ -49,7 +24,8 @@ function TermSheet() {
 	];
     this.accelerated_payment_multipliers =
 	[0.5, 1.0];
-    this.final_payment_date = moment(this.initial_loan_date).add(1, 'year');
+    this.final_payment_date = 
+	moment(this.initial_loan_date).add(1, 'year').toDate();
 }
 
 TermSheet.prototype.set_events = function(events) {
@@ -110,14 +86,15 @@ TermSheet.prototype.payments = function(loan) {
        special conditions are triggered, the borrower is required to
        only pay the interest on the loan until the final payment
        date. */
-    var start_payment_date = moment(this.initial_loan_date).add(4, "months");
+    var start_payment_date = 
+	moment(this.initial_loan_date).add(4, "months").toDate();
     loan.amortize({"on":start_payment_date,
                    "amount": loan.remaining_balance(),
                    "payments" : 8,
                    "interval" : moment.duration(1, "month"),
                    "note" : "Optional payment",
                    "skip" : this.skip_payments});
-    
+
     if (this.revenues == undefined || this.bonus_targets == undefined) {
 	return;
     }
@@ -133,7 +110,8 @@ TermSheet.prototype.payments = function(loan) {
             break;
 	}
         multiplier = this.accelerated_payment_multiplers[i];
-        payment_date = moment(bonus_date).add(1, "month");
+        payment_date = 
+	    moment(bonus_date).add(1, "month").toDate();
         if (payment_date > this.final_payment_date) {
             payment_date = this.final_payment_date;
 	}

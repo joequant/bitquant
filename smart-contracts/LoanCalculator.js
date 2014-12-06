@@ -1,5 +1,11 @@
-var SortedArrayMap = require("collections/sorted-array-map");
+/*  Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
+ Licensed under the Simplified BSD License */
 
+var SortedArrayMap = require("collections/sorted-array-map");
+var Decimal = require("decimal");
+var moment = require("moment");
+var Iterator = require("collections/iterator");
+"use strict";
 function LoanCalculator() {
     this.events = {};
     this.event_list = [];
@@ -22,9 +28,10 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
 		throw "Event already past";
 	    }
 	    o.event_list.push(on);
-	    o.event_list.sort();
+	    o.event_list = o.event_list.sort(function(a, b) {
+		return new Date(a) - new Date(b);
+	    });
 	    o.events[on] = [];
-	    console.log(o.event_list);
 	}
 	o.events[on].push(function() { return func(param); });
     };
@@ -40,10 +47,12 @@ LoanCalculator.prototype.prepend_to_event_table = function(func) {
 		throw "Event already past";
 	    }
 	    o.event_list.push(on);
-	    o.event_list.sort();
+	    o.event_list.sort(function(a, b) {
+		return new Date(a) - new Date(b);
+	    });
 	    o.events[on] = [];
 	}
-	o.events[om].unshift(function() { return func(param); });
+	o.events[on].unshift(function() { return func(param); });
     };
 }
 
@@ -59,8 +68,9 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 	i = this.events[k];
         if (prev_date !== undefined) {
             interest = term_sheet.interest(prev_date,
-                                           k) * this.balance;
-            this.balance = this.balance + interest;
+                                           k) * calculator.balance;
+            calculator.balance = calculator.balance + interest;
+	    calculator.balance = Number(calculator.balance.toFixed("2"));
 	}
         i.forEach(function(j){
             payment = j();
@@ -78,7 +88,7 @@ LoanCalculator.prototype.show_payments = function(payment_schedule) {
     console.log("type", "payment", "beginning principal",
 		"interest", "end_balance");
     payment_schedule.forEach (function(i) {
-        console.log(i["event"], i["on"].format("YYYY-MM-DD"), i.payment,
+        console.log(i["event"], i["on"], i.payment,
                    i["principal"], i["interest_accrued"],
                     i["balance"]);
         if(i['note'] != undefined) {
@@ -88,7 +98,6 @@ LoanCalculator.prototype.show_payments = function(payment_schedule) {
     );
 }
 
-
 LoanCalculator.prototype.calculate = function(term_sheet) {
     this.term_sheet = term_sheet;
     term_sheet.payments(this);
@@ -96,22 +105,26 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
     this.show_payments(payment_schedule);
 }
 
+var extract_payment = function(params) {
+    if (typeof(params.amount) == "function") {
+	payment = params.amount();
+    } else {
+	payment = params.amount;
+    }
+    if (payment.hasOwnProperty("amount")) {
+	payment = payment.amount;
+    }
+    if (payment.hasOwnProperty("toNumber")) {
+	payment = payment.toNumber();
+    }
+    return payment;
+}
+
 LoanCalculator.prototype.fund = function(params) {
     var o = this;
-
+    
     var _fund = function(params) {
-	if (typeof(params.amount) == "function") {
-	    payment = params.amount();
-	} else {
-	    payment = params.amount;
-	}
-	if (payment.hasOwnProperty("amount")) {
-	    payment = payment.amount;
-	}
-	if (payment.hasOwnProperty("toNumber")) {
-	    payment = payment.toNumber();
-	}
-
+	var payment = extract_payment(params);
 	principal = o.principal;
 	interest_accrued = o.balance - o.principal;
 	o.balance = o.balance + payment;
@@ -131,18 +144,7 @@ LoanCalculator.prototype.fund = function(params) {
 LoanCalculator.prototype.payment = function(params) {
     var o = this;
     var _payment = function(params) {
-	if (typeof(params.amount) == "function") {
-	    payment = params.amount();
-	} else {
-	    payment = params.amount;
-	}
-	if (payment.hasOwnProperty("amount")) {
-	    payment = payment.amount;
-	}
-	if (payment.hasOwnProperty("toNumber")) {
-	    payment = payment.toNumber();
-	}
-
+	var payment = extract_payment(params);
 	principal = o.principal;
 	interest_accrued = o.balance - o.principal;
         if (payment > o.balance) {
@@ -161,22 +163,37 @@ LoanCalculator.prototype.payment = function(params) {
                     "balance":o.balance,
                     "note":params.note}
 	}
-
     }
-    this.add_to_event_table(_payment)(params);
+    if (params.prepend === "true") {
+	this.prepend_to_event_table(_payment)(params);
+    } else {
+	this.add_to_event_table(_payment)(params);
+    }
 }
 
 LoanCalculator.prototype.amortize = function(params) {
-    var _payment = function(params) {
-	if (typeof(params['amount']) == "function") {
-	    payment = params.amount();
-	} else {
-	    payment = params.amount;
+    var o = this;
+    var _amortize = function(params) {
+	var p = extract_payment(params);
+	var npayments = params.payments;
+	var on = params.on;
+	var forward_date = 
+	    moment(on).add(params.interval).toDate();
+	payment = o.term_sheet.interest(on, forward_date) / 
+	    (1.0 - Math.pow(1 + o.term_sheet.interest(on,
+						    forward_date), 
+			    -npayments)) * p
+	var d = forward_date;
+	for (var i=0; i < npayments; i++) {
+            if (! (d  in params.skip)) {
+		o.payment({"on":d, "amount" : payment, 
+			   "note" : params.note,
+			   "prepend" : "true"});
+	    }
+	    d = moment(d).add(params.interval).toDate();
 	}
-	principal = this.principal;
-	interest_accrued = this.balance - this.principal;
     }
-    this.add_to_event_table(_payment)(params);
+    this.add_to_event_table(_amortize)(params);
 }
 
 LoanCalculator.prototype.remaining_principal = function() {
@@ -366,18 +383,5 @@ class LoanCalculator(object):
                  interval,
                  note=None,
                  skip=[]):
-        if isinstance(amount, collections.Callable):
-            p = amount()
-        else:
-            p = amount
-
-        payment = self.contract.interest(on,
-              on + interval) / \
-              Decimal(Decimal(1.0) - (1 + self.contract.interest(on,
-                     on+interval)) ** (Decimal(-payments))) * p
-        for i in range(1, payments+1):
-            if on+interval*i not in skip:
-                self.payment_prepend(on+interval * i,
-                                     payment, note=note)
 
 */
