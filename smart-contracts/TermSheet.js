@@ -2,12 +2,10 @@
 // Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
 // Licensed under the Simplified BSD License */
 
-var Decimal = require("decimal");
 var moment = require("moment");
 
-
 function money(a, b) {
-    return {"amount": new Decimal(a), "ccy" : b};
+    return {"amount": a, "ccy" : b};
 }
 
 function TermSheet() {
@@ -18,12 +16,12 @@ function TermSheet() {
     this.day_count_convention = "30/360US";
     this.initial_loan_date = new Date(2014, 12, 1);
     this.currency = 'HKD';
-    this.initial_loan_amount = money("50000.00", "HKD");
-    this.initial_line_of_credit = money("50000.00", "HKD");
+    this.initial_loan_amount = money(50000.00, "HKD");
+    this.initial_line_of_credit = money(50000.00, "HKD");
     this.accelerated_payment_targets =
 	[
-	    money("750000.00", "HKD"),
-	    money("1500000.00", "HKD")
+	    money(750000.00, "HKD"),
+	    money(1500000.00, "HKD")
 	];
     this.accelerated_payment_multipliers =
 	[0.5, 1.0];
@@ -136,7 +134,7 @@ TermSheet.prototype.getTargetHitDates = function () {
 	    return;
 	}
 	date = i['on'];
-	total_revenue += i.amount.amount.toNumber();
+	total_revenue += i.amount.amount;
 	if (total_revenue >= obj.accelerated_payment_targets[revenue_idx].amount) {
 	    target_hit_dates[revenue_idx] = i['on'];
 	}

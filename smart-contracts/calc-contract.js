@@ -2,10 +2,9 @@
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 var moment = require("moment");
-var Decimal = require("decimal");
 
 function money(a, b) {
-    return {"amount": new Decimal(a), "ccy" : b};
+    return {"amount": a, "ccy" : b};
 }
 
 calculator = new LoanCalculator.LoanCalculator();
@@ -26,7 +25,7 @@ my_term_sheet =  new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
 	{"on" : new Date(2015, 5, 15),
-	 "amount" : money("800000", "HKD")}
+	 "amount" : money(800000, "HKD")}
     ],
     "early_payments":[],
     "credit_draws":[]})
@@ -39,9 +38,9 @@ my_term_sheet = new TermSheet.TermSheet()
 my_term_sheet.set_events({
     "revenues": [
     {"on" : new Date(2015, 6, 15),
-     "amount" : money("800000", "HKD")},
+     "amount" : money(800000, "HKD")},
     {"on" : new Date(2015, 8, 15), 
-     "amount" : money("800000", "HKD")}
+     "amount" : money(800000, "HKD")}
     ],
     "early_payments":[],
     "credit_draws":[]})
@@ -53,13 +52,13 @@ my_term_sheet = new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
     {"on" : new Date(2015, 6, 15),
-     "amount" : money("800000", "HKD")},
+     "amount" : money(800000, "HKD")},
     {"on" : new Date(2015, 8, 15),
-     "amount" : money("800000", "HKD")}
+     "amount" : money(800000, "HKD")}
     ],
     "early_payments":[
     {"on": new Date(2015, 4, 15),
-     "amount": money("5000", "HKD")}
+     "amount": money(5000, "HKD")}
     ],
     "credit_draws":[
     {"on": new Date(2015, 6, 15),
@@ -73,9 +72,9 @@ my_term_sheet = new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
     {"on" : new Date(2015, 4, 15),
-     "amount" : money("800000", "HKD")},
+     "amount" : money(800000, "HKD")},
     {"on" : new Date(2015, 9, 15),
-     "amount" : money("800000", "HKD")}
+     "amount" : money(800000, "HKD")}
     ],
     "early_payments":[
     {"on": new Date(2015, 4, 15),
