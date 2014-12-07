@@ -1,7 +1,6 @@
 /*  Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
  Licensed under the Simplified BSD License */
 
-var Decimal = require("decimal");
 var moment = require("moment");
 var YEARFRAC = require("./YEARFRAC.js");
 "use strict";
