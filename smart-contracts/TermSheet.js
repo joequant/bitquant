@@ -2,8 +2,6 @@
 // Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
 // Licensed under the Simplified BSD License */
 
-var moment = require("moment");
-
 function money(a, b) {
     return {"amount": a, "ccy" : b};
 }
@@ -25,8 +23,8 @@ function TermSheet() {
 	];
     this.accelerated_payment_multipliers =
 	[0.5, 1.0];
-    this.final_payment_date = 
-	moment(this.initial_loan_date).add(1, 'year').toDate();
+    this.loan_duration = [ 1, 'year']; 
+
 }
 
 TermSheet.prototype.set_events = function(events) {
@@ -40,31 +38,34 @@ TermSheet.prototype.set_events = function(events) {
     }
 }
 
-TermSheet.prototype.payments = function(loan) {
+TermSheet.prototype.payments = function(calc) {
     /* Any principal amounts in this loan will be paid in Hong Kong
        dollars.  Any accured interest shall be paid in the form of Bitcoin
        with the interest rate calculated in Hong Kong dollars */
     this.currency_interest = "XBT";
     /* The lender agrees to provide the borrower the initial loan
         amount on the initial date */
-    loan.fund({"on" : this.initial_loan_date,
+    calc.fund({"on" : this.initial_loan_date,
                "amount" : this.initial_loan_amount,
                "note" : "Initial funding"});
 
     /* The lender agrees to provide up the the line of credit amount
-       for the duration of the loan. */
+       for the duration of the calc. */
     this.credit_draws.forEach(function (i) {
-        loan.fund(i);
+        calc.fund(i);
     });
     /* The borrower agrees to pay back the any remaining principal
        and accrued interest one year after the loan is issued.*/
-    loan.payment({"on":this.final_payment_date,
-                  "amount":loan.remaining_balance(),
+    var final_payment_date =
+	calc.add_duration(this.initial_loan_date,
+			  [1, 'year']);
+    calc.payment({"on":final_payment_date,
+                  "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
 
     /* The borrower make early payments at any time. */
     this.early_payments.forEach(function(i) {
-        loan.payment(i);
+        calc.payment(i);
     });
 
     /* Standard payments - The borrower intends to payback period will
@@ -74,11 +75,12 @@ TermSheet.prototype.payments = function(loan) {
        only pay the interest on the loan until the final payment
        date. */
     var start_payment_date = 
-	moment(this.initial_loan_date).add(4, "months").toDate();
-    loan.amortize({"on":start_payment_date,
-                   "amount": loan.remaining_balance(),
+	calc.add_duration(this.initial_loan_date, [4, "months"]);
+
+    calc.amortize({"on":start_payment_date,
+                   "amount": calc.remaining_balance(),
                    "payments" : 8,
-                   "interval" : moment.duration(1, "month"),
+                   "interval" : [1, "month"],
                    "note" : "Optional payment",
                    "skip" : this.skip_payments});
 
@@ -101,19 +103,19 @@ TermSheet.prototype.payments = function(loan) {
 	}
         multiplier = obj.accelerated_payment_multipliers[i];
         payment_date = 
-	    moment(target_hit_date).add(1, "month").toDate();
-        if (payment_date > obj.final_payment_date) {
-            payment_date = obj.final_payment_date;
+	    calc.add_duration(target_hit_date, [1, "month"]);
+        if (payment_date > final_payment_date) {
+            payment_date = final_payment_date;
 	}
-        loan.add_to_balance({"on": payment_date,
+        calc.add_to_balance({"on": payment_date,
 			     "amount" : 
-	  loan.multiply(loan.interest_func(target_hit_date,
-					   obj.final_payment_date,
-					   loan.remaining_balance()), 
+	  calc.multiply(calc.interest_func(target_hit_date,
+					   final_payment_date,
+					   calc.remaining_balance()), 
 			multiplier),
                              "note" : "Accelerated interest " + (i+1).toString()});
-        loan.payment({"on" : payment_date,
-                      "amount" : loan.multiply(loan.remaining_balance(),
+        calc.payment({"on" : payment_date,
+                      "amount" : calc.multiply(calc.remaining_balance(),
                                                multiplier),
 		      "note" : ("Required payment " + (i+1).toString())});
 	i++;

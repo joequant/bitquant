@@ -201,7 +201,7 @@ LoanCalculator.prototype.amortize = function(params) {
 	var npayments = params.payments;
 	var on = params.on;
 	var forward_date = 
-	    moment(on).add(params.interval).toDate();
+	    o.add_duration(on, params.interval);
 	payment = o.interest(on, forward_date) / 
 	    (1.0 - Math.pow(1 + o.interest(on, forward_date), 
 			    -npayments)) * p
@@ -212,7 +212,7 @@ LoanCalculator.prototype.amortize = function(params) {
 			   "note" : params.note,
 			   "prepend" : "true"});
 	    }
-	    d = moment(d).add(params.interval).toDate();
+	    d = o.add_duration(d, params.interval);
 	}
     }
     this.add_to_event_table(_amortize)(params);
@@ -224,6 +224,13 @@ LoanCalculator.prototype.interest = function(from_date,
     var periods = yearfrac * this.term_sheet.compound_per_year;
     return Math.pow((1.0 + this.term_sheet.annual_interest_rate / 
 		    this.term_sheet.compound_per_year), periods) - 1.0;
+}
+
+LoanCalculator.prototype.add_duration = function (date,
+						  duration) {
+    var d = moment(date);
+    d.add.apply(d, duration);
+    return d.toDate();
 }
 
 LoanCalculator.prototype.interest_func = function(from_date, to_date,
