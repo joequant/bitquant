@@ -84,60 +84,65 @@ TermSheet.prototype.payments = function(loan) {
                    "note" : "Optional payment",
                    "skip" : this.skip_payments});
 
-    if (this.revenues == undefined || this.bonus_targets == undefined) {
+    if (this.revenues == undefined) {
 	return;
     }
-    /* Accelerated payment - If the total revenues from the product exceeds the
-       bonus target, the borrower will be required to pay a
-       specified fraction of the outstanding balance in addition to a
-       specified fraction of the interest had the balance been
+    /* Accelerated payment - If the total revenues from the product
+       exceeds the revenue target, the borrower will be required to
+       pay a specified fraction of the outstanding balance in addition
+       to a specified fraction of the interest had the balance been
        carried to the end of the contract.  This payment will be done
-       within one month after the date the bonus target is reached */
+       within one month after the date the revenue target is
+       reached */
     i = 0;
-    for (bonus_date in enumerate(this.getTargetHitDates())) {
-        if (bonus_date == undefined) {
-            break;
+    r = this.getTargetHitDates();
+    obj = this;
+	r.forEach(function(target_hit_date) {
+        if (target_hit_date == undefined) {
+            return;
 	}
-        multiplier = this.accelerated_payment_multiplers[i];
+        multiplier = obj.accelerated_payment_multipliers[i];
         payment_date = 
-	    moment(bonus_date).add(1, "month").toDate();
-        if (payment_date > this.final_payment_date) {
-            payment_date = this.final_payment_date;
+	    moment(target_hit_date).add(1, "month").toDate();
+        if (payment_date > obj.final_payment_date) {
+            payment_date = obj.final_payment_date;
 	}
         loan.add_to_balance({"on": payment_date,
 			     "amount" : 
-			     loan.multiply(loan.interest(bonus_date,
-							 this.final_payment_date,
-							 loan.remaining_balance()), multiplier),
-                             "note" : ("Required bonus payment %d" % (i+1))});
+	  loan.multiply(loan.interest_func(target_hit_date,
+					   obj.final_payment_date,
+					   loan.remaining_balance()), 
+			multiplier),
+                             "note" : "Accelerated interest " + (i+1).toString()});
         loan.payment({"on" : payment_date,
                       "amount" : loan.multiply(loan.remaining_balance(),
-                                               bonus_multiplier),
-		      "note" : ("Required bonus payment %d" % (i+1))});
-    }
+                                               multiplier),
+		      "note" : ("Required payment " + (i+1).toString())});
+	i++;
+    });
 }
 
-/* This routine returns the dates at which the bonus
-   targets are hit.*/
+/* This routine returns the dates at which the targets are hit.*/
 
 TermSheet.prototype.getTargetHitDates = function () {
-    bonus_dates = 
+    target_hit_dates = 
 	Array.apply(null, 
-		    new Array(this.accelerated_payment_targets)).map(function(){return undef});
+		    new Array(this.accelerated_payment_targets)).map(function(){return undefined});
     total_revenue = 0.0;
     revenue_idx = 0;
-    for (i in this.revenues) {
-	if (revenue_idx > this.accelerated_payment_targets.length) {
-	    break;
+    obj = this;
+    this.revenues.forEach(function(i) {
+	if (revenue_idx > obj.accelerated_payment_targets.length) {
+	    return;
 	}
 	date = i['on'];
-	total_revenue += i['amount']['amount'];
-	if (total_revenue >= this.accelerated_targets[revenue_idx]) {
-	    bonus_dates[revenue_idx] = i['on'];
-            revenue_idx = revenue_idx + 1;
+	total_revenue += i.amount.amount.toNumber();
+	if (total_revenue >= obj.accelerated_payment_targets[revenue_idx].amount) {
+	    target_hit_dates[revenue_idx] = i['on'];
 	}
-        return bonus_dates;
-    }
+        revenue_idx = revenue_idx + 1;
+    });
+    return target_hit_dates;
 }
 
 module.exports.TermSheet = TermSheet;

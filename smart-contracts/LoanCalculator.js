@@ -24,7 +24,7 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
 	if (!(on in o.events)) {
 	    if (o.event_list.length > 0 && 
 		on < o.event_list[o.current_event]) {
-		throw "Event already past";
+		throw "Event already past" + o.event_list[o.current_event];
 	    }
 	    o.event_list.push(on);
 	    o.event_list = o.event_list.sort(function(a, b) {
@@ -105,11 +105,14 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
 }
 
 var extract_payment = function(params) {
-    if (typeof(params.amount) == "function") {
-	payment = params.amount();
-    } else {
+    if (params.hasOwnProperty("amount")) {
 	payment = params.amount;
+    } else {
+	payment = params;
     }
+    if (typeof(payment) == "function") {
+	payment = payment();
+    } 
     if (payment.hasOwnProperty("amount")) {
 	payment = payment.amount;
     }
@@ -170,6 +173,28 @@ LoanCalculator.prototype.payment = function(params) {
     }
 }
 
+LoanCalculator.prototype.add_to_balance = function(params) {
+    var o = this;
+    var _payment = function(params) {
+	var payment = extract_payment(params);
+        o.balance = o.balance + payment;
+        if (payment > 0) {
+            return {"event":"Payment",
+                    "on":params.on,
+                    "payment":payment,
+                    "principal": o.principal,
+                    "interest_accrued": 0.0,
+                    "balance":o.balance,
+                    "note":params.note}
+	}
+    }
+    if (params.prepend === "true") {
+	this.prepend_to_event_table(_payment)(params);
+    } else {
+	this.add_to_event_table(_payment)(params);
+    }
+}
+
 LoanCalculator.prototype.amortize = function(params) {
     var o = this;
     var _amortize = function(params) {
@@ -202,6 +227,14 @@ LoanCalculator.prototype.interest = function(from_date,
 		    this.term_sheet.compound_per_year), periods) - 1.0;
 }
 
+LoanCalculator.prototype.interest_func = function(from_date, to_date,
+						  amount) {
+    var obj = this;
+    return function() {
+	return obj.interest(from_date, to_date) * amount();
+    }
+}
+
 LoanCalculator.prototype.year_frac = function(from_date,
 					      to_date) {
     if (this.term_sheet.day_count_convention === "30/360US") {
@@ -232,5 +265,9 @@ LoanCalculator.prototype.accrued_interest = function() {
 LoanCalculator.prototype.remaining_balance = function() {
     o = this;
     return function() { return(o.balance); }
+}
+
+LoanCalculator.prototype.multiply = function (a, b) {
+    return function() { return extract_payment(a) * b };
 }
 
