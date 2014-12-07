@@ -1,5 +1,6 @@
-/*  Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
- Licensed under the Simplified BSD License */
+// Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
+// Licensed under the Simplified BSD License
+"use strict";
 
 var moment = require("moment");
 var YEARFRAC = require("./YEARFRAC.js");
@@ -19,7 +20,7 @@ module.exports.LoanCalculator = LoanCalculator;
 LoanCalculator.prototype.add_to_event_table = function(func) {
     var o = this;
     return function(param) {
-	on = param["on"];
+	var on = param["on"];
 	if (!(on in o.events)) {
 	    if (o.event_list.length > 0 && 
 		on < o.event_list[o.current_event]) {
@@ -38,7 +39,7 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
 LoanCalculator.prototype.prepend_to_event_table = function(func) {
     var o = this;
     return function(param) {
-	on = param["on"];
+	var on = param["on"];
 	if (!(on in o.events)) {
 	    if (o.event_list.length > 0 && 
 		on < o.event_list[o.current_event]) {
@@ -55,23 +56,23 @@ LoanCalculator.prototype.prepend_to_event_table = function(func) {
 }
 
 LoanCalculator.prototype.run_events = function(term_sheet) {
-    payment_schedule = [];
+    var payment_schedule = [];
     this.currency = term_sheet.currency;
     this.principal = 0.0;
     this.balance = 0.0;
     this.current_event = 0;
-    prev_date = undefined;
+    var prev_date = undefined;
     while (this.current_event < this.event_list.length) {
-	k = this.event_list[this.current_event];
-	i = this.events[k];
+	var k = this.event_list[this.current_event];
+	var i = this.events[k];
         if (prev_date !== undefined) {
-            interest = this.interest(prev_date,
-                                     k) * this.balance;
+            var interest = this.compounding_factor(prev_date,
+					       k) * this.balance;
             this.balance = this.balance + interest;
 	    this.balance = Number(this.balance.toFixed("2"));
 	}
         i.forEach(function(j){
-            payment = j();
+            var payment = j();
             if (payment != undefined) {
                 payment_schedule.push(payment);
 	    }
@@ -99,11 +100,11 @@ LoanCalculator.prototype.show_payments = function(payment_schedule) {
 LoanCalculator.prototype.calculate = function(term_sheet) {
     this.term_sheet = term_sheet;
     term_sheet.payments(this);
-    payment_schedule = this.run_events(term_sheet);
-    this.show_payments(payment_schedule);
+    this.show_payments(this.run_events(term_sheet));
 }
 
 var extract_payment = function(params) {
+    var payment;
     if (params.hasOwnProperty("amount")) {
 	payment = params.amount;
     } else {
@@ -126,18 +127,17 @@ LoanCalculator.prototype.fund = function(params) {
     
     var _fund = function(params) {
 	var payment = extract_payment(params);
-	principal = o.principal;
-	interest_accrued = o.balance - o.principal;
+	var principal = o.principal;
+	var interest_accrued = o.balance - o.principal;
 	o.balance = o.balance + payment;
 	o.principal = o.principal + payment;
-        retval = {"event":"Funding",
+        return {"event":"Funding",
                 "on":params.on,
                 "payment":payment,
                 "principal": o.principal,
                 "interest_accrued": interest_accrued,
                 "balance":o.balance,
                 "note":params.note};
-	return(retval);
     }
     this.add_to_event_table(_fund)(params);
 }
@@ -146,8 +146,8 @@ LoanCalculator.prototype.payment = function(params) {
     var o = this;
     var _payment = function(params) {
 	var payment = extract_payment(params);
-	principal = o.principal;
-	interest_accrued = o.balance - o.principal;
+	var principal = o.principal;
+	var interest_accrued = o.balance - o.principal;
         if (payment > o.balance) {
             payment = o.balance;
 	}
@@ -202,8 +202,8 @@ LoanCalculator.prototype.amortize = function(params) {
 	var on = params.on;
 	var forward_date = 
 	    o.add_duration(on, params.interval);
-	payment = o.interest(on, forward_date) / 
-	    (1.0 - Math.pow(1 + o.interest(on, forward_date), 
+	var payment = o.compounding_factor(on, forward_date) / 
+	    (1.0 - Math.pow(1 + o.compounding_factor(on, forward_date), 
 			    -npayments)) * p
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
@@ -218,7 +218,7 @@ LoanCalculator.prototype.amortize = function(params) {
     this.add_to_event_table(_amortize)(params);
 }
 
-LoanCalculator.prototype.interest = function(from_date,
+LoanCalculator.prototype.compounding_factor = function(from_date,
 					    to_date) {
     var yearfrac = this.year_frac(from_date, to_date);
     var periods = yearfrac * this.term_sheet.compound_per_year;
@@ -233,11 +233,11 @@ LoanCalculator.prototype.add_duration = function (date,
     return d.toDate();
 }
 
-LoanCalculator.prototype.interest_func = function(from_date, to_date,
+LoanCalculator.prototype.interest = function(from_date, to_date,
 						  amount) {
     var obj = this;
     return function() {
-	return obj.interest(from_date, to_date) * amount();
+	return obj.compounding_factor(from_date, to_date) * amount();
     }
 }
 
@@ -259,17 +259,17 @@ LoanCalculator.prototype.year_frac = function(from_date,
 }
 
 LoanCalculator.prototype.remaining_principal = function() {
-    o = this;
+    var o = this;
     return function() { return o.principal; }
 }
 
 LoanCalculator.prototype.accrued_interest = function() {
-    o = this;
+    var o = this;
     return function() { return (o.balance - o.principal); }
 }
 
 LoanCalculator.prototype.remaining_balance = function() {
-    o = this;
+    var o = this;
     return function() { return(o.balance); }
 }
 
