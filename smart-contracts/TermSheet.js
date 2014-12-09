@@ -37,6 +37,10 @@ TermSheet.prototype.set_events = function(events) {
     }
 }
 
+TermSheet.prototype.process_payment = function(calc, i) {
+    calc.show_payment(i);
+}
+
 TermSheet.prototype.payments = function(calc) {
     // Any principal amounts in this loan will be paid in Hong Kong
     // dollars.  Any accured interest shall be paid in the form of

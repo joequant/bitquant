@@ -84,17 +84,22 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 }
 
 LoanCalculator.prototype.show_payments = function(payment_schedule) {
+    var obj = this;
     console.log("type", "payment", "beginning principal",
 		"interest", "end_balance");
     payment_schedule.forEach (function(i) {
+	obj.term_sheet.process_payment(obj, i);
+    }
+			     );
+}
+
+LoanCalculator.prototype.show_payment = function(i) {
         console.log(i["event"], i["on"], i.payment,
                    i["principal"], i["interest_accrued"],
                     i["balance"]);
         if(i['note'] != undefined) {
             console.log("  ", i['note']);
 	}
-    }
-    );
 }
 
 LoanCalculator.prototype.calculate = function(term_sheet) {
