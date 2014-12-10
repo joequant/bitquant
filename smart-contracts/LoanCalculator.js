@@ -32,26 +32,11 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
 	    });
 	    o.events[on] = [];
 	}
-	o.events[on].push(function() { return func(param); });
-    };
-}
-
-LoanCalculator.prototype.prepend_to_event_table = function(func) {
-    var o = this;
-    return function(param) {
-	var on = param["on"];
-	if (!(on in o.events)) {
-	    if (o.event_list.length > 0 && 
-		on < o.event_list[o.current_event]) {
-		throw "Event already past";
-	    }
-	    o.event_list.push(on);
-	    o.event_list.sort(function(a, b) {
-		return new Date(a) - new Date(b);
-	    });
-	    o.events[on] = [];
+	if (param.prepend === "true") {
+	    o.events[on].unshift(function() { return func(o, param); });
+	} else {
+	    o.events[on].push(function() { return func(o, param); });
 	}
-	o.events[on].unshift(function() { return func(param); });
     };
 }
 
@@ -73,7 +58,14 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 	}
         i.forEach(function(j){
             var payment = j();
-            if (payment != undefined) {
+            if (payment === undefined) {
+		return;
+	    } else if (payment.constructor === Array) {
+		payment.forEach(function(i) {
+		    payment_schedule.push(payment);
+		}
+			       );
+	    } else {
                 payment_schedule.push(payment);
 	    }
 	});
@@ -108,7 +100,7 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
     this.show_payments(this.run_events(term_sheet));
 }
 
-var extract_payment = function(params) {
+LoanCalculator.prototype.extract_payment = function(params) {
     var payment;
     if (params.hasOwnProperty("amount")) {
 	payment = params.amount;
@@ -128,10 +120,8 @@ var extract_payment = function(params) {
 }
 
 LoanCalculator.prototype.fund = function(params) {
-    var o = this;
-    
-    var _fund = function(params) {
-	var payment = extract_payment(params);
+    var _fund = function(o, params) {
+	var payment = o.extract_payment(params);
 	var principal = o.principal;
 	var interest_accrued = o.balance - o.principal;
 	o.balance = o.balance + payment;
@@ -147,40 +137,35 @@ LoanCalculator.prototype.fund = function(params) {
     this.add_to_event_table(_fund)(params);
 }
 
-LoanCalculator.prototype.payment = function(params) {
-    var o = this;
-    var _payment = function(params) {
-	var payment = extract_payment(params);
-	var principal = o.principal;
-	var interest_accrued = o.balance - o.principal;
-        if (payment > o.balance) {
-            payment = o.balance;
-	}
-        if (payment >  (o.balance-o.principal)) {
-            o.principal = o.principal - (payment - o.balance + o.principal);
-	}
-        o.balance = o.balance - payment;
-        if (payment > 0) {
-            return {"event":"Payment",
-                    "on":params.on,
-                    "payment":payment,
-                    "principal":principal,
-                    "interest_accrued": interest_accrued,
-                    "balance":o.balance,
-                    "note":params.note}
-	}
+var _payment = function(o, params) {
+    var payment = o.extract_payment(params);
+    var principal = o.principal;
+    var interest_accrued = o.balance - o.principal;
+    if (payment > o.balance) {
+        payment = o.balance;
     }
-    if (params.prepend === "true") {
-	this.prepend_to_event_table(_payment)(params);
-    } else {
-	this.add_to_event_table(_payment)(params);
+    if (payment >  (o.balance-o.principal)) {
+        o.principal = o.principal - (payment - o.balance + o.principal);
+    }
+    o.balance = o.balance - payment;
+    if (payment > 0) {
+        return {"event":"Payment",
+                "on":params.on,
+                "payment":payment,
+                "principal":principal,
+                "interest_accrued": interest_accrued,
+                "balance":o.balance,
+                "note":params.note}
     }
 }
 
+LoanCalculator.prototype.payment = function(params) {
+    this.add_to_event_table(_payment)(params);
+}
+
 LoanCalculator.prototype.add_to_balance = function(params) {
-    var o = this;
-    var _payment = function(params) {
-	var payment = extract_payment(params);
+    var _payment = function(o, params) {
+	var payment = o.extract_payment(params);
         o.balance = o.balance + payment;
         if (payment > 0) {
             return {"event":"Payment",
@@ -192,17 +177,15 @@ LoanCalculator.prototype.add_to_balance = function(params) {
                     "note":params.note}
 	}
     }
-    if (params.prepend === "true") {
-	this.prepend_to_event_table(_payment)(params);
-    } else {
-	this.add_to_event_table(_payment)(params);
-    }
+    this.add_to_event_table(_payment)(params);
 }
 
 LoanCalculator.prototype.amortize = function(params) {
-    var o = this;
-    var _amortize = function(params) {
-	var p = extract_payment(params);
+    if (params.payment_func === undefined) {
+	params.payment_func = _payment;
+    }
+    var _amortize = function(o, params) {
+	var p = o.extract_payment(params);
 	var npayments = params.payments;
 	var on = params.on;
 	var forward_date = 
@@ -213,9 +196,10 @@ LoanCalculator.prototype.amortize = function(params) {
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
             if (! (d  in params.skip)) {
-		o.payment({"on":d, "amount" : payment, 
-			   "note" : params.note,
-			   "prepend" : "true"});
+		o.add_to_event_table(_payment)({"on":d, 
+						"amount" : payment, 
+						"note" : params.note,
+						"prepend" : "true"});
 	    }
 	    d = o.add_duration(d, params.interval);
 	}
@@ -279,6 +263,7 @@ LoanCalculator.prototype.remaining_balance = function() {
 }
 
 LoanCalculator.prototype.multiply = function (a, b) {
-    return function() { return extract_payment(a) * b };
+    var o = this;
+    return function() { return o.extract_payment(a) * b };
 }
 

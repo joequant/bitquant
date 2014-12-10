@@ -39,6 +39,19 @@ TermSheet.prototype.set_events = function(events) {
 
 TermSheet.prototype.process_payment = function(calc, i) {
     calc.show_payment(i);
+    var payment = i.payment;
+    var balance_payment = 0.0;
+    var interest_payment = 0.0;
+    if (i.payment > i.interest_accrued) {
+	interest_payment = i.interest_accrued;
+	balance_payment = i.payment - i.interest_accrued;
+    } else {
+	interest_payment = i.payment;
+	balance_payment = 0.0;
+    }
+    console.log("    Pay HKD ", balance_payment);
+    console.log("    Pay HKD ", interest_payment, " as XBT");
+    
 }
 
 TermSheet.prototype.payments = function(calc) {
@@ -75,8 +88,14 @@ TermSheet.prototype.payments = function(calc) {
 
     // Standard payments - The borrower intends to pay back the loan
     // over as 8 equal installments and completed in 8 months.  The
-    // payback will begin in the 5th month.  However, the borrower is
-    // obligated to pay back only the accrued interest each month.
+    // payback will begin in the 5th month.  
+
+    // However, the borrower is obligated to pay back only the accrued
+    // interest each month.
+
+    var payment_function = function(calc, params) {
+    }
+    
 
     var start_payment_date = 
 	calc.add_duration(this.initial_loan_date, [4, "months"]);
