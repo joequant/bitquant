@@ -3,17 +3,13 @@
 // Licensed under the Simplified BSD License
 "use strict";
 
-function money(a, b) {
-    return {"amount": a, "ccy" : b};
-}
-
 function TermSheet() {
 // The interest will be 10 percent per annum compounded monthly.
     this.annual_interest_rate = 10.0 / 100.0;
     this.compound_per_year = 12;
 // This term sheet will use the 30/360 US day count convention.
     this.day_count_convention = "30/360US";
-    this.initial_loan_date = new Date(2014, 12, 1);
+    this.initial_loan_date = new_date(2014, 12, 20);
     this.currency = 'HKD';
     this.initial_loan_amount = money(50000.00, "HKD");
     this.initial_line_of_credit = money(50000.00, "HKD");
@@ -22,20 +18,23 @@ function TermSheet() {
 	    { "revenue" : money(750000.00, "HKD"), "multiplier" : 0.5},
 	    { "revenue" : money(1500000.00, "HKD"), "multiplier" : 1.0},
 	];
-    this.loan_duration = [ 1, 'year']; 
-
+    this.loan_duration = [ 1, 'year'];
 }
 
 TermSheet.prototype.set_events = function(events) {
     this.revenues = events['revenues'];
     this.early_payments = events['early_payments'];
     this.credit_draws = events['credit_draws'];
-    if ("skip_payments" in events) {
-	this.skip_payments = events['skip_payments'];
+    if ("skip_principal" in events) {
+	this.skip_principal = events['skip_principal'];
     } else {
-	this.skip_payments = [];
+	this.skip_principal = [];
     }
 }
+
+// Any principal amounts in this loan will be paid in Hong Kong
+// dollars.  Any accured interest shall be paid in the form of
+// Bitcoin with the interest rate calculated in Hong Kong dollars.
 
 TermSheet.prototype.process_payment = function(calc, i) {
     calc.show_payment(i);
@@ -55,10 +54,6 @@ TermSheet.prototype.process_payment = function(calc, i) {
 }
 
 TermSheet.prototype.payments = function(calc) {
-    // Any principal amounts in this loan will be paid in Hong Kong
-    // dollars.  Any accured interest shall be paid in the form of
-    // Bitcoin with the interest rate calculated in Hong Kong dollars.
-    this.currency_interest = "XBT";
 
     // The lender agrees to provide the borrower the initial loan
     // amount on the initial date 
@@ -73,10 +68,11 @@ TermSheet.prototype.payments = function(calc) {
     });
 
     // The borrower agrees to pay back the any remaining principal
-    // and accrued interest one year after the loan is issued
+    // and accrued interest on the first of the month following the
+    // after one year of the date of the loan.
     var final_payment_date =
-	calc.add_duration(this.initial_loan_date,
-			  [1, 'year']);
+	following_1st_of_month(calc.add_duration(this.initial_loan_date,
+			  [1, 'year']));
     calc.payment({"on":final_payment_date,
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
@@ -91,21 +87,60 @@ TermSheet.prototype.payments = function(calc) {
     // payback will begin in the 5th month.  
 
     // However, the borrower is obligated to pay back only the accrued
-    // interest each month.
+    // interest with each standard payment
 
     var payment_function = function(calc, params) {
+	var payment = calc.extract_payment(params);
+	var principal = calc.principal;
+	var interest_accrued = calc.balance - calc.principal;
+	if (payment > calc.balance) {
+            payment = calc.balance;
+	}
+
+	var interest_payment = 0.0;
+	var principal_payment = 0.0;
+
+	if (payment > interest_accrued) {
+	    interest_payment = interest_accrued;
+	    principal_payment = payment - interest_accrued;
+
+	} else {
+	    interest_payment = payment;
+	    principal_payment = 0.0;
+	}
+
+	if (contains(calc.term_sheet.skip_principal, params.on)) {
+	    payment = interest_payment;
+	    principal_payment = 0.0;
+	    params.note = "Principal payment skipped";
+	}
+
+	if (payment >  interest_accrued) {
+            calc.principal = calc.principal - 
+		(payment - calc.balance + calc.principal);
+	}
+	calc.balance = calc.balance - payment;
+	if (payment > 0) {
+            return {"event":"Payment",
+                    "on":params.on,
+                    "payment":payment,
+                    "principal":principal,
+                    "interest_accrued": interest_accrued,
+                    "balance":calc.balance,
+                    "note":params.note}
+	}
+
     }
     
-
     var start_payment_date = 
-	calc.add_duration(this.initial_loan_date, [4, "months"]);
+	following_1st_of_month(
+	    calc.add_duration(this.initial_loan_date, [4, "months"]));
 
     calc.amortize({"on":start_payment_date,
                    "amount": calc.remaining_balance(),
                    "payments" : 8,
                    "interval" : [1, "month"],
-                   "note" : "Optional payment",
-                   "skip" : this.skip_payments});
+		   "payment_func" : payment_function});
 
     if (this.revenues == undefined) {
 	return;
@@ -166,6 +201,36 @@ TermSheet.prototype.getTargetHitDates = function () {
         revenue_idx = revenue_idx + 1;
     });
     return target_hit_dates;
+}
+
+function money(a, b) {
+    return {"amount": a, "ccy" : b};
+}
+
+function contains(a, obj) {
+    for (var i = 0; i < a.length; i++) {
+	console.log(a[i], obj, a[i] == obj);
+        if (a[i] >= obj && a[i] <= obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function following_1st_of_month(a) {
+    if (a.getDate() == 1) {
+	return a;
+    };
+    if (a.getMonth() == 12) {
+	return new Date(a.getFullYear() + 1, 0, 1);
+    } 
+    var retval = new Date(a.getFullYear(), a.getMonth() + 1, 1);
+    console.log(retval);
+    return retval;
+}
+
+function new_date(year, month, day) {
+    return new Date(year, month-1, day);
 }
 
 module.exports.TermSheet = TermSheet;

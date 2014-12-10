@@ -195,12 +195,10 @@ LoanCalculator.prototype.amortize = function(params) {
 			    -npayments)) * p
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
-            if (! (d  in params.skip)) {
-		o.add_to_event_table(_payment)({"on":d, 
-						"amount" : payment, 
-						"note" : params.note,
-						"prepend" : "true"});
-	    }
+	    o.add_to_event_table(params.payment_func)({"on":d, 
+						       "amount" : payment, 
+						       "note" : params.note,
+						       "prepend" : "true"});
 	    d = o.add_duration(d, params.interval);
 	}
     }
