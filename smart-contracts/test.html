@@ -1,0 +1,35 @@
+<head>
+<script src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script>
+<script>
+require.config({
+    paths: {
+	"moment": "node_modules/moment/moment"
+}});
+
+require ([
+    "./TermSheet",
+    "./LoanCalculator"], function(TermSheet, LoanCalculator) {
+	function money(a, b) {
+	    return {"amount": a, "ccy" : b};
+	}
+	
+	function new_date(year, month, day) {
+	    return new Date(year, month-1, day);
+	}
+	
+	calculator = new LoanCalculator.LoanCalculator();
+	calculator.test_wrapper()
+	
+	console.log("Standard Payments")
+	my_term_sheet = new TermSheet.TermSheet();
+	my_term_sheet.set_events({
+	    "revenues":[],
+	    "early_payments":[],
+	    "credit_draws":[]})
+	calculator = new LoanCalculator.LoanCalculator()
+	calculator.calculate(my_term_sheet)
+	console.log()
+});
+</script>
+
+</head>

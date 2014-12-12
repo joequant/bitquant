@@ -11,7 +11,6 @@ requirejs.config({
 
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
-var moment = require("moment");
 
 function money(a, b) {
     return {"amount": a, "ccy" : b};
