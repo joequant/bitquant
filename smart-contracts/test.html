@@ -17,22 +17,21 @@ require ([
 	    return new Date(year, month-1, day);
 	}
 	
-	calculator = new LoanCalculator.LoanCalculator();
-	calculator.test_wrapper()
-	
-	console.log("Standard Payments")
-	my_term_sheet = new TermSheet.TermSheet();
+	var my_term_sheet = new TermSheet.TermSheet();
 	my_term_sheet.set_events({
 	    "revenues":[],
 	    "early_payments":[],
-	    "credit_draws":[]})
-	calculator = new LoanCalculator.LoanCalculator()
-	calculator.calculate(my_term_sheet)
-	console.log()
+	    "credit_draws":[]});
+	calculator = new LoanCalculator.LoanCalculator();
+        var payments = calculator.calculate(my_term_sheet);
+        var jsonStr = JSON.stringify(payments);
+        var div=document.getElementById('item');
+        div.innerHTML=payments;
 });
 </script>
 
 </head>
 <body>
 World's first smart contract.
+<div id="item"></div>
 </body>

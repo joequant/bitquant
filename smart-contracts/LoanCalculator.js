@@ -74,8 +74,9 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     return payment_schedule;
 }
 
-LoanCalculator.prototype.show_payments = function(payment_schedule) {
+LoanCalculator.prototype.show_payments = function(term_sheet) {
     var obj = this;
+    var payment_schedule = this.calculate(term_sheet);
     console.log("type", "payment", "beginning principal",
 		"interest", "end_balance");
     payment_schedule.forEach (function(i) {
@@ -96,7 +97,7 @@ LoanCalculator.prototype.show_payment = function(i) {
 LoanCalculator.prototype.calculate = function(term_sheet) {
     this.term_sheet = term_sheet;
     term_sheet.payments(this);
-    this.show_payments(this.run_events(term_sheet));
+    return this.run_events(term_sheet);
 }
 
 LoanCalculator.prototype.extract_payment = function(params) {

@@ -229,7 +229,6 @@ function following_1st_of_month(a) {
 	return new Date(a.getFullYear() + 1, 0, 1);
     } 
     var retval = new Date(a.getFullYear(), a.getMonth() + 1, 1);
-    console.log(retval);
     return retval;
 }
 

@@ -30,7 +30,7 @@ my_term_sheet.set_events({
     "early_payments":[],
     "credit_draws":[]})
 calculator = new LoanCalculator.LoanCalculator()
-calculator.calculate(my_term_sheet)
+calculator.show_payments(my_term_sheet)
 console.log()
 
 console.log("Assume revenue hit on 2015-05-15")
@@ -43,7 +43,7 @@ my_term_sheet.set_events({
     "early_payments":[],
     "credit_draws":[]})
 calculator = new LoanCalculator.LoanCalculator()
-calculator.calculate(my_term_sheet)
+calculator.show_payments(my_term_sheet)
 console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15")
@@ -58,7 +58,7 @@ my_term_sheet.set_events({
     "early_payments":[],
     "credit_draws":[]})
 calculator = new LoanCalculator.LoanCalculator()
-calculator.calculate(my_term_sheet)
+calculator.show_payments(my_term_sheet)
 console.log()
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws")
 my_term_sheet = new TermSheet.TermSheet();
@@ -78,7 +78,7 @@ my_term_sheet.set_events({
      "amount": money(15000, "HKD")}
     ]})
 calculator = new LoanCalculator.LoanCalculator();
-calculator.calculate(my_term_sheet);
+calculator.show_payments(my_term_sheet);
 console.log()
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
 my_term_sheet = new TermSheet.TermSheet();
@@ -99,5 +99,4 @@ my_term_sheet.set_events({
     ],
     "skip_principal": [ new_date(2015, 9, 1)]});
 calculator = new LoanCalculator.LoanCalculator();
-calculator.calculate(my_term_sheet);
-
+calculator.show_payments(my_term_sheet);
