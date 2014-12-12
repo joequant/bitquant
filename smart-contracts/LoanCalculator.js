@@ -16,8 +16,6 @@ LoanCalculator.prototype.test_wrapper = function() {
     console.log("Hello world");
 };
 
-module.exports.LoanCalculator = LoanCalculator;
-
 LoanCalculator.prototype.add_to_event_table = function(func) {
     var o = this;
     return function(param) {
