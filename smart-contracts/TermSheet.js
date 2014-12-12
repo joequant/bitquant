@@ -3,6 +3,11 @@
 // Licensed under the Simplified BSD License
 "use strict";
 
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
+define(function() {
 function TermSheet() {
 // The interest will be 10 percent per annum compounded monthly.
     this.annual_interest_rate = 10.0 / 100.0;
@@ -232,6 +237,5 @@ function following_1st_of_month(a) {
 function new_date(year, month, day) {
     return new Date(year, month-1, day);
 }
-
-module.exports.TermSheet = TermSheet;
-
+return {"TermSheet": TermSheet};
+});

@@ -1,4 +1,14 @@
 #!/usr/bin/node
+
+var requirejs = require('requirejs');
+
+requirejs.config({
+    //Pass the top-level main.js/index.js require
+    //function to requirejs so that node modules
+    //are loaded relative to the top-level JS file.
+    nodeRequire: require
+});
+
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 var moment = require("moment");
@@ -91,3 +101,4 @@ my_term_sheet.set_events({
     "skip_principal": [ new_date(2015, 9, 1)]});
 calculator = new LoanCalculator.LoanCalculator();
 calculator.calculate(my_term_sheet);
+

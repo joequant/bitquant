@@ -1,10 +1,11 @@
 // Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
 // Licensed under the Simplified BSD License
 "use strict";
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
 
-var moment = require("moment");
-var YEARFRAC = require("./YEARFRAC.js");
-"use strict";
+define(["moment", "./YEARFRAC"], function(moment, YEARFRAC) {
 function LoanCalculator() {
     this.events = {};
     this.event_list = [];
@@ -264,4 +265,5 @@ LoanCalculator.prototype.multiply = function (a, b) {
     var o = this;
     return function() { return o.extract_payment(a) * b };
 }
-
+return {"LoanCalculator":LoanCalculator};
+});

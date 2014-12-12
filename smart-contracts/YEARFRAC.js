@@ -1,7 +1,11 @@
 // Copyright (c) 2012 Sutoiku, Inc. (MIT License)
-var moment = require("moment");
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
 
-function YEARFRAC(start_date, end_date, basis) {
+define(['moment'], function(moment) {
+return {
+"YEARFRAC" : function YEARFRAC(start_date, end_date, basis) {
   // Credits: David A. Wheeler [http://www.dwheeler.com/]
 
   // Initialize parameters
@@ -105,5 +109,5 @@ function YEARFRAC(start_date, end_date, basis) {
       break;
   }
 }
-
-module.exports.YEARFRAC = YEARFRAC;
+}
+});
