@@ -41,7 +41,7 @@ TermSheet.prototype.set_events = function(events) {
 // Bitcoin with the interest rate calculated in Hong Kong dollars.
 
 TermSheet.prototype.process_payment = function(calc, i) {
-    calc.show_payment(i);
+    var line = calc.show_payment(i);
     var payment = i.payment;
     var balance_payment = 0.0;
     var interest_payment = 0.0;
@@ -52,9 +52,9 @@ TermSheet.prototype.process_payment = function(calc, i) {
 	interest_payment = i.payment;
 	balance_payment = 0.0;
     }
-    console.log("    Pay HKD ", balance_payment);
-    console.log("    Pay HKD ", interest_payment, " as XBT");
-    
+    line.push(["    Pay HKD ", balance_payment]);
+    line.push(["    Pay HKD ", interest_payment, " as XBT"]);
+    return line;
 }
 
 TermSheet.prototype.payments = function(calc) {
@@ -213,7 +213,6 @@ function money(a, b) {
 
 function contains(a, obj) {
     for (var i = 0; i < a.length; i++) {
-	console.log(a[i], obj, a[i] == obj);
         if (a[i] >= obj && a[i] <= obj) {
             return true;
         }

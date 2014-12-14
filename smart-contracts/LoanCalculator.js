@@ -77,21 +77,26 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 LoanCalculator.prototype.show_payments = function(term_sheet) {
     var obj = this;
     var payment_schedule = this.calculate(term_sheet);
-    console.log("type", "payment", "beginning principal",
-		"interest", "end_balance");
+    var lines = [["type", "payment", "beginning principal",
+		"interest", "end_balance"]];
     payment_schedule.forEach (function(i) {
-	obj.term_sheet.process_payment(obj, i);
+	Array.prototype.push.apply(lines,
+				   obj.term_sheet.process_payment(obj, i));
     }
 			     );
+    return lines;
 }
 
 LoanCalculator.prototype.show_payment = function(i) {
-        console.log(i["event"], i["on"], i.payment,
+    var line = [];
+    line.push([i["event"], i["on"], i.payment,
                    i["principal"], i["interest_accrued"],
-                    i["balance"]);
-        if(i['note'] != undefined) {
-            console.log("  ", i['note']);
-	}
+                    i["balance"]]);
+    
+    if(i['note'] != undefined) {
+        line.push(["  ", i['note']]);
+    }
+    return line;
 }
 
 LoanCalculator.prototype.calculate = function(term_sheet) {
