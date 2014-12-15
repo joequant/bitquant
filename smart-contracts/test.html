@@ -1,15 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script src="http://code.jquery.com/jquery-2.0.0.js"></script>
+<link href="https://code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
+<link href="jquery.appendGrid-1.5.0.min.css" rel="stylesheet"/>
 <script src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script>
 <script>
 require.config({
     paths: {
-	"moment": "node_modules/moment/moment"
-}});
+        "moment": "node_modules/moment/moment",
+	"jquery" : "http://code.jquery.com/jquery-2.0.0",
+	"jquery-migrate" : "http://code.jquery.com/jquery-migrate-1.0.0",
+	"jquery-ui" : "http://code.jquery.com/ui/1.11.2/jquery-ui.min",
+	"append-grid" :  "jquery.appendGrid-1.5.0.min"
+    },
+    shim: {
+        "jquery-ui": {
+            exports:"$" ,
+            deps: ['jquery']
+        },
+        "jquery-migrate": ['jquery-ui'],
+        "append-grid": ['jquery-migrate', 'jquery-ui']
+    }
+});
+
+var calculate_me;
 
 require ([
     "./TermSheet",
-    "./LoanCalculator"], function(TermSheet, LoanCalculator) {
+    "./LoanCalculator",
+"append-grid"], function(TermSheet, LoanCalculator) {
+    calculate_me = function() {
 	function money(a, b) {
 	    return {"amount": a, "ccy" : b};
 	}
@@ -25,17 +46,56 @@ require ([
 	    "credit_draws":[]});
 	calculator = new LoanCalculator.LoanCalculator();
         var payments = calculator.calculate(my_term_sheet);
+	$('#item').html("");
 	calculator.show_payments(my_term_sheet).forEach(function(i) {
 	   $('#item').append(i.join(" "));
 	   $('#item').append("\n");
 	});
+    };
+    $(function() {
+	$('#revenueGrid').appendGrid({
+	    caption: "Revenue",
+	    initRows: 0,
+	    columns: [
+		{ name: "date", display: "Date", type : 'date' },
+		{ name: "money", display : "Money", type : "text" }
+	    ]});
+	$('#early_payments').appendGrid({
+	    caption: "Early payments",
+	    initRows: 0,
+	    columns: [
+		{ name: "date", display: "Date", type : 'date' },
+		{ name: "money", display : "Money", type : "text" }
+	    ]});
+
+	$('#credit_draws').appendGrid({
+	    caption: "Credit draws",
+	    initRows: 0,
+	    columns: [
+		{ name: "date", display: "Date", type : 'date' },
+		{ name: "money", display : "Money", type : "text" }
+	    ]});
+	$('#skip_principal').appendGrid({
+	    caption: "Skip principal",
+	    initRows: 0,
+	    columns: [
+		{ name: "date", display: "Date", type : 'date' }
+	    ]});
+    });
 });
+
 </script>
 
 </head>
 <body>
-World's first smart contract.
+Worlds first smart contract.<br>
+<button id="btnSerialize" onclick="calculate_me()" type="button">Calculate</button>
+<table id="revenueGrid"></table>
+<table id="early_payments"></table>
+<table id="credit_draws"></table>
+<table id="skip_principal"></table>
 <pre>
 <div id="item"></div>
 </pre>
 </body>
+</html>
