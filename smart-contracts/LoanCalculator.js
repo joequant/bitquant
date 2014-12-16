@@ -7,9 +7,6 @@ if (typeof define !== 'function') {
 
 define(["moment", "./YEARFRAC"], function(moment, YEARFRAC) {
 function LoanCalculator() {
-    this.events = {};
-    this.event_list = [];
-    this.current_event = 0;
 }
 
 LoanCalculator.prototype.test_wrapper = function() {
@@ -100,6 +97,9 @@ LoanCalculator.prototype.show_payment = function(i) {
 }
 
 LoanCalculator.prototype.calculate = function(term_sheet) {
+    this.events = {};
+    this.event_list = [];
+    this.current_event = 0;
     this.term_sheet = term_sheet;
     term_sheet.payments(this);
     return this.run_events(term_sheet);

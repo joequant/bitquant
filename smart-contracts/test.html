@@ -13,10 +13,9 @@ require.config({
     paths: {
         "moment": "node_modules/moment/moment",
 	"jquery" : "http://code.jquery.com/jquery-2.0.0",
-	"jquery-migrate" : "http://code.jquery.com/jquery-migrate-1.0.0",
+	"modernizr" : "http://cdn.jsdelivr.net/webshim/1.14.2/extras/modernizr-custom",
 	"jquery-ui" : "http://code.jquery.com/ui/1.11.2/jquery-ui.min",
 	"append-grid" :  "jquery.appendGrid-1.5.0.min",
-	"modernizr" : "http://cdn.jsdelivr.net/webshim/1.14.2/extras/modernizr-custom",
 	"polyfiller" : "http://cdn.jsdelivr.net/webshim/1.14.2/polyfiller"
     },
     shim: {
@@ -25,12 +24,13 @@ require.config({
             deps: ['jquery']
         },
         "jquery-migrate": ['jquery-ui'],
-        "append-grid": ['jquery-migrate', 'jquery-ui'],
+        "append-grid": ['jquery-ui'],
 	"polyfiller" : {
 	    exports: "webshims",
 	    deps: ['modernizr']
 	}
-    }
+    },
+    waitSeconds: 15
 });
 
 var calculate_me;
@@ -43,19 +43,48 @@ require ([
     webshims.setOptions('forms-ext', {types: 'date'});
 
     calculate_me = function() {
-	function money(a, b) {
-	    return {"amount": a, "ccy" : b};
-	}
-	
-	function new_date(year, month, day) {
-	    return new Date(year, month-1, day);
-	}
-	
 	var my_term_sheet = new TermSheet.TermSheet();
-	my_term_sheet.set_events({
-	    "revenues":[],
-	    "early_payments":[],
-	    "credit_draws":[]});
+	function money(a) {
+	    return {"amount": Number(a), "ccy" : my_term_sheet.currency};
+	}
+	
+	function new_date(a) {
+	    var vars = a.split("-");
+	    return new Date(vars[0], vars[1]-1, vars[2]);
+	}
+
+        var events = {
+	    revenues : [],
+	    early_payments : [],
+	    credit_draws : [],
+	    skip_principal : []
+	};
+        $('#revenueGrid').appendGrid('getAllValue').forEach(function(i) {
+	    events.revenues.push( {
+		on : new_date(i.date),
+		amount : money(i.amount)
+	    });
+	});
+
+       $('#early_payments').appendGrid('getAllValue').forEach(function(i) {
+	    events.early_payments.push( {
+		on : new_date(i.date),
+		amount : money(i.amount)
+	    });
+	});
+       $('#credit_draws').appendGrid('getAllValue').forEach(function(i) {
+	    events.credit_draws.push( {
+		on : new_date(i.date),
+		amount : money(i.amount)
+	    });
+	});
+       $('#skip_principal').appendGrid('getAllValue').forEach(function(i) {
+	    events.skip_principal.push( {
+		on : new_date(i.date)
+	    });
+	});
+
+	my_term_sheet.set_events(events);
 	calculator = new LoanCalculator.LoanCalculator();
         var payments = calculator.calculate(my_term_sheet);
 	$('#item').html("");
@@ -67,10 +96,10 @@ require ([
     $(function() {
 	$('#revenueGrid').appendGrid({
 	    caption: "Revenue",
-	    initRows: 1,
+	    initRows: 0,
 	    columns: [
 		{ name: "date", display: "Date", type : 'date' },
-		{ name: "money", display : "Money", type : "text" }
+		{ name: "amount", display : "Money", type : "text" }
 	    ],
             afterRowInserted: function(caller,
 				       parentRow,
@@ -88,7 +117,7 @@ require ([
 	    initRows: 0,
 	    columns: [
 		{ name: "date", display: "Date", type : 'date' },
-		{ name: "money", display : "Money", type : "text" }
+		{ name: "amount", display : "Money", type : "text" }
 	    ],
             afterRowInserted: function(caller,
 				       parentRow,
@@ -108,7 +137,7 @@ require ([
 	    initRows: 0,
 	    columns: [
 		{ name: "date", display: "Date", type : 'date' },
-		{ name: "money", display : "Money", type : "text" }
+		{ name: "amount", display : "Money", type : "text" }
 	    ],
             afterRowInserted: function(caller,
 				       parentRow,
@@ -138,7 +167,7 @@ require ([
 		$(caller).updatePolyfill();
 	    }
 	});
-	webshims.polyfill('forms forms-ext');
+	webshims.polyfill('forms forms-ext es5');
     });
 });
 
