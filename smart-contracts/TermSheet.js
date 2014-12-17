@@ -209,17 +209,79 @@ function TermSheet() {
 	    { "revenue" : money(1500000.00, "HKD"), "multiplier" : 1.0},
 	];
     this.loan_duration = [ 1, 'year'];
+
+    this.event_spec = [
+	{
+	    name : "revenues",
+	    display : "Projected Revenues",
+	    type: "grid",
+	    columns: [
+		{ name: "on", display: "Date", type : 'date' },
+		{ name: "amount", display : "Money", type : "number" }
+	    ]
+	},
+	{
+	    name: "early_payments",
+	    display : "Early Payments",
+	    type: "grid",
+	    columns: [
+		{ name: "on", display: "Date", type : 'date' },
+		{ name: "amount", display : "Money", type : "number" }
+	    ]
+	},
+	{
+	    name: "credit_draws",
+	    display : "Credit draws",
+	    type: "grid",
+	    columns: [
+		{ name: "on", display: "Date", type : 'date' },
+		{ name: "amount", display : "Money", type : "number" }
+	    ]
+	},
+	{
+	    name: "skip_principal",
+	    display : "Skip principal payment",
+	    type: "grid",
+	    columns: [
+		{ name: "on", display: "Date", type : 'date' }
+	    ],
+	    default : []
+	}
+    ];
 }
 
 TermSheet.prototype.set_events = function(events) {
-    this.revenues = events['revenues'];
-    this.early_payments = events['early_payments'];
-    this.credit_draws = events['credit_draws'];
-    if ("skip_principal" in events) {
-	this.skip_principal = events['skip_principal'];
-    } else {
-	this.skip_principal = [];
-    }
+    var obj = this;
+    this.event_spec.forEach(function(i) {
+	if (events[i.name] == undefined &&
+	    i.default != undefined) {
+	    obj[i.name] = i.default;
+	    return;
+	}
+
+	if (i.type == "grid") {
+	    var v = events[i.name];
+	    obj[i.name] = [];
+	    v.forEach(function(row) {
+		i.columns.forEach(function (j) {
+		    if (row[j.name] == undefined) {
+			return;
+		    }
+		    if (j.type == "date") {
+			var vars = row[j.name].split("-");
+			row[j.name] =
+			    new Date(vars[0], vars[1]-1, vars[2]);
+		    } else if (j.name = "amount") {
+			row[j.name] = {"amount" :
+					Number(row[j.name]),
+					"ccy":
+					obj.currency };
+		    }
+		});
+		obj[i.name].push(row);
+	    });
+	}
+    });
 }
 
 // Any principal amounts in this loan will be paid in Hong Kong

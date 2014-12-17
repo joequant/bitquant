@@ -12,9 +12,9 @@
 require.config({
     paths: {
         "moment": "node_modules/moment/moment",
-	"jquery" : "http://code.jquery.com/jquery-2.0.0",
+	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
 	"modernizr" : "http://cdn.jsdelivr.net/webshim/1.14.2/extras/modernizr-custom",
-	"jquery-ui" : "http://code.jquery.com/ui/1.11.2/jquery-ui.min",
+	"jquery-ui" : "http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min",
 	"append-grid" :  "jquery.appendGrid-1.5.0.min",
 	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.14.2/polyfiller",
 	"markdown" :
@@ -55,46 +55,18 @@ require ([
     $("#text").collapse({query: 'h2'});
 
     analyze = function() {
-	function money(a) {
-	    return {"amount": Number(a), "ccy" : my_term_sheet.currency};
-	}
-	
-	function new_date(a) {
-	    var vars = a.split("-");
-	    return new Date(vars[0], vars[1]-1, vars[2]);
-	}
-
         var events = {
-	    revenues : [],
-	    early_payments : [],
-	    credit_draws : [],
-	    skip_principal : []
 	};
-        $('#revenueGrid').appendGrid('getAllValue').forEach(function(i) {
-	    events.revenues.push( {
-		on : new_date(i.date),
-		amount : money(i.amount)
-	    });
-	});
+	my_term_sheet.event_spec.forEach(function(i) {
+	    if (i.type == "grid") {
+		var name = "#" + i.name + "_grid";
+		events[i.name] = [];
 
-       $('#early_payments').appendGrid('getAllValue').forEach(function(i) {
-	    events.early_payments.push( {
-		on : new_date(i.date),
-		amount : money(i.amount)
-	    });
+		$(name).appendGrid('getAllValue').forEach(function(j) {
+		    events.revenues.push(j);
+		});
+	    }
 	});
-       $('#credit_draws').appendGrid('getAllValue').forEach(function(i) {
-	    events.credit_draws.push( {
-		on : new_date(i.date),
-		amount : money(i.amount)
-	    });
-	});
-       $('#skip_principal').appendGrid('getAllValue').forEach(function(i) {
-	    events.skip_principal.push( {
-		on : new_date(i.date)
-	    });
-	});
-
 	my_term_sheet.set_events(events);
 	calculator = new LoanCalculator.LoanCalculator();
 	$('#item').html("");
@@ -111,77 +83,27 @@ require ([
 	}
     };
     $(function() {
-	$('#revenueGrid').appendGrid({
-	    caption: "Revenue",
-	    initRows: 0,
-	    columns: [
-		{ name: "date", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "text" }
-	    ],
-            afterRowInserted: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    },
-            afterRowAppended: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    }
-	});
-	$('#early_payments').appendGrid({
-	    caption: "Early payments",
-	    initRows: 0,
-	    columns: [
-		{ name: "date", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "text" }
-	    ],
-            afterRowInserted: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    },
-            afterRowAppended: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    }
-
-	});
-
-	$('#credit_draws').appendGrid({
-	    caption: "Credit draws",
-	    initRows: 0,
-	    columns: [
-		{ name: "date", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "text" }
-	    ],
-            afterRowInserted: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    },
-            afterRowAppended: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    }
-	});
-	$('#skip_principal').appendGrid({
-	    caption: "Skip principal",
-	    initRows: 0,
-	    columns: [
-		{ name: "date", display: "Date", type : 'date' }
-	    ],
-            afterRowInserted: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
-	    },
-            afterRowAppended: function(caller,
-				       parentRow,
-				       addedRow) {
-		$(caller).updatePolyfill();
+	my_term_sheet.event_spec.forEach(function(i) {
+	    if (i.type == "grid") {
+		var table = document.createElement('table');
+		var name = i.name + "_grid";
+		table.id = name;
+		$("#event_inputs").append(table);
+		$(table).appendGrid({
+		     caption: i.display,
+		     initRows: 0,
+		     columns: i.columns,
+		    afterRowInserted: function(caller,
+					       parentRow,
+					       addedRow) {
+			$(caller).updatePolyfill();
+		    },
+		    afterRowAppended: function(caller,
+					       parentRow,
+					       addedRow) {
+			$(caller).updatePolyfill();
+		    }
+		 });
 	    }
 	});
 	webshims.polyfill('forms forms-ext es5');
@@ -203,10 +125,7 @@ the contract.</b>
 <div id="text"></div>
 
 <button id="btnSerialize" onclick="analyze()" type="button">Analyze</button>
-<table id="revenueGrid" class="hasdate"></table>
-<table id="early_payments" class="hasdate"></table>
-<table id="credit_draws" class="hasdate"></table>
-<table id="skip_principal" class="hasdate"></table>
+<div id="event_inputs"></div>
 <pre>
 <div id="item"></div>
 </pre>
