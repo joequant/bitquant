@@ -86,12 +86,18 @@ require ([
 
 	my_term_sheet.set_events(events);
 	calculator = new LoanCalculator.LoanCalculator();
-        var payments = calculator.calculate(my_term_sheet);
 	$('#item').html("");
-	calculator.show_payments(my_term_sheet).forEach(function(i) {
-	   $('#item').append(i.join(" "));
-	   $('#item').append("\n");
-	});
+        var payments;
+	try {
+	    payments = calculator.calculate(my_term_sheet);
+	    $('#item').html("");
+	    calculator.show_payments(my_term_sheet).forEach(function(i) {
+		$('#item').append(i.join(" "));
+		$('#item').append("\n");
+	    });
+	} catch(err) {
+	    $('#item').html(err.message);
+	}
     };
     $(function() {
 	$('#revenueGrid').appendGrid({

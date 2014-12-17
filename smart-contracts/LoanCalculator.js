@@ -20,7 +20,7 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
 	if (!(on in o.events)) {
 	    if (o.event_list.length > 0 && 
 		on < o.event_list[o.current_event]) {
-		throw "Event already past" + o.event_list[o.current_event];
+		throw new Error("Event already past" + o.event_list[o.current_event]);
 	    }
 	    o.event_list.push(on);
 	    o.event_list = o.event_list.sort(function(a, b) {
@@ -246,7 +246,7 @@ LoanCalculator.prototype.year_frac = function(from_date,
     } else if (this.term_sheet.day_count_convention === "30/360EUR") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 4);
     } else {
-	throw "unknown day count convention";
+	throw Error("unknown day count convention");
     }
 }
 
