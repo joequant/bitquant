@@ -17,7 +17,9 @@ require.config({
 	"jquery-ui" : "http://code.jquery.com/ui/1.11.2/jquery-ui.min",
 	"append-grid" :  "jquery.appendGrid-1.5.0.min",
 	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.14.2/polyfiller",
-	"markdown" : "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min"
+	"markdown" :
+    "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min",
+	"collapse" : "jquery.collapse" 
     },
     shim: {
         "jquery-ui": {
@@ -27,8 +29,8 @@ require.config({
 	"markdown" : {
 	    exports: "Markdown"
 	},
-        "jquery-migrate": ['jquery-ui'],
         "append-grid": ['jquery-ui'],
+        "collapse": ['jquery-ui'],
 	"polyfiller" : {
 	    exports: "webshims",
 	    deps: ['modernizr']
@@ -44,11 +46,13 @@ require ([
     "./LoanCalculator",
 "markdown",
 "append-grid",
-"polyfiller"], function(TermSheet, LoanCalculator) {
+"polyfiller",
+"collapse"], function(TermSheet, LoanCalculator) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
     var my_term_sheet = new TermSheet.TermSheet();
     $("#text").html(converter.makeHtml(my_term_sheet.contract_text));
+    $("#text").collapse({query: 'h2'});
 
     analyze = function() {
 	function money(a) {
@@ -196,8 +200,8 @@ Redistributable under terms of the Simplified BSD License
 <b>Please note that the smart contract analyzer does *NOT* form part of
 the contract.</b>
 
-<h1>Contract Text</h1>
 <div id="text"></div>
+
 <button id="btnSerialize" onclick="analyze()" type="button">Analyze</button>
 <table id="revenueGrid" class="hasdate"></table>
 <table id="early_payments" class="hasdate"></table>
