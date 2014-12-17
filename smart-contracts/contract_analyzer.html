@@ -37,7 +37,7 @@ require.config({
     waitSeconds: 15
 });
 
-var calculate_me;
+var analyze;
 
 require ([
     "./TermSheet",
@@ -50,7 +50,7 @@ require ([
     var my_term_sheet = new TermSheet.TermSheet();
     $("#text").html(converter.makeHtml(my_term_sheet.contract_text));
 
-    calculate_me = function() {
+    analyze = function() {
 	function money(a) {
 	    return {"amount": Number(a), "ccy" : my_term_sheet.currency};
 	}
@@ -96,7 +96,7 @@ require ([
 	$('#item').html("");
         var payments;
 	try {
-	    payments = calculator.calculate(my_term_sheet.contract_text);
+	    payments = calculator.calculate(my_term_sheet);
 	    $('#item').html("");
 	    calculator.show_payments(my_term_sheet).forEach(function(i) {
 		$('#item').append(i.join(" "));
@@ -188,8 +188,17 @@ require ([
 
 </head>
 <body>
+
+<h1>Smart Contract Analyzer</h1>
+Copyright (c) 2014 - Bitquant Research Laboratories (Asia) Ltd.<br>
+Redistributable under terms of the Simplified BSD License
+<p>
+<b>Please note that the smart contract analyzer does *NOT* form part of
+the contract.</b>
+
+<h1>Contract Text</h1>
 <div id="text"></div>
-<button id="btnSerialize" onclick="calculate_me()" type="button">Calculate</button>
+<button id="btnSerialize" onclick="analyze()" type="button">Analyze</button>
 <table id="revenueGrid" class="hasdate"></table>
 <table id="early_payments" class="hasdate"></table>
 <table id="credit_draws" class="hasdate"></table>
