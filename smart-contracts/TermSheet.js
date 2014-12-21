@@ -402,7 +402,7 @@ TermSheet.prototype.payments = function(calc) {
     // exceeds the revenue target, the borrower will be required to
     // pay a specified fraction of the outstanding balance in addition
     // to a specified fraction of the interest had the balance been
-    // carried to the end of the contract.  This payment will be done
+    // carried to the end of the contract.  This payment will be due
     // within one month after the date the revenue target is reached.
 
     var i = 0;

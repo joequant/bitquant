@@ -12,14 +12,6 @@ requirejs.config({
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 
-function money(a, b) {
-    return {"amount": a, "ccy" : b};
-}
-
-function new_date(year, month, day) {
-    return new Date(year, month-1, day);
-}
-
 calculator = new LoanCalculator.LoanCalculator();
 calculator.test_wrapper()
 
@@ -39,8 +31,8 @@ console.log("Assume revenue hit on 2015-05-15")
 my_term_sheet =  new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
-	{"on" : new_date(2015, 5, 15),
-	 "amount" : money(800000, "HKD")}
+	{"on" : "2015-05-15",
+	 "amount" : "800000"}
     ],
     "early_payments":[],
     "credit_draws":[]})
@@ -54,10 +46,10 @@ console.log("Assume revenue hit on 2015-06-15 and 2015-09-15")
 my_term_sheet = new TermSheet.TermSheet()
 my_term_sheet.set_events({
     "revenues": [
-    {"on" : new_date(2015, 6, 15),
-     "amount" : money(800000, "HKD")},
-    {"on" : new_date(2015, 8, 15), 
-     "amount" : money(800000, "HKD")}
+    {"on" : "2015-06-15",
+     "amount" : "800000"},
+    {"on" : "2015-08-15", 
+     "amount" : "800000"}
     ],
     "early_payments":[],
     "credit_draws":[]})
@@ -71,18 +63,18 @@ console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws")
 my_term_sheet = new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
-    {"on" : new_date(2015, 6, 15),
-     "amount" : money(800000, "HKD")},
-    {"on" : new_date(2015, 8, 15),
-     "amount" : money(800000, "HKD")}
+    {"on" : "2015-06-15",
+     "amount" : "800000"},
+    {"on" : "2015-08-15",
+     "amount" : "800000"}
     ],
     "early_payments":[
-    {"on": new_date(2015, 4, 15),
-     "amount": money(5000, "HKD")}
+    {"on": "2015-04-15",
+     "amount": "5000"}
     ],
     "credit_draws":[
-    {"on": new_date(2015, 6, 15),
-     "amount": money(15000, "HKD")}
+    {"on": "2015-06-15",
+     "amount": "15000"}
     ]})
 calculator = new LoanCalculator.LoanCalculator();
 calculator.show_payments(my_term_sheet).forEach(function(i) {
@@ -93,20 +85,20 @@ console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  
 my_term_sheet = new TermSheet.TermSheet();
 my_term_sheet.set_events({
     "revenues": [
-    {"on" : new_date(2015, 4, 15),
-     "amount" : money(800000, "HKD")},
-    {"on" : new_date(2015, 9, 15),
-     "amount" : money(800000, "HKD")}
+    {"on" : "2015-04-15",
+     "amount" : "800000"},
+    {"on" : "2015-09-15",
+     "amount" : "800000"}
     ],
     "early_payments":[
-    {"on": new_date(2015, 4, 15),
-     "amount": money(5000, "HKD")}
+    {"on": "2015-04-15",
+     "amount": "5000"}
     ],
     "credit_draws":[
-    {"on": new_date(2015, 8, 15),
-     "amount": money(15000, "HKD")}
+    {"on": "2015-08-15",
+     "amount": "15000"}
     ],
-    "skip_principal": [ new_date(2015, 9, 1)]});
+    "skip_principal": [ "2015-09-01"]});
 calculator = new LoanCalculator.LoanCalculator();
 calculator.show_payments(my_term_sheet).forEach(function(i) {
     console.log.apply(console, i);
