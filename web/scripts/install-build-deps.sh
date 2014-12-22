@@ -118,6 +118,7 @@ $JAVA \
 python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
+python-statsmodels \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
