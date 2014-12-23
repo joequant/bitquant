@@ -37,10 +37,10 @@ OPENGAMMA_PKGS="maven \
 
 while true; do
    case "$1" in
-      --with-mifos )  MY_MIFOS_PKGS=$MIFOS_PKGS ; shift ;;
-      --with-opengamma ) MY_OPENGAMMA_PKGS=$MY_OPENGAMMA_PKGS; shift ;;
-      --no-mifos )  MY_MIFOS_PKGS="" ; shift ;;
-      --no-opengamma ) MY_OPENGAMMA_PKGS=""; shift ;;
+      --with-mifos )  INSTALL_MIFOS=true ; shift ;;
+      --with-opengamma ) INSTALL_OPENGAMMA=true ; shift ;;
+      --no-mifos )  INSTALL_MIFOS=false ; shift ;;
+      --no-opengamma ) INSTALL_OPENGAMMA=false "; shift ;;
       -- ) shift ; break ;;
       * ) break ;;
    esac

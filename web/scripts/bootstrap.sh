@@ -2,6 +2,21 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $SCRIPT_DIR/environment.sh
 
+OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$@")
+
+eval set -- "$OPTS"
+
+while true; do
+   case "$1" in
+      --with-mifos )  INSTALL_MIFOS=true ; shift ;;
+      --with-opengamma ) INSTALL_OPENGAMMA=true ; shift ;;
+      --no-mifos )  INSTALL_MIFOS=false ; shift ;;
+      --no-opengamma ) INSTALL_OPENGAMMA=false ; shift ;;
+      -- ) shift ; break ;;
+      * ) break ;;
+   esac
+done
+
 echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Doing initial installation"
 echo "Installing misc"
