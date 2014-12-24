@@ -92,6 +92,7 @@ krb5-appl-clients \
 python-flask \
 python-pexpect \
 R-base \
+r-quantlib \
 vim-minimal \
 rstudio-server \
 fudge-devel \
@@ -119,6 +120,7 @@ python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
 python-statsmodels \
+python-quantlib \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
