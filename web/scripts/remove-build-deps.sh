@@ -28,8 +28,8 @@ postgresql9.3-devel \
 cmake \
 gcc-c++ \
 ${lib}bzip2-devel \
-${lib}curl-devel \
-${lib}zip-devel
+${lib}curl-devel
+
 
 
 $SUDO urpme --auto-orphans --auto
