@@ -9,10 +9,25 @@ requirejs.config({
     nodeRequire: require
 });
 
+var show_line = function(i) {
+    var note = "";
+    if (i.note != undefined) {
+	note = i.note;
+    }
+    console.log(i.event,
+		i.on.toDateString(),
+		Number(i.principal).toFixed(2),
+		Number(i.interest_accrued).toFixed(2),
+		Number(i.balance).toFixed(2),
+		Number(i.balance_payment).toFixed(2),
+		Number(i.interest_payment).toFixed(2),
+		note);
+};
+
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 
-calculator = new LoanCalculator();
+var calculator = new LoanCalculator();
 calculator.test_wrapper()
 
 console.log("Standard Payments")
@@ -22,8 +37,16 @@ calculator.set_events(my_term_sheet, {
     "revenues":[],
     "early_payments":[],
     "credit_draws":[]})
-calculator.show_payments(my_term_sheet).forEach(function(i) {
-    console.log.apply(console, i);
+var payment_schedule = calculator.calculate(my_term_sheet);
+console.log("event", "date",
+	    "principal", "interest",
+	    "balance",
+	    "balance payment",
+	    "interest payment",
+	    "note");
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
 });
 console.log()
 
@@ -37,14 +60,15 @@ calculator.set_events(my_term_sheet, {
     ],
     "early_payments":[],
     "credit_draws":[]})
-
-calculator.show_payments(my_term_sheet).forEach(function(i) {
-    console.log.apply(console, i);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
 });
 console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15")
 my_term_sheet = new TermSheet()
+calculator = new LoanCalculator()
 calculator.set_events(my_term_sheet, {
     "revenues": [
     {"on" : "2015-06-15",
@@ -54,9 +78,9 @@ calculator.set_events(my_term_sheet, {
     ],
     "early_payments":[],
     "credit_draws":[]})
-calculator = new LoanCalculator()
-calculator.show_payments(my_term_sheet).forEach(function(i) {
-    console.log.apply(console, i);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
 });
 console.log()
 
@@ -78,8 +102,9 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-06-15",
      "amount": "15000"}
     ]})
-calculator.show_payments(my_term_sheet).forEach(function(i) {
-    console.log.apply(console, i);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
 });
 console.log()
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
@@ -101,8 +126,8 @@ calculator.set_events(my_term_sheet, {
      "amount": "15000"}
     ],
     "skip_principal": [ "2015-09-01"]});
-
-calculator.show_payments(my_term_sheet).forEach(function(i) {
-    console.log.apply(console, i);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
 });
 

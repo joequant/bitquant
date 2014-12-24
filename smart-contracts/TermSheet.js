@@ -255,21 +255,24 @@ function TermSheet() {
 // dollars.  Any accured interest shall be paid in the form of
 // Bitcoin with the interest rate calculated in Hong Kong dollars.
 
-TermSheet.prototype.process_payment = function(calc, i) {
-    var line = calc.show_payment(i);
-    var payment = i.payment;
-    var balance_payment = 0.0;
-    var interest_payment = 0.0;
-    if (i.payment > i.interest_accrued) {
-	interest_payment = i.interest_accrued;
-	balance_payment = i.payment - i.interest_accrued;
+TermSheet.prototype.process_payment = function(i) {
+    if (i.event == "Payment") {
+	var balance_payment = 0.0;
+	var interest_payment = 0.0;
+	if (i.payment > i.interest_accrued) {
+	    interest_payment = i.interest_accrued;
+	    balance_payment = i.payment - i.interest_accrued;
+	} else {
+	    interest_payment = i.payment;
+	    balance_payment = 0.0;
+	}
+	i.balance_payment = balance_payment;
+	i.interest_payment = interest_payment;
     } else {
-	interest_payment = i.payment;
-	balance_payment = 0.0;
+	i.balance_payment = 0.0;
+	i.interest_payment = 0.0;
     }
-    line.push(["    Pay HKD ", balance_payment]);
-    line.push(["    Pay HKD ", interest_payment, " as XBT"]);
-    return line;
+    return i;
 }
 
 TermSheet.prototype.payments = function(calc) {
