@@ -60,6 +60,7 @@ calculator.set_events(my_term_sheet, {
     ],
     "early_payments":[],
     "credit_draws":[]})
+var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
@@ -78,6 +79,7 @@ calculator.set_events(my_term_sheet, {
     ],
     "early_payments":[],
     "credit_draws":[]})
+var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
@@ -102,6 +104,7 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-06-15",
      "amount": "15000"}
     ]})
+var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
@@ -126,6 +129,7 @@ calculator.set_events(my_term_sheet, {
      "amount": "15000"}
     ],
     "skip_principal": [ "2015-09-01"]});
+var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)

@@ -7,6 +7,10 @@
 <head>
 <link href="https://code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
 <link href="jquery.appendGrid-1.5.0.min.css" rel="stylesheet"/>
+<style>
+    .number { text-align: right;
+    width: 1in}
+</style>
 <script src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script>
 <script>
 require.config({
@@ -70,17 +74,45 @@ require ([
 	    }
 	});
 
-	calculator = new LoanCalculator.LoanCalculator();
+	var calculator = new LoanCalculator();
 	calculator.set_events(my_term_sheet, events);
 	$('#item').html("");
         var payments;
 	try {
-	    payments = calculator.calculate(my_term_sheet);
-	    $('#item').html("");
-	    calculator.show_payments(my_term_sheet).forEach(function(i) {
-		$('#item').append(i.join(" "));
-		$('#item').append("\n");
+	    $('#item').html("<table><tr>");
+	    $('#item').append("<td>event</td>");
+	    $('#item').append("<td>date</td>");
+	    $('#item').append("<td>principal</td>");
+	    $('#item').append("<td>interest</td>");
+	    $('#item').append("<td>balance</td>");
+	    $('#item').append("<td>balance payment</td>");
+	    $('#item').append("<td>interest payment</td>");
+	    $('#item').append("</tr>");
+	    payment_schedule = calculator.calculate(my_term_sheet);
+	    payment_schedule.forEach(function(i) {
+		my_term_sheet.process_payment(i);
+		var note = "";
+		if (i.note != undefined) {
+		    note = i.note;
+		}
+		$('#item').append("<tr><td>" +
+				i.event + "</td><td>" +
+				i.on.toDateString() + "</td><td class='number'>" +
+				Number(i.principal).toFixed(2) +
+	"</td><td class='number'>" +
+				Number(i.interest_accrued).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.balance).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.balance_payment).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.interest_payment).toFixed(2)
+				+ "</td><td>" +
+				note + "</td></tr>");
+
+
 	    });
+	    $('#item').append("</table>");
 	} catch(err) {
 	    $('#item').html(err.message);
 	}
