@@ -40,7 +40,7 @@ while true; do
       --with-mifos )  INSTALL_MIFOS=true ; shift ;;
       --with-opengamma ) INSTALL_OPENGAMMA=true ; shift ;;
       --no-mifos )  INSTALL_MIFOS=false ; shift ;;
-      --no-opengamma ) INSTALL_OPENGAMMA=false "; shift ;;
+      --no-opengamma ) INSTALL_OPENGAMMA=false ; shift ;;
       -- ) shift ; break ;;
       * ) break ;;
    esac
