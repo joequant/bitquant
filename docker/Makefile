@@ -1,14 +1,24 @@
+ifdef NOCACHE
+	ARGS="--no-cache=true"
+endif
+
 bitstation:
-	 docker build -t bitstation bitstation 
+	 docker build -t bitstation $(ARGS) bitstation 
 
 bitstation-example:
-	 docker build -t bitstation-example bitstation-example
+	 docker build -t bitstation-example $(ARGS) bitstation-example
 
-bitstation-nocache:
-	 docker build --no-cache=true -t bitstation bitstation
+bitstation-prod:
+	 docker build -t bitstation-prod $(ARGS) bitstation-prod
 
-bitstation-example-nocache:
-	 docker build --no-cache=true -t bitstation-example bitstation-example
+bitstation-nocache: NOCACHE=true 
+bitstation-nocache: bitstation
+
+bitstation-example-nocache: NOCACHE=true
+bitstation-example-nocache: bitstation-example
+
+bitstation-prod-nocache: NOCACHE=true
+bitstation-prod-nocache: bitstation-prod
 
 bitstation-clean-docker:
 	 docker build -rm=true - < bitstation/Dockerfile
@@ -31,5 +41,6 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
-.PHONY: bitstation bitstation-example
+.PHONY: bitstation bitstation-example bitstation-prod
+
 
