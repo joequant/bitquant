@@ -121,6 +121,7 @@ python-tables \
 python-scipy \
 python-statsmodels \
 python-quantlib \
+python-scikits-learn \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
