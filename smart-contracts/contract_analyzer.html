@@ -44,16 +44,18 @@ var analyze;
 require ([
     "./TermSheet",
     "./LoanCalculator",
+"./Notes",
 "markdown",
 "append-grid",
 "polyfiller",
-"collapse"], function(TermSheet, LoanCalculator) {
+"collapse"], function(TermSheet, LoanCalculator, Notes) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
-    var my_term_sheet = new TermSheet.TermSheet();
+    var my_term_sheet = new TermSheet();
+    var my_notes = new Notes();
     $("#text").html(converter.makeHtml(my_term_sheet.contract_text));
     $("#text").collapse({query: 'h2'});
-
+    $("#notes_header").html(converter.makeHtml(my_notes.header));
     analyze = function() {
         var events = {
 	};
@@ -67,8 +69,9 @@ require ([
 		});
 	    }
 	});
-	my_term_sheet.set_events(events);
+
 	calculator = new LoanCalculator.LoanCalculator();
+	calculator.set_events(my_term_sheet, events);
 	$('#item').html("");
         var payments;
 	try {
@@ -123,7 +126,9 @@ Redistributable under terms of the Simplified BSD License
 the contract.</b>
 
 <div id="text"></div>
+<b>END OF CONTRACT TEXT</b>
 
+<div id="header"></div>
 <button id="btnSerialize" onclick="analyze()" type="button">Analyze</button>
 <div id="event_inputs"></div>
 <pre>

@@ -210,11 +210,45 @@ LoanCalculator.prototype.amortize = function(params) {
     this.add_to_event_table(_amortize)(params);
 }
 
+LoanCalculator.prototype.set_events = function(term_sheet, events) {
+    term_sheet.event_spec.forEach(function(i) {
+	if (events[i.name] == undefined &&
+	    i.unfilled_value != undefined) {
+	    term_sheet[i.name] = i.unfilled_value;
+	    return;
+	}
+
+	if (i.type == "grid") {
+	    var v = events[i.name];
+	    term_sheet[i.name] = [];
+	    v.forEach(function(row) {
+		i.columns.forEach(function (j) {
+		    if (row[j.name] == undefined) {
+			return;
+		    }
+		    if (j.type == "date") {
+			var vars = row[j.name].split("-");
+			row[j.name] =
+			    new Date(vars[0], vars[1]-1, vars[2]);
+		    } else if (j.name = "amount") {
+			row[j.name] = {"amount" :
+					Number(row[j.name]),
+					"ccy":
+					term_sheet.currency };
+		    }
+		});
+		term_sheet[i.name].push(row);
+	    });
+	}
+    });
+}
+
+
 LoanCalculator.prototype.compounding_factor = function(from_date,
 					    to_date) {
     var yearfrac = this.year_frac(from_date, to_date);
     var periods = yearfrac * this.term_sheet.compound_per_year;
-    return Math.pow((1.0 + this.term_sheet.annual_interest_rate / 
+    return Math.pow((1.0 + this.term_sheet.annual_interest_rate / 100.0 / 
 		    this.term_sheet.compound_per_year), periods) - 1.0;
 }
 
@@ -269,5 +303,5 @@ LoanCalculator.prototype.multiply = function (a, b) {
     var o = this;
     return function() { return o.extract_payment(a) * b };
 }
-return {"LoanCalculator":LoanCalculator};
+return LoanCalculator;
 });

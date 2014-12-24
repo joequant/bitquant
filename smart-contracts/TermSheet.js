@@ -195,7 +195,7 @@ function TermSheet() {
 //Contract text
     this.contract_text = contract_text;
 // The interest will be 10 percent per annum compounded monthly.
-    this.annual_interest_rate = 10.0 / 100.0;
+    this.annual_interest_rate = 10.0;
     this.compound_per_year = 12;
 // This term sheet will use the 30/360 US day count convention.
     this.day_count_convention = "30/360US";
@@ -245,44 +245,11 @@ function TermSheet() {
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' }
 	    ],
-	    default : []
+	    unfilled_value : []
 	}
     ];
 }
 
-TermSheet.prototype.set_events = function(events) {
-    var obj = this;
-    this.event_spec.forEach(function(i) {
-	if (events[i.name] == undefined &&
-	    i.default != undefined) {
-	    obj[i.name] = i.default;
-	    return;
-	}
-
-	if (i.type == "grid") {
-	    var v = events[i.name];
-	    obj[i.name] = [];
-	    v.forEach(function(row) {
-		i.columns.forEach(function (j) {
-		    if (row[j.name] == undefined) {
-			return;
-		    }
-		    if (j.type == "date") {
-			var vars = row[j.name].split("-");
-			row[j.name] =
-			    new Date(vars[0], vars[1]-1, vars[2]);
-		    } else if (j.name = "amount") {
-			row[j.name] = {"amount" :
-					Number(row[j.name]),
-					"ccy":
-					obj.currency };
-		    }
-		});
-		obj[i.name].push(row);
-	    });
-	}
-    });
-}
 
 // Any principal amounts in this loan will be paid in Hong Kong
 // dollars.  Any accured interest shall be paid in the form of
@@ -482,5 +449,5 @@ function following_1st_of_month(a) {
 function new_date(year, month, day) {
     return new Date(year, month-1, day);
 }
-return {"TermSheet": TermSheet};
+return TermSheet;
 });
