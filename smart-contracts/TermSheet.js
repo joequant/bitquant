@@ -201,16 +201,82 @@ function TermSheet() {
     this.day_count_convention = "30/360US";
     this.initial_loan_date = new_date(2014, 12, 20);
     this.currency = 'HKD';
-    this.initial_loan_amount = money(50000.00, "HKD");
-    this.initial_line_of_credit = money(50000.00, "HKD");
+    this.initial_loan_amount = 50000.00;
+    this.initial_line_of_credit = 50000.00;
     this.revenue_targets =
 	[
-	    { "revenue" : money(750000.00, "HKD"), "multiplier" : 0.5},
-	    { "revenue" : money(1500000.00, "HKD"), "multiplier" : 1.0},
+	    { "revenue" : 750000.00, "multiplier" : 0.5},
+	    { "revenue" : 1500000.00, "multiplier" : 1.0},
 	];
-    this.loan_duration = [ 1, 'year'];
+    this.loan_duration = [ 1, 'year']
+
+    this.contract_parameters = [
+	{
+	    name: "annual_interest_rate",
+	    display: "Annual percentage rate (%)",
+	    type: "number"
+	},
+	{
+	    name: "compounding periods",
+	    display: "Compounding periods per year",
+	    type: "number"
+	},
+	{
+	    name: "day_count_convention",
+	    display: "Date Count Convention",
+	    type: "text"
+	},
+	{
+	    name: "initial_loan_date",
+	    display: "Initial loan date",
+	    type: "date"
+	},
+	{
+	    name: "initial_loan_amount",
+	    display: "Initial loan amount",
+	    type: "number"
+	},
+	{
+	    name: "initial_line_of_credit",
+	    display: "Initial line of credit",
+	    type: "number"
+	},
+	{ 
+	    name: "currency",
+	    display: "Currency",
+	    type: "currency"
+	},
+	{
+	    name: "revenue_targets",
+	    display: "Revenue targets",
+	    type: "grid",
+	    columns: [
+		{ name: "revenue",
+		  display: "Revenue",
+		  type: "number"
+		},
+		{ name: "multiplier",
+		  display: "Multiplier",
+		  type: "number"
+		}
+	    ]
+	},
+	{
+	    name: "loan_duration",
+	    display: "Loan duration",
+	    type: "duration"
+	}
+    ];
 
     this.event_spec = [
+	{
+	    name: "standard_payment",
+	    type: "note"
+	},
+	{
+	    name: "accelerated_payment",
+	    type: "note"
+	},
 	{
 	    name : "revenues",
 	    display : "Projected Revenues",
@@ -241,6 +307,15 @@ function TermSheet() {
 	{
 	    name: "skip_principal",
 	    display : "Skip principal payment",
+	    type: "grid",
+	    columns: [
+		{ name: "on", display: "Date", type : 'date' }
+	    ],
+	    unfilled_value : []
+	},
+	{
+	    name: "missing_payment",
+	    display : "Missing payment",
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' }
