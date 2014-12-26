@@ -1,5 +1,6 @@
 #!/usr/bin/node
 
+"use strict";
 var requirejs = require('requirejs');
 
 requirejs.config({
@@ -36,8 +37,8 @@ var calculator = new LoanCalculator();
 calculator.test_wrapper()
 
 console.log("Standard Payments")
-my_term_sheet = new TermSheet();
-calculator = new LoanCalculator()
+var my_term_sheet = new TermSheet();
+var calculator = new LoanCalculator()
 calculator.set_events(my_term_sheet, {
     "revenues":[],
     "early_payments":[],

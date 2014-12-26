@@ -270,6 +270,10 @@ function TermSheet() {
 
     this.event_spec = [
 	{
+	    name: "header",
+	    type: "note"
+	},
+	{
 	    name: "standard_payment",
 	    type: "note"
 	},
@@ -351,7 +355,6 @@ TermSheet.prototype.process_payment = function(i) {
 }
 
 TermSheet.prototype.payments = function(calc) {
-
     // The lender agrees to provide the borrower the initial loan
     // amount on the initial date 
     calc.fund({"on" : this.initial_loan_date,
@@ -378,13 +381,6 @@ TermSheet.prototype.payments = function(calc) {
     this.early_payments.forEach(function(i) {
         calc.payment(i);
     });
-
-    // Standard payments - The borrower intends to pay back the loan
-    // over as 8 equal installments and completed in 8 months.  The
-    // payback will begin in the 5th month.  
-
-    // However, the borrower is obligated to pay back only the accrued
-    // interest with each standard payment
 
     var payment_function = function(calc, params) {
 	var payment = calc.extract_payment(params);
@@ -442,15 +438,6 @@ TermSheet.prototype.payments = function(calc) {
     if (this.revenues == undefined) {
 	return;
     }
-
-    // Accelerated payment - If the total revenues from the product
-    // exceeds the revenue target, the borrower the will be required
-    // to pay a specified fraction of the outstanding balance in
-    // addition to a specified fraction of the interest had the
-    // balance been carried to the end of the contract.  This payment
-    // will be due on the first of the month on or following one month
-    // after the revenue target is reached or the final payment date,
-    // whichever is first.
 
     var i = 0;
     var obj = this;
