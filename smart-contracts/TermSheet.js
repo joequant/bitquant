@@ -199,7 +199,7 @@ function TermSheet() {
     this.compound_per_year = 12;
 // This term sheet will use the 30/360 US day count convention.
     this.day_count_convention = "30/360US";
-    this.initial_loan_date = new_date(2014, 12, 20);
+    this.initial_loan_date = new_date(2015, 1, 5);
     this.currency = 'HKD';
     this.initial_loan_amount = 50000.00;
     this.initial_line_of_credit = 50000.00;
@@ -444,11 +444,13 @@ TermSheet.prototype.payments = function(calc) {
     }
 
     // Accelerated payment - If the total revenues from the product
-    // exceeds the revenue target, the borrower will be required to
-    // pay a specified fraction of the outstanding balance in addition
-    // to a specified fraction of the interest had the balance been
-    // carried to the end of the contract.  This payment will be due
-    // within one month after the date the revenue target is reached.
+    // exceeds the revenue target, the borrower the will be required
+    // to pay a specified fraction of the outstanding balance in
+    // addition to a specified fraction of the interest had the
+    // balance been carried to the end of the contract.  This payment
+    // will be due on the first of the month on or following one month
+    // after the revenue target is reached or the final payment date,
+    // whichever is first.
 
     var i = 0;
     var obj = this;
@@ -458,7 +460,7 @@ TermSheet.prototype.payments = function(calc) {
 	}
         var multiplier = obj.revenue_targets[i].multiplier;
         var payment_date = 
-	    calc.add_duration(target_hit_date, [1, "month"]);
+	    following_1st_of_month(calc.add_duration(target_hit_date, [1, "month"]));
         if (payment_date > final_payment_date) {
             payment_date = final_payment_date;
 	}
@@ -491,17 +493,22 @@ TermSheet.prototype.getTargetHitDates = function () {
 	if (revenue_idx > obj.revenue_targets.length) {
 	    return;
 	}
-	total_revenue += i.amount.amount;
-	if (total_revenue >= obj.revenue_targets[revenue_idx].revenue.amount) {
-	    target_hit_dates.push(i['on']);
+
+	total_revenue += i.amount;
+	if(total_revenue < obj.revenue_targets[revenue_idx].revenue) {
+	    revenue_idx = revenue_idx + 1;
+	    return;
 	}
-        revenue_idx = revenue_idx + 1;
+
+	while(total_revenue >= obj.revenue_targets[revenue_idx].revenue) {
+	    target_hit_dates.push(i['on']);
+	    revenue_idx = revenue_idx + 1;
+	    if (revenue_idx >= obj.revenue_targets.length) {
+		return;
+	    }
+	}
     });
     return target_hit_dates;
-}
-
-function money(a, b) {
-    return {"amount": a, "ccy" : b};
 }
 
 function contains(a, obj) {

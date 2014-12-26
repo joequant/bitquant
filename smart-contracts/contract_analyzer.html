@@ -112,7 +112,11 @@ require ([
 
 
 	    });
-	    $('#item').append("</table>");
+	    $('#item').append("</table><br><br>");
+	    $('#item').append("Annual interest rate: " +
+			      calculator.apr(payment_schedule).toFixed(4) + 
+			      " percent");
+
 	} catch(err) {
 	    $('#item').html(err.message);
 	}

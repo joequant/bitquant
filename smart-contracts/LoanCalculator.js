@@ -84,6 +84,23 @@ LoanCalculator.prototype.show_payments = function(term_sheet) {
     return lines;
 }
 
+LoanCalculator.prototype.apr = function(payment_schedule) {
+    var prev_event = undefined;
+    var calc = this;
+    var total_interest = 0.0;
+    var total_year_frac = 0.0;
+    payment_schedule.forEach(function(i) {
+        if (prev_event != undefined && i['principal'] > 0.0) {
+            var year_frac = calc.year_frac(prev_event, i['on']);
+            var interest = i['interest_accrued'] / i['principal'];
+            total_year_frac = total_year_frac + year_frac;
+            total_interest = total_interest + interest;
+	}
+        prev_event = i['on'];
+    });
+    return total_interest / total_year_frac * 100.0;
+}
+
 LoanCalculator.prototype.show_payment = function(i) {
     var line = [];
     line.push([i["event"], i["on"], i.payment,
@@ -231,10 +248,7 @@ LoanCalculator.prototype.set_events = function(term_sheet, events) {
 			row[j.name] =
 			    new Date(vars[0], vars[1]-1, vars[2]);
 		    } else if (j.name = "amount") {
-			row[j.name] = {"amount" :
-					Number(row[j.name]),
-					"ccy":
-					term_sheet.currency };
+			row[j.name] = Number(row[j.name]);
 		    }
 		});
 		term_sheet[i.name].push(row);

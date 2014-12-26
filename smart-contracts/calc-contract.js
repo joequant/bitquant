@@ -24,6 +24,11 @@ var show_line = function(i) {
 		note);
 };
 
+var show_apr = function(calculator, payments) {
+    console.log("Annual interest rate: " + 
+		calculator.apr(payments).toFixed(4) + " percent");
+}
+
 var LoanCalculator = require("./LoanCalculator.js");
 var TermSheet = require("./TermSheet.js");
 
@@ -48,7 +53,8 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
-console.log()
+show_apr(calculator, payment_schedule);
+console.log();
 
 console.log("Assume revenue hit on 2015-05-15")
 my_term_sheet =  new TermSheet();
@@ -65,6 +71,7 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
+show_apr(calculator, payment_schedule);
 console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15")
@@ -84,6 +91,7 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
+show_apr(calculator, payment_schedule);
 console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws")
@@ -109,7 +117,9 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
+show_apr(calculator, payment_schedule);
 console.log()
+
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
 my_term_sheet = new TermSheet();
 calculator = new LoanCalculator();
@@ -134,4 +144,4 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
-
+show_apr(calculator, payment_schedule);
