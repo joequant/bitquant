@@ -88,7 +88,7 @@ require ([
 	    $('#item').append("<td>balance payment</td>");
 	    $('#item').append("<td>interest payment</td>");
 	    $('#item').append("</tr>");
-	    payment_schedule = calculator.calculate(my_term_sheet);
+	    var payment_schedule = calculator.calculate(my_term_sheet);
 	    payment_schedule.forEach(function(i) {
 		my_term_sheet.process_payment(i);
 		var note = "";
