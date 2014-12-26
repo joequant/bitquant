@@ -1,3 +1,12 @@
+bitstation-nocache: NOCACHE=true 
+bitstation-nocache: bitstation
+
+bitstation-example-nocache: NOCACHE=true
+bitstation-example-nocache: bitstation-example
+
+bitstation-prod-nocache: NOCACHE=true
+bitstation-prod-nocache: bitstation-prod
+
 ifdef NOCACHE
 	ARGS="--no-cache=true"
 endif
@@ -11,14 +20,6 @@ bitstation-example:
 bitstation-prod:
 	 docker build -t bitstation-prod $(ARGS) bitstation-prod
 
-bitstation-nocache: NOCACHE=true 
-bitstation-nocache: bitstation
-
-bitstation-example-nocache: NOCACHE=true
-bitstation-example-nocache: bitstation-example
-
-bitstation-prod-nocache: NOCACHE=true
-bitstation-prod-nocache: bitstation-prod
 
 bitstation-clean-docker:
 	 docker build -rm=true - < bitstation/Dockerfile
