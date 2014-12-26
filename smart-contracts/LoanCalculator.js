@@ -190,7 +190,7 @@ LoanCalculator.prototype.add_to_balance = function(params) {
 	var payment = o.extract_payment(params);
         o.balance = o.balance + payment;
         if (payment > 0) {
-            return {"event":"Payment",
+            return {"event":"Add balance",
                     "on":params.on,
                     "payment":payment,
                     "principal": o.principal,
