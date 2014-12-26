@@ -217,7 +217,7 @@ function TermSheet() {
 	    type: "number"
 	},
 	{
-	    name: "compounding periods",
+	    name: "compound_per_year",
 	    display: "Compounding periods per year",
 	    type: "number"
 	},
@@ -241,6 +241,11 @@ function TermSheet() {
 	    display: "Initial line of credit",
 	    type: "number"
 	},
+	{
+	    name: "loan_duration",
+	    display: "Loan duration",
+	    type: "duration"
+	},
 	{ 
 	    name: "currency",
 	    display: "Currency",
@@ -260,11 +265,6 @@ function TermSheet() {
 		  type: "number"
 		}
 	    ]
-	},
-	{
-	    name: "loan_duration",
-	    display: "Loan duration",
-	    type: "duration"
 	}
     ];
 

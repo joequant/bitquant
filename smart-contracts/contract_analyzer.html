@@ -118,6 +118,28 @@ require ([
 	}
     };
     $(function() {
+        my_term_sheet.contract_parameters.forEach(function(i) {
+	    var display = i.display;
+	    var div = "#contract_params";
+	    if (i.type == "grid") {
+		$(div).append("<table><tr>");
+		i.columns.forEach(function(j) {
+		    $(div).append("<td>" + j.display + "</td>");
+		});
+		$(div).append("</tr>");
+		my_term_sheet[i.name].forEach(function(j) {
+		    $(div).append("<tr>");
+		    i.columns.forEach(function(k) {
+			$(div).append("<td>" + j[k.name] + "</td>");
+		    });
+		    $(div).append("</tr>");
+		});
+	    } else {
+		$(div).append(display + ": " +
+					     my_term_sheet[i.name] + "<br>");
+	    }
+	});
+
 	my_term_sheet.event_spec.forEach(function(i) {
 	    if (i.type == "grid") {
 		var table = document.createElement('table');
@@ -161,7 +183,9 @@ the contract.</b>
 <b>END OF CONTRACT TEXT</b>
 
 <div id="header"></div>
-<button id="btnSerialize" onclick="analyze()" type="button">Analyze</button>
+<button id="btnSerialize" onclick="analyze()"
+	type="button">Analyze</button>
+<div id="contract_params"></div>
 <div id="event_inputs"></div>
 <pre>
 <div id="item"></div>
