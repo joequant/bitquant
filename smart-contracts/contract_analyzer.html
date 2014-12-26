@@ -126,7 +126,7 @@ require ([
 	    var display = i.display;
 	    var div = "#contract_params";
             if (i.type == "note") {
-		$(div).append(my_notes[i.name]);
+		$(div).append(converter.makeHtml(my_notes[i.name]));
             } else if (i.type == "grid") {
 		$(div).append("<table><tr>");
 		i.columns.forEach(function(j) {
@@ -149,7 +149,7 @@ require ([
 	my_term_sheet.event_spec.forEach(function(i) {
 	    var div = "#event_inputs";
             if (i.type == "note") {
-		$(div).append(my_notes[i.name]);
+		$(div).append(converter.makeHtml(my_notes[i.name]));
             } else if (i.type == "grid") {
 		var table = document.createElement('table');
 		var name = i.name + "_grid";
