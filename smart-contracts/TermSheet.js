@@ -38,7 +38,7 @@ AGREED TERMS
   * Availability Period: the period from and including the date of this Agreement to and including the Final Repayment Date.  
   * BTC Exchange Rate:  the 24-hour average price in USD/BTC as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
-  * Event of Default: any event or circumstance listed in clause 9.  
+  * Event of Default: any event or circumstance listed in clause 10.  
   * Facility: the term loan facility made available under this Agreement.  
   * Final Repayment Date: the date falling on the first annual anniversary of the Commencement Date.  
   * HK$: the lawful currency of Hong Kong.  
@@ -59,8 +59,6 @@ AGREED TERMS
 2.2 The Schedules are written in the javascript, and shall form part of this Agreement and shall have effect as if set out in full in the body of this Agreement. Any reference to this Agreement includes the Schedules. 
 
 2.3 In case of any inconsistency between the body of the Agreement and the Schedules, the body of the Agreement shall prevail, in which case the parties may amend the Schedules in good faith to reflect the body of the Agreement. 
-
-2.4 The explanatory notes to the Schedules do [NOT] form part of the Schedules or this Agreement and are provided by the parties in good faith for reference purpose.
 
 3. Facility
 --------
