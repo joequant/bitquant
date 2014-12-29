@@ -43,6 +43,7 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     this.principal = 0.0;
     this.balance = 0.0;
     this.current_event = 0;
+    this.late_balance = 0.0;
     var prev_date = undefined;
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
@@ -89,9 +90,12 @@ LoanCalculator.prototype.apr = function(payment_schedule) {
     var calc = this;
     var total_interest = 0.0;
     var total_year_frac = 0.0;
+    var obj = this;
     payment_schedule.forEach(function(i) {
         if (prev_event != undefined && i['principal'] > 0.0) {
-            var year_frac = calc.year_frac(prev_event, i['on']);
+            var year_frac = 
+		calc.year_frac(prev_event, i['on'],
+			       obj.term_sheet.day_count_convention);
             var interest = i['interest_accrued'] / i['principal'];
             total_year_frac = total_year_frac + year_frac;
             total_interest = total_interest + interest;
@@ -260,7 +264,8 @@ LoanCalculator.prototype.set_events = function(term_sheet, events) {
 
 LoanCalculator.prototype.compounding_factor = function(from_date,
 					    to_date) {
-    var yearfrac = this.year_frac(from_date, to_date);
+    var yearfrac = this.year_frac(from_date, to_date,
+				 this.term_sheet.day_count_convention);
     var periods = yearfrac * this.term_sheet.compound_per_year;
     return Math.pow((1.0 + this.term_sheet.annual_interest_rate / 100.0 / 
 		    this.term_sheet.compound_per_year), periods) - 1.0;
@@ -282,16 +287,17 @@ LoanCalculator.prototype.interest = function(from_date, to_date,
 }
 
 LoanCalculator.prototype.year_frac = function(from_date,
-					      to_date) {
-    if (this.term_sheet.day_count_convention === "30/360US") {
+					      to_date,
+					      day_count_convention) {
+    if (day_count_convention === "30/360US") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 0);
-    } else if (this.term_sheet.day_count_convention === "Actual/Actual") {
+    } else if (day_count_convention === "Actual/Actual") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 1);
-    } else if (this.term_sheet.day_count_convention === "Actual/360") {
+    } else if (day_count_convention === "Actual/360") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 2);
-    } else if (this.term_sheet.day_count_convention === "Actual/365") {
+    } else if (day_count_convention === "Actual/365") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 3);
-    } else if (this.term_sheet.day_count_convention === "30/360EUR") {
+    } else if (day_count_convention === "30/360EUR") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 4);
     } else {
 	throw Error("unknown day count convention");

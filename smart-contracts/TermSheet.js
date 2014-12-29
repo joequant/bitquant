@@ -321,7 +321,8 @@ function TermSheet() {
 	    display : "Missing payment",
 	    type: "grid",
 	    columns: [
-		{ name: "on", display: "Date", type : 'date' }
+		{ name: "on", display: "Date", type : 'date' },
+		{ name: "amount", display : "Money", type : "number" }
 	    ],
 	    unfilled_value : []
 	}
@@ -407,6 +408,14 @@ TermSheet.prototype.payments = function(calc) {
 	    payment = interest_payment;
 	    principal_payment = 0.0;
 	    params.note = "Principal payment skipped";
+	}
+
+	if (contains(calc.term_sheet.missing_payment, params.on)) {
+	    if (calc.term_sheet.missing_payment > payment) {
+		payment = 0.0;
+	    } else {
+		payment = payment - calc.term_sheet.missing_payments;
+	    }
 	}
 
 	if (payment >  interest_accrued) {
