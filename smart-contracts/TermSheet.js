@@ -190,7 +190,9 @@ function TermSheet() {
     this.contract_text = contract_text;
 // The interest will be 10 percent per annum compounded monthly.
     this.annual_interest_rate = 10.0;
+    this.penalty_annual_interest_rate = 10.0 + 5.0;
     this.compound_per_year = 12;
+    this.penalty_compound_per_year = 365;
 // This term sheet will use the 30/360 US day count convention.
     this.day_count_convention = "30/360US";
     this.initial_loan_date = new_date(2015, 1, 5);

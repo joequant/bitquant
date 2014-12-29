@@ -51,7 +51,6 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
             var interest = this.compounding_factor(prev_date,
 					       k) * this.balance;
             this.balance = this.balance + interest;
-	    this.balance = Number(this.balance.toFixed("2"));
 	}
         i.forEach(function(j){
             var payment = j();
