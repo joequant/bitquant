@@ -119,6 +119,7 @@ $JAVA \
 python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
+python-qstk \
 python-statsmodels \
 python-quantlib \
 python-scikits-learn \
