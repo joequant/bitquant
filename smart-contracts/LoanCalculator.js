@@ -317,5 +317,19 @@ LoanCalculator.prototype.multiply = function (a, b) {
     var o = this;
     return function() { return o.extract_payment(a) * b };
 }
+
+LoanCalculator.prototype.limit_balance = function(a, b) {
+    var o = this;
+    return function() {
+	var request = o.extract_payment(a);
+	var limit = o.extract_payment(b);
+	if (request + o.principal > limit) {
+	    return limit - o.principal ;
+	} else {
+	    return request;
+	}
+    }
+}
+
 return LoanCalculator;
 });

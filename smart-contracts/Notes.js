@@ -33,6 +33,10 @@ will be due on the first of the month on or following one month
 after the revenue target is reached or the final payment date,
 whichever is first.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+	this.additional_credit_limit = (function() {/*
+During the operation of this facility, the borrower may request
+additional credit up to this limit
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     }
     return Notes;
 });

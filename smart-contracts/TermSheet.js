@@ -198,7 +198,7 @@ function TermSheet() {
     this.initial_loan_date = new_date(2015, 1, 5);
     this.currency = 'HKD';
     this.initial_loan_amount = 50000.00;
-    this.initial_line_of_credit = 50000.00;
+    this.additional_credit_limit = 50000.00;
     this.revenue_targets =
 	[
 	    { "revenue" : 750000.00, "multiplier" : 0.5},
@@ -210,12 +210,14 @@ function TermSheet() {
 	{
 	    name: "annual_interest_rate",
 	    display: "Annual percentage rate (%)",
-	    type: "number"
+	    type: "number",
+	    scenario: true
 	},
 	{
 	    name: "compound_per_year",
 	    display: "Compounding periods per year",
-	    type: "number"
+	    type: "number",
+	    scenario: true
 	},
 	{
 	    name: "day_count_convention",
@@ -225,7 +227,8 @@ function TermSheet() {
 	{
 	    name: "initial_loan_date",
 	    display: "Initial loan date",
-	    type: "date"
+	    type: "date",
+	    scenario: true
 	},
 	{
 	    name: "initial_loan_amount",
@@ -233,8 +236,8 @@ function TermSheet() {
 	    type: "number"
 	},
 	{
-	    name: "initial_line_of_credit",
-	    display: "Initial line of credit",
+	    name: "additional_credit_limit",
+	    display: "Additional credit limit",
 	    type: "number"
 	},
 	{
@@ -296,8 +299,8 @@ function TermSheet() {
 	    ]
 	},
 	{
-	    name: "credit_draws",
-	    display : "Credit draws",
+	    name: "credit_request",
+	    display : "Credit request",
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
@@ -357,9 +360,11 @@ TermSheet.prototype.payments = function(calc) {
                "amount" : this.initial_loan_amount,
                "note" : "Initial funding"});
 
-    // The lender agrees to provide up the the line of credit amount
-    // for the duration of the loan.
-    this.credit_draws.forEach(function (i) {
+    obj = this;
+    this.credit_request.forEach(function (i) {
+	i.amount = calc.limit_balance(i.amount, 
+				      obj.initial_loan_amount + 
+				      obj.additional_credit_limit);
         calc.fund(i);
     });
 

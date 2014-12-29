@@ -141,8 +141,19 @@ require ([
 		    $(div).append("</tr>");
 		});
 	    } else {
-		$(div).append(display + ": " +
-					     my_term_sheet[i.name] + "<br>");
+		if (i.type == "date") {
+			$(div).append(display + ": " +
+					     my_term_sheet[i.name].toDateString());
+
+		    } else {
+			$(div).append(display + ": " +
+					     my_term_sheet[i.name]);
+		    }
+		if (my_notes[i.name] != undefined) {
+		    $(div).append(" - ");
+		    $(div).append(my_notes[i.name]);
+		}
+		$(div).append("<br>");
 	    }
 	});
 

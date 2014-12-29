@@ -42,7 +42,7 @@ var calculator = new LoanCalculator()
 calculator.set_events(my_term_sheet, {
     "revenues":[],
     "early_payments":[],
-    "credit_draws":[]})
+    "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 console.log("event", "date",
 	    "principal", "interest",
@@ -66,7 +66,7 @@ calculator.set_events(my_term_sheet, {
 	 "amount" : "800000"}
     ],
     "early_payments":[],
-    "credit_draws":[]})
+    "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
@@ -86,7 +86,7 @@ calculator.set_events(my_term_sheet, {
      "amount" : "800000"}
     ],
     "early_payments":[],
-    "credit_draws":[]})
+    "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
@@ -109,7 +109,7 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-04-15",
      "amount": "5000"}
     ],
-    "credit_draws":[
+    "credit_request":[
     {"on": "2015-06-15",
      "amount": "15000"}
     ]})
@@ -135,9 +135,36 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-04-15",
      "amount": "5000"}
     ],
-    "credit_draws":[
+    "credit_request":[
     {"on": "2015-08-15",
      "amount": "15000"}
+    ],
+    "skip_principal": [ "2015-09-01"]});
+var payment_schedule = calculator.calculate(my_term_sheet);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
+});
+show_apr(calculator, payment_schedule);
+console.log()
+
+console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
+my_term_sheet = new TermSheet();
+calculator = new LoanCalculator();
+calculator.set_events(my_term_sheet, {
+    "revenues": [
+    {"on" : "2015-04-15",
+     "amount" : "800000"},
+    {"on" : "2015-09-15",
+     "amount" : "800000"}
+    ],
+    "early_payments":[
+    {"on": "2015-04-15",
+     "amount": "5000"}
+    ],
+    "credit_request":[
+    {"on": "2015-08-15",
+     "amount": "100000000"}
     ],
     "skip_principal": [ "2015-09-01"]});
 var payment_schedule = calculator.calculate(my_term_sheet);
