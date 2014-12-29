@@ -122,6 +122,7 @@ python-scipy \
 python-statsmodels \
 python-quantlib \
 python-scikits-learn \
+python-pyalgotrade \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
