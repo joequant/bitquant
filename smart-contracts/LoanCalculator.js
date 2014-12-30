@@ -44,13 +44,19 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     this.balance = 0.0;
     this.current_event = 0;
     this.late_balance = 0.0;
+    this.late_principal = 0.0;
     var prev_date = undefined;
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
 	var i = this.events[k];
         if (prev_date !== undefined) {
-            var interest = this.compounding_factor(prev_date,
-					       k) * this.balance;
+            var interest = 
+		this.compounding_factor(prev_date,
+					k,
+					term_sheet.annual_interest_rate,
+					term_sheet.compound_per_year,
+					term_sheet.day_count_convention) * 
+		this.balance;
             this.balance = this.balance + interest;
 	}
         i.forEach(function(j){
@@ -216,9 +222,14 @@ LoanCalculator.prototype.amortize = function(params) {
 	var on = params.on;
 	var forward_date = 
 	    o.add_duration(on, params.interval);
-	var payment = o.compounding_factor(on, forward_date) / 
-	    (1.0 - Math.pow(1 + o.compounding_factor(on, forward_date), 
-			    -npayments)) * p
+	var compounding_factor = 
+	    o.compounding_factor(on,
+				 forward_date,
+				 o.term_sheet.annual_interest_rate,
+				 o.term_sheet.compound_per_year,
+				 o.term_sheet.day_count_convention);
+	var payment = compounding_factor / 
+	    (1.0 - Math.pow(1 + compounding_factor, -npayments)) * p
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
 	    o.add_to_event_table(params.payment_func)({"on":d, 
@@ -263,12 +274,15 @@ LoanCalculator.prototype.set_events = function(term_sheet, events) {
 
 
 LoanCalculator.prototype.compounding_factor = function(from_date,
-					    to_date) {
+						       to_date,
+						       annual_interest_rate,
+						       compound_per_year,
+						       day_count_convention) {
     var yearfrac = this.year_frac(from_date, to_date,
-				 this.term_sheet.day_count_convention);
-    var periods = yearfrac * this.term_sheet.compound_per_year;
-    return Math.pow((1.0 + this.term_sheet.annual_interest_rate / 100.0 / 
-		    this.term_sheet.compound_per_year), periods) - 1.0;
+				  day_count_convention);
+    var periods = yearfrac * compound_per_year;
+    return Math.pow((1.0 + annual_interest_rate / 100.0 / 
+		     compound_per_year), periods) - 1.0;
 }
 
 LoanCalculator.prototype.add_duration = function (date,
@@ -282,7 +296,12 @@ LoanCalculator.prototype.interest = function(from_date, to_date,
 						  amount) {
     var obj = this;
     return function() {
-	return obj.compounding_factor(from_date, to_date) * amount();
+	return obj.compounding_factor(from_date, 
+				      to_date,
+				     obj.term_sheet.annual_interest_rate,
+				     obj.term_sheet.compound_per_year,
+				     obj.term_sheet.day_count_convention) 
+	    * amount();
     }
 }
 
