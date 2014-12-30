@@ -24,7 +24,6 @@ fi
 
 $SUDO urpme \
 --auto \
-postgresql9.3-devel \
 cmake \
 gcc-c++ \
 ${lib}bzip2-devel \
