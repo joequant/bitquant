@@ -7,8 +7,8 @@ bitstation-example-nocache: bitstation-example
 bitstation-prod-nocache: NOCACHE=true
 bitstation-prod-nocache: bitstation-prod
 
-ifdef NOCACHE
-	ARGS="--no-cache=true"
+ifeq ($(NOCACHE),true)
+ARGS="--no-cache=true"
 endif
 
 bitstation:
