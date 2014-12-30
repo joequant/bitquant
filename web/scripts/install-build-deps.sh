@@ -22,7 +22,7 @@ OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$
 
 eval set -- "$OPTS"
 
-MIFOS_PKGS="tomcat mysql mysql-connector-java unzip"
+MIFOS_PKGS="tomcat mysql mysql-connector-java unzip $JAVA"
 OPENGAMMA_PKGS="maven \
   maven-clean-plugin \
   maven-assembly-plugin \
@@ -33,7 +33,9 @@ OPENGAMMA_PKGS="maven \
   aether-connector-basic \
   aether-transport-file \
   aether-transport-http \
-  aether-transport-wagon"
+  aether-transport-wagon \
+  python-py4j \
+  $JAVA"
 
 while true; do
    case "$1" in
@@ -106,7 +108,6 @@ python-tornado \
 python-mglob \
 dokuwiki-plugin-s5  \
 python-matplotlib \
-python-py4j \
 python-pyro4 \
 python-pytz \
 python-pip \
@@ -115,7 +116,6 @@ readline-devel \
 lapack-devel \
 python-pandas \
 python-zipline \
-$JAVA \
 python-backports-ssl_match_hostname \
 python-tables \
 python-scipy \
