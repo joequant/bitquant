@@ -190,11 +190,12 @@ function TermSheet() {
     this.contract_text = contract_text;
 // The interest will be 10 percent per annum compounded monthly.
     this.annual_interest_rate = 10.0;
-    this.penalty_annual_interest_rate = 10.0 + 5.0;
     this.compound_per_year = 12;
-    this.penalty_compound_per_year = 365;
-// This term sheet will use the 30/360 US day count convention.
     this.day_count_convention = "30/360US";
+    this.late_annual_interest_rate = 10.0 + 5.0;
+    this.late_compound_per_year = 365;
+    this.late_day_count_convention = "30/360US";
+
     this.initial_loan_date = new_date(2015, 1, 5);
     this.currency = 'HKD';
     this.initial_loan_amount = 50000.00;
@@ -287,16 +288,18 @@ function TermSheet() {
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
 		{ name: "amount", display : "Money", type : "number" }
-	    ]
+	    ],
+	    unfilled_value : []
 	},
 	{
-	    name: "early_payments",
+	    name: "early_payment",
 	    display : "Early Payments",
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
 		{ name: "amount", display : "Money", type : "number" }
-	    ]
+	    ],
+	    unfilled_value : []
 	},
 	{
 	    name: "credit_request",
@@ -305,7 +308,8 @@ function TermSheet() {
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
 		{ name: "amount", display : "Money", type : "number" }
-	    ]
+	    ],
+	    unfilled_value : []
 	},
 	{
 	    name: "skip_principal",
@@ -317,8 +321,8 @@ function TermSheet() {
 	    unfilled_value : []
 	},
 	{
-	    name: "missing_payment",
-	    display : "Missing payment",
+	    name: "late_payment",
+	    display : "Late payment",
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
@@ -378,10 +382,13 @@ TermSheet.prototype.payments = function(calc) {
     calc.payment({"on":final_payment_date,
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment",
+		  "interest_payment_required" : true,
 		  "principal_payment_required": true});
 
     // The borrower make early payments at any time.
-    this.early_payments.forEach(function(i) {
+    this.early_payment.forEach(function(i) {
+	i.interest_payment_required = false;
+	i.principal_payment_required = false;
         calc.payment(i);
     });
 
@@ -410,27 +417,33 @@ TermSheet.prototype.payments = function(calc) {
 	if (params.principal_payment_required === true) {
 	    required_payment = principal_payment + interest_payment 
 		+ late_balance;
+	} else if (params.interest_payment_required === true) {
+	    required_payment = interest_payment + late_balance;
 	} else {
-	    required_payment = interest_payment 
-		+ late_balance;
+	    required_payment = late_balance;
 	}
 
-	if (contains(calc.term_sheet.skip_principal, params.on)) {
+	if (contains(calc.term_sheet.skip_principal, params.on)
+	   != undefined) {
 	    payment = interest_payment;
 	    principal_payment = 0.0;
 	    params.note = "Principal payment skipped";
 	}
 
-	if (contains(calc.term_sheet.missing_payment, params.on)) {
-	    if (calc.term_sheet.missing_payment > payment) {
+	if (contains(calc.term_sheet.late_payment, params.on)) {
+	    var late_payment = 
+		contains(calc.term_sheet.late_payment, params.on).amount;
+	    if (late_payment > payment) {
 		payment = 0.0;
 	    } else {
-		payment = payment - calc.term_sheet.missing_payments;
+		payment = payment - late_payment;
 	    }
-	    parms.notes = "Missing payment";
+	    params.note = "Late payment";
 	}
-
+	
 	calc.balance = calc.balance - payment;
+
+	
 	if (payment >=  interest_accrued) {
 	    calc.principal = calc.principal - payment + interest_accrued;
 	}
@@ -466,6 +479,8 @@ TermSheet.prototype.payments = function(calc) {
                    "amount": calc.remaining_balance(),
                    "payments" : 8,
                    "interval" : [1, "month"],
+		   "interest_payment_required" : true,
+		   "principal_payment_required" : false,
 		   "payment_func" : payment_function});
 
     if (this.revenues == undefined) {
@@ -498,6 +513,7 @@ TermSheet.prototype.payments = function(calc) {
              "amount" : calc.multiply(calc.remaining_balance(),
 				      multiplier),
 	     "note" : ("Required payment " + (i+1).toString()),
+	     "interest_payment_required" : true,
 	     "principal_payment_required": true });
 	i++;
     });
@@ -534,11 +550,11 @@ TermSheet.prototype.getTargetHitDates = function () {
 
 function contains(a, obj) {
     for (var i = 0; i < a.length; i++) {
-        if (a[i] >= obj && a[i] <= obj) {
-            return true;
+        if (a[i].on >= obj && a[i].on <= obj) {
+            return a[i];
         }
     }
-    return false;
+    return undefined;
 }
 
 function following_1st_of_month(a) {

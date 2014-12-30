@@ -69,7 +69,7 @@ require ([
 		events[i.name] = [];
 
 		$(name).appendGrid('getAllValue').forEach(function(j) {
-		    events.revenues.push(j);
+		    events[i.name].push(j);
 		});
 	    }
 	});
@@ -85,6 +85,7 @@ require ([
 	    $('#item').append("<td>principal</td>");
 	    $('#item').append("<td>interest</td>");
 	    $('#item').append("<td>balance</td>");
+	    $('#item').append("<td>late balance</td>");
 	    $('#item').append("<td>principal payment</td>");
 	    $('#item').append("<td>interest payment</td>");
 	    $('#item').append("</tr>");
@@ -103,6 +104,8 @@ require ([
 				Number(i.interest_accrued).toFixed(2)
 				+ "</td><td class='number'>" +
 				Number(i.balance).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.late_balance).toFixed(2)
 				+ "</td><td class='number'>" +
 				Number(i.principal_payment).toFixed(2)
 				+ "</td><td class='number'>" +

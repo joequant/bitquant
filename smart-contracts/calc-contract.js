@@ -20,6 +20,7 @@ var show_line = function(i) {
 		Number(i.principal).toFixed(2),
 		Number(i.interest_accrued).toFixed(2),
 		Number(i.balance).toFixed(2),
+		Number(i.late_balance).toFixed(2),
 		Number(i.principal_payment).toFixed(2),
 		Number(i.interest_payment).toFixed(2),
 		note);
@@ -41,12 +42,14 @@ var my_term_sheet = new TermSheet();
 var calculator = new LoanCalculator()
 calculator.set_events(my_term_sheet, {
     "revenues":[],
-    "early_payments":[],
+    "early_payment":[],
     "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 console.log("event", "date",
-	    "principal", "interest",
+	    "principal", 
+	    "interest",
 	    "balance",
+	    "late balance",
 	    "balance payment",
 	    "interest payment",
 	    "note");
@@ -57,6 +60,8 @@ payment_schedule.forEach(function(i) {
 show_apr(calculator, payment_schedule);
 console.log();
 
+
+
 console.log("Assume revenue hit on 2015-05-15")
 my_term_sheet =  new TermSheet();
 calculator = new LoanCalculator()
@@ -65,7 +70,7 @@ calculator.set_events(my_term_sheet, {
 	{"on" : "2015-05-15",
 	 "amount" : "800000"}
     ],
-    "early_payments":[],
+    "early_payment":[],
     "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
@@ -85,7 +90,7 @@ calculator.set_events(my_term_sheet, {
     {"on" : "2015-08-15", 
      "amount" : "800000"}
     ],
-    "early_payments":[],
+    "early_payment":[],
     "credit_request":[]})
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
@@ -105,7 +110,7 @@ calculator.set_events(my_term_sheet, {
     {"on" : "2015-08-15",
      "amount" : "800000"}
     ],
-    "early_payments":[
+    "early_payment":[
     {"on": "2015-04-15",
      "amount": "5000"}
     ],
@@ -131,7 +136,7 @@ calculator.set_events(my_term_sheet, {
     {"on" : "2015-09-15",
      "amount" : "800000"}
     ],
-    "early_payments":[
+    "early_payment":[
     {"on": "2015-04-15",
      "amount": "5000"}
     ],
@@ -139,7 +144,9 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-08-15",
      "amount": "15000"}
     ],
-    "skip_principal": [ "2015-09-01"]});
+    "skip_principal": [ 
+	{"on": "2015-09-01"}
+    ]});
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
@@ -158,7 +165,7 @@ calculator.set_events(my_term_sheet, {
     {"on" : "2015-09-15",
      "amount" : "800000"}
     ],
-    "early_payments":[
+    "early_payment":[
     {"on": "2015-04-15",
      "amount": "5000"}
     ],
@@ -166,10 +173,33 @@ calculator.set_events(my_term_sheet, {
     {"on": "2015-08-15",
      "amount": "100000000"}
     ],
-    "skip_principal": [ "2015-09-01"]});
+    "skip_principal": [ 
+	{"on" :"2015-09-01"}
+    ]});
 var payment_schedule = calculator.calculate(my_term_sheet);
 payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
 show_apr(calculator, payment_schedule);
+console.log();
+
+console.log("Late payment")
+var my_term_sheet =  new TermSheet();
+var calculator = new LoanCalculator();
+calculator.set_events(my_term_sheet, {
+    "revenues":[],
+    "early_payment" :[],
+    "late_payment": [
+	{"on": "2015-09-01",
+	 "amount": "6500"}
+    ],
+    "credit_request":[]})
+var payment_schedule = calculator.calculate(my_term_sheet);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
+});
+show_apr(calculator, payment_schedule);
+console.log()
+

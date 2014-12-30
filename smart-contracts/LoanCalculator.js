@@ -45,6 +45,7 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     this.current_event = 0;
     this.late_balance = 0.0;
     this.late_principal = 0.0;
+    var obj = this;
     var prev_date = undefined;
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
@@ -56,7 +57,12 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 					term_sheet.annual_interest_rate,
 					term_sheet.compound_per_year,
 					term_sheet.day_count_convention) * 
-		this.balance;
+		(this.balance - this.late_balance) +
+		this.compounding_factor(prev_date,
+					k,
+					term_sheet.late_annual_interest_rate,
+					term_sheet.late_compound_per_year,
+					term_sheet.late_day_count_convention);
             this.balance = this.balance + interest;
 	}
         i.forEach(function(j){
@@ -65,10 +71,22 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 		return;
 	    } else if (payment.constructor === Array) {
 		payment.forEach(function(i) {
+		    if (payment.late_balance === undefined) {
+			payment.late_balance = obj.late_balance;
+		    }
+		    if (payment.late_principal === undefined) {
+			payment.late_principal = obj.late_principal;
+		    }
 		    payment_schedule.push(payment);
 		}
 			       );
 	    } else {
+		if (payment.late_balance === undefined) {
+		    payment.late_balance = obj.late_balance;
+		}
+		if (payment.late_principal === undefined) {
+		    payment.late_principal = obj.late_principal;
+		}
                 payment_schedule.push(payment);
 	    }
 	});
@@ -232,10 +250,15 @@ LoanCalculator.prototype.amortize = function(params) {
 	    (1.0 - Math.pow(1 + compounding_factor, -npayments)) * p
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
-	    o.add_to_event_table(params.payment_func)({"on":d, 
-						       "amount" : payment, 
-						       "note" : params.note,
-						       "prepend" : "true"});
+	    var payment_info = {};
+	    payment_info.on = d;
+	    payment_info.amount = payment;
+	    payment_info.prepend = true;
+	    payment_info.interest_payment_required = 
+		params.interest_payment_required;
+	    payment_info.principal_payment_required = 
+		params.principal_payment_required;
+	    o.add_to_event_table(params.payment_func)(payment_info);
 	    d = o.add_duration(d, params.interval);
 	}
     }
