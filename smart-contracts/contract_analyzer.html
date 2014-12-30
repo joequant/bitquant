@@ -49,11 +49,11 @@ var analyze;
 require ([
     "./TermSheet",
     "./LoanCalculator",
-"./Notes",
-"markdown",
-"append-grid",
-"polyfiller",
-"collapse"], function(TermSheet, LoanCalculator, Notes) {
+    "./Notes",
+    "markdown",
+    "append-grid",
+    "polyfiller",
+    "collapse"], function(TermSheet, LoanCalculator, Notes) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
     var my_term_sheet = new TermSheet();
@@ -85,7 +85,7 @@ require ([
 	    $('#item').append("<td>principal</td>");
 	    $('#item').append("<td>interest</td>");
 	    $('#item').append("<td>balance</td>");
-	    $('#item').append("<td>balance payment</td>");
+	    $('#item').append("<td>principal payment</td>");
 	    $('#item').append("<td>interest payment</td>");
 	    $('#item').append("</tr>");
 	    var payment_schedule = calculator.calculate(my_term_sheet);
@@ -104,7 +104,7 @@ require ([
 				+ "</td><td class='number'>" +
 				Number(i.balance).toFixed(2)
 				+ "</td><td class='number'>" +
-				Number(i.balance_payment).toFixed(2)
+				Number(i.principal_payment).toFixed(2)
 				+ "</td><td class='number'>" +
 				Number(i.interest_payment).toFixed(2)
 				+ "</td><td>" +

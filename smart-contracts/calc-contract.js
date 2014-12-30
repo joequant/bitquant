@@ -20,7 +20,7 @@ var show_line = function(i) {
 		Number(i.principal).toFixed(2),
 		Number(i.interest_accrued).toFixed(2),
 		Number(i.balance).toFixed(2),
-		Number(i.balance_payment).toFixed(2),
+		Number(i.principal_payment).toFixed(2),
 		Number(i.interest_payment).toFixed(2),
 		note);
 };
