@@ -381,46 +381,37 @@ TermSheet.prototype.payments = function(calc) {
 			  [1, 'year']));
     calc.payment({"on":final_payment_date,
                   "amount":calc.remaining_balance(),
-                  "note":"Required final payment",
-		  "interest_payment_required" : true,
-		  "principal_payment_required": true});
+                  "note":"Required final payment"});
 
     // The borrower make early payments at any time.
     this.early_payment.forEach(function(i) {
-	i.interest_payment_required = false;
-	i.principal_payment_required = false;
+	i.required = 0.0;
         calc.payment(i);
     });
 
     var payment_function = function(calc, params) {
 	var payment = calc.extract_payment(params);
+
 	var principal = calc.principal;
 	var late_balance = calc.late_balance;
 	var interest_accrued = calc.balance - calc.principal;
+
 	if (payment > calc.balance) {
             payment = calc.balance;
 	}
-
+	var required_payment = calc.extract_payment(params.required);
+	if (required_payment === undefined) {
+	    required_payment = payment;
+	}
 	var interest_payment = 0.0;
 	var principal_payment = 0.0;
-	var required_payment = 0.0;
 
 	if (payment > interest_accrued) {
 	    interest_payment = interest_accrued;
 	    principal_payment = payment - interest_accrued;
-
 	} else {
 	    interest_payment = payment;
 	    principal_payment = 0.0;
-	}
-
-	if (params.principal_payment_required === true) {
-	    required_payment = principal_payment + interest_payment 
-		+ late_balance;
-	} else if (params.interest_payment_required === true) {
-	    required_payment = interest_payment + late_balance;
-	} else {
-	    required_payment = late_balance;
 	}
 
 	if (contains(calc.term_sheet.skip_principal, params.on)
@@ -443,7 +434,6 @@ TermSheet.prototype.payments = function(calc) {
 	
 	calc.balance = calc.balance - payment;
 
-	
 	if (payment >=  interest_accrued) {
 	    calc.principal = calc.principal - payment + interest_accrued;
 	}
@@ -458,7 +448,7 @@ TermSheet.prototype.payments = function(calc) {
 	    calc.late_balance = calc.late_balance + required_payment - 
 		payment;
 	}
-	if (required_payment > 0) {
+	if (payment > 0) {
             return {"event":"Payment",
                     "on":params.on,
                     "payment":payment,
@@ -479,8 +469,7 @@ TermSheet.prototype.payments = function(calc) {
                    "amount": calc.remaining_balance(),
                    "payments" : 8,
                    "interval" : [1, "month"],
-		   "interest_payment_required" : true,
-		   "principal_payment_required" : false,
+		   "required" : calc.accrued_interest(),
 		   "payment_func" : payment_function});
 
     if (this.revenues == undefined) {
@@ -512,9 +501,7 @@ TermSheet.prototype.payments = function(calc) {
 	    {"on" : payment_date,
              "amount" : calc.multiply(calc.remaining_balance(),
 				      multiplier),
-	     "note" : ("Required payment " + (i+1).toString()),
-	     "interest_payment_required" : true,
-	     "principal_payment_required": true });
+	     "note" : ("Required payment " + (i+1).toString())});
 	i++;
     });
 }

@@ -62,7 +62,8 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
 					k,
 					term_sheet.late_annual_interest_rate,
 					term_sheet.late_compound_per_year,
-					term_sheet.late_day_count_convention);
+					term_sheet.late_day_count_convention) *
+		this.late_balance;
             this.balance = this.balance + interest;
 	}
         i.forEach(function(j){
@@ -254,10 +255,8 @@ LoanCalculator.prototype.amortize = function(params) {
 	    payment_info.on = d;
 	    payment_info.amount = payment;
 	    payment_info.prepend = true;
-	    payment_info.interest_payment_required = 
-		params.interest_payment_required;
-	    payment_info.principal_payment_required = 
-		params.principal_payment_required;
+	    payment_info.required = 
+		params.required;
 	    o.add_to_event_table(params.payment_func)(payment_info);
 	    d = o.add_duration(d, params.interval);
 	}
