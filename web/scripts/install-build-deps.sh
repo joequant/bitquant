@@ -35,6 +35,9 @@ OPENGAMMA_PKGS="maven \
   aether-transport-http \
   aether-transport-wagon \
   python-py4j \
+  fop \
+  postgresql9.3-devel \
+  fudge-devel \
   $JAVA"
 
 while true; do
@@ -86,10 +89,9 @@ $SUDO urpmi --no-recommends \
 $URPMI_OPTIONS \
 $MY_MIFOS_PKGS \
 $MY_OPENGAMMA_PKGS \
-fop \
 nodejs \
 gcc-c++ \
-ipython make postgresql9.3-devel \
+ipython make \
 krb5-appl-clients \
 python-flask \
 python-pexpect \
@@ -97,7 +99,6 @@ R-base \
 r-quantlib \
 vim-minimal \
 rstudio-server \
-fudge-devel \
 log4cxx-devel \
 postgresql9.3-server \
 python-pyzmq \
