@@ -125,6 +125,8 @@ python-statsmodels \
 python-quantlib \
 python-scikits-learn \
 python-pyalgotrade \
+python-quandl \
+python-rpy2 \
 curl-devel \
 ajenti \
 dokuwiki-plugin-auth \
