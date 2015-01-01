@@ -11,5 +11,5 @@ export HOME=$MY_HOME
 GIT_DIR=$MY_HOME/git/bitquant
 WEB_DIR=$MY_HOME/git/bitquant/web
 LOG_DIR=$WEB_DIR/log
-INSTALL_MIFOS=true
+INSTALL_MIFOS=false
 INSTALL_OPENGAMMA=false
