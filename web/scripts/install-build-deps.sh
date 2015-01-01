@@ -134,7 +134,11 @@ icu-devel \
 python-sympy \
 libpcre-devel \
 liblzma-devel \
-libbzip2-devel 
+libbzip2-devel \
+zeromq-devel
+
+#zeromq-devel for R kernel
+
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
