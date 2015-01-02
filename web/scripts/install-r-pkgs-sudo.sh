@@ -7,13 +7,17 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 SCRIPT_DIR=$1
 ME=$2
-R_PKGS="bitops caTools devtools digest evaluate formatR highr jsonlite knitr htmltools httpuv memoise mime Rcpp RJSONIO rmarkdown stringr testthat whisker xtable shiny yaml"
+R_PKGS="IRdisplay IRkernel Quandl R6 RCurl base64 bitops caTools devtools digest evaluate formatR highr httr jsonlite knitr htmltools httpuv markdown memoise mime Rcpp RJSONIO rmarkdown rstudioapi rzmq stringr uudid testthat whisker xtable xts shiny yaml zoo"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
 else
 LIBDIR="lib"
 fi
 
+# Without this the installation will try to put the R library in the
+# system directories where it does not have permissions
+
+R_VERSION=$(R --version | head -1 | cut -d \  -f 3 | awk -F \. {'print $1"."$2'})
 pushd $SCRIPT_DIR > /dev/null
 LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
 

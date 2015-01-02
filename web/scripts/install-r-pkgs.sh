@@ -4,7 +4,6 @@
 echo "Running r installation"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=`stat -c "%U" $SCRIPT_DIR/install-r-pkgs.sh`
-R_PKGS="bitops caTools devtools digest evaluate formatR highr jsonlite knitr htmltools httpuv memoise mime Rcpp RJSONIO rmarkdown stringr testthat whisker xtable shiny yaml"
 
 pushd $SCRIPT_DIR > /dev/null
 . norootcheck.sh
