@@ -135,9 +135,11 @@ python-sympy \
 libpcre-devel \
 liblzma-devel \
 libbzip2-devel \
-zeromq-devel
+zeromq-devel \
+libxml2-devel 
 
 #zeromq-devel for R kernel
+#libxml2-devel for RCurl
 
 
 #cmake is for building shiny-server
