@@ -14,8 +14,7 @@ What is unique about bittrader?
 
 Bittrader pulls together several different technologies into one system
 
-  * opengamma - backend engine
   * jqueryui (and friends) - display
   * mageia - infrastructure
-  * rstudio - data exploration/reports
+  * ipython/irkernel - data exploration/reports
   * quantlib - algo trading 

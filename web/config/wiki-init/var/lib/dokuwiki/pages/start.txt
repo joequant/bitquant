@@ -9,7 +9,7 @@
 <br><br>
 <a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
 
-<a class="button primary large" target="_blank" href="/rstudio">R statistics engine</a>
+<a class="button primary large" target="_blank" href="/irkernel">R statistics engine</a>
 <a class="button primary large" target="_blank" href="/shiny">Shiny</a>
 <!--<a class="button primary large" target="_blank"
 href="/calc/_new">Spreadsheet</a>
