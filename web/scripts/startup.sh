@@ -42,7 +42,7 @@ fi
 if [ -f /usr/bin/ipython ] ; then
 echo "Restarting ipython"
 mkdir -p ~/ipython
-mkdir -p ~/ikernel
+mkdir -p ~/irkernel
 # Override mathjax so that ipython will pull the a secure mathjax to avoid 
 # failures if ipython is pulled through https
 
