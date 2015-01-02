@@ -136,10 +136,12 @@ libpcre-devel \
 liblzma-devel \
 libbzip2-devel \
 zeromq-devel \
-libxml2-devel 
+libxml2-devel \
+unzip
 
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
+#unzip for R devtool builds
 
 
 #cmake is for building shiny-server
