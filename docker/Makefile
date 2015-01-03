@@ -1,10 +1,10 @@
-bitstation-prod-nocache: NOCACHE=true
+bitstation-prod-nocache: ARGS="--no-cache=true"
 bitstation-prod-nocache: bitstation-prod
 
-bitstation-nocache: NOCACHE=true 
+bitstation-nocache: ARGS="--no-cache=true"
 bitstation-nocache: bitstation
 
-bitstation-example-nocache: NOCACHE=true
+bitstation-example-nocache: ARGS="--no-cache=true"
 bitstation-example-nocache: bitstation-example
 
 ifeq ($(NOCACHE),true)

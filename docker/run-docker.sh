@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=bitstation
+IMAGE=bitstation-prod
 if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
