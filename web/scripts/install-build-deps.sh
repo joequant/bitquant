@@ -124,6 +124,7 @@ python-qstk \
 python-statsmodels \
 python-quantlib \
 python-scikits-learn \
+python-patsy \
 python-pyalgotrade \
 python-quandl \
 python-rpy2 \
