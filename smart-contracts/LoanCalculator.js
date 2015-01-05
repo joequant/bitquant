@@ -264,14 +264,24 @@ LoanCalculator.prototype.amortize = function(params) {
     this.add_to_event_table(_amortize)(params);
 }
 
+LoanCalculator.prototype.set_parameters = function(term_sheet, params) {
+    this.set_items(term_sheet, term_sheet.contract_parameters, params);
+}
+
 LoanCalculator.prototype.set_events = function(term_sheet, events) {
-    term_sheet.event_spec.forEach(function(i) {
+    this.set_items(term_sheet, term_sheet.event_spec, events);
+}
+
+LoanCalculator.prototype.set_items = function(term_sheet, event_spec, events) {
+    event_spec.forEach(function(i) {
 	if (events[i.name] == undefined &&
 	    i.unfilled_value != undefined) {
 	    term_sheet[i.name] = i.unfilled_value;
 	    return;
 	}
-
+	if (events[i.name] == undefined) {
+	    return;
+	}
 	if (i.type == "grid") {
 	    var v = events[i.name];
 	    term_sheet[i.name] = [];
@@ -290,6 +300,15 @@ LoanCalculator.prototype.set_events = function(term_sheet, events) {
 		});
 		term_sheet[i.name].push(row);
 	    });
+	    return;
+	} else if (i.type == "date") {
+	    var vars = events[i.name].split("-");
+	    term_sheet[i.name] =
+		new Date(vars[0], vars[1]-1, vars[2]);
+	} else if (i.name = "amount") {
+	    term_sheet[i.name] = Number(events[i.name]);
+	} else {
+	    term_sheet[i.name] = events[i.name];
 	}
     });
 }

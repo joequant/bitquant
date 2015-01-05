@@ -63,6 +63,8 @@ require ([
     analyze = function() {
         var events = {
 	};
+	var params = {
+	}
 	my_term_sheet.event_spec.forEach(function(i) {
 	    if (i.type == "grid") {
 		var name = "#" + i.name + "_grid";
@@ -74,8 +76,27 @@ require ([
 	    }
 	});
 
+	my_term_sheet.contract_parameters.forEach(function(i) {
+	    if (i.scenario !== true) {
+		return;
+	    }
+	    if (i.type == "grid") {
+		var name = "#" + i.name + "_scenario";
+		params[i.name] = [];
+
+		$(name).appendGrid('getAllValue').forEach(function(j) {
+		    params[i.name].push(j);
+		});
+		return;
+	    }
+	    var value = $("#" + i.name + "_scenario").val();
+	    if (value !== undefined && value !== "") {
+		params[i.name] = value;
+	    }
+	});
 	var calculator = new LoanCalculator();
 	calculator.set_events(my_term_sheet, events);
+	calculator.set_parameters(my_term_sheet, params);
 	$('#item').html("");
         var payments;
 	try {
@@ -155,6 +176,10 @@ require ([
 		if (my_notes[i.name] != undefined) {
 		    $(div).append(" - ");
 		    $(div).append(my_notes[i.name]);
+		}
+		if (i.scenario == true) {
+		    $(div).append("- <input id='" + i.name + "_scenario' name='" +
+				  i.name + "_scenario' type='" + i.type + "'/>");
 		}
 		$(div).append("<br>");
 	    }
