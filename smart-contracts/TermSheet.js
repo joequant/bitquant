@@ -43,6 +43,7 @@ AGREED TERMS
   * HK$: the lawful currency of Hong Kong.  
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
   * Loan: the principal amount of the loan made or to be made by the Lender to th**e Borrower under this Agreement or (as the context requires) the principal amount outstanding for the time being of that loan.  
+  * Product: watermelon compression system
   * XBT Exchange Rate:  the 24-hour average price in USD/XBT as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
 
 2. Interpretation
