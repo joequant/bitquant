@@ -231,6 +231,14 @@ LoanCalculator.prototype.add_to_balance = function(params) {
     this.add_to_event_table(_payment)(params);
 }
 
+LoanCalculator.prototype.note = function(params) {
+    var _payment = function(o, params) {
+        return {"event":"Note",
+                "note":params.note};
+    };
+    this.add_to_event_table(_payment)(params);
+}
+
 LoanCalculator.prototype.amortize = function(params) {
     if (params.payment_func === undefined) {
 	params.payment_func = _payment;

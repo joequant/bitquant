@@ -28,7 +28,7 @@ company number 2334455 whose registered office is at 221B Baker Street.
 
 BACKGROUND
 
-The Lender has agreed to provide the Borrower with an unsecured term loan facility of HK$[ ]
+The Lender has agreed to provide the Borrower with an unsecured term loan facility according to the terms specified in Schedule A.  
 
 AGREED TERMS
 
@@ -47,17 +47,15 @@ AGREED TERMS
 
 2. Interpretation
 --------------
-2.1 In this Agreement:
+2.1 In this Agreement:  
 2.1.1 unless the context otherwise requires, words in the singular shall include the plural and in the plural shall include the singular;  
-2.1.2 unless the context otherwise requires, a reference to one gender shall include a reference to the other genders; 
-2.1.3 a reference to a party shall include that party's successors, permitted assigns and permitted transferees;
-2.1.4 a reference to a statute or statutory provision is a reference to it as amended, extended or re-enacted from time to time;
-2.1.5 a reference to writing  or written includes mail, fax and e-mail; 
-2.1.6 unless the context otherwise requires, a reference to a clause or Schedule is to a clause of, or Schedule to, this Agreement; and
-2.1.7 any words following the terms including, include, in particular, for example  or any similar expression shall be construed as illustrative and shall not limit the sense of the words, description, definition, phrase or term preceding those terms.
-
+2.1.2 unless the context otherwise requires, a reference to one gender shall include a reference to the other genders;  
+2.1.3 a reference to a party shall include that party's successors, permitted assigns and permitted transferees;  
+2.1.4 a reference to a statute or statutory provision is a reference to it as amended, extended or re-enacted from time to time;  
+2.1.5 a reference to writing  or written includes mail, fax and e-mail;  
+2.1.6 unless the context otherwise requires, a reference to a clause or Schedule is to a clause of, or Schedule to, this Agreement; and  
+2.1.7 any words following the terms including, include, in particular, for example  or any similar expression shall be construed as illustrative and shall not limit the sense of the words, description, definition, phrase or term preceding those terms.  
 2.2 The Schedules are written in the javascript, and shall form part of this Agreement and shall have effect as if set out in full in the body of this Agreement. Any reference to this Agreement includes the Schedules. 
-
 2.3 In case of any inconsistency between the body of the Agreement and the Schedules, the body of the Agreement shall prevail, in which case the parties may amend the Schedules in good faith to reflect the body of the Agreement. 
 
 3. Facility
@@ -75,10 +73,8 @@ AGREED TERMS
 
 6. Interest
 --------
-
-6.1 The Borrower shall pay interest on the Loan at the rate of [10]% per annum.
-6.2 Interest (a) shall accrue daily, (b) shall be payable monthly, in arrear, in accordance with Schedule [A] of this Agreement, and (c) shall be paid in bitcoins based on the BTC Exchange Rate.   
-6.3 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount shall accrue daily, from the date of non-payment to the date of actual payment (both before and after judgment), at 5% above the rate specified in clause 6.1 [as calculated in accordance with Schedule [C]]. 
+6.1 Interest accrue and be payable in accordance with Schedule [A] of this Agreement, and (c) shall be paid in bitcoins based on the BTC Exchange Rate.   
+6.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule [A] of this Agreement.
 
 7. Costs
 -----
@@ -87,7 +83,7 @@ AGREED TERMS
 
 8. Repayment
 ---------
-8.1 The Borrower shall repay the Loan as specified in the attached Schedule [B].  
+8.1 The Borrower shall repay the Loan as specified in the attached Schedule [A].  
 8.2 All payments made by the Borrower under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
 
 9. Representations, Warranties and Undertakings
@@ -96,12 +92,10 @@ AGREED TERMS
 (a) is a duly incorporated limited liability company validly existing under the laws of its jurisdiction of incorporation;  
 (b) has the power to enter into, deliver and perform, and has taken all necessary action to authorise its entry into, delivery and performance of, this Agreement; and  
 (c) has obtained all required authorisations to enable it to enter into, exercise its rights and comply with its obligations in this Agreement.  
-
 9.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
 (a) its constitutional documents;  
 (b) any agreement or instrument binding on it or its assets or constitute a default or termination event (however described) under any such agreement or instrument; or  
 (c) any law or regulation or judicial or official order, applicable to it.
-
 9.3 The information, in written or electronic format, supplied by, or on its behalf, to the Lender in connection with this Agreement (including but not limited to the documents set out in Schedule 1) was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
 (a) if it was factual information, complete, true and accurate in all material respects;  
 (b) if it was a financial projection or forecast, prepared on the basis of recent historical information and on the basis of reasonable assumptions and was fair and made on reasonable grounds; and  
@@ -145,7 +139,7 @@ under this clause shall not affect the legality, validity and enforceability of 
 
 15. Notices
 -------
-15.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:
+15.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
 (a) in writing;
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and
 (c) sent to:
@@ -165,30 +159,23 @@ party to the other from time to time.
 15.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:
 
 (a) if delivered by hand, at the time it is left at the relevant address;
-
 (b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and
-
 (c) if sent by fax or email, when received in legible form.
-
 15.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.
-
 15.4 Any notice or other communication given to the Lender shall be deemed to have been received only on actual receipt.
 
 16.Governing law and jurisdiction
 ------------------------------
 16.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the law of Hong Kong.  
-
 16.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Lender to take proceedings against the Borrower in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
-
 This Agreement has been entered into on the date stated at the beginning of it.
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
 define(function() {
-function TermSheet() {
-//Contract text
+function Schedule_A() {
+    //S.1
     this.contract_text = contract_text;
-// The interest will be 10 percent per annum compounded monthly.
     this.annual_interest_rate = 10.0;
     this.compound_per_year = 12;
     this.day_count_convention = "30/360US";
@@ -205,7 +192,7 @@ function TermSheet() {
 	    { "revenue" : 750000.00, "multiplier" : 0.5},
 	    { "revenue" : 1500000.00, "multiplier" : 1.0},
 	];
-    this.loan_duration = [ 1, 'year']
+    this.max_loan_duration = [ 1, 'year']
 
     this.contract_parameters = [
 	{
@@ -242,8 +229,8 @@ function TermSheet() {
 	    type: "number"
 	},
 	{
-	    name: "loan_duration",
-	    display: "Loan duration",
+	    name: "max_loan_duration",
+	    display: "Max Loan duration",
 	    type: "duration"
 	},
 	{ 
@@ -274,11 +261,7 @@ function TermSheet() {
 	    type: "note"
 	},
 	{
-	    name: "standard_payment",
-	    type: "note"
-	},
-	{
-	    name: "accelerated_payment",
+	    name: "terms",
 	    type: "note"
 	},
 	{
@@ -334,11 +317,7 @@ function TermSheet() {
 }
 
 
-// Any principal amounts in this loan will be paid in Hong Kong
-// dollars.  Any accured interest shall be paid in the form of
-// Bitcoin with the interest rate calculated in Hong Kong dollars.
-
-TermSheet.prototype.process_payment = function(i) {
+Schedule_A.prototype.process_payment = function(i) {
     if (i.event == "Payment") {
 	var principal_payment = 0.0;
 	var interest_payment = 0.0;
@@ -358,13 +337,13 @@ TermSheet.prototype.process_payment = function(i) {
     return i;
 }
 
-TermSheet.prototype.payments = function(calc) {
-    // The lender agrees to provide the borrower the initial loan
-    // amount on the initial date 
+Schedule_A.prototype.payments = function(calc) {
+    // S.2
     calc.fund({"on" : this.initial_loan_date,
                "amount" : this.initial_loan_amount,
                "note" : "Initial funding"});
 
+    // S.3
     obj = this;
     this.credit_request.forEach(function (i) {
 	i.amount = calc.limit_balance(i.amount, 
@@ -373,9 +352,7 @@ TermSheet.prototype.payments = function(calc) {
         calc.fund(i);
     });
 
-    // The borrower agrees to pay back the any remaining principal
-    // and accrued interest on the first of the month following the
-    // after one year of the date of the loan.
+    // S.4
     var final_payment_date =
 	following_1st_of_month(calc.add_duration(this.initial_loan_date,
 			  [1, 'year']));
@@ -383,12 +360,13 @@ TermSheet.prototype.payments = function(calc) {
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
 
-    // The borrower make early payments at any time.
+    // S.5
     this.early_payment.forEach(function(i) {
 	i.required = 0.0;
         calc.payment(i);
     });
 
+    // S.6
     var payment_function = function(calc, params) {
 	var payment = calc.extract_payment(params);
 
@@ -460,7 +438,8 @@ TermSheet.prototype.payments = function(calc) {
 	}
 
     }
-    
+
+    // S.7
     var start_payment_date = 
 	following_1st_of_month(
 	    calc.add_duration(this.initial_loan_date, [4, "months"]));
@@ -476,6 +455,7 @@ TermSheet.prototype.payments = function(calc) {
 	return;
     }
 
+    // S.8
     var i = 0;
     var obj = this;
     this.getTargetHitDates().forEach(function(target_hit_date) {
@@ -506,9 +486,7 @@ TermSheet.prototype.payments = function(calc) {
     });
 }
 
-// This routine returns the dates at which the targets are hit.
-
-TermSheet.prototype.getTargetHitDates = function () {
+Schedule_A.prototype.getTargetHitDates = function () {
     var target_hit_dates = [];
     var total_revenue = 0.0;
     var revenue_idx = 0;
@@ -558,5 +536,5 @@ function following_1st_of_month(a) {
 function new_date(year, month, day) {
     return new Date(year, month-1, day);
 }
-return TermSheet;
+return Schedule_A;
 });
