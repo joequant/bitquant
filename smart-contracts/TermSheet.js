@@ -18,13 +18,15 @@ This FACILITY AGREEMENT is dated ****
 
 BETWEEN
 
-1) YOYODYNE PROPULSION SYSTEMS Ltd incorporated and registered in Hong
-Kong with company number 1234552 whose registered office is at 1600
-Pennsylvia Avenue (BORROWER)
+1) YOYODYNE PROPULSION SYSTEMS LTD. incorporated and registered in
+Hong Kong with company number 1234552 whose registered office is at
+3/F, Nam Wo Hong Building 148 Wing Lok Street Sheung Wan, Hong Kong
+(BORROWER)
 
-2) The BANZAI INSTITUTE incorporated and registered in Hong Kong with
-company number 2334455 whose registered office is at 221B Baker Street.
-(Lender).
+2) The BANZAI INSTITUTE FOR BIOMEDICAL ENGINEERING AND STRATEGIC
+INFORMATION LTD.  incorporated and registered in Hong Kong with
+company number 2334455 whose registered office is at 3/F, Citicorp
+Centre, 18 Whitfield Road, Tin Hau, Hong Kong.  (LENDER).
 
 BACKGROUND
 
@@ -35,15 +37,13 @@ AGREED TERMS
 1. Definitions
 -----------
 1.1 The following definitions apply in this Agreement:  
-  * Availability Period: the period from and including the date of this Agreement to and including the Final Repayment Date.  
-  * BTC Exchange Rate:  the 24-hour average price in USD/BTC as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
   * Event of Default: any event or circumstance listed in clause 10.  
   * Facility: the term loan facility made available under this Agreement.  
-  * Final Repayment Date: the date falling on the first annual anniversary of the Commencement Date.  
   * HK$: the lawful currency of Hong Kong.  
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
   * Loan: the principal amount of the loan made or to be made by the Lender to th**e Borrower under this Agreement or (as the context requires) the principal amount outstanding for the time being of that loan.  
+  * XBT Exchange Rate:  the 24-hour average price in USD/XBT as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
 
 2. Interpretation
 --------------
@@ -73,7 +73,7 @@ AGREED TERMS
 
 6. Interest
 --------
-6.1 Interest accrue and be payable in accordance with Schedule [A] of this Agreement, and (c) shall be paid in bitcoins based on the BTC Exchange Rate.   
+6.1 Interest accrue and be payable in accordance with Schedule [A] of this Agreement.
 6.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule [A] of this Agreement.
 
 7. Costs
@@ -140,29 +140,25 @@ under this clause shall not affect the legality, validity and enforceability of 
 15. Notices
 -------
 15.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
-(a) in writing;
-(b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and
-(c) sent to:
+(a) in writing;   
+(b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
+(c) sent to:  
 the Borrower at:
-Address: Yoyodyne Propulsion Systems
-Email: Bam@aexample.com
-Attention:  John Bigboote
-
+Address: Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey
+Email: bigboote@aexample.com  
+Attention:  John Bigboote    
 the Lender at:
-Address:221B Baker Street
-Email: drwatson@example.com
-Attention:  Dr. Buckaroo Banzai
-
+Address: Banzai Institute, 1 Banzai Road, Holland Township, New Jersey
+Email: buckaroo@example.com  
+Attention:  Dr. Buckaroo Banzai    
 or to any other address or fax number as is notified in writing by one
-party to the other from time to time.
-
-15.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:
-
-(a) if delivered by hand, at the time it is left at the relevant address;
-(b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and
-(c) if sent by fax or email, when received in legible form.
-15.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.
-15.4 Any notice or other communication given to the Lender shall be deemed to have been received only on actual receipt.
+party to the other from time to time.  
+15.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
+(a) if delivered by hand, at the time it is left at the relevant address;  
+(b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and  
+(c) if sent by fax or email, when received in legible form.  
+15.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.  
+15.4 Any notice or other communication given to the Lender shall be deemed to have been received only on actual receipt.  
 
 16.Governing law and jurisdiction
 ------------------------------
@@ -170,7 +166,25 @@ party to the other from time to time.
 16.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Lender to take proceedings against the Borrower in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
 This Agreement has been entered into on the date stated at the beginning of it.
 
+17.Additional provisions
+------------------------
+17.1 For the purpose of Schedule A, the revenue shall be the
+culmulative gross receipts received by the borrower in conjunction
+with the sales of the product.  
+17.2 During the term of the loan, the borrower agrees to provide the
+lender on at least a monthly basis an accounting gross receipts
+received in conjuctions with the sales of the product, and to notify
+the lender within three (3) business days if the borrower has
+reasonable reason to believe that the culmulative gross receipts has
+exceeded the revenue targets specified in this contract.  
+17.3 Any principal due under this agreement may be paid via HKD or via
+bitcoins based on the XBT Exchange Rate.  Any interest or late fees
+due under this agreement must by paid via bitcoins based on the XBT
+Exchange Rate.
+
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+// SCHEDULE A
 
 define(function() {
 function Schedule_A() {
