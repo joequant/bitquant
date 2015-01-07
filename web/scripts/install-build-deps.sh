@@ -109,7 +109,6 @@ python-tornado \
 python-mglob \
 dokuwiki-plugin-s5  \
 python-matplotlib \
-python-pyro4 \
 python-pytz \
 python-pip \
 python-devel \
