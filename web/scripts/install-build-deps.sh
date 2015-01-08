@@ -22,6 +22,15 @@ OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$
 
 eval set -- "$OPTS"
 
+#PYTHON=python
+#IPYTHON=ipython
+#PYTHON_COMPAT=python-backports-ssl_match_hostname
+#ADMIN=ajenti
+PYTHON=python3
+IPYTHON=python3-ipython
+PYTHON_COMPAT=
+ADMIN=webmin
+
 MIFOS_PKGS="tomcat mysql mysql-connector-java unzip $JAVA"
 OPENGAMMA_PKGS="maven \
   maven-clean-plugin \
@@ -34,10 +43,12 @@ OPENGAMMA_PKGS="maven \
   aether-transport-file \
   aether-transport-http \
   aether-transport-wagon \
-  python-py4j \
+  $PYTHON-py4j \
   fop \
   postgresql9.3-devel \
   fudge-devel \
+  log4cxx-devel \
+  postgresql9.3-server \
   $JAVA"
 
 while true; do
@@ -78,8 +89,8 @@ apache-mod_authnz_external \
 apache-mod_ssl \
 avahi \
 dokuwiki \
-python-flask \
-python-pexpect
+$PYTHON-flask \
+$PYTHON-pexpect
 
 #other packages
 $SUDO urpmi --no-recommends \
@@ -91,47 +102,44 @@ $MY_MIFOS_PKGS \
 $MY_OPENGAMMA_PKGS \
 nodejs \
 gcc-c++ \
-ipython make \
+make \
 krb5-appl-clients \
-python-flask \
-python-pexpect \
+$PYTHON-flask \
+$PYTHON-pexpect \
 R-base \
 r-quantlib \
 vim-minimal \
-rstudio-server \
-log4cxx-devel \
-postgresql9.3-server \
-python-pyzmq \
+$PYTHON-pyzmq \
 dokuwiki \
 cmake \
-ipython \
-python-tornado \
-python-mglob \
+$IPYTHON \
+$PYTHON-tornado \
+$PYTHON-mglob \
 dokuwiki-plugin-s5  \
-python-matplotlib \
-python-pytz \
-python-pip \
-python-devel \
+$PYTHON-matplotlib \
+$PYTHON-pytz \
+$PYTHON-pip \
+$PYTHON-devel \
 readline-devel \
 lapack-devel \
-python-pandas \
-python-zipline \
-python-backports-ssl_match_hostname \
-python-tables \
-python-scipy \
-python-qstk \
-python-statsmodels \
-python-quantlib \
-python-scikits-learn \
-python-patsy \
-python-pyalgotrade \
-python-quandl \
-python-rpy2 \
+$PYTHON-pandas \
+$PYTHON-zipline \
+$PYTHON_COMPAT \
+$PYTHON-tables \
+$PYTHON-scipy \
+$PYTHON-qstk \
+$PYTHON-statsmodels \
+$PYTHON-quantlib \
+$PYTHON-scikits-learn \
+$PYTHON-patsy \
+$PYTHON-pyalgotrade \
+$PYTHON-quandl \
+$PYTHON-rpy2 \
 curl-devel \
-ajenti \
+$ADMIN \
 dokuwiki-plugin-auth \
 icu-devel \
-python-sympy \
+$PYTHON-sympy \
 libpcre-devel \
 liblzma-devel \
 libbzip2-devel \
@@ -142,7 +150,6 @@ unzip
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
 #unzip for R devtool builds
-
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
