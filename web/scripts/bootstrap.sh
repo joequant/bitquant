@@ -40,6 +40,10 @@ fi
 echo "Set up wiki"
 sudo /usr/share/bitquant/conf.sh /wiki-unlock
 sudo /usr/share/bitquant/conf.sh /wiki-init
+
+echo "Set up webmin"
+sudo /usr/share/bitquant/conf.sh /webmin-init
+
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
 if [ -d $MY_HOME/ipython/examples ] ; then
