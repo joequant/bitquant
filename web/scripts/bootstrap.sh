@@ -41,8 +41,10 @@ echo "Set up wiki"
 sudo /usr/share/bitquant/conf.sh /wiki-unlock
 sudo /usr/share/bitquant/conf.sh /wiki-init
 
+if [ -f /usr/bin/webmin ] ; then
 echo "Set up webmin"
 sudo /usr/share/bitquant/conf.sh /webmin-init
+fi
 
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython

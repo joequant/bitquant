@@ -25,11 +25,11 @@ eval set -- "$OPTS"
 #PYTHON=python
 #IPYTHON=ipython
 #PYTHON_COMPAT=python-backports-ssl_match_hostname
-#ADMIN=ajenti
+ADMIN=ajenti
 PYTHON=python3
 IPYTHON=python3-ipython
 PYTHON_COMPAT=
-ADMIN=webmin
+#ADMIN=webmin
 
 MIFOS_PKGS="tomcat mysql mysql-connector-java unzip $JAVA"
 OPENGAMMA_PKGS="maven \
