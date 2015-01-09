@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from wsgiref.handlers import CGIHandler
 from flask import Flask, Response, request
 from werkzeug.utils import secure_filename
@@ -58,7 +58,7 @@ def refresh_scripts():
     for file in os.listdir(local_cgi_path):
         if file.endswith(".sh") or file.endswith(".py"):
             shutil.copy2(os.path.join(local_cgi_path, file), cgi_root())
-            os.chmod(os.path.join(cgi_root(), file), 0755)
+            os.chmod(os.path.join(cgi_root(), file), 0o755)
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
@@ -221,7 +221,7 @@ def generate_data_dump():
                                               "dump-data.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
-            print line.rstrip()
+            print(line.rstrip())
         yield "Return files"
         return
     return Response(dump_data(), mimetype="text/plain")
@@ -237,7 +237,7 @@ def generate_log_dump():
                                               "dump-log.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
-            print line.rstrip()
+            print(line.rstrip())
         yield "Return files"
         return
     return Response(dump_data(), mimetype="text/plain")
@@ -276,7 +276,7 @@ def install_data_dump():
                                  ],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
-            print line.rstrip()
+            print(line.rstrip())
         yield "Return files"
         return
     return Response(dump_data(), mimetype="text/plain")
@@ -298,11 +298,11 @@ def clear_data_dump():
 @app.route("/get-dump-files")
 def get_dump_files():
     filenames = next(os.walk(os.path.join(bitquant_root(), "web", "data")))[2]
-    filenames = filter(lambda x: ".tar.xz" in x, filenames)
+    filenames = [x for x in filenames if ".tar.xz" in x]
     return Response(json.dumps(filenames), mimetype='application/json')
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)
 elif __name__ == '__main__' and sys.argv[1] == "refresh-scripts":
-    print refresh_scripts()
+    print(refresh_scripts())
