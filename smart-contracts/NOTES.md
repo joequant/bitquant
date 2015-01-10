@@ -17,6 +17,60 @@ with a web browser.  I considered having a javascript compiled
 language like coffeescript, but the extra overhead in the compiler was
 problematic.
 
+WORDS TO AVOID THE WORD 
+
+Default - has completely different meanings in law and in computer
+programming.  This meant that I needed to avoid using that word.
+Default parameters can mean "the parameters used when someone doesn't
+fill in the form" or "the parameters used when someone doesn't perform
+the terms of the contract."
+
+Penalty or bonus - Contract drafter want to avoid the word bonus and
+really, really want to avoid the word penalty.  The trouble is that if
+you describe something as a bonus or penalty, you may run into legal
+limits as to what you can put as a bonus or penalty.  In particular,
+English contract law prohibits penalty clauses.  There are clauses
+that you can provide a penalty without a penalty clause.  Liquidated
+damages.  In this contract, the extra money is terms an accelerated
+payment. 
+
+STANDARD TERMS IN ENGLISH CONTRACT LAW
+
+Much of the agreement are designed to change certain standard
+provisions of English contract law.  English contract law has evolved
+over the last several hundred years, and there are some areas in which
+English contract law causes things that are unexpected unless the
+parties agree otherwise.  This include:
+
+The meaning of the term "including" - The word include is ambigious.
+If you say "X include Y and Z", that can be interpreted as meaning
+*only* Y and Z or things like Y and Z, and this is the way that
+"including" is usually interpreted by lawyers.  However, including can
+also mean "X, for example Y and Z."  Defining "including" or
+"includes" is important because that fixes the definition.  Note that
+the definition in this contract says "X including Y and Z" means X,
+however, if I say "including Y and Z" then anything that is not in Y
+and Z is listed.
+
+Postbox rule - The rule in English contract law is that if you give
+notice of something, the notice is valid when you put the letter in
+the post office.  What does that mean of e-mail?  There isn't a clear
+rule, so rather than have the court guess, you want to put the rule
+into the contract.
+
+Severability - If one part of the contract becomes impossible to
+execute, do you want the whole contract to be invalid, or to you want
+to try to work around the issue?  You can do both ways, but English
+courts tend to assume that if you can't perform part of a contract,
+that the whole thing becomes invalid.  This changes that assumption.
+
+Is e-mail writing? - If a contract requires "written notice" does that
+include e-mail, and fax.  You don't want to have a court guess, and
+English contract law provides no rule.  In this contract we have
+defined e-mail and fax was constituting "writing."  Note here that
+chat and SMS is *NOT* included as "writing".
+
+
 ANNOYANCES
 
 Markdown uses two spaces to separate paragraphs.

@@ -34,9 +34,15 @@ The Lender has agreed to provide the Borrower with an unsecured term loan facili
 
 AGREED TERMS
 
-1. Definitions
+1. Governing law and jurisdiction
+------------------------------
+1.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the law of Hong Kong.  
+1.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Lender to take proceedings against the Borrower in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
+This Agreement has been entered into on the date stated at the beginning of it.
+
+2. Definitions
 -----------
-1.1 The following definitions apply in this Agreement:  
+2.1 The following definitions apply in this Agreement:  
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
   * Event of Default: any event or circumstance listed in clause 10.  
   * Facility: the term loan facility made available under this Agreement.  
@@ -46,66 +52,66 @@ AGREED TERMS
   * Product: watermelon compression system
   * XBT Exchange Rate:  the 24-hour average price in USD/XBT as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
 
-2. Interpretation
+3. Interpretation
 --------------
-2.1 In this Agreement:  
-2.1.1 unless the context otherwise requires, words in the singular shall include the plural and in the plural shall include the singular;  
-2.1.2 unless the context otherwise requires, a reference to one gender shall include a reference to the other genders;  
-2.1.3 a reference to a party shall include that party's successors, permitted assigns and permitted transferees;  
-2.1.4 a reference to a statute or statutory provision is a reference to it as amended, extended or re-enacted from time to time;  
-2.1.5 a reference to writing  or written includes mail, fax and e-mail;  
-2.1.6 unless the context otherwise requires, a reference to a clause or Schedule is to a clause of, or Schedule to, this Agreement; and  
-2.1.7 any words following the terms including, include, in particular, for example  or any similar expression shall be construed as illustrative and shall not limit the sense of the words, description, definition, phrase or term preceding those terms.  
-2.2 The Schedules are written in the javascript, and shall form part of this Agreement and shall have effect as if set out in full in the body of this Agreement. Any reference to this Agreement includes the Schedules. 
-2.3 In case of any inconsistency between the body of the Agreement and the Schedules, the body of the Agreement shall prevail, in which case the parties may amend the Schedules in good faith to reflect the body of the Agreement. 
+3.1 In this Agreement:  
+3.1.1 unless the context otherwise requires, words in the singular shall include the plural and in the plural shall include the singular;  
+3.1.2 unless the context otherwise requires, a reference to one gender shall include a reference to the other genders;  
+3.1.3 a reference to a party shall include that party's successors, permitted assigns and permitted transferees;  
+3.1.4 a reference to a statute or statutory provision is a reference to it as amended, extended or re-enacted from time to time;  
+3.1.5 a reference to writing  or written includes mail, fax and e-mail;  
+3.1.6 unless the context othoerwise requires, a reference to a clause or Schedule is to a clause of, or Schedule to, this Agreement; and  
+3.1.7 any words following the terms including, include, in particular, for example  or any similar expression shall be construed as illustrative and shall not limit the sense of the words, description, definition, phrase or term preceding those terms.  
+3.2 The Schedules are written in the javascript, and shall form part of this Agreement and shall have effect as if set out in full in the body of this Agreement. Any reference to this Agreement includes the Schedules. 
+3.3 In case of any inconsistency between the body of the Agreement and the Schedules, the body of the Agreement shall prevail, in which case the parties may amend the Schedules in good faith to reflect the body of the Agreement. 
 
-3. Facility
+4. Facility
 --------
-3.1 The Lender grants to the Borrower an unsecured term  loan facility subject to the conditions, of this Agreement.
+4.1 The Lender grants to the Borrower an unsecured term  loan facility subject to the conditions, of this Agreement.
 
-4. Purpose
+5. Purpose
 -------
-4.1 The Borrower shall use all money borrowed under this Agreement for the sole purpose of expanding its business.  
-4.2 The Lender is not obliged to monitor or verify how any amount advanced under this Agreement is used.
+5.1 The Borrower shall use all money borrowed under this Agreement for the sole purpose of expanding its business.  
+5.2 The Lender is not obliged to monitor or verify how any amount advanced under this Agreement is used.
 
-5. Commencement
+6. Commencement
 ------------
-5.1 This Agreement shall be deemed to have commenced on the date of this Agreement.
+6.1 This Agreement shall be deemed to have commenced on the date of this Agreement.
 
-6. Interest
+7. Interest
 --------
-6.1 Interest accrue and be payable in accordance with Schedule [A] of this Agreement.
-6.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule [A] of this Agreement.
+7.1 Interest accrue and be payable in accordance with Schedule B of this Agreement.
+7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule C of this Agreement.
 
-7. Costs
+8. Costs
 -----
-7.1 The Lender shall bear all costs and expenses (together with any value added tax on them) that the Lender incurs in connection with the negotiation and preservation and enforcement of the Loan and/or this Agreement.  
-7.2 The Borrower shall pay any stamp, documentary and other similar duties and taxes (if any) to which this Agreement may be subject, or give rise and shall indemnify the Lender against any losses or liabilities that it may incur as a result of any delay or omission by the Borrower in paying any such duties or taxes.
+8.1 The Lender shall bear all costs and expenses (together with any value added tax on them) that the Lender incurs in connection with the negotiation and preservation and enforcement of the Loan and/or this Agreement.  
+8.2 The Borrower shall pay any stamp, documentary and other similar duties and taxes (if any) to which this Agreement may be subject, or give rise and shall indemnify the Lender against any losses or liabilities that it may incur as a result of any delay or omission by the Borrower in paying any such duties or taxes.
 
-8. Repayment
+9. Repayment
 ---------
-8.1 The Borrower shall repay the Loan as specified in the attached Schedule [A].  
-8.2 All payments made by the Borrower under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
+9.1 The Borrower shall repay the Loan as specified in the attached Schedule [A].  
+9.2 All payments made by the Borrower under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
 
-9. Representations, Warranties and Undertakings
+10. Representations, Warranties and Undertakings
 --------------------------------------------
-9.1 The Borrower represents, warrants and undertakes to the Lender on the date of this Agreement:  
+10.1 The Borrower represents, warrants and undertakes to the Lender on the date of this Agreement:  
 (a) is a duly incorporated limited liability company validly existing under the laws of its jurisdiction of incorporation;  
 (b) has the power to enter into, deliver and perform, and has taken all necessary action to authorise its entry into, delivery and performance of, this Agreement; and  
 (c) has obtained all required authorisations to enable it to enter into, exercise its rights and comply with its obligations in this Agreement.  
-9.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
+10.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
 (a) its constitutional documents;  
 (b) any agreement or instrument binding on it or its assets or constitute a default or termination event (however described) under any such agreement or instrument; or  
 (c) any law or regulation or judicial or official order, applicable to it.
-9.3 The information, in written or electronic format, supplied by, or on its behalf, to the Lender in connection with this Agreement (including but not limited to the documents set out in Schedule 1) was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
+10.3 The information, in written or electronic format, supplied by, or on its behalf, to the Lender in connection with this Agreement (including but not limited to the documents set out in Schedule 1) was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
 (a) if it was factual information, complete, true and accurate in all material respects;  
 (b) if it was a financial projection or forecast, prepared on the basis of recent historical information and on the basis of reasonable assumptions and was fair and made on reasonable grounds; and  
 (c) if it was an opinion or intention, made after careful consideration and was fair and made on reasonable grounds; and  
 (d) not misleading in any material respect, nor rendered misleading by a failure to disclose other information.
 
-10. Events of Default
+11. Events of Default
 -----------------
-10.1 Each of the events or circumstances set out in this clause is an Event of Default.  
+11.1 Each of the events or circumstances set out in this clause is an Event of Default.  
 (i) The Borrower fails to pay any sum payable by it under this Agreement.  
 (ii) The Borrower fails (other than by failing to pay), to comply with any provision of this Agreement and (if the Lender considers, acting reasonably, that the default is capable of remedy), such default is not remedied within 7 Business Days of the earlier of:  
 (a) the Lender notifying the Borrower of the default and the remedy required;  
@@ -114,33 +120,33 @@ AGREED TERMS
 (iv) The Borrower suspends or ceases to carry on (or threatens to suspend or cease to carry on) all or a substantial part of its business.  
 (v) The passing of a resolution for the winding up of the Borrower; or the appointment of a receiver, administrator or administrative receiver over the whole or any part of the assets of the Borrower or the making of any arrangement with the creditors of the Borrower for the affairs, business and property of the Borrower to be managed by a supervisor.
 
-11. Amendments, Waivers and Consents and Remedies
+12. Amendments, Waivers and Consents and Remedies
 ---------------------------------------------
-11.1 No amendment of this Agreement shall be effective unless it is in writing and signed by, or on behalf of, each party to it (or its authorised representative).  
-11.2 A waiver of any right or remedy under this Agreement or by law, or any consent given under this Agreement, is only effective if given in writing by the waiving or consenting party and shall not be deemed a waiver of any other breach or default. It only applies in the circumstances for which it is given and shall not prevent the party giving it from subsequently relying on the relevant provision.  
-11.3 A failure or delay by a party to exercise any right or remedy provided under this Agreement or by law shall not constitute a waiver of that or any other right or remedy, prevent or restrict any further exercise of that or any other right or remedy or constitute an election to affirm this Agreement. No election to affirm this Agreement by the Lender shall be effective unless it is in writing. 
-11.4 The rights and remedies provided under this Agreement are cumulative and are in addition to, and not exclusive of, any rights and remedies provided by law..  
+12.1 No amendment of this Agreement shall be effective unless it is in writing and signed by, or on behalf of, each party to it (or its authorised representative).  
+12.2 A waiver of any right or remedy under this Agreement or by law, or any consent given under this Agreement, is only effective if given in writing by the waiving or consenting party and shall not be deemed a waiver of any other breach or default. It only applies in the circumstances for which it is given and shall not prevent the party giving it from subsequently relying on the relevant provision.  
+12.3 A failure or delay by a party to exercise any right or remedy provided under this Agreement or by law shall not constitute a waiver of that or any other right or remedy, prevent or restrict any further exercise of that or any other right or remedy or constitute an election to affirm this Agreement. No election to affirm this Agreement by the Lender shall be effective unless it is in writing. 
+12.4 The rights and remedies provided under this Agreement are cumulative and are in addition to, and not exclusive of, any rights and remedies provided by law..  
 
-12. Assignment and transfer
+13. Assignment and transfer
 -----------------------
-12.1 The Lender may assign any of its rights under this Agreement or transfer all its rights or obligations by novation.  
-12.2 The Borrower may not assign any of its rights or transfer any of its rights or obligations under this Agreement.  
+13.1 The Lender may assign any of its rights under this Agreement or transfer all its rights or obligations by novation.  
+13.2 The Borrower may not assign any of its rights or transfer any of its rights or obligations under this Agreement.  
 
-13. Counterparts
+14. Counterparts
 ------------
-13.1 This Agreement may be executed in any number of counterparts, each of which when executed shall constitute a duplicate original, but all the counterparts shall together constitute one agreement.  
-13.2 No counterpart shall be effective until each party has executed at least one counterpart.  
+14.1 This Agreement may be executed in any number of counterparts, each of which when executed shall constitute a duplicate original, but all the counterparts shall together constitute one agreement.  
+14.2 No counterpart shall be effective until each party has executed at least one counterpart.  
 
-14. Severance
+15. Severance
 ---------
-14.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified
+15.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified
 to the minimum extent necessary to make it valid, legal and enforceable. If such modification is not possible, the relevant
 provision (or part of a provision) shall be deemed deleted. Any modification to or deletion of a provision (or part of a provision)
 under this clause shall not affect the legality, validity and enforceability of the rest of this Agreement.
 
-15. Notices
+16. Notices
 -------
-15.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
+16.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
 (a) in writing;   
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
@@ -148,28 +154,23 @@ the Borrower at:
 Address: Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey
 Email: bigboote@aexample.com  
 Attention:  John Bigboote    
-the Lender at:
+the Lender at:  
 Address: Banzai Institute, 1 Banzai Road, Holland Township, New Jersey
 Email: buckaroo@example.com  
 Attention:  Dr. Buckaroo Banzai    
 or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
-15.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
+16.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
 (a) if delivered by hand, at the time it is left at the relevant address;  
 (b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and  
 (c) if sent by fax or email, when received in legible form.  
-15.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.  
-15.4 Any notice or other communication given to the Lender shall be deemed to have been received only on actual receipt.  
+16.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.  
+16.4 Any notice or other communication given to the Lender shall be deemed to have been received only on actual receipt.  
 
-16.Governing law and jurisdiction
-------------------------------
-16.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the law of Hong Kong.  
-16.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Lender to take proceedings against the Borrower in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
-This Agreement has been entered into on the date stated at the beginning of it.
 
-17.Additional provisions
+17. Additional provisions
 ------------------------
-17.1 For the purpose of Schedule A, the revenue shall be the
+17.1 For the purpose of this contract, the revenue shall be the
 culmulative gross receipts received by the borrower in conjunction
 with the sales of the product.  
 17.2 During the term of the loan, the borrower agrees to provide the
@@ -185,29 +186,42 @@ Exchange Rate.
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
-// SCHEDULE A
+// SCHEDULES
 
 define(function() {
-function Schedule_A() {
-    //S.1
-    this.contract_text = contract_text;
-    this.annual_interest_rate = 10.0;
-    this.compound_per_year = 12;
-    this.day_count_convention = "30/360US";
-    this.late_annual_interest_rate = 10.0 + 5.0;
-    this.late_compound_per_year = 365;
-    this.late_day_count_convention = "30/360US";
 
-    this.initial_loan_date = new_date(2015, 1, 5);
-    this.currency = 'HKD';
-    this.initial_loan_amount = 50000.00;
-    this.additional_credit_limit = 50000.00;
-    this.revenue_targets =
+// SCHEDULE A
+
+function Schedule_A(obj) {
+    // S.1
+    obj.contract_text = contract_text;
+    obj.annual_interest_rate = 10.0;
+    obj.compound_per_year = 12;
+    obj.day_count_convention = "30/360US";
+
+    obj.initial_loan_date = new_date(2015, 1, 5);
+    obj.currency = 'HKD';
+    obj.initial_loan_amount = 50000.00;
+    obj.additional_credit_limit = 50000.00;
+    obj.revenue_targets =
 	[
 	    { "revenue" : 750000.00, "multiplier" : 0.5},
 	    { "revenue" : 1500000.00, "multiplier" : 1.0},
 	];
-    this.max_loan_duration = [ 1, 'year']
+    obj.max_loan_duration = [ 1, 'year']
+}
+
+// SCHEDULE B
+
+function Schedule_B(obj) {
+    obj.late_annual_interest_rate = 10.0 + 5.0;
+    obj.late_compound_per_year = 365;
+    obj.late_day_count_convention = "30/360US";
+}
+
+function Schedule_C() {
+    Schedule_A(this);
+    Schedule_B(this);
 
     this.contract_parameters = [
 	{
@@ -332,7 +346,7 @@ function Schedule_A() {
 }
 
 
-Schedule_A.prototype.process_payment = function(i) {
+Schedule_C.prototype.process_payment = function(i) {
     if (i.event == "Payment") {
 	var principal_payment = 0.0;
 	var interest_payment = 0.0;
@@ -352,13 +366,13 @@ Schedule_A.prototype.process_payment = function(i) {
     return i;
 }
 
-Schedule_A.prototype.payments = function(calc) {
-    // S.2
+Schedule_C.prototype.payments = function(calc) {
+    // S.1
     calc.fund({"on" : this.initial_loan_date,
                "amount" : this.initial_loan_amount,
                "note" : "Initial funding"});
 
-    // S.3
+    // S.2
     obj = this;
     this.credit_request.forEach(function (i) {
 	i.amount = calc.limit_balance(i.amount, 
@@ -367,7 +381,7 @@ Schedule_A.prototype.payments = function(calc) {
         calc.fund(i);
     });
 
-    // S.4
+    // S.3
     var final_payment_date =
 	following_1st_of_month(calc.add_duration(this.initial_loan_date,
 			  [1, 'year']));
@@ -375,13 +389,13 @@ Schedule_A.prototype.payments = function(calc) {
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
 
-    // S.5
+    // S.4
     this.early_payment.forEach(function(i) {
 	i.required = 0.0;
         calc.payment(i);
     });
 
-    // S.6
+    // S.5
     var payment_function = function(calc, params) {
 	var payment = calc.extract_payment(params);
 
@@ -454,7 +468,7 @@ Schedule_A.prototype.payments = function(calc) {
 
     }
 
-    // S.7
+    // S.6
     var start_payment_date = 
 	following_1st_of_month(
 	    calc.add_duration(this.initial_loan_date, [4, "months"]));
@@ -470,7 +484,7 @@ Schedule_A.prototype.payments = function(calc) {
 	return;
     }
 
-    // S.8
+    // S.7
     var i = 0;
     var obj = this;
     this.getTargetHitDates().forEach(function(target_hit_date) {
@@ -501,7 +515,7 @@ Schedule_A.prototype.payments = function(calc) {
     });
 }
 
-Schedule_A.prototype.getTargetHitDates = function () {
+Schedule_C.prototype.getTargetHitDates = function () {
     var target_hit_dates = [];
     var total_revenue = 0.0;
     var revenue_idx = 0;
@@ -551,5 +565,5 @@ function following_1st_of_month(a) {
 function new_date(year, month, day) {
     return new Date(year, month-1, day);
 }
-return Schedule_A;
+return Schedule_C;
 });
