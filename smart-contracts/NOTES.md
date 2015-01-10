@@ -1,3 +1,36 @@
+// Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
+// Licensed under the Simplified BSD License
+// NO WARRANTIES AND REPRESENTATIONS
+
+JURISDICTION
+Why Hong Kong?
+
+Hong Kong contract law is basically English contract law with a few
+small differences, so the reason that this is done under HK law is so
+that it can be used as a template for a contract in any other common
+law jurisidiction (i.e. Australia, Canada, UK, and US).  This
+advantage of common law over continental civil law systems is that in
+continental civil law systems (Germany, France, Mainland China,
+Taiwan), the power of the contract comes from a legislative enactment.
+This means that the format and the details of the contract have to be
+written specifically according to the national law.
+
+As far as why Hong Kong and not English law.  HK is a small
+jurisdiction, and so the courts are very fast and efficient.  The US,
+UK, or Australia is so large that it can take years for a case to
+reach the supreme courts, and the supreme courts are so busy with
+other things that ruling on these issues is not a high priority.
+
+
+Because Hong Kong is smaller, cases move through the courts much more
+quickly.  Instead taking over a decade for a case to move all the way
+to the top, in HK, even huge cases can reach the CfA in a matter of
+months.  Any contract disputes can be quickly resolved, and it is
+hoped that as Hong Kong courts rule on smart contracts, there will be
+a set of case law which originates in Hong Kong which other
+jurisdictions can use.  One of the goals of this project is for Hong
+Kong to be to smart contracts what Delaware is to corporate law.
+
 CHOICE OF LANGUAGE
 
 We ended up using javascript for the language.  Originally, we were
