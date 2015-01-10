@@ -13,6 +13,13 @@ uploaded to a cloud computing system.
 
 Docker image creation is in docker
 
+Smart Contract
+==============
+
+Smart contract is available at 
+
+http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html
+
 Disk Image
 ==========
 
