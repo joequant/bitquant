@@ -175,7 +175,7 @@ PRIVACY ISSUES
 
 One problem is what is public and what is private.  The fact that a
 company is getting a loan is sensitive information that you won't want
-to spread around.  So what we did was to put the public template
+to spread around.  So what we did was to pus t the public template
 contract on github.  The exact amounts and the identities of the
 borrower and lender are not included.
 
@@ -190,5 +190,12 @@ the contract, can they keep the credit limit?  If someone has a late
 interest rate, does this apply to only the late balance or the whole
 balance?
 
+WHY BUCKAROO BANZAI?
 
+His rock band is the Hong Kong Caviliers.
+
+Also BB is very interesting from an IP point of view.  Because the
+rights to the character are a mess, it will be impossible for anyone
+to finance or use the intellectual property.  This is an illustration
+with the problem of "clouded title."
 
