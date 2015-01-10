@@ -22,19 +22,14 @@ Mifos X</a>-->
 <!--<a class="button primary large" target="_blank"
 href="/opengamma">OpenGamma risk engine</a>-->
 <br><br>
-<div class="panel collapsed" data-role="panel" id="alerts">
-<div class="panel-header">Tickers and Alerts</div>
-<div class="panel-content" style="display:none">
-<a class="button danger large">Alert!!!</a>
-<a class="button warning large">Situation warning</a>
-<a class="button success large">Situation normal</a><br><br>
-<a class="button primary large" target="_blank" href="trade.html">Set Alerts</a>
-</div>
-</div>
 <p>
 <div class="panel collapsed" data-role="panel" id="admin">
 <div class="panel-header">Admin</div>
 <div class="panel-content" style="display:none">
+<script language="JavaScript">
+document.write('<a class="button" target="_blank" href="https://' +
+window.location.hostname + '/ajenti/">Ajenti server admin</a>' );
+</script>
 <a class="button" target="_blank" href="/bittrader/setup.html">Setup page</a>
 <a class="button" target="_blank" href="/bittrader/data.html">Data</a>
 <a class="button" target="_blank" href="/bittrader/sandbox.html">Sandbox</a>
