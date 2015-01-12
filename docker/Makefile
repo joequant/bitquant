@@ -1,8 +1,8 @@
-bitstation-prod-nocache: ARGS="--no-cache=true"
-bitstation-prod-nocache: bitstation-prod
-
 bitstation-nocache: ARGS="--no-cache=true"
 bitstation-nocache: bitstation
+
+bitstation-prod-nocache: ARGS="--no-cache=true"
+bitstation-prod-nocache: bitstation-prod
 
 bitstation-example-nocache: ARGS="--no-cache=true"
 bitstation-example-nocache: bitstation-example

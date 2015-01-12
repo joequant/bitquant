@@ -27,8 +27,8 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/* 
 RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
-   /usr/share/bitquant/install-build-deps.sh --no-mifos --no-opengamma;\
-   su user -c "~user/git/bitquant/web/scripts/bootstrap.sh --no-mifos --no-opengamma" ; \
+   /usr/share/bitquant/install-build-deps.sh ;\
+   su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
    su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
    ~user/git/bitquant/web/scripts/remove-build-deps.sh ; \
    rm -rf /usr/lib64/python2.7/test ; \
@@ -40,8 +40,10 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python2.7/site-packages/mpl_toolkits/tests
 RUN /usr/bin/systemctl enable httpd ; \
 /usr/bin/systemctl enable bitquant ; \
+/usr/bin/systemctl enable tomcat ; \
 /usr/bin/systemctl enable shiny-server ; \
-/usr/bin/systemctl enable postgresql 
+/usr/bin/systemctl enable postgresql ; \
+/usr/bin/systemctl enable ajenti
 
 VOLUME [ "/sys/fs/cgroup" ]
 EXPOSE 80 443
