@@ -188,7 +188,7 @@ targets specified in this contract.
 17.3 Any principal due under this
 agreement may be paid via HKD or via bitcoins based on the XBT
 Exchange Rate.  Any interest or late fees due under this agreement
-must by paid via bitcoins based on the XBT Exchange Rate.
+must be paid via bitcoins based on the XBT Exchange Rate.
 
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
@@ -513,11 +513,15 @@ Schedule_C.prototype.payments = function(calc) {
 			   multiplier),
              "note" : "Accelerated interest " + (i+1).toString()}
 	);
+	var note = ("Required payment " + (i+1).toString())
+	if (multiplier == 1.0) {
+	    note = note + "Loan agreement terminates";
+	}
         calc.payment(
 	    {"on" : payment_date,
              "amount" : calc.multiply(calc.remaining_balance(),
 				      multiplier),
-	     "note" : ("Required payment " + (i+1).toString())});
+	     "note" : note });
 	i++;
     });
 }

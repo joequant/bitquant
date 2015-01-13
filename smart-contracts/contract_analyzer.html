@@ -8,8 +8,15 @@
 <link href="https://code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
 <link href="jquery.appendGrid-1.5.0.min.css" rel="stylesheet"/>
 <style>
-    .number { text-align: right;
-    width: 1in}
+  .number { text-align: right;
+  width: 1in}
+  #analyze {
+  height: 60px;
+  font-size: 22px;
+  color: white;
+  background: green;
+  padding: 0px
+  }
 </style>
 <script src="http://requirejs.org/docs/release/2.1.15/minified/require.js"></script>
 <script>
@@ -230,11 +237,11 @@ the contract.</b>
 
 <div id="text"></div>
 <b>END OF CONTRACT TEXT</b>
-
-<button id="btnSerialize" onclick="analyze()"
-	type="button">Analyze</button>
 <div id="contract_params"></div>
 <div id="event_inputs"></div>
+<button id="analyze" onclick="analyze()"
+	type="button">Analyze</button>
+
 <pre>
 <div id="item"></div>
 </pre>

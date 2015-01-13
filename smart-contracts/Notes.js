@@ -25,39 +25,51 @@ additional 50,000.  There are two revenue targets for the accelerated
 payment.  The first target occurs at HKD 750,000 and causes an
 accelerated payment of one half of the loan.  The other target occurs
 at HKD 1,500,000 and results an in accelerated payment of the full
-loan.
+loan. 
+
+Revenue is defined in section 17 of the contract and includes receipts
+due to sales of the product and licensing fees resulting from the
+product.  The borrower is required to provide monthly updates as to
+the receipts of the product, and it inform the lender when the revenue
+targets are hit.
+
+Section 17 of the contract states that Principal shall be paid in
+either HKD or XBT.  Interest and late fees must be paid via bitcoin
+based on the XBT exchange rate which is defined as the conversion rate
+for exchange of bitcoin at either ANXBTC or bitcashout.
 
 Schedule B states that the late interest rate is 5.0 more than the
 standard interest rate.
 
-Schedule A S.1 states that the lender will provide the inital loan
+Schedule C S.1 states that the lender will provide the inital loan
 amount on the date of the contract.
 
-Schedule A S.2 states that the borrower may request up to an
+Schedule C S.2 states that the borrower may request up to an
 additional amount up to the credit limit during the duration of the
 loan.
 
-Schedule A S.3 states that the borrower agrees to pay back the any
+Schedule C S.3 states that the borrower agrees to pay back the any
 remaining principal and accrued interest on the first of the month
-following the after one year of the date of the loan. 
+following the after one year of the date of the loan.  This agreement
+will terminate following this payment.
 
-Schedule A S.4 states that the borrower may make early payments at any
+Schedule C S.4 states that the borrower may make early payments at any
 time.
 
-Schedule A S.5 states that any payments will be applied first to late
+Schedule C S.5 states that any payments will be applied first to late
 fees, then to interest, then to principal. In the event that the
 borrower fails to make a required payment, the interest will accrue at
 5% above the basic interest rate, compounded daily, and will be added
-to the required balance.  S.6 also states that the borrower may skip
+to the required balance.  S.5 also states that the borrower may skip
 the a principal payment before the end of the termination of the loan
 without penalty.
 
-Schedule A S.6 describes the standard payments schedule - The borrower
+Schedule C S.6 describes the standard payments schedule - The borrower
 intends to pay back the loan over as 8 equal installments and
 completed in 8 months.  The payback will begin in the first 1st of the
 month on or after the fifth month after the start of the loan.
 
-Schedule A S.7 describes the accelerated payment schedule - If the
+Schedule C S.7 describes the accelerated payment schedule - If the
 total revenues from the product exceeds the revenue target, the
 borrower the will be required to pay a specified fraction of the
 outstanding balance in addition to a specified fraction of the

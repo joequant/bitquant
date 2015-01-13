@@ -190,6 +190,10 @@ the contract, can they keep the credit limit?  If someone has a late
 interest rate, does this apply to only the late balance or the whole
 balance?
 
+If you make an early payment which causes the balance to fall to zero
+does this terminate the agreement.  If the accelerated payment happens
+does this terminate the agreement.
+
 WHY BUCKAROO BANZAI?
 
 His rock band is the Hong Kong Caviliers.
@@ -215,3 +219,5 @@ to more carefully specify the exchange rate.
 
 The documentation requirements for verifying revenue is likewise
 somewhat informal.
+
+
