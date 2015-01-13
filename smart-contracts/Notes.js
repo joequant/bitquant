@@ -30,8 +30,9 @@ loan.
 Revenue is defined in section 17 of the contract and includes receipts
 due to sales of the product and licensing fees resulting from the
 product.  The borrower is required to provide monthly updates as to
-the receipts of the product, and it inform the lender when the revenue
-targets are hit.
+the receipts of the product, and it inform the lender within three
+days if the borrower reasonably believes that the revenue targets has
+been hit.
 
 Section 17 of the contract states that Principal shall be paid in
 either HKD or XBT.  Interest and late fees must be paid via bitcoin
