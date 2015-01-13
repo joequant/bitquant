@@ -13,8 +13,8 @@ set -e
 pushd $SCRIPT_DIR > /dev/null
 pushd bittrader > /dev/null
 
-echo "Loading OG data"
-sudo chown $ME:$GROUP -R $GIT_DIR/OG-Platform/examples/examples-simulated/data
+#echo "Loading OG data"
+#sudo chown $ME:$GROUP -R $GIT_DIR/OG-Platform/examples/examples-simulated/data
 
 
 if [ -e /var/lib/dokuwiki ] ; then
@@ -31,14 +31,20 @@ fi
 mv ipython $GIT_DIR/..
 chown -R $ME:$GROUP $GIT_DIR/../ipython 
 
-
-if [ -d $GIT_DIR/ethercalc ] ; then
-echo "Loading ethercalc"
-mkdir -p $ATTIC_DIR/ethercalc
-mv $GIT_DIR/ethercalc/dump.json $ATTIC_DIR/ethercalc
-mv ethercalc/dump.json $GIT_DIR/ethercalc
-chown $ME:$GROUP $GIT_DIR/ethercalc/dump.json
+if [ -e $GIT_DIR/../irkernel ] ; then
+echo "Loading irkernel"
+mv $GIT_DIR/../irkernel $ATTIC_DIR
 fi
+mv irkernel $GIT_DIR/..
+chown -R $ME:$GROUP $GIT_DIR/../irkernel 
+
+#if [ -d $GIT_DIR/ethercalc ] ; then
+#echo "Loading ethercalc"
+#mkdir -p $ATTIC_DIR/ethercalc
+#mv $GIT_DIR/ethercalc/dump.json $ATTIC_DIR/ethercalc
+#mv ethercalc/dump.json $GIT_DIR/ethercalc
+#chown $ME:$GROUP $GIT_DIR/ethercalc/dump.json
+#fi
 popd > /dev/null
 rm -r $TMP_DIR/$$
 popd > /dev/null
