@@ -50,7 +50,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
   * Loan: the principal amount of the loan made or to be made by the Lender to th**e Borrower under this Agreement or (as the context requires) the principal amount outstanding for the time being of that loan.  
   * Product: watermelon compression system
-  * XBT Exchange Rate:  the 24-hour average price in USD/XBT as reported for by Quandl (https://www.quandl.com/c/markets/bitcoin-data) for the second business day before the Final Repayment Date converted to HKD with the closing price as reported by Bloomberg (http://www.bloomberg.com/quote/USDHKD:CUR) for the second business day before the Final Repayment Date. 
+  * XBT Exchange Rate:  the conversion rate between HKD and XBT as quoted by ANXBTC or Bitcashout
 
 3. Interpretation
 --------------
@@ -169,20 +169,27 @@ party to the other from time to time.
 
 
 17. Additional provisions
-------------------------
-17.1 For the purpose of this contract, the revenue shall be the
-culmulative gross receipts received by the borrower in conjunction
-with the sales of the product.  
+-------------------------
+17.1 For the purpose of of computing accelerated payments in this
+contract, the revenue shall be the culmulative gross receipts received
+by the borrower, any subsidiaries or holding companies of the
+borrower, or any other companies under which the borrower exercises
+management authority.  Gross receipts shall include income derived
+from sales of the product as well as an licensing fees received in
+conjunction with the product or any intellectual property associated
+with the product.  
 17.2 During the term of the loan, the borrower agrees to provide the
 lender on at least a monthly basis an accounting gross receipts
-received in conjuctions with the sales of the product, and to notify
-the lender within three (3) business days if the borrower has
-reasonable reason to believe that the culmulative gross receipts has
-exceeded the revenue targets specified in this contract.  
-17.3 Any principal due under this agreement may be paid via HKD or via
-bitcoins based on the XBT Exchange Rate.  Any interest or late fees
-due under this agreement must by paid via bitcoins based on the XBT
-Exchange Rate.
+received in conjunction with the sales or licensing of the product and
+any associated intellectual property, and to notify the lender within
+three (3) business days if the borrower has reasonable reason to
+believe that the culmulative gross receipts has exceeded the revenue
+targets specified in this contract.  
+17.3 Any principal due under this
+agreement may be paid via HKD or via bitcoins based on the XBT
+Exchange Rate.  Any interest or late fees due under this agreement
+must by paid via bitcoins based on the XBT Exchange Rate.
+
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
@@ -269,7 +276,7 @@ function Schedule_C() {
 	},
 	{
 	    name: "revenue_targets",
-	    display: "Revenue targets",
+	    display: "Revenue target table",
 	    type: "grid",
 	    columns: [
 		{ name: "revenue",

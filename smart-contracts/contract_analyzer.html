@@ -152,6 +152,7 @@ require ([
             if (i.type == "note") {
 		$(div).append(converter.makeHtml(my_notes[i.name]));
             } else if (i.type == "grid") {
+		$(div).append("<br>" + i.display + "<br>");
 		$(div).append("<table><tr>");
 		i.columns.forEach(function(j) {
 		    $(div).append("<td>" + j.display + "</td>");

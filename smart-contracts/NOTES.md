@@ -199,3 +199,19 @@ rights to the character are a mess, it will be impossible for anyone
 to finance or use the intellectual property.  This is an illustration
 with the problem of "clouded title."
 
+GOTCHAS
+
+One thing that lawyers will tell you is that there are a lot of
+gotchas in contracts and you have to be careful about cutting and
+pasting contracts that you find on the internet.  This is correct, but
+I would like to list here the gotchas that are in this particular
+contract.
+
+The XBT/HKD exchange rate is set at ANX and bitcashout.  This is
+mainly for the convinience of the borrower, in that the difficulties
+in calculating an exact exchange rate outweigh the actual different.
+However, in contracts with larger sums of money, it will be necessary
+to more carefully specify the exchange rate.
+
+The documentation requirements for verifying revenue is likewise
+somewhat informal.

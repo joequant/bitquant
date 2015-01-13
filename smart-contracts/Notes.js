@@ -21,7 +21,11 @@ the code shall prevail.
 Schedule A states that the interest rate is 10 percent per year,
 compounded monthly, using the 30/360US day count convention.  The
 initial loan amount is HKD 50,000.  The credit limit consists of an
-additional 50,000.
+additional 50,000.  There are two revenue targets for the accelerated
+payment.  The first target occurs at HKD 750,000 and causes an
+accelerated payment of one half of the loan.  The other target occurs
+at HKD 1,500,000 and results an in accelerated payment of the full
+loan.
 
 Schedule B states that the late interest rate is 5.0 more than the
 standard interest rate.
@@ -46,11 +50,12 @@ borrower fails to make a required payment, the interest will accrue at
 5% above the basic interest rate, compounded daily, and will be added
 to the required balance.  S.6 also states that the borrower may skip
 the a principal payment before the end of the termination of the loan
-without penalty. //CHECK ON THIS
+without penalty.
 
 Schedule A S.6 describes the standard payments schedule - The borrower
 intends to pay back the loan over as 8 equal installments and
-completed in 8 months.  The payback will begin in the 5th month.
+completed in 8 months.  The payback will begin in the first 1st of the
+month on or after the fifth month after the start of the loan.
 
 Schedule A S.7 describes the accelerated payment schedule - If the
 total revenues from the product exceeds the revenue target, the
