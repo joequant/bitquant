@@ -1,5 +1,6 @@
 // Copyright (c) 2014, Bitquant Research Laboratories (Asia) Ltd.
 // Licensed under the Simplified BSD License
+
 "use strict";
 
 if (typeof define !== 'function') {
@@ -9,34 +10,34 @@ if (typeof define !== 'function') {
 var contract_text = (function () {/*
 DRAFT FOR REFERENCE ONLY.  DO NOT EXECUTE.
 
-Contract text: Copyright (c) 2014 Cryptolaw Ltd.  
+Contract text: Copyright (c) 2014 Cryptolaw Ltd.
 Javascript code: Copyright (c) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
 Released under terms of the Simplified BSD License.
 
-This FACILITY AGREEMENT is dated ****  
+This FACILITY AGREEMENT is dated 26 January 2015
 
 BETWEEN
 
 1) YOYODYNE PROPULSION SYSTEMS LTD. incorporated and registered in
 Hong Kong with company number 1234552 whose registered office is at
-3/F, Nam Wo Hong Building 148 Wing Lok Street Sheung Wan, Hong Kong
-(BORROWER)
+3/F, Nam Wo Hong Building 148 Wing Lok Street Sheung Wan, Hong Kong  
 
 2) The BANZAI INSTITUTE FOR BIOMEDICAL ENGINEERING AND STRATEGIC
 INFORMATION LTD.  incorporated and registered in Hong Kong with
 company number 2334455 whose registered office is at 3/F, Citicorp
-Centre, 18 Whitfield Road, Tin Hau, Hong Kong.  (LENDER).
+Centre, 18 Whitfield Road, Tin Hau, Hong Kong.  (LENDER).  
 
 BACKGROUND
 
-The Lender has agreed to provide the Borrower with an unsecured term loan facility according to the terms specified in Schedule A.  
+The Lender has agreed to provide the Borrower with an unsecured term
+loan facility according to the terms specified in Schedule A.
 
 AGREED TERMS
 
 1. Governing law and jurisdiction
 ------------------------------
-1.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the law of Hong Kong.  
+1.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of Hong Kong.  
 1.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Lender to take proceedings against the Borrower in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
 This Agreement has been entered into on the date stated at the beginning of it.
 
@@ -44,12 +45,12 @@ This Agreement has been entered into on the date stated at the beginning of it.
 -----------
 2.1 The following definitions apply in this Agreement:  
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
-  * Event of Default: any event or circumstance listed in clause 10.  
+  * Event of Default: any event or circumstance listed in clause 11.  
   * Facility: the term loan facility made available under this Agreement.  
   * HK$: the lawful currency of Hong Kong.  
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
-  * Loan: the principal amount of the loan made or to be made by the Lender to th**e Borrower under this Agreement or (as the context requires) the principal amount outstanding for the time being of that loan.  
-  * Product: watermelon compression system
+  * Loan: the principal amount of the loan made or to be made by the Lender to the Borrower under this Agreement or (as the context requires) the principal amount outstanding for the time being of that loan.  
+  * Product: the watermelon compression system  
   * XBT Exchange Rate:  the conversion rate between HKD and XBT as quoted by ANXBTC or Bitcashout
 
 3. Interpretation
@@ -67,7 +68,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 4. Facility
 --------
-4.1 The Lender grants to the Borrower an unsecured term  loan facility subject to the conditions, of this Agreement.
+4.1 The Lender grants to the Borrower an unsecured Facility in accordance with Schedule A, subject to conditions of this Agreement.
 
 5. Purpose
 -------
@@ -80,8 +81,8 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 7. Interest
 --------
-7.1 Interest accrue and be payable in accordance with Schedule B of this Agreement.
-7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule C of this Agreement.
+7.1 Interest accrue and be payable in accordance with Schedule C of this Agreement.  
+7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule B of this Agreement.  
 
 8. Costs
 -----
@@ -90,7 +91,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 9. Repayment
 ---------
-9.1 The Borrower shall repay the Loan as specified in the attached Schedule [A].  
+9.1 The Borrower shall repay the Loan as specified in the attached Schedule C.  
 9.2 All payments made by the Borrower under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
 
 10. Representations, Warranties and Undertakings
@@ -102,8 +103,8 @@ This Agreement has been entered into on the date stated at the beginning of it.
 10.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
 (a) its constitutional documents;  
 (b) any agreement or instrument binding on it or its assets or constitute a default or termination event (however described) under any such agreement or instrument; or  
-(c) any law or regulation or judicial or official order, applicable to it.
-10.3 The information, in written or electronic format, supplied by, or on its behalf, to the Lender in connection with this Agreement (including but not limited to the documents set out in Schedule 1) was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
+(c) any law or regulation or judicial or official order, applicable to it.  
+10.3 The information, in written or electronic format, supplied by, or on its behalf, to the Lender in connection with this Agreement was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
 (a) if it was factual information, complete, true and accurate in all material respects;  
 (b) if it was a financial projection or forecast, prepared on the basis of recent historical information and on the basis of reasonable assumptions and was fair and made on reasonable grounds; and  
 (c) if it was an opinion or intention, made after careful consideration and was fair and made on reasonable grounds; and  
@@ -150,14 +151,14 @@ under this clause shall not affect the legality, validity and enforceability of 
 (a) in writing;   
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
-the Borrower at:
-Address: Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey
-Email: bigboote@aexample.com  
-Attention:  John Bigboote    
+the Borrower at:  
+Address: Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey  
+Email: bigboote@aexample.com   
+Attention:    John Bigboote  
 the Lender at:  
-Address: Banzai Institute, 1 Banzai Road, Holland Township, New Jersey
-Email: buckaroo@example.com  
-Attention:  Dr. Buckaroo Banzai    
+Address: Banzai Institute, 1 Banzai Road, Holland Township, New Jersey  
+Email: buckaroo@example.com   
+Attention: Dr. Buckaroo Banzai  
 or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
 16.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
@@ -171,24 +172,23 @@ party to the other from time to time.
 17. Additional provisions
 -------------------------
 17.1 For the purpose of of computing accelerated payments in this
-contract, the revenue shall be the culmulative gross receipts received
-by the borrower, any subsidiaries or holding companies of the
-borrower, or any other companies under which the borrower exercises
-management authority.  Gross receipts shall include income derived
-from sales of the product as well as an licensing fees received in
-conjunction with the product or any intellectual property associated
-with the product.  
-17.2 During the term of the loan, the borrower agrees to provide the
-lender on at least a monthly basis an accounting gross receipts
-received in conjunction with the sales or licensing of the product and
-any associated intellectual property, and to notify the lender within
-three (3) business days if the borrower has reasonable reason to
-believe that the culmulative gross receipts has exceeded the revenue
+Agreement, the revenue shall be the cumulative gross receipts received
+by the Borrower, any subsidiaries or holding companies of the
+Borrower, or any other companies controlled by or affliated with the
+Borrower.  Gross receipts shall include income derived from sales of
+the Product as well as an licensing fees received in conjunction with
+the Product or any intellectual property associated with the product.  
+17.2 During the term of the Facility, the Borrower agrees to provide the
+Lender on at least a monthly basis an accounting gross receipts
+received in conjunction with the sales or licensing of the Product and
+any associated intellectual property, and to notify the Lender within
+three (3) Business Days if the Borrower has reasons to
+believe that the cumulative gross receipts has exceeded the revenue
 targets specified in this contract.  
-17.3 Any principal due under this
-agreement may be paid via HKD or via bitcoins based on the XBT
-Exchange Rate.  Any interest or late fees due under this agreement
-must be paid via bitcoins based on the XBT Exchange Rate.
+17.3 Any principal due under this Agreement may be paid via HKD or via
+bitcoins based on the XBT Exchange Rate.  Any interest (including
+default interest) due under this Agreement must be paid via bitcoins
+based on the XBT Exchange Rate.
 
 
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
@@ -206,7 +206,7 @@ function Schedule_A(obj) {
     obj.compound_per_year = 12;
     obj.day_count_convention = "30/360US";
 
-    obj.initial_loan_date = new_date(2015, 1, 5);
+    obj.initial_loan_date = new_date(2015, 1, 26);
     obj.currency = 'HKD';
     obj.initial_loan_amount = 50000.00;
     obj.additional_credit_limit = 50000.00;
