@@ -1,8 +1,10 @@
 #!/usr/bin/python
+from __future__ import print_function
 import pexpect
 import os
 import subprocess
 import traceback
+
 
 os.environ['LC_ALL']="C"
 
@@ -36,4 +38,4 @@ def chpasswd(username, password):
 	return "password changed for %s" % (username)
 	
 if __name__ == '__main__':
-        print auth(username='user',password='cubswin:)')
+        print (auth(username='user',password='cubswin:)'))
