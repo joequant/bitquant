@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Copyright (c) 2014 Bitquant Research Laboratories (Asia) Ltd.
 
 # Permission is hereby granted, free of charge, to any person
@@ -124,7 +124,7 @@ Volume plot fields (comma separated): <input name="volume_plot_fields" value="vo
 
 @app.route('/generate-data', methods = ['POST'])
 def generate_data():
-    import cStringIO
+    import io
     year = request.form['year']
     month = request.form['month']
     day = request.form['day']
@@ -182,12 +182,12 @@ def generate_data():
                                 exchange=exchange_table,
                                 rates=conversion_table,
                                 converted_prices=converted_prices)
-    output = cStringIO.StringIO()
+    output = io.StringIO()
     if format == "text/html":
         if show_table:
             table.to_html(output, classes=["data","compact", "stripe"])
         if plot:
-            sio = cStringIO.StringIO()
+            sio = io.StringIO()
             plt.figure(figsize=(6, 6))
             ax1 = plt.subplot2grid((8,1), (0,0), rowspan=7)
             ax2 = plt.subplot2grid((8,1), (7,0))
@@ -285,4 +285,4 @@ if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
     CGIHandler().run(app)
 elif __name__ == '__main__' and sys.argv[1] == "refresh-scripts":
-    print refresh_scripts()
+    print(refresh_scripts())
