@@ -101,7 +101,7 @@ avg = compositor.exchange_table(start, period, intervals)
 
 for f in forex_list:
     forex = Forex(f)
-    forex_table[f] = forex.rates(map(TimeUtil.unix_epoch, avg.index), avg.index)
+    forex_table[f] = forex.rates(list(map(TimeUtil.unix_epoch, avg.index)), avg.index)
     forex_table[f].rename(columns={"rates" : f}, inplace=True)
 
 avg = avg.join(forex_table[f] for f in forex_list)
@@ -132,7 +132,7 @@ avg = compositor.exchange_table(start_date, period, intervals)
 
 for f in forex_list:
     forex = Forex(f)
-    forex_table[f] = forex.rates(map(TimeUtil.unix_epoch, avg.index), avg.index)
+    forex_table[f] = forex.rates(list(map(TimeUtil.unix_epoch, avg.index)), avg.index)
     forex_table[f].rename(columns={"rates" : f}, inplace=True)
 
 avg = avg.join(forex_table[f] for f in forex_list)   

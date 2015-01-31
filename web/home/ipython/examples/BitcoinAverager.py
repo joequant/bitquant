@@ -27,12 +27,13 @@
 
 # <codecell>
 
+from __future__ import print_function
 import tables
 import os
 import numpy as np
 import csv
 import logging
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 # <codecell>
 
@@ -102,7 +103,7 @@ class BitcoinDataLoader(object):
         return self.h5file
     def filedata(self):
         with self.openfile() as f:
-            print f
+            print (f)
     def tick_node(self, exchange):
         return self.h5file.get_node("/tick_data", exchange)
     def currency_node(self, currency, source):
@@ -111,7 +112,7 @@ class BitcoinDataLoader(object):
         local_cache = exchange + ".csv.gz"
         if not os.path.isfile(local_cache):
             logging.info("retrieving %s" % exchange)
-            testfile = urllib.URLopener()
+            testfile = urllib.request.URLopener()
             testfile.retrieve("http://api.bitcoincharts.com/v1/csv/" +
                 local_cache,  local_cache)
         logging.info("done retrieving")
@@ -120,7 +121,7 @@ class BitcoinDataLoader(object):
         local_file_name = currency + "-" + source + ".csv"
         if not os.path.isfile(local_cache):
             logging.info("retrieving %s" % currency)
-            testfile = urllib.URLopener()
+            testfile = urllib.request.URLopener()
             if currency == "USDCNY":
                 testfile.retrieve("http://www.quandl.com/api/v1/datasets/FRED/DEXCHUS.csv?trim_start=2000-01-01&sort_order=asc", 
                               local_cache)
@@ -158,7 +159,7 @@ class BitcoinDataLoader(object):
                         h5file.remove_node("/tick_data", e)
                 if ("/tick_data/" + e) not in h5file:
                     tick_table = h5file.create_table("/tick_data", e, TickData)
-                    with gzip.open(e + ".csv.gz", "r") as csv_file:
+                    with gzip.open(e + ".csv.gz", "rt") as csv_file:
                         csv_reader = csv.reader(csv_file)
                         self.read_csv(tick_table, csv_reader, fill_zeros(3))
                     tick_table.cols.epoch.create_index()
@@ -173,9 +174,9 @@ class BitcoinDataLoader(object):
                         h5file.remove_node("/currency_data/" + source, c)
                 if ("/currency_data/" + source + "/" + c) not in h5file:
                     currency_table = h5file.create_table("/currency_data/" + source, c, CurrencyData)
-                    with open(c + ".csv", "r") as csv_file:
+                    with open(c + ".csv", "rt") as csv_file:
                         csv_reader = csv.reader(csv_file)
-                        csv_reader.next()
+                        next(csv_reader)
                         self.read_csv(currency_table, csv_reader, fill_epoch(5, tz, 0))
 data_loader = BitcoinDataLoader()
 data_loader.init_file()
@@ -196,8 +197,8 @@ class TimeUtil(object):
         return [(start + n * period) for n in range(intervals + 1)]
     @staticmethod
     def epochs(start, period, intervals):
-        return map(TimeUtil.unix_epoch, 
-                   TimeUtil.dates(start, period, intervals))
+        return list(map(TimeUtil.unix_epoch, 
+                        TimeUtil.dates(start, period, intervals)))    
     @staticmethod
     def time_table(start, period, intervals):
         import pandas
@@ -338,7 +339,7 @@ class BitcoinAverager(DataLoaderClient):
                                 break
                             if next_currency_data['epoch'] < \
                                 currency_data['epoch']:
-                                    print "error"
+                                    print ("error")
                                     raise RuntimeError
                 if done:
                     break
@@ -456,7 +457,7 @@ class PriceCompositor(object):
                 self.exchange_dict[currency] = []
             self.exchange_dict[currency].append(e[:-3])
         self.base_currency = base_currency
-        self.currencies = self.exchange_dict.keys()
+        self.currencies = list(self.exchange_dict.keys())
         self.currency_cols = []
         self.exchange_cols = []
         for i in self.currencies:
@@ -502,7 +503,7 @@ class PriceCompositor(object):
             df[i + "_price_base"] = (avg1[price_base_key] * avg1[volume_key].rename(columns=map_base_dict)).sum(axis=1) / df[i + "_volume"]
         return df
     def composite_all(self,df, method="exchange"):
-        epochs = map(TimeUtil.unix_epoch, df.index)
+        epochs = list(map(TimeUtil.unix_epoch, df.index))
         conversion_table = pandas.DataFrame()
         for f in self.forex_list:
             conversion_table[f] = self.forex[f].rates(epochs, df.index)['rates']
