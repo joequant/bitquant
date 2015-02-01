@@ -10,6 +10,8 @@ killall ServiceRunner
 killall java-abrt
 killall node
 killall ipython
+killall ipython3
+
 
 
 

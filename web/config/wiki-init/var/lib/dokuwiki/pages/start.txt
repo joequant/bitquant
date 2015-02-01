@@ -7,6 +7,10 @@
 <div class="metro">
 <a class="button primary large" target="_blank" href="doku.php?id=about">About</a>
 <br><br>
+<a class="button primary large" target="_blank"
+href="/cgi-bin/bittrader/bitcoinaverager.py/average-form">Bitcoin
+pricer</a>
+<br><br>
 <a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
 
 <a class="button primary large" target="_blank" href="/irkernel">R statistics engine</a>
