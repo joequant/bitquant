@@ -10,8 +10,8 @@ if (typeof define !== 'function') {
 var contract_text = (function () {/*
 DRAFT FOR REFERENCE ONLY.  DO NOT EXECUTE.
 
-Contract text: Copyright (c) 2014 Cryptolaw Ltd.
-Javascript code: Copyright (c) 2014 Bitquant Research Laboratories (Asia) Ltd.
+Copyright (c) 2015 Bitquant Research Laboratories (Asia) Ltd.  
+Legal text prepared by CryptoLaw (http://crypto-law.com/)
 
 Released under terms of the Simplified BSD License.
 
