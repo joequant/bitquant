@@ -36,7 +36,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python*/site-packages/pandas/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/io/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tseries/tests ; \
-   rm -rf /usr/lib64/python*/site-packages/tables/tests ; \
    rm -rf /usr/lib64/python*/site-packages/matplotlib/tests ; \
    rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests
 RUN /usr/bin/systemctl enable httpd ; \
