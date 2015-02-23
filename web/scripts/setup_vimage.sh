@@ -33,6 +33,7 @@ urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 if [ "$VERSION" = "cauldron" ] ; then
 urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release
 urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates
+urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/
 if $TESTING ; then
 urpmi.addmedia "Core updates testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
 fi

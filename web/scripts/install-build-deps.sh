@@ -93,8 +93,10 @@ $PYTHON-flask \
 $PYTHON-pexpect
 
 #other packages
+# no-verify-rpm is required for quantlib
 $SUDO urpmi --no-recommends \
 --auto \
+--no-verify-rpm \
 --downloader "curl" \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
 $URPMI_OPTIONS \
