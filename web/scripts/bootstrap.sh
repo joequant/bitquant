@@ -48,13 +48,13 @@ fi
 
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
-if [ -d $MY_HOME/ipython/examples ] ; then
-mv $MY_HOME/ipython/examples $MY_HOME/ipython/examples.bak
-fi
 ln -s -f ../git/bitquant/web/home/ipython/examples $MY_HOME/ipython/examples
+
 echo "Set up R"
 mkdir -p $MY_HOME/R
 cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
+mkdir -p $MY_HOME/irkernel
+ln -s -f ../git/bitquant/web/home/irkernel/examples $MY_HOME/irkernel/examples
 
 # Refresh configurations
 # This replaces the ajenti configuration with a 
