@@ -31,8 +31,9 @@ var show_apr = function(calculator, payments) {
 		calculator.apr(payments).toFixed(4) + " percent");
 }
 
+var directory = "./template"
 var LoanCalculator = require("./LoanCalculator.js");
-var TermSheet = require("./TermSheet.js");
+var TermSheet = require(directory + "/TermSheet.js");
 
 var calculator = new LoanCalculator();
 calculator.test_wrapper()

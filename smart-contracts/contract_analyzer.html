@@ -52,11 +52,12 @@ require.config({
 });
 
 var analyze;
+var directory = "./template";
 
 require ([
-    "./TermSheet",
+    directory + "/TermSheet",
     "./LoanCalculator",
-    "./Notes",
+    directory + "/Notes",
     "markdown",
     "append-grid",
     "polyfiller",
