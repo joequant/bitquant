@@ -253,7 +253,8 @@ function Schedule_A(obj) {
 // SCHEDULE B
 
 function Schedule_B(obj) {
-    obj.late_annual_interest_rate = 10.0 + 5.0;
+    obj.late_additional_interest_rate = 5.0;
+    obj.late_annual_interest_rate = 10.0 + obj.late_additional_interest_rate;
     obj.late_compound_per_year = 365;
     obj.late_day_count_convention = "30/360US";
 }

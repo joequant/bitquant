@@ -35,15 +35,19 @@ the contract.</b>
 <b>END OF CONTRACT TEXT</b>
 <div id="contract_params"></div>
 <div id="event_inputs"></div>
-<button id="analyze" onclick="analyze()" type="button">Analyze</button>
+<button id="analyze" type="button">Analyze</button>
 <pre>
 <div id="item"></div>
 </pre>
 <script>
 var analyze;
 require (["./Analyzer"], function(load_analyzer) {
-  analyze = load_analyzer("./template/TermSheet",
-                          "./template/Notes");
+load_analyzer("./template/TermSheet",
+"./template/Notes",
+function(analyze_function) {
+$("#analyze").click(analyze_function);
+}
+);
 });
 </script>
 </body>

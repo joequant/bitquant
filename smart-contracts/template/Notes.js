@@ -18,14 +18,15 @@ contract, and in case of a conflict between the code and these notes,
 the code shall prevail.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 	this.terms = (function () {/*
-Schedule A states that the interest rate is 10 percent per year,
-compounded monthly, using the 30/360US day count convention.  The
-initial loan amount is HKD 50,000.  The credit limit consists of an
-additional 50,000.  There are two revenue targets for the accelerated
-payment.  The first target occurs at HKD 750,000 and causes an
-accelerated payment of one half of the loan.  The other target occurs
-at HKD 1,500,000 and results an in accelerated payment of the full
-loan. 
+Schedule A states that the interest rate is {{annual_interest_rate}}
+percent per year, compounded monthly, using the
+{{day_count_convention}} day count convention.  The initial loan
+amount is {{currency}} {{initial_loan_amount}}.  The credit limit
+consists of an additional {{currency}} {{additional_credit_limit}}.
+There are two revenue targets for the accelerated payment.  The first
+target occurs at HKD 750,000 and causes an accelerated payment of one
+half of the loan.  The other target occurs at HKD 1,500,000 and
+results an in accelerated payment of the full loan.
 
 Revenue is defined in section 17 of the contract and includes receipts
 due to sales of the product and licensing fees resulting from the
@@ -39,7 +40,8 @@ either HKD or XBT.  Interest and late fees must be paid via bitcoin
 based on the XBT exchange rate which is defined as the conversion rate
 for exchange of bitcoin at either ANXBTC or bitcashout.
 
-Schedule B states that the late interest rate is 5.0 more than the
+Schedule B states that the late interest rate is
+{{late_additional_interest_rate}} percent per annum more than the
 standard interest rate.
 
 Schedule C S.1 states that the lender will provide the inital loan

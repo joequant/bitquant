@@ -7,7 +7,7 @@ if (typeof define !== 'function') {
 }
 
 define([], function() {
-function load_analyzer(term_sheet, notes) {
+function load_analyzer(term_sheet, notes, callback) {
 require.config({
     paths: {
         "moment": "node_modules/moment/moment",
@@ -141,12 +141,14 @@ require ([
 	    $('#item').html(err.message);
 	}
     };
+    callback(analyze);
     $(function() {
         my_term_sheet.contract_parameters.forEach(function(i) {
 	    var display = i.display;
 	    var div = "#contract_params";
             if (i.type == "note") {
-		$(div).append(converter.makeHtml(my_notes[i.name]));
+		var template = Handlebars.compile(my_notes[i.name]);
+		$(div).append(converter.makeHtml(template(my_term_sheet)));
             } else if (i.type == "grid") {
 		$(div).append("<br>" + i.display + "<br>");
 		$(div).append("<table><tr>");
@@ -185,7 +187,8 @@ require ([
 	my_term_sheet.event_spec.forEach(function(i) {
 	    var div = "#event_inputs";
             if (i.type == "note") {
-		$(div).append(converter.makeHtml(my_notes[i.name]));
+		var template = Handlebars.compile(my_notes[i.name]);
+		$(div).append(converter.makeHtml(template(my_term_sheet)));
             } else if (i.type == "grid") {
 		var table = document.createElement('table');
 		var name = i.name + "_grid";
@@ -211,7 +214,6 @@ require ([
 	webshims.polyfill('forms forms-ext es5');
     });
 });
-return analyze;
 };
 return load_analyzer;
 });
