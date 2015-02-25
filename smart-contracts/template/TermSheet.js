@@ -7,13 +7,8 @@ if (typeof define !== 'function') {
     var define = require('amdefine')(module);
 }
 
-var contract_text = (function () {/*
-DRAFT FOR REFERENCE ONLY.  DO NOT EXECUTE.
-
-Copyright (c) 2015 Bitquant Research Laboratories (Asia) Ltd.  
-Legal text prepared by CryptoLaw (http://crypto-law.com/)
-
-Released under terms of the Simplified BSD License.
+var contract_template = (function () {/*
+{{header_text}}
 
 This FACILITY AGREEMENT is dated {{initial_loan_date_string}}
 
@@ -172,7 +167,6 @@ party to the other from time to time.
 -------------------------
 {{additional_provisions}}
 
-
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
 
@@ -180,7 +174,16 @@ party to the other from time to time.
 define(function() {
 
 function Contract_Text(obj) {
-    obj.contract_text = contract_text;
+    obj.contract_text = contract_template;
+    obj.header_text = (function () {/*
+DRAFT FOR REFERENCE ONLY.  DO NOT EXECUTE.
+
+Copyright (c) 2015 Bitquant Research Laboratories (Asia) Ltd.  
+Legal text prepared by CryptoLaw (http://crypto-law.com/)
+
+Released under terms of the Simplified BSD License.
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
     obj.borrower = {
 	name : "YOYODYNE PROPULSION SYSTEMS LIMITED",
 	location : "Hong Kong",
