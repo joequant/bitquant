@@ -18,7 +18,8 @@ require.config({
 	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.14.2/polyfiller",
 	"markdown" :
     "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min",
-	"collapse" : "jquery.collapse" 
+	"collapse" : "jquery.collapse",
+	"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min"
     },
     shim: {
         "jquery-ui": {
@@ -42,15 +43,18 @@ require ([
     term_sheet,
     "./LoanCalculator",
     notes,
+    "handlebars",
     "markdown",
     "append-grid",
     "polyfiller",
-    "collapse"], function(TermSheet, LoanCalculator, Notes) {
+    "collapse"], function(TermSheet, LoanCalculator, Notes,
+			 Handlebars) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
     var my_term_sheet = new TermSheet();
     var my_notes = new Notes();
-    $("#text").html(converter.makeHtml(my_term_sheet.contract_text));
+    var template = Handlebars.compile(my_term_sheet.contract_text);
+    $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
     analyze = function() {
         var events = {

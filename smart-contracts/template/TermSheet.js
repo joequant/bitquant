@@ -15,18 +15,17 @@ Legal text prepared by CryptoLaw (http://crypto-law.com/)
 
 Released under terms of the Simplified BSD License.
 
-This FACILITY AGREEMENT is dated 26 January 2015
+This FACILITY AGREEMENT is dated {{initial_loan_date_string}}
 
 BETWEEN
 
-1) YOYODYNE PROPULSION SYSTEMS LTD. incorporated and registered in
-Hong Kong with company number 1234552 whose registered office is at
-3/F, Nam Wo Hong Building 148 Wing Lok Street Sheung Wan, Hong Kong  
+1) {{borrower.name}} incorporated and registered in
+{{borrower.location}} with company number {{borrower.company_number}}
+whose registered office is at {{borrower.registered_office}} (BORROWER).  
 
-2) The BANZAI INSTITUTE FOR BIOMEDICAL ENGINEERING AND STRATEGIC
-INFORMATION LTD.  incorporated and registered in Hong Kong with
-company number 2334455 whose registered office is at 3/F, Citicorp
-Centre, 18 Whitfield Road, Tin Hau, Hong Kong.  (LENDER).  
+2) The {{lender.name}} incorporated and registered in Hong Kong with
+company number {{lender.company_number}} whose registered office is at
+{{lender.registered_office}} (LENDER).
 
 BACKGROUND
 
@@ -152,13 +151,13 @@ under this clause shall not affect the legality, validity and enforceability of 
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
 the Borrower at:  
-Address: Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey  
-Email: bigboote@aexample.com   
-Attention:    John Bigboote  
+Address: {{borrower.contact.address}}  
+Email: {{borrower.contact.email}}  
+Attention: {{borrower.contact.name}}  
 the Lender at:  
-Address: Banzai Institute, 1 Banzai Road, Holland Township, New Jersey  
-Email: buckaroo@example.com   
-Attention: Dr. Buckaroo Banzai  
+Address: {{lender.contact.address}}  
+Email: {{lender.contact.email}}  
+Attention: {{lender.contact.name}}    
 or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
 16.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
@@ -171,6 +170,42 @@ party to the other from time to time.
 
 17. Additional provisions
 -------------------------
+{{additional_provisions}}
+
+
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+
+
+define(function() {
+
+function Contract_Text(obj) {
+    obj.contract_text = contract_text;
+    obj.borrower = {
+	name : "YOYODYNE PROPULSION SYSTEMS LIMITED",
+	location : "Hong Kong",
+	company_number : "1234552",
+	registered_office : "3/F, Nam Wo Hong Building 148 Wing Lok Street Sheung Wan, Hong Kong",
+	contact : {
+	    name: "John Bigboote",
+	    address: "Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey",
+	    email: "bigboote@example.com"
+	}
+    };
+
+    obj.lender = {
+	name : "BANZAI INSTITUTE FOR BIOMEDICAL ENGINEERING AND STRATEGIC INFORMATION LIMITED",
+	location : "Hong Kong",
+	company_number : "2334455",
+	registered_office : "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
+	contact : {
+	    name: "Dr. Buckaroo Banzai",
+	    address: "Banzai Institute, 1 Banzai Road, Holland Township, New Jersey",
+	    email: "buckaroo@example.com"
+	}
+    };
+
+    obj.additional_provisions = (function () {/*
 17.1 For the purpose of of computing accelerated payments in this
 Agreement, the revenue shall be the cumulative gross receipts received
 by the Borrower, any subsidiaries or holding companies of the
@@ -189,24 +224,21 @@ targets specified in this contract.
 bitcoins based on the XBT Exchange Rate.  Any interest (including
 default interest) due under this Agreement must be paid via bitcoins
 based on the XBT Exchange Rate.
-
-
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+};
 
 // SCHEDULES
-
-define(function() {
 
 // SCHEDULE A
 
 function Schedule_A(obj) {
     // S.1
-    obj.contract_text = contract_text;
     obj.annual_interest_rate = 10.0;
     obj.compound_per_year = 12;
     obj.day_count_convention = "30/360US";
 
     obj.initial_loan_date = new_date(2015, 1, 26);
+    obj.initial_loan_date_string = obj.initial_loan_date.toDateString();
     obj.currency = 'HKD';
     obj.initial_loan_amount = 50000.00;
     obj.additional_credit_limit = 50000.00;
@@ -226,7 +258,9 @@ function Schedule_B(obj) {
     obj.late_day_count_convention = "30/360US";
 }
 
+// SCHEDULE C
 function Schedule_C() {
+    Contract_Text(this);
     Schedule_A(this);
     Schedule_B(this);
 
