@@ -173,6 +173,10 @@ party to the other from time to time.
 
 define(function() {
 
+function Contract_Config(obj) {
+    obj.allow_skip_principal = true;
+}
+
 function Contract_Text(obj) {
     obj.contract_text = contract_template;
     obj.header_text = (function () {/*
@@ -240,11 +244,11 @@ function Schedule_A(obj) {
     obj.compound_per_year = 12;
     obj.day_count_convention = "30/360US";
 
-    obj.initial_loan_date = new_date(2015, 1, 26);
+    obj.initial_loan_date = new_date(2015, 3, 1);
     obj.initial_loan_date_string = obj.initial_loan_date.toDateString();
     obj.currency = 'HKD';
-    obj.initial_loan_amount = 50000.00;
-    obj.additional_credit_limit = 50000.00;
+    obj.initial_loan_amount = 90000.00;
+    obj.additional_credit_limit = 50000.0;
     obj.revenue_targets =
 	[
 	    { "revenue" : 750000.00, "multiplier" : 0.5},
@@ -264,6 +268,7 @@ function Schedule_B(obj) {
 
 // SCHEDULE C
 function Schedule_C() {
+    Contract_Config(this);
     Contract_Text(this);
     Schedule_A(this);
     Schedule_B(this);
@@ -359,25 +364,6 @@ function Schedule_C() {
 	    unfilled_value : []
 	},
 	{
-	    name: "credit_request",
-	    display : "Credit request",
-	    type: "grid",
-	    columns: [
-		{ name: "on", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "number" }
-	    ],
-	    unfilled_value : []
-	},
-	{
-	    name: "skip_principal",
-	    display : "Skip principal payment",
-	    type: "grid",
-	    columns: [
-		{ name: "on", display: "Date", type : 'date' }
-	    ],
-	    unfilled_value : []
-	},
-	{
 	    name: "late_payment",
 	    display : "Late payment",
 	    type: "grid",
@@ -388,6 +374,39 @@ function Schedule_C() {
 	    unfilled_value : []
 	}
     ];
+
+    if (this.allow_skip_principal) {
+	this.event_spec.push(
+	    {
+		name: "skip_principal",
+		display : "Skip principal payment",
+		type: "grid",
+		columns: [
+		    { name: "on", display: "Date", type : 'date' }
+		],
+		unfilled_value : []
+	    }
+	);  
+    } else {
+	this.skip_principal = [];
+    }
+
+    if (this.additional_credit_limit > 0.0) {
+	this.event_spec.push(
+	    {
+		name: "credit_request",
+		display : "Credit request",
+		type: "grid",
+		columns: [
+		    { name: "on", display: "Date", type : 'date' },
+		    { name: "amount", display : "Money", type : "number" }
+		],
+		unfilled_value : []
+	    }
+	);
+    } else {
+	this.credit_request = [];
+    }
 }
 
 
