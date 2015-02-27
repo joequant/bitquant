@@ -153,6 +153,9 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
 
 LoanCalculator.prototype.extract_payment = function(params) {
     var payment;
+    if (params == undefined) {
+	return undefined;
+    }
     if (params.hasOwnProperty("amount")) {
 	payment = params.amount;
     } else {
@@ -211,7 +214,10 @@ var _payment = function(o, params) {
 }
 
 LoanCalculator.prototype.payment = function(params) {
-    this.add_to_event_table(_payment)(params);
+    if (params.payment_func === undefined) {
+	params.payment_func = _payment;
+   }
+    this.add_to_event_table(params.payment_func)(params);
 }
 
 LoanCalculator.prototype.add_to_balance = function(params) {

@@ -448,7 +448,7 @@ Schedule_C.prototype.payments = function(calc) {
     // S.3
     var final_payment_date =
 	following_1st_of_month(calc.add_duration(this.initial_loan_date,
-			  [1, 'year']));
+						 obj.max_loan_duration));
     calc.payment({"on":final_payment_date,
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
