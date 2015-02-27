@@ -589,7 +589,7 @@ Schedule_C.prototype.getTargetHitDates = function () {
     var revenue_idx = 0;
     var obj = this;
     this.revenues.forEach(function(i) {
-	if (revenue_idx > obj.revenue_targets.length) {
+	if (revenue_idx >= obj.revenue_targets.length) {
 	    return;
 	}
 
