@@ -519,7 +519,7 @@ Schedule_C.prototype.payments = function(calc) {
 	    calc.late_balance = calc.late_balance + required_payment - 
 		payment;
 	}
-	if (payment > 0) {
+	if (payment > 0 || calc.late_balance > 0) {
             return {"event":"Payment",
                     "on":params.on,
                     "payment":payment,
