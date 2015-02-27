@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cat < $1 > /tmp/text.$$
-base64 <$1 >> /tmp/text.$$
-
-enscript -p file.ps /tmp/text.$$
-ps2pdf file.ps file.pdf
