@@ -557,7 +557,8 @@ Schedule_C.prototype.payments = function(calc) {
 	}
         var multiplier = obj.revenue_targets[i].multiplier;
         var payment_date = 
-	    following_1st_of_month(calc.add_duration(target_hit_date, [1, "month"]));
+	    following_1st_of_month(calc.add_duration(target_hit_date, 
+						     [2, "weeks"]));
         if (payment_date > final_payment_date) {
             payment_date = final_payment_date;
 	}

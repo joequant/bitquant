@@ -77,8 +77,8 @@ total revenues from the product exceeds the revenue target, the
 borrower the will be required to pay a specified fraction of the
 outstanding balance in addition to a specified fraction of the
 interest had the balance been carried to the end of the contract.
-This payment will be due on the first of the month on or following one
-month after the revenue target is reached or the final payment date,
+This payment will be due on the first of the month on or following two
+weeks after the revenue target is reached or the final payment date,
 whichever is first.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     }
