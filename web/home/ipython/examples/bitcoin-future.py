@@ -35,7 +35,7 @@ import matplotlib.pyplot as plt
 def option(strike, vol, t, putcall):
     now = Date.universalDateTime()
     Settings.instance().evaluationDate = now
-    settlementDate = todaysDate + Period(3, Weeks)
+    settlementDate = todaysDate + Period(t, Weeks)
     riskFreeRate = FlatForward(todaysDate, 0.00, ContinuousTime.perDay())
 
     # option parameters
@@ -53,22 +53,26 @@ def option(strike, vol, t, putcall):
     option = CryptoCurrencyFuture(settlementDate, payoff)
     # method: analytic
     option.setPricingEngine(FDEuropeanEngine(process))
-    def myfunc(x):
-        underlying.setValue(x)
-        return option.NPV()
-    def mydelta(x):
-        underlying.setValue(x)
-        return option.delta()
-    def mytheta(x):
-        underlying.setValue(x)
-        return option.theta()
-    plt.figure(1, figsize=(5,8))
-    plt.subplot(211)
-    y = list(map(payoff, x))
-    plt.plot(x, y)
-    plt.plot(x, list(map(myfunc,x)))
-    plt.subplot(212)
-    plt.plot(x, list(map(mydelta,x)))
+    underlying.setValue(strike)
+    option.recalculate()
+    priceCurve = option.priceCurve()
+    grid = priceCurve.grid()
+    values = priceCurve.values()
+    plt.figure(1, figsize=(10,8))
+    plt.subplot(221)
+    y = list(map(payoff, grid))
+    plt.plot(grid, y)
+    plt.plot(grid, list(values))
+    plt.subplot(222)
+    delta_grid = priceCurve.derivative()
+    plt.plot(delta_grid.grid(), list(delta_grid.values()))
+    gamma_grid = delta_grid.derivative()
+    plt.subplot(223)
+    plt.plot(gamma_grid.grid(), list(gamma_grid.values()))
+    plt.subplot(224)
+    thetaCurve = option.thetaCurve()
+    plt.plot(thetaCurve.grid(), list(thetaCurve.values()))
+#    plt.plot(x, list(map(mydelta,x)))
 
 # <codecell>
 
