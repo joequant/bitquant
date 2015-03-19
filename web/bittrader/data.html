@@ -9,43 +9,53 @@
 </script>
 <link rel="stylesheet" href="css/metro-bootstrap.css">
 <script src="js/metro/metro.min.js"></script>
+<style type="text/css">
+#wait {
+display: none;
+}
+</style>
 <script>
 function generate_data_dump() {
-   $("#log_out").contents().find('html').html("connecting...");
+   $('#wait').show();
    $.post("/cgi-bin/bittrader/model.py/generate-data-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
+     $('#wait').hide();
      $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 
 function generate_log_dump() {
-   $("#log_out").contents().find('html').html("connecting...");
+   $('#wait').show();
    $.post("/cgi-bin/bittrader/model.py/generate-log-dump",
 	  {password: $("#dump_password").val()},
 	  function (data) {
+     $('#wait').hide();
      $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 
 function clear_data_dump(file) {
-   $("#log_out").contents().find('html').html("connecting...");
+   $('#wait').show();
    $.post("/cgi-bin/bittrader/model.py/clear-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
+     $('#wait').hide();
      $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
 };
 function install_data_dump(file) {
+   $('#wait').show();
    $("#log_out").contents().find('html').html("connecting...");
    $.post("/cgi-bin/bittrader/model.py/install-data-dump",
 	  {password: $("#dump_password").val(),
 	   filename: file},
 	  function (data) {
+     $('#wait').hide();
      $("#log_out").contents().find('html').html(data);
      refresh_file_list();
    });
@@ -81,6 +91,7 @@ User Password: <input id='dump_password'
 
 <a class="button" href="javascript:generate_data_dump()">Dump data</a> 
 <a class="button" href="javascript:generate_log_dump()">Dump log</a> 
+<span id="wait"><img src="ajax-loader.gif"> Working...</span>
 <div id="list"></div>
 <input type=file name=upload />
 <input type=submit name=upload_button value="Upload file" />
