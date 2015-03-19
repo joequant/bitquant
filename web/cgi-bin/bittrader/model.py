@@ -221,6 +221,8 @@ def generate_data_dump():
                                               "dump-data.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
+            if (line == b''):
+                break
             print(line.rstrip())
         yield "Return files"
         return
@@ -237,6 +239,8 @@ def generate_log_dump():
                                               "dump-log.sh")],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
+            if (line == b''):
+                break
             print(line.rstrip())
         yield "Return files"
         return
@@ -276,6 +280,8 @@ def install_data_dump():
                                  ],
                                 stdout=subprocess.PIPE)
         for line in iter(proc.stdout.readline, ''):
+            if (line == b''):
+                break
             print(line.rstrip())
         yield "Return files"
         return
