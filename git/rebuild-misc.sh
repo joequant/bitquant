@@ -12,6 +12,13 @@ npm i
 popd > /dev/null
 fi
 
+if [ -d ../../dynamic-reverse-proxy ] 
+then  echo "Building dynamic-reverse-proxy"
+pushd ../../dynamic-reverse-proxy > /dev/null
+npm i
+popd > /dev/null
+fi
+
 if [ -d ../../shiny-server ] 
 then  echo "Building ethercalc"
 if rpm  -qa | grep -q gyp ; then
