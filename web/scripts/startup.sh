@@ -13,7 +13,7 @@ if [ "`uname -m`" == "x86_64" ] ; then
 java_arch="amd64"
 fi
 
-if [ -d $GIT_DIR/OG-Platform ] ; then
+if [ -d $GIT_DIR/OG-Platform ] && [ -f /usr/bin/mvn ] ; then
 echo "Restarting opengamma"
 pushd $GIT_DIR/OG-Platform/examples/examples-simulated/ > /dev/null
 mvn opengamma:server-start -Dconfig=bitquant >> $LOG_DIR/og.log &
@@ -24,6 +24,13 @@ if [ -d $GIT_DIR/ethercalc ] ; then
 pushd $GIT_DIR/ethercalc > /dev/null
 echo "Restarting ethercalc"
 ETHERCALC_ARGS="--basepath /calc/ --port 8001" make >> $LOG_DIR/ethercalc.log 2>&1 &
+popd > /dev/null
+fi
+
+if [ -d $GIT_DIR/dynamic-reverse-proxy ] ; then
+pushd $GIT_DIR/dynamic-reverse-proxy > /dev/null
+echo "Restarting dynamic reverse proxy"
+node $GIT_DIR/dynamic-reverse-proxy/server.js >> $LOG_DIR/dynamic-reverse-proxy.log 2>&1 &
 popd > /dev/null
 fi
 
