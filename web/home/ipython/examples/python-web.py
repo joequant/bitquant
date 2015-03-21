@@ -20,10 +20,17 @@ port = 9010
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
-    
+
+def register():
+    import json
+    import urllib
+    data = {"prefix" : "python-web", "port" : port }
+    request = urllib.request.Request("http://localhost/app/register")
+    request.add_header('Content-Type', 'application/json')
+    response = urllib.request.urlopen(request, json.dumps(data).encode('utf-8'))
 def main():
     application = tornado.web.Application([
-        (r"/", MainHandler),
+        (r"/python-web", MainHandler),
     ])
     http_server = tornado.httpserver.HTTPServer(application)
     http_server.listen(port)
@@ -34,6 +41,14 @@ def main():
 # <codecell>
 
 main()
+
+# <codecell>
+
+import urllib
+
+# <codecell>
+
+register()
 
 # <codecell>
 
