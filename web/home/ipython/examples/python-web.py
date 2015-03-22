@@ -23,32 +23,27 @@ class MainHandler(tornado.web.RequestHandler):
 
 def register():
     import json
-    import urllib
+    import urllib.request
     data = {"prefix" : "python-web", "port" : port }
     request = urllib.request.Request("http://localhost/app/register")
     request.add_header('Content-Type', 'application/json')
     response = urllib.request.urlopen(request, json.dumps(data).encode('utf-8'))
-def main():
+def main():    
+    has_ioloop = tornado.ioloop.IOLoop.initialized()
     application = tornado.web.Application([
         (r"/python-web", MainHandler),
     ])
-    http_server = tornado.httpserver.HTTPServer(application)
-    http_server.listen(port)
-    tornado.ioloop.IOLoop.instance().start()
-
-    
-
-# <codecell>
-
-main()
-
-# <codecell>
-
-import urllib
+    application.listen(port)
+    if not has_ioloop:
+        tornado.ioloop.IOLoop.instance().start()
 
 # <codecell>
 
 register()
+
+# <codecell>
+
+main()
 
 # <codecell>
 
