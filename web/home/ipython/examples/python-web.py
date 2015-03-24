@@ -31,4 +31,40 @@ bitquantutils.register_wsgi("/python-wsgi", 9011, simple_app)
 
 # <codecell>
 
+from IPython.display import HTML
+def html_response(input):
+    return """<table>
+<tr>
+<th>Header 1</th>
+<th>Header 2</th>
+</tr>
+<tr>
+<td>row 1, cell 1</td>
+<td>row 1, cell 2</td>
+</tr>
+<tr>
+<td>row 2, cell 1</td>
+<td>row 2, cell 2</td>
+</tr>
+</table>"""
+HTML(html_response(None))
+import tornado.web
+
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write(html_response(None))
+
+import bitquantutils
+bitquantutils.register_tornado_handler("/python-web-html", 9012, MainHandler)
+
+# <codecell>
+
+import bitquantutils
+bitquantutils.start_loop()
+
+# <codecell>
+
+
+# <codecell>
+
 
