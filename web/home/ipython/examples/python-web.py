@@ -9,41 +9,25 @@
 # To shutdown the server you will need to
 # restart the kernel
 
-import tornado.httpserver
-import tornado.ioloop
-import tornado.options
-import tornado.web
-
-from tornado.options import define, options
 port = 9010
+import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
-
-def register():
-    import json
-    import urllib.request
-    data = {"prefix" : "python-web", "port" : port }
-    request = urllib.request.Request("http://localhost/app/register")
-    request.add_header('Content-Type', 'application/json')
-    response = urllib.request.urlopen(request, json.dumps(data).encode('utf-8'))
-def main():    
-    has_ioloop = tornado.ioloop.IOLoop.initialized()
-    application = tornado.web.Application([
-        (r"/python-web", MainHandler),
-    ])
-    application.listen(port)
-    if not has_ioloop:
-        tornado.ioloop.IOLoop.instance().start()
+import bitquantutils
+bitquantutils.register_tornado_handler("/python-web", 9010, MainHandler)
 
 # <codecell>
 
-register()
+def simple_app(environ, start_response):
+    status = "200 OK"
+    response_headers = [("Content-type", "text/plain")]
+    start_response(status, response_headers)
+    return [b"Hello world! with WSGI Handler\n"]
 
-# <codecell>
-
-main()
+import bitquantutils
+bitquantutils.register_wsgi("/python-wsgi", 9011, simple_app)
 
 # <codecell>
 
