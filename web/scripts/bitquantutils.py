@@ -15,7 +15,7 @@ def register_tornado_handler(prefix, port, handler):
     import tornado.web
     register_port(prefix, port)
     application = tornado.web.Application([
-        (prefix + ".*", handler),
+        (prefix + "($|/.*)", handler),
         ])
     application.listen(port)
 
