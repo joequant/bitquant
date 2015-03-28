@@ -3,7 +3,6 @@
 
 # <codecell>
 
-%matplotlib inline
 from QuantLib import *
 
 # <codecell>
