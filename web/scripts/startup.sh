@@ -53,7 +53,7 @@ mkdir -p ~/irkernel
 # Override mathjax so that ipython will pull the a secure mathjax to avoid 
 # failures if ipython is pulled through https
 
-/usr/bin/ipython3 notebook --no-browser --NotebookApp.base_url=ipython --NotebookApp.webapp_settings="{'static_url_prefix':'/ipython/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --config=$SCRIPT_DIR/ipython_config.py --notebook-dir=~/ipython --script >> $LOG_DIR/ipython.log 2>&1 &
+/usr/bin/ipython3 notebook --no-browser --NotebookApp.base_url=ipython --NotebookApp.webapp_settings="{'static_url_prefix':'/ipython/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --config=$SCRIPT_DIR/ipython_config.py --notebook-dir=~/ipython --script --pylab inline >> $LOG_DIR/ipython.log 2>&1 &
 
 /usr/bin/ipython3 notebook --no-browser --NotebookApp.base_url=irkernel --NotebookApp.webapp_settings="{'static_url_prefix':'/irkernel/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/irkernel --script --port=8890 --KernelManager.kernel_cmd="['R', '-e', 'IRkernel::main()', '--args', '{connection_file}']" >> $LOG_DIR/irkernel.log 2>&1 &
 fi
