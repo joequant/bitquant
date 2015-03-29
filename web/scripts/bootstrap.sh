@@ -24,6 +24,8 @@ $GIT_DIR/git/setup-misc.sh
 $GIT_DIR/git/rebuild-misc.sh
 echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
+echo "Installing python packages"
+$GIT_DIR/web/scripts/install-python.sh
 
 if [[ "$INSTALL_MIFOS" == "true" ]] ; then
 echo "Installing mifos"
