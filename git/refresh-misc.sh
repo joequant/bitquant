@@ -10,9 +10,8 @@ fi
 git config --global credential.helper cache
 
 pushd ../.. > /dev/null
-for repo in $repos_misc
-do
-if [ -d $repo ]
+for repo in $repos_misc ; do
+if [ -d "$repo" ]
 then
 pushd $repo > /dev/null
 echo "Processing $repo"

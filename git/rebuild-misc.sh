@@ -5,22 +5,18 @@ PYTHON=`which python2`
 
 cd $SCRIPT_DIR
 . ../web/scripts/norootcheck.sh
-if [ -d ../../ethercalc ] 
-then  echo "Building ethercalc"
-pushd ../../ethercalc > /dev/null
+for repo in ethercalc dynamic-reverse-proxy configurable-http-proxy
+do
+if [ -d "../../$repo" ]
+then  echo "Building $repo"
+pushd ../../$repo > /dev/null
 npm i
 popd > /dev/null
 fi
-
-if [ -d ../../dynamic-reverse-proxy ] 
-then  echo "Building dynamic-reverse-proxy"
-pushd ../../dynamic-reverse-proxy > /dev/null
-npm i
-popd > /dev/null
-fi
+done
 
 if [ -d ../../shiny-server ] 
-then  echo "Building ethercalc"
+then  echo "Building shiny-server"
 if rpm  -qa | grep -q gyp ; then
 echo "gyp is installed.  compile will fail.  please uninstall"]
 exit 1
