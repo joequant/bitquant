@@ -1,5 +1,5 @@
 MY_NAME=joequant
-repos_misc="shiny-server dynamic-reverse-proxy configurable-http-proxy"
+repos_misc="shiny-server dynamic-reverse-proxy configurable-http-proxy swagger-py"
 repos_quantlib="quantlib"
 repos_og="OG-PlatformNative OG-Tools OG-Platform"
 repos_skip="JyNI zipline JSurface3D etherpad-lite XChange Fudge-Python ethercalc"
@@ -19,3 +19,4 @@ upstream[ethercalc]="https://github.com/audreyt/ethercalc"
 upstream[shiny-server]="https://github.com/rstudio/shiny-server"
 upstream[dynamic-reverse-proxy]="https://github.com/softek/dynamic-reverse-proxy"
 upstream[configurable-http-proxy]="https://github.com/jupyter/configurable-http-proxy"
+upstream[swagger-py]="https://github.com/Yelp/swagger-py"
