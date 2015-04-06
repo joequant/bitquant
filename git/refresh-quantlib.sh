@@ -18,6 +18,8 @@ git stash
 git branch master origin/master
 git checkout master
 git rebase upstream/master
+git checkout bitcoin
+git rebase master
 if [ $UPLOAD -eq 1 ] ; then git push --set-upstream origin master ; fi
 popd > /dev/null
 popd > /dev/null
