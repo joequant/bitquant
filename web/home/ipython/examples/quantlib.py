@@ -42,7 +42,6 @@ def option(strike, vol, t, putcall):
     # option parameters
     exercise = EuropeanExercise(settlementDate)
     payoff = PlainVanillaPayoff(Option.Call, strike)
-    x = np.arange(strike*0.8, strike*1.2, 0.01);
 
     volatility = BlackConstantVol(todaysDate, TARGET(), vol, ContinuousTime.perDay())
     dividendYield = FlatForward(settlementDate, 0.00, ContinuousTime.perDay())
@@ -54,6 +53,10 @@ def option(strike, vol, t, putcall):
     option = VanillaOption(payoff, exercise)
     # method: analytic
     option.setPricingEngine(AnalyticEuropeanEngine(process))
+    return (option, underlying)
+
+def plotme(option, underlying, strike):
+    x = np.arange(strike*0.8, strike*1.2, 0.01);
     def myfunc(x):
         underlying .setValue(x)
         return option.NPV()
@@ -63,17 +66,20 @@ def option(strike, vol, t, putcall):
     def mytheta(x):
         underlying.setValue(x)
         return option.theta()
-    plt.figure(1, figsize=(5,8))
-    plt.subplot(211)
+    plt.figure(1, figsize=(10,8))
+    plt.subplot(221)
     y = list(map(payoff, x))
     plt.plot(x, y)
     plt.plot(x, list(map(myfunc,x)))
-    plt.subplot(212)
+    plt.subplot(222)
     plt.plot(x, list(map(mydelta,x)))
+    plt.subplot(223)
+    plt.plot(x, list(map(mytheta,x)))
 
 # <codecell>
 
-option(350, 0.02, 90, 1)
+(o, u) = option(350, 0.02, 90, 1)
+plotme(o, u)
 
 # <codecell>
 

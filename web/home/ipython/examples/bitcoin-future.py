@@ -3,7 +3,6 @@
 
 # <codecell>
 
-%matplotlib inline
 from QuantLib import *
 
 # <codecell>
@@ -35,7 +34,7 @@ import matplotlib.pyplot as plt
 def option(strike, vol, t, putcall):
     now = Date.universalDateTime()
     Settings.instance().evaluationDate = now
-    settlementDate = todaysDate + Period(t, Weeks)
+    settlementDate = todaysDate + Period(t, Days)
     riskFreeRate = FlatForward(todaysDate, 0.00, ContinuousTime.perDay())
 
     # option parameters
@@ -45,15 +44,13 @@ def option(strike, vol, t, putcall):
 
     volatility = BlackConstantVol(todaysDate, TARGET(), vol, ContinuousTime.perDay())
     dividendYield = FlatForward(settlementDate, 0.00, ContinuousTime.perDay())
-    underlying = SimpleQuote(0.0)
+    underlying = SimpleQuote(strike)
     process = BlackScholesMertonProcess(QuoteHandle(underlying),
                                     YieldTermStructureHandle(dividendYield),
                                     YieldTermStructureHandle(riskFreeRate),
                                     BlackVolTermStructureHandle(volatility))
     option = CryptoCurrencyFuture(settlementDate, payoff)
-    # method: analytic
     option.setPricingEngine(FDEuropeanEngine(process))
-    underlying.setValue(strike)
     option.recalculate()
     priceCurve = option.priceCurve()
     grid = priceCurve.grid()

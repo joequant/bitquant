@@ -39,12 +39,19 @@ import matplotlib.pyplot as plt
 #usdcny = requests.get('http://rate-exchange.appspot.com/currency?from=USD&to=CNY').json()['rate']
 usdcny = 6.18
 
+
+
 def get_data():
     retval = {}
     expiry = {}
+    futures = {}
     expiry['week'] = weekly_expiry()
-    expiry['next_week'] = weekly_expiry() + datetime.timedelta(1)
+    expiry['next_week'] = weekly_expiry() + datetime.timedelta(7)
     expiry['quarter'] = quarter_expiry()
+    retval['spot'] = {}
+
+    bitFinexTick = requests.get("https://api.bitfinex.com/v1/ticker/btcusd")
+    retval['spot']['bitfinex'] = bitFinexTick.json()['last_price']
     #bitmex
     data = requests.get('https://www.bitmex.com:443/api/v1/instrument/active').json()
     for contracttype in ["XBU", "XBT"]:
@@ -60,7 +67,7 @@ def get_data():
                 bids.append(i['bidPrice'])
                 asks.append(i['askPrice'])
                 last.append(i['lastPrice'])
-        retval["bitmex" + contracttype ] = {"dates": dates,
+        futures["bitmex" + contracttype ] = {"dates": dates,
                                             "bids" : np.array(bids),
                                             "asks" : np.array(asks),
                                             "last" : np.array(last)}
@@ -81,18 +88,18 @@ def get_data():
         bids.append(data["buy"])
         asks.append(data['sell'])
         last.append(data['last'])
-    retval['okcoin'] = {"dates": dates,
+    futures['okcoin'] = {"dates": dates,
                         "bids" : np.array(bids),
                         "asks" : np.array(asks),
                         "last": np.array(last)}
     #796
     data = requests.get("http://api.796.com/v3/futures/ticker.html?type=weekly").json()['ticker']
-    retval['796'] = {'dates':[weekly_expiry()],
+    futures['796'] = {'dates':[weekly_expiry()],
                      "bids" : np.array([float(data['buy'])]),
                      "asks" : np.array([float(data['sell'])]),
                      "last" : np.array([float(data['last'])])}
     data = requests.get("http://api.796.com/v3/futures/ticker.html?type=btccnyweeklyfutures").json()['ticker']
-    retval['796CNY'] = {'dates':[weekly_expiry()],
+    futures['796CNY'] = {'dates':[weekly_expiry()],
                      "bids" : np.array([float(data['buy'])/usdcny]),
                      "asks" : np.array([float(data['sell'])/usdcny]),
                      "last" : np.array([float(data['last'])/usdcny])}
@@ -107,11 +114,11 @@ def get_data():
         bids.append(data['buy'])
         asks.append(data['sell'])
         last.append(data['last'])
-    retval['bitvc'] = {'dates':dates,
+    futures['bitvc'] = {'dates':dates,
                      "bids" : np.array(bids).astype(float)/usdcny,
                      "asks" : np.array(asks).astype(float)/usdcny,
                      "last" : np.array(last).astype(float)/usdcny}      
-    print(data)
+    retval['futures'] = futures
     return retval
 
 # <codecell>
@@ -120,15 +127,33 @@ def plotme(data):
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots()
     plt.margins(x=0.1, y=0.1)
-    for k, v in data.items():
+    for k, v in data['futures'].items():
         ax.errorbar(v['dates'], v['last'], 
                     yerr=[v['last']-v['asks'], 
                           v['bids']-v['last']], fmt="o")
 
 # <codecell>
 
+def plot_rates(data):
+    spot = data['spot']['bitfinex']
+    now = datetime.datetime.now()
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.margins(x=0.1, y=0.1)
+    for k, v in data['futures'].items():
+        t = list(map (lambda x : (x-now).days, v['dates']))
+        print(t)
+        r = log(v['last']/spot)/t
+        ax.errorbar(v['dates'], r)
+
+# <codecell>
+
 data = get_data()
 plotme(data)
+
+# <codecell>
+
+print(data)
 
 # <codecell>
 
