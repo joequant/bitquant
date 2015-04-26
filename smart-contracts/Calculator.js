@@ -7,14 +7,14 @@ if (typeof define !== 'function') {
 }
 
 define(["moment", "./YEARFRAC"], function(moment, YEARFRAC) {
-function LoanCalculator() {
+function Calculator() {
 }
 
-LoanCalculator.prototype.test_wrapper = function() {
+Calculator.prototype.test_wrapper = function() {
     console.log("Hello world");
 };
 
-LoanCalculator.prototype.add_to_event_table = function(func) {
+Calculator.prototype.add_to_event_table = function(func) {
     var o = this;
     return function(param) {
 	var on = param["on"];
@@ -37,7 +37,7 @@ LoanCalculator.prototype.add_to_event_table = function(func) {
     };
 }
 
-LoanCalculator.prototype.run_events = function(term_sheet) {
+Calculator.prototype.run_events = function(term_sheet) {
     var payment_schedule = [];
     this.currency = term_sheet.currency;
     this.principal = 0.0;
@@ -97,7 +97,7 @@ LoanCalculator.prototype.run_events = function(term_sheet) {
     return payment_schedule;
 }
 
-LoanCalculator.prototype.show_payments = function(term_sheet) {
+Calculator.prototype.show_payments = function(term_sheet) {
     var obj = this;
     var payment_schedule = this.calculate(term_sheet);
     var lines = [["type", "payment", "beginning principal",
@@ -110,7 +110,7 @@ LoanCalculator.prototype.show_payments = function(term_sheet) {
     return lines;
 }
 
-LoanCalculator.prototype.apr = function(payment_schedule) {
+Calculator.prototype.apr = function(payment_schedule) {
     var prev_event = undefined;
     var calc = this;
     var total_interest = 0.0;
@@ -130,7 +130,7 @@ LoanCalculator.prototype.apr = function(payment_schedule) {
     return total_interest / total_year_frac * 100.0;
 }
 
-LoanCalculator.prototype.show_payment = function(i) {
+Calculator.prototype.show_payment = function(i) {
     var line = [];
     line.push([i["event"], i["on"], i.payment,
                    i["principal"], i["interest_accrued"],
@@ -142,7 +142,7 @@ LoanCalculator.prototype.show_payment = function(i) {
     return line;
 }
 
-LoanCalculator.prototype.calculate = function(term_sheet) {
+Calculator.prototype.calculate = function(term_sheet) {
     this.events = {};
     this.event_list = [];
     this.current_event = 0;
@@ -151,7 +151,7 @@ LoanCalculator.prototype.calculate = function(term_sheet) {
     return this.run_events(term_sheet);
 }
 
-LoanCalculator.prototype.extract_payment = function(params) {
+Calculator.prototype.extract_payment = function(params) {
     var payment;
     if (params == undefined) {
 	return undefined;
@@ -173,7 +173,7 @@ LoanCalculator.prototype.extract_payment = function(params) {
     return payment;
 }
 
-LoanCalculator.prototype.fund = function(params) {
+Calculator.prototype.fund = function(params) {
     var _fund = function(o, params) {
 	var payment = o.extract_payment(params);
 	var principal = o.principal;
@@ -213,14 +213,14 @@ var _payment = function(o, params) {
     }
 }
 
-LoanCalculator.prototype.payment = function(params) {
+Calculator.prototype.payment = function(params) {
     if (params.payment_func === undefined) {
 	params.payment_func = _payment;
    }
     this.add_to_event_table(params.payment_func)(params);
 }
 
-LoanCalculator.prototype.add_to_balance = function(params) {
+Calculator.prototype.add_to_balance = function(params) {
     var _payment = function(o, params) {
 	var payment = o.extract_payment(params);
         o.balance = o.balance + payment;
@@ -237,7 +237,7 @@ LoanCalculator.prototype.add_to_balance = function(params) {
     this.add_to_event_table(_payment)(params);
 }
 
-LoanCalculator.prototype.note = function(params) {
+Calculator.prototype.note = function(params) {
     var _payment = function(o, params) {
         return {"event":"Note",
                 "note":params.note};
@@ -245,7 +245,7 @@ LoanCalculator.prototype.note = function(params) {
     this.add_to_event_table(_payment)(params);
 }
 
-LoanCalculator.prototype.amortize = function(params) {
+Calculator.prototype.amortize = function(params) {
     if (params.payment_func === undefined) {
 	params.payment_func = _payment;
     }
@@ -278,15 +278,15 @@ LoanCalculator.prototype.amortize = function(params) {
     this.add_to_event_table(_amortize)(params);
 }
 
-LoanCalculator.prototype.set_parameters = function(term_sheet, params) {
+Calculator.prototype.set_parameters = function(term_sheet, params) {
     this.set_items(term_sheet, term_sheet.contract_parameters, params);
 }
 
-LoanCalculator.prototype.set_events = function(term_sheet, events) {
+Calculator.prototype.set_events = function(term_sheet, events) {
     this.set_items(term_sheet, term_sheet.event_spec, events);
 }
 
-LoanCalculator.prototype.set_items = function(term_sheet, event_spec, events) {
+Calculator.prototype.set_items = function(term_sheet, event_spec, events) {
     event_spec.forEach(function(i) {
 	if (events[i.name] == undefined &&
 	    i.unfilled_value != undefined) {
@@ -328,7 +328,7 @@ LoanCalculator.prototype.set_items = function(term_sheet, event_spec, events) {
 }
 
 
-LoanCalculator.prototype.compounding_factor = function(from_date,
+Calculator.prototype.compounding_factor = function(from_date,
 						       to_date,
 						       annual_interest_rate,
 						       compound_per_year,
@@ -340,14 +340,14 @@ LoanCalculator.prototype.compounding_factor = function(from_date,
 		     compound_per_year), periods) - 1.0;
 }
 
-LoanCalculator.prototype.add_duration = function (date,
+Calculator.prototype.add_duration = function (date,
 						  duration) {
     var d = moment(date);
     d.add.apply(d, duration);
     return d.toDate();
 }
 
-LoanCalculator.prototype.interest = function(from_date, to_date,
+Calculator.prototype.interest = function(from_date, to_date,
 						  amount) {
     var obj = this;
     return function() {
@@ -360,7 +360,7 @@ LoanCalculator.prototype.interest = function(from_date, to_date,
     }
 }
 
-LoanCalculator.prototype.year_frac = function(from_date,
+Calculator.prototype.year_frac = function(from_date,
 					      to_date,
 					      day_count_convention) {
     if (day_count_convention === "30/360US") {
@@ -378,27 +378,27 @@ LoanCalculator.prototype.year_frac = function(from_date,
     }
 }
 
-LoanCalculator.prototype.remaining_principal = function() {
+Calculator.prototype.remaining_principal = function() {
     var o = this;
     return function() { return o.principal; }
 }
 
-LoanCalculator.prototype.accrued_interest = function() {
+Calculator.prototype.accrued_interest = function() {
     var o = this;
     return function() { return (o.balance - o.principal); }
 }
 
-LoanCalculator.prototype.remaining_balance = function() {
+Calculator.prototype.remaining_balance = function() {
     var o = this;
     return function() { return(o.balance); }
 }
 
-LoanCalculator.prototype.multiply = function (a, b) {
+Calculator.prototype.multiply = function (a, b) {
     var o = this;
     return function() { return o.extract_payment(a) * b };
 }
 
-LoanCalculator.prototype.limit_balance = function(a, b) {
+Calculator.prototype.limit_balance = function(a, b) {
     var o = this;
     return function() {
 	var request = o.extract_payment(a);
@@ -411,5 +411,5 @@ LoanCalculator.prototype.limit_balance = function(a, b) {
     }
 }
 
-return LoanCalculator;
+return Calculator;
 });

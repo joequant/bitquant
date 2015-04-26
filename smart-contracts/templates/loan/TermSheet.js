@@ -336,14 +336,6 @@ function Schedule_C() {
 
     this.event_spec = [
 	{
-	    name: "header",
-	    type: "note"
-	},
-	{
-	    name: "terms",
-	    type: "note"
-	},
-	{
 	    name : "revenues",
 	    display : "Projected Revenues",
 	    type: "grid",
@@ -407,6 +399,18 @@ function Schedule_C() {
     } else {
 	this.credit_request = [];
     }
+    this.event_spec.push(
+	{
+	    name: "header",
+	    type: "note"
+	}
+    );
+    this.event_spec.push(
+	{
+	    name: "terms",
+	    type: "note"
+	}
+    );
 }
 
 

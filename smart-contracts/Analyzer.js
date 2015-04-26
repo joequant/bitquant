@@ -41,13 +41,13 @@ require.config({
 var analyze;
 require ([
     term_sheet,
-    "./LoanCalculator",
+    "./Calculator",
     notes,
     "handlebars",
     "markdown",
     "append-grid",
     "polyfiller",
-    "collapse"], function(TermSheet, LoanCalculator, Notes,
+    "collapse"], function(TermSheet, Calculator, Notes,
 			 Handlebars) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
@@ -90,7 +90,7 @@ require ([
 		params[i.name] = value;
 	    }
 	});
-	var calculator = new LoanCalculator();
+	var calculator = new Calculator();
 	calculator.set_events(my_term_sheet, events);
 	calculator.set_parameters(my_term_sheet, params);
 	$('#item').html("");

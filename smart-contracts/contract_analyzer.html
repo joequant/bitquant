@@ -30,20 +30,21 @@ Redistributable under terms of the Simplified BSD License
 <p>
 <b>Please note that the smart contract analyzer does *NOT* form part of
 the contract.</b>
-
-<div id="text"></div>
-<b>END OF CONTRACT TEXT</b>
-<div id="contract_params"></div>
-<div id="event_inputs"></div>
+<br>
 <button id="analyze" type="button">Analyze</button>
 <pre>
 <div id="item"></div>
 </pre>
+<div id="contract_params"></div>
+<div id="event_inputs"></div>
+<div id="text"></div>
+<b>END OF CONTRACT TEXT</b>
+
 <script>
 var analyze;
 require (["./Analyzer"], function(load_analyzer) {
-load_analyzer("./template/TermSheet",
-"./template/Notes",
+load_analyzer("./templates/loan/TermSheet",
+"./templates/loan/Notes",
 function(analyze_function) {
 $("#analyze").click(analyze_function);
 }

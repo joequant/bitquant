@@ -31,16 +31,16 @@ var show_apr = function(calculator, payments) {
 		calculator.apr(payments).toFixed(4) + " percent");
 }
 
-var directory = "./template"
-var LoanCalculator = require("./LoanCalculator.js");
+var directory = "./templates/loan"
+var Calculator = require("./Calculator.js");
 var TermSheet = require(directory + "/TermSheet.js");
 
-var calculator = new LoanCalculator();
+var calculator = new Calculator();
 calculator.test_wrapper()
 
 console.log("Standard Payments")
 var my_term_sheet = new TermSheet();
-var calculator = new LoanCalculator()
+var calculator = new Calculator()
 calculator.set_events(my_term_sheet, {
     "revenues":[],
     "early_payment":[],
@@ -65,7 +65,7 @@ console.log();
 
 console.log("Assume revenue hit on 2015-05-15")
 my_term_sheet =  new TermSheet();
-calculator = new LoanCalculator()
+calculator = new Calculator()
 calculator.set_events(my_term_sheet, {
     "revenues": [
 	{"on" : "2015-05-15",
@@ -83,7 +83,7 @@ console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15")
 my_term_sheet = new TermSheet()
-calculator = new LoanCalculator()
+calculator = new Calculator()
 calculator.set_events(my_term_sheet, {
     "revenues": [
     {"on" : "2015-06-15",
@@ -103,7 +103,7 @@ console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws")
 my_term_sheet = new TermSheet();
-calculator = new LoanCalculator();
+calculator = new Calculator();
 calculator.set_events(my_term_sheet, {
     "revenues": [
     {"on" : "2015-06-15",
@@ -129,7 +129,7 @@ console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
 my_term_sheet = new TermSheet();
-calculator = new LoanCalculator();
+calculator = new Calculator();
 calculator.set_events(my_term_sheet, {
     "revenues": [
     {"on" : "2015-04-15",
@@ -158,7 +158,7 @@ console.log()
 
 console.log("Assume revenue hit on 2015-06-15 and 2015-09-15 and credit draws.  Skip payment on 2015-09-01");
 my_term_sheet = new TermSheet();
-calculator = new LoanCalculator();
+calculator = new Calculator();
 calculator.set_events(my_term_sheet, {
     "revenues": [
     {"on" : "2015-04-15",
@@ -187,7 +187,7 @@ console.log();
 
 console.log("Late payment")
 var my_term_sheet =  new TermSheet();
-var calculator = new LoanCalculator();
+var calculator = new Calculator();
 calculator.set_events(my_term_sheet, {
     "revenues":[],
     "early_payment" :[],
