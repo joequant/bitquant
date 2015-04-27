@@ -10,6 +10,13 @@ requirejs.config({
     nodeRequire: require
 });
 
+var directory = process.argv[2];
+if (directory === undefined) {
+    directory = "./templates/loan"
+} else {
+    directory = "./" + directory
+}
+
 var show_line = function(i) {
     var note = "";
     if (i.note != undefined) {
@@ -31,7 +38,6 @@ var show_apr = function(calculator, payments) {
 		calculator.apr(payments).toFixed(4) + " percent");
 }
 
-var directory = "./templates/loan"
 var Calculator = require("./Calculator.js");
 var TermSheet = require(directory + "/TermSheet.js");
 
