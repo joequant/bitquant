@@ -49,10 +49,9 @@ Calculator.prototype.run_events = function(term_sheet) {
     var prev_date = undefined;
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
-	var i = this.events[k];
         if (prev_date !== undefined &&
 	   term_sheet.annual_interest_rate !== undefined &&
-	   term_sheel.compound_per_year !== undefined &&
+	   term_sheet.compound_per_year !== undefined &&
 	   term_sheet.day_count_convention !== undefined) {
             var interest = 
 		this.compounding_factor(prev_date,
@@ -69,8 +68,10 @@ Calculator.prototype.run_events = function(term_sheet) {
 		this.late_balance;
             this.balance = this.balance + interest;
 	}
-        i.forEach(function(j){
-            var payment = j();
+	var list_counter = 0;
+	while (list_counter < this.events[k].length) {
+            var payment = this.events[k][list_counter]();
+	    list_counter++;
             if (payment === undefined) {
 		return;
 	    } else if (payment.constructor === Array) {
@@ -93,7 +94,14 @@ Calculator.prototype.run_events = function(term_sheet) {
 		}
                 payment_schedule.push(payment);
 	    }
-	});
+	    console.log(payment);
+	    if (payment.failure !== undefined &&
+		payment.actual !== undefined &&
+		payment.actual > payment.on) {
+		console.log("hit!!!");
+		payment.failure(payment);
+	    }
+	}
         prev_date = k;
 	this.current_event++;
     }

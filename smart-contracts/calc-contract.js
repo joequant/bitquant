@@ -22,11 +22,33 @@ var show_line = function(i) {
     if (i.note != undefined) {
 	note = i.note;
     }
-    if (i.event == "Note") {
+    if (i.event == "Note" ||
+       i.event == "Terminate") {
 	console.log(i.event,
 		    i.on.toDateString(),
 		    note);
 	return;
+    }
+
+    if (i.event == "Transfer") {
+	var actual = i.actual;
+	if (actual === undefined) {
+	    actual = i.on;
+	}
+	var item = i.item;
+	if (item === undefined) {
+	    item = i.item;
+	}
+	console.log(i.event,
+		    i.on.toDateString(),
+		    i.from,
+		    i.to,
+		    Number(i.amount).toFixed(2),
+		    i.item,
+		    note,
+		   actual.toDateString());
+	return;
+
     }
     console.log(i.event,
 		i.on.toDateString(),
