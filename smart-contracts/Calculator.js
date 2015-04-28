@@ -50,7 +50,10 @@ Calculator.prototype.run_events = function(term_sheet) {
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
 	var i = this.events[k];
-        if (prev_date !== undefined) {
+        if (prev_date !== undefined &&
+	   term_sheet.annual_interest_rate !== undefined &&
+	   term_sheel.compound_per_year !== undefined &&
+	   term_sheet.day_count_convention !== undefined) {
             var interest = 
 		this.compounding_factor(prev_date,
 					k,
@@ -173,6 +176,37 @@ Calculator.prototype.extract_payment = function(params) {
     return payment;
 }
 
+Calculator.prototype.note = function(params) {
+    var _note = function(o, params) {
+	return {"event": "Note",
+		"on": params.on,
+		"note" : params.note};
+    }
+    this.add_to_event_table(_note)(params);
+}
+
+Calculator.prototype.terminate = function(params) {
+    var _terminate = function(o, params) {
+	return {"event": "Terminate",
+		"on": params.on,
+		"note" : params.note};
+    }
+    this.add_to_event_table(_terminate)(params);
+}
+
+Calculator.prototype.transfer = function(params) {
+    var _transfer = function(o, params) {
+	return {"event": "Transfer",
+		"on": params.on,
+		"from" : params.from,
+		"to" : params.to,
+		"amount" : o.extract_payment(params),
+		"item" : params.item,
+		"note" : params.note};
+    }
+    this.add_to_event_table(_transfer)(params);
+}
+
 Calculator.prototype.fund = function(params) {
     var _fund = function(o, params) {
 	var payment = o.extract_payment(params);
@@ -234,14 +268,6 @@ Calculator.prototype.add_to_balance = function(params) {
                     "note":params.note}
 	}
     }
-    this.add_to_event_table(_payment)(params);
-}
-
-Calculator.prototype.note = function(params) {
-    var _payment = function(o, params) {
-        return {"event":"Note",
-                "note":params.note};
-    };
     this.add_to_event_table(_payment)(params);
 }
 
