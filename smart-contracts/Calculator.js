@@ -176,6 +176,7 @@ Calculator.prototype.extract_payment = function(params) {
     return payment;
 }
 
+
 Calculator.prototype.note = function(params) {
     var _note = function(o, params) {
 	return {"event": "Note",
@@ -198,11 +199,13 @@ Calculator.prototype.transfer = function(params) {
     var _transfer = function(o, params) {
 	return {"event": "Transfer",
 		"on": params.on,
+		"actual" : params.actual,
 		"from" : params.from,
 		"to" : params.to,
 		"amount" : o.extract_payment(params),
 		"item" : params.item,
-		"note" : params.note};
+		"note" : params.note,
+	        "failure" : params.failure};
     }
     this.add_to_event_table(_transfer)(params);
 }
