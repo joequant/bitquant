@@ -22,6 +22,12 @@ var show_line = function(i) {
     if (i.note != undefined) {
 	note = i.note;
     }
+    if (i.event == "Note") {
+	console.log(i.event,
+		    i.on.toDateString(),
+		    note);
+	return;
+    }
     console.log(i.event,
 		i.on.toDateString(),
 		Number(i.principal).toFixed(2),
