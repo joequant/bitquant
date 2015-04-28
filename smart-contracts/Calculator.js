@@ -94,12 +94,13 @@ Calculator.prototype.run_events = function(term_sheet) {
 		}
                 payment_schedule.push(payment);
 	    }
-	    console.log(payment);
 	    if (payment.failure !== undefined &&
 		payment.actual !== undefined &&
 		payment.actual > payment.on) {
-		console.log("hit!!!");
 		payment.failure(payment);
+	    }
+	    if (payment.event == "Terminate") {
+		return payment_schedule;
 	    }
 	}
         prev_date = k;
@@ -175,6 +176,9 @@ Calculator.prototype.extract_payment = function(params) {
     if (typeof(payment) == "function") {
 	payment = payment();
     } 
+    if (payment == undefined) {
+	return undefined;
+    }
     if (payment.hasOwnProperty("amount")) {
 	payment = payment.amount;
     }
@@ -216,6 +220,19 @@ Calculator.prototype.transfer = function(params) {
 	        "failure" : params.failure};
     }
     this.add_to_event_table(_transfer)(params);
+}
+
+Calculator.prototype.obligation = function(params) {
+    var _obligation = function(o, params) {
+	return {"event": "Obligation",
+		"on": params.on,
+		"actual" : params.actual,
+		"from" : params.from,
+		"item" : params.item,
+		"note" : params.note,
+	        "failure" : params.failure};
+    }
+    this.add_to_event_table(_obligation)(params);
 }
 
 Calculator.prototype.fund = function(params) {

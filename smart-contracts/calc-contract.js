@@ -30,7 +30,8 @@ var show_line = function(i) {
 	return;
     }
 
-    if (i.event == "Transfer") {
+    if (i.event ===  "Transfer" ||
+       i.event === "Obligation") {
 	var actual = i.actual;
 	if (actual === undefined) {
 	    actual = i.on;
