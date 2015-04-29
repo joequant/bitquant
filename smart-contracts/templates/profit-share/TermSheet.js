@@ -227,10 +227,15 @@ Released under terms of the Simplified BSD License.
  concerning the designated property.
 
 * Landlord documents refers to an executed lease agreement between the
- agent and the designated property for a term of two years.  The lease
- agreement must not prohibit subletting, and may not include any
- provision allowing either party to terminate the lease before the
- expiration of the term of the agreement.
+  agent and the designated property for a term of two years.  The lease
+  between the landlord and the agent must contain the following
+  provisions:
+** The lease agreement allow subletting
+** The lease agreement must be for a period of no less than two years
+ and must containing no provision allowing for early termination of
+ the lease.
+** The lease agreement must make the landlord responsible for keeping
+ the property in good repair, and for the costs of ordinary maintainence
 
 * Tenant documents refers to an executed agreement between an agent
  and the tenants of the property, and must include the name and
@@ -357,8 +362,8 @@ Schedule_C.prototype.payments = function(calc) {
     var overhead_payment = contract.overhead_payment;
 
     // S.3 
-    var year_one_payment_date = new_date(2015, 10, 15);
-    var year_two_payment_date = new_date(2016, 10, 15);
+    var year_one_payment_date = new_date(2015, 10, 1);
+    var year_two_payment_date = new_date(2016, 10, 1);
 
     // S.4 
     var year_one_payment = contract.profit_share * (12.0 *
