@@ -18,17 +18,17 @@ registered in Hong Kong with company number
 {{investor.company_number}} whose registered office is at
 {{investor.registered_office}} (INVESTOR).
 
-2) The trustee of this agreement is {{agent.name}} incorporated and
-registered in {{agent.location}} with company number
-{{agent.company_number}} whose registered office is at
-{{agent.registered_office}} (AGENT).
+2) The trustee of this agreement is {{manager.name}} incorporated and
+registered in {{manager.location}} with company number
+{{manager.company_number}} whose registered office is at
+{{manager.registered_office}} (MANAGER).
 
 3) The beneficiary of this agreement is the INVESTOR and any assignees
 of the INVESTOR.
 
 BACKGROUND
 
-The investor as settlor has agreed to provide the agent as trustee
+The investor as settlor has agreed to provide the manager as trustee
 funds of the purpose of investment into a named real property.  The
 trustee agrees to handle the funds according to the terms of this
 agreement benefit of the beneficiary.
@@ -38,7 +38,7 @@ AGREED TERMS
 1. Governing law and jurisdiction
 ------------------------------
 1.1 This Agreement and any dispute or claim arising out of or in connection with it or its subject matter or formation (including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of Hong Kong.  
-1.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Investor to take proceedings against the Agent in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
+1.2 Each party irrevocably agrees that, subject as provided below, the courts of Hong Kong shall have non-exclusive jurisdiction over any dispute or claim that arises out of, or in connection with this Agreement or its subject matter or formation (including non-contractual disputes or claims). Nothing in this clause shall limit the right of the Investor to take proceedings against the Manager in any other court of competent jurisdiction, nor shall the taking of proceedings in any one or more jurisdictions preclude the taking of proceedings in any other jurisdictions, whether concurrently or not, to the extent permitted by the law of such other jurisdiction.
 This Agreement has been entered into on the date stated at the beginning of it.
 
 2. Definitions
@@ -47,7 +47,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
   * HK$: the lawful currency of Hong Kong.  
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
-  * Product: the watermelon compression system  
+  * Related persons: shall comprise immediate relatives and other persons living in the household of a natural person, or in the case of legal persons, immediate relatives and other persons living in the household of a director or senior manager of the legal person,
   * XBT Exchange Rate:  the conversion rate between HKD and XBT as quoted by ANXBTC or Bitcashout
 
 3. Interpretation
@@ -73,34 +73,37 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 6. Use of funds
 ---------------
-6.1 Any funds received by the trustee, its agents, or related persons,
-excluding refunds of deposits, in connection with the named property
-shall be the property of this trust, and may only be used in
-accordance with the terms and conditions of this agreement.
+6.1 Any funds received by the manager, its agents, or related persons
+of the manager or its agents, excluding refunds of deposits, in
+connection with the named property shall be the property of this
+trust, and may only be used in accordance with the terms and
+conditions of this agreement.
 
-6.2 During the existence of this trust, the trustee or any agent of
-the trustee or any person related to the trustee may not collect or
-cause to be collected any fees or rent from the named property other
-than rent which has been executed via a written agreement which has
-been provided to the beneficiary or which has otherwise been disclosed
-in writing to the beneficiary.  The trustee agrees that any fees or
-rent that has not been disclosed to the beneficiary shall immediately
-become the property of the beneficiary.
+6.2 During the existence of this trust, the manager or any agent of
+the manager or any person related to the manager may not collect or
+cause to be collected any non-refundable funds concerning the named
+property other than rent which has been executed via a written
+agreement which has been provided to the beneficiary or which have
+otherwise expressly been disclosed in writing to the beneficiary.  The
+manager agrees that any funds that have not been expressly disclosed
+to the beneficiary shall immediately become the property of the
+beneficiary.
 
 6,3 Any funds owned by the trust which are in excess of that what is
 necessary to fulfil the payment obligations of the trust to the
-beneficiary in that calendar year, shall become the property of the
-trustee, who may thereupon use those funds for any purpose whatsoever.
+beneficiary in that calendar year, shall immediately become the
+property of the manager, who may thereupon use those funds for any
+purpose whatsoever.
 
-6.4 The initial investment, as defined in Schedule A, shall only be
-used for the purpose of paying for the deposit and rent advances for
-the named property or as reimbursement to any person, including the
-trustee, who has paid said fees.
+6.4 The initial investment, as defined in Schedule A, may only be used
+for the purpose of paying for the deposit and rent advances for the
+named property or as reimbursement to any person who has paid said
+fees.
 
 6.5 Upon presentation of the landlord documents as specified in
 Schedule A, ownership of the and funds associated with the overhead
-fee shall pass to the trustee, who may use these funds for any purpose
-whatsoever.
+fee as defined in Schedule A shall immediate pass from the trust to
+the manager, who may use these funds for any purpose whatsoever.
  
 6.6 The trustee shall have authority to keep the funds owned by the
 trust in any business cash account normally used by the trustee for
@@ -112,27 +115,93 @@ trust in said account may prevent the trustee from fulfilling its
 obligations under this agreement, it shall forthwith segregate the
 funds owned by the trust from other funds owned by the trustee.
 
-6.7 However, in no event shall the trustee pledge funds owned by the
-trust as collateral to any third party, nor may the trustee use the
-funds owned by the trust for investment purposes without the consent
-of the beneficiary.  
+6.7 The trustee shall insure that any funds held by the trust shall be
+stored in a form which is commonly used for the storage of cash for
+businesses.  Examples of these forms include insured bank accounts and
+stored value card.  In no event shall the trustee pledge funds owned
+by the trust as collateral to any third party, nor may the trustee use
+the funds owned by the trust for investment purposes without the
+express written consent of the beneficiary.
 
 6.8 The trustee shall have authority to appoint a trust administrator
 to mangage funds in the trust.
 
-6.9 The beneficiary of this trust has the authority to revoke the
+6.9 In the event, that the settlor has a reasonable belief that the
+trustee is unable to properly administer the terms of the trust, the
+settlor shall have authority to revoke the authority of the trustee
+and appoint a new trustee to manage the funds owned by the trust.
+This action shall not affect the distribution or ownership of funds.
+
+6.10 The beneficiary of this trust has the authority to revoke the
 trust agreement at any time, upon which time any funds owned by the
 trust shall be transfered to the beneficiary.
 
-6.10 This trust shall automatically terminate when the trustee has
+6.11 This trust shall automatically terminate when the trustee has
 fulfiled all obligations owed to the beneficiary as specified in
 Schedule A.
+
+7. Regulatory activities
+------------------------ 
+
+7.1 If any provision (or part of a provision) of this Agreement is or
+becomes invalid, illegal or unenforceable, it shall be deemed modified
+to the minimum extent necessary to make it valid, legal and
+enforceable. If such modification is not possible, the relevant
+provision (or part of a provision) shall be deemed deleted. Any
+modification to or deletion of a provision (or part of a provision)
+under this clause shall not affect the legality, validity and
+enforceability of the rest of this Agreement.
+
+
+7.2 It is the express intention of the settlor that this agreement
+should not constitute a collective investment scheme as defined by the
+laws of Hong Kong, and the trustee shall take all reasonable actions
+necessary to prevent this agreement from constituting a collective
+investment scheme.  
+
+7.3 In the event that this agreement is deemed or is likely to be
+deemed to be a collective investment scheme by any governmental
+authority of the HKSAR, the trustees are authorized to take any
+reasonable efforts to challenge or prevent said determination and are
+authorized to use funds that are owned by the trust, and to contribute
+reasonable amounts from trust funds to any collective effort the
+trustee reasonable believes will challenge or prevent this
+determination.  
+
+7.4 In the event that this agreement is deemed or is likely to be
+deemed to be a collective investment scheme by any governmental
+authority of the HKSAR, the settlor is authorized to direct the trustee to
+use a reasonable portion of the fund to conduct any reasonable and
+lawful efforts intended to challenge or prevent said government action
+or to make reasonable contributions to any reasonable and lawful
+collective effort to challenge or prevent said government action.
+
+7.5 In the event that the trustee has a reasonable belief that its
+ability to perform the actions specified in the trust agreement is
+limited or will be limited by any actual or proposed action by either
+the Government of the Hong Kong Special Administrative Region or the
+Central Government of the People's Republic of China, the trustee is
+authorized to use the funds with this trust to fund any reasonable and
+lawful efforts intended to challenge or prevent said government action
+or to make reasonable contributions to any reasonable and lawful
+collective effort to challenge or prevent said government action.
+
+7.6 In the event that the settlor has a reasonable belief that the
+ability of the trustee to ability to perform the actions specified in
+the trust agreement is limited or will be limited by any actual or
+proposed action by either the Government of the Hong Kong Special
+Administrative Region or the Central Government of the People's
+Republic of China, the settlor is authorized to direct the trustee to
+use a reasonable portion of the fund to conduct any reasonable and
+lawful efforts intended to challenge or prevent said government action
+or to make reasonable contributions to any reasonable and lawful
+collective effort to challenge or prevent said government action.
 
 
 
 7. Representations, Warranties and Undertakings
 --------------------------------------------
-7.1 The Agent represents, warrants and undertakes to the Investor on the date of this Agreement:  
+7.1 The Manager represents, warrants and undertakes to the Investor on the date of this Agreement:  
 (a) is a duly incorporated limited liability company validly existing under the laws of its jurisdiction of incorporation;  
 (b) has the power to enter into, deliver and perform, and has taken all necessary action to authorise its entry into, delivery and performance of, this Agreement; and  
 (c) has obtained all required authorisations to enable it to enter into, exercise its rights and comply with its obligations in this Agreement.  
@@ -149,13 +218,13 @@ Schedule A.
 8. Events of Default
 -----------------
 8.1 Each of the events or circumstances set out in this clause is an Event of Default.  
-(i) The Agent fails to pay any sum payable by it under this Agreement.  
-(ii) The Agent fails (other than by failing to pay), to comply with any provision of this Agreement and (if the Investor considers, acting reasonably, that the default is capable of remedy), such default is not remedied within 7 Business Days of the earlier of:  
-(a) the Investor notifying the Agent of the default and the remedy required;  
-(b) the Agent becoming aware of the default.  
-(iii) Any representation, warranty or statement made, repeated or deemed made by the Agent in, or pursuant to, this Agreement is (or proves to have been) incomplete, untrue, incorrect or misleading when made or deemed made.  
-(iv) The Agent suspends or ceases to carry on (or threatens to suspend or cease to carry on) all or a substantial part of its business.  
-(v) The passing of a resolution for the winding up of the Agent; or the appointment of a receiver, administrator or administrative receiver over the whole or any part of the assets of the Agent or the making of any arrangement with the creditors of the Agent for the affairs, business and property of the Agent to be managed by a supervisor.
+(i) The Manager fails to pay any sum payable by it under this Agreement.  
+(ii) The Manager fails (other than by failing to pay), to comply with any provision of this Agreement and (if the Investor considers, acting reasonably, that the default is capable of remedy), such default is not remedied within 7 Business Days of the earlier of:  
+(a) the Investor notifying the Manager of the default and the remedy required;  
+(b) the Manager becoming aware of the default.  
+(iii) Any representation, warranty or statement made, repeated or deemed made by the Manager in, or pursuant to, this Agreement is (or proves to have been) incomplete, untrue, incorrect or misleading when made or deemed made.  
+(iv) The Manager suspends or ceases to carry on (or threatens to suspend or cease to carry on) all or a substantial part of its business.  
+(v) The passing of a resolution for the winding up of the Manager; or the appointment of a receiver, administrator or administrative receiver over the whole or any part of the assets of the Manager or the making of any arrangement with the creditors of the Manager for the affairs, business and property of the Manager to be managed by a supervisor.
 
 9. Amendments, Waivers and Consents and Remedies
 ---------------------------------------------
@@ -166,8 +235,16 @@ Schedule A.
 
 10. Assignment and transfer
 -----------------------
-10.1 The Investor may assign any of its rights under this Agreement or transfer all its rights or obligations by novation.  
-10.2 The Agent may not assign any of its rights or transfer any of its rights or obligations under this Agreement.  
+
+10.1 The beneficiary may assign any of its rights under this Agreement
+or transfer all its rights or obligations by novation, provided that
+the beneficiary of this agreement must consist of a single natural or
+legal person or legal entity, and provided that the beneficiary has
+notified the trustee in writing that the rights made under the
+agreement have been assigned.
+10.2 The trustee may not assign any of its rights or transfer any of
+its rights or obligations under this Agreement without the consent of
+the beneficiary.
 
 11. Counterparts
 ------------
@@ -175,11 +252,6 @@ Schedule A.
 11.2 No counterpart shall be effective until each party has executed at least one counterpart.  
 
 12. Severance
----------
-12.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified
-to the minimum extent necessary to make it valid, legal and enforceable. If such modification is not possible, the relevant
-provision (or part of a provision) shall be deemed deleted. Any modification to or deletion of a provision (or part of a provision)
-under this clause shall not affect the legality, validity and enforceability of the rest of this Agreement.
 
 13. Notices
 -------
@@ -187,17 +259,17 @@ under this clause shall not affect the legality, validity and enforceability of 
 (a) in writing;   
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
-the Agent at:  
-Address: {{agent.contact.address}}  
-Email: {{agent.contact.email}}  
-Attention: {{agent.contact.name}}  
+the Manager at:  
+Address: {{manager.contact.address}}  
+Email: {{manager.contact.email}}  
+Attention: {{manager.contact.name}}  
 the Investor at:  
 Address: {{investor.contact.address}}  
 Email: {{investor.contact.email}}  
 Attention: {{investor.contact.name}}    
 or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
-13.2 Any notice or other communication that the Investor gives to the Agent under or in connection with, this Agreement shall be deemed to have been received:  
+13.2 Any notice or other communication that the Investor gives to the Manager under or in connection with, this Agreement shall be deemed to have been received:  
 (a) if delivered by hand, at the time it is left at the relevant address;  
 (b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and  
 (c) if sent by fax or email, when received in legible form.  
@@ -229,7 +301,7 @@ Legal text prepared by CryptoLaw (http://crypto-law.com/)
 Released under terms of the Simplified BSD License.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
-    obj.agent = {
+    obj.manager = {
 	name : "YOYODYNE PROPULSION SYSTEMS LIMITED",
 	location : "Hong Kong",
 	company_number : "1234552",
