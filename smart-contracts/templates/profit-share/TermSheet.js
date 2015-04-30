@@ -71,29 +71,38 @@ This Agreement has been entered into on the date stated at the beginning of it.
 -------------------------
 5.1 Time is of the essence in this agreement.
 
-6. Funds use administration
------------------------
-6.1 Any funds received by the trustee or its agents, excluding refunds
-of deposits, in connection with the named property shall be the
-property of this trust, and may only be used in accordance with the
-terms and conditions of this agreement.
+6. Use of funds
+---------------
+6.1 Any funds received by the trustee, its agents, or related persons,
+excluding refunds of deposits, in connection with the named property
+shall be the property of this trust, and may only be used in
+accordance with the terms and conditions of this agreement.
 
-6,2 Any funds owned by the trust which are in excess of that what is
+6.2 During the existence of this trust, the trustee or any agent of
+the trustee or any person related to the trustee may not collect or
+cause to be collected any fees or rent from the named property other
+than rent which has been executed via a written agreement which has
+been provided to the beneficiary or which has otherwise been disclosed
+in writing to the beneficiary.  The trustee agrees that any fees or
+rent that has not been disclosed to the beneficiary shall immediately
+become the property of the beneficiary.
+
+6,3 Any funds owned by the trust which are in excess of that what is
 necessary to fulfil the payment obligations of the trust to the
 beneficiary in that calendar year, shall become the property of the
 trustee, who may thereupon use those funds for any purpose whatsoever.
 
-6.3 The initial investment, as defined in Schedule A, shall only be
+6.4 The initial investment, as defined in Schedule A, shall only be
 used for the purpose of paying for the deposit and rent advances for
 the named property or as reimbursement to any person, including the
 trustee, who has paid said fees.
 
-6.4 Upon presentation of the landlord documents as specified in
+6.5 Upon presentation of the landlord documents as specified in
 Schedule A, ownership of the and funds associated with the overhead
 fee shall pass to the trustee, who may use these funds for any purpose
 whatsoever.
  
-6.5 The trustee shall have authority to keep the funds owned by the
+6.6 The trustee shall have authority to keep the funds owned by the
 trust in any business cash account normally used by the trustee for
 business operations, provided that the trustee shall have reasonable
 belief that no event shall occur that would prevent the trustee from
@@ -103,19 +112,19 @@ trust in said account may prevent the trustee from fulfilling its
 obligations under this agreement, it shall forthwith segregate the
 funds owned by the trust from other funds owned by the trustee.
 
-6.6 However, in no event shall the trustee pledge funds owned by the
+6.7 However, in no event shall the trustee pledge funds owned by the
 trust as collateral to any third party, nor may the trustee use the
 funds owned by the trust for investment purposes without the consent
 of the beneficiary.  
 
-6.7 The trustee shall have authority to appoint a trust administrator
+6.8 The trustee shall have authority to appoint a trust administrator
 to mangage funds in the trust.
 
-6.8 The beneficiary of this trust has the authority to revoke the
+6.9 The beneficiary of this trust has the authority to revoke the
 trust agreement at any time, upon which time any funds owned by the
 trust shall be transfered to the beneficiary.
 
-6.9 This trust shall automatically terminate when the trustee has
+6.10 This trust shall automatically terminate when the trustee has
 fulfiled all obligations owed to the beneficiary as specified in
 Schedule A.
 
