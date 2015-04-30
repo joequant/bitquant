@@ -152,51 +152,62 @@ modification to or deletion of a provision (or part of a provision)
 under this clause shall not affect the legality, validity and
 enforceability of the rest of this Agreement.
 
-
 7.2 It is the express intention of the settlor that this agreement
 should not constitute a collective investment scheme as defined by the
 laws of Hong Kong, and the trustee shall take all reasonable actions
 necessary to prevent this agreement from constituting a collective
 investment scheme.  
 
+7.3 It is the express intention of the settlor that the issuance,
+sale, resale, and marketing of this agreement, shall not constitute a
+regulated activity under the Securities Futures Ordinance of the laws
+of Hong Kong, and the trustee shall take all reasonable actions
+necessary to prevent the issuance, sale, resale, and marketing of this
+agreement not be construed as performing a regulated activity under
+the Securities Futures Ordinance.
+
 7.3 In the event that this agreement is deemed or is likely to be
 deemed to be a collective investment scheme by any governmental
-authority of the HKSAR, the trustees are authorized to take any
-reasonable efforts to challenge or prevent said determination and are
-authorized to use funds that are owned by the trust, and to contribute
-reasonable amounts from trust funds to any collective effort the
-trustee reasonable believes will challenge or prevent this
-determination.  
+authority having jurisdiction over Hong Kong or in the event that
+issuance, sale, resale, and marketing of this agreement is deemed or
+is likely to be deemed a regulated activity under the Securities
+Futures Ordinance by any governmental authority having jurisdiction
+over Hong Kong, the trustees are authorized to take any reasonable and
+lawful efforts to challenge or prevent said determination and are
+authorized to use up to ten percent of the funds that are owned by the
+trust for these activities.
 
 7.4 In the event that this agreement is deemed or is likely to be
 deemed to be a collective investment scheme by any governmental
-authority of the HKSAR, the settlor is authorized to direct the trustee to
-use a reasonable portion of the fund to conduct any reasonable and
-lawful efforts intended to challenge or prevent said government action
-or to make reasonable contributions to any reasonable and lawful
-collective effort to challenge or prevent said government action.
+authority having jurisdiction over Hong Kong, the settlor is
+authorized to direct the trustee to use a reasonable portion of the
+fund not exceeding ten percent of the amount owned by the trust to
+conduct any reasonable and lawful efforts intended to challenge or
+prevent said government action.
 
 7.5 In the event that the trustee has a reasonable belief that its
 ability to perform the actions specified in the trust agreement is
-limited or will be limited by any actual or proposed action by either
-the Government of the Hong Kong Special Administrative Region or the
-Central Government of the People's Republic of China, the trustee is
-authorized to use the funds with this trust to fund any reasonable and
-lawful efforts intended to challenge or prevent said government action
-or to make reasonable contributions to any reasonable and lawful
-collective effort to challenge or prevent said government action.
+limited or will be limited by any actual or proposed action by any
+governmental authority having jurisdiction over Hong Kong, the trustee
+is authorized to use the funds owned by the trust to fund any
+reasonable and lawful efforts intended to challenge or prevent said
+government action, provided that the amounts used do not exceed the
+likely cost of comply with said government action.
 
 7.6 In the event that the settlor has a reasonable belief that the
 ability of the trustee to ability to perform the actions specified in
 the trust agreement is limited or will be limited by any actual or
-proposed action by either the Government of the Hong Kong Special
-Administrative Region or the Central Government of the People's
-Republic of China, the settlor is authorized to direct the trustee to
-use a reasonable portion of the fund to conduct any reasonable and
-lawful efforts intended to challenge or prevent said government action
-or to make reasonable contributions to any reasonable and lawful
-collective effort to challenge or prevent said government action.
+proposed action by any governmental authority having jurisidiction
+over Hong Kong, the settlor is authorized to direct the trustee to use
+a reasonable portion of the fund to conduct any reasonable and lawful
+efforts intended to challenge or prevent said government action,
+provided that the amounts used do not exceed the likely cost of comply
+with said government action.
 
+7.7 Funding the aforesaid reasonable and lawful activities may include
+contributions to reasonable and lawful collective activities in
+cooperation with third parties to challenge or prevent a determination
+by governmental authorities.
 
 
 7. Representations, Warranties and Undertakings
@@ -214,6 +225,8 @@ collective effort to challenge or prevent said government action.
 (b) if it was a financial projection or forecast, prepared on the basis of recent historical information and on the basis of reasonable assumptions and was fair and made on reasonable grounds; and  
 (c) if it was an opinion or intention, made after careful consideration and was fair and made on reasonable grounds; and  
 (d) not misleading in any material respect, nor rendered misleading by a failure to disclose other information.
+7.4.  THE MANAGER FULLY, COMPLETELY, AND ABSOLUTELY INDEMNIFIES THE TRUST, SETTLOR, AND BENEFICIARY OF ANY AND ALL LIABILITY AND CLAIMS BY THIRD PARTIES ARISING FROM ACTIVITIES CONCERNING THE NAMED PROPERTY, INCLUDING BUT NOT LIMITED TO BREACH OF CONTRACT, NON-PAYMENT OF RENT, BREACH OF WARRANTY AND REPRESENTATIONS, AND FALSE ADVERTISING.  IN NO EVENT MAY THE TRUSTEE USE OR ALLOW TO BE USED FUNDS OWNED BY THE TRUST TO SATISFY CLAIMS BY THIRD PARTIES AGAINST THE MANAGER.  THIS INDEMNITY SHALL CONTINUE AFTER THE TERMINATION OF THE TRUST.
+
 
 8. Events of Default
 -----------------
