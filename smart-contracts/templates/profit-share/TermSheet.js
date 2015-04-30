@@ -10,22 +10,28 @@ if (typeof define !== 'function') {
 var contract_template = (function () {/*
 {{header_text}}
 
-This FACILITY AGREEMENT is dated {{initial_date_string}}
+This TRUST AGREEMENT is dated {{initial_date_string}}
 
-BETWEEN
 
-1) {{agent.name}} incorporated and registered in
-{{agent.location}} with company number {{agent.company_number}}
-whose registered office is at {{agent.registered_office}} (AGENT).  
-
-2) The {{investor.name}} incorporated and registered in Hong Kong with
-company number {{investor.company_number}} whose registered office is at
+1) The settlor of this agreement is {{investor.name}} incorporated and
+registered in Hong Kong with company number
+{{investor.company_number}} whose registered office is at
 {{investor.registered_office}} (INVESTOR).
+
+2) The trustee of this agreement is {{agent.name}} incorporated and
+registered in {{agent.location}} with company number
+{{agent.company_number}} whose registered office is at
+{{agent.registered_office}} (AGENT).
+
+3) The beneficiary of this agreement is the INVESTOR and any assignees
+of the INVESTOR.
 
 BACKGROUND
 
-The Investor and Agent have agreed to undertake a profit sharing
-agreement according to the terms specified in Schedule A.
+The investor as settlor has agreed to provide the agent as trustee
+funds of the purpose of investment into a named real property.  The
+trustee agrees to handle the funds according to the terms of this
+agreement benefit of the beneficiary.
 
 AGREED TERMS
 
@@ -39,7 +45,6 @@ This Agreement has been entered into on the date stated at the beginning of it.
 -----------
 2.1 The following definitions apply in this Agreement:  
   * Business Day: a day other than a Saturday, Sunday or public holiday when banks in Hong Kong are open for business.  
-  * Event of Default: any event or circumstance listed in clause 11.  
   * HK$: the lawful currency of Hong Kong.  
   * Hong Kong: the Hong Kong Special Administration Region of the People’s Republic of China.  
   * Product: the watermelon compression system  
@@ -62,15 +67,59 @@ This Agreement has been entered into on the date stated at the beginning of it.
 ------------
 4.1 This Agreement shall be deemed to have commenced on the date of this Agreement.
 
-5. Costs
------
-5.1 The Investor shall bear all costs and expenses (together with any value added tax on them) that the Investor incurs in connection with the negotiation and preservation and enforcement of the Loan and/or this Agreement.  
-5.2 The Agent shall pay any stamp, documentary and other similar duties and taxes (if any) to which this Agreement may be subject, or give rise and shall indemnify the Investor against any losses or liabilities that it may incur as a result of any delay or omission by the Agent in paying any such duties or taxes.
+5. Time is of the essence
+-------------------------
+5.1 Time is of the essence in this agreement.
 
-6. Repayment
----------
-6.1 The Agent shall pay the Borrorw the Loan as specified in the attached Schedule A.  
-6.2 All payments made by the Agent under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
+6. Funds use administration
+-----------------------
+6.1 Any funds received by the trustee or its agents, excluding refunds
+of deposits, in connection with the named property shall be the
+property of this trust, and may only be used in accordance with the
+terms and conditions of this agreement.
+
+6,2 Any funds owned by the trust which are in excess of that what is
+necessary to fulfil the payment obligations of the trust to the
+beneficiary in that calendar year, shall become the property of the
+trustee, who may thereupon use those funds for any purpose whatsoever.
+
+6.3 The initial investment, as defined in Schedule A, shall only be
+used for the purpose of paying for the deposit and rent advances for
+the named property or as reimbursement to any person, including the
+trustee, who has paid said fees.
+
+6.4 Upon presentation of the landlord documents as specified in
+Schedule A, ownership of the and funds associated with the overhead
+fee shall pass to the trustee, who may use these funds for any purpose
+whatsoever.
+ 
+6.5 The trustee shall have authority to keep the funds owned by the
+trust in any business cash account normally used by the trustee for
+business operations, provided that the trustee shall have reasonable
+belief that no event shall occur that would prevent the trustee from
+fulfiling their obligations to the beneficiary.  In the event that the
+trustee has reasonable belief that keeping the funds owned by the
+trust in said account may prevent the trustee from fulfilling its
+obligations under this agreement, it shall forthwith segregate the
+funds owned by the trust from other funds owned by the trustee.
+
+6.6 However, in no event shall the trustee pledge funds owned by the
+trust as collateral to any third party, nor may the trustee use the
+funds owned by the trust for investment purposes without the consent
+of the beneficiary.  
+
+6.7 The trustee shall have authority to appoint a trust administrator
+to mangage funds in the trust.
+
+6.8 The beneficiary of this trust has the authority to revoke the
+trust agreement at any time, upon which time any funds owned by the
+trust shall be transfered to the beneficiary.
+
+6.9 This trust shall automatically terminate when the trustee has
+fulfiled all obligations owed to the beneficiary as specified in
+Schedule A.
+
+
 
 7. Representations, Warranties and Undertakings
 --------------------------------------------
