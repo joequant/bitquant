@@ -523,12 +523,12 @@ Schedule_C.prototype.payments = function(calc) {
     }
     var refund_all_payments = function(params) {
 	calc.transfer({"on" : params.on,
-		       "from" : "agent",
+		       "from" : "manager",
 		       "to" : "investor",
 		       "amount" : initial_investment,
 		       "note" : "refund initial investment"});
 	calc.transfer({"on" : params.on,
-		       "from" : "agent",
+		       "from" : "manager",
 		       "to" : "investor",
 		       "amount" : contract.overhead_payment,
 		       "note" : "refund overhead payment"});
@@ -538,21 +538,29 @@ Schedule_C.prototype.payments = function(calc) {
     // S.6
     calc.transfer({"on": contract.initial_date,
 		   "from" : "investor",
-		   "to" : "agent",
+		   "to" : "trust",
 		   "amount" : initial_investment,
 		   "note" : "initial investment"});
 
     calc.transfer({"on": contract.initial_date,
 		   "from" : "investor",
-		   "to" : "agent",
+		   "to" : "trust",
 		   "amount" : contract.overhead_payment,
 		   "note" : "overhead_payment"});
+
+    // S.8
+    calc.obligation({"on" : calc.add_duration(contract.initial_data,
+					      [1, "month"]),
+		     "from": "manager",
+		     "item" : "execute contract with tenants",
+		     "failure" : refund_all_payments});
+
 
     // S.7
 
     calc.transfer({"on": calc.add_duration(contract.initial_date,
 					    [1, "week"]),
-		   "from" : "agent",
+		   "from" : "manager",
 		   "to" : "investor",
 		   "item" : "provide landlord documents",
 		   "failure" : refund_all_payments});
@@ -560,24 +568,24 @@ Schedule_C.prototype.payments = function(calc) {
     // S.8
     calc.obligation({"on" : calc.add_duration(contract.initial_data,
 					      [1, "month"]),
-		     "from": "agent",
+		     "from": "manager",
 		     "item" : "execute contract with tenants",
 		     "failure" : refund_all_payments});
 
     calc.transfer({"on": calc.add_duration(contract.initial_date,
 					    [1, "month"]),
-		   "from" : "agent",
+		   "from" : "manager",
 		   "to" : "investor",
 		   "item" : "provide tenant documents"});
 
     // S.9 
     calc.transfer({"on": year_one_payment_date,
-		  "from" : "agent",
+		  "from" : "trust",
 		  "to" : "investor",
 		  "amount" : year_one_payment});
 
     calc.transfer({"on": year_two_payment_date,
-		  "from" : "agent",
+		  "from" : "trust",
 		  "to" : "investor",
 		  "amount" : year_two_payment});
 }
