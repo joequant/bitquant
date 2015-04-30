@@ -73,7 +73,7 @@ Calculator.prototype.run_events = function(term_sheet) {
             var payment = this.events[k][list_counter]();
 	    list_counter++;
             if (payment === undefined) {
-		return;
+		continue;
 	    } else if (payment.constructor === Array) {
 		payment.forEach(function(i) {
 		    if (payment.late_balance === undefined) {
@@ -98,6 +98,11 @@ Calculator.prototype.run_events = function(term_sheet) {
 		payment.actual !== undefined &&
 		payment.actual > payment.on) {
 		payment.failure(payment);
+	    }
+	    if (payment.success !== undefined &&
+		payment.actual === undefined ||
+		payment.actual <= payment.on) {
+		payment.success(payment);
 	    }
 	    if (payment.event == "Terminate") {
 		return payment_schedule;
@@ -217,6 +222,7 @@ Calculator.prototype.transfer = function(params) {
 		"amount" : o.extract_payment(params),
 		"item" : params.item,
 		"note" : params.note,
+		"success" : params.success,
 	        "failure" : params.failure};
     }
     this.add_to_event_table(_transfer)(params);
@@ -230,6 +236,7 @@ Calculator.prototype.obligation = function(params) {
 		"from" : params.from,
 		"item" : params.item,
 		"note" : params.note,
+		"success" : params.success,
 	        "failure" : params.failure};
     }
     this.add_to_event_table(_obligation)(params);
