@@ -9,6 +9,53 @@ if (typeof define !== 'function') {
 
 define (function() {
     function Notes() {
+	this.report = (function (payment_schedule,
+                                  calculator,
+                                  process_payment,
+                                  output) {
+	    try {
+		output.html("");
+		output.html("Hello world");
+		payment_schedule.forEach(function(i) {
+		    process_payment(i);
+		    var note = "";
+		    if (i.note != undefined) {
+			note = i.note;
+		    }
+		    if (i.event == "Note" ||
+			i.event == "Terminate") {
+			output.append(i.event);
+			output.append(i.on.toDateString());
+			output.append(note);
+			output.append("<br>");
+		    }
+
+		    if (i.event ===  "Transfer" ||
+			i.event === "Obligation") {
+			var actual = i.actual;
+			if (actual === undefined) {
+			    actual = i.on;
+			}
+			var item = i.item;
+			if (item === undefined) {
+			    item = i.item;
+			}
+			output.append(i.event);
+			output.append(i.on.toDateString());
+			output.append(i.from);
+			output.append(i.to);
+			output.append(Number(i.amount).toFixed(2));
+			output.append(i.item);
+			output.append(note);
+			output.append(actual.toDateString());
+			output.append("<br>");
+		    }
+		});
+	    } catch (err) {
+		output.html(err.message);
+	    }
+	});
+
 	this.header = (function () {/*
 These explanatory notes do NOT form part of the contract. NO
 WARRANTIES AND REPRESENTATIONS ARE GIVEN CONCERNING THE ACCURACY OF
