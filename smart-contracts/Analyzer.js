@@ -56,7 +56,7 @@ require ([
     var template = Handlebars.compile(my_term_sheet.contract_text);
     $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
-    var default_report = function(payment_schedule,
+    var local_report = function(payment_schedule,
 				  calculator,
 				  process_payment,
 				  output) {
@@ -152,10 +152,10 @@ require ([
 			    my_term_sheet.process_payment,
 			    $('#item'));
 	} else {
-	    default_report(payment_schedule,
-			   calculator,
-			   my_term_sheet.process_payment,
-			   $('#item'));
+	    local_report(payment_schedule,
+			 calculator,
+			 my_term_sheet.process_payment,
+			 $('#item'));
 	}
     };
     callback(analyze);
