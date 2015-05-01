@@ -114,12 +114,16 @@ require ([
 	}
 	my_term_sheet.event_spec.forEach(function(i) {
 	    if (i.type == "grid") {
-		var name = "#" + i.name + "_grid";
+		var name = "#" + i.name + "_event";
 		events[i.name] = [];
 
 		$(name).appendGrid('getAllValue').forEach(function(j) {
 		    events[i.name].push(j);
 		});
+	    }
+	    var value = $("#" + i.name + "_event").val();
+	    if (value !== undefined && value !== "") {
+		params[i.name] = value;
 	    }
 	});
 
@@ -208,7 +212,7 @@ require ([
 		$(div).append(converter.makeHtml(template(my_term_sheet)));
             } else if (i.type == "grid") {
 		var table = document.createElement('table');
-		var name = i.name + "_grid";
+		var name = i.name + "_event";
 		table.id = name;
 		$(div).append(table);
 		$(table).appendGrid({
@@ -226,6 +230,21 @@ require ([
 			$(caller).updatePolyfill();
 		    }
 		 });
+	    } else {
+		if (i.type == "date") {
+			$(div).append(i.display + ": ");
+
+		    } else {
+			$(div).append(i.display + ": ");
+		    }
+		if (my_notes[i.name] != undefined) {
+		    $(div).append(" - ");
+		    $(div).append(my_notes[i.name]);
+		}
+		$(div).append("- <input id='" + i.name + "_event' name='" +
+			      i.name + "_event' type='" + i.type + "'" +
+			      " value='" + i.value + "'/>");
+		$(div).append("<br>");
 	    }
 	});
 	webshims.polyfill('forms forms-ext es5');
