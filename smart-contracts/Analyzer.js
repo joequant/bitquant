@@ -56,6 +56,57 @@ require ([
     var template = Handlebars.compile(my_term_sheet.contract_text);
     $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
+    var default_report = function(payment_schedule,
+				  calculator,
+				  process_payment,
+				  output) {
+	try {
+	    output.html("");
+	    output.html("<table><tr>");
+	    output.append("<td>event</td>");
+	    output.append("<td>date</td>");
+	    output.append("<td>principal</td>");
+	    output.append("<td>interest</td>");
+	    output.append("<td>balance</td>");
+	    output.append("<td>late balance</td>");
+	    output.append("<td>principal payment</td>");
+	    output.append("<td>interest payment</td>");
+	    output.append("</tr>");
+
+	    payment_schedule.forEach(function(i) {
+		my_term_sheet.process_payment(i);
+		var note = "";
+		if (i.note != undefined) {
+		    note = i.note;
+		}
+		output.append("<tr><td>" +
+				i.event + "</td><td>" +
+				i.on.toDateString() + "</td><td class='number'>" +
+				Number(i.principal).toFixed(2) +
+	"</td><td class='number'>" +
+				Number(i.interest_accrued).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.balance).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.late_balance).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.principal_payment).toFixed(2)
+				+ "</td><td class='number'>" +
+				Number(i.interest_payment).toFixed(2)
+				+ "</td><td>" +
+				note + "</td></tr>");
+
+
+	    });
+	    output.append("</table><br><br>");
+	    output.append("Annual interest rate: " +
+			      calculator.apr(payment_schedule).toFixed(4) + 
+			      " percent");
+
+	} catch(err) {
+	    output.html(err.message);
+	}
+    };
     analyze = function() {
         var events = {
 	};
@@ -93,52 +144,18 @@ require ([
 	var calculator = new Calculator();
 	calculator.set_events(my_term_sheet, events);
 	calculator.set_parameters(my_term_sheet, params);
-	$('#item').html("");
-        var payments;
-	try {
-	    $('#item').html("<table><tr>");
-	    $('#item').append("<td>event</td>");
-	    $('#item').append("<td>date</td>");
-	    $('#item').append("<td>principal</td>");
-	    $('#item').append("<td>interest</td>");
-	    $('#item').append("<td>balance</td>");
-	    $('#item').append("<td>late balance</td>");
-	    $('#item').append("<td>principal payment</td>");
-	    $('#item').append("<td>interest payment</td>");
-	    $('#item').append("</tr>");
-	    var payment_schedule = calculator.calculate(my_term_sheet);
-	    payment_schedule.forEach(function(i) {
-		my_term_sheet.process_payment(i);
-		var note = "";
-		if (i.note != undefined) {
-		    note = i.note;
-		}
-		$('#item').append("<tr><td>" +
-				i.event + "</td><td>" +
-				i.on.toDateString() + "</td><td class='number'>" +
-				Number(i.principal).toFixed(2) +
-	"</td><td class='number'>" +
-				Number(i.interest_accrued).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.balance).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.late_balance).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.principal_payment).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.interest_payment).toFixed(2)
-				+ "</td><td>" +
-				note + "</td></tr>");
 
-
-	    });
-	    $('#item').append("</table><br><br>");
-	    $('#item').append("Annual interest rate: " +
-			      calculator.apr(payment_schedule).toFixed(4) + 
-			      " percent");
-
-	} catch(err) {
-	    $('#item').html(err.message);
+	var payment_schedule = calculator.calculate(my_term_sheet);
+	if (my_notes.report !== undefined) {
+	    my_notes.report(payment_schedule, 
+			    calculator,
+			    my_term_sheet.process_payment,
+			    $('#item'));
+	} else {
+	    default_report(payment_schedule,
+			   calculator,
+			   my_term_sheet.process_payment,
+			   $('#item'));
 	}
     };
     callback(analyze);
