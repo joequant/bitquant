@@ -479,6 +479,19 @@ function Schedule_C() {
 	    value: "0"
 	},
 	{
+	    name : "tenant_actual_year1_payment_date",
+	    display : "Actual tenant year 1 payment date",
+	    type: "date",
+	    value: "2015-09-15"
+	},
+	{
+	    name : "tenant_actual_year2_payment_date",
+	    display : "Actual tenant year 1 payment date",
+	    type: "date",
+	    value: "2015-09-16"
+	},
+
+	{
 	    name : "tenant_actual_year1_payment",
 	    display : "Actual tenant year 1 payment (excluding deposits)",
 	    type: "number",
