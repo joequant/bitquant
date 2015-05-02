@@ -462,7 +462,7 @@ function Schedule_C() {
     this.event_spec = [
 	{
 	    name : "tenant_rent_payment",
-	    display : "Tenant rent payment",
+	    display : "Tenant rent payment (monthly)",
 	    type: "number",
 	    value: "18000"
 	},
@@ -480,21 +480,21 @@ function Schedule_C() {
 	},
 	{
 	    name : "tenant_actual_year1_payment",
-	    display : "Actual tenant year 2 payment",
+	    display : "Actual tenant year 1 payment (excluding deposits)",
 	    type: "number",
-	    value: "0"
+	    value: (18000 * 12).toString()
 	},
 	{
 	    name : "tenant_actual_year2_payment",
-	    display : "Actual tenant year 2 payment",
+	    display : "Actual tenant year 2 payment (excluding deposits)",
 	    type: "number",
-	    value: "0"
+	    value: (18000 * 12).toString()
 	},
 	{
 	    name : "actual_overhead",
 	    display : "Actual overhead",
 	    type: "number",
-	    value: "0"
+	    value: this.overhead_payment.toString()
 	}
     ];
     this.event_spec.push(

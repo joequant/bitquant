@@ -44,11 +44,13 @@ require ([
     "./Calculator",
     notes,
     "handlebars",
+    "moment",
     "markdown",
     "append-grid",
     "polyfiller",
     "collapse"], function(TermSheet, Calculator, Notes,
-			 Handlebars) {
+			 Handlebars,
+			 moment) {
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
     var my_term_sheet = new TermSheet();
@@ -185,21 +187,22 @@ require ([
 		    $(div).append("</tr>");
 		});
 	    } else {
+		var value = my_term_sheet[i.name];
+		var field_value = value;
 		if (i.type == "date") {
-			$(div).append(display + ": " +
-					     my_term_sheet[i.name].toDateString());
+		    value = my_term_sheet[i.name].toDateString();
+		    field_value = moment(my_term_sheet[i.name]).format("YYYY-MM-DD");
+		}
+		$(div).append(display + ": " + value);
 
-		    } else {
-			$(div).append(display + ": " +
-					     my_term_sheet[i.name]);
-		    }
 		if (my_notes[i.name] != undefined) {
 		    $(div).append(" - ");
 		    $(div).append(my_notes[i.name]);
 		}
 		if (i.scenario == true) {
 		    $(div).append("- <input id='" + i.name + "_scenario' name='" +
-				  i.name + "_scenario' type='" + i.type + "'/>");
+				  i.name + "_scenario' type='" + i.type + "' " +
+				  "value='" + field_value + "'/>");
 		}
 		$(div).append("<br>");
 	    }
@@ -231,19 +234,23 @@ require ([
 		    }
 		 });
 	    } else {
-		if (i.type == "date") {
-			$(div).append(i.display + ": ");
-
-		    } else {
-			$(div).append(i.display + ": ");
+		var field_value = "";
+		if (i.value !== undefined) {
+		    field_value = i.value;
+		
+		    if (i.type == "date") {
+			field_value = moment(i.value).format("YYYY-MM-DD");
 		    }
+		}
+
+		$(div).append(i.display + ": ");
 		if (my_notes[i.name] != undefined) {
 		    $(div).append(" - ");
 		    $(div).append(my_notes[i.name]);
 		}
 		$(div).append("- <input id='" + i.name + "_event' name='" +
 			      i.name + "_event' type='" + i.type + "'" +
-			      " value='" + i.value + "'/>");
+			      " value='" + field_value + "'/>");
 		$(div).append("<br>");
 	    }
 	});
