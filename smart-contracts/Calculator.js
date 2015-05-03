@@ -21,7 +21,7 @@ Calculator.prototype.add_to_event_table = function(func) {
 	if (!(on in o.events)) {
 	    if (o.event_list.length > 0 && 
 		on < o.event_list[o.current_event]) {
-		throw new Error("Event already past" + o.event_list[o.current_event]);
+		throw new Error("Event already past current=" + o.event_list[o.current_event] + " adding= " +on);
 	    }
 	    o.event_list.push(on);
 	    o.event_list = o.event_list.sort(function(a, b) {
@@ -95,13 +95,15 @@ Calculator.prototype.run_events = function(term_sheet) {
                 payment_schedule.push(payment);
 	    }
 	    if (payment.failure !== undefined &&
-		payment.actual !== undefined &&
-		payment.actual > payment.on) {
+		payment.on !== undefined &&
+		payment.deadline !== undefined &&
+		payment.on > payment.deadline) {
 		payment.failure(payment);
 	    }
 	    if (payment.success !== undefined &&
-		payment.actual === undefined ||
-		payment.actual <= payment.on) {
+		payment.on !== undefined &&
+		payment.deadline !== undefined &&
+		payment.on <= payment.deadline) {
 		payment.success(payment);
 	    }
 	    if (payment.event == "Terminate") {
@@ -229,11 +231,24 @@ Calculator.prototype.transfer = function(params) {
 }
 
 Calculator.prototype.obligation = function(params) {
+    var on;
+    if (params.actual !== undefined) {
+	on = params.actual;
+    } else if (params.deadline !== undefined) {
+	on = params.deadline;
+	params.actual = on;
+    } else {
+	throw new Error("Obligation requires either deadline or actual");
+    }
+    params.on = on;
+
     var _obligation = function(o, params) {
 	return {"event": "Obligation",
-		"on": params.on,
+		"on" : params.on,
+		"deadline": params.deadline,
 		"actual" : params.actual,
 		"from" : params.from,
+		"to" : params.to,
 		"item" : params.item,
 		"note" : params.note,
 		"success" : params.success,
@@ -362,14 +377,14 @@ Calculator.prototype.set_items = function(term_sheet, event_spec, events) {
 	    term_sheet[i.name] = [];
 	    v.forEach(function(row) {
 		i.columns.forEach(function (j) {
-		    if (row[j.name] == undefined) {
+		    if (row[j.name] === undefined) {
 			return;
 		    }
-		    if (j.type == "date") {
+		    if (j.type === "date") {
 			var vars = row[j.name].split("-");
 			row[j.name] =
 			    new Date(vars[0], vars[1]-1, vars[2]);
-		    } else if (j.name = "amount") {
+		    } else if (j.name === "amount") {
 			row[j.name] = Number(row[j.name]);
 		    }
 		});
@@ -380,7 +395,7 @@ Calculator.prototype.set_items = function(term_sheet, event_spec, events) {
 	    var vars = events[i.name].split("-");
 	    term_sheet[i.name] =
 		new Date(vars[0], vars[1]-1, vars[2]);
-	} else if (i.name = "amount") {
+	} else if (i.name === "amount" || i.type === "number") {
 	    term_sheet[i.name] = Number(events[i.name]);
 	} else {
 	    term_sheet[i.name] = events[i.name];

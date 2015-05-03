@@ -421,6 +421,10 @@ function Schedule_C() {
     Schedule_B(this);
 
     this.contract_parameters = [
+	{   name: "header",
+	    display: "<h3>Contract Terms</h3>",
+	    type: "html"
+	},
 	{
 	    name: "profit_share_fraction",
 	    display: "Profit share fraction",
@@ -447,19 +451,23 @@ function Schedule_C() {
 	},
 	{
 	    name: "payment_date_1",
-	    display: "Payment date 1",
+	    display: "Investor Payment date 1",
 	    type: "date",
 	    scenario: true
 	},
 	{
 	    name: "payment_date_2",
-	    display: "Payment date 2",
+	    display: "Investor Payment date 2",
 	    type: "date",
 	    scenario: true
 	}
     ];
 
     this.event_spec = [
+	{   name: "header",
+	    display: "<h3>Events</h3>",
+	    type: "html"
+	},
 	{
 	    name : "tenant_rent_payment",
 	    display : "Tenant rent payment (monthly)",
@@ -532,7 +540,7 @@ Schedule_C.prototype.payments = function(calc) {
     var contract = this;
     // S.1
     calc.note({"on" : contract.initial_date,
-	       "note" : "Contract becomes effective upon payment from the investor to agent"});
+	       "note" : "Contract becomes effective upon payment from the investor to trust"});
 
     // S.2
     var initial_investment = 3 * contract.landlord_rent_payment;
@@ -542,14 +550,24 @@ Schedule_C.prototype.payments = function(calc) {
     var year_one_payment_date = new_date(2015, 10, 1);
     var year_two_payment_date = new_date(2016, 10, 1);
 
+    console.log(contract);
     // S.4 
-    var year_one_payment = contract.profit_share * (12.0 *
-	(contract.landlord_rent_payment - contract.tenant_rent_payment) +
+    var year_one_payment_to_investor = contract.profit_share_fraction * 
+	(12.0 *
+	(contract.tenant_rent_payment - contract.landlord_rent_payment) +
 	contract.tenant_other_fees_year1);
     
-    var year_two_payment = contract.profit_share * (12.0 *
-	(contract.landlord_rent_payment - contract.tenant_rent_payment) +
+    var year_two_payment_to_investor = contract.profit_share_fraction * 
+	(12.0 *
+	(contract.tenant_rent_payment - contract.landlord_rent_payment) +
 	contract.tenant_other_fees_year2);
+
+    var year_one_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
+	contract.tenant_other_fees_year1;
+    console.log(contract.tenant_rent_payment);
+
+    var year_two_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
+	contract.tenant_other_fees_year2;
 
     // S.5
     var contract_terminates = function(params) {
@@ -557,16 +575,58 @@ Schedule_C.prototype.payments = function(calc) {
     }
     var refund_all_payments = function(params) {
 	calc.transfer({"on" : params.on,
-		       "from" : "manager",
+		       "from" : "trust",
 		       "to" : "investor",
 		       "amount" : initial_investment,
 		       "note" : "refund initial investment"});
 	calc.transfer({"on" : params.on,
-		       "from" : "manager",
+		       "from" : "trust",
 		       "to" : "investor",
 		       "amount" : contract.overhead_payment,
 		       "note" : "refund overhead payment"});
 	calc.terminate({"on" : params.on});
+    }
+
+    var execute_landlord_contract = function(params) {
+	calc.obligation({"deadline": calc.add_duration(params.actual,
+						 [1, "day"]),
+			"from" : "manager",
+			"to" : "investor",
+			"item" : "provide landlord documents"});
+
+	calc.transfer({"on": params.actual,
+		       "from" : "trust",
+		       "to" : "landlord or deposit payer",
+		       "amount" : initial_investment,
+		       "item" : "pay deposit for flat"});
+    }
+
+
+    var execute_tenant_contract = function(params) {
+	calc.obligation({"deadline": calc.add_duration(params.actual,
+						 [1, "week"]),
+			"from" : "manager",
+			"to" : "investor",
+			"item" : "provide tenant documents"});
+
+	calc.transfer({"on": params.actual,
+		       "from" : "tenant",
+		       "to" : "trust",
+		       "amount" : year_one_payment_from_tenant,
+		       "item" : "tenant payment to trust"});
+	calc.transfer({"on": params.actual,
+		       "from" : "trust",
+		       "to" : "manager",
+		       "amount" : contract.overhead_payment,
+		       "item" : "transfer overhead payment to manager"});
+
+	calc.transfer({"on": params.actual,
+		       "from" : "trust",
+		       "to" : "manager",
+		       "amount" : contract.tenant_actual_year1_payment -
+		       year_one_payment_to_investor - 
+		       initial_investment,
+		       "item" : "transfer excess payment to manager"});
     }
 
     // S.6
@@ -583,34 +643,44 @@ Schedule_C.prototype.payments = function(calc) {
 		   "note" : "overhead_payment"});
 
     // S.7
-    calc.obligation({"on": calc.add_duration(contract.initial_date,
-					    [1, "week"]),
+    calc.obligation({"deadline": calc.add_duration(contract.initial_date,
+						   [1, "week"]),
 		   "from" : "manager",
-		   "item" : "provide landlord documents",
+		   "item" : "execute contract with landlord",
+		   "success" : execute_landlord_contract,
 		   "failure" : refund_all_payments});
 
     // S.8
-    calc.obligation({"on" : calc.add_duration(contract.initial_data,
-					      [1, "month"]),
+    calc.obligation({"deadline" : calc.add_duration(contract.initial_date,
+						    [1, "month"]),
 		     "from": "manager",
 		     "item" : "execute contract with tenants",
+		     "success" : execute_tenant_contract,
 		     "failure" : refund_all_payments});
 
-    calc.obligation({"on": calc.add_duration(contract.initial_date,
-					    [1, "month"]),
-		     "from" : "manager",
-		     "item" : "provide tenant documents"});
 
     // S.9 
     calc.transfer({"on": year_one_payment_date,
 		  "from" : "trust",
 		  "to" : "investor",
-		  "amount" : year_one_payment});
+		  "amount" : year_one_payment_to_investor});
+
+    // S.10
+    calc.transfer({"on": contract.tenant_actual_year2_payment_date,
+		  "from" : "tenant",
+		  "to" : "trust",
+		  "amount" : contract.tenant_actual_year2_payment});
+
+    calc.transfer({"on": contract.tenant_actual_year2_payment_date,
+		  "from" : "trust",
+		  "to" : "manager",
+		  "amount" : contract.tenant_actual_year2_payment -
+		       year_two_payment_to_investor});
 
     calc.transfer({"on": year_two_payment_date,
 		  "from" : "trust",
 		  "to" : "investor",
-		  "amount" : year_two_payment});
+		  "amount" : year_two_payment_to_investor});
 }
 
 function contains(a, obj) {

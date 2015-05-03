@@ -125,7 +125,7 @@ require ([
 	    }
 	    var value = $("#" + i.name + "_event").val();
 	    if (value !== undefined && value !== "") {
-		params[i.name] = value;
+		events[i.name] = value;
 	    }
 	});
 
@@ -186,6 +186,8 @@ require ([
 		    });
 		    $(div).append("</tr>");
 		});
+	    } else if (i.type === "html")  {
+		$(div).append(i.display);
 	    } else {
 		var value = my_term_sheet[i.name];
 		var field_value = value;
@@ -233,6 +235,8 @@ require ([
 			$(caller).updatePolyfill();
 		    }
 		 });
+	    } else if (i.type === "html") {
+		$(div).append(i.display);
 	    } else {
 		var field_value = "";
 		if (i.value !== undefined) {
