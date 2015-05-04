@@ -551,7 +551,6 @@ Schedule_C.prototype.payments = function(calc) {
     var initial_investment = 3 * contract.landlord_rent_payment;
     var overhead_payment = contract.overhead_payment;
 
-    console.log(contract);
     // S.4 
     var year1_payment_to_investor = contract.profit_share_fraction * 
 	(12.0 *
@@ -565,7 +564,6 @@ Schedule_C.prototype.payments = function(calc) {
 
     var year1_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year1;
-    console.log(contract.tenant_rent_payment);
 
     var year2_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year2;
