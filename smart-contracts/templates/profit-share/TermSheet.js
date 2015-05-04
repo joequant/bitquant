@@ -645,13 +645,11 @@ Schedule_C.prototype.payments = function(calc) {
     }
 
     // S.6
-    if (!contract.rollover) {
-	calc.transfer({"on": contract.initial_date,
-		       "from" : "investor",
-		       "to" : "trust",
-		       "amount" : initial_investment,
-		       "note" : "initial investment"});
-    }
+    calc.transfer({"on": contract.initial_date,
+		   "from" : "investor",
+		   "to" : "trust",
+		   "amount" : initial_investment,
+		   "note" : "initial investment"});
 
     calc.transfer({"on": contract.initial_date,
 		   "from" : "investor",
@@ -677,6 +675,14 @@ Schedule_C.prototype.payments = function(calc) {
 
 
     // S.9 
+    if (!contract.rollover) {
+	calc.transfer({"on": contract.year1_payment_date,
+		       "from" : "trust",
+		       "to" : "investor",
+		       "amount" : initial_investment,
+		       "note" : "return initial_investment"});
+
+    }
     calc.transfer({"on": contract.year1_payment_date,
 		  "from" : "trust",
 		  "to" : "investor",
