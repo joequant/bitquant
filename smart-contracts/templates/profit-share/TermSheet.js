@@ -518,9 +518,9 @@ function Schedule_C() {
 	},
 	{
 	    name : "actual_overhead",
-	    display : "Actual overhead",
+	    display : "Actual overhead per year",
 	    type: "number",
-	    value: this.overhead_payment.toString()
+	    value: (this.overhead_payment/2.0).toString()
 	}
     ];
     this.event_spec.push(
@@ -570,11 +570,26 @@ Schedule_C.prototype.payments = function(calc) {
     var year2_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year2;
 
-    contract.initial_investment = initial_investment;
-    contract.year1_payment_to_investor = year1_payment_to_investor;
-    contract.year2_payment_to_investor = year2_payment_to_investor;
-    contract.year1_payment_from_tenant = year1_payment_from_tenant;
-    contract.year2_payment_from_tenant = year2_payment_from_tenant;
+    calc.output = {
+	"initial_investor_payment" :  initial_investment + overhead_payment,
+	"year1_payment_to_investor" : year1_payment_to_investor +
+	    initial_investment,
+	"year2_payment_to_investor" : year2_payment_to_investor,
+	"year1_payment_from_tenant" : year1_payment_from_tenant,
+	"year2_payment_from_tenant" : year2_payment_from_tenant,
+	"year1_return_to_manager"   : year1_payment_from_tenant -
+	    12.0 * contract.landlord_rent_payment -
+	    year1_payment_to_investor + 0.5 * overhead_payment -
+	    contract.actual_overhead,
+	"year1_return_to_investor"  : year1_payment_to_investor - 
+	    overhead_payment,
+	"year2_return_to_manager"   : year1_payment_from_tenant -
+	    12.0 * contract.landlord_rent_payment -
+	    year2_payment_to_investor 
+	    + 0.5 * overhead_payment -
+	    contract.actual_overhead,
+	"year2_return_to_investor"  : year2_payment_to_investor
+    };
 
     // S.5
     var contract_terminates = function(params) {

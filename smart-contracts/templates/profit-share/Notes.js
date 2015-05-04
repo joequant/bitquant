@@ -58,6 +58,25 @@ define (function() {
 			output.append("<br>");
 		    }
 		});
+
+		var calc_out = calculator.output
+		var num_out = function(header, n) {
+		    output.append(header + ": ");
+		    output.append(Number(n).toFixed(2));
+		    output.append("<br>");
+		}
+
+		output.append("<h3>Analysis</h3>");
+		num_out("Initial investor payment",
+			calc_out.initial_investor_payment);
+		num_out("year1_return_to_investor",
+			calc_out.year1_return_to_investor);
+		num_out("year1_return_to_manager",
+			calc_out.year1_return_to_manager);
+		num_out("year2_return_to_investor",
+			calc_out.year2_return_to_investor);
+		num_out("year2_return_to_manager",
+			calc_out.year2_return_to_manager);
 	    } catch (err) {
 		output.html(err.message);
 	    }
