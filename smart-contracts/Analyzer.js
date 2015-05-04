@@ -122,10 +122,13 @@ require ([
 		$(name).appendGrid('getAllValue').forEach(function(j) {
 		    events[i.name].push(j);
 		});
-	    }
-	    var value = $("#" + i.name + "_event").val();
-	    if (value !== undefined && value !== "") {
-		events[i.name] = value;
+	    } else if (i.type === "checkbox") {
+		events[i.name] = $("#" + i.name + "_event").prop('checked');
+	    } else {
+		var value = $("#" + i.name + "_event").val();
+		if (value !== undefined && value !== "") {
+		    events[i.name] = value;
+		}
 	    }
 	});
 
@@ -141,10 +144,13 @@ require ([
 		    params[i.name].push(j);
 		});
 		return;
-	    }
-	    var value = $("#" + i.name + "_scenario").val();
-	    if (value !== undefined && value !== "") {
-		params[i.name] = value;
+	    } else if (i.type === "checkbox") {
+		events[i.name] = $("#" + i.name + "_scenario").prop('checked');
+	    } else {
+		var value = $("#" + i.name + "_scenario").val();
+		if (value !== undefined && value !== "") {
+		    params[i.name] = value;
+		}
 	    }
 	});
 	var calculator = new Calculator();
@@ -165,6 +171,23 @@ require ([
 	}
     };
     callback(analyze);
+    function add_item(name, value, type) {
+	var field_value = "value='" +  value + "'";
+	if (type == "date") {
+	    field_value = "value='" + moment(value).format("YYYY-MM-DD") + "'";
+	} else if (type === "checkbox") {
+	    if (value === true) {
+		field_value = "checked";
+	    } else {
+		field_value = "";
+	    }
+	}
+	return "<input id='" +  name +"' name='" +
+	    name + "' type='" + type + "' " +
+	    field_value + " />";
+    }
+    
+
     $(function() {
         my_term_sheet.contract_parameters.forEach(function(i) {
 	    var display = i.display;
@@ -190,10 +213,8 @@ require ([
 		$(div).append(i.display);
 	    } else {
 		var value = my_term_sheet[i.name];
-		var field_value = value;
 		if (i.type == "date") {
 		    value = my_term_sheet[i.name].toDateString();
-		    field_value = moment(my_term_sheet[i.name]).format("YYYY-MM-DD");
 		}
 		$(div).append(display + ": " + value);
 
@@ -201,11 +222,10 @@ require ([
 		    $(div).append(" - ");
 		    $(div).append(my_notes[i.name]);
 		}
-		if (i.scenario == true) {
-		    $(div).append("- <input id='" + i.name + "_scenario' name='" +
-				  i.name + "_scenario' type='" + i.type + "' " +
-				  "value='" + field_value + "'/>");
-		}
+		$(div).append(" - ");
+		$(div).append(add_item(i.name + "_scenario",
+				       value,
+				       i.type));
 		$(div).append("<br>");
 	    }
 	});
@@ -238,23 +258,14 @@ require ([
 	    } else if (i.type === "html") {
 		$(div).append(i.display);
 	    } else {
-		var field_value = "";
-		if (i.value !== undefined) {
-		    field_value = i.value;
-		
-		    if (i.type == "date") {
-			field_value = moment(i.value).format("YYYY-MM-DD");
-		    }
-		}
-
 		$(div).append(i.display + ": ");
 		if (my_notes[i.name] != undefined) {
 		    $(div).append(" - ");
 		    $(div).append(my_notes[i.name]);
 		}
-		$(div).append("- <input id='" + i.name + "_event' name='" +
-			      i.name + "_event' type='" + i.type + "'" +
-			      " value='" + field_value + "'/>");
+		$(div).append(add_item(i.name + "_event",
+				       i.value,
+				       i.type));
 		$(div).append("<br>");
 	    }
 	});

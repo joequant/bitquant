@@ -403,8 +403,8 @@ function Schedule_A(obj) {
     obj.overhead_payment = 10000;
     obj.initial_date = new_date(2015, 5, 15);
     obj.initial_date_string = obj.initial_date.toDateString();
-    obj.payment_date_1 = new_date(2015, 10, 1);
-    obj.payment_date_2 = new_date(2016, 10, 1);
+    obj.year1_payment_date = new_date(2015, 10, 1);
+    obj.year2_payment_date = new_date(2016, 10, 1);
     obj.currency = 'HKD';
 }
 
@@ -450,13 +450,13 @@ function Schedule_C() {
 	    scenario: true
 	},
 	{
-	    name: "payment_date_1",
+	    name: "year1_payment_date",
 	    display: "Investor Payment date 1",
 	    type: "date",
 	    scenario: true
 	},
 	{
-	    name: "payment_date_2",
+	    name: "year2_payment_date",
 	    display: "Investor Payment date 2",
 	    type: "date",
 	    scenario: true
@@ -486,6 +486,11 @@ function Schedule_C() {
 	    type: "number",
 	    value: "0"
 	},
+	{   name: "rollover",
+	    display: "Rollover",
+	    type: "checkbox",
+	    value: false
+	},
 	{
 	    name : "tenant_actual_year1_payment_date",
 	    display : "Actual tenant year 1 payment date",
@@ -496,7 +501,7 @@ function Schedule_C() {
 	    name : "tenant_actual_year2_payment_date",
 	    display : "Actual tenant year 1 payment date",
 	    type: "date",
-	    value: "2015-09-16"
+	    value: "2016-09-15"
 	},
 
 	{
@@ -546,28 +551,30 @@ Schedule_C.prototype.payments = function(calc) {
     var initial_investment = 3 * contract.landlord_rent_payment;
     var overhead_payment = contract.overhead_payment;
 
-    // S.3 
-    var year_one_payment_date = new_date(2015, 10, 1);
-    var year_two_payment_date = new_date(2016, 10, 1);
-
     console.log(contract);
     // S.4 
-    var year_one_payment_to_investor = contract.profit_share_fraction * 
+    var year1_payment_to_investor = contract.profit_share_fraction * 
 	(12.0 *
 	(contract.tenant_rent_payment - contract.landlord_rent_payment) +
 	contract.tenant_other_fees_year1);
     
-    var year_two_payment_to_investor = contract.profit_share_fraction * 
+    var year2_payment_to_investor = contract.profit_share_fraction * 
 	(12.0 *
 	(contract.tenant_rent_payment - contract.landlord_rent_payment) +
 	contract.tenant_other_fees_year2);
 
-    var year_one_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
+    var year1_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year1;
     console.log(contract.tenant_rent_payment);
 
-    var year_two_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
+    var year2_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year2;
+
+    contract.initial_investment = initial_investment;
+    contract.year1_payment_to_investor = year1_payment_to_investor;
+    contract.year2_payment_to_investor = year2_payment_to_investor;
+    contract.year1_payment_from_tenant = year1_payment_from_tenant;
+    contract.year2_payment_from_tenant = year2_payment_from_tenant;
 
     // S.5
     var contract_terminates = function(params) {
@@ -612,7 +619,7 @@ Schedule_C.prototype.payments = function(calc) {
 	calc.transfer({"on": params.actual,
 		       "from" : "tenant",
 		       "to" : "trust",
-		       "amount" : year_one_payment_from_tenant,
+		       "amount" : year1_payment_from_tenant,
 		       "item" : "tenant payment to trust"});
 	calc.transfer({"on": params.actual,
 		       "from" : "trust",
@@ -620,21 +627,31 @@ Schedule_C.prototype.payments = function(calc) {
 		       "amount" : contract.overhead_payment,
 		       "item" : "transfer overhead payment to manager"});
 
+	if (contract.rollover) {
+	    calc.transfer({"on": params.actual,
+			   "from" : "trust",
+			   "to" : "new_trust",
+			   "amount" : initial_investment,
+			   "item" : "rollover investment to new trust"});
+	};
+
 	calc.transfer({"on": params.actual,
 		       "from" : "trust",
 		       "to" : "manager",
 		       "amount" : contract.tenant_actual_year1_payment -
-		       year_one_payment_to_investor - 
+		       year1_payment_to_investor - 
 		       initial_investment,
 		       "item" : "transfer excess payment to manager"});
     }
 
     // S.6
-    calc.transfer({"on": contract.initial_date,
-		   "from" : "investor",
-		   "to" : "trust",
-		   "amount" : initial_investment,
-		   "note" : "initial investment"});
+    if (!contract.rollover) {
+	calc.transfer({"on": contract.initial_date,
+		       "from" : "investor",
+		       "to" : "trust",
+		       "amount" : initial_investment,
+		       "note" : "initial investment"});
+    }
 
     calc.transfer({"on": contract.initial_date,
 		   "from" : "investor",
@@ -660,27 +677,31 @@ Schedule_C.prototype.payments = function(calc) {
 
 
     // S.9 
-    calc.transfer({"on": year_one_payment_date,
+    calc.transfer({"on": contract.year1_payment_date,
 		  "from" : "trust",
 		  "to" : "investor",
-		  "amount" : year_one_payment_to_investor});
+		  "amount" : year1_payment_to_investor,
+		  "note" : "year 1 investor payment"});
 
     // S.10
     calc.transfer({"on": contract.tenant_actual_year2_payment_date,
 		  "from" : "tenant",
 		  "to" : "trust",
-		  "amount" : contract.tenant_actual_year2_payment});
+		  "amount" : contract.tenant_actual_year2_payment,
+		  "note" :  "year 2 tenant payment"});
 
     calc.transfer({"on": contract.tenant_actual_year2_payment_date,
 		  "from" : "trust",
 		  "to" : "manager",
 		  "amount" : contract.tenant_actual_year2_payment -
-		       year_two_payment_to_investor});
+		       year2_payment_to_investor,
+		  "note" : "year 2 transfer excess"});
 
-    calc.transfer({"on": year_two_payment_date,
+    calc.transfer({"on": contract.year2_payment_date,
 		  "from" : "trust",
 		  "to" : "investor",
-		  "amount" : year_two_payment_to_investor});
+		  "amount" : year2_payment_to_investor,
+		  "note" : "year 2 investor payment"});
 }
 
 function contains(a, obj) {

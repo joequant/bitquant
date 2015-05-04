@@ -14,8 +14,10 @@ define (function() {
                                   process_payment,
                                   output) {
 	    try {
+		var append_span = function(info) {
+		    output.append(info.join(" - "));
+		};
 		output.html("");
-		output.html("Hello world");
 		payment_schedule.forEach(function(i) {
 		    process_payment(i);
 		    var note = "";
@@ -24,9 +26,9 @@ define (function() {
 		    }
 		    if (i.event == "Note" ||
 			i.event == "Terminate") {
-			output.append(i.event);
-			output.append(i.on.toDateString());
-			output.append(note);
+			append_span([i.event,
+				     i.on.toDateString(),
+				     note]);
 			output.append("<br>");
 		    }
 
@@ -36,18 +38,23 @@ define (function() {
 			if (actual === undefined) {
 			    actual = i.on;
 			}
-			var item = i.item;
-			if (item === undefined) {
-			    item = i.item;
+			var actor = i.from;
+			if (i.to !== undefined) {
+			    actor = actor + " -> " + i.to;
 			}
-			output.append(i.event);
-			output.append(i.on.toDateString());
-			output.append(i.from);
-			output.append(i.to);
-			output.append(Number(i.amount).toFixed(2));
-			output.append(i.item);
-			output.append(note);
-			output.append(actual.toDateString());
+			var list = [i.event,
+				    i.on.toDateString(),
+				    actor];
+			if (i.amount !== undefined) {
+			    list.push(Number(i.amount).toFixed(2));
+			}
+			if (i.item  !== undefined) {
+			    list.push(i.item);
+			}
+			if (i.note !== undefined) {
+			    list.push(i.note);
+			}
+			append_span(list);
 			output.append("<br>");
 		    }
 		});
