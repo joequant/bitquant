@@ -12,7 +12,6 @@ var contract_template = (function () {/*
 
 This TRUST AGREEMENT is dated {{initial_date_string}}
 
-
 1) The settlor of this agreement is {{investor.name}} incorporated and
 registered in Hong Kong with company number
 {{investor.company_number}} whose registered office is at
@@ -26,12 +25,11 @@ registered in {{manager.location}} with company number
 3) The beneficiary of this agreement is the INVESTOR and any assignees
 of the INVESTOR.
 
+4) The named property in this agreement is {{named_property_address}}, a flat located in the Hong Kong SAR.
+
 BACKGROUND
 
-The investor as settlor has agreed to provide the manager as trustee
-funds of the purpose of investment into a named real property.  The
-trustee agrees to handle the funds according to the terms of this
-agreement benefit of the beneficiary.
+The investor as settlor has agreed to provide the manager as trustee funds of the purpose of managing investment into a named real property.  The trustee agrees to handle the funds according to the terms of this agreement benefit of the beneficiary.
 
 AGREED TERMS
 
@@ -73,164 +71,60 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 6. Use of funds
 ---------------
-6.1 Any funds received by the manager, its agents, or related persons
-of the manager or its agents, excluding refunds of deposits, in
-connection with the named property shall be the property of this
-trust, and may only be used in accordance with the terms and
-conditions of this agreement.
+6.1 Any funds received by the manager, its agents, or related persons of the manager or its agents, excluding refunds of deposits, in connection with the named property shall be the property of this trust, and may only be used in accordance with the terms and conditions of this agreement.  
+6.2 During the existence of this trust, the manager or any agent of the manager or any person related to the manager may not collect or cause to be collected any non-refundable funds concerning the named property other than rent which has been executed via a written agreement which has been provided to the beneficiary or which have otherwise expressly been disclosed in writing to the beneficiary.  The manager agrees that any funds that have not been expressly disclosed to the beneficiary shall immediately become the property of the beneficiary.  
+6,3 Any funds owned by the trust which are in excess of that what is necessary to fulfil the payment obligations of the trust to the beneficiary in that calendar year, shall immediately become the property of the manager, who may thereupon use those funds for any purpose whatsoever.  
+6.4 The initial investment, as defined in Schedule A, may only be used for the purpose of paying for the deposit and rent advances for the named property or as reimbursement to any person who has paid said fees.  
+6.5 Upon presentation of the landlord documents as specified in Schedule A, ownership of the and funds associated with the overhead fee as defined in Schedule A shall immediate pass from the trust to the manager, who may use these funds for any purpose whatsoever.  
 
-6.2 During the existence of this trust, the manager or any agent of
-the manager or any person related to the manager may not collect or
-cause to be collected any non-refundable funds concerning the named
-property other than rent which has been executed via a written
-agreement which has been provided to the beneficiary or which have
-otherwise expressly been disclosed in writing to the beneficiary.  The
-manager agrees that any funds that have not been expressly disclosed
-to the beneficiary shall immediately become the property of the
-beneficiary.
+7. Rollover option
+------------------
+7.1 Upon execution of the tenant lease, the beneficiary of the agreement may direct that the trustee release the investment fee to the manager for the purpose of concluding another investment agreement.
 
-6,3 Any funds owned by the trust which are in excess of that what is
-necessary to fulfil the payment obligations of the trust to the
-beneficiary in that calendar year, shall immediately become the
-property of the manager, who may thereupon use those funds for any
-purpose whatsoever.
+8. Administration of funds
+--------------------------
+8.1 The trustee shall have authority to keep the funds owned by the trust in any business cash account normally used by the trustee for business operations, provided that the trustee shall have reasonable belief that no event shall occur that would prevent the trustee from fulfiling their obligations to the beneficiary.  In the event that the trustee has reasonable belief that keeping the funds owned by the trust in said account may prevent the trustee from fulfilling its obligations under this agreement, it shall forthwith segregate the funds owned by the trust from other funds owned by the trustee.  
+8.2 The trustee shall insure that any funds held by the trust shall be stored in a form which is commonly used for the storage of cash for businesses.  Examples of these forms include but are not limited to insured bank accounts and stored value card.  In no event shall the trustee pledge funds owned by the trust as collateral to any third party, nor may the trustee use the funds owned by the trust for investment purposes without the express written consent of the beneficiary.  
+8.3 The trustee shall have authority to appoint a trust administrator to mangage funds in the trust.  
+8.4 In the event, that the settlor has a reasonable belief that the trustee is unable to properly administer the terms of the trust, the settlor shall have authority to revoke the authority of the trustee and appoint a new trustee to manage the funds owned by the trust. This action shall not affect the distribution or ownership of funds.  
+8.5 The beneficiary of this trust has the authority to revoke the trust agreement at any time, upon which time any funds owned by the trust shall be transfered to the beneficiary.  
+8.6 This trust shall automatically terminate when the trustee has fulfiled all obligations owed to the beneficiary as specified in Schedule A.  
 
-6.4 The initial investment, as defined in Schedule A, may only be used
-for the purpose of paying for the deposit and rent advances for the
-named property or as reimbursement to any person who has paid said
-fees.
-
-6.5 Upon presentation of the landlord documents as specified in
-Schedule A, ownership of the and funds associated with the overhead
-fee as defined in Schedule A shall immediate pass from the trust to
-the manager, who may use these funds for any purpose whatsoever.
- 
-6.6 The trustee shall have authority to keep the funds owned by the
-trust in any business cash account normally used by the trustee for
-business operations, provided that the trustee shall have reasonable
-belief that no event shall occur that would prevent the trustee from
-fulfiling their obligations to the beneficiary.  In the event that the
-trustee has reasonable belief that keeping the funds owned by the
-trust in said account may prevent the trustee from fulfilling its
-obligations under this agreement, it shall forthwith segregate the
-funds owned by the trust from other funds owned by the trustee.
-
-6.7 The trustee shall insure that any funds held by the trust shall be
-stored in a form which is commonly used for the storage of cash for
-businesses.  Examples of these forms include insured bank accounts and
-stored value card.  In no event shall the trustee pledge funds owned
-by the trust as collateral to any third party, nor may the trustee use
-the funds owned by the trust for investment purposes without the
-express written consent of the beneficiary.
-
-6.8 The trustee shall have authority to appoint a trust administrator
-to mangage funds in the trust.
-
-6.9 In the event, that the settlor has a reasonable belief that the
-trustee is unable to properly administer the terms of the trust, the
-settlor shall have authority to revoke the authority of the trustee
-and appoint a new trustee to manage the funds owned by the trust.
-This action shall not affect the distribution or ownership of funds.
-
-6.10 The beneficiary of this trust has the authority to revoke the
-trust agreement at any time, upon which time any funds owned by the
-trust shall be transfered to the beneficiary.
-
-6.11 This trust shall automatically terminate when the trustee has
-fulfiled all obligations owed to the beneficiary as specified in
-Schedule A.
-
-7. Regulatory activities
+9. Regulatory activities
 ------------------------ 
-
-7.1 If any provision (or part of a provision) of this Agreement is or
-becomes invalid, illegal or unenforceable, it shall be deemed modified
-to the minimum extent necessary to make it valid, legal and
-enforceable. If such modification is not possible, the relevant
-provision (or part of a provision) shall be deemed deleted. Any
-modification to or deletion of a provision (or part of a provision)
-under this clause shall not affect the legality, validity and
-enforceability of the rest of this Agreement.
-
-7.2 It is the express intention of the settlor that this agreement
-should not constitute a collective investment scheme as defined by the
-laws of Hong Kong, and the trustee shall take all reasonable actions
-necessary to prevent this agreement from constituting a collective
-investment scheme.  
-
-7.3 It is the express intention of the settlor that the issuance,
-sale, resale, and marketing of this agreement, shall not constitute a
-regulated activity under the Securities Futures Ordinance of the laws
-of Hong Kong, and the trustee shall take all reasonable actions
-necessary to prevent the issuance, sale, resale, and marketing of this
-agreement not be construed as performing a regulated activity under
-the Securities Futures Ordinance.
-
-7.3 In the event that this agreement is deemed or is likely to be
-deemed to be a collective investment scheme by any governmental
-authority having jurisdiction over Hong Kong or in the event that
-issuance, sale, resale, and marketing of this agreement is deemed or
-is likely to be deemed a regulated activity under the Securities
-Futures Ordinance by any governmental authority having jurisdiction
-over Hong Kong, the trustees are authorized to take any reasonable and
-lawful efforts to challenge or prevent said determination and are
-authorized to use up to ten percent of the funds that are owned by the
-trust for these activities.
-
-7.4 In the event that this agreement is deemed or is likely to be
-deemed to be a collective investment scheme by any governmental
-authority having jurisdiction over Hong Kong, the settlor is
-authorized to direct the trustee to use a reasonable portion of the
-fund not exceeding ten percent of the amount owned by the trust to
-conduct any reasonable and lawful efforts intended to challenge or
+9.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified to the minimum extent necessary to make it valid, legal and enforceable. If such modification is not possible, the relevant provision (or part of a provision) shall be deemed deleted. Any modification to or deletion of a provision (or part of a provision) under this clause shall not affect the legality, validity and enforceability of the rest of this Agreement.  
+9.2 It is the express intention of the settlor that this agreement should not constitute a collective investment scheme as defined by the laws of Hong Kong, and the trustee shall take all reasonable actions necessary to prevent this agreement from constituting a collective investment scheme.  
+9.3 It is the express intention of the settlor that the issuance, sale, resale, and marketing of this agreement, shall not constitute a regulated activity under the Securities Futures Ordinance of the laws of Hong Kong, and the trustee shall take all reasonable actions necessary so that the issuance, sale, resale, and marketing of this agreement not be construed as performing a regulated activity under the Securities Futures Ordinance.  
+9.4 In the event that this agreement is deemed or is likely to be deemed to be a collective investment scheme by any governmental authority having jurisdiction over Hong Kong or in the event that issuance, sale, resale, and marketing of this agreement is deemed or is likely to be deemed a regulated activity under the Securities Futures Ordinance by any governmental authority having jurisdiction over Hong Kong, the trustees are authorized to take any reasonable and lawful efforts to challenge or prevent said determination and are authorized to use up to five percent of the funds that due to the beneficiary.  
+9.5 In the event that this agreement is deemed or is likely to be deemed to be a collective investment scheme by any governmental authority having jurisdiction over Hong Kong or in the event that issuance, sale, resale, and marketing of this agreement is deemed or is likely to be deemed a regulated activity under the Securities Futures Ordinance by any governmental authority having jurisdiction over Hong Kong, the settlor is authorized to direct the trustee to use a reasonable portion of the fund not exceeding five percent of the amount owned by the trust to conduct any reasonable and lawful efforts intended to challenge or
 prevent said government action.
-
-7.5 In the event that the trustee has a reasonable belief that its
-ability to perform the actions specified in the trust agreement is
-limited or will be limited by any actual or proposed action by any
-governmental authority having jurisdiction over Hong Kong, the trustee
-is authorized to use the funds owned by the trust to fund any
-reasonable and lawful efforts intended to challenge or prevent said
-government action, provided that the amounts used do not exceed the
-likely cost of comply with said government action.
-
-7.6 In the event that the settlor has a reasonable belief that the
-ability of the trustee to ability to perform the actions specified in
-the trust agreement is limited or will be limited by any actual or
-proposed action by any governmental authority having jurisidiction
-over Hong Kong, the settlor is authorized to direct the trustee to use
-a reasonable portion of the fund to conduct any reasonable and lawful
-efforts intended to challenge or prevent said government action,
-provided that the amounts used do not exceed the likely cost of comply
-with said government action.
-
-7.7 Funding the aforesaid reasonable and lawful activities may include
-contributions to reasonable and lawful collective activities in
-cooperation with third parties to challenge or prevent a determination
-by governmental authorities.
+9.6 In the event that the trustee has a reasonable belief that its ability to perform the actions specified in the trust agreement is limited or will be limited by any actual or proposed action by any governmental authority having jurisdiction over Hong Kong, the trustee is authorized to use the funds owned by the trust to fund any reasonable and lawful efforts intended to challenge or prevent said government action, provided that the amounts used do not exceed the likely cost to the beneficiary associated with said government action.  
+9.7 In the event that the settlor has a reasonable belief that the ability of the trustee to ability to perform the actions specified in the trust agreement is limited or will be limited by any actual or proposed action by any governmental authority having jurisidiction over Hong Kong, the settlor is authorized to direct the trustee to use a reasonable portion of the fund to conduct any reasonable and lawful efforts intended to challenge or prevent said government action, provided that the amounts used do not exceed the likely cost of said government action.
+9.8 Funding the aforesaid reasonable and lawful activities may include contributions to reasonable and lawful collective activities in cooperation with third parties to challenge or prevent a determination by governmental authorities.
+9.9 For the purpose of computing the cost of a said government action, a reasonable expense associated with time and inconvenience may be included.
 
 
-7. Representations, Warranties and Undertakings
+10. Representations, Warranties and Undertakings
 --------------------------------------------
-7.1 The Manager represents, warrants and undertakes to the Investor on the date of this Agreement:  
+10.1 The Trustee represents, warrants and undertakes to the Settlor on the date of this Agreement:  
 (a) is a duly incorporated limited liability company validly existing under the laws of its jurisdiction of incorporation;  
 (b) has the power to enter into, deliver and perform, and has taken all necessary action to authorise its entry into, delivery and performance of, this Agreement; and  
 (c) has obtained all required authorisations to enable it to enter into, exercise its rights and comply with its obligations in this Agreement.  
-7.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
+10.2 The entry into and performance by it of, and the transactions contemplated by, this Agreement, do not and will not contravene or conflict with:
 (a) its constitutional documents;  
 (b) any agreement or instrument binding on it or its assets or constitute a default or termination event (however described) under any such agreement or instrument; or  
 (c) any law or regulation or judicial or official order, applicable to it.  
-7.3 The information, in written or electronic format, supplied by, or on its behalf, to the Investor in connection with this Agreement was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
+10.3 The information, in written or electronic format, supplied by, or on its behalf, to the Investor in connection with this Agreement was, at the time it was/will be supplied or at the date it was/will be stated to be given (as the case may be):  
 (a) if it was factual information, complete, true and accurate in all material respects;  
 (b) if it was a financial projection or forecast, prepared on the basis of recent historical information and on the basis of reasonable assumptions and was fair and made on reasonable grounds; and  
 (c) if it was an opinion or intention, made after careful consideration and was fair and made on reasonable grounds; and  
 (d) not misleading in any material respect, nor rendered misleading by a failure to disclose other information.
-7.4.  THE MANAGER FULLY, COMPLETELY, AND ABSOLUTELY INDEMNIFIES THE TRUST, SETTLOR, AND BENEFICIARY OF ANY AND ALL LIABILITY AND CLAIMS BY THIRD PARTIES ARISING FROM ACTIVITIES CONCERNING THE NAMED PROPERTY, INCLUDING BUT NOT LIMITED TO BREACH OF CONTRACT, NON-PAYMENT OF RENT, BREACH OF WARRANTY AND REPRESENTATIONS, AND FALSE ADVERTISING.  IN NO EVENT MAY THE TRUSTEE USE OR ALLOW TO BE USED FUNDS OWNED BY THE TRUST TO SATISFY CLAIMS BY THIRD PARTIES AGAINST THE MANAGER.  THIS INDEMNITY SHALL CONTINUE AFTER THE TERMINATION OF THE TRUST.
+10.4.  BOTH THE MANAGER AND THE TRUSTEE FULLY, COMPLETELY, AND ABSOLUTELY INDEMNIFIES THE TRUST, SETTLOR, AND BENEFICIARY OF ANY AND ALL LIABILITY AND CLAIMS BY THIRD PARTIES ARISING FROM ACTIVITIES CONCERNING THE NAMED PROPERTY, INCLUDING BUT NOT LIMITED TO BREACH OF CONTRACT, NON-PAYMENT OF RENT, BREACH OF WARRANTY AND REPRESENTATIONS, AND FALSE ADVERTISING.  IN NO EVENT MAY THE TRUSTEE USE OR ALLOW TO BE USED FUNDS OWNED BY THE TRUST TO SATISFY CLAIMS BY THIRD PARTIES AGAINST THE MANAGER.  THIS INDEMNITY SHALL CONTINUE AFTER THE TERMINATION OF THE TRUST.
 
 
-8. Events of Default
+11. Events of Default
 -----------------
-8.1 Each of the events or circumstances set out in this clause is an Event of Default.  
+11.1 Each of the events or circumstances set out in this clause is an Event of Default.  
 (i) The Manager fails to pay any sum payable by it under this Agreement.  
 (ii) The Manager fails (other than by failing to pay), to comply with any provision of this Agreement and (if the Investor considers, acting reasonably, that the default is capable of remedy), such default is not remedied within 7 Business Days of the earlier of:  
 (a) the Investor notifying the Manager of the default and the remedy required;  
@@ -239,36 +133,27 @@ by governmental authorities.
 (iv) The Manager suspends or ceases to carry on (or threatens to suspend or cease to carry on) all or a substantial part of its business.  
 (v) The passing of a resolution for the winding up of the Manager; or the appointment of a receiver, administrator or administrative receiver over the whole or any part of the assets of the Manager or the making of any arrangement with the creditors of the Manager for the affairs, business and property of the Manager to be managed by a supervisor.
 
-9. Amendments, Waivers and Consents and Remedies
+12. Amendments, Waivers and Consents and Remedies
 ---------------------------------------------
-9.1 No amendment of this Agreement shall be effective unless it is in writing and signed by, or on behalf of, each party to it (or its authorised representative).  
-9.2 A waiver of any right or remedy under this Agreement or by law, or any consent given under this Agreement, is only effective if given in writing by the waiving or consenting party and shall not be deemed a waiver of any other breach or default. It only applies in the circumstances for which it is given and shall not prevent the party giving it from subsequently relying on the relevant provision.  
-9.3 A failure or delay by a party to exercise any right or remedy provided under this Agreement or by law shall not constitute a waiver of that or any other right or remedy, prevent or restrict any further exercise of that or any other right or remedy or constitute an election to affirm this Agreement. No election to affirm this Agreement by the Investor shall be effective unless it is in writing. 
-9.4 The rights and remedies provided under this Agreement are cumulative and are in addition to, and not exclusive of, any rights and remedies provided by law..  
+12.1 No amendment of this Agreement shall be effective unless it is in writing and signed by, or on behalf of, each party to it (or its authorised representative).  
+12.2 A waiver of any right or remedy under this Agreement or by law, or any consent given under this Agreement, is only effective if given in writing by the waiving or consenting party and shall not be deemed a waiver of any other breach or default. It only applies in the circumstances for which it is given and shall not prevent the party giving it from subsequently relying on the relevant provision.  
+12.3 A failure or delay by a party to exercise any right or remedy provided under this Agreement or by law shall not constitute a waiver of that or any other right or remedy, prevent or restrict any further exercise of that or any other right or remedy or constitute an election to affirm this Agreement. No election to affirm this Agreement by the Investor shall be effective unless it is in writing. 
+12.4 The rights and remedies provided under this Agreement are cumulative and are in addition to, and not exclusive of, any rights and remedies provided by law..  
 
-10. Assignment and transfer
+13. Assignment and transfer
 -----------------------
 
-10.1 The beneficiary may assign any of its rights under this Agreement
-or transfer all its rights or obligations by novation, provided that
-the beneficiary of this agreement must consist of a single natural or
-legal person or legal entity, and provided that the beneficiary has
-notified the trustee in writing that the rights made under the
-agreement have been assigned.
-10.2 The trustee may not assign any of its rights or transfer any of
-its rights or obligations under this Agreement without the consent of
-the beneficiary.
+13.1 The beneficiary may assign any of its rights under this Agreement or transfer all its rights or obligations by novation, provided that the beneficiary of this agreement must consist of a single natural or legal person or legal entity, and provided that the beneficiary has notified the trustee in writing that the rights made under the agreement have been assigned.  
+13.2 The trustee may not assign any of its rights or transfer any of its rights or obligations under this Agreement without the consent of the beneficiary.  
 
-11. Counterparts
+14. Counterparts
 ------------
-11.1 This Agreement may be executed in any number of counterparts, each of which when executed shall constitute a duplicate original, but all the counterparts shall together constitute one agreement.  
-11.2 No counterpart shall be effective until each party has executed at least one counterpart.  
+14.1 This Agreement may be executed in any number of counterparts, each of which when executed shall constitute a duplicate original, but all the counterparts shall together constitute one agreement.  
+14.2 No counterpart shall be effective until each party has executed at least one counterpart.  
 
-12. Severance
-
-13. Notices
+15. Notices
 -------
-13.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
+15.1 Any notice or other communication given to a party under or in connection with this Agreement shall be:  
 (a) in writing;   
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
@@ -282,15 +167,15 @@ Email: {{investor.contact.email}}
 Attention: {{investor.contact.name}}    
 or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
-13.2 Any notice or other communication that the Investor gives to the Manager under or in connection with, this Agreement shall be deemed to have been received:  
+15.2 Any notice or other communication that the Investor gives to the Manager under or in connection with, this Agreement shall be deemed to have been received:  
 (a) if delivered by hand, at the time it is left at the relevant address;  
 (b) if posted by pre-paid first-class post or other next working day delivery service, on the second Business Day after posting; and  
 (c) if sent by fax or email, when received in legible form.  
-13.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.  
-13.4 Any notice or other communication given to the Investor shall be deemed to have been received only on actual receipt.  
+15.3 A notice or other communication given on a day that is not a Business Day, or after normal business hours, in the place it is received, shall be deemed to have been received on the next Business Day.  
+15.4 Any notice or other communication given to the Investor shall be deemed to have been received only on actual receipt.  
 
 
-14. Additional provisions
+16. Additional provisions
 -------------------------
 {{additional_provisions}}
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
@@ -347,38 +232,10 @@ Released under terms of the Simplified BSD License.
   managers, investors providing more than 10% of working capital or
   equity, and their immediate household.
 
-* The agent warranties that other than the landlord documents provided
-  the investor they have not entered to any agreement concerning the
-  designated property, and to the best of their knowledge, that the
-  rents derived from the property are unencumbered and have not been
-  pledged in connection with any other profit sharing or investment
-  agreement.
-
-* The agent warranties that they and related parties may not collect
-  any additional rent or derive any other benefit from the designated
-  property other than through a tenant agreement provided to the
-  investor or which has otherwise been disclosed to the investor in
-  writing.
-
-* The agent warranties that they and related parties have no
-  agreements whatsoever with the landlord concerning the designated
-  property other than those documented through the landlord agreement
-  provided to the investor, and that they will received no benefit
-  income or fees from the landlord concerning the designated property.
-
-* The agent fully indemifies the investor against any and all claims
- concerning the designated property.
-
-* Landlord documents refers to an executed lease agreement between the
-  agent and the designated property for a term of two years.  The lease
-  between the landlord and the agent must contain the following
-  provisions:
-** The lease agreement allow subletting
-** The lease agreement must be for a period of no less than two years
- and must containing no provision allowing for early termination of
- the lease.
-** The lease agreement must make the landlord responsible for keeping
- the property in good repair, and for the costs of ordinary maintainence
+* Landlord documents refers to an executed lease agreement between the manager and the landlord designated property for a term of two years.  The lease between the landlord and the manager must contain the following provisions:
+  * The lease agreement allow subletting
+  * The lease agreement must be for a period of no less than two years and must containing no provision allowing for early termination of the lease.
+  * The lease agreement must make the landlord responsible for keeping the property in good repair, and for the costs of maintainence and repair.
 
 * Tenant documents refers to an executed agreement between an agent
  and the tenants of the property, and must include the name and
@@ -406,6 +263,7 @@ function Schedule_A(obj) {
     obj.year1_payment_date = new_date(2015, 10, 1);
     obj.year2_payment_date = new_date(2016, 10, 1);
     obj.currency = 'HKD';
+    obj.named_property_address = "1 Queens Road Central, Central";
 }
 
 // SCHEDULE B
@@ -424,6 +282,12 @@ function Schedule_C() {
 	{   name: "header",
 	    display: "<h3>Contract Terms</h3>",
 	    type: "html"
+	},
+	{
+	    name: "named_property_address",
+	    display: "Property",
+	    type: "text",
+	    scenario: false
 	},
 	{
 	    name: "profit_share_fraction",
@@ -445,7 +309,7 @@ function Schedule_C() {
 	},
 	{
 	    name: "initial_date",
-	    display: "Initial loan date",
+	    display: "Initial payment date",
 	    type: "date",
 	    scenario: true
 	},
@@ -526,13 +390,15 @@ function Schedule_C() {
     this.event_spec.push(
 	{
 	    name: "header",
-	    type: "note"
+	    type: "note",
+	    target: "endnote"
 	}
     );
     this.event_spec.push(
 	{
 	    name: "terms",
-	    type: "note"
+	    type: "note",
+	    target: "endnote"
 	}
     );
 }
@@ -551,7 +417,7 @@ Schedule_C.prototype.payments = function(calc) {
     var initial_investment = 3 * contract.landlord_rent_payment;
     var overhead_payment = contract.overhead_payment;
 
-    // S.4 
+    // S.3 
     var year1_payment_to_investor = contract.profit_share_fraction * 
 	(12.0 *
 	(contract.tenant_rent_payment - contract.landlord_rent_payment) +
@@ -567,7 +433,6 @@ Schedule_C.prototype.payments = function(calc) {
 
     var year2_payment_from_tenant = 12.0 * contract.tenant_rent_payment +
 	contract.tenant_other_fees_year2;
-
     calc.output = {
 	"initial_investor_payment" :  initial_investment + overhead_payment,
 	"year1_payment_to_investor" : year1_payment_to_investor +
@@ -589,7 +454,7 @@ Schedule_C.prototype.payments = function(calc) {
 	"year2_return_to_investor"  : year2_payment_to_investor
     };
 
-    // S.5
+    // S.4
     var contract_terminates = function(params) {
 	calc.terminate({"on" : params.on});
     }
@@ -606,22 +471,20 @@ Schedule_C.prototype.payments = function(calc) {
 		       "note" : "refund overhead payment"});
 	calc.terminate({"on" : params.on});
     }
-
+    // S.5
     var execute_landlord_contract = function(params) {
 	calc.obligation({"deadline": calc.add_duration(params.actual,
 						 [1, "day"]),
 			"from" : "manager",
 			"to" : "investor",
 			"item" : "provide landlord documents"});
-
 	calc.transfer({"on": params.actual,
 		       "from" : "trust",
 		       "to" : "landlord or deposit payer",
 		       "amount" : initial_investment,
 		       "item" : "pay deposit for flat"});
     }
-
-
+    // S.6
     var execute_tenant_contract = function(params) {
 	calc.obligation({"deadline": calc.add_duration(params.actual,
 						 [1, "week"]),
@@ -657,7 +520,7 @@ Schedule_C.prototype.payments = function(calc) {
 		       "item" : "transfer excess payment to manager"});
     }
 
-    // S.6
+    // S.7
     calc.transfer({"on": contract.initial_date,
 		   "from" : "investor",
 		   "to" : "trust",
@@ -670,7 +533,6 @@ Schedule_C.prototype.payments = function(calc) {
 		   "amount" : contract.overhead_payment,
 		   "note" : "overhead_payment"});
 
-    // S.7
     calc.obligation({"deadline": calc.add_duration(contract.initial_date,
 						   [1, "week"]),
 		   "from" : "manager",

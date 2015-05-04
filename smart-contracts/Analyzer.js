@@ -58,6 +58,7 @@ require ([
     var template = Handlebars.compile(my_term_sheet.contract_text);
     $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
+
     var local_report = function(payment_schedule,
 				  calculator,
 				  process_payment,
@@ -192,9 +193,13 @@ require ([
         my_term_sheet.contract_parameters.forEach(function(i) {
 	    var display = i.display;
 	    var div = "#contract_params";
+	    if (i.target !== undefined) {
+		div = "#" + i.target;
+	    }
             if (i.type == "note") {
 		var template = Handlebars.compile(my_notes[i.name]);
 		$(div).append(converter.makeHtml(template(my_term_sheet)));
+		$(div).collapse({query: 'h2'});
             } else if (i.type == "grid") {
 		$(div).append("<br>" + i.display + "<br>");
 		$(div).append("<table><tr>");
@@ -232,9 +237,13 @@ require ([
 
 	my_term_sheet.event_spec.forEach(function(i) {
 	    var div = "#event_inputs";
+	    if (i.target !== undefined) {
+		div = "#" + i.target;
+	    }
             if (i.type == "note") {
 		var template = Handlebars.compile(my_notes[i.name]);
 		$(div).append(converter.makeHtml(template(my_term_sheet)));
+		$(div).collapse({query: 'h2'});
             } else if (i.type == "grid") {
 		var table = document.createElement('table');
 		var name = i.name + "_event";
