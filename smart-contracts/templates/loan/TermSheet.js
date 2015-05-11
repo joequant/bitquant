@@ -10,7 +10,7 @@ if (typeof define !== 'function') {
 var contract_template = (function () {/*
 {{header_text}}
 
-This FACILITY AGREEMENT is dated {{initial_loan_date_string}}
+This FACILITY AGREEMENT is dated {{initial_date_string}}
 
 BETWEEN
 
@@ -244,17 +244,17 @@ function Schedule_A(obj) {
     obj.compound_per_year = 12;
     obj.day_count_convention = "30/360US";
 
-    obj.initial_loan_date = new_date(2015, 3, 1);
-    obj.initial_loan_date_string = obj.initial_loan_date.toDateString();
+    obj.initial_date = new_date(2015, 3, 1);
+    obj.initial_date_string = obj.initial_date.toDateString();
     obj.currency = 'HKD';
-    obj.initial_loan_amount = 90000.00;
+    obj.initial_amount = 90000.00;
     obj.additional_credit_limit = 50000.0;
     obj.revenue_targets =
 	[
 	    { "revenue" : 750000.00, "multiplier" : 0.5},
 	    { "revenue" : 1500000.00, "multiplier" : 1.0},
 	];
-    obj.max_loan_duration = [ 1, 'year']
+    obj.max_duration = [ 1, 'year']
 }
 
 // SCHEDULE B
@@ -292,13 +292,13 @@ function Schedule_C() {
 	    type: "text"
 	},
 	{
-	    name: "initial_loan_date",
+	    name: "initial_date",
 	    display: "Initial loan date",
 	    type: "date",
 	    scenario: true
 	},
 	{
-	    name: "initial_loan_amount",
+	    name: "initial_amount",
 	    display: "Initial loan amount",
 	    type: "number"
 	},
@@ -308,8 +308,8 @@ function Schedule_C() {
 	    type: "number"
 	},
 	{
-	    name: "max_loan_duration",
-	    display: "Max Loan duration",
+	    name: "max_duration",
+	    display: "Maximum duration",
 	    type: "duration"
 	},
 	{ 
@@ -436,23 +436,23 @@ Schedule_C.prototype.process_payment = function(i) {
 
 Schedule_C.prototype.payments = function(calc) {
     // S.1
-    calc.fund({"on" : this.initial_loan_date,
-               "amount" : this.initial_loan_amount,
+    calc.fund({"on" : this.initial_date,
+               "amount" : this.initial_amount,
                "note" : "Initial funding"});
 
     // S.2
     obj = this;
     this.credit_request.forEach(function (i) {
 	i.amount = calc.limit_balance(i.amount, 
-				      obj.initial_loan_amount + 
+				      obj.initial_amount + 
 				      obj.additional_credit_limit);
         calc.fund(i);
     });
 
     // S.3
     var final_payment_date =
-	following_1st_of_month(calc.add_duration(this.initial_loan_date,
-						 obj.max_loan_duration));
+	following_1st_of_month(calc.add_duration(this.initial_date,
+						 obj.max_duration));
     calc.payment({"on":final_payment_date,
                   "amount":calc.remaining_balance(),
                   "note":"Required final payment"});
@@ -539,7 +539,7 @@ Schedule_C.prototype.payments = function(calc) {
     // S.6
     var start_payment_date = 
 	following_1st_of_month(
-	    calc.add_duration(this.initial_loan_date, [4, "months"]));
+	    calc.add_duration(this.initial_date, [4, "months"]));
 
     calc.amortize({"on":start_payment_date,
                    "amount": calc.remaining_balance(),
