@@ -195,7 +195,16 @@ Calculator.prototype.extract_payment = function(params) {
     return payment;
 }
 
-
+Calculator.prototype.action = function(params) {
+    var _action = function(o, params) {
+	params.action(params);
+	return {"event" : "Action",
+		"on" : params.on,
+		"note" : params.note};
+    }
+    this.add_to_event_table(_action)(params);
+}
+    
 Calculator.prototype.note = function(params) {
     var _note = function(o, params) {
 	return {"event": "Note",

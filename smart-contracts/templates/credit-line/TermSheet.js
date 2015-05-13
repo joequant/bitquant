@@ -315,12 +315,12 @@ function Schedule_C() {
 	    unfilled_value : []
 	},
 	{
-	    name: "early_payment",
-	    display : "Early Payments",
+	    name: "payment_arrival",
+	    display : "Check arrival",
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "number" }
+		{ name: "actual", display : "Date", type : "date" }
 	    ],
 	    unfilled_value : []
 	},
@@ -380,7 +380,12 @@ Schedule_C.prototype.payments = function(calc) {
 
     var total_credit = 0.0;
     var credit_requests = this.credit_request.sort(function(a, b) {
-	return cmp(a.on, b.on);
+	if(a.on.getTime() <  b.on.getTime()) {
+	    return -1;
+	} else if(a.on.getTime() >  b.on.getTime()) {
+	    return 1;
+	}
+	return 0;
     });
 
     credit_requests.forEach(function (i) {
@@ -399,7 +404,7 @@ Schedule_C.prototype.payments = function(calc) {
 	}
     });
 
-    // S.4
+    // S.3
 
     var now = obj.initial_date;
     var quarter = Math.floor((now.getMonth() / 3));
@@ -408,17 +413,40 @@ Schedule_C.prototype.payments = function(calc) {
     while (endDate <= obj.final_date) {
 	calc.add_to_balance({"on": endDate,
 			     "amount": calc.multiply(calc.remaining_balance(), 0.1),
-			    "prepend": true});
-	calc.payment({"on": endDate,
-		      "amount": calc.remaining_balance(),
-		      "note": "payment"});
+			     "prepend": true});
+	calc.action({"on": endDate,
+		     "note": "end of quarter",
+		     "amount" : calc.remaining_balance(),
+		     "action": function(params) {
+			 var due_date = calc.add_duration(params.on,
+							  [45, "days"]);
+			 obj.payment_arrival.forEach(function(i) {
+			     var max_extension = 
+				 calc.add_duration(params.on,
+						   [90, "days"]);
+			     if (params.on.getTime() === 
+				 i.on.getTime()) {
+				 calc.note({"on": params.on,
+					    "note" : "Payment arrives on " +
+					    i.actual});
+				 if (i.actual > max_extension) {
+				     due_date = max_extension;
+				 } else if (i.actual > due_date) {
+				     due_date = i.actual;
+				 }
+			     }
+			 });
+			 var amount = calc.extract_payment(params.amount);
+			 calc.payment({"on" : due_date,
+				       "amount" : amount,
+				       "note" : "payment_due"});
+		     }
+		     });
 	firstDate = calc.add_duration(firstDate, [3, "months"]);
 	endDate = new Date(firstDate.getFullYear(), 
 			   firstDate.getMonth() + 3, 0);	
 
     }
-
-
 }
 
 
