@@ -147,7 +147,7 @@ require ([
 	    
 	    myElements = document.querySelectorAll(".date-block");
 	    for (var i = 0; i < myElements.length; i++) {
-		myElements[i].style.width = "120px";
+		myElements[i].style.width = "150px";
 		myElements[i].style.display = "inline-block";
 	    }
 	} catch (err) {
