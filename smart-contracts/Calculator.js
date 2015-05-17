@@ -19,7 +19,8 @@ Calculator.prototype.add_to_event_table = function(func) {
     return function(param) {
 	var on = param["on"];
 	if (!(on in o.events)) {
-	    if (o.event_list.length > 0 && 
+	    if (o.event_list.length > 0 &&
+		o.current_event !== undefined &&
 		on < o.event_list[o.current_event]) {
 		throw new Error("Event already past current=" + o.event_list[o.current_event] + " adding= " +on);
 	    }
@@ -167,7 +168,6 @@ Calculator.prototype.show_payment = function(i) {
 Calculator.prototype.calculate = function(term_sheet) {
     this.events = {};
     this.event_list = [];
-    this.current_event = 0;
     this.term_sheet = term_sheet;
     term_sheet.payments(this);
     return this.run_events(term_sheet);
