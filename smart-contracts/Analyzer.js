@@ -11,6 +11,7 @@ function load_analyzer(term_sheet, notes, callback) {
 require.config({
     paths: {
         "moment": "node_modules/moment/moment",
+	"Calculator": "Calculator",
 	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
 	"modernizr" : "http://cdn.jsdelivr.net/webshim/1.14.2/extras/modernizr-custom",
 	"jquery-ui" : "http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min",
@@ -41,7 +42,7 @@ require.config({
 var analyze;
 require ([
     term_sheet,
-    "./Calculator",
+    "Calculator",
     notes,
     "handlebars",
     "moment",
@@ -58,58 +59,102 @@ require ([
     var template = Handlebars.compile(my_term_sheet.contract_text);
     $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
-
-    var local_report = function(payment_schedule,
-				  calculator,
-				  process_payment,
-				  output) {
+    var local_report = (function (payment_schedule,
+                                     calculator,
+                                     process_payment,
+                                     output) {
 	try {
+	    var append_span = function(info) {
+		output.append(info.join(" - "));
+	    };
+	    
 	    output.html("");
-	    output.html("<table><tr>");
-	    output.append("<td>event</td>");
-	    output.append("<td>date</td>");
-	    output.append("<td>principal</td>");
-	    output.append("<td>interest</td>");
-	    output.append("<td>balance</td>");
-	    output.append("<td>late balance</td>");
-	    output.append("<td>principal payment</td>");
-	    output.append("<td>interest payment</td>");
-	    output.append("</tr>");
-
+	    output.append("<span class='block'>event</span>");
+	    output.append("<span class='date-block'>date</span>");
+	    output.append("<span class='block'>principal</span>");
+	    output.append("<span class='block'>fees</span>");
+	    output.append("<span class='block'>balance</span>");
+	    output.append("<span class='block'>late balance</span>");
+	    output.append("<span class='block'>principal payment</span>");
+	    output.append("<span class='block'>fee payment</span>");
+	    output.append("<br>");
+	    
 	    payment_schedule.forEach(function(i) {
-		my_term_sheet.process_payment(i);
+		process_payment(i);
 		var note = "";
 		if (i.note != undefined) {
 		    note = i.note;
 		}
-		output.append("<tr><td>" +
-				i.event + "</td><td>" +
-				i.on.toDateString() + "</td><td class='number'>" +
-				Number(i.principal).toFixed(2) +
-	"</td><td class='number'>" +
-				Number(i.interest_accrued).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.balance).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.late_balance).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.principal_payment).toFixed(2)
-				+ "</td><td class='number'>" +
-				Number(i.interest_payment).toFixed(2)
-				+ "</td><td>" +
-				note + "</td></tr>");
-
-
+		if (i.event == "Note" ||
+		    i.event == "Terminate" ||
+		    i.event == "Action" ) {
+		    output.append("<span class='block'>" +
+				  i.event + "</span>");
+		    output.append("<span class='date-block'>" +
+				  i.on.toDateString() + "</span>");
+		    output.append("<span>" +
+				  note + "</span>");
+		    output.append("<br>");
+		} else if (i.event ===  "Transfer" ||
+			   i.event === "Obligation") {
+		    var actual = i.actual;
+		    if (actual === undefined) {
+			actual = i.on;
+		    }
+		    var actor = i.from;
+		    if (i.to !== undefined) {
+			actor = actor + " -> " + i.to;
+		    }
+		    var list = [i.event,
+				i.on.toDateString(),
+				actor];
+		    if (i.amount !== undefined) {
+			list.push(Number(i.amount).toFixed(2));
+		    }
+		    if (i.item  !== undefined) {
+			list.push(i.item);
+		    }
+		    if (i.note !== undefined) {
+			list.push(i.note);
+		    }
+		    append_span(list);
+		    output.append("<br>");
+		} else {
+		    output.append("<span class='block'>" +
+				  i.event + "</span><span class='date-block'>" +
+				  i.on.toDateString() + "</span><span class='number block'>" +
+				  Number(i.principal).toFixed(2) +
+				  "</span><span class='number block'>" +
+				  Number(i.interest_accrued).toFixed(2)
+				  + "</span><span class='number block'>" +
+				  Number(i.balance).toFixed(2)
+				  + "</span><span class='number block'>" +
+				  Number(i.late_balance).toFixed(2)
+				  + "</span><span class='number block'>" +
+				  Number(i.principal_payment).toFixed(2)
+				  + "</span><span class='number block'>" +
+				  Number(i.interest_payment).toFixed(2)
+				  + "</span><span> " +
+				  note + "</span><br>");
+		}
 	    });
-	    output.append("</table><br><br>");
-	    output.append("Annual interest rate: " +
-			      calculator.apr(payment_schedule).toFixed(4) + 
-			      " percent");
-
-	} catch(err) {
+	    var myElements = document.querySelectorAll(".block");
+	    
+	    for (var i = 0; i < myElements.length; i++) {
+		myElements[i].style.width = "80px";
+		myElements[i].style.display = "inline-block";
+	    }
+	    
+	    myElements = document.querySelectorAll(".date-block");
+	    for (var i = 0; i < myElements.length; i++) {
+		myElements[i].style.width = "120px";
+		myElements[i].style.display = "inline-block";
+	    }
+	} catch (err) {
 	    output.html(err.message);
 	}
-    };
+    });
+
     analyze = function() {
         var events = {
 	};
