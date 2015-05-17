@@ -377,6 +377,8 @@ Schedule_C.prototype.payments = function(calc) {
     var obj = this;
     calc.note({on: obj.initial_date,
 	       note: "Line of credit begins"});
+    calc.note({on: obj.final_date,
+	       note: "Line of credit ends"});
 
     var total_credit = 0.0;
     var credit_requests = this.credit_request.sort(function(a, b) {
@@ -389,6 +391,16 @@ Schedule_C.prototype.payments = function(calc) {
     });
 
     credit_requests.forEach(function (i) {
+	if (i.on < obj.initial_date) {
+	    calc.note({on: i.on,
+		       note: "Request before credit line begins"});
+	    return;
+	}
+	if (i.on > obj.final_date) {
+	    calc.note({on: i.on,
+		       note: "Request after credit line ends"});
+	    return;
+	}
 	var amount = calc.extract_payment(i);
 	var allowed = 0.0;
 	if (total_credit + amount > obj.credit_limit) {
@@ -481,7 +493,7 @@ Schedule_C.prototype.payments = function(calc) {
 		      "payment_func" : payment_function});
 	calc.add_to_balance({"on": endDate,
 			     "amount": calc.multiply(calc.remaining_balance(), 
-						     obj.final_charge / 100.0),
+						     obj.finance_charge / 100.0),
 			    "note": "finance fee"});
 	calc.action({"on": endDate,
 		     "note": "end of quarter",
