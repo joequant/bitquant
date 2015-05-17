@@ -53,6 +53,13 @@ Calculator.prototype.run_events = function(term_sheet) {
 	   term_sheet.annual_interest_rate !== undefined &&
 	   term_sheet.compound_per_year !== undefined &&
 	   term_sheet.day_count_convention !== undefined) {
+	    var late_interest = this.compounding_factor(prev_date,
+							k,
+							term_sheet.late_annual_interest_rate,
+							term_sheet.late_compound_per_year,
+							term_sheet.late_day_count_convention) *
+		this.late_balance;
+           
             var interest = 
 		this.compounding_factor(prev_date,
 					k,
@@ -60,13 +67,9 @@ Calculator.prototype.run_events = function(term_sheet) {
 					term_sheet.compound_per_year,
 					term_sheet.day_count_convention) * 
 		(this.balance - this.late_balance) +
-		this.compounding_factor(prev_date,
-					k,
-					term_sheet.late_annual_interest_rate,
-					term_sheet.late_compound_per_year,
-					term_sheet.late_day_count_convention) *
-		this.late_balance;
+		late_interest;
             this.balance = this.balance + interest;
+	    this.late_balance = this.late_balance + late_interest;
 	}
 	var list_counter = 0;
 	while (list_counter < this.events[k].length) {
@@ -174,6 +177,9 @@ Calculator.prototype.extract_payment = function(params) {
     var payment;
     if (params == undefined) {
 	return undefined;
+    }
+    if (typeof params == 'number') {
+	return params;
     }
     if (params.hasOwnProperty("amount")) {
 	payment = params.amount;
@@ -473,14 +479,31 @@ Calculator.prototype.accrued_interest = function() {
     return function() { return (o.balance - o.principal); }
 }
 
+Calculator.prototype.accrued_late_fee = function() {
+    var o = this;
+    return function() { return (o.late_balance - o.late_principal); }
+}
+
 Calculator.prototype.remaining_balance = function() {
     var o = this;
     return function() { return(o.balance); }
 }
 
+Calculator.prototype.get_value = function(n) {
+    var o = this;
+    return function() { return(o[n]); }
+}
+
 Calculator.prototype.multiply = function (a, b) {
     var o = this;
-    return function() { return o.extract_payment(a) * b };
+    return function() { return o.extract_payment(a) * 
+			o.extract_payment(b) };
+}
+
+Calculator.prototype.add = function (a, b) {
+    var o = this;
+    return function() { return o.extract_payment(a) +
+			o.extract_payment(b) };
 }
 
 Calculator.prototype.limit_balance = function(a, b) {
