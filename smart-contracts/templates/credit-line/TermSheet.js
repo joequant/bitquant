@@ -377,8 +377,6 @@ Schedule_C.prototype.payments = function(calc) {
     var obj = this;
     calc.note({on: obj.initial_date,
 	       note: "Line of credit begins"});
-    calc.note({on: obj.final_date,
-	       note: "Line of credit ends"});
 
     var total_credit = 0.0;
     var credit_requests = this.credit_request.sort(function(a, b) {
@@ -531,6 +529,9 @@ Schedule_C.prototype.payments = function(calc) {
 			   firstDate.getMonth() + 3, 0);	
 
     }
+    // S.5
+    calc.note({on: obj.final_date,
+	       note: "Line of credit ends"});
 }
 
 

@@ -17,15 +17,16 @@ define (function() {
 		var append_span = function(info) {
 		    output.append(info.join(" - "));
 		};
+
 		output.html("");
-		output.append("<span>event</span>");
-		output.append("<span>date</span>");
-		output.append("<span>principal</span>");
-		output.append("<span>interest</span>");
-		output.append("<span>balance</span>");
-		output.append("<span>late balance</span>");
-		output.append("<span>principal payment</span>");
-		output.append("<span>interest payment</span>");
+		output.append("<span class='block'>event</span>");
+		output.append("<span class='date-block'>date</span>");
+		output.append("<span class='block'>principal</span>");
+		output.append("<span class='block'>fees</span>");
+		output.append("<span class='block'>balance</span>");
+		output.append("<span class='block'>late balance</span>");
+		output.append("<span class='block'>principal payment</span>");
+		output.append("<span class='block'>fee payment</span>");
 		output.append("<br>");
 
 		payment_schedule.forEach(function(i) {
@@ -37,9 +38,12 @@ define (function() {
 		    if (i.event == "Note" ||
 			i.event == "Terminate" ||
 		        i.event == "Action" ) {
-			append_span([i.event,
-				     i.on.toDateString(),
-				     note]);
+			output.append("<span class='block'>" +
+				      i.event + "</span>");
+			output.append("<span class='date-block'>" +
+				      i.on.toDateString() + "</span>");
+			output.append("<span>" +
+				      note + "</span>");
 			output.append("<br>");
 		    } else if (i.event ===  "Transfer" ||
 			i.event === "Obligation") {
@@ -66,24 +70,36 @@ define (function() {
 			append_span(list);
 			output.append("<br>");
 		    } else {
-			output.append("<span>" +
-				i.event + "</span><span>" +
-				i.on.toDateString() + "</span><span class='number'>" +
+			output.append("<span class='block'>" +
+				i.event + "</span><span class='date-block'>" +
+				i.on.toDateString() + "</span><span class='number block'>" +
 				Number(i.principal).toFixed(2) +
-	"</span><span class='number'>" +
+	"</span><span class='number block'>" +
 				Number(i.interest_accrued).toFixed(2)
-				+ "</span><span class='number'>" +
+				+ "</span><span class='number block'>" +
 				Number(i.balance).toFixed(2)
-				+ "</span><span class='number'>" +
+				+ "</span><span class='number block'>" +
 				Number(i.late_balance).toFixed(2)
-				+ "</span><span class='number'>" +
+				+ "</span><span class='number block'>" +
 				Number(i.principal_payment).toFixed(2)
-				+ "</span><span class='number'>" +
+				+ "</span><span class='number block'>" +
 				Number(i.interest_payment).toFixed(2)
 				+ "</span><span>" +
 				note + "</span><br>");
 		    }
 		});
+		var myElements = document.querySelectorAll(".block");
+ 
+		for (var i = 0; i < myElements.length; i++) {
+		    myElements[i].style.width = "80px";
+		    myElements[i].style.display = "inline-block";
+		}
+
+		myElements = document.querySelectorAll(".date-block");
+		for (var i = 0; i < myElements.length; i++) {
+		    myElements[i].style.width = "120px";
+		    myElements[i].style.display = "inline-block";
+		}
 	    } catch (err) {
 		output.html(err.message);
 	    }
