@@ -163,6 +163,28 @@ payment_schedule.forEach(function(i) {
     my_term_sheet.process_payment(i);
     show_line(i)
 });
+
+console.log("Credit 4");
+my_term_sheet = new TermSheet();
+calculator = new Calculator();
+calculator.set_events(my_term_sheet, {
+    "late_payment" : [
+	{"on" : "2015-11-14",
+	 "amount" : "2500"
+	}
+    ],
+    "credit_request":[
+    {"on": "2015-08-15",
+     "amount": "15000"},
+    {"on": "2015-11-15",
+     "amount": "15000"}
+    ]});
+var payment_schedule = calculator.calculate(my_term_sheet);
+payment_schedule.forEach(function(i) {
+    my_term_sheet.process_payment(i);
+    show_line(i)
+});
+
 show_apr(calculator, payment_schedule);
 console.log()
 

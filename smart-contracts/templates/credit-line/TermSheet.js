@@ -213,24 +213,24 @@ Released under terms of the Simplified BSD License.
     };
 
     obj.additional_provisions = (function () {/*
-17.1 For the purpose of of computing accelerated payments in this
-Agreement, the revenue shall be the cumulative gross receipts received
-by the Borrower, any subsidiaries or holding companies of the
-Borrower, or any other companies controlled by or affliated with the
-Borrower.  Gross receipts shall include income derived from sales of
-the Product as well as an licensing fees received in conjunction with
-the Product or any intellectual property associated with the product.  
-17.2 During the term of the Facility, the Borrower agrees to provide the
-Lender on at least a monthly basis an accounting gross receipts
-received in conjunction with the sales or licensing of the Product and
-any associated intellectual property, and to notify the Lender within
-three (3) Business Days if the Borrower has reasons to
-believe that the cumulative gross receipts has exceeded the revenue
-targets specified in this contract.  
-17.3 Any principal due under this Agreement may be paid via HKD or via
+17.1 Any principal due under this Agreement may be paid via HKD or via
 bitcoins based on the XBT Exchange Rate.  Any interest (including
 default interest) due under this Agreement must be paid via bitcoins
-based on the XBT Exchange Rate.
+based on the XBT Exchange Rate.  
+17.2 Any previous unused credit lines between the borrower and lender
+are hereby cancelled.  This will not affect the payment and conditions
+of any credit lines which have already been used, or the payment and
+conditions of any loans that have been obtained outside of a credit
+line.  
+17.3 The borrower warrants that they have received a grant from the
+HKSAR over the duration of this credit line exceeding the total amount
+available.  In the event that the borrower is no longer eligible for the
+grant, this credit line shall be cancelled, with the balance due with
+finance charge within 30 days.  
+17.4 In the event that the HKSAR fails to provide a grant payment before
+the deadline for the payments owed in this credit line, the deadline shall
+be extended until three days after borrower has received payment from the 
+HKSAR or forty-five (90) days after the end of quarter.  
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 };
 
@@ -330,10 +330,11 @@ function Schedule_C() {
 	    type: "grid",
 	    columns: [
 		{ name: "on", display: "Date", type : 'date' },
-		{ name: "amount", display : "Money", type : "number" }
+		{ name: "amount", display : "Money", type : "number" },
+		{ name: "actual", display : "Actual", type : "date" }
 	    ],
 	    unfilled_value : []
-	}
+	},
     ];
 
     this.event_spec.push(
@@ -376,7 +377,6 @@ Schedule_C.prototype.payments = function(calc) {
     var obj = this;
     calc.note({on: obj.initial_date,
 	       note: "Line of credit begins"});
-    // S.2
 
     var total_credit = 0.0;
     var credit_requests = this.credit_request.sort(function(a, b) {
@@ -404,16 +404,85 @@ Schedule_C.prototype.payments = function(calc) {
 	}
     });
 
-    // S.3
+    // S.2
+    var payment_function = function(calc, params) {
+	var payment = calc.extract_payment(params);
 
+	var principal = calc.principal;
+	var late_balance = calc.late_balance;
+	var interest_accrued = calc.balance - calc.principal;
+
+	if (payment > calc.balance) {
+            payment = calc.balance + calc.late_balance;
+	}
+	var required_payment = calc.extract_payment(params.required);
+	if (required_payment === undefined) {
+	    required_payment = payment;
+	}
+	var interest_payment = 0.0;
+	var principal_payment = 0.0;
+
+	if (payment > interest_accrued) {
+	    interest_payment = interest_accrued;
+	    principal_payment = payment - interest_accrued;
+	} else {
+	    interest_payment = payment;
+	    principal_payment = 0.0;
+	}
+	if (contains(calc.term_sheet.late_payment, params.on)) {
+	    var late_payment = 
+		contains(calc.term_sheet.late_payment, params.on).amount;
+	    if (late_payment > payment) {
+		payment = 0.0;
+	    } else {
+		payment = payment - late_payment;
+	    }
+	    params.note = "Late payment";
+	}
+
+	calc.balance = calc.balance - payment;
+	if (payment < late_balance) {
+	    calc.late_balance = calc.late_balance - payment;
+	} else {
+	    calc.late_balance = 0.0;
+	}
+
+	if (payment >=  interest_accrued) {
+	    calc.principal = calc.principal - payment + interest_accrued;
+	}
+
+	if (payment < required_payment) {
+	    calc.late_balance = calc.late_balance + required_payment - 
+		payment;
+	}
+	if (payment > 0 || calc.late_balance > 0) {
+            return {"event":"Payment",
+                    "on":params.on,
+                    "payment":payment,
+                    "principal":principal,
+                    "interest_accrued": interest_accrued,
+                    "balance":calc.balance,
+		    "late_balance" : calc.late_balance,
+                    "note":params.note}
+	}
+
+    }
+
+    // S.4
     var now = obj.initial_date;
     var quarter = Math.floor((now.getMonth() / 3));
     var firstDate = new Date(now.getFullYear(), quarter * 3, 1);
-    var endDate = new Date(firstDate.getFullYear(), firstDate.getMonth() + 3, 0);
+    var endDate = new Date(firstDate.getFullYear(), 
+			   firstDate.getMonth() + 3, 0);
     while (endDate <= obj.final_date) {
+	calc.payment({"on" : endDate,
+		      "amount" : calc.get_value('late_balance'), 
+		      "note" : "late fee included",
+		      "payment_func" : payment_function});
 	calc.add_to_balance({"on": endDate,
-			     "amount": calc.multiply(calc.remaining_balance(), 0.1),
-			     "prepend": true});
+			     "amount": calc.multiply(calc.remaining_balance(), 
+						     obj.final_charge / 100.0),
+			    "note": "finance fee"});
 	calc.action({"on": endDate,
 		     "note": "end of quarter",
 		     "amount" : calc.remaining_balance(),
@@ -429,17 +498,20 @@ Schedule_C.prototype.payments = function(calc) {
 				 calc.note({"on": params.on,
 					    "note" : "Payment arrives on " +
 					    i.actual});
-				 if (i.actual > max_extension) {
+				 var  limit1 = calc.add_duration(i.actual,
+							  [3, "days"]);
+				 if (limit1 > max_extension) {
 				     due_date = max_extension;
-				 } else if (i.actual > due_date) {
-				     due_date = i.actual;
+				 } else if (limit1 > due_date) {
+				     due_date = limit1;
 				 }
 			     }
 			 });
 			 var amount = calc.extract_payment(params.amount);
 			 calc.payment({"on" : due_date,
-				       "amount" : amount,
-				       "note" : "payment_due"});
+				       "amount" : amount, 
+				       "note" : "payment_due",
+				       "payment_func" : payment_function});
 		     }
 		     });
 	firstDate = calc.add_duration(firstDate, [3, "months"]);
