@@ -243,7 +243,7 @@ function Schedule_A(obj) {
     obj.compound_per_year = 4;
     obj.day_count_convention = "30/360US";
 
-    obj.initial_date = new_date(2015, 5, 15);
+    obj.initial_date = new_date(2015, 5, 20);
     obj.initial_date_string = obj.initial_date.toDateString();
     obj.credit_limit = 100000.0;
     obj.finance_charge = 10.0;
@@ -251,6 +251,9 @@ function Schedule_A(obj) {
 
     obj.currency = 'HKD';
     obj.initial_amount = 0.00;
+    obj.due_date_after_quarter = [45, "days"];
+    obj.max_extension_duration = [90, "days"];
+    obj.extension_after_payment = [3, "days"];
 
 }
 
@@ -496,19 +499,21 @@ Schedule_C.prototype.payments = function(calc) {
 		     "note": "end of quarter",
 		     "amount" : calc.remaining_balance(),
 		     "action": function(params) {
-			 var due_date = calc.add_duration(params.on,
-							  [45, "days"]);
+			 var due_date = 
+			     calc.add_duration(params.on,
+					       obj.due_date_after_quarter);
 			 obj.payment_arrival.forEach(function(i) {
 			     var max_extension = 
 				 calc.add_duration(params.on,
-						   [90, "days"]);
+						   obj.max_extension_duration);
 			     if (params.on.getTime() === 
 				 i.on.getTime()) {
 				 calc.note({"on": params.on,
 					    "note" : "Payment arrives on " +
-					    i.actual});
-				 var  limit1 = calc.add_duration(i.actual,
-							  [3, "days"]);
+					    i.actual.toDateString()});
+				 var  limit1 = 
+				     calc.add_duration(i.actual,
+					       obj.extension_after_payment);
 				 if (limit1 > max_extension) {
 				     due_date = max_extension;
 				 } else if (limit1 > due_date) {
