@@ -174,7 +174,6 @@ party to the other from time to time.
 define(function() {
 
 function Contract_Config(obj) {
-    obj.allow_skip_principal = true;
 }
 
 function Contract_Text(obj) {
