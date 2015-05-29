@@ -1,0 +1,34 @@
+<% include header %>
+<div class="container">
+	<div class="jumbotron subhead" id="overview">
+		<div>
+            <p><h4>Date:</h4> <%= contract.initial_date_string%></p>
+            <p><h4>Borrower:</h4> <%= contract.borrower.name%> </p>
+            <p><h4>Lender:</h4> <%= contract.lender.name%> </p>
+        </div>
+	</div> 
+</div>
+<div class="container">
+	<div><span class="label label-info" style="font-size:14px">Contract Terms</span></div>
+	<% for(var i=0; i<contract.data.terms.length; i++) { %>
+        <div class="col-md-4">
+			<h5><%=i+1%>.<%=contract.data.terms[i]%></h5>
+			<p><a class='btn btn-default' data-toggle='modal' data-target='#mySmallModalLabel<%=i%>' href='#' role='button'>View details &raquo;</a></p>
+			<div id='mySmallModalLabel<%=i%>' class='modal fade bs-example-modal-lg' tabindex='-1' role='dialog' aria-labelledby='myLargeModalLabel' aria-hidden='true'>
+				<div class='modal-dialog modal-lg'>
+					<div class='modal-content'>
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						    <h3 class="panel-title"><%=contract.data.terms[i]%></h3>
+						  </div>
+						  <div class="panel-body">
+						    <%-contract.data.clauses[i]%>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <% } %>
+</div>
+<% include footer %>
