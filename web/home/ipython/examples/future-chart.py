@@ -33,6 +33,7 @@ import json
 import requests
 import dateutil.parser
 import matplotlib.pyplot as plt
+import numpy as np
 
 # <codecell>
 
@@ -99,10 +100,11 @@ def get_data():
                      "asks" : np.array([float(data['sell'])]),
                      "last" : np.array([float(data['last'])])}
     data = requests.get("http://api.796.com/v3/futures/ticker.html?type=btccnyweeklyfutures").json()['ticker']
-    futures['796CNY'] = {'dates':[weekly_expiry()],
-                     "bids" : np.array([float(data['buy'])/usdcny]),
-                     "asks" : np.array([float(data['sell'])/usdcny]),
-                     "last" : np.array([float(data['last'])/usdcny])}
+    if float(data['buy']) > 0.0 and float(data['sell']) > 0.0:
+        futures['796CNY'] = {'dates':[weekly_expiry()],
+                         "bids" : np.array([float(data['buy'])/usdcny]),
+                         "asks" : np.array([float(data['sell'])/usdcny]),
+                         "last" : np.array([float(data['last'])/usdcny])}
     # bitvic
     dates= []
     bids = []
