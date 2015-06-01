@@ -12,7 +12,7 @@ requirejs.config({
 
 var directory = process.argv[2];
 if (directory === undefined) {
-    directory = "./templates/credit-line"
+    directory = "./models/credit-line"
 } else {
     directory = "./" + directory
 }
