@@ -267,13 +267,8 @@ function Schedule_B(obj) {
 }
 
 // SCHEDULE C
-function Schedule_C() {
-    Contract_Config(this);
-    Contract_Text(this);
-    Schedule_A(this);
-    Schedule_B(this);
-
-    this.contract_parameters = [
+function Schedule_C(obj) {
+    obj.contract_parameters = [
 	{
 	    name: "annual_interest_rate",
 	    display: "Annual percentage rate (%)",
@@ -334,7 +329,7 @@ function Schedule_C() {
 	}
     ];
 
-    this.event_spec = [
+    obj.event_spec = [
 	{
 	    name : "revenues",
 	    display : "Projected Revenues",
@@ -367,8 +362,8 @@ function Schedule_C() {
 	}
     ];
 
-    if (this.allow_skip_principal) {
-	this.event_spec.push(
+    if (obj.allow_skip_principal) {
+	obj.event_spec.push(
 	    {
 		name: "skip_principal",
 		display : "Skip principal payment",
@@ -380,11 +375,11 @@ function Schedule_C() {
 	    }
 	);  
     } else {
-	this.skip_principal = [];
+	obj.skip_principal = [];
     }
 
-    if (this.additional_credit_limit > 0.0) {
-	this.event_spec.push(
+    if (obj.additional_credit_limit > 0.0) {
+	obj.event_spec.push(
 	    {
 		name: "credit_request",
 		display : "Credit request",
@@ -397,15 +392,15 @@ function Schedule_C() {
 	    }
 	);
     } else {
-	this.credit_request = [];
+	obj.credit_request = [];
     }
-    this.event_spec.push(
+    obj.event_spec.push(
 	{
 	    name: "header",
 	    type: "note"
 	}
     );
-    this.event_spec.push(
+    obj.event_spec.push(
 	{
 	    name: "terms",
 	    type: "note"
@@ -638,5 +633,18 @@ function following_1st_of_month(a) {
 function new_date(year, month, day) {
     return new Date(year, month-1, day);
 }
-return Schedule_C;
+
+function TermSheet() {
+    Contract_Config(this);
+    Contract_Text(this);
+    Schedule_A(this);
+    Schedule_B(this);
+    Schedule_C(this);
+}
+
+["process_payment", "payments", "getTargetHitDates"].map(function(i) {
+    TermSheet.prototype[i] = Schedule_C.prototype[i];
+});
+
+return TermSheet;
 });
