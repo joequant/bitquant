@@ -138,6 +138,7 @@ require ([
 				  note + "</span><br>");
 		}
 	    });
+	    output.append("<br><br>Annual percentage rate:" + Number(calculator.apr(payment_schedule)).toFixed(4) + "<br>");
 	    var myElements = document.querySelectorAll(".block");
 	    
 	    for (var i = 0; i < myElements.length; i++) {
