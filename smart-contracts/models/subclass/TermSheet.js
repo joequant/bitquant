@@ -9,5 +9,10 @@ if (typeof define !== 'function') {
 
 
 define(["../loan/TermSheet"], function(TermSheet) {
-    return TermSheet;
+    function SubClass() {
+	TermSheet.call(this);
+	this.borrower.name = "TEST CHANGE";
+    }
+    SubClass.prototype = Object.create(TermSheet.prototype);
+    return SubClass;
 });

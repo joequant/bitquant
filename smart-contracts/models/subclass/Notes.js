@@ -8,5 +8,9 @@ if (typeof define !== 'function') {
 }
 
 define (["../loan/Notes"], function(Notes) {
-    return Notes;
+    function SubClass() {
+	Notes.call(this);
+    }
+    SubClass.prototype = Object.create(Notes.prototype);
+    return SubClass;
 });
