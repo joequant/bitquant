@@ -1,0 +1,159 @@
+[__%] [Un/Secured] [Un/Subordinated] Convertible Note Term Sheet
+
+This term sheet summarizes key terms of a proposed convertible note issuance, for discussion purposes only.  It is non-binding and is not self-executing. No party has any obligation with respect to the proposed note issuance unless and until it signs a definitive agreement governing such transaction. Any party may end discussions at any time for any reason or no reason at all. [Notwithstanding the foregoing, the parties hereto agree to be bound by the provisions contained in the paragraphs entitled “Confidentiality”, “Governing Law”, “Exclusivity”, and “Expenses”.]
+
+Term sheets should not create any obligation to consummate the deal, but parties may wish to use the document as a vehicle for binding confidentiality and exclusivity provisions that cover the initial discussions.
+
+Issuer:  Issuer, a Delaware corporation (the “Issuer”)
+
+Purchaser:  Purchaser, a describe entity or entities (the “Purchaser”)
+
+Issuance:  Convertible promissory note due Year Due (the “Note”)
+
+Principal:  [Up to] $Principal Amount; the Purchaser will pay face value for the Note. Can be a set amount, or a maximum aggregate of multiple convertible note financings.
+
+Target Closing Date:  On or before Target Closing Date, [or as soon as practicable after satisfaction or waiver of all closing conditions] [to occur simultaneously with signing the definitive documentation]
+
+A simultaneous sign-and-close eliminates the need to negotiate closing conditions and interim business conduct covenants, cuts down on documentation prep, and can reduce transaction costs for smaller deals, at the expense of allowing the Purchaser to walk away between term sheet and final closing.  For more complex deals that require significant pre-closing actions and approvals (e.g., landlord consent, lender covenant waivers, regulatory approvals), the parties may wish to sign a binding agreement prior to closing to reduce execution risk in the period between agreeing on terms and exchanging consideration for the note.
+
+Interest:  
+
+Annual Capitalized Interest% per year, capitalized into the Note’s principal.
+
+2% per year default penalty. default penalty frequently, 2%
+
+The total interest rate, including any penalties, must comply with state usury laws.
+
+Payment Dates:  [Quarterly, in arrears [beginning on Start Date]] [Upon maturity]
+
+Given the nature of a bridge financing, the parties may wish to delay the first payment so that the Issuer need not repay immediately from the investment proceeds.
+
+Maturity:  Unless converted, the Note matures on the Numeral (first, second, etc.) anniversary of the closing date.
+
+Requiring full payment upon maturity X months/years from closing essentially gives the Purchaser an option on the Issuer if the latter fails to obtain follow-on financing or meet the conversion milestone(s).
+
+Use of Proceeds:  Proceeds from the Note issuance must be used [for general corporate purposes].  General corporate purposes is the broadest use description, and there’s little point in including it.  However, the parties may wish to designate the funds for a more limited purpose such as a specific capital investment program or product launch.
+
+Ranking:  [Senior / Junior / Subordinated] [Secured / Unsecured] ranking.  You may wish to describe the consequences of ranking for clarity, e.g., the Note will be subordinated to the Issuer’s existing indebtedness and senior to all future indebtedness, except for permitted indebtedness including mechanics’ liens and obligations to trade creditors.
+
+[Permitted Indebtedness:  (i) Mechanics’ liens and obligations to trade creditors, (ii) existing indebtedness [describe], and (iii) [Unsecured] indebtedness from a commercial bank or comparable lender [for (describe purpose)] in an amount not to exceed $[Max Indebtedness].]  The Issuer may want to pre-clear specific fundraising needs that would otherwise be subject to the Purchaser’s consent through the covenant package.  If there is no need for a specific exception, then the definition of Permitted Indebtedness can be left to the definitive documents.
+
+[Security:  The Note will be secured by a [first priority] [subordinated] lien on [all the Issuer’s assets and business] or: [real property] [assets] [accounts receivable] [intellectual property] [securities] [commercial tort claims] [contract rights] [insurance claims].]
+
+[Guaranty:  The Issuer’s obligations will be fully and unconditionally guaranteed [on a joint and several basis] by [the founders / subsidiaries / parent corp / other guarantor].] To avoid structural subordination, the Purchaser will want full joint and several guaranties by all subsidiaries, if any; founder guaranties are more unusual and if given, may be capped to the maximum amount of each founder’s capital account or equity stake.
+
+Mandatory Conversion:  The outstanding principal and interest on the Note will convert automatically into shares of the Issuer’s common or preferred stock upon any of the following events:
+
+Parties should define these triggers very carefully in the definitive documents.
+
+    The Issuer accepts a third-party cash investment [in an aggregate amount of at least $Minimum 3rd Party Investment in the Issuer in exchange for shares of its stock, in which case the Purchaser will receive equity of the same type and on substantially the same terms and conditions as the third-party investor or syndicate; or
+     
+    The issuer achieves annual [revenue, earnings, or other defined milestone] [calculated in accordance with GAAP / IFRS] of at least $Minimum Achievement, in which case the Purchaser will receive shares of the Issuer’s common stock; or keep in mind EBITDA is a non-GAAP measure and therefore if used needs to be defined in the deal docs 
+
+    [The Issuer agrees to a change-of-control or sale of substantially all the Issuer’s business and assets to a third party.]
+
+A change-of-control can be dealt with by converting the Note immediately prior to the event, in which case the Note holder benefits from the transaction as a stockholder alongside other investors.  It can also be dealt with, and frequently is, as a mandatory redemption in which the note never converts, and the Issuer is instead required to redeem it for cash, usually at a premium.
+
+[Redemption:  If the Issuer agrees to a change-of-control or sale of substantially all the Issuer’s business and assets to a third party, the Issuer must redeem the Note in cash [or liquid securities] at % of Outstanding Principal and Interest% of the outstanding principal and interest on the Note.] generally between 125% and 200%
+
+Although this is a common term, the drafter should check before including it to make sure that redemption at a premium does not violate state usury laws in her jurisdiction.
+
+Conversion Price:  Upon conversion due to a third-party investment [or change-of-control], the Purchaser will receive new equity in an amount that values the Issuer’s total outstanding equity pre-money at the [minimum] [weighted average] valuation offered in that round, minus [(i)] __% [if the conversion occurs on or before Conversion date (i), (ii) __% if the conversion occurs on or before Conversion date (ii), or (iii) __% if the conversion occurs on or before Conversion date (iii)] (the “Discount”), and in any case not to exceed an implied pre-money valuation of $Cap (the “Cap”). 
+
+A weighted average valuation may be used in a round with multiple investors who receive different pricing, so that the effective conversion price for the Note holder is an average of prices offered to the other investors in that round times each investor’s proportional share, on the theory that the valuation offered to larger investors is proportionately more meaningful.
+
+The above language includes an optional sliding scale for the Discount, so that an early convertible note investor can enjoy a larger discount if he has to wait very long for his exit.
+
+Upon conversion due to the Issuer’s achieving a performance milestone, the Purchaser will receive new equity [in an amount that values the Issuer’s total outstanding equity pre-money at $New Outstanding Equity Valuation or you could take this approach: [at fair market value based on [a defined formula]] as determined by a mutually acceptable valuation agent, subject to the Discount and Cap].
+
+In conversion due to milestone achievement, professional valuation and formulas may be used, but the milestones are already defined, so it should be possible to pre-calculate the valuation as a fixed amount, thus saving considerable trouble and expense down the road.
+
+Board Seat / Info Rights:  The Issuer’s Board of Directors will consist of # members members.  The Purchaser may appoint # Purchaser Can Appoint member[s] to the Issuer’s Board of Directors to represent the Purchaser’s interests while the Note remains outstanding.  [The Issuer will appoint [an] independent member[s] to [one] of the remaining directorships.]  [Upon closing, the initial members will be [the CEO, the Purchaser representative, etc.]] 
+
+The Purchaser will have customary information and inspection rights, including to receive all periodic financial and investor information reports that the Issuer prepares for its stockholders.  [While the Note remains outstanding the Issuer will prepare and deliver to the Purchaser: an annual budget, annual audited / unaudited financial statements [within __ days of each fiscal year end], quarterly unaudited financial statements [within __ days of each fiscal quarter end].]
+
+Reps and Warranties:  The Issuer will make standard representations and warranties for a financing of this type. It is normal not to list specific reps in the terms unless a party requires an unusual rep to cover a specific risk, e.g., a known legal liability such as ongoing litigation or environmental damage.
+
+Covenants:  The Note will contain standard affirmative and negative covenants for a financing of this type, including but not limited to the following covenants.  [Covenant waivers require the consent of Note holders representing [a majority] __% of the outstanding principal and interest on the Notes.]
+
+Affirmative covenants will require the Issuer to:
+
+    continue its corporate existence
+     
+    maintain insurance policies on [real property] [inventory] [vehicles] [key man life]
+     
+    comply with applicable law
+
+    pay taxes
+
+    protect its intellectual propertymay wish to require filing applications for viable patent claims as well as proper registration of copyrights and trademarks to enable perfection of any security interest in them under the Note on an ongoing basis 
+     
+    prepare financial reports [in accordance with GAAP / IFRS] on a quarterly basis and annual reports [[reviewed] / [audited] by an outside accountant]] audited reports may be too burdensome for some early-stage Issuers
+
+financial covenants such as required debt service ratios are usually not appropriate for a bridge note
+
+Negative covenants will forbid the Issuer to:
+
+    change its business or enter a new line of business
+     
+    dispose of its assets other than in the ordinary course of business [and not to exceed $__ in the aggregate]
+     
+    enter into any agreement to merge or combine with another company
+     
+    make any acquisition of another company, its business or assets [, except for certain purchases of inventory in the ordinary course of business] should narrowly describe
+     
+    issue dividends, stock repurchases or redemptions, make payments with respect to subordinated debt, or make other restricted payments [in an aggregate amount exceeding $____]
+     
+    Make any loans or investments [in an aggregate amount exceeding $____] [other than in the ordinary course of business]
+     
+    incur any lien or make any negative pledge, other than mechanics’ liens in favor of suppliers incurred in the ordinary course of business
+     
+    incur any additional indebtedness, including guaranties, sale-leasebacks, and other contingent obligations [in an aggregate amount exceeding $_____] [other than in the ordinary course of business]
+     
+    engage in any transactions with insiders or their affiliates [, except for Outline exceptions here] there will likely be exceptions
+     
+    increase the size of its Board of Directors beyond Board Size Max members
+     
+    increase the annual cash compensation for any employee beyond $Cash Compensation Max or by more than Compensation Max %% over the previous year
+
+Events of Default:  The Note will include events of default customary for financings of this type, including but not limited to the following.
+
+Automatic events of default will give rise to a default upon their occurrence:
+
+    failure to pay interest or principal when due
+     
+    the Issuer’s voluntary or involuntary bankruptcy or insolvency
+     
+    any default by the Issuer under other material indebtedness
+
+The following events of default trigger the [Purchaser’s] right [of Note holders representing [a majority] [__%] of the outstanding principal and interest on the Notes] to declare a default:
+
+    covenant violation
+     
+    inaccurate reps and warranties
+     
+    material legal judgment against the Issuer [, including [final and unappealable] invalidation of key patent claims by a court of law] list claims specifically
+     
+    default under a material contract e.g. a very significant customer or supplier agreement vital to the business
+
+[Closing Conditions:  The parties’ obligation to close will be contingent on customary conditions for a financing of this type, including [satisfactory completion of the Purchaser’s due diligence] [regulatory approvals] [third party consents] [the Purchaser’s obtaining third-party financing in an amount sufficient to fund the purchase price and on terms satisfactory to it].]  The foregoing are some of the more controversial closing conditions.  Non-controversial conditions such as truth of reps and warranties need not be listed in the term sheet, but issuers become understandably upset to learn after the term sheet signing that a prospective purchaser has outstanding diligence concerns and/or lacks sufficient financing to pay the purchase price if that has not been discussed previously.
+
+Registration Rights:  The holders of shares of stock issued upon the Note’s conversion will have customary registration rights, including the right to piggyback on any registration of shares from the same class of equity by the Issuer reg rights are hardly worth negotiating in this instance, as the contemplated future equity investor who triggers conversion rights will almost certainly have their own requests that will supersede any reg rights agreed to in the bridge financing
+
+Transferability:  The Purchaser may not transfer the Note [, except [to its affiliates and] in compliance with applicable state and federal securities laws.]
+
+It should not be necessary to mention securities legending and other securities law affirmative obligations in the term sheet, as the parties have no choice but to comply with those in the final documentation and performance.
+
+[Documentation:  The [Issuer’s counsel] will prepare initial drafts of definitive legal documentation for review and comment by the [Purchaser’s counsel]. The definitive documentation [will combine the loan agreement terms, the convertible note [, and the security agreement] in a single document] [will consist of a note purchase agreement with attached forms of the note[s] and security agreement to be executed on closing]. This is not necessary to include, but may be useful to guide the process forward.
+
+Governing Law and Jurisdiction: [This term sheet and the definitive documentation shall be governed by and construed in accordance with the laws of New York State applicable to transactions signed and to be performed solely within such state. NY law is a common choice due to the presence of the financial community, the glut of NY-trained lawyers, and the availability of NY jurisdiction to stipulating non-NY parties where the amount in dispute is potentially over $1,000,000.  The longer version of the above language only need be included if there are binding provisions in the term sheet such as confidentiality and exclusivity; otherwise, it is more elegant simply to print the name of the state alone.
+
+Confidentiality:  [This term sheet is Confidential Information within the meaning used in the confidentiality agreement, dated Confidentiality Agreement Date, between the parties hereto.] Use if there’s a separate confidentiality agreement. It is better to have a separate confidentiality agreement with more fully-defined terms if there is any real concern about leaking trade secrets or other important data during the diligence process. 
+
+[Except as otherwise required by law, the Issuer will not disclose the existence or terms of this term sheet or any of the matters referred to herein (“Confidential Information”) to any persons other than its executive officers, directors, accountants and attorneys, and shall inform all recipients of Confidential Information that they may not disclose it to third parties. The Purchaser is responsible for all such recipients’ conduct with respect to the Confidential Information.  The Issuer may seek injunctive relief, in addition to other remedies, to enforce this provision.]
+
+Exclusivity:  During the period commencing on the date hereof and continuing for 90 days, neither the Issuer, nor any of its respective affiliates, agents, principals, attorneys, or other representatives shall directly or indirectly contact, solicit, encourage or negotiate with any person or entity other than Purchaser with respect to any transaction involving the purchase of equity interests of the Company, or substantially all of its business and assets (a “Competing Transaction”). If Seller receives or becomes aware of any offer to engage in a Competing Transaction, he will promptly notify Purchaser of such offer, its terms, and the offeror’s identity.
+
+Expenses:  [The parties will pay their own expenses in connection with this transaction.] [Contingent upon closing, the Issuer will pay all of the Purchaser’s third-party expenses from the date hereof in connection with this transaction, including legal and financial advisory fees, up to a maximum amount of $Third-Party Expenses Max, from the proceeds of the Issuance.]
+
+[Amendment:  The Notes may only be amended by a written instrument signed by Note holders representing a majority of the outstanding principal and interest on the Notes. Any such amendment will be binding on all Note holders.]  Collective decision-making is helpful where there are multiple Note holders.
