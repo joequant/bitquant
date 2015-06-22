@@ -77,6 +77,7 @@ require ([
 	    output.append("<span class='block'>late balance</span>");
 	    output.append("<span class='block'>principal payment</span>");
 	    output.append("<span class='block'>fee payment</span>");
+	    output.append("<span class='block'>total payment</span>");
 	    output.append("<br>");
 	    
 	    payment_schedule.forEach(function(i) {
@@ -134,6 +135,9 @@ require ([
 				  Number(i.principal_payment).toFixed(2)
 				  + "</span><span class='number block'>" +
 				  Number(i.interest_payment).toFixed(2)
+				  + "</span><span class='number block'>" +
+				  Number(i.interest_payment + 
+					i.principal_payment).toFixed(2)
 				  + "</span><span> " +
 				  note + "</span><br>");
 		}
