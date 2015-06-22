@@ -384,6 +384,7 @@ Schedule_C.prototype.payments = function(calc) {
 	if (payment > calc.balance) {
             payment = calc.balance;
 	}
+	payment = payment + late_balance;
 	var required_payment = calc.extract_payment(params.required);
 	if (required_payment === undefined) {
 	    required_payment = payment;
