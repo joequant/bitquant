@@ -14,14 +14,7 @@ This FACILITY AGREEMENT is dated {{initial_date_string}}
 
 BETWEEN
 
-1) {{borrower.name}} incorporated and registered in
-{{borrower.location}} with company number {{borrower.company_number}}
-whose registered office is at {{borrower.registered_office}}
-(BORROWER).
-
-2) {{lender.name}} incorporated and registered in {{lender.location}}
-with company number {{lender.company_number}} whose registered office
-is at {{lender.registered_office}} (LENDER).
+{{parties_formatted}}
 
 BACKGROUND
 
@@ -146,15 +139,7 @@ under this clause shall not affect the legality, validity and enforceability of 
 (a) in writing;   
 (b) delivered by hand, by pre-paid first-class post or other next working day delivery service or sent by fax; and  
 (c) sent to:  
-the Borrower at:  
-Address: {{borrower.contact.address}}  
-Email: {{borrower.contact.email}}  
-Attention: {{borrower.contact.name}}  
-the Lender at:  
-Address: {{lender.contact.address}}  
-Email: {{lender.contact.email}}  
-Attention: {{lender.contact.name}}    
-or to any other address or fax number as is notified in writing by one
+{{contact_formatted}} or to any other address or fax number as is notified in writing by one
 party to the other from time to time.  
 16.2 Any notice or other communication that the Lender gives to the Borrower under or in connection with, this Agreement shall be deemed to have been received:  
 (a) if delivered by hand, at the time it is left at the relevant address;  
@@ -188,28 +173,31 @@ Legal text prepared by CryptoLaw (http://crypto-law.com/)
 
 Released under terms of the Simplified BSD License.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-
-    obj.borrower = {
-	name : "YOYODYNE PROPULSION SYSTEMS LIMITED",
-	location : "Hong Kong",
-	company_number : "1234552",
-	registered_office : "3/F, Nam Wo Hong Building, 148 Wing Lok Street, Sheung Wan, Hong Kong",
-	contact : {
-	    name: "John Bigboote",
-	    address: "Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey",
-	    email: "bigboote@example.com"
-	}
-    };
-
-    obj.lender = {
-	name : "BANZAI INSTITUTE FOR BIOMEDICAL ENGINEERING AND STRATEGIC INFORMATION LIMITED",
-	location : "Hong Kong",
-	company_number : "2334455",
-	registered_office : "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
-	contact : {
-	    name: "Dr. Buckaroo Banzai",
-	    address: "Banzai Institute, 1 Banzai Road, Holland Township, New Jersey",
-	    email: "buckaroo@example.com"
+    obj.parties = {
+	roles : ["borrower", "lender"],
+	borrower : {
+	    type: "corporation",
+	    name : "Yoyodyne Propulsion Systems Limited",
+	    domicile : "Hong Kong",
+	    company_number : "1234552",
+	    registered_office : "3/F, Nam Wo Hong Building, 148 Wing Lok Street, Sheung Wan, Hong Kong",
+	    contact : {
+		name: "John Bigboote",
+		address: "Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey",
+		email: "bigboote@example.com"
+	    }
+	},
+	lender:  {
+	    type: "corporation",
+	    name : "Banzai Institute for Biomedical Engineering and Strategic Information Limited",
+	    domicile : "Hong Kong",
+	    company_number : "2334455",
+	    registered_office : "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
+	    contact : {
+		name: "Dr. Buckaroo Banzai",
+		address: "Banzai Institute, 1 Banzai Road, Holland Township, New Jersey",
+		email: "buckaroo@example.com"
+	    }
 	}
     };
 

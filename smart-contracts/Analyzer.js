@@ -40,6 +40,10 @@ require.config({
     waitSeconds: 15
 });
 var analyze;
+
+
+
+
 require ([
     term_sheet,
     "Calculator",
@@ -52,11 +56,47 @@ require ([
     "collapse"], function(TermSheet, Calculator, Notes,
 			 Handlebars,
 			 moment) {
+
+	function format_parties(t) {
+	    Handlebars.registerHelper('toUpperCase', function(str) {
+		return str.toUpperCase();
+	    });
+	    var templates = {
+		"corporation" : (function() {/*
+{{toUpperCase name}} incorporated and registered in {{domicile}} with company number {{company_number}} whose registered office is at {{registered_office}}
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
+	    };
+
+	    var contact_template = (function() {/*
+Address: {{address}}  
+Email: {{email}}  
+Attention: {{name}}  
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+
+	    if (t.parties === undefined) {
+		return;
+	    }
+	    t.parties_formatted = "";
+	    t.contact_formatted = "";
+	    t.parties.roles.forEach(function(role) {
+		if (t.parties[role] !== undefined) {
+		    var template = 
+			Handlebars.compile(templates[t.parties[role].type]);
+		    var compiled_contact_template =
+			Handlebars.compile(contact_template);
+		    t.parties_formatted = t.parties_formatted + 
+			template(t.parties[role]) + " -- ('" + 
+			role.toUpperCase() + "')  \n"; 
+		    t.contact_formatted = t.contact_formatted + "the " + role.toUpperCase() + " at:  " + compiled_contact_template(t.parties[role].contact);
+		}
+	    });
+	}
     webshims.setOptions('forms-ext', {types: 'date'});
     var converter = new Markdown.Converter();
     var my_term_sheet = new TermSheet();
     var my_notes = new Notes();
     var template = Handlebars.compile(my_term_sheet.contract_text);
+    format_parties(my_term_sheet);
     $("#text").html(converter.makeHtml(template(my_term_sheet)));
     $("#text").collapse({query: 'h2'});
     var local_report = (function (payment_schedule,
