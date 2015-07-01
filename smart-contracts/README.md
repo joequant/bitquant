@@ -15,7 +15,8 @@ The contracts in models are:
 [credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/credit-line) - Credit line contract to SME's loaned against HK
 government grant
 
-[equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/equity-finance) - Working on convertible note example
+[equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/equity-finance)
+- Working on convertible note example (still working)
 
 [loan](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/loan) - small business loans
 
