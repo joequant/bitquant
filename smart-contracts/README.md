@@ -12,24 +12,24 @@ http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contra
 
 The contracts in models are:
 
-credit-line - Credit line contract to SME's loaned against HK
+[credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/credit-line) - Credit line contract to SME's loaned against HK
 government grant
 
-equity-finance - Working on convertible note example
+[equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/equity-finance) - Working on convertible note example
 
-loan - small business loans
+[loan](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/loan) - small business loans
 
-profit-share - a smart trust profit sharing agreement
+[profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/profit-share - a smart trust profit sharing agreement
 
-simple-amortized - a simple amortized loan
+[simple-amortized](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/simple-amortized) - a simple amortized loan
 
-subclass - example of the use of subclassing
+[subclass](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/subclass) - example of the use of subclassing
 
-All contracts are licensed under the Simplified BSD License. They may
-be used for any purpose without royalty or fee, but the user assumes
-all liabilities.  Please look at the 
+All contracts are licensed under the [Simplified BSD
+License](http://opensource.org/licenses/BSD-2-Clause). They may be
+used for any purpose without royalty or fee, but the user assumes all
+liabilities.  
 
-   https://github.com/joequant/bitquant/issues
-
-for issues.
+Please look at the [bug
+list](https://github.com/joequant/bitquant/issues) for issues.
 
