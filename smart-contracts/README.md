@@ -19,7 +19,7 @@ government grant
 
 [loan](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/loan) - small business loans
 
-[profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/profit-share - a smart trust profit sharing agreement
+[profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/profit-share) - a smart trust profit sharing agreement
 
 [simple-amortized](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/simple-amortized) - a simple amortized loan
 
