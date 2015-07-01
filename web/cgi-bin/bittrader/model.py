@@ -187,6 +187,7 @@ def log(tag="bootstrap"):
                            "web", "log", tag + ".log")
     def generate():
         f = None
+        retval = ""
         for j in range(1,30):
             try:
                 with open(log_file, "r") as f:
@@ -204,8 +205,8 @@ def log(tag="bootstrap"):
                         if not is_locked("bootstrap"):
                             return
             except:
-                pass
-            yield "opening %s - attempt %d\n" % (log_file, j)
+                retval = sys.exc_info()[0]
+            yield "opening %s - attempt %d - %s\n" % (log_file, j, retval)
             time.sleep(1)
         return
     return Response(generate(), mimetype="text/plain")

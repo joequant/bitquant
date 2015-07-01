@@ -2,4 +2,4 @@
 echo "Content-type: text/plain"
 echo ""
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-python $SCRIPT_DIR/model.py refresh-scripts
+python3 $SCRIPT_DIR/model.py refresh-scripts

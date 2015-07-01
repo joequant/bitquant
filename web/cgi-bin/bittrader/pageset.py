@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from wsgiref.handlers import CGIHandler
 from flask import Flask, Response, request
 import os
