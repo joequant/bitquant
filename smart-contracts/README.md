@@ -46,3 +46,8 @@ Please look at the [bug list](https://github.com/joequant/bitquant/issues) for i
 [NOTES.md](NOTES.md) contain legal notes (including why the
 jurisdiction is Hong Kong).  [calc-contract](calc-contract.js) is a
 batch tool for analyzing the contracts.
+
+=== TODO ===
+
+* Make the contracts look nice
+* Add some sort of wiki markup feature
