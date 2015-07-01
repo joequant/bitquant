@@ -8,7 +8,7 @@ http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html
 
 This view can be used to see the contracts under models.
 
-http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/<contract-name>
+http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/(contract-name)
 
 The contracts in models are:
 
