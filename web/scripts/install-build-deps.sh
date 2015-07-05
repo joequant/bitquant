@@ -94,6 +94,14 @@ $PYTHON-pexpect
 
 #other packages
 # no-verify-rpm is required for quantlib
+
+$SUDO urpmi \
+--auto \
+--downloader "curl" \
+--curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
+$URPMI_OPTIONS \
+$IPYTHON 
+
 $SUDO urpmi --no-recommends \
 --auto \
 --no-verify-rpm \
@@ -114,7 +122,6 @@ vim-minimal \
 $PYTHON-pyzmq \
 dokuwiki \
 cmake \
-$IPYTHON \
 $PYTHON-tornado \
 $PYTHON-mglob \
 dokuwiki-plugin-s5  \
@@ -148,6 +155,8 @@ libbzip2-devel \
 zeromq-devel \
 libxml2-devel \
 unzip
+
+
 
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
