@@ -26,6 +26,8 @@ echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
 echo "Installing python packages"
 $GIT_DIR/web/scripts/install-python.sh
+echo "Installing npm packages"
+$GIT_DIR/web/scripts/install-npm.sh
 
 if [[ "$INSTALL_MIFOS" == "true" ]] ; then
 echo "Installing mifos"
