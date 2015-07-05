@@ -18,6 +18,6 @@ mkdir -p /home/$ME/attic/$$
 echo "Generating new modules"
 /usr/bin/R -e "install.packages(c('shiny', 'Quandl', 'knitr', 'devtools', 'yaml', 'RCurl'), repos='http://cran.rstudio.com/')"
 /usr/bin/R -e 'options(repos=c(CRAN = "http://cran.rstudio.com/")); library(devtools) ; devtools::install_github("rstudio/rmarkdown")'
-/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.rstudio.com/")); library(devtools) ; devtools::install_github("armstrtw/rzmq"); devtools::install_github("takluyver/IRdisplay"); devtools::install_github("takluyver/IRkernel")'
+/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.rstudio.com/")); library(devtools) ; install_github("IRkernel/repr"); devtools::install_github("armstrtw/rzmq"); devtools::install_github("IRKernel/IRdisplay"); devtools::install_github("IRKernel/IRkernel") ; IRkernel::installspec()'
 sudo /usr/share/bitquant/install-r-pkgs-sudo.sh $SCRIPT_DIR $ME
 
