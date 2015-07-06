@@ -28,3 +28,8 @@ Docker script from
 
 https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/mkimage-urpmi.sh
 
+Troubleshooting
+---------------
+
+There appear to be some conflicts with drakfirewall.  You should open
+the firewall before running docker.
