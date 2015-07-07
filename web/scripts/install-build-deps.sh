@@ -156,7 +156,11 @@ zeromq-devel \
 libxml2-devel \
 unzip
 
-
+if [ -e /usr/bin/ipython ] ; then
+pushd /usr/bin
+ln -s ipython3 ipython
+popd
+fi
 
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
