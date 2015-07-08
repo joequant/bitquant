@@ -156,7 +156,7 @@ zeromq-devel \
 libxml2-devel \
 unzip
 
-if [ -e /usr/bin/ipython ] ; then
+if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
 ln -s ipython3 ipython
 popd
