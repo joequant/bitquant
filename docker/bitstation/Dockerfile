@@ -13,6 +13,9 @@ RUN urpmi.removemedia -a ;\
        "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/updates ; \
    urpmi --no-suggests --auto --excludedocs urpmi ; \
    urpme --auto-orphans --auto
+# Refresh locale for missing latin items
+# needed for R to build packages
+RUN  urpmi --replacepkgs locales glibc
 RUN ["urpmi", "--no-suggests", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
