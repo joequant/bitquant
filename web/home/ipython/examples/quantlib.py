@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
 
-# <codecell>
+# coding: utf-8
+
+# In[ ]:
 
 from QuantLib import *
 
-# <codecell>
+
+# In[ ]:
 
 todaysDate = Date.todaysDate()
 Settings.instance().evaluationDate = todaysDate
@@ -16,19 +17,22 @@ riskFreeRate = FlatForward(settlementDate, 0.00, Actual365Fixed())
 exercise = EuropeanExercise(settlementDate)
 payoff = PlainVanillaPayoff(Option.Call, 355.0)
 
-# <codecell>
+
+# In[ ]:
 
 settlementDate
 payoff(367.0)
 
-# <codecell>
+
+# In[ ]:
 
 timestamp = Date.universalDateTime()
 newtime = timestamp + Period(3, Years)
 newtime.year()
 dcc = ContinuousTime(Years)
 
-# <codecell>
+
+# In[ ]:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,15 +80,20 @@ def plotme(option, underlying, strike):
     plt.subplot(223)
     plt.plot(x, list(map(mytheta,x)))
 
-# <codecell>
 
+# In[ ]:
+
+get_ipython().magic('matplotlib inline')
 (o, u) = option(350, 0.02, 90, 1)
-plotme(o, u)
+plotme(o, u, 350)
 
-# <codecell>
+
+# In[ ]:
 
 np.arange(0.8, 1.2,0.1)
 
-# <codecell>
+
+# In[ ]:
+
 
 
