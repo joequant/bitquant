@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
 
-# <codecell>
+# coding: utf-8
+
+# In[ ]:
 
 from BitcoinAverager import TimeUtil, BitcoinAverager, PriceCompositor, Forex, BitcoinDataLoader
 
-# <codecell>
+
+# In[ ]:
 
 all_exchanges = ['bitfinexUSD','bitstampUSD','itbitUSD',
                  'itbitEUR','krakenEUR','itbitSGD','anxhkHKD',
@@ -13,7 +14,8 @@ all_exchanges = ['bitfinexUSD','bitstampUSD','itbitUSD',
 compositor = PriceCompositor(all_exchanges)
 compositor.reload()
 
-# <codecell>
+
+# In[ ]:
 
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -26,22 +28,24 @@ compositor = PriceCompositor(['bitfinexUSD'], base_currency='USD')
 data = compositor.composite_table(start_time, period, intervals)
 data
 
-# <codecell>
+
+# In[ ]:
 
 averagers = {}
-exchanges = ["anxhkHKD", "bitfinexUSD", "bitstampUSD", "btceUSD", "itbitEUR", "itbitSGD", "itbitUSD", \
-             "krakenEUR", "krakenUSD", "okcoinCNY", "btcnCNY"]
+exchanges = ["anxhkHKD", "bitfinexUSD", "bitstampUSD", "btceUSD", "itbitEUR", "itbitSGD", "itbitUSD",              "krakenEUR", "krakenUSD", "okcoinCNY", "btcnCNY"]
 
 for e in exchanges:
     averagers[e] = BitcoinAverager(e)
 
 averager = averagers["bitfinexUSD"]
 
-# <codecell>
+
+# In[ ]:
 
 data['price'].tolist()
 
-# <codecell>
+
+# In[ ]:
 
 from scipy import signal
 import matplotlib.pyplot as plt
@@ -51,11 +55,13 @@ cwtmatr = signal.cwt(sig, signal.ricker, widths)
 imgplot = plt.imshow(cwtmatr, aspect='auto')
 imgplot
 
-# <codecell>
+
+# In[ ]:
 
 pow(2,np.arange(0, 16, 0.5))
 
-# <codecell>
+
+# In[ ]:
 
 from scipy import signal
 import matplotlib.pyplot as plt
@@ -65,6 +71,8 @@ cwtmatr = signal.cwt(sig, signal.ricker, widths)
 imgplot = plt.imshow(cwtmatr, aspect='auto')
 imgplot
 
-# <codecell>
+
+# In[ ]:
+
 
 

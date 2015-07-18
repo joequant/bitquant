@@ -5,7 +5,7 @@ PYTHON=`which python2`
 
 cd $SCRIPT_DIR
 . ../web/scripts/norootcheck.sh
-for repo in ethercalc dynamic-reverse-proxy configurable-http-proxy
+for repo in ethercalc configurable-http-proxy
 do
 if [ -d "../../$repo" ]
 then  echo "Building $repo"

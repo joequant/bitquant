@@ -11,9 +11,7 @@
 href="/cgi-bin/bittrader/bitcoinaverager.py/average-form">Bitcoin
 pricer</a>
 <br><br>
-<a class="button primary large" target="_blank" href="/ipython">IPython Notebooks</a>
-
-<a class="button primary large" target="_blank" href="/irkernel">R statistics engine</a>
+<a class="button primary large" target="_blank" href="/jupyter">Calculation Engine</a>
 <a class="button primary large" target="_blank" href="/shiny">Shiny</a>
 <!--<a class="button primary large" target="_blank"
 href="/calc/_new">Spreadsheet</a>

@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
 
-# <codecell>
+# coding: utf-8
+
+# In[ ]:
 
 import datetime
 def weekly_expiry():
@@ -10,7 +10,8 @@ def weekly_expiry():
         d += datetime.timedelta(1)
     return d
 
-# <codecell>
+
+# In[ ]:
 
 def  quarter_expiry():
     ref = datetime.date.today()
@@ -27,7 +28,8 @@ def  quarter_expiry():
     return d
 quarter_expiry()
 
-# <codecell>
+
+# In[ ]:
 
 import json
 import requests
@@ -35,7 +37,8 @@ import dateutil.parser
 import matplotlib.pyplot as plt
 import numpy as np
 
-# <codecell>
+
+# In[ ]:
 
 #usdcny = requests.get('http://rate-exchange.appspot.com/currency?from=USD&to=CNY').json()['rate']
 usdcny = 6.18
@@ -123,7 +126,8 @@ def get_data():
     retval['futures'] = futures
     return retval
 
-# <codecell>
+
+# In[ ]:
 
 def plotme(data):
     import matplotlib.pyplot as plt
@@ -134,7 +138,8 @@ def plotme(data):
                     yerr=[v['last']-v['asks'], 
                           v['bids']-v['last']], fmt="o")
 
-# <codecell>
+
+# In[ ]:
 
 def plot_rates(data):
     spot = data['spot']['bitfinex']
@@ -148,15 +153,20 @@ def plot_rates(data):
         r = log(v['last']/spot)/t
         ax.errorbar(v['dates'], r)
 
-# <codecell>
 
+# In[ ]:
+
+get_ipython().magic('matplotlib inline')
 data = get_data()
 plotme(data)
 
-# <codecell>
+
+# In[ ]:
 
 print(data)
 
-# <codecell>
+
+# In[ ]:
+
 
 

@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
 
-# <codecell>
+# coding: utf-8
+
+# In[ ]:
 
 #This creates a web service located off 
 # http://localhost/python-web
@@ -17,7 +17,8 @@ class MainHandler(tornado.web.RequestHandler):
 import bitquantutils
 bitquantutils.register_tornado_handler("/python-web",  MainHandler)
 
-# <codecell>
+
+# In[ ]:
 
 def simple_app(environ, start_response):
     status = "200 OK"
@@ -28,7 +29,8 @@ def simple_app(environ, start_response):
 import bitquantutils
 bitquantutils.register_wsgi("/python-wsgi", simple_app)
 
-# <codecell>
+
+# In[ ]:
 
 from IPython.display import HTML
 def html_response(input):
@@ -56,15 +58,19 @@ class MainHandler(tornado.web.RequestHandler):
 import bitquantutils
 bitquantutils.register_tornado_handler("/python-web-html", MainHandler)
 
-# <codecell>
+
+# In[ ]:
 
 import bitquantutils
 bitquantutils.start_loop()
 
-# <codecell>
+
+# In[ ]:
 
 bitquantutils.unregister_all()
 
-# <codecell>
+
+# In[ ]:
+
 
 

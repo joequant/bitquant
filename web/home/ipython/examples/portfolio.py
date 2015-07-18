@@ -1,6 +1,7 @@
 
 # coding: utf-8
 
+# 
 # Portfolio payoff routines
 # 
 # These routines take a portfolio of call and put options and plots the payoff functions.
@@ -12,19 +13,21 @@ portfolio = [
     [-10000, "put", "2015-07", 25.00, "3888.HK", 0.55],
     [-10000, "put", "2015-07", 26.00, "3888.HK", 0.63],
     [-10000, "put", "2015-08", 26.00, "3888.HK", 1.06],
-    [1097039.09-130300, "cash"]
+    [-5000, "call", "2015-08", 26.00, "3888.HK", 1.06],
+    [-5000, "call", "2015-08", 27.00, "3888.HK", 0.88],
+    [975928.19, "cash"]
 ]
 
 trade = [
-    [-10000, "call", "2015-08", 26.00, "3888.HK", 0.90]
+    [-10000, "put","2015-08", 18.50, "3888.HK", 1.05]
 ]
 
 prices = {
-    "3888.HK": 20.1
+    "3888.HK": 22.6
 }
 
 marklines = [
-    250000,680000
+    250000,374920.00
 ]
 
 def scale (prices, x):
@@ -76,9 +79,10 @@ def plot_one_asset(asset, xrange, portfolio_list, prices):
         plt.plot(x,y)
     for i in marklines:
         plt.axhline(y=i, xmin=0.0, xmax=1.0, ls='dashed' )
+    plt.axvline(x=prices[asset],ymin=0.0,ymax=1.0,ls='dashed' )
     plt.grid(b=True, which='major', color='0.8', linestyle='--')
 
-plot_one_asset("3888.HK",[10,30,0.1], [portfolio, trade], prices)
+plot_one_asset("3888.HK",[10,35,0.1], [portfolio, trade], prices)
 
 
 # In[ ]:
@@ -95,4 +99,9 @@ def plot_scaled(portfolio_list, prices):
     plt.grid(b=True, which='major', color='0.8', linestyle='--')
 
 plot_scaled([portfolio, trade], prices)
+
+
+# In[ ]:
+
+
 
