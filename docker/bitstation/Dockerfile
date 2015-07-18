@@ -1,6 +1,6 @@
 FROM mageia:cauldron
 MAINTAINER Joseph C Wang <joequant@gmail.com>
-#RUN ["urpmi", "--no-suggests", "--auto", "--auto-update"]
+#RUN ["urpmi", "--no-recommends", "--auto", "--auto-update"]
 
 RUN echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 RUN urpmi.removemedia -a ;\
@@ -11,12 +11,12 @@ RUN urpmi.removemedia -a ;\
        "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/release ; \
     urpmi.addmedia \
        "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/updates ; \
-   urpmi --no-suggests --auto --excludedocs urpmi ; \
+   urpmi --no-recommends --auto --excludedocs urpmi ; \
    urpme --auto-orphans --auto
 # Refresh locale for missing latin items
 # needed for R to build packages
 RUN  urpmi --replacepkgs locales glibc
-RUN ["urpmi", "--no-suggests", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
+RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
    echo 'cubswin:)' | passwd root --stdin ; \
