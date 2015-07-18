@@ -8,6 +8,6 @@ SCRIPT_DIR=$1
 ME=$2
 
 # put yelp_uri in back to override downloaded version
-for repo in ijavascript ; do
+for repo in ijavascript jupyter/configurable-http-proxy ; do
 npm install -g $repo
 done

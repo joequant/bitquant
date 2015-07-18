@@ -22,6 +22,7 @@ killmatch ipython3
 killmatch ipython
 killmatch ethercalc
 killmatch dynamic-reverse-proxy
+killmatch configurable-http-proxy
 
 
 

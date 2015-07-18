@@ -27,11 +27,9 @@ ETHERCALC_ARGS="--basepath /calc/ --port 8001" make >> $LOG_DIR/ethercalc.log 2>
 popd > /dev/null
 fi
 
-if [ -d $GIT_DIR/dynamic-reverse-proxy ] ; then
-pushd $GIT_DIR/dynamic-reverse-proxy > /dev/null
-echo "Restarting dynamic reverse proxy"
-node $GIT_DIR/dynamic-reverse-proxy/server.js >> $LOG_DIR/dynamic-reverse-proxy.log 2>&1 &
-popd > /dev/null
+if [ -e /usr/bin/configurable-http-proxy ] ; then
+echo "Restarting configurable-http-proxy"
+configurable-http-proxy --port 9000 --api-port 9001 >> $LOG_DIR/configurable-http-proxy 2 >&1 &
 fi
 
 if [ -d $GIT_DIR/etherpad-lite ] ; then
