@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -v
 # Setup and configure website to use giving configuration
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -51,3 +51,5 @@ $WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 systemctl daemon-reload
 systemctl enable httpd
 systemctl restart httpd
+systemctl enable shiny-server
+systemctl restart shiny-server
