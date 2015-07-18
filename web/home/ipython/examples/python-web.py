@@ -1,10 +1,13 @@
 
 # coding: utf-8
 
+# This is an example of registering a python web service.  You can access the a service which
+# is registered by name /python-web by http://localhost/python-web/python-web  
+
 # In[ ]:
 
 #This creates a web service located off 
-# http://localhost/python-web
+#   
 #
 # To shutdown the server you will need to
 # restart the kernel
@@ -20,6 +23,9 @@ bitquantutils.register_tornado_handler("/python-web",  MainHandler)
 
 # In[ ]:
 
+#Create web service off of
+# http://localhost/python-web/python-wsgi
+
 def simple_app(environ, start_response):
     status = "200 OK"
     response_headers = [("Content-type", "text/plain")]
@@ -31,6 +37,9 @@ bitquantutils.register_wsgi("/python-wsgi", simple_app)
 
 
 # In[ ]:
+
+#Create web service off of 
+# http://localhost/python-web/python-web-html
 
 from IPython.display import HTML
 def html_response(input):

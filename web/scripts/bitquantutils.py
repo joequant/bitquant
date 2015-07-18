@@ -15,7 +15,7 @@ def register_port(prefix, port):
     import json
     import urllib.request
     data = {"target" : "http://localhost:%d" %  port }
-    request = urllib.request.Request("http://localhost:%d/api/routes/%s"
+    request = urllib.request.Request("http://localhost:%d/api/routes%s"
                                      % (proxy_private, prefix))
     request.add_header('Content-Type', 'application/json')
     response = urllib.request.urlopen(request,
