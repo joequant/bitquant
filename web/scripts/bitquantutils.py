@@ -2,6 +2,7 @@ import tornado.ioloop
 has_ioloop = tornado.ioloop.IOLoop.initialized()
 myport = 9500
 server_list = {}
+proxy_private = 9011
 
 def get_port():
     myport = 9500
@@ -13,8 +14,9 @@ def get_port():
 def register_port(prefix, port):
     import json
     import urllib.request
-    data = {"prefix" : prefix, "port" : port }
-    request = urllib.request.Request("http://localhost/app/register")
+    data = {"target" : "http://localhost:%d" %  port }
+    request = urllib.request.Request("http://localhost:%d/api/routes/%s"
+                                     % (proxy_private, prefix))
     request.add_header('Content-Type', 'application/json')
     response = urllib.request.urlopen(request,
                                       json.dumps(data).encode('utf-8'))
