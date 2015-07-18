@@ -29,9 +29,12 @@ fi
 
 pushd ../../shiny-server > /dev/null
 git checkout .
-sed -i -e "s!bin/node!!" -e "s!bin/npm!!" CMakeLists.txt
 sed -i -e "s!add_subdirectory(external/node)!!g" CMakeLists.txt
 sed -i -e "s!add_subdirectory(external/pandoc)!!g" CMakeLists.txt
+mkdir -p ext/node/bin
+pushd ext/node/bin
+ln -s shiny-server /usr/bin/node
+popd
 cmake -DCMAKE_INSTALL_PREFIX="/usr/lib" -DPYTHON="/usr/bin/python2" .
 make
 npm --python="$PYTHON" rebuild
