@@ -27,6 +27,4 @@ mkdir -p $MY_HOME/R
 cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
 
 # Refresh configurations
-# This replaces the ajenti configuration with a 
-# version that does not use ssl
 sudo /usr/share/bitquant/conf.sh /default-init

@@ -18,8 +18,6 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
-
-ADMIN=ajenti
 PYTHON=python3
 IPYTHON=python3-ipython
 PYTHON_COMPAT=
@@ -91,7 +89,6 @@ $PYTHON-pyalgotrade \
 $PYTHON-quandl \
 $PYTHON-rpy2 \
 curl-devel \
-$ADMIN \
 dokuwiki-plugin-auth \
 icu-devel \
 $PYTHON-sympy \
