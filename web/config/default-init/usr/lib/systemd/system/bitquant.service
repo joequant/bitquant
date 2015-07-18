@@ -1,6 +1,7 @@
 [Unit]
 Description=Bitquant servers
 After=httpd.service
+Wants=httpd.service
 
 [Service]
 Type=forking
