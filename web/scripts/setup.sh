@@ -49,7 +49,5 @@ chmod o-w /usr/share/bitquant/*.sh
 $WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 
 systemctl daemon-reload
-systemctl enable httpd
-systemctl restart httpd
-systemctl enable shiny-server
-systemctl restart shiny-server
+systemctl enable bitquant
+systemctl restart bitquant
