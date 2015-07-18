@@ -1,7 +1,7 @@
 [Unit]
 Description=Bitquant servers
-After=httpd.service,shiny-server.service
-Wants=httpd.service,shiny-server.service
+After=httpd.service shiny-server.service
+Wants=httpd.service shiny-server.service
 
 [Service]
 Type=forking
