@@ -5,7 +5,7 @@ PYTHON=`which python2`
 
 cd $SCRIPT_DIR
 . ../web/scripts/norootcheck.sh
-for repo in ethercalc configurable-http-proxy
+for repo in ethercalc
 do
 if [ -d "../../$repo" ]
 then  echo "Building $repo"
@@ -21,6 +21,12 @@ if rpm  -qa | grep -q gyp ; then
 echo "gyp is installed.  compile will fail.  please uninstall"]
 exit 1
 fi
+
+if [ ! -e /usr/bin/node-gyp ] ; then
+echo "node-gyp is not present please run install-npm.sh"
+exit 1
+fi
+
 pushd ../../shiny-server > /dev/null
 git checkout .
 sed -i -e "s!bin/node!!" -e "s!bin/npm!!" CMakeLists.txt

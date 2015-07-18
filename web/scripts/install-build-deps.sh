@@ -18,9 +18,6 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
-OPTS=$(getopt -o "" --long with-mifos,with-opengamma,no-mifos,no-opengamma -- "$@")
-
-eval set -- "$OPTS"
 
 ADMIN=ajenti
 PYTHON=python3
