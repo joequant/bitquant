@@ -4,7 +4,8 @@ def init_ipython():
     import os.path
     import os
     home = expanduser("~")
-    sys.path.append(os.path.join(home, "ipython"))
-    sys.path.append(os.path.join(home, "git", "bitquant", "web", "scripts"))
+    os.environ['PYTHONPATH'] = \
+    ':'.join( [os.path.join(home, "ipython"),
+               os.path.join(home, "git", "bitquant", "web", "scripts")] )
 
 init_ipython()
