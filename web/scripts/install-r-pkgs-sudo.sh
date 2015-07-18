@@ -28,6 +28,10 @@ done
 popd > /dev/null
 
 echo "Installing shiny server"
+pushd /home/$ME/git/shiny-server 
+sed -i -e s!bin/node!! -e s!bin/npm!! CMakeLists.txt
+sed -i -e s!add_subdirectory\(external/node\)!! CMakeLists.txt
+popd
 make -C /home/$ME/git/shiny-server install
 ln -s -f  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
 #Create shiny user. On some systems, you may need to specify the full path to 'useradd'
