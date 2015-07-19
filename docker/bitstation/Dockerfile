@@ -40,11 +40,9 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python*/site-packages/pandas/io/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tseries/tests ; \
    rm -rf /usr/lib64/python*/site-packages/matplotlib/tests ; \
-   rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests
-RUN /usr/bin/systemctl enable httpd ; \
-/usr/bin/systemctl enable bitquant ; \
-/usr/bin/systemctl enable shiny-server ; \
-/usr/bin/systemctl enable ajenti
+   rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests ; \
+   rm -rf /home/user/git/shiny-server 
+RUN /usr/bin/systemctl enable bitquant
 
 VOLUME [ "/sys/fs/cgroup" ]
 EXPOSE 80 443
