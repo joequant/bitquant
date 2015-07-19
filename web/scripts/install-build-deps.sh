@@ -33,7 +33,6 @@ apache-mod_proxy \
 apache-mod_php \
 apache-mod_authnz_external \
 apache-mod_ssl \
-avahi \
 dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect
