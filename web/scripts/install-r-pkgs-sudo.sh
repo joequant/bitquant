@@ -7,7 +7,8 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 SCRIPT_DIR=$1
 ME=$2
-R_PKGS="IRdisplay IRkernel Quandl R6 RCurl base64 bitops caTools devtools digest evaluate formatR highr httr jsonlite knitr htmltools httpuv markdown memoise mime Rcpp RJSONIO rmarkdown rstudioapi rzmq stringr uuid whisker xtable xts shiny yaml zoo"
+R_PKGS="base64enc brew curl git2r IRkernel magrittr repr roxygen2 rzmq stringi xml2 \
+BH crayon devtools IRdisplay knitr Quandl rmarkdown rversions shiny testthat"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
 else
