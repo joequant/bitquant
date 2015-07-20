@@ -35,7 +35,8 @@ apache-mod_authnz_external \
 apache-mod_ssl \
 dokuwiki \
 $PYTHON-flask \
-$PYTHON-pexpect
+$PYTHON-pexpect \
+$PYTHON-matplotlib
 
 #other packages
 # no-verify-rpm is required for quantlib
