@@ -1,3 +1,7 @@
+docker:
+	cd docker ; sudo make | tee make.log
+.PHONY: docker
+
 bitstation-cauldron:
 	cd oz ; ./mkimg.sh  Bitstation vdi mageia-cauldron-x86_64
 
