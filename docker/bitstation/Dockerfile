@@ -3,6 +3,9 @@ MAINTAINER Joseph C Wang <joequant@gmail.com>
 #RUN ["urpmi", "--no-recommends", "--auto", "--auto-update"]
 
 RUN echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
+# Refresh locale and glibc for missing latin items
+# needed for R to build packages
+
 RUN urpmi.removemedia -a ;\
     urpmi.addmedia --distrib \
        --mirrorlist \
@@ -12,10 +15,8 @@ RUN urpmi.removemedia -a ;\
     urpmi.addmedia \
        "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/updates ; \
    urpmi --no-recommends --auto --excludedocs urpmi ; \
+   urpmi --replacepkgs --excludedocs locales glibc ; \
    urpme --auto-orphans --auto
-# Refresh locale for missing latin items
-# needed for R to build packages
-RUN  urpmi --replacepkgs locales glibc
 RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
@@ -31,8 +32,8 @@ rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/* 
 RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
-   /usr/share/bitquant/install-build-deps.sh --no-mifos --no-opengamma;\
-   su user -c "~user/git/bitquant/web/scripts/bootstrap.sh --no-mifos --no-opengamma" ; \
+   /usr/share/bitquant/install-build-deps.sh ; \
+   su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
    su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
    ~user/git/bitquant/web/scripts/remove-build-deps.sh ; \
    rm -rf /usr/lib64/python*/test ; \
@@ -43,7 +44,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests ; \
    rm -rf /home/user/git/shiny-server 
 RUN /usr/bin/systemctl enable bitquant
-
 VOLUME [ "/sys/fs/cgroup" ]
 EXPOSE 80 443
 CMD ["/usr/sbin/init"]
