@@ -40,12 +40,23 @@ $PYTHON-matplotlib
 
 #other packages
 # no-verify-rpm is required for quantlib
+# load most ipython suggests but skip
+# python-qr4
 
-$SUDO urpmi \
+$SUDO urpmi --no-recommends \
 --auto \
 --downloader "curl" \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
 $URPMI_OPTIONS \
+$PYTHON-pygments \
+$PYTHON-sip \
+$PYTHON-mpi4py \
+$PYTHON-tornado \
+$PYTHON-jinja2 \
+$PYTHON-matplotlib \
+$PYTHON-pyzmq \
+$PYTHON-jsonschema \
+$PYTHON-terminado \
 $IPYTHON 
 
 $SUDO urpmi --no-recommends \
