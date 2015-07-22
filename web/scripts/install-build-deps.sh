@@ -36,7 +36,7 @@ apache-mod_ssl \
 dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect \
-$PYTHON-matplotlib
+$PYTHON-matplotlib 
 
 #other packages
 # no-verify-rpm is required for quantlib
@@ -54,6 +54,7 @@ $PYTHON-mpi4py \
 $PYTHON-tornado \
 $PYTHON-jinja2 \
 $PYTHON-matplotlib \
+$PYTHON-matplotlib-tk \
 $PYTHON-pyzmq \
 $PYTHON-jsonschema \
 $PYTHON-terminado \
