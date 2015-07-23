@@ -21,6 +21,7 @@ fi
 PYTHON=python3
 IPYTHON=python3-ipython
 PYTHON_COMPAT=
+ADMIN=ajenti
 
 #repeat packages in setup
 $SUDO urpmi --no-recommends \
@@ -36,7 +37,8 @@ apache-mod_ssl \
 dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect \
-$PYTHON-matplotlib 
+$PYTHON-matplotlib \
+$ADMIN
 
 #other packages
 # no-verify-rpm is required for quantlib
