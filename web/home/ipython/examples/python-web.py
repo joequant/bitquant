@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # This is an example of registering a python web service.  You can access the a service which
-# is registered by name /python-web by http://localhost/python-web/python-web  
+# is registered by name /python-web by http://localhost/app/python-web  
 
 # In[ ]:
 
@@ -24,7 +24,7 @@ bitquantutils.register_tornado_handler("/python-web",  MainHandler)
 # In[ ]:
 
 #Create web service off of
-# http://localhost/python-web/python-wsgi
+# http://localhost/app/python-wsgi
 
 def simple_app(environ, start_response):
     status = "200 OK"
@@ -39,7 +39,7 @@ bitquantutils.register_wsgi("/python-wsgi", simple_app)
 # In[ ]:
 
 #Create web service off of 
-# http://localhost/python-web/python-web-html
+# http://localhost/app/python-web-html
 
 from IPython.display import HTML
 def html_response(input):

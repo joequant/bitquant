@@ -51,3 +51,4 @@ $WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
 systemctl daemon-reload
 systemctl enable bitquant
 systemctl restart bitquant
+systemctl reload httpd
