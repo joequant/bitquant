@@ -70,6 +70,39 @@ bitquantutils.register_tornado_handler("/python-web-html", MainHandler)
 
 # In[ ]:
 
+#Create web service off of 
+# http://localhost/app/python-web-image
+get_ipython().magic('matplotlib inline')
+
+def image_response(input):
+    import matplotlib
+    import matplotlib.pyplot as plt
+    import io
+    from matplotlib import numpy as np
+
+
+    x = np.arange(0,np.pi*3,.1)
+    y = np.sin(x)
+
+    fig = plt.figure()
+    plt.plot(x,y)
+
+    imgdata = io.StringIO()
+    fig.savefig(imgdata, format='svg')
+    return  imgdata.getvalue() 
+import tornado.web
+
+class MainHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write(image_response(None))
+        self.set_header("Content-type",  "image/svg")
+
+import bitquantutils
+bitquantutils.register_tornado_handler("/python-web-image", MainHandler)
+
+
+# In[ ]:
+
 import bitquantutils
 bitquantutils.start_loop()
 
