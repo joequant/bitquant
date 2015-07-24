@@ -15,8 +15,8 @@
 import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.write("Hello, world")
+    def get(self, *param):
+            self.write("Hello, world param=%s" % param[0])
 import bitquantutils
 bitquantutils.register_tornado_handler("/python-web",  MainHandler)
 

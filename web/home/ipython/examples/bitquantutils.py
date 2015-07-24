@@ -1,3 +1,8 @@
+
+# coding: utf-8
+
+# In[2]:
+
 import tornado.ioloop
 has_ioloop = tornado.ioloop.IOLoop.initialized()
 myport = 9500
@@ -35,14 +40,14 @@ def register_start_app(prefix, app_list):
 
 def register_tornado_handler(prefix, handler):
     return register_start_app(prefix, [
-        (prefix + "(?:$|/.*)", handler)
+        (prefix + "($|/.*$)", handler)
         ])
 
 def register_wsgi(prefix, handler):
     import tornado.wsgi
     container = tornado.wsgi.WSGIContainer(handler)
     return register_start_app(prefix, [
-        (prefix + "(?:$|.*)",
+        (prefix + "($|/.*$)",
          tornado.web.FallbackHandler, dict(fallback=container))
         ])
 
@@ -58,3 +63,10 @@ def unregister_all():
 def start_loop():
     if not has_ioloop:
         tornado.ioloop.IOLoop.instance().start()
+  
+
+
+# In[ ]:
+
+
+
