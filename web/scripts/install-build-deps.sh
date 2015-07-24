@@ -74,6 +74,7 @@ make \
 krb5-appl-clients \
 $PYTHON-flask \
 $PYTHON-pexpect \
+$PYTHON-vispy \
 R-base \
 r-quantlib \
 vim-minimal \
