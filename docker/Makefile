@@ -14,12 +14,8 @@ endif
 bitstation:
 	 docker build -t bitstation $(ARGS) bitstation 
 
-bitstation-example:
-	 docker build -t bitstation-example $(ARGS) bitstation-example
-
-bitstation-prod:
-	 docker build -t bitstation-prod $(ARGS) bitstation-prod
-
+bitquant-web:
+	 docker build -t bitquant-web $(ARGS) bitquant-web
 
 bitstation-clean-docker:
 	 docker build -rm=true - < bitstation/Dockerfile
@@ -42,6 +38,6 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
-.PHONY: bitstation bitstation-example bitstation-prod
+.PHONY: bitstation bitquant-web
 
 

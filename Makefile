@@ -21,7 +21,7 @@ bitstation-dsk:
 	cd oz ; ./mkimg.sh Bitstation dsk mageia-cauldron-smalldsk
 
 bitquant:
-	cd oz ; ./mkimg.sh Bitquant dsk mageia-net-smalldsk
+	cd oz ; ./mkimg.sh Bitquant dsk mageia-cauldron-x64_64
 
 install-deps:
 	cd oz ; sudo ./install-deps.sh
