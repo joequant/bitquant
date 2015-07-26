@@ -23,6 +23,7 @@ sudo docker rm -v $id
 popd
 fi
 
+sudo systemctl stop httpd
 sudo docker run --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v ~/volumes/bitstation/home:/home \
 -v ~/volumes/bitstation/var/lib/dokuwiki:/var/lib/dokuwiki \
