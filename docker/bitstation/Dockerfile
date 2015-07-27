@@ -45,6 +45,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests ; \
    rm -rf /home/user/git/shiny-server 
 RUN /usr/bin/systemctl enable bitquant
-VOLUME [ "/sys/fs/cgroup", "/run", "/tmp" ]
+VOLUME [ "/sys/fs/cgroup" ]
 EXPOSE 80 443
 CMD ["/usr/sbin/init"]
