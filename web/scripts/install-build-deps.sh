@@ -71,7 +71,7 @@ $URPMI_OPTIONS \
 nodejs \
 gcc-c++ \
 make \
-krb5-appl-clients \
+netkit-telnet \
 $PYTHON-flask \
 $PYTHON-pexpect \
 $PYTHON-vispy \
@@ -112,7 +112,9 @@ liblzma-devel \
 libbzip2-devel \
 zeromq-devel \
 libxml2-devel \
-unzip
+unzip \
+$PYTHON-pymongo \
+mongodb-server
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
