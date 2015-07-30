@@ -8,35 +8,6 @@
 
 # In[ ]:
 
-portfolio = [
-    [-10000, "put", "2015-09", 24.00, "3888.HK", 1.0],
-    [-10000, "put", "2015-07", 25.00, "3888.HK", 0.55],
-    [-10000, "put", "2015-07", 26.00, "3888.HK", 0.63],
-    [-10000, "put", "2015-08", 26.00, "3888.HK", 1.06],
-    [-5000, "call", "2015-08", 26.00, "3888.HK", 1.06],
-    [-5000, "call", "2015-08", 27.00, "3888.HK", 0.88],
-    [975928.19, "cash"]
-]
-
-trade = [
-    [-10000, "put","2015-08", 18.50, "3888.HK", 1.05]
-]
-
-exercise = [
-    [10000, "put", "2015-08", 25.00, "3888.HK", 0.0],
-    [10000, "spot", '3888.HK', 25.00]
-]
-
-prices = {
-    "3888.HK": 22.6
-}
-
-marklines = [
-    250000,374920.00
-]
-
-get_ipython().magic('matplotlib inline')
-
 import matplotlib.pyplot as plt  
 import numpy as np
 
@@ -104,16 +75,45 @@ class PortfolioCalculator(object):
 
 # In[ ]:
 
-port_calc = PortfolioCalculator()
-[port_calc.portfolio_nav([portfolio, trade, exercise],{"3888.HK":28} ), scale(prices, 0.5)]
+if __name__ == '__main__':
+    get_ipython().magic('matplotlib inline')
+    portfolio = [
+        [-10000, "put", "2015-09", 24.00, "3888.HK", 1.0],
+        [-10000, "put", "2015-07", 25.00, "3888.HK", 0.55],
+        [-10000, "put", "2015-07", 26.00, "3888.HK", 0.63],
+        [-10000, "put", "2015-08", 26.00, "3888.HK", 1.06],
+        [-5000, "call", "2015-08", 26.00, "3888.HK", 1.06],
+        [-5000, "call", "2015-08", 27.00, "3888.HK", 0.88],
+        [975928.19, "cash"]
+    ]
+
+    trade = [
+        [-10000, "put","2015-08", 18.50, "3888.HK", 1.05]
+    ]
+
+    exercise = [
+        [10000, "put", "2015-08", 25.00, "3888.HK", 0.0],
+        [10000, "spot", '3888.HK', 25.00]
+    ]
+    prices = {
+        "3888.HK": 22.6
+    }
+
+    marklines = [
+        250000,374920.00
+    ]
+    port_calc = PortfolioCalculator()
+    [port_calc.portfolio_nav([portfolio, trade, exercise],{"3888.HK":28} ), scale(prices, 0.5)]
+    port_calc.plot_one_asset("3888.HK",[10,35,0.1],[portfolio, trade, exercise], prices)
 
 
 # In[ ]:
 
-port_calc.plot_one_asset("3888.HK",[10,35,0.1],[portfolio, trade, exercise], prices)
+if __name__ == '__main__':
+    port_calc.plot_scaled([portfolio, trade, exercise], prices)
 
 
 # In[ ]:
 
-port_calc.plot_scaled([portfolio, trade, exercise], prices)
+
 
