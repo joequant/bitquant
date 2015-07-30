@@ -7,7 +7,9 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPT_DIR=$1
 ME=$2
 
+npm install -g node-gyp
+node-gyp -g install
 # put yelp_uri in back to override downloaded version
-for repo in node-gyp zmq jmp ijavascript jupyter/configurable-http-proxy ; do
+for repo in ijavascript jupyter/configurable-http-proxy ; do
 npm install -g $repo
 done
