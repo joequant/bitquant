@@ -114,7 +114,9 @@ zeromq-devel \
 libxml2-devel \
 unzip \
 $PYTHON-pymongo \
-mongodb-server
+mongodb-server \
+mongodb \
+mongo-tools
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
