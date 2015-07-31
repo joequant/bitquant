@@ -31,9 +31,9 @@ fi
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
-urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release
-urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates
-urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/
+urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release --no-md5sum
+urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates --no-md5sum
+urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/ --no-md5sum
 if $TESTING ; then
 urpmi.addmedia "Core updates testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
 fi
