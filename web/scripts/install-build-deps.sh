@@ -105,6 +105,7 @@ $PYTHON-quandl \
 $PYTHON-rpy2 \
 curl-devel \
 dokuwiki-plugin-auth \
+dokuwiki-plugin-dokufreaks \
 icu-devel \
 $PYTHON-sympy \
 libpcre-devel \
