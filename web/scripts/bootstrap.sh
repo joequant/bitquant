@@ -7,6 +7,8 @@ echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Doing initial installation"
 echo "Installing npm packages"
 $GIT_DIR/web/scripts/install-npm.sh
+echo "Installing npm packages"
+$GIT_DIR/web/scripts/install-python.sh
 echo "Installing misc"
 $GIT_DIR/git/setup-misc.sh
 $GIT_DIR/git/rebuild-misc.sh

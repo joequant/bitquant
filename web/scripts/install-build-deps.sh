@@ -74,7 +74,6 @@ make \
 netkit-telnet \
 $PYTHON-flask \
 $PYTHON-pexpect \
-$PYTHON-vispy \
 R-base \
 r-quantlib \
 vim-minimal \
@@ -91,7 +90,6 @@ $PYTHON-devel \
 readline-devel \
 lapack-devel \
 $PYTHON-pandas \
-$PYTHON-zipline \
 $PYTHON_COMPAT \
 $PYTHON-tables \
 $PYTHON-scipy \
@@ -100,7 +98,6 @@ $PYTHON-statsmodels \
 $PYTHON-quantlib \
 $PYTHON-scikits-learn \
 $PYTHON-patsy \
-$PYTHON-pyalgotrade \
 $PYTHON-quandl \
 $PYTHON-rpy2 \
 curl-devel \

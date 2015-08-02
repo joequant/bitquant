@@ -1,0 +1,3 @@
+python-vispy
+python-zipline
+python-pyalgotrade
