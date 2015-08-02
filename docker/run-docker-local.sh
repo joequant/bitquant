@@ -11,12 +11,11 @@ id=$(sudo docker create $IMAGE)
 
 if [ ! -e ~/volumes/bitstation/var/log ] ; then
 mkdir -p var/log
-pushd var
+chmod a+rwx var/log
 sudo docker run \
--v ~/volumes/bitstation/var/log:/mnt \
+-v ~/volumes/bitstation/var:/mnt \
 $IMAGE \
-cp -a -P -R /var/log/* /mnt
-popd
+cp -a -P -R /var/log /mnt
 fi
 
 if [ ! -e ~/volumes/bitstation/home ] ; then
