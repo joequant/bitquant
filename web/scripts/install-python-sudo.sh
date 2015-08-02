@@ -7,8 +7,7 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPT_DIR=$1
 ME=$2
 
-pip3 install --upgrade pip
 for packages in zipline vispy pyalgotrade statsmodels quandl \
-patsy ;
+patsy beautifulsoup4 ;
 do pip3 install --upgrade $packages ;
 done
