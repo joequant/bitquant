@@ -9,6 +9,16 @@ mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
 id=$(sudo docker create $IMAGE)
 
+if [ ! -e ~/volumes/bitstation/var/log ] ; then
+mkdir -p var/log
+pushd var
+sudo docker run \
+-v ~/volumes/bitstation/var/log:/mnt \
+$IMAGE \
+cp -a -P -R /var/log/* /mnt
+popd
+fi
+
 if [ ! -e ~/volumes/bitstation/home ] ; then
 sudo docker cp $id:/home - | tar xf -
 fi
@@ -24,12 +34,6 @@ chown -R apache:apache /var/lib/dokuwiki
 popd
 fi
 
-if [ ! -e ~/volumes/bitstation/var/log ] ; then
-mkdir -p var
-pushd var
-sudo docker cp $id:/var/log - | tar xf -
-popd
-fi
 
 sudo docker rm -v $id
 popd
