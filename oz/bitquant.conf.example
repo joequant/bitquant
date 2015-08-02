@@ -1,6 +1,0 @@
-# copy this file into your home directory as 
-# bitquant.conf
-
-EHURI=elastic-host-uri
-EHAUTH=elastic-host-auth-string
-

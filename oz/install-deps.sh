@@ -1,1 +1,0 @@
-install-deps-mageia.sh
