@@ -72,7 +72,6 @@ nodejs \
 gcc-c++ \
 make \
 netkit-telnet \
-$PYTHON-flask \
 $PYTHON-pexpect \
 R-base \
 r-quantlib \
@@ -101,14 +100,12 @@ curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
 icu-devel \
-$PYTHON-sympy \
 libpcre-devel \
 liblzma-devel \
 libbzip2-devel \
 zeromq-devel \
 libxml2-devel \
 unzip \
-$PYTHON-pymongo \
 mongodb-server \
 mongodb \
 mongo-tools

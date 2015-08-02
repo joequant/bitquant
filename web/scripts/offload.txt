@@ -4,5 +4,10 @@ python-pyalgotrade
 python-statsmodels
 python-quandl
 python-patsy
+python-pymongo
+python-sympy
+python-flask
+python-itsdangerous
+python-werkzeug
 
 
