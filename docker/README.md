@@ -32,4 +32,6 @@ Troubleshooting
 ---------------
 
 There appear to be some conflicts with drakfirewall.  You should open
-the firewall before running docker.
+the firewall before running docker.  Also you make have to restart the
+docker after resetting the firewall.
+

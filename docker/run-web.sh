@@ -7,4 +7,4 @@ fi
 
 sudo docker run --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v $HOME/git/bitquant:/home/user/git/bitquant \
--p 80:80 -p 443:443 $IMAGE
+-p 8001:80 -p 4431:443 $IMAGE
