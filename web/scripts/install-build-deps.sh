@@ -94,11 +94,8 @@ $PYTHON_COMPAT \
 $PYTHON-tables \
 $PYTHON-scipy \
 $PYTHON-qstk \
-$PYTHON-statsmodels \
 $PYTHON-quantlib \
 $PYTHON-scikits-learn \
-$PYTHON-patsy \
-$PYTHON-quandl \
 $PYTHON-rpy2 \
 curl-devel \
 dokuwiki-plugin-auth \

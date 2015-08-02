@@ -8,6 +8,7 @@ SCRIPT_DIR=$1
 ME=$2
 
 pip3 install --upgrade pip
-for packages in zipline vispy pyalgotrade ;
+for packages in zipline vispy pyalgotrade statsmodels quandl \
+patsy ;
 do pip3 install --upgrade $packages ;
 done
