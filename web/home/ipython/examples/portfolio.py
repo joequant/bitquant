@@ -11,8 +11,14 @@
 import matplotlib.pyplot as plt  
 import numpy as np
 
-def scale (prices, x):
-    return { k : prices[k]*x for k in prices.keys()}
+def get_beta(beta, x):
+    if x in beta:
+        return beta[x]
+    else:
+        return 1.0
+
+def scale (prices, x, beta):
+    return { k : prices[k]*((x-1.0)*get_beta(beta,k)+1.0)  for k in prices.keys()}
 
 def merge_dicts(x, y):
     '''Given two dicts, merge them into a new dict as a shallow copy.'''
@@ -54,7 +60,7 @@ class PortfolioCalculator(object):
                 else:
                     raise Exception ("unknown asset")
         return retval
-    def plot_one_asset(self, asset, xrange, portfolio_list, prices):
+    def plot_one_asset(self, asset, xrange, portfolio_list, prices,marklines=[]):
         x = np.arange(*xrange)
         for i in range(1,len(portfolio_list)+1):
             y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], merge_dicts(prices, {asset:x})))(x)
@@ -63,10 +69,10 @@ class PortfolioCalculator(object):
             plt.axhline(y=i, xmin=0.0, xmax=1.0, ls='dashed' )
         plt.axvline(x=prices[asset],ymin=0.0,ymax=1.0,ls='dashed' )
         plt.grid(b=True, which='major', color='0.8', linestyle='--')
-    def plot_scaled(self, portfolio_list, prices):
+    def plot_scaled(self, portfolio_list, prices,marklines=[], beta={}):
         x = np.arange(0,1.5,0.05)
         for i in range(1,len(portfolio_list)+1):
-            y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], scale(prices,x)))(x)
+            y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], scale(prices,x,beta)))(x)
             plt.plot(x,y)
         for i in marklines:
             plt.axhline(y=i, xmin=0.0, xmax=1.0, ls='dashed' )
