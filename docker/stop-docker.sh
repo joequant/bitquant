@@ -9,4 +9,5 @@ else
 IMAGE=`sudo docker ps | awk 'FNR==2 {print $NF}'`
 fi
 
-exec sudo nsenter --target $(sudo docker inspect --format {{.State.Pid}} $IMAGE) --mount --uts --ipc --net --pid
+exec sudo docker stop $IMAGE
+
