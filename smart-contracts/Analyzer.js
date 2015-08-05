@@ -109,15 +109,15 @@ Attention: {{name}}
 	    };
 	    
 	    output.html("");
-	    output.append("<span class='block'>event</span>");
-	    output.append("<span class='date-block'>date</span>");
-	    output.append("<span class='block'>principal</span>");
-	    output.append("<span class='block'>fees</span>");
-	    output.append("<span class='block'>balance</span>");
-	    output.append("<span class='block'>late balance</span>");
-	    output.append("<span class='block'>principal payment</span>");
-	    output.append("<span class='block'>fee payment</span>");
-	    output.append("<span class='block'>total payment</span>");
+	    output.append("<span class='block'>event</span> ");
+	    output.append("<span class='date-block'>date</span> ");
+	    output.append("<span class='block'>principal</span> ");
+	    output.append("<span class='block'>fees</span> ");
+	    output.append("<span class='block'>balance</span> ");
+	    output.append("<span class='block'>late balance</span> ");
+	    output.append("<span class='block'>principal payment</span> ");
+	    output.append("<span class='block'>fee payment</span> ");
+	    output.append("<span class='block'>total payment</span> ");
 	    output.append("<br>");
 	    
 	    payment_schedule.forEach(function(i) {
@@ -130,11 +130,11 @@ Attention: {{name}}
 		    i.event == "Terminate" ||
 		    i.event == "Action" ) {
 		    output.append("<span class='block'>" +
-				  i.event + "</span>");
+				  i.event + "</span> ");
 		    output.append("<span class='date-block'>" +
-				  i.on.toDateString() + "</span>");
+				  i.on.toDateString() + "</span> ");
 		    output.append("<span>" +
-				  note + "</span>");
+				  note + "</span> ");
 		    output.append("<br>");
 		} else if (i.event ===  "Transfer" ||
 			   i.event === "Obligation") {
@@ -162,23 +162,23 @@ Attention: {{name}}
 		    output.append("<br>");
 		} else {
 		    output.append("<span class='block'>" +
-				  i.event + "</span><span class='date-block'>" +
-				  i.on.toDateString() + "</span><span class='number block'>" +
+				  i.event + "</span> <span class='date-block'>" +
+				  i.on.toDateString() + "</span> <span class='number block'>" +
 				  Number(i.principal).toFixed(2) +
-				  "</span><span class='number block'>" +
+				  "</span> <span class='number block'>" +
 				  Number(i.interest_accrued).toFixed(2)
-				  + "</span><span class='number block'>" +
+				  + "</span> <span class='number block'>" +
 				  Number(i.balance).toFixed(2)
-				  + "</span><span class='number block'>" +
+				  + "</span> <span class='number block'>" +
 				  Number(i.late_balance).toFixed(2)
-				  + "</span><span class='number block'>" +
+				  + "</span> <span class='number block'>" +
 				  Number(i.principal_payment).toFixed(2)
-				  + "</span><span class='number block'>" +
+				  + "</span> <span class='number block'>" +
 				  Number(i.interest_payment).toFixed(2)
-				  + "</span><span class='number block'>" +
+				  + "</span> <span class='number block'>" +
 				  Number(i.interest_payment + 
 					i.principal_payment).toFixed(2)
-				  + "</span><span> " +
+				  + "</span> <span> " +
 				  note + "</span><br>");
 		}
 	    });
