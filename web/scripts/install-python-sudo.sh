@@ -8,6 +8,6 @@ SCRIPT_DIR=$1
 ME=$2
 
 for packages in zipline vispy pyalgotrade statsmodels quandl \
-patsy beautifulsoup4 pymongo sympy ipython_mongo ;
+patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn ;
 do pip3 install --upgrade $packages ;
 done
