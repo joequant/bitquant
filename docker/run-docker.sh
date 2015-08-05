@@ -5,9 +5,18 @@ if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
 
+sudo echo
+
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
+
+
+if [ ! -e ~/volumes/bitstation/home ] ; then
 id=$(sudo docker create $IMAGE)
+sudo docker cp $id:/home - | tar xf -
+sudo docker rm -v $id
+fi
+
 
 if [ ! -e ~/volumes/bitstation/var/log ] ; then
 mkdir -p var/log
@@ -32,11 +41,7 @@ cp -a -P -R /var/lib/$app /mnt
 fi
 done
 
-if [ ! -e ~/volumes/bitstation/home ] ; then
-sudo docker cp $id:/home - | tar xf -
-fi
 
-sudo docker rm -v $id
 popd
 sudo systemctl stop httpd
 # Reset firewall rules
