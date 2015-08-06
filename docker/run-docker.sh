@@ -5,23 +5,25 @@ if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
 
-sudo echo
+SUDO=
+
+$SUDO echo
 
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
 
 
 if [ ! -e ~/volumes/bitstation/home ] ; then
-id=$(sudo docker create $IMAGE)
-sudo docker cp $id:/home - | tar xf -
-sudo docker rm -v $id
+id=$($SUDO docker create $IMAGE)
+$SUDO docker cp $id:/home - | tar xf -
+$SUDO docker rm -v $id
 fi
 
 
 if [ ! -e ~/volumes/bitstation/var/log ] ; then
 mkdir -p var/log
 chmod a+rwx var/log
-sudo docker run \
+$SUDO docker run \
 -v ~/volumes/bitstation/var:/mnt \
 $IMAGE \
 cp -a -P -R /var/log /mnt
@@ -34,7 +36,7 @@ fi
 
 for app in dokuwiki mongodb ; do
 if [ ! -e ~/volumes/bitstation/var/lib/$app ] ; then
-sudo docker run \
+$SUDO docker run \
 -v ~/volumes/bitstation/var/lib:/mnt \
 $IMAGE \
 cp -a -P -R /var/lib/$app /mnt
@@ -43,12 +45,13 @@ done
 
 
 popd
-sudo systemctl stop httpd
-# Reset firewall rules
-sudo systemctl restart docker
-sudo docker run --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+
+$SUDO docker run \
+--privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v ~/volumes/bitstation/home:/home \
 -v ~/volumes/bitstation/var/lib/dokuwiki:/var/lib/dokuwiki \
 -v ~/volumes/bitstation/var/lib/mongodb:/var/lib/mongodb \
 -v ~/volumes/bitstation/var/log:/var/log \
--p 80:80 -p 443:443 $IMAGE
+-p 80:80 -p 443:443 $IMAGE &
+echo "Docker started"
+

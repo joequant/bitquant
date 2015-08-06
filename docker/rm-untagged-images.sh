@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo docker rmi $(sudo docker images | grep "^<none>" | awk '{print $3}')
+$SUDO docker rmi $($SUDO docker images | grep "^<none>" | awk '{print $3}')

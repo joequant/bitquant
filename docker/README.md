@@ -10,6 +10,10 @@ There are several images in joequant.
     docker tag joequant/bitstation bitstation
     run-docker.sh
 
+The images assume that you have set up docker to be runnable by your
+user account.  You can also set the environment variable SUDO to sudo
+if you are running docker via root.
+
 To build the image
 ------------------
 
