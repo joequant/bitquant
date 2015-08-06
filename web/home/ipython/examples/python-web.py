@@ -61,7 +61,7 @@ HTML(html_response(None))
 import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
-    def get(self):
+    def get(self, *args):
         self.write(html_response(None))
 
 import bitquantutils
