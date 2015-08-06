@@ -121,9 +121,9 @@ def image_response(input):
     fig = plt.figure()
     plt.plot(x,y)
 
-    imgdata = io.BytesIO()
-    fig.savefig(imgdata, format='png')
-    return  """<img src='data:image/png;base64,%s'>""" %             base64.b64encode(imgdata.getvalue()).decode('ascii')
+    imgdata = io.StringIO()
+    fig.savefig(imgdata, format='svg')
+    return  """<img src='data:image/svg+xml;utf-8,%s'>""" %             imgdata.getvalue()
 import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
