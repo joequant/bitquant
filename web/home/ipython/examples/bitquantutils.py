@@ -1,12 +1,13 @@
 
 # coding: utf-8
 
-# In[2]:
+# In[1]:
 
 import tornado.ioloop
 has_ioloop = tornado.ioloop.IOLoop.initialized()
 myport = 9500
 server_list = {}
+prefix_list = {}
 proxy_private = 9011
 
 def get_port():
@@ -29,12 +30,16 @@ def register_port(prefix, port):
 def register_start_app(prefix, app_list):
     import tornado.web
     import tornado.httpserver
+    
+    if prefix in prefix_list:
+        unregister(prefix_list[prefix])
 
     application = tornado.web.Application(app_list)
     http_server = tornado.httpserver.HTTPServer(application)
     port = get_port()
     http_server.listen(port)
     register_port(prefix, port)
+    prefix_list[prefix] = port
     server_list[port] = http_server
     return port
 
