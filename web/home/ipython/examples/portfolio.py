@@ -17,7 +17,7 @@ def get_beta(beta, x):
     else:
         return 1.0
 
-def scale (prices, x, beta):
+def scale (prices, x, beta={}):
     return { k : prices[k]*((x-1.0)*get_beta(beta,k)+1.0)  for k in prices.keys()}
 
 def merge_dicts(x, y):
