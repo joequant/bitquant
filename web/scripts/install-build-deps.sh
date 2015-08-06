@@ -95,7 +95,8 @@ $PYTHON-scipy \
 $PYTHON-qstk \
 $PYTHON-quantlib \
 $PYTHON-scikits-learn \
-$PYTHON-rpy2 \
+$PYTHON-rpy2
+$PYTHON-bokeh \ \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
