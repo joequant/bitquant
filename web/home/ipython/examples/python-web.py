@@ -123,7 +123,7 @@ def image_response(input):
 
     imgdata = io.StringIO()
     fig.savefig(imgdata, format='svg')
-    return  """<img src='data:image/svg+xml;utf-8,%s'>""" %             imgdata.getvalue()
+    return  """<img src='data:image/svg+xml;charset=utf-8,%s'>""" %             imgdata.getvalue()
 import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
