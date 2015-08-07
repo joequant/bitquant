@@ -9,6 +9,6 @@ ME=$2
 
 for packages in zipline vispy pyalgotrade statsmodels quandl \
 patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
-toyplot ;
+toyplot ad collections-extended ;
 do pip3 install --upgrade $packages ;
 done
