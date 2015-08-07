@@ -105,6 +105,7 @@ libpcre-devel \
 liblzma-devel \
 libbzip2-devel \
 zeromq-devel \
+ta-lib-devel \
 libxml2-devel \
 unzip \
 mongodb-server \
