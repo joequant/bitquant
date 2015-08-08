@@ -29,6 +29,15 @@ $IMAGE \
 cp -a -P -R /var/log /mnt
 fi
 
+if [ ! -e ~/volumes/bitstation/etc ] ; then
+mkdir -p etc
+chmod a+rwx etc
+$SUDO docker run \
+-v ~/volumes/bitstation:/mnt \
+$IMAGE \
+cp -a -P -R /etc /mnt
+fi
+
 if [ ! -e ~/volumes/bitstation/var/lib ] ; then
 mkdir -p var/lib
 chmod a+rwx var/lib
@@ -52,6 +61,7 @@ $SUDO docker run \
 -v ~/volumes/bitstation/var/lib/dokuwiki:/var/lib/dokuwiki \
 -v ~/volumes/bitstation/var/lib/mongodb:/var/lib/mongodb \
 -v ~/volumes/bitstation/var/log:/var/log \
+-v ~/volumes/bitstation/etc:/etc \
 -p 80:80 -p 443:443 $IMAGE &
 echo "Docker started"
 
