@@ -7,11 +7,12 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPT_DIR=$1
 ME=$2
 
+#PYTHON_ARGS=--upgrade
 #missing numba, blaze for now
 
 for packages in zipline vispy pyalgotrade statsmodels quandl \
 patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
 toyplot ad collections-extended TA-Lib mpmath multimethods \
 openpyxl param xray ;
-do pip3 install --upgrade $packages ;
+do pip3 install $PYTHON_ARGS $packages ;
 done
