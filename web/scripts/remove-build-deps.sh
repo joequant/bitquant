@@ -26,16 +26,7 @@ $SUDO urpme \
 --auto \
 cmake \
 gcc-c++ \
-${lib}bzip2-devel \
-${lib}curl-devel \
-${lib}readline-devel \
-${lib}pcre-devel \
-${lib}blas-devel \
-${lib}zlib-devel \
-${lib}lzma-devel \
-${lib}icu-devel \
-${lib}zeromq-devel
-
+`rpm -qa | grep devel | grep -v python | grep -v glibc`
 
 $SUDO urpme --auto-orphans --auto
 
