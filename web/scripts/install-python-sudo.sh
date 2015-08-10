@@ -13,6 +13,6 @@ ME=$2
 for packages in zipline vispy pyalgotrade statsmodels quandl \
 patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
 toyplot ad collections-extended TA-Lib mpmath multimethods \
-openpyxl param xray ;
+openpyxl param xray FinDates;
 do pip3 install $PYTHON_ARGS $packages ;
 done
