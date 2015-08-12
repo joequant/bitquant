@@ -8,7 +8,8 @@
 
 # In[ ]:
 
-import matplotlib.pyplot as plt  
+get_ipython().magic('matplotlib inline')
+import toyplot
 import numpy as np
 
 def get_beta(beta, x):
@@ -61,22 +62,23 @@ class PortfolioCalculator(object):
                     raise Exception ("unknown asset")
         return retval
     def plot_one_asset(self, asset, xrange, portfolio_list, prices,marklines=[]):
-        x = np.arange(*xrange)
+        x = np.linspace(*xrange[0:2])
+        canvas = toyplot.Canvas(width=400, height=400)
+        axes = canvas.axes()
         for i in range(1,len(portfolio_list)+1):
             y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], merge_dicts(prices, {asset:x})))(x)
-            plt.plot(x,y)
-        for i in marklines:
-            plt.axhline(y=i, xmin=0.0, xmax=1.0, ls='dashed' )
-        plt.axvline(x=prices[asset],ymin=0.0,ymax=1.0,ls='dashed' )
-        plt.grid(b=True, which='major', color='0.8', linestyle='--')
+            axes.plot(x,y)
+        axes.hlines(marklines )
+        axes.vlines([prices[asset]] )
     def plot_scaled(self, portfolio_list, prices,marklines=[], beta={}):
-        x = np.arange(0,1.5,0.05)
+        x = np.linspace(0.0,1.5)
+        canvas = toyplot.Canvas(width=400, height=400)
+        axes = canvas.axes()        
         for i in range(1,len(portfolio_list)+1):
             y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], scale(prices,x,beta)))(x)
-            plt.plot(x,y)
+            axes.plot(x,y)
         for i in marklines:
-            plt.axhline(y=i, xmin=0.0, xmax=1.0, ls='dashed' )
-        plt.grid(b=True, which='major', color='0.8', linestyle='--')
+            axes.hlines(marklines )
 
 
 # In[ ]:
@@ -108,15 +110,16 @@ if __name__ == '__main__':
     marklines = [
         250000,374920.00
     ]
+    
     port_calc = PortfolioCalculator()
     [port_calc.portfolio_nav([portfolio, trade, exercise],{"3888.HK":28} ), scale(prices, 0.5)]
-    port_calc.plot_one_asset("3888.HK",[10,35,0.1],[portfolio, trade, exercise], prices)
+    port_calc.plot_one_asset("3888.HK",[10,35,0.1],[portfolio, trade, exercise], prices, marklines)
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    port_calc.plot_scaled([portfolio, trade, exercise], prices)
+    port_calc.plot_scaled([portfolio, trade, exercise], prices, marklines)
 
 
 # In[ ]:
