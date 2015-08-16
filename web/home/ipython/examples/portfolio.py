@@ -25,6 +25,7 @@ get_ipython().magic('matplotlib inline')
 import toyplot
 import numpy as np
 from blackscholes import black_scholes
+import scipy
 
 def get_beta(beta, x):
     if x in beta:
@@ -46,7 +47,7 @@ def plot_function(xrange, ylist,  hlines=[], vlines=[]):
         canvas = toyplot.Canvas(width=400, height=400)
         axes = canvas.axes( )
         for y in ylist:
-            axes.plot(x,y(x))
+            axes.plot(x, np.vectorize(y)(x))
         axes.hlines(hlines )
         axes.vlines(vlines)
 
@@ -56,7 +57,7 @@ class Portfolio(object):
             self.prices = prices
             self.vols = vols
             self.beta=beta
-    def portfolio_nav(self,  prices = None, mtm=False,  date=None, delt = 0.0, r=None):
+    def portfolio_nav(self,  prices = None, mtm=False,  date=None, dt = 0.0, r=None):
         retval = 0.0
         if prices == None:
             prices = self.prices
@@ -67,6 +68,8 @@ class Portfolio(object):
                 quantity = asset[0]
                 underlying = asset[2]
                 purchase = asset[3]
+                if  purchase < 0.0:
+                    raise ValueError
                 retval = retval + quantity * (prices[underlying] - purchase)
             elif asset[1] == "put" or asset[1] == "call":
                 quantity = asset[0]
@@ -75,17 +78,19 @@ class Portfolio(object):
                 strike = asset[3]
                 underlying = asset[4]
                 purchase = asset[5]
+                price = prices[underlying]
                 value = 0.0
+                if strike < 0.0 or purchase < 0.0:
+                    raise ValueError
                 if not mtm:
-                    if asset[1] == "put" and prices[underlying] < strike:
-                        value = strike - prices[underlying]
-                    if asset[1] == "call" and prices[underlying] > strike:
-                        value = prices[underlying] - strike
+                    if asset[1] == "put" and price < strike:
+                        value = strike - price
+                    if asset[1] == "call" and price > strike:
+                        value = price - strike
                 else:
-                    t = (date_fraction(date, expiry) +delt) / 365.0
+                    t = (date_fraction(date, expiry) -dt) / 365.0
                     if (t < 0.0):
                         t = 0.0
-                    price = prices[underlying]
                     vol = self.vols[underlying]
                     if (price < 0.0):
                         price = 0.0
@@ -97,9 +102,13 @@ class Portfolio(object):
                     raise Exception ("unknown asset")
         return retval
     def asset_dep(self, asset, *args, **kwargs):
-        return np.vectorize(lambda x: self.portfolio_nav(prices=merge(self.prices, {asset:x}), *args, **kwargs))
+        return  lambda x: self.portfolio_nav(prices=merge(self.prices, {asset:x}), *args, **kwargs)
+    def delta_dep(self, asset, *args, **kwargs):
+        return  lambda x: scipy.misc.derivative(self.asset_dep(asset, *args, **kwargs), x)
     def market_dep(self, *args, **kwargs):
-        return np.vectorize(lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.beta), *args, **kwargs))
+        return lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.beta), *args, **kwargs)
+    def evolve(self, date, *args, **kwargs):
+        return  lambda t: self.portfolio_nav(dt=t, date=date, mtm=True, *args, **kwargs)
 
 
 # In[ ]:
@@ -160,6 +169,17 @@ if __name__ == '__main__':
         p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
         functions.append(p.market_dep())
     plot_function([0.25,1.5], functions)
+
+
+# In[ ]:
+
+if __name__ == '__main__':
+    portfolio_list = [portfolio, trade, exercise]
+    functions = []
+    for i in range(1,4):
+        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
+        functions.append(p.evolve(date="2015-07-15", r=0))
+    plot_function([0,90], functions)
 
 
 # In[ ]:
