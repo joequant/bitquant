@@ -35,73 +35,71 @@ def get_beta(beta, x):
 def scale (prices, x, beta={}):
     return { k : prices[k]*((x-1.0)*get_beta(beta,k)+1.0)  for k in prices.keys()}
 
-def merge_dicts(x, y):
+def merge(x, y):
     '''Given two dicts, merge them into a new dict as a shallow copy.'''
     z = x.copy()
     z.update(y)
     return z
 
-class PortfolioCalculator(object):
-    def __init__(self, **kwargs):
-            pass
-    def portfolio_nav(self, portfolio_list, prices, mtm=False, 
-                      date=None, r=None,  vols=None):
-        retval = 0.0
-        if portfolio_list == None:
-            portfolio_list = self.portfolio_list
-        for portfolio in portfolio_list:
-            for asset in portfolio:
-                if asset[1] == "cash":
-                    retval = retval +asset[0]
-                elif asset[1] == "spot":
-                    quantity = asset[0]
-                    underlying = asset[2]
-                    purchase = asset[3]
-                    retval = retval + quantity * (prices[underlying] - purchase)
-                elif asset[1] == "put" or asset[1] == "call":
-                    quantity = asset[0]
-                    style = asset[1]
-                    expiry = asset[2]
-                    strike = asset[3]
-                    underlying = asset[4]
-                    purchase = asset[5]
-                    value = 0.0
-                    if not mtm:
-                        if asset[1] == "put" and prices[underlying] < strike:
-                            value = strike - prices[underlying]
-                        if asset[1] == "call" and prices[underlying] > strike:
-                            value = prices[underlying] - strike
-                    else:
-                        t = date_fraction(date, expiry) / 365.0
-                        if (t < 0.0):
-                            t = 0.0
-                        price = prices[underlying]
-                        vol = vols[underlying]
-                        value = black_scholes ((-1 if style == "put" else 1), price,                                              strike, t, vol, r, 0.0)
-                    retval = retval + quantity * (value - purchase)             
-                elif asset[1] == "comment":
-                    pass
-                else:
-                    raise Exception ("unknown asset")
-        return retval
-    def plot_one_asset(self, asset, xrange, portfolio_list, prices,marklines=[], *args):
-        x = np.linspace(*xrange[0:2])
+def plot_function(xrange, ylist,  hlines=[], vlines=[]):
+        x = np.linspace(*xrange)
         canvas = toyplot.Canvas(width=400, height=400)
         axes = canvas.axes( )
-        for i in range(1,len(portfolio_list)+1):
-            y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], merge_dicts(prices, {asset:x}), *args))(x)
-            axes.plot(x,y)
-        axes.hlines(marklines )
-        axes.vlines([prices[asset]] )
-    def plot_scaled(self, portfolio_list, prices,marklines=[], beta={}, *args):
-        x = np.linspace(0.01,1.5)
-        canvas = toyplot.Canvas(width=400, height=400)
-        axes = canvas.axes()        
-        for i in range(1,len(portfolio_list)+1):
-            y = np.vectorize(lambda x: self.portfolio_nav(portfolio_list[:i], scale(prices,x,beta, *args)))(x)
-            axes.plot(x,y)
-        for i in marklines:
-            axes.hlines(marklines )
+        for y in ylist:
+            axes.plot(x,y(x))
+        axes.hlines(hlines )
+        axes.vlines(vlines)
+
+class Portfolio(object):
+    def __init__(self, portfolio, prices={}, vols={},  beta={}, **kwargs):
+            self.portfolio = portfolio
+            self.prices = prices
+            self.vols = vols
+            self.beta=beta
+    def portfolio_nav(self,  prices = None, mtm=False,  date=None, delt = 0.0, r=None):
+        retval = 0.0
+        if prices == None:
+            prices = self.prices
+        for asset in self.portfolio:
+            if asset[1] == "cash":
+                retval = retval +asset[0]
+            elif asset[1] == "spot":
+                quantity = asset[0]
+                underlying = asset[2]
+                purchase = asset[3]
+                retval = retval + quantity * (prices[underlying] - purchase)
+            elif asset[1] == "put" or asset[1] == "call":
+                quantity = asset[0]
+                style = asset[1]
+                expiry = asset[2]
+                strike = asset[3]
+                underlying = asset[4]
+                purchase = asset[5]
+                value = 0.0
+                if not mtm:
+                    if asset[1] == "put" and prices[underlying] < strike:
+                        value = strike - prices[underlying]
+                    if asset[1] == "call" and prices[underlying] > strike:
+                        value = prices[underlying] - strike
+                else:
+                    t = (date_fraction(date, expiry) +delt) / 365.0
+                    if (t < 0.0):
+                        t = 0.0
+                    price = prices[underlying]
+                    vol = self.vols[underlying]
+                    if (price < 0.0):
+                        price = 0.0
+                    value = black_scholes ((-1 if style == "put" else 1), price,                                              strike, t, vol, r, 0.0)
+                retval = retval + quantity * (value - purchase)             
+            elif asset[1] == "comment":
+                pass
+            else:
+                    raise Exception ("unknown asset")
+        return retval
+    def asset_dep(self, asset, *args, **kwargs):
+        return np.vectorize(lambda x: self.portfolio_nav(prices=merge(self.prices, {asset:x}), *args, **kwargs))
+    def market_dep(self, *args, **kwargs):
+        return np.vectorize(lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.beta), *args, **kwargs))
 
 
 # In[ ]:
@@ -133,26 +131,35 @@ if __name__ == '__main__':
     vols = {
         "3888.HK":0.8
     }
-
-    marklines = [
-        250000,374920.00
-    ]
     
-    port_calc = PortfolioCalculator()
-    [port_calc.portfolio_nav([portfolio, trade, exercise],{"3888.HK":28} ), scale(prices, 0.5)]
-    port_calc.plot_one_asset("3888.HK",[10,35,0.1],[portfolio, trade, exercise], prices, marklines)
+    beta = {
+        "3888.HK":3
+    }
+
+    portfolio_list = [portfolio, trade, exercise]
+    functions = []
+    for i in range(1,4):
+        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
+        functions.append(p.asset_dep("3888.HK"))
+    plot_function([10,35], functions)
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    port_calc.plot_one_asset("3888.HK", [10,35,0.1], [portfolio], prices, marklines, True, "2015-07-15", 0.0, vols)
+    p = Portfolio(portfolio, prices=prices, vols=vols, beta=beta)
+    plot_function([10,35], [p.asset_dep("3888.HK"), p.asset_dep("3888.HK", mtm=True, date="2015-07-15", r=0)])
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    port_calc.plot_scaled([portfolio, trade, exercise], prices, marklines)
+    portfolio_list = [portfolio, trade, exercise]
+    functions = []
+    for i in range(1,4):
+        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
+        functions.append(p.market_dep())
+    plot_function([0.25,1.5], functions)
 
 
 # In[ ]:
