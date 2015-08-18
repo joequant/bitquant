@@ -58,19 +58,21 @@ class Portfolio(object):
             self.vols = vols
             self.beta=beta
     def portfolio_nav(self,  prices = None, mtm=False,  date=None, dt = 0.0, r=None):
-        retval = 0.0
+        return sum(self.portfolio_items(prices, mtm, date, dt, r), 0.0)
+    def portfolio_items(self,  prices = None, mtm=False,  date=None, dt = 0.0, r=None):
+        retval = []
         if prices == None:
             prices = self.prices
         for asset in self.portfolio:
             if asset[1] == "cash":
-                retval = retval +asset[0]
+                retval.append(asset[0])
             elif asset[1] == "spot":
                 quantity = asset[0]
                 underlying = asset[2]
                 purchase = asset[3]
                 if  purchase < 0.0:
                     raise ValueError
-                retval = retval + quantity * (prices[underlying] - purchase)
+                retval.append(quantity * prices[underlying])
             elif asset[1] == "put" or asset[1] == "call":
                 quantity = asset[0]
                 style = asset[1]
@@ -95,7 +97,7 @@ class Portfolio(object):
                     if (price < 0.0):
                         price = 0.0
                     value = black_scholes ((-1 if style == "put" else 1), price,                                              strike, t, vol, r, 0.0)
-                retval = retval + quantity * (value - purchase)             
+                retval.append(quantity * value )             
             elif asset[1] == "comment":
                 pass
             else:
@@ -131,6 +133,7 @@ if __name__ == '__main__':
 
     exercise = [
         [10000, "put", "2015-08", 25.00, "3888.HK", 0.0],
+        [-250000, "cash"],
         [10000, "spot", '3888.HK', 25.00]
     ]
     prices = {
@@ -180,6 +183,11 @@ if __name__ == '__main__':
         p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
         functions.append(p.evolve(date="2015-07-15", r=0))
     plot_function([0,90], functions)
+
+
+# In[ ]:
+
+
 
 
 # In[ ]:
