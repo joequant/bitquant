@@ -66,8 +66,8 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 5. Purpose
 -------
-5.1 The Borrower shall use all money borrowed under this Agreement for the sole purpose of expanding its business.  
-5.2 The Lender is not obliged to monitor or verify how any amount advanced under this Agreement is used.
+5.1 The Borrower shall use all money borrowed under this Agreement for the purpose of facilitating the export or import of goods and services into or out of Hong Kong as part of a transaction involving the export from or import into Hong Kong of goods and services, as defined by the Hong Kong Money Lenders Ordinance Cap 163 Schedule 1, Part 2, Paragraph 11.  
+5.2 The Lender is not obliged to monitor or verify how any amount advanced under this Agreement so long as the Lender has a reasonable belief that the funds are used for the purposes stated in Section 5.1 of this agreement.  
 
 6. Commencement
 ------------
