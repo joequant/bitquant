@@ -14,6 +14,12 @@ for packages in zipline vispy pyalgotrade statsmodels quandl \
 patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
 toyplot ad collections-extended TA-Lib mpmath multimethods \
 openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
-plotly holoviews ;
+plotly holoviews ipython[notebook] ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
+
+if [ ! -e /usr/bin/ipython ] ; then
+pushd /usr/bin
+ln -s ipython3 ipython
+popd
+fi
