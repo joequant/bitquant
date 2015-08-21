@@ -38,6 +38,7 @@ dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect \
 $PYTHON-matplotlib \
+$PYTHON-matplotlib-tk \
 $ADMIN
 
 $SUDO urpmi --no-recommends \
@@ -60,7 +61,6 @@ cmake \
 $PYTHON-tornado \
 $PYTHON-mglob \
 dokuwiki-plugin-s5  \
-$PYTHON-matplotlib \
 $PYTHON-pytz \
 $PYTHON-pip \
 $PYTHON-devel \
