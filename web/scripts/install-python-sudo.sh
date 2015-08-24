@@ -15,7 +15,7 @@ patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
 toyplot ad collections-extended TA-Lib mpmath multimethods \
 openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
 plotly holoviews ipython[notebook] bokeh jupyterhub \
-fastcluster ;
+fastcluster yahoo-finance ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
