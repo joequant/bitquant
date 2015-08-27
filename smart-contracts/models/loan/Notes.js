@@ -18,6 +18,13 @@ contract, and in case of a conflict between the code and these notes,
 the code shall prevail.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 	this.terms = (function () {/*
+This loan contract is a for use within Hong Kong for a company which
+exports or imports goods and services into or out of Hong Kong and is
+therefore exempt from the Money Lenders Ordinance under Cap 163
+Schedule 1, Part 2, Paragraph 11.  It is not suitable for non-exempt
+loans as the provisions for late fees and compound interest are
+inconsistent with Sections 22 and 23 of the MLO.
+
 Schedule A states that the interest rate is {{annual_interest_rate}}
 percent per year, compounded monthly, using the
 {{day_count_convention}} day count convention.  The initial loan
