@@ -23,6 +23,7 @@ RUN useradd user ;\
    echo 'cubswin:)' | passwd root --stdin ; \
    cd ~user ; mkdir git ; cd git ; \
    git clone https://github.com/joequant/bitquant.git ;\
+   git clone https://github.com/joequant/algobroker.git ;\
    cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation 
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /etc/systemd/system/*.wants/*;\
