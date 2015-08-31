@@ -1,30 +1,12 @@
 
 # coding: utf-8
 
-# 
-# Portfolio payoff routines
-# 
-# These routines take a portfolio of call and put options and plots the payoff functions.
-
-# In[ ]:
-
-def date_fraction(start, to):
-    import calendar
-    from datetime import datetime
-    (year, month) = to.split("-")
-    (weekday, lastday) = calendar.monthrange(int(year), int(month))
-    return abs((datetime(int(year), int(month), lastday)-datetime.strptime(start, "%Y-%m-%d")).days)
-
-if __name__ == "__main__":
-    print(date_fraction("2015-07-02", "2015-09"))
-
-
 # In[ ]:
 
 get_ipython().magic('matplotlib inline')
 import toyplot
 import numpy as np
-from blackscholes import black_scholes
+from blackscholes import black_scholes, date_fraction
 import scipy
 
 def get_beta(beta, x):
@@ -90,7 +72,7 @@ class Portfolio(object):
                     if asset[1] == "call" and price > strike:
                         value = price - strike
                 else:
-                    t = (date_fraction(date, expiry) -dt) / 365.0
+                    t = (date_fraction(date, expiry) -dt/365.0) 
                     if (t < 0.0):
                         t = 0.0
                     vol = self.vols[underlying]
@@ -112,6 +94,11 @@ class Portfolio(object):
     def evolve(self, date, *args, **kwargs):
         return  lambda t: self.portfolio_nav(dt=t, date=date, mtm=True, *args, **kwargs)
 
+
+# 
+# Portfolio payoff routines
+# 
+# These routines take a portfolio of call and put options and plots the payoff functions.
 
 # In[ ]:
 

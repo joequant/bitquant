@@ -41,7 +41,7 @@ import numpy as np
 # In[ ]:
 
 #usdcny = requests.get('http://rate-exchange.appspot.com/currency?from=USD&to=CNY').json()['rate']
-usdcny = 6.18
+usdcny = 6.41
 
 
 

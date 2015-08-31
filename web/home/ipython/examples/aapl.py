@@ -8,14 +8,15 @@
 #1. Data Gathering
 from pylab import *
 from pandas.io.data import *
-AAPL  = DataReader('AAPL', 'yahoo', start='01/01/2010')
+stock  = DataReader('AAPL', 'yahoo', start='01/01/2014')
 
 
 # In[ ]:
 
 # 2. Data Analysis
 from pandas import *
-AAPL['Ret'] = log(AAPL['Close']/AAPL['Close'].shift(1))
+stock['Ret'] = log(stock['Close']/stock['Close'].shift(1))
+stock
 
 
 # In[ ]:
@@ -25,19 +26,19 @@ get_ipython().magic('matplotlib inline')
 from matplotlib import *
 
 subplot(211)
-AAPL['Close'].plot()
+stock['Close'].plot()
 ylabel('Index Level')
 
 subplot(212)
-AAPL['Ret'].plot()
+stock['Ret'].plot()
 ylabel('Log Returns')
 
 
 # In[ ]:
 
 #4. Monte Carlo Simulation
-S0 = AAPL['Close'][-1]
-vol = std(AAPL['Ret'])*sqrt(262)
+S0 = stock['Close'][-1]
+vol = std(stock['Ret'])*sqrt(262)
 r = 0.026; K=S0*1.1; T=1.0; M=50; dt=T/M; I=10000
 S=zeros((M+1,I)); S[0,:]=S0
 for t in range(1,M+1):
