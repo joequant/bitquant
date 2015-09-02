@@ -1,11 +1,12 @@
-# -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
 
-# <codecell>
+# coding: utf-8
+
+# In[ ]:
 
 from QuantLib import *
 
-# <codecell>
+
+# In[ ]:
 
 todaysDate = Date.todaysDate()
 Settings.instance().evaluationDate = todaysDate
@@ -14,19 +15,22 @@ riskFreeRate = FlatForward(settlementDate, 0.00, Actual365Fixed())
 
 payoff = CryptoPayoffQuanto()
 
-# <codecell>
+
+# In[ ]:
 
 settlementDate
 payoff(367.0)
 
-# <codecell>
+
+# In[ ]:
 
 timestamp = Date.universalDateTime()
 newtime = timestamp + Period(3, Years)
 newtime.year()
 dcc = ContinuousTime(Years)
 
-# <codecell>
+
+# In[ ]:
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -71,14 +75,18 @@ def option(strike, vol, t, putcall):
     plt.plot(thetaCurve.grid(), list(thetaCurve.values()))
 #    plt.plot(x, list(map(mydelta,x)))
 
-# <codecell>
+
+# In[ ]:
 
 option(350, 0.02, 90, 1)
 
-# <codecell>
+
+# In[ ]:
 
 np.arange(0.8, 1.2,0.1)
 
-# <codecell>
+
+# In[ ]:
+
 
 

@@ -163,7 +163,8 @@ plotme(data)
 
 # In[ ]:
 
-print(data)
+import pprint
+pprint.pprint(data)
 
 
 # In[ ]:

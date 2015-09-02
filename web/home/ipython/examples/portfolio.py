@@ -33,15 +33,43 @@ def plot_function(xrange, ylist,  hlines=[], vlines=[]):
         axes.hlines(hlines )
         axes.vlines(vlines)
 
+def plot_asset_dep(portfolios, asset, xrange, date, prices):
+    plot_function(xrange,
+        [ x.asset_dep(asset, mtm=True, payoff_asset=asset, date=date) for x in portfolios] +
+        [ x.asset_dep(asset, mtm=True, date=date) for x in portfolios],
+            vlines=prices[asset]
+    )
+
+def plot_delta(p, p1, asset, xrange, date, prices):
+    plot_function(xrange, [p.delta_dep(asset), p.delta_dep(asset, mtm=True, date=date),
+                           p1.delta_dep(asset), p1.delta_dep(asset, mtm=True, date=date)],
+                  vlines=[prices[asset]])
+
+def difference(a, b):
+   return (lambda x: a(x) - b(x))
+
+def trade_option(quantity, style, expiry, strike, underlying, price) :
+    return [
+        [ quantity, style, expiry, strike, underlying, price ],
+        [ -quantity * price, "cash"]
+    ]
+
+def trade_spot(quantity, underlying, price) :
+    return [
+        [ quantity, "spot", underlying, price ],
+        [ -quantity * price, "cash"]
+    ]
+
 class Portfolio(object):
-    def __init__(self, portfolio, prices={}, vols={},  beta={}, **kwargs):
+    def __init__(self, portfolio, prices={}, vols={},  beta={}, r=0.0, **kwargs):
             self.portfolio = portfolio
             self.prices = prices
             self.vols = vols
             self.beta=beta
-    def portfolio_nav(self,  prices = None, mtm=False,  date=None, dt = 0.0, r=None):
-        return sum(self.portfolio_items(prices, mtm, date, dt, r), 0.0)
-    def portfolio_items(self,  prices = None, mtm=False,  date=None, dt = 0.0, r=None):
+            self.r = r
+    def portfolio_nav(self, prices = None, mtm=False, payoff_asset=None, date=None, dt = 0.0):
+        return sum(self.portfolio_items(prices, mtm, payoff_asset, date, dt), 0.0)
+    def portfolio_items(self,  prices = None, mtm=False, payoff_asset=None, date=None, dt = 0.0):
         retval = []
         if prices == None:
             prices = self.prices
@@ -66,7 +94,7 @@ class Portfolio(object):
                 value = 0.0
                 if strike < 0.0 or purchase < 0.0:
                     raise ValueError
-                if not mtm:
+                if not mtm or underlying == payoff_asset:
                     if asset[1] == "put" and price < strike:
                         value = strike - price
                     if asset[1] == "call" and price > strike:
@@ -78,21 +106,23 @@ class Portfolio(object):
                     vol = self.vols[underlying]
                     if (price < 0.0):
                         price = 0.0
-                    value = black_scholes ((-1 if style == "put" else 1), price,                                              strike, t, vol, r, 0.0)
+                    value = black_scholes ((-1 if style == "put" else 1), price,                                              strike, t, vol, self.r, 0.0)
                 retval.append(quantity * value )             
             elif asset[1] == "comment":
                 pass
             else:
-                    raise Exception ("unknown asset")
+                raise Exception ("unknown asset")
         return retval
     def asset_dep(self, asset, *args, **kwargs):
         return  lambda x: self.portfolio_nav(prices=merge(self.prices, {asset:x}), *args, **kwargs)
     def delta_dep(self, asset, *args, **kwargs):
-        return  lambda x: scipy.misc.derivative(self.asset_dep(asset, *args, **kwargs), x)
+        return  lambda x: scipy.misc.derivative(self.asset_dep(asset, *args, **kwargs), x, dx=1e-6)
     def market_dep(self, *args, **kwargs):
         return lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.beta), *args, **kwargs)
     def evolve(self, date, *args, **kwargs):
         return  lambda t: self.portfolio_nav(dt=t, date=date, mtm=True, *args, **kwargs)
+    def theta_portfolio(self, *args, **kwargs):
+        return  lambda t: scipy.misc.derivative(self.evolve(*args, **kwargs), t, dx=1e-6)
 
 
 # 
