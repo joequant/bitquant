@@ -24,26 +24,34 @@ def merge(x, y):
     z.update(y)
     return z
 
-def plot_function(xrange, ylist,  hlines=[], vlines=[]):
+def plot_function(xrange, ylist,  hlines=[], vlines=[], labels=[]):
         x = np.linspace(*xrange)
-        canvas = toyplot.Canvas(width=400, height=400)
+        label_style = {"text-anchor":"start", "-toyplot-anchor-shift":"5px"}
+        canvas = toyplot.Canvas(width=600, height=400)
         axes = canvas.axes( )
+        ylast = []
         for y in ylist:
-            axes.plot(x, np.vectorize(y)(x))
+            yvec = np.vectorize(y)(x)
+            axes.plot(x, yvec)
+            ylast.append(yvec[-1])
+        for l in zip(labels, ylast):
+            axes.text(x[-1], l[1], l[0], style=label_style)
         axes.hlines(hlines )
         axes.vlines(vlines)
 
 def plot_asset_dep(portfolios, asset, xrange, date, prices):
+    labels = [ "payoff %d" % (x+1) for x in range(len(portfolios)) ] +         [ "MTM %d" % (x+1) for x in range(len(portfolios)) ]
     plot_function(xrange,
         [ x.asset_dep(asset, mtm=True, payoff_asset=asset, date=date) for x in portfolios] +
         [ x.asset_dep(asset, mtm=True, date=date) for x in portfolios],
-            vlines=prices[asset]
+            vlines=prices[asset], labels=labels
     )
 
-def plot_delta(p, p1, asset, xrange, date, prices):
-    plot_function(xrange, [p.delta_dep(asset), p.delta_dep(asset, mtm=True, date=date),
-                           p1.delta_dep(asset), p1.delta_dep(asset, mtm=True, date=date)],
-                  vlines=[prices[asset]])
+def plot_delta(portfolios, asset, xrange, date, prices):
+    labels = [ "payoff %d" % (x+1) for x in range(len(portfolios)) ] +         [ "MTM %d" % (x+1) for x in range(len(portfolios)) ]
+    plot_function(xrange, [ p.delta_dep(asset) for p in portfolios] +
+                          [ p.delta_dep(asset, mtm=True, date=date) for p in portfolios],
+                  vlines=[prices[asset]], labels=labels)
 
 def difference(a, b):
    return (lambda x: a(x) - b(x))
@@ -165,49 +173,31 @@ if __name__ == '__main__':
         "3888.HK":3
     }
 
-    portfolio_list = [portfolio, trade, exercise]
-    functions = []
-    for i in range(1,4):
-        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
-        functions.append(p.asset_dep("3888.HK"))
-    plot_function([10,35], functions)
+    today="2015-07-15"
+    portfolios = [ Portfolio(x, prices=prices, vols=vols, beta=beta, r=0.0) 
+                  for x in [portfolio, portfolio + trade, portfolio + trade + exercise] ]
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    p = Portfolio(portfolio, prices=prices, vols=vols, beta=beta)
-    plot_function([10,35], [p.asset_dep("3888.HK"), p.asset_dep("3888.HK", mtm=True, date="2015-07-15", r=0)])
+    plot_asset_dep(portfolios, '3888.HK', [10, 20], today, prices)
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    portfolio_list = [portfolio, trade, exercise]
-    functions = []
-    for i in range(1,4):
-        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
-        functions.append(p.market_dep())
-    plot_function([0.25,1.5], functions)
+    plot_delta(portfolios, "3888.HK", [10,20], today, prices)
 
 
 # In[ ]:
 
 if __name__ == '__main__':
-    portfolio_list = [portfolio, trade, exercise]
-    functions = []
-    for i in range(1,4):
-        p = Portfolio(sum(portfolio_list[:i],[]), prices=prices, vols=vols, beta=beta)
-        functions.append(p.evolve(date="2015-07-15", r=0))
-    plot_function([0,90], functions)
+    plot_function([0,90], [p.evolve(date=today) for p in portfolios])
 
 
 # In[ ]:
 
-
-
-
-# In[ ]:
-
-
+if __name__ == '__main__':
+    plot_function([0,90], [p.theta_portfolio(date=today) for p in portfolios])
 
