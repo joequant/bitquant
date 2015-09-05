@@ -24,12 +24,14 @@ def merge(x, y):
     z.update(y)
     return z
 
-def plot_function(xrange, ylist,  hlines=[], vlines=[], labels=[]):
+def plot_function(xrange, ylist,  hlines=[], vlines=[], labels=[], yrange=None):
         x = np.linspace(*xrange)
         label_style = {"text-anchor":"start", "-toyplot-anchor-shift":"5px"}
         canvas = toyplot.Canvas(width=600, height=400)
         axes = canvas.axes( )
         ylast = []
+        if yrange != None:
+            [axes.y.domain.min, axes.y.domain.max] = yrange
         for y in ylist:
             yvec = np.vectorize(y)(x)
             axes.plot(x, yvec)
@@ -39,19 +41,18 @@ def plot_function(xrange, ylist,  hlines=[], vlines=[], labels=[]):
         axes.hlines(hlines )
         axes.vlines(vlines)
 
-def plot_asset_dep(portfolios, asset, xrange, date, prices):
+def plot_asset_dep(portfolios, asset, xrange, date, prices, yrange=None):
     labels = [ "payoff %d" % (x+1) for x in range(len(portfolios)) ] +         [ "MTM %d" % (x+1) for x in range(len(portfolios)) ]
     plot_function(xrange,
         [ x.asset_dep(asset, mtm=True, payoff_asset=asset, date=date) for x in portfolios] +
         [ x.asset_dep(asset, mtm=True, date=date) for x in portfolios],
-            vlines=prices[asset], labels=labels
-    )
+            vlines=prices[asset], labels=labels, yrange=yrange)
 
-def plot_delta(portfolios, asset, xrange, date, prices):
+def plot_delta(portfolios, asset, xrange, date, prices, yrange=None):
     labels = [ "payoff %d" % (x+1) for x in range(len(portfolios)) ] +         [ "MTM %d" % (x+1) for x in range(len(portfolios)) ]
     plot_function(xrange, [ p.delta_dep(asset) for p in portfolios] +
                           [ p.delta_dep(asset, mtm=True, date=date) for p in portfolios],
-                  vlines=[prices[asset]], labels=labels)
+                  vlines=[prices[asset]], labels=labels, yrange=yrange)
 
 def difference(a, b):
    return (lambda x: a(x) - b(x))
@@ -174,6 +175,7 @@ if __name__ == '__main__':
     }
 
     today="2015-07-15"
+    yrange = [200000,800000]
     portfolios = [ Portfolio(x, prices=prices, vols=vols, beta=beta, r=0.0) 
                   for x in [portfolio, portfolio + trade, portfolio + trade + exercise] ]
 
@@ -181,7 +183,7 @@ if __name__ == '__main__':
 # In[ ]:
 
 if __name__ == '__main__':
-    plot_asset_dep(portfolios, '3888.HK', [10, 20], today, prices)
+    plot_asset_dep(portfolios, '3888.HK', [10, 20], today, prices, yrange=yrange)
 
 
 # In[ ]:
