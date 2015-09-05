@@ -203,3 +203,10 @@ if __name__ == '__main__':
 if __name__ == '__main__':
     plot_function([0,90], [p.theta_portfolio(date=today) for p in portfolios])
 
+
+# In[ ]:
+
+if __name__ == '__main__':
+    plot_function([0.7,1.3], [p.market_dep() for p in portfolios] +
+                          [p.market_dep(mtm=True, date=today) for p in portfolios], vlines=[1.0], yrange=yrange)
+
