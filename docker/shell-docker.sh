@@ -8,4 +8,4 @@ IMAGE=$($SUDO docker ps | awk 'FNR==2 {print $NF}')
 #IMAGE=bitstation
 fi
 
-exec sudo nsenter --target $($SUDO docker inspect --format {{.State.Pid}} $IMAGE) --mount --uts --ipc --net --pid
+exec $SUDO nsenter --target $($SUDO docker inspect --format {{.State.Pid}} $IMAGE) --mount --uts --ipc --net --pid

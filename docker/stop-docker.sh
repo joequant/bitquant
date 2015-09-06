@@ -1,8 +1,6 @@
 #!/bin/bash
 export LANG=C LC_ALL=C
 
-$SUDO echo
-
 if [ $# -ge 1 ]; then
 IMAGE=$1
 else 

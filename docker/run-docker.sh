@@ -5,10 +5,6 @@ if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
 
-SUDO=
-
-$SUDO echo
-
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
 
