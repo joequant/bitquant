@@ -8,8 +8,8 @@ fi
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
 
-
 if [ ! -e ~/volumes/bitstation/home ] ; then
+# This will fail on docker < 1.8
 id=$($SUDO docker create $IMAGE)
 $SUDO docker cp $id:/home - | tar xf -
 $SUDO docker rm -v $id

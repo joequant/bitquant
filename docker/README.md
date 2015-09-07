@@ -1,3 +1,8 @@
+Requirements
+------------
+
+The docker script requires docker 1.8 to implement cp from containers
+
 Downloading an image
 --------------------
 
