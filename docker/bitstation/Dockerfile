@@ -16,6 +16,7 @@ RUN urpmi.removemedia -a ;\
        "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/updates ; \
    urpmi --no-recommends --auto --excludedocs urpmi ; \
    urpmi --replacepkgs --excludedocs locales glibc ; \
+   urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs ; \
    urpme --auto-orphans --auto
 RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN useradd user ;\
@@ -37,13 +38,17 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
    su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
    ~user/git/bitquant/web/scripts/remove-build-deps.sh ; \
-   urpmi --auto-select ; \
    rm -rf /usr/lib64/python*/test ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/io/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tseries/tests ; \
    rm -rf /usr/lib64/python*/site-packages/matplotlib/tests ; \
    rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests ; \
+   rm -rf /usr/lib/python*/site-packages/flask/testsuite ; \
+   rm -rf /usr/lib/python*/site-packages/jinja2/testsuite ; \
+   rm -rf /usr/lib/python*/site-packages/ggplot/tests ; \
+   rm -rf /usr/lib/python*/site-packages/sympy/*/tests ; \
+   rm -rf /usr/share/doc ; \
    rm -rf /home/user/git/shiny-server 
 RUN /usr/bin/systemctl enable bitquant
 VOLUME [ "/sys/fs/cgroup" ]
