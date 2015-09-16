@@ -77,7 +77,7 @@ $PYTHON-rpy2 \
 $PYTHON-bokeh \
 $PYTHON-xlwt \
 $PYTHON-xlrd \
-libsndfile-devel \
+sox \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
@@ -117,8 +117,5 @@ $SUDO systemctl disable hsqldb
 #gcc-c++ is needed for ethercalc
 
 # Compression libraries needed for Rpy
-# libsndfile-devel needed for scikits.audiolab used by algobroker
 
-
-
-
+# sox to play sounds for algobroker
