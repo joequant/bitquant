@@ -25,7 +25,8 @@ RUN useradd user ;\
    cd ~user ; mkdir git ; cd git ; \
    git clone https://github.com/joequant/bitquant.git ;\
    git clone https://github.com/joequant/algobroker.git ;\
-   cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation 
+   git clone https://github.com/joequant/cryptoexchange.git ;\	
+   cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /etc/systemd/system/*.wants/*;\
 rm -f /lib/systemd/system/local-fs.target.wants/*; \
@@ -38,6 +39,8 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
    su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
    ~user/git/bitquant/web/scripts/remove-build-deps.sh ; \
+   cd ~user/git/cryptoexchange ; python3 setup.py install ; \
+   cd ~user/git/algobroker ; python3 setup.py install ; \
    rm -rf /usr/lib64/python*/test ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/io/tests ; \
