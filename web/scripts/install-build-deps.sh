@@ -77,6 +77,7 @@ $PYTHON-rpy2 \
 $PYTHON-bokeh \
 $PYTHON-xlwt \
 $PYTHON-xlrd \
+$PYTHON-gevent \
 sox \
 curl-devel \
 dokuwiki-plugin-auth \
