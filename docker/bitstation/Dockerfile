@@ -1,7 +1,7 @@
 FROM mageia:cauldron
 MAINTAINER Joseph C Wang <joequant@gmail.com>
 #RUN ["urpmi", "--no-recommends", "--auto", "--auto-update"]
-
+VOLUME [ "/sys/fs/cgroup", "/var/lib/machines" ]
 RUN echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
@@ -17,7 +17,7 @@ RUN urpmi.removemedia -a ;\
    urpmi --no-recommends --auto --excludedocs urpmi ; \
    urpmi --replacepkgs --excludedocs locales glibc ; \
    urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs ; \
-   urpme --auto-orphans --auto
+   urpme --auto-orphans --auto 
 RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "git", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
@@ -54,6 +54,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/share/doc ; \
    rm -rf /home/user/git/shiny-server 
 RUN /usr/bin/systemctl enable bitquant
-VOLUME [ "/sys/fs/cgroup" ]
+
 EXPOSE 80 443
 CMD ["/usr/sbin/init"]
