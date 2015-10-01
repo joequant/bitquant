@@ -36,8 +36,8 @@ def plot_function(xrange, ylist,  hlines=[], vlines=[], labels=[], yrange=None):
             yvec = np.vectorize(y)(x)
             axes.plot(x, yvec)
             ylast.append(yvec[-1])
-        for l in zip(labels, ylast):
-            axes.text(x[-1], l[1], l[0], style=label_style)
+#        for i in range(len(ylast)):
+#            axes.text(x[-1], ylast[i], labels[i], style=label_style)
         axes.hlines(hlines )
         axes.vlines(vlines)
 
