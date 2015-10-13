@@ -18,6 +18,10 @@ Smart Contract
 
 Smart contract is available at 
 
+http://github.com/joequant/bitquant/tree/master/smart-contracts
+
+and
+
 http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html
 
 Creating trading platform
