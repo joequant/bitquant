@@ -202,24 +202,6 @@ Released under terms of the Simplified BSD License.
     };
 
     obj.additional_provisions = (function () {/*
-17.1 For the purpose of of computing accelerated payments in this
-Agreement, the revenue shall be the cumulative gross receipts received
-by the Borrower, any subsidiaries or holding companies of the
-Borrower, or any other companies controlled by or affliated with the
-Borrower.  Gross receipts shall include income derived from sales of
-the Product as well as an licensing fees received in conjunction with
-the Product or any intellectual property associated with the product.  
-17.2 During the term of the Facility, the Borrower agrees to provide the
-Lender on at least a monthly basis an accounting gross receipts
-received in conjunction with the sales or licensing of the Product and
-any associated intellectual property, and to notify the Lender within
-three (3) Business Days if the Borrower has reasons to
-believe that the cumulative gross receipts has exceeded the revenue
-targets specified in this contract.  
-17.3 Any principal due under this Agreement may be paid via HKD or via
-bitcoins based on the XBT Exchange Rate.  Any interest (including
-default interest) due under this Agreement must be paid via bitcoins
-based on the XBT Exchange Rate.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 };
 
