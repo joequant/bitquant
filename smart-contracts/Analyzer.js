@@ -12,15 +12,15 @@ require.config({
     paths: {
         "moment": "node_modules/moment/moment",
 	"Calculator": "Calculator",
-	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min",
-	"modernizr" : "http://cdn.jsdelivr.net/webshim/1.14.2/extras/modernizr-custom",
-	"jquery-ui" : "http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min",
-	"append-grid" :  "jquery.appendGrid-1.5.0.min",
-	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.14.2/polyfiller",
+	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
+	"modernizr" : "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min",
+	"jquery-ui" : "http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min",
+	"append-grid" :  "jquery.appendGrid-1.6.1.min",
+	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.15.10/polyfiller",
 	"markdown" :
     "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min",
 	"collapse" : "jquery.collapse",
-	"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min"
+	"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min"
     },
     shim: {
         "jquery-ui": {
