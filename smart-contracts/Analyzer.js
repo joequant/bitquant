@@ -215,6 +215,8 @@ Attention: {{name}}
 		});
 	    } else if (i.type === "checkbox") {
 		events[i.name] = $("#" + i.name + "_event").prop('checked');
+	    } else if (i.type === "duration") {
+		event[i.name] = $("#" + i.name + "_event").val().split(',');
 	    } else {
 		var value = $("#" + i.name + "_event").val();
 		if (value !== undefined && value !== "") {
@@ -236,7 +238,9 @@ Attention: {{name}}
 		});
 		return;
 	    } else if (i.type === "checkbox") {
-		events[i.name] = $("#" + i.name + "_scenario").prop('checked');
+		params[i.name] = $("#" + i.name + "_scenario").prop('checked');
+	    } else if (i.type === "duration") {
+		params[i.name] = $("#" + i.name + "_scenario").val().split(',');
 	    } else {
 		var value = $("#" + i.name + "_scenario").val();
 		if (value !== undefined && value !== "") {
