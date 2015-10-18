@@ -216,7 +216,7 @@ Attention: {{name}}
 	    } else if (i.type === "checkbox") {
 		events[i.name] = $("#" + i.name + "_event").prop('checked');
 	    } else if (i.type === "duration") {
-		event[i.name] = $("#" + i.name + "_event").val().split(',');
+		events[i.name] = $("#" + i.name + "_event").val().split(',');
 	    } else {
 		var value = $("#" + i.name + "_event").val();
 		if (value !== undefined && value !== "") {
