@@ -24,11 +24,6 @@ percent per year, compounded {{compound_per_year}} per year, using the
 amount is {{currency}} {{initial_loan_amount}}.  The credit limit
 consists of an additional {{currency}} {{additional_credit_limit}}.
 
-Section 17 of the contract states that Principal shall be paid in
-either HKD or XBT.  Interest and late fees must be paid via bitcoin
-based on the XBT exchange rate which is defined as the conversion rate
-for exchange of bitcoin at either ANXBTC or bitcashout.
-
 Schedule B states that the late interest rate is
 {{late_additional_interest_rate}} percent per annum more than the
 standard interest rate.
@@ -46,7 +41,7 @@ to the required balance.  S.5 also states that the borrower may skip
 the a principal payment before the end of the termination of the loan
 without penalty.
 
-Schedule C S.4 The borrower intends to pay back the loan over as {{number_payments}} equal installments with an interval of one month.  
+Schedule C S.4 The borrower intends to pay back the loan over as {{number_payments}} equal installments with an interval of {{interval}}.  
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     }
     return Notes;
