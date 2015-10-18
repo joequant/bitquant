@@ -235,6 +235,7 @@ function Schedule_A(obj) {
 
     obj.initial_date = new_date(2015, 7, 1);
     obj.initial_date_string = obj.initial_date.toDateString();
+    obj.interval = [1, "month"];
     obj.currency = 'HKD';
     obj.initial_amount = 97411.00;
     obj.number_payments = 24;
@@ -278,17 +279,27 @@ function Schedule_C(obj) {
 	{
 	    name: "initial_amount",
 	    display: "Initial loan amount",
-	    type: "number"
+	    type: "number",
+	    scenario: true
 	},
 	{ 
 	    name: "number_payments",
 	    display: "Number of payments",
-	    type: "number"
+	    type: "number",
+	    scenario: true
 	},
+	{ 
+	    name: "interval",
+	    display: "Interval",
+	    type: "duration",
+	    scenario: true
+	},
+	
 	{ 
 	    name: "currency",
 	    display: "Currency",
-	    type: "currency"
+	    type: "currency",
+	    scenario: true
 	}
     ];
 
@@ -434,7 +445,7 @@ Schedule_C.prototype.payments = function(calc) {
     calc.amortize({"on":start_payment_date,
                    "amount": calc.remaining_balance(),
                    "payments" : this.number_payments,
-                   "interval" : [1, "month"],
+                   "interval" : this.interval,
 		   "payment_func" : payment_function});
 
     if (this.revenues == undefined) {
