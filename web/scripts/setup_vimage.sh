@@ -31,13 +31,13 @@ fi
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
-urpmi.addmedia "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/release --no-md5sum
-urpmi.addmedia "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates --no-md5sum
+urpmi.addmedia "Core backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/release --no-md5sum
+urpmi.addmedia "Core updates backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/updates --no-md5sum
 urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/ --no-md5sum
 if $TESTING ; then
-urpmi.addmedia "Core updates testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
+urpmi.addmedia "Core updates testing backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
 fi
-urpmi.addmedia "Core backports backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports
+urpmi.addmedia "Core backports backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/backports
 urpmi.addmedia "Backports testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
 fi
 
