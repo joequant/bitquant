@@ -1,5 +1,5 @@
 MY_NAME=joequant
-repos_misc="shiny-server"
+repos_misc="shiny-server etherpad-lite"
 repos_quantlib="quantlib"
 repos_og="OG-PlatformNative OG-Tools OG-Platform"
 
