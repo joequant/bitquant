@@ -132,6 +132,10 @@ class Portfolio(object):
         return  lambda t: self.portfolio_nav(dt=t, date=date, mtm=True, *args, **kwargs)
     def theta_portfolio(self, *args, **kwargs):
         return  lambda t: scipy.misc.derivative(self.evolve(*args, **kwargs), t, dx=1e-6)
+    def switch_assets(self, assets):
+        return Portfolio(assets, self.prices, self.vols,  self.beta, self.r)
+    def __add__(self, p):
+        return self.switch_assets(self.portfolio + p)
 
 
 # 
@@ -176,8 +180,8 @@ if __name__ == '__main__':
 
     today="2015-07-15"
     yrange = [200000,800000]
-    portfolios = [ Portfolio(x, prices=prices, vols=vols, beta=beta, r=0.0) 
-                  for x in [portfolio, portfolio + trade, portfolio + trade + exercise] ]
+    p = Portfolio(portfolio, prices=prices, vols=vols, beta=beta, r=0.0) 
+    portfolios = [ p, p + trade, p + trade + exercise ]
 
 
 # In[ ]:
