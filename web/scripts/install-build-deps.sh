@@ -91,7 +91,8 @@ libxml2-devel \
 unzip \
 mongodb-server \
 mongodb \
-mongo-tools
+mongo-tools \
+redis
 
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
