@@ -11,9 +11,9 @@ RUN urpmi.removemedia -a ;\
        --mirrorlist \
        'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list' ; \
     urpmi.addmedia \
-       "Core backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/release ; \
+       "Core backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release ; \
     urpmi.addmedia \
-       "Core updates backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/cauldron/x86_64/media/core/updates ; \
+       "Core updates backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/updates ; \
    urpmi --no-recommends --auto --excludedocs urpmi ; \
    urpmi --replacepkgs --excludedocs locales glibc ; \
    urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs ; \
