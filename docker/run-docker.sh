@@ -56,6 +56,7 @@ $SUDO docker run \
 -v ~/volumes/bitstation/home:/home \
 -v ~/volumes/bitstation/var/lib/dokuwiki:/var/lib/dokuwiki \
 -v ~/volumes/bitstation/var/lib/mongodb:/var/lib/mongodb \
+-v ~/volumes/bitstation/var/lib/redis:/var/lib/redis \
 -v ~/volumes/bitstation/var/log:/var/log \
 -v ~/volumes/bitstation/etc:/etc \
 -p 80:80 -p 443:443 $IMAGE &
