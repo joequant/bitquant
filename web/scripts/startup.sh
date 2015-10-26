@@ -29,7 +29,7 @@ fi
 
 if [ -e /usr/bin/ethercalc ] ; then
     echo "Restarting ethercalc"
-    OPENSHIFT_DATA_DIR=~/ethercalc /usr/bin/ethercalc --port=8001 --basepath=/calc/ >> $LOG_DIR/ethercalc.log 2>&1 &
+    /usr/bin/ethercalc --port=8001 --basepath=/calc/ >> $LOG_DIR/ethercalc.log 2>&1 &
 fi
 
 if [ -e /usr/bin/configurable-http-proxy ] ; then
