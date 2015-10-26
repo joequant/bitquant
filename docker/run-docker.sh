@@ -39,7 +39,7 @@ mkdir -p var/lib
 chmod a+rwx var/lib
 fi
 
-for app in dokuwiki mongodb ; do
+for app in dokuwiki mongodb redis ; do
 if [ ! -e ~/volumes/bitstation/var/lib/$app ] ; then
 $SUDO docker run \
 -v ~/volumes/bitstation/var/lib:/mnt \
