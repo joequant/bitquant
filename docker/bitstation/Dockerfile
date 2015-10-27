@@ -33,7 +33,13 @@ rm -f /lib/systemd/system/local-fs.target.wants/*; \
 rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
 rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
 rm -f /lib/systemd/system/basic.target.wants/*;\
-rm -f /lib/systemd/system/anaconda.target.wants/* 
+rm -f /lib/systemd/system/anaconda.target.wants/* \
+rm -f /lib/systemd/system/*resolve1* \
+rm -f /lib/systemd/system/*resolved* \
+rm -f /lib/systemd/system/*udev* \
+rm -f /lib/systemd/system/*networkd* \
+rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
+
 RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    /usr/share/bitquant/install-build-deps.sh ; \
    su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
