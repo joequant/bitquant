@@ -50,7 +50,6 @@ $URPMI_OPTIONS \
 nodejs \
 gcc-c++ \
 make \
-netkit-telnet \
 $PYTHON-pexpect \
 R-base \
 r-quantlib \
@@ -77,7 +76,6 @@ $PYTHON-rpy2 \
 $PYTHON-xlwt \
 $PYTHON-xlrd \
 $PYTHON-gevent \
-sox \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
