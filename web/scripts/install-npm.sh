@@ -18,6 +18,11 @@ popd > /dev/null
 pushd git/ethercalc
 npm i
 popd
+if [ -d git/etherpad-lite ] ; then
+pushd git/etherpad-lite
+make
+popd
+fi
 popd > /dev/null
 popd > /dev/null
 
