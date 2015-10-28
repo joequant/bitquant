@@ -15,6 +15,9 @@ pushd .ipython/kernels/javascript > /dev/null
 cp $SCRIPT_DIR/javascript/* .
 sed -i -e s/%%ME%%/$ME/gi kernel.json
 popd > /dev/null
+pushd git/ethercalc
+npm i
+popd
 popd > /dev/null
 popd > /dev/null
 

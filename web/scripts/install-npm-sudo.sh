@@ -9,6 +9,10 @@ ME=$2
 
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
-for repo in ijavascript jupyter/configurable-http-proxy ethercalc ; do
+for repo in ijavascript jupyter/configurable-http-proxy ; do
 npm install -g $repo
 done
+
+pushd /home/$ME/git/ethercalc
+npm i -g ethercalc
+popd

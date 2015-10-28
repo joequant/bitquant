@@ -92,7 +92,8 @@ unzip \
 mongodb-server \
 mongodb \
 mongo-tools \
-redis
+      redis \
+      make
 
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
@@ -116,6 +117,7 @@ redis
 $SUDO systemctl disable hsqldb
 
 #gcc-c++ is needed for ethercalc
+#make is needed for ethercalc
 
 # Compression libraries needed for Rpy
 

@@ -27,10 +27,10 @@ ETHERCALC_ARGS="--basepath /calc/ --port 8001" make >> $LOG_DIR/ethercalc.log 2>
 popd > /dev/null
 fi
 
-if [ -e /usr/bin/ethercalc ] ; then
-    echo "Restarting ethercalc"
-    /usr/bin/ethercalc --port=8001 --basepath=/calc/ >> $LOG_DIR/ethercalc.log 2>&1 &
-fi
+#if [ -e /usr/bin/ethercalc ] ; then
+#    echo "Restarting ethercalc"
+#    /usr/bin/ethercalc --port=8001 --basepath=/calc/ >> $LOG_DIR/ethercalc.log 2>&1 &
+#fi
 
 if [ -e /usr/bin/configurable-http-proxy ] ; then
 echo "Restarting configurable-http-proxy"
