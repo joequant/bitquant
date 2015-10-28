@@ -10,7 +10,7 @@ ME=$2
 R_PKGS="base64enc brew curl git2r IRkernel magrittr repr roxygen2 rzmq stringi xml2 \
 BH crayon devtools IRdisplay knitr Quandl rmarkdown rversions shiny testthat \
 R6      caTools   highr      jsonlite  rstudioapi xtable \
-RCurl   digest    htmltools  markdown  stringr xts \
+digest    htmltools  markdown  stringr xts \
 Rcpp    evaluate  httpuv     memoise   uuid yaml \
 bitops  formatR   httr mime whisker zoo"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
