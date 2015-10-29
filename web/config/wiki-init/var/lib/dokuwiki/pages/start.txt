@@ -5,24 +5,23 @@
 <script src="/js/metro/metro.min.js"></script>
 <link rel="stylesheet" href="/css/metro-dokuwiki.css">
 <div class="metro">
-<a class="button primary large" target="_blank" href="doku.php?id=about">About</a>
-<br><br>
 <a class="button primary large" target="_blank"
+href="doku.php?id=about">About</a>
+<a class="button primary large" target="_blank"
+href="doku.php?id=tradediary">Trade Diary</a>
+<a class="button primary large" target="_blank"
+href="doku.php?id=scratchpad">Scratchpad</a>
+<a class="button primary large" target="_blank"
+href="doku.php?id=links">Links</a>
+<br><br>
+<!-- <a class="button primary large" target="_blank"
 href="/cgi-bin/bittrader/bitcoinaverager.py/average-form">Bitcoin
 pricer</a>
-<br><br>
+<br><br> -->
 <a class="button primary large" target="_blank" href="/jupyter">Calculation Engine</a>
+<a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
+<a class="button primary large" target="_blank" href="/pad">Pads</a>
 <a class="button primary large" target="_blank" href="/shiny">Shiny</a>
-<!--<a class="button primary large" target="_blank"
-href="/calc/_new">Spreadsheet</a>
-<br><br>-->
-<!--<script language="JavaScript">
-document.write('<a class="button primary large" target="_blank" href="https://' +
-window.location.hostname + '/community-app?baseApiUrl=/mifosng-provider/api/v1/">' );
-</script>
-Mifos X</a>-->
-<!--<a class="button primary large" target="_blank"
-href="/opengamma">OpenGamma risk engine</a>-->
 <br><br>
 <p>
 <div class="panel collapsed" data-role="panel" id="admin">
