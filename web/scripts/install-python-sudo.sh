@@ -8,14 +8,16 @@ SCRIPT_DIR=$1
 ME=$2
 
 #PYTHON_ARGS=--upgrade
-#missing numba, blaze for now
+#missing numba for now
 
-for packages in zipline vispy pyalgotrade statsmodels quandl \
-patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
-toyplot ad collections-extended TA-Lib mpmath multimethods \
-openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
-plotly holoviews ipython[notebook] bokeh jupyterhub \
-fastcluster  algobroker ib-api pandas-datareader ;
+for packages in \
+    zipline vispy pyalgotrade statsmodels quandl \
+	    patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
+	    toyplot ad collections-extended TA-Lib mpmath multimethods \
+	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
+	    plotly holoviews ipython[notebook] bokeh jupyterhub \
+	    fastcluster  algobroker ib-api pandas-datareader \
+	    ethercalc-python blaze ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
