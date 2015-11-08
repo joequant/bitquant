@@ -1,0 +1,106 @@
+~~SLIDESHOW~~
+====== PyCon Hong Kong 2015 ======
+  * How to start your own investment banq with python (see wikipedia entry on banq)
+  * Joseph Wang
+  * web: http://www.bitquant.com.hk/
+  * github: joequant/bitquant
+  * docker: joequant/bitstation
+===== This talk =====
+  * Mostly finance
+  * There are bits of deep coding
+===== About me =====
+  * Started out a physicist of supernova turned into a physicist of money
+  * Software developer / Quant at big bank
+  * Not a trader until recently
+===== About Bitquant =====
+  * Financial research laboratory and investment banq
+  * Worldwide scavanger hunt
+  * World's first smart contract - HK contract written with javascript
+  * Provide investment banking services to SME's
+  * http://www.air-button.com/ - Button for android
+  * Regulatory stuff - HKMA / Hong Kong Police 
+  * Two employees - Never more than five employees
+===== Open Source =====
+  * Everything is BSD licensed
+  * Feel free to make money off it
+  * Github - joequant/bitquant
+  * Open about strategies (HK/Mainland China reasons)
+===== Financials =====
+  * AUM - HKD 3 million - USD 400k
+  * Current return - HKD 20k/month - USD 2.5k / month
+  * Target return - HKD 50k/month - USD 6k /month
+  * World's first real smart contract - HK contract in javascript
+  * No glass ceiling
+  * Tax free !!!!
+  * Half angel investment / Half trading
+  * Cha-Chan-Teng / Taco Truck versus McDonald's
+===== What is money? =====
+  * Money is information
+  * Banking is about transferring information
+  * Data can be stored
+  * Money can be scripted
+===== Python in Investment Banking =====
+  * Python is used to run IB's
+  * Everything trading, risk management
+  * JPMorgan - Athena / BAML - Quartz
+  * Large parts of the python infrastructure was funded by banks
+  * Washington Square Technologies
+===== Why you haven't heard of this =====
+  * No reason to talk
+  * Regulators
+  * Patent trolls
+===== Software lifecycle =====
+  * Driven by bonus system
+  * Weird politics
+  * Cutting edge to legacy system
+  * Wild mix of technology
+  * Best and the worst software development
+===== Crisis in banking =====
+  * The money is gone and so is the fun
+  * Not able to make the next jump to mobile
+  * Competition from boutiques (like me)
+  * Bottleneck to major changes
+     * Not money
+     * Software is the only thing
+===== Trading strategies =====
+  * Bitcoin futures
+  * Hong Kong options - see http://www.practicaloption.com.hk/
+  * Will love to talk about what I do
+  * Trading is 90% psychology
+  * Go to a casino - see what people do -and don't do that
+===== Bitcoin futures =====
+  * Linear - Leveraged trades
+  * Video game
+  * Bitcoin is perfect for learning to trade
+  * Spreadsheet
+===== HK Options =====
+  * Non-linear
+  * Short puts and short covered calls
+  * Slot machine
+  * Picking up pennies in front of a bulldozer
+  * Risk management!!!!
+===== Analytics platform =====
+  * Risk management and position visualization
+  * Anti-casino human factors
+  * Docker image
+  * Mageia linux
+  * Dokuwiki - note taking
+  * Jupyter - Analytics - python3 / R / ijavascript
+  * Ethercalc - Spreadsheet (!!!)
+===== Trading scripting platform =====
+  * I need to sleep and have a life
+  * Algobroker - pypi
+  * Small scripts linked with pyzmq
+  * Web interface with gevent
+  * Mobile integrated!!!!
+  * Biggest headache - HK Stock Exchange API rules
+===== Current project =====
+  * Integrating ethercalc with python
+  * Want to move out of LibreOffice (not web enabled)
+  * ethercalc has an API - feed data with python
+  * Finish up trading bot
+  * Steal my software please!!!!
+===== Lessons learned =====
+  * Unlearning corporate thinking
+  * Enterprise software stinks
+  * Trying to write software was a mistake

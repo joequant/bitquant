@@ -18,3 +18,5 @@ Bittrader pulls together several different technologies into one system
   * mageia - infrastructure
   * ipython/irkernel - data exploration/reports
   * quantlib - algo trading 
+
+see slides from [[pyconhk2015]]
