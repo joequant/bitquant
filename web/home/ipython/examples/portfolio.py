@@ -1,6 +1,9 @@
 
 # coding: utf-8
 
+# Portfolio class
+# ----
+
 # In[ ]:
 
 get_ipython().magic('matplotlib inline')
@@ -138,8 +141,8 @@ class Portfolio(object):
         return self.switch_assets(self.portfolio + p)
 
 
-# 
 # Portfolio payoff routines
+# ----
 # 
 # These routines take a portfolio of call and put options and plots the payoff functions.
 
@@ -184,11 +187,18 @@ if __name__ == '__main__':
     portfolios = [ p, p + trade, p + trade + exercise ]
 
 
+# Plot stock dependency
+# ------
+
 # In[ ]:
 
 if __name__ == '__main__':
     plot_asset_dep(portfolios, '3888.HK', [10, 20], today, prices, yrange=yrange)
 
+
+# Plot delta
+# ---------
+# This plots the rate of change versus the price of the stock
 
 # In[ ]:
 
@@ -196,17 +206,31 @@ if __name__ == '__main__':
     plot_delta(portfolios, "3888.HK", [10,20], today, prices)
 
 
+# Plot portfolio evolution
+# ---------------------
+# 
+# Plot how portfolio value changes over time if stock does not move
+
 # In[ ]:
 
 if __name__ == '__main__':
     plot_function([0,90], [p.evolve(date=today) for p in portfolios])
 
 
+# Plot theta
+# -----------
+# 
+# Plot return of portfolio versus day assuming stock price does not change
+
 # In[ ]:
 
 if __name__ == '__main__':
     plot_function([0,90], [p.theta_portfolio(date=today) for p in portfolios])
 
+
+# Plot market dependency
+# ------
+# Plot how portfolio changes with market changes
 
 # In[ ]:
 
