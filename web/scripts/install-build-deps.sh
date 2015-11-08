@@ -66,6 +66,8 @@ $PYTHON-devel \
 readline-devel \
 lapack-devel \
 $PYTHON-pandas \
+$PYTHON-numpy \
+$PYTHON-numpy-devel \
 $PYTHON_COMPAT \
 $PYTHON-tables \
 $PYTHON-scipy \
