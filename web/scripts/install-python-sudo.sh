@@ -9,9 +9,10 @@ ME=$2
 
 #PYTHON_ARGS=--upgrade
 #missing numba for now
+# remove zipline since that has dependency on numpy 1.9
 
 for packages in \
-    zipline vispy pyalgotrade statsmodels quandl \
+    vispy pyalgotrade statsmodels quandl \
 	    patsy beautifulsoup4 pymongo sympy ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
