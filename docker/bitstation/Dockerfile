@@ -37,6 +37,7 @@ rm -f /lib/systemd/system/anaconda.target.wants/* \
 rm -f /lib/systemd/system/*resolve1* \
 rm -f /lib/systemd/system/*resolved* \
 rm -f /lib/systemd/system/*udev* \
+rm -f /lib/systemd/system/*journal* \
 rm -f /lib/systemd/system/*networkd* \
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 

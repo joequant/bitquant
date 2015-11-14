@@ -34,10 +34,9 @@ $IMAGE \
 cp -a -P -R /etc /mnt
 fi
 
-if [ ! -e ~/volumes/bitstation/var/lib ] ; then
 mkdir -p var/lib
+chmod a+rwx var
 chmod a+rwx var/lib
-fi
 
 for app in dokuwiki mongodb redis ; do
 if [ ! -e ~/volumes/bitstation/var/lib/$app ] ; then
