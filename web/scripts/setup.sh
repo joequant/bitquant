@@ -10,8 +10,6 @@ pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
 . configcheck.sh
 
-urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/
-
 pushd /var/www/html > /dev/null
 rm -f *
 for i in $WEB_DIR/$config/*; do 
