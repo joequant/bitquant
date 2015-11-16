@@ -12,14 +12,14 @@ import numpy as np
 from blackscholes import black_scholes, date_fraction
 import scipy
 
-def get_beta(beta, x):
-    if x in beta:
-        return beta[x]
+def get_alpha(alpha, x):
+    if x in alpha:
+        return alpha[x]
     else:
         return 1.0
 
-def scale (prices, x, beta={}):
-    return { k : prices[k]*((x-1.0)*get_beta(beta,k)+1.0)  for k in prices.keys()}
+def scale (prices, x, alpha={}):
+    return { k : prices[k]*((x-1.0)*get_alpha(alpha,k)+1.0)  for k in prices.keys()}
 
 def merge(x, y):
     '''Given two dicts, merge them into a new dict as a shallow copy.'''
@@ -73,11 +73,11 @@ def trade_spot(quantity, underlying, price) :
     ]
 
 class Portfolio(object):
-    def __init__(self, portfolio, prices={}, vols={},  beta={}, r=0.0, **kwargs):
+    def __init__(self, portfolio, prices={}, vols={},  alpha={}, r=0.0, **kwargs):
             self.portfolio = portfolio
             self.prices = prices
             self.vols = vols
-            self.beta=beta
+            self.alpha=alpha
             self.r = r
     def portfolio_nav(self, prices = None, mtm=False, payoff_asset=None, date=None, dt = 0.0):
         return sum(self.portfolio_items(prices, mtm, payoff_asset, date, dt), 0.0)
@@ -130,13 +130,13 @@ class Portfolio(object):
     def delta_dep(self, asset, *args, **kwargs):
         return  lambda x: scipy.misc.derivative(self.asset_dep(asset, *args, **kwargs), x, dx=1e-6)
     def market_dep(self, *args, **kwargs):
-        return lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.beta), *args, **kwargs)
+        return lambda x: self.portfolio_nav(prices=scale(self.prices, x, self.alpha), *args, **kwargs)
     def evolve(self, date, *args, **kwargs):
         return  lambda t: self.portfolio_nav(dt=t, date=date, mtm=True, *args, **kwargs)
     def theta_portfolio(self, *args, **kwargs):
         return  lambda t: scipy.misc.derivative(self.evolve(*args, **kwargs), t, dx=1e-6)
     def switch_assets(self, assets):
-        return Portfolio(assets, self.prices, self.vols,  self.beta, self.r)
+        return Portfolio(assets, self.prices, self.vols,  self.alpha, self.r)
     def __add__(self, p):
         return self.switch_assets(self.portfolio + p)
 
@@ -177,13 +177,13 @@ if __name__ == '__main__':
         "3888.HK":0.8
     }
     
-    beta = {
+    alpha = {
         "3888.HK":3
     }
 
     today="2015-07-15"
     yrange = [200000,800000]
-    p = Portfolio(portfolio, prices=prices, vols=vols, beta=beta, r=0.0) 
+    p = Portfolio(portfolio, prices=prices, vols=vols, alpha=alpha, r=0.0) 
     portfolios = [ p, p + trade, p + trade + exercise ]
 
 
@@ -237,6 +237,11 @@ if __name__ == '__main__':
 if __name__ == '__main__':
     plot_function([0.7,1.3], [p.market_dep() for p in portfolios] +
                           [p.market_dep(mtm=True, date=today) for p in portfolios], vlines=[1.0], yrange=yrange)
+
+
+# In[ ]:
+
+
 
 
 # In[ ]:
