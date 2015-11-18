@@ -14,6 +14,7 @@ fi
 
 TESTING=false
 USER=user
+URPMI_ROOT=http://distro.ibiblio.org/mageia/distrib
 # Change everything to local user so that suexec will work
 # ./setup.sh will take the owner of the scripts to set up the
 # suexec environment, so this should be set correctly for 
@@ -31,14 +32,14 @@ fi
 urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
-urpmi.addmedia "Core backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/release --no-md5sum
-urpmi.addmedia "Core updates backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/updates --no-md5sum
-urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/ --no-md5sum
+urpmi.addmedia "Core backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/release --no-md5sum
+urpmi.addmedia "Core updates backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/updates --no-md5sum
+#urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/ --no-md5sum
 if $TESTING ; then
-urpmi.addmedia "Core updates testing backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/updates_testing
+urpmi.addmedia "Core updates testing backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/updates_testing
 fi
-urpmi.addmedia "Core backports backup" http://distro.ibiblio.org/mageia/distrib/$VERSION/`uname -m`/media/core/backports
-urpmi.addmedia "Backports testing backup" http://ftp.sunet.se/pub/Linux/distributions/mageia/distrib/$VERSION/`uname -m`/media/core/backports_testing
+urpmi.addmedia "Core backports backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/backports
+urpmi.addmedia "Backports testing backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/backports_testing
 fi
 
 urpmi.update -a
