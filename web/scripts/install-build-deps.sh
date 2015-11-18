@@ -77,7 +77,9 @@ $PYTHON-scikits-learn \
 $PYTHON-rpy2 \
 $PYTHON-xlwt \
 $PYTHON-xlrd \
-$PYTHON-gevent \
+      $PYTHON-gevent \
+      $PYTHON-sqlalchemy \
+      $PYTHON-sympy \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
