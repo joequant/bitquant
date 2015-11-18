@@ -18,7 +18,7 @@ for packages in \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
 	    plotly holoviews ipython[notebook] bokeh jupyterhub \
 	    fastcluster  algobroker ib-api pandas-datareader \
-	    ethercalc-python blaze statsmodels ;
+	    ethercalc-python blaze statsmodels zipline ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
