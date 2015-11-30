@@ -14,6 +14,8 @@ echo "Installing npm packages"
 $GIT_DIR/web/scripts/install-python.sh
 echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
+echo "Install ethercalc sheets"
+$GIT_DIR/web/install-ethercalc.py
 
 #set wiki conf
 echo "Set up wiki"
