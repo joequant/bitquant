@@ -80,6 +80,7 @@ $PYTHON-xlrd \
       $PYTHON-gevent \
       $PYTHON-sqlalchemy \
       $PYTHON-sympy \
+      $PYTHON-pillow \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
@@ -124,3 +125,4 @@ $SUDO systemctl disable hsqldb
 # Compression libraries needed for Rpy
 
 # sox to play sounds for algobroker
+# pillow is for toyplot
