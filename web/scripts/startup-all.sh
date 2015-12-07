@@ -6,10 +6,10 @@ LOG_DIR=$WEB_DIR/log
 cd $SCRIPT_DIR
 . rootcheck.sh
 
-su redis -c "/usr/sbin/redis-server 127.0.0.1:6379"
-su mongod -c "/usr/bin/mongod --quiet -f /etc/mongod.conf"
-/usr/sbin/httpd -DFOREGROUND
+su redis -s "/usr/sbin/redis-server" &
+su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
+/usr/sbin/httpd -DFOREGROUND &
 
-su user -c startup.sh
+su user -c ./startup.sh
 read -p "pause"
 
