@@ -50,7 +50,7 @@ done
 
 popd
 
-$SUDO docker run \
+$SUDO docker run -i \
 --privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
 -v ~/volumes/bitstation/home:/home \
 -v ~/volumes/bitstation/var/lib/dokuwiki:/var/lib/dokuwiki \
@@ -58,6 +58,6 @@ $SUDO docker run \
 -v ~/volumes/bitstation/var/lib/redis:/var/lib/redis \
 -v ~/volumes/bitstation/var/log:/var/log \
 -v ~/volumes/bitstation/etc:/etc \
--p 80:80 -p 443:443 $IMAGE &
+-p 80:80 -p 443:443 $IMAGE >& docker.log &
 echo "Docker started"
 

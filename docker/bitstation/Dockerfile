@@ -60,7 +60,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    rm -rf /usr/lib/python*/site-packages/sympy/*/tests ; \
    rm -rf /usr/share/doc ; \
    rm -rf /home/user/git/shiny-server 
-RUN /usr/bin/systemctl enable bitquant
 
 EXPOSE 80 443
-CMD ["/usr/sbin/init"]
+CMD ["/home/user/git/bitquant/web/scripts/startup-all.sh"]
