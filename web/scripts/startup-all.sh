@@ -11,5 +11,6 @@ su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
 /usr/sbin/httpd -DFOREGROUND &
 
 su user -c ./startup.sh
-read -p "pause"
+while :; do sleep 2; done
+
 
