@@ -21,7 +21,7 @@ pricer</a>
 <a class="button primary large" target="_blank" href="/jupyter">Calculation Engine</a>
 <a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/pad">Pads</a>
-<a class="button primary large" target="_blank" href="/shiny">Shiny</a>
+<!--<a class="button primary large" target="_blank" href="/shiny">Shiny</a>-->
 <br><br>
 <p>
 <div class="panel collapsed" data-role="panel" id="admin">
