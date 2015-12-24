@@ -35,9 +35,9 @@ mkdir -p ext/node/bin
 pushd ext/node/bin > /dev/null
 ln -s /usr/bin/node shiny-server
 popd > /dev/null
+npm install
 cmake -DCMAKE_INSTALL_PREFIX="/usr/lib" -DPYTHON="/usr/bin/python2" .
 make
-npm --python="$PYTHON" rebuild
 npm --python="$PYTHON" install node-gyp
 node-gyp --python="$PYTHON" rebuild
 git checkout .
