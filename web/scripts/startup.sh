@@ -35,7 +35,7 @@ fi
 
 if [ -e /usr/bin/configurable-http-proxy ] ; then
 echo "Restarting configurable-http-proxy"
-configurable-http-proxy --port 9010 --api-port 9011 >> $LOG_DIR/configurable-http-proxy 2 >&1 &
+configurable-http-proxy --port 9010 --api-port 9011 --no-include-prefix >> $LOG_DIR/configurable-http-proxy 2 >&1 &
 fi
 
 if [ -d $GIT_DIR/etherpad-lite ] ; then
