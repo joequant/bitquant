@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[1]:
+# In[ ]:
 
 import tornado.ioloop
 has_ioloop = tornado.ioloop.IOLoop.initialized()
@@ -45,14 +45,14 @@ def register_start_app(prefix, app_list):
 
 def register_tornado_handler(prefix, handler):
     return register_start_app(prefix, [
-        (prefix + "($|/.*$)", handler)
+        (r"($|/.*$)", handler)
         ])
 
 def register_wsgi(prefix, handler):
     import tornado.wsgi
     container = tornado.wsgi.WSGIContainer(handler)
     return register_start_app(prefix, [
-        (prefix + "($|/.*$)",
+        (r"($|/.*$)",
          tornado.web.FallbackHandler, dict(fallback=container))
         ])
 
