@@ -18,7 +18,8 @@ for packages in \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
 	    plotly holoviews ipython[notebook] bokeh jupyterhub \
 	    fastcluster  algobroker ib-api pandas-datareader \
-	    ethercalc-python blaze statsmodels redis redis-dump-load ;
+	    ethercalc-python blaze statsmodels redis redis-dump-load \
+            git+https://github.com/adamhajari/spyre.git ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
