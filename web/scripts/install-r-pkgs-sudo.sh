@@ -33,7 +33,8 @@ for i in $R_PKGS ; do
 done
 popd > /dev/null
 
-echo "Installing shiny server"
+if [ -d /home/$ME/git/shiny-server ]
+then echo "Installing shiny server"
 pushd /home/$ME/git/shiny-server 
 sed -i -e s!bin/node!! -e s!bin/npm!! CMakeLists.txt
 sed -i -e s!add_subdirectory\(external/node\)!! CMakeLists.txt
@@ -50,4 +51,5 @@ mkdir -p /var/lib/shiny-server
 chown shiny /var/log/shiny-server
 mkdir -p /etc/shiny-server
 cp -r /usr/$LIBDIR/R/library/shiny/examples/*  /var/www/shiny-server
+fi
 
