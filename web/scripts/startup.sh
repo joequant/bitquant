@@ -23,7 +23,8 @@ fi
 if [ -d $GIT_DIR/ethercalc ] ; then
 pushd $GIT_DIR/ethercalc > /dev/null
 echo "Restarting ethercalc"
-ETHERCALC_ARGS="--basepath /calc/ --port 8001" make >> $LOG_DIR/ethercalc.log 2>&1 &
+make all >> $LOG_DIR/ethercalc.log 2>&1
+node app.js --basepath /calc/ --port 8001 >> $LOG_DIR/ethercalc.log 2>&1 &
 popd > /dev/null
 fi
 
