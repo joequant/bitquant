@@ -19,7 +19,7 @@ for packages in \
 	    plotly holoviews ipython[notebook] bokeh jupyterhub \
 	    fastcluster  algobroker ib-api pandas-datareader \
 	    ethercalc-python blaze statsmodels redis redis-dump-load \
-            git+https://github.com/adamhajari/spyre.git ;
+            git+https://github.com/joequant/spyre.git ;
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
