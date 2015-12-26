@@ -7,18 +7,14 @@
 # In[ ]:
 
 #This creates a web service located off 
-#   
-#
-# To shutdown the server you will need to
-# restart the kernel
 
 import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self, *param):
             self.write("Hello, world param=%s" % param[0])
-import bitquantutils
-bitquantutils.register_tornado_handler("/python-web",  MainHandler)
+import configproxy
+configproxy.register_tornado_handler("/python-web",  MainHandler)
 
 
 # In[ ]:
@@ -32,8 +28,8 @@ def simple_app(environ, start_response):
     start_response(status, response_headers)
     return [b"Hello world! with WSGI Handler\n"]
 
-import bitquantutils
-bitquantutils.register_wsgi("/python-wsgi", simple_app)
+import configproxy
+configproxy.register_wsgi("/python-wsgi", simple_app)
 
 
 # In[ ]:
@@ -64,8 +60,8 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self, *args):
         self.write(html_response(None))
 
-import bitquantutils
-bitquantutils.register_tornado_handler("/python-web-html", MainHandler)
+import configproxy
+configproxy.register_tornado_handler("/python-web-html", MainHandler)
 
 
 # In[ ]:
@@ -97,8 +93,8 @@ class MainHandler(tornado.web.RequestHandler):
         self.write(image_response(None))
         self.set_header("Content-type",  "image/svg")
 
-import bitquantutils
-bitquantutils.register_tornado_handler("/python-web-image", MainHandler)
+import configproxy
+configproxy.register_tornado_handler("/python-web-image", MainHandler)
 
 
 # In[ ]:
@@ -130,13 +126,18 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self, *args):
         self.write(image_response(None))
 
-import bitquantutils
-bitquantutils.register_tornado_handler("/image-html", MainHandler)
+import configproxy
+configproxy.register_tornado_handler("/image-html", MainHandler)
 
 
 # In[ ]:
 
-bitquantutils.unregister_all()
+configproxy.unregister_all()
+
+
+# In[ ]:
+
+configproxy.server_list
 
 
 # In[ ]:
