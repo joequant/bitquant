@@ -16,10 +16,14 @@ for packages in \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
-	    plotly holoviews ipython[notebook] bokeh jupyterhub \
-	    fastcluster  algobroker ib-api pandas-datareader \
+	    plotly holoviews jupyter bokeh jupyterhub \
+	    fastcluster algobroker ib-api pandas-datareader \
 	    ethercalc-python blaze statsmodels redis redis-dump-load \
-            git+https://github.com/joequant/spyre.git ;
+            git+https://github.com/joequant/spyre.git \
+	    git+https://github.com/joequant/algobroker.git \
+	    git+https://github.com/joequant/matta.git \
+            configproxy prettyplotlib mpld3 networkx \
+            iminuit lmfit redis_kernel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
