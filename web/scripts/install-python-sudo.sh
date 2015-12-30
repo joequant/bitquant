@@ -16,9 +16,11 @@ for packages in \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
-	    plotly holoviews jupyter bokeh jupyterhub \
+	    plotly holoviews jupyter bokeh \
+	    git+https://github.com/jupyter/jupyterhub.git \
 	    fastcluster algobroker ib-api pandas-datareader \
-	    ethercalc-python blaze statsmodels redis redis-dump-load \
+	    blaze statsmodels redis redis-dump-load \
+	    git+https://github.com/joequant/ethercalc-python.git \
             git+https://github.com/joequant/spyre.git \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/matta.git \
