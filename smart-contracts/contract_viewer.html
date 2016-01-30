@@ -7,7 +7,7 @@
  <meta charset="UTF-8"> 
 <head>
 <link href="https://code.jquery.com/ui/1.11.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
-<link href="jquery.appendGrid-1.5.0.min.css" rel="stylesheet"/>
+<link href="jquery.appendGrid-1.6.1.min.css" rel="stylesheet"/>
 <style>
   .number { text-align: right;
   width: 1in}
@@ -25,11 +25,10 @@
 </script>
 </head>
 <body>
-<h1>Contract Analyzer</h1>
+<h1>Contract Viewer</h1>
 Copyright (c) 2015 - Bitquant Research Laboratories (Asia) Ltd.<br>
-Redistributable under terms of the Simplified BSD License
+    Redistributable under terms of the Simplified BSD License
 <p>
-<b>Please note that the contract analyzer does *NOT* form part of the contract.</b>
 <br>
   <div id="contract_params"></div>
   <p>
@@ -59,14 +58,20 @@ if (contract === undefined) {
     contract = "models/loan";
 }
 
-var analyze;
-require (["./Analyzer"], function(load_analyzer) {
-    load_analyzer("./" + contract + "/TermSheet",
-		  "./" + contract + "/Notes",
-		  function(analyze_function) {
-		      $("#analyze").click(analyze_function);
-		  }
-		 );
+require (["./Viewer"], function(load_viewer) {
+    var analyze_button = document.getElementById('analyze');
+    analyze_button.style.display = "block";
+    load_viewer("./" + contract + "/TermSheet",
+		"./" + contract + "/Notes",
+		function(analyze_function) {
+		    $("#analyze").click(analyze_function);
+		},
+		function(err) {
+		    analyze_button.style.display = "none";
+		    document.getElementById('text').innerHTML =
+			'<h3>Error loading ' + contract + '</h3>';
+		}
+	       );
 });
 </script>
 </body>

@@ -7,7 +7,7 @@ if (typeof define !== 'function') {
 }
 
 define([], function() {
-function load_analyzer(term_sheet, notes, callback) {
+    function load_viewer(term_sheet, notes, callback, errback) {
 require.config({
     paths: {
         "moment": "node_modules/moment/moment",
@@ -374,7 +374,8 @@ Attention: {{name}}
 	});
 	webshims.polyfill('forms forms-ext es5');
     });
-});
+    },
+	errback);
 };
-return load_analyzer;
+return load_viewer;
 });

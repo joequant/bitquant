@@ -4,29 +4,29 @@ https://github.com/joequant/bitquant/tree/master/smart-contracts
 
 To see them in action:
 
-http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html
+http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html
 
 This view can be used to see the contracts under models.
 
-http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/(contract-name)
+http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/(contract-name)
 
 
 === Model Contracts ===
 
-[loan](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/loan) - small business loans
+[loan](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/loan) - small business loans
 
-[credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/credit-line) - Credit line contract to SME's loaned against HK
+[credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/credit-line) - Credit line contract to SME's loaned against HK
 government grant
 
-[profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/profit-share) - a smart trust profit sharing agreement
+[profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/profit-share) - a smart trust profit sharing agreement
 
-[simple-amortized](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/simple-amortized) - a simple amortized loan
+[simple-amortized](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/simple-amortized) - a simple amortized loan
 
-[subclass](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/subclass) - example of the use of subclassing
+[subclass](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/subclass) - example of the use of subclassing
 
 === Under construction ===
 
-[equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_analyzer.html?contract=models/equity-finance) - Working on convertible note example (still working)
+[equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/equity-finance) - Working on convertible note example (still working)
 
 All contracts are licensed under the [Simplified BSD
 License](http://opensource.org/licenses/BSD-2-Clause). They may be
