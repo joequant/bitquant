@@ -202,6 +202,7 @@ Released under terms of the Simplified BSD License.
     };
 
     obj.additional_provisions = (function () {/*
+The lender agrees to abide by the terms of the Code of Money Lending Practice adopted by the Licensed Money Lending Association of Hong Kong, irregardless of whether the lender is a member of that organization.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 };
 

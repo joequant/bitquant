@@ -12,12 +12,12 @@ define (function() {
 	this.header = (function () {/*
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 	this.terms = (function () {/*
-Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by the money lending ordinance, there will be no penalty interest for late payments.
+Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by the money lending ordinance, there will be no penalty interest for late payments and there will be no compounding of interest.
 
 Schedule B S.1 states that the lender will provide the inital loan
 amount on the date of the contract.
 
-Schedule B S.2 states that early payments are allowed.
+Schedule B S.2 states that early payments are allowed as required by the Money Lending Ordinance.
 
 Schedule B S.3 states that any payments shall be appropriated to principal and interest in the proportion that the total amount of principal bears to the total amount of the interest as required by the money lending ordinance.
 
