@@ -51,24 +51,31 @@ Calculator.prototype.run_events = function(term_sheet) {
     while (this.current_event < this.event_list.length) {
 	var k = this.event_list[this.current_event];
         if (prev_date !== undefined &&
-	   term_sheet.annual_interest_rate !== undefined &&
-	   term_sheet.compound_per_year !== undefined &&
-	   term_sheet.day_count_convention !== undefined) {
-	    var late_interest = this.compounding_factor(prev_date,
+	    term_sheet.annual_interest_rate !== undefined &&
+	    term_sheet.compound_per_year !== undefined &&
+	    term_sheet.day_count_convention !== undefined) {
+	    var late_amount, amount;
+	    if (term_sheet.late_compound_per_year == 0) {
+		late_amount = this.late_principal;
+		amount = this.principal;
+	    } else {
+		late_amount = this.balance;
+		amount = this.balance;
+	    }
+	    var late_interest = this.capitalization_factor(prev_date,
 							k,
 							term_sheet.late_annual_interest_rate,
 							term_sheet.late_compound_per_year,
 							term_sheet.late_day_count_convention) *
-		this.late_balance;
+		late_amount;
            
             var interest = 
-		this.compounding_factor(prev_date,
+		this.capitalization_factor(prev_date,
 					k,
 					term_sheet.annual_interest_rate,
 					term_sheet.compound_per_year,
 					term_sheet.day_count_convention) * 
-		(this.balance - this.late_balance) +
-		late_interest;
+		(amount - late_amount) + late_interest;
             this.balance = this.balance + interest;
 	    this.late_balance = this.late_balance + late_interest;
 	}
@@ -346,14 +353,19 @@ Calculator.prototype.amortize = function(params) {
 	var on = params.on;
 	var forward_date = 
 	    o.add_duration(on, params.interval);
-	var compounding_factor = 
-	    o.compounding_factor(on,
+	var capitalization_factor = 
+	    o.capitalization_factor(on,
 				 forward_date,
 				 o.term_sheet.annual_interest_rate,
 				 o.term_sheet.compound_per_year,
-				 o.term_sheet.day_count_convention);
-	var payment = compounding_factor / 
-	    (1.0 - Math.pow(1 + compounding_factor, -npayments)) * p
+				    o.term_sheet.day_count_convention);
+	var payment;
+	if (o.term_sheet.compound_per_year === 0) {
+	    payment = (1.0 +capitalization_factor) / npayments * p;
+	} else {
+	    payment = capitalization_factor / 
+		(1.0 - Math.pow(1 + capitalization_factor, -npayments)) * p
+	}
 	var d = forward_date;
 	for (var i=0; i < npayments; i++) {
 	    var payment_info = {};
@@ -419,16 +431,20 @@ Calculator.prototype.set_items = function(term_sheet, event_spec, events) {
 }
 
 
-Calculator.prototype.compounding_factor = function(from_date,
+Calculator.prototype.capitalization_factor = function(from_date,
 						       to_date,
 						       annual_interest_rate,
 						       compound_per_year,
 						       day_count_convention) {
     var yearfrac = this.year_frac(from_date, to_date,
 				  day_count_convention);
-    var periods = yearfrac * compound_per_year;
-    return Math.pow((1.0 + annual_interest_rate / 100.0 / 
-		     compound_per_year), periods) - 1.0;
+    if (compound_per_year != 0) {
+	var periods = yearfrac * compound_per_year;
+	return Math.pow((1.0 + annual_interest_rate / 100.0 / 
+			 compound_per_year), periods) - 1.0;
+    } else {
+	return annual_interest_rate / 100.0 * yearfrac;
+    }
 }
 
 Calculator.prototype.add_duration = function (date,
@@ -442,11 +458,11 @@ Calculator.prototype.interest = function(from_date, to_date,
 						  amount) {
     var obj = this;
     return function() {
-	return obj.compounding_factor(from_date, 
-				      to_date,
-				     obj.term_sheet.annual_interest_rate,
-				     obj.term_sheet.compound_per_year,
-				     obj.term_sheet.day_count_convention) 
+	return obj.capitalization_factor(from_date, 
+					 to_date,
+					 obj.term_sheet.annual_interest_rate,
+					 obj.term_sheet.compound_per_year,
+					 obj.term_sheet.day_count_convention) 
 	    * amount();
     }
 }
@@ -464,6 +480,8 @@ Calculator.prototype.year_frac = function(from_date,
 	return YEARFRAC.YEARFRAC(from_date, to_date, 3);
     } else if (day_count_convention === "30/360EUR") {
 	return YEARFRAC.YEARFRAC(from_date, to_date, 4);
+    } else if (day_count_convention === "HKMLO") {
+	return YEARFRAC.YEARFRAC(from_date, to_date, 0);
     } else {
 	throw Error("unknown day count convention");
     }
