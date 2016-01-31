@@ -212,9 +212,8 @@ Released under terms of the Simplified BSD License.
 function Schedule_A(obj) {
     // S.1
     obj.annual_interest_rate = 10.0;
-    obj.compound_per_year = 12;
-    obj.day_count_convention = "30/360US";
-
+    obj.day_count_convention = "HKMLO";
+    obj.compound_per_year = 0; // simple interest as required by law
     obj.initial_date = new_date(2015, 7, 1);
     obj.initial_date_string = obj.initial_date.toDateString();
     obj.interval = [1, "month"];
@@ -227,9 +226,9 @@ function Schedule_A(obj) {
 
 function Schedule_B(obj) {
     obj.late_additional_interest_rate = 5.0;
+    obj.late_compound_per_year = 0; // simple interest as required by law
     obj.late_annual_interest_rate = 10.0 + obj.late_additional_interest_rate;
-    obj.late_compound_per_year = 365;
-    obj.late_day_count_convention = "30/360US";
+    obj.late_day_count_convention = "HKMLO";
 }
 
 // SCHEDULE C
@@ -240,17 +239,6 @@ function Schedule_C(obj) {
 	    display: "Annual percentage rate (%)",
 	    type: "number",
 	    scenario: true
-	},
-	{
-	    name: "compound_per_year",
-	    display: "Compounding periods per year",
-	    type: "number",
-	    scenario: true
-	},
-	{
-	    name: "day_count_convention",
-	    display: "Date Count Convention",
-	    type: "text"
 	},
 	{
 	    name: "initial_date",
@@ -281,7 +269,7 @@ function Schedule_C(obj) {
 	    name: "currency",
 	    display: "Currency",
 	    type: "currency",
-	    scenario: true
+	    scenario: false
 	}
     ];
 
