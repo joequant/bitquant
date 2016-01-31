@@ -12,6 +12,8 @@ define (function() {
 	this.header = (function () {/*
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 	this.terms = (function () {/*
+The lender has agreed to be bound by the Code of Money Lending Practice issued by the Licensed Money Lending Association of Hong Kong, regardless of whether or not the lender is a member of the LMLA.  A copy of the code may be found at http://www.lmla.com.hk/practice.pdf .
+
 Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by the money lending ordinance, there will be no penalty interest for late payments and there will be no compounding of interest.
 
 Schedule B S.1 states that the lender will provide the inital loan
