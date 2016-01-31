@@ -69,7 +69,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 7. Interest
 --------
-7.1 Interest accrue and be payable in accordance with Schedule C of this Agreement.  
+7.1 Interest accrue and be payable in accordance with Schedule B of this Agreement.  
 7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule B of this Agreement.  
 
 8. Costs
@@ -79,7 +79,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 9. Repayment
 ---------
-9.1 The Borrower shall repay the Loan as specified in the attached Schedule C.  
+9.1 The Borrower shall repay the Loan as specified in the attached Schedule B.  
 9.2 All payments made by the Borrower under this Agreement shall be made in full, without set-off, counterclaim or condition, and free and clear of, and without any deduction or withholding.
 
 10. Representations, Warranties and Undertakings
@@ -214,25 +214,23 @@ function Schedule_A(obj) {
     obj.annual_interest_rate = 10.0;
     obj.day_count_convention = "HKMLO";
     obj.compound_per_year = 0; // simple interest as required by law
+
+    // No penalty interest rate as required by MLO
+    obj.late_compound_per_year = 0;
+    obj.late_annual_interest_rate = obj.annual_interest_rate;
+    obj.late_day_count_convention = "HKMLO";
+
     obj.initial_date = new_date(2015, 7, 1);
     obj.initial_date_string = obj.initial_date.toDateString();
     obj.interval = [1, "month"];
     obj.currency = 'HKD';
     obj.initial_amount = 97411.00;
     obj.number_payments = 24;
-}
-
-// SCHEDULE B
-
-function Schedule_B(obj) {
-    obj.late_additional_interest_rate = 5.0;
-    obj.late_compound_per_year = 0; // simple interest as required by law
-    obj.late_annual_interest_rate = 10.0 + obj.late_additional_interest_rate;
-    obj.late_day_count_convention = "HKMLO";
+    obj.payment_amount = 10000.00;
 }
 
 // SCHEDULE C
-function Schedule_C(obj) {
+function Schedule_B(obj) {
     obj.contract_parameters = [
 	{
 	    name: "annual_interest_rate",
@@ -252,9 +250,15 @@ function Schedule_C(obj) {
 	    type: "number",
 	    scenario: true
 	},
+	{
+	    name: "payment_amount",
+	    display: "Monthly payment amount",
+	    type: "number",
+	    scenario: true
+	},
 	{ 
 	    name: "number_payments",
-	    display: "Number of payments",
+	    display: "Maximum number of payments",
 	    type: "number",
 	    scenario: true
 	},
@@ -262,7 +266,7 @@ function Schedule_C(obj) {
 	    name: "interval",
 	    display: "Interval",
 	    type: "duration",
-	    scenario: true
+	    scenario: false
 	},
 	
 	{ 
@@ -310,19 +314,13 @@ function Schedule_C(obj) {
 }
 
 
-Schedule_C.prototype.process_payment = function(i) {
+Schedule_B.prototype.process_payment = function(i) {
     if (i.event == "Payment") {
 	var principal_payment = 0.0;
 	var interest_payment = 0.0;
-	if (i.payment > i.interest_accrued) {
-	    interest_payment = i.interest_accrued;
-	    principal_payment = i.payment - i.interest_accrued;
-	} else {
-	    interest_payment = i.payment;
-	    principal_payment = 0.0;
-	}
-	i.principal_payment = principal_payment;
-	i.interest_payment = interest_payment;
+	var total = i.interest_accrued + i.principal;
+	i.interest_payment = i.payment * (i.interest_accrued / total)
+	i.principal_payment = i.payment * (i.principal / total)
     } else {
 	i.principal_payment = 0.0;
 	i.interest_payment = 0.0;
@@ -330,7 +328,7 @@ Schedule_C.prototype.process_payment = function(i) {
     return i;
 }
 
-Schedule_C.prototype.payments = function(calc) {
+Schedule_B.prototype.payments = function(calc) {
     // S.1
     calc.fund({"on" : this.initial_date,
                "amount" : this.initial_amount,
@@ -340,7 +338,6 @@ Schedule_C.prototype.payments = function(calc) {
     this.early_payment.forEach(function(i) {
         calc.payment(i);
     });
-
 
     // S.3
     var payment_function = function(calc, params) {
@@ -354,20 +351,11 @@ Schedule_C.prototype.payments = function(calc) {
             payment = calc.balance;
 	}
 	payment = payment + late_balance;
-	var required_payment = calc.extract_payment(params.required);
-	if (required_payment === undefined) {
-	    required_payment = payment;
-	}
+
 	var interest_payment = 0.0;
 	var principal_payment = 0.0;
-
-	if (payment > interest_accrued) {
-	    interest_payment = interest_accrued;
-	    principal_payment = payment - interest_accrued;
-	} else {
-	    interest_payment = payment;
-	    principal_payment = 0.0;
-	}
+	interest_payment = i.payment * (i.interest_accrued / i.balance)
+	principal_payment = i.payment * (i.principal / i.balance)
 
 	if (contains(calc.term_sheet.late_payment, params.on)) {
 	    var late_payment = 
@@ -382,9 +370,7 @@ Schedule_C.prototype.payments = function(calc) {
 	
 	calc.balance = calc.balance - payment;
 
-	if (payment >=  interest_accrued) {
-	    calc.principal = calc.principal - payment + interest_accrued;
-	}
+	calc.principal = calc.principal - principal_payment;
 
 	if (payment < late_balance) {
 	    calc.late_balance = calc.late_balance - payment;
@@ -392,10 +378,6 @@ Schedule_C.prototype.payments = function(calc) {
 	    calc.late_balance = 0.0;
 	}
 
-	if (payment < required_payment) {
-	    calc.late_balance = calc.late_balance + required_payment - 
-		payment;
-	}
 	if (payment > 0 || calc.late_balance > 0) {
             return {"event":"Payment",
                     "on":params.on,
@@ -410,18 +392,24 @@ Schedule_C.prototype.payments = function(calc) {
     }
 
     // S.4
-    var start_payment_date = this.initial_date;
-
-    calc.amortize({"on":start_payment_date,
-                   "amount": calc.remaining_balance(),
-                   "payments" : this.number_payments,
-                   "interval" : this.interval,
-		   "payment_func" : payment_function});
-
-    if (this.revenues == undefined) {
-	return;
+    var i;
+    for (i=1; i<=this.number_payments; i++) {
+	var payment_date = 
+	    following_1st_of_month(calc.add_duration(this.initial_date,
+						     [i, "months"]));
+	
+	calc.payment({"on":payment_date,
+                      "amount": this.payment_amount});
     }
 
+    // S.5
+    var final_payment_date =
+	    following_1st_of_month(calc.add_duration(this.initial_date,
+						     [i, "months"]));
+
+    calc.payment({"on":final_payment_date,
+                  "amount":calc.remaining_balance(),
+                  "note":"Required final payment"});
 }
 
 function contains(a, obj) {
@@ -453,11 +441,10 @@ function TermSheet() {
     Contract_Text(this);
     Schedule_A(this);
     Schedule_B(this);
-    Schedule_C(this);
 }
 
 ["process_payment", "payments", "getTargetHitDates"].map(function(i) {
-    TermSheet.prototype[i] = Schedule_C.prototype[i];
+    TermSheet.prototype[i] = Schedule_B.prototype[i];
 });
 
 return TermSheet;

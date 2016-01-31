@@ -54,8 +54,34 @@ Calculator.prototype.run_events = function(term_sheet) {
 	    term_sheet.annual_interest_rate !== undefined &&
 	    term_sheet.compound_per_year !== undefined &&
 	    term_sheet.day_count_convention !== undefined) {
-	    var late_amount, amount;
-	    if (term_sheet.late_compound_per_year == 0) {
+	    var late_amount, late_interest, amount;
+	    var late_annual_interest_rate;
+	    var late_compound_per_year;
+	    var late_day_count_convention;
+	    if (term_sheet.late_annual_interest_rate === undefined) {
+		late_annual_interest_rate =
+		    term_sheet.late_annual_interest_rate;
+	    } else {
+		late_annual_interest_rate =
+		    term_sheet.annual_interest_rate;
+	    }
+	    if (term_sheet.late_compound_per_year === undefined) {
+		late_compound_per_year =
+		    term_sheet.late_compound_per_year;
+	    } else {
+		late_compound_per_year =
+		    term_sheet.compound_per_year;
+	    }
+	    if (term_sheet.late_day_count_convention === undefined) {
+		late_day_count_convention =
+		    term_sheet.late_day_count_convention;
+	    } else {
+		late_day_count_convention =
+		    term_sheet.day_count_convention;
+	    }
+
+	    
+	    if (late_compound_per_year == 0) {
 		late_amount = this.late_principal;
 		amount = this.principal;
 	    } else {
@@ -64,9 +90,9 @@ Calculator.prototype.run_events = function(term_sheet) {
 	    }
 	    var late_interest = this.capitalization_factor(prev_date,
 							k,
-							term_sheet.late_annual_interest_rate,
-							term_sheet.late_compound_per_year,
-							term_sheet.late_day_count_convention) *
+							late_annual_interest_rate,
+							late_compound_per_year,
+							late_day_count_convention) *
 		late_amount;
            
             var interest = 
