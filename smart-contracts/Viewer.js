@@ -64,6 +64,9 @@ require ([
 	    var templates = {
 		"corporation" : (function() {/*
 {{toUpperCase name}} incorporated and registered in {{domicile}} with company number {{company_number}} whose registered office is at {{registered_office}}
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1],
+		"person" : (function() {/*
+{{toUpperCase name}} a resident of {{domicile}} located at {{registered_office}}
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1]
 	    };
 

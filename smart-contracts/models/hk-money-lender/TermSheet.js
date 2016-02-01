@@ -16,6 +16,13 @@ BETWEEN
 
 {{parties_formatted}}
 
+Agreement date: {{agreement_date_string}}
+
+Negotiated and concluded at: {{agreement_location}}
+
+For the amount of: {{currency}} {{initial_amount_string}} ({{initial_amount_words}})
+
+
 BACKGROUND
 
 The Lender has agreed to provide the Borrower with an unsecured term
@@ -228,6 +235,13 @@ function Schedule_A(obj) {
     obj.initial_amount = 97411.00;
     obj.number_payments = 24;
     obj.payment_amount = 10000.00;
+
+    // Required by MLO
+    obj.agreement_date = new_date(2015, 6, 25);
+    obj.agreement_date_string = obj.agreement_date.toDateString();
+    obj.agreement_location = "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong";
+    obj.initial_amount_string = obj.initial_amount.toString();
+    obj.initial_amount_words = to_dollars(obj.initial_amount);
 }
 
 // SCHEDULE C
@@ -450,3 +464,20 @@ function TermSheet() {
 
 return TermSheet;
 });
+
+function to_dollars(i) {
+    int dollars = int(i);
+    int cents = int((i - int(i)) * 100);
+    return toWords(dollars) + " dollars " + toWords(cents) + " cents";
+}
+
+// Convert numbers to words
+// copyright 25th July 2006, by Stephen Chapman http://javascript.about.com
+// permission to use this Javascript on your web page is granted
+// provided that all of the code (including this copyright notice) is
+// used exactly as shown (you can change the numbering system if you wish)
+
+// American Numbering System
+var th = ['','thousand','million', 'billion','trillion'];
+
+var dg = ['zero','one','two','three','four', 'five','six','seven','eight','nine']; var tn = ['ten','eleven','twelve','thirteen', 'fourteen','fifteen','sixteen', 'seventeen','eighteen','nineteen']; var tw = ['twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety']; function toWords(s){s = s.toString(); s = s.replace(/[\, ]/g,''); if (s != parseFloat(s)) return 'not a number'; var x = s.indexOf('.'); if (x == -1) x = s.length; if (x > 15) return 'too big'; var n = s.split(''); var str = ''; var sk = 0; for (var i=0; i < x; i++) {if ((x-i)%3==2) {if (n[i] == '1') {str += tn[Number(n[i+1])] + ' '; i++; sk=1;} else if (n[i]!=0) {str += tw[n[i]-2] + ' ';sk=1;}} else if (n[i]!=0) {str += dg[n[i]] +' '; if ((x-i)%3==0) str += 'hundred ';sk=1;} if ((x-i)%3==1) {if (sk) str += th[(x-i-1)/3] + ' ';sk=0;}} if (x != s.length) {var y = s.length; str += 'point '; for (var i=x+1; i<y; i++) str += dg[n[i]] +' cents';} return str.replace(/\s+/g,' ');}
