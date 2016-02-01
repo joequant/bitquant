@@ -14,19 +14,20 @@ define (function() {
 	this.terms = (function () {/*
 The lender has agreed to be bound by the Code of Money Lending Practice issued by the Licensed Money Lending Association of Hong Kong, regardless of whether or not the lender is a member of the LMLA.  A copy of the code may be found at http://www.lmla.com.hk/practice.pdf .
 
-Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by the money lending ordinance, there will be no penalty interest for late payments and there will be no compounding of interest.
+Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by Money Lending Ordinance, there will be no penalty interest for late payments (see Section 22(1)(c))  and there will be no compounding of interest (see Section 22(1)(a))
 
 Schedule B S.1 states that the lender will provide the inital loan
-amount on the date of the contract.
+amount on the date stated in the contract.
 
-Schedule B S.2 states that early payments are allowed as required by the Money Lending Ordinance.
+Schedule B S.2 states that early payments are allowed as required by the Money Lending Ordinance Section 22(1)(b).
 
-Schedule B S.3 states that any payments shall be appropriated to principal and interest in the proportion that the total amount of principal bears to the total amount of the interest as required by the money lending ordinance.
+Schedule B S.3 states that any payments shall be appropriated to principal and interest in the proportion that the total amount of principal bears to the total amount of the interest as required by the money lending ordinance (see MLO Schedule 2(1))
 
-Schedule B S.4 The borrower intends make a payment of {{currency}} {{payment_amount}} with an interval of {{interval}} until either the loan is paid off, or {{number_payments}} is made at which point the borrower will pay the balance.  The payments will be due on the first of the month.
+Schedule B S.4 The borrower intends make a payment of {{currency}} {{payment_amount}} with an interval of {{interval}} until either the loan is paid off, or {{number_payments}} payments are made at which point the borrower will pay the balance.  The payments will be due on the first of the month.
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
-THE MONEY LENDERS ORDINANCE
----------------------------
+	this.mlo_summary = (function () {/*
+***THE MONEY LENDERS ORDINANCE***
 
 The provisions of the Money Lenders Ordinance summarized below are important for the protection of all the parties to a loan agreement, and should be read carefully. The summary is not part of the law, and reference should be made to the provisions of the Ordinance itself in case of doubt.
 
@@ -54,6 +55,11 @@ Section 24 fixes the maximum effective rate of interest on any loan at 60% per a
 Section 25 provides that where court proceedings are taken to enforce a loan agreement or security for a loan or where a borrower or surety himself applies to a court for relief, the court may look at the terms of the agreement to see whether the terms are grossly unfair or exorbitant (an effective rate of interest exceeding 48% per annum or such other rate as is fixed by the Legislative Council, may be presumed, on that ground alone, to be exorbitant), and, taking into
 account all the circumstances, it may alter the terms of the agreement in such a manner as to be fair to all parties. The section does not apply to any loan made to a company which has a paid up share capital of not less than $1000000 or, in respect of any such loan, to any person who makes that loan. 
 
+*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+	this.lmla_code_summary = (function () {/*
+***Code of Money Lending Practice***
+
+The lender has agreed to abide by the terms of the Code of Money Lending Practice for the Licensed Money Lending Association.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
     }
     return Notes;

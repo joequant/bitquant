@@ -18,7 +18,7 @@ BETWEEN
 
 Agreement date: {{agreement_date_string}}
 
-Negotiated and concluded at: {{agreement_location}}
+Negotiated and completed at: {{agreement_location}}
 
 For the amount of: {{currency}} {{initial_amount_string}} ({{initial_amount_words}})
 
@@ -76,8 +76,8 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 7. Interest
 --------
-7.1 Interest accrue and be payable in accordance with Schedule B of this Agreement.  
-7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest on the unpaid amount and be payable in accordance with Schedule B of this Agreement.  
+7.1 Interest shall accrue and be payable in accordance with Schedule B of this Agreement.  
+7.2 If the Borrower fails to make any payment due under this Agreement on the due date for payment, interest shall accrue on the unpaid amount in accordance with Schedule B.  
 
 8. Costs
 -----
@@ -135,10 +135,7 @@ This Agreement has been entered into on the date stated at the beginning of it.
 
 15. Severance
 ---------
-15.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified
-to the minimum extent necessary to make it valid, legal and enforceable. If such modification is not possible, the relevant
-provision (or part of a provision) shall be deemed deleted. Any modification to or deletion of a provision (or part of a provision)
-under this clause shall not affect the legality, validity and enforceability of the rest of this Agreement.
+15.1 If any provision (or part of a provision) of this Agreement is or becomes invalid, illegal or unenforceable, it shall be deemed modified to the minimum extent necessary to make it valid, legal and enforceable. If such modification is not possible, the relevant provision (or part of a provision) shall be deemed deleted. Any modification to or deletion of a provision (or part of a provision) under this clause shall not affect the legality, validity and enforceability of the rest of this Agreement.
 
 16. Notices
 -------
@@ -241,7 +238,7 @@ function Schedule_A(obj) {
     obj.agreement_date_string = obj.agreement_date.toDateString();
     obj.agreement_location = "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong";
     obj.initial_amount_string = obj.initial_amount.toString();
-    obj.initial_amount_words = to_dollars(obj.initial_amount);
+    obj.initial_amount_words = to_dollars(obj.initial_amount).toUpperCase();
 }
 
 // SCHEDULE C
@@ -324,6 +321,20 @@ function Schedule_B(obj) {
 	{
 	    name: "terms",
 	    type: "note"
+	}
+    );
+    obj.event_spec.push(
+	{
+	    name: "mlo_summary",
+	    type: "note",
+	    target: "endnote"
+	}
+    );
+    obj.event_spec.push(
+	{
+	    name: "lmla_code_summary",
+	    type: "note",
+	    target: "endnote"
 	}
     );
 }
@@ -465,10 +476,15 @@ function TermSheet() {
 return TermSheet;
 });
 
+// Required by MLO
 function to_dollars(i) {
-    int dollars = int(i);
-    int cents = int((i - int(i)) * 100);
-    return toWords(dollars) + " dollars " + toWords(cents) + " cents";
+    var dollars = Math.round(i);
+    var cents = Math.round((i - Math.ceil(i)) * 100);
+    var retval = toWords(dollars) + " dollars";
+    if (cents != 0.0) {
+	retval = retval + " " + toWords(cents) + " cents";
+    }
+    return retval;
 }
 
 // Convert numbers to words
