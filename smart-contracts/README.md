@@ -15,8 +15,11 @@ http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract
 
 [loan](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/loan) - small business loans
 
-[credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/credit-line) - Credit line contract to SME's loaned against HK
-government grant
+[credit-line](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/credit-line)
+- Credit line contract to SME's loaned against HK government grant
+
+[hk-money-lender](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-money-lender)
+- Contract compliant with HK money lending rules
 
 [profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/profit-share) - a smart trust profit sharing agreement
 
