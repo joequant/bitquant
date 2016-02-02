@@ -22,6 +22,9 @@ Negotiated and completed at: {{agreement_location}}
 
 For the amount of: {{currency}} {{initial_amount_string}} ({{initial_amount_words}})
 
+Security: {{security}}
+
+Surety: {{surety}}
 
 BACKGROUND
 
@@ -218,7 +221,8 @@ function Schedule_A(obj) {
     // S.1
     obj.annual_interest_rate = 10.0;
     obj.day_count_convention = "HKMLO";
-    obj.compound_per_year = 0; // simple interest as required by law
+    obj.compound_per_year = 0;
+    // simple interest as required by MLO
 
     // No penalty interest rate as required by MLO
     obj.late_compound_per_year = 0;
@@ -232,6 +236,8 @@ function Schedule_A(obj) {
     obj.initial_amount = 97411.00;
     obj.number_payments = 24;
     obj.payment_amount = 10000.00;
+    obj.security = "None";
+    obj.surety = "None";
 
     // Required by MLO
     obj.agreement_date = new_date(2015, 6, 25);
@@ -362,6 +368,7 @@ Schedule_B.prototype.payments = function(calc) {
 
     // S.2
     this.early_payment.forEach(function(i) {
+	i.note = "Early payment";
         calc.payment(i);
     });
 
@@ -380,20 +387,26 @@ Schedule_B.prototype.payments = function(calc) {
 
 	var interest_payment = 0.0;
 	var principal_payment = 0.0;
-	interest_payment = i.payment * (i.interest_accrued / i.balance)
-	principal_payment = i.payment * (i.principal / i.balance)
-
+	var late_payment = 0.0;
 	if (contains(calc.term_sheet.late_payment, params.on)) {
-	    var late_payment = 
+	    late_payment =
 		contains(calc.term_sheet.late_payment, params.on).amount;
 	    if (late_payment > payment) {
-		payment = 0.0;
-	    } else {
-		payment = payment - late_payment;
-	    }
+		late_payment = payment;
+	    } 
+	    payment = payment - late_payment;
 	    params.note = "Late payment";
 	}
-	
+	var total = interest_accrued + principal;
+
+	if (total > 0) {
+	    interest_payment = payment * (interest_accrued / total);
+	    principal_payment = payment * (principal / total);
+	} else {
+	    interest_payment = 0.0;
+	    principal_payment = 0.0;
+	}
+
 	calc.balance = calc.balance - payment;
 
 	calc.principal = calc.principal - principal_payment;
@@ -403,7 +416,7 @@ Schedule_B.prototype.payments = function(calc) {
 	} else {
 	    calc.late_balance = 0.0;
 	}
-
+	calc.late_balance = calc.late_balance + late_payment; 
 	if (payment > 0 || calc.late_balance > 0) {
             return {"event":"Payment",
                     "on":params.on,
@@ -414,7 +427,6 @@ Schedule_B.prototype.payments = function(calc) {
 		    "late_balance" : calc.late_balance,
                     "note":params.note}
 	}
-
     }
 
     // S.4
@@ -425,7 +437,8 @@ Schedule_B.prototype.payments = function(calc) {
 						     [i, "months"]));
 	
 	calc.payment({"on":payment_date,
-                      "amount": this.payment_amount});
+                      "amount": this.payment_amount,
+		      "payment_func" : payment_function});
     }
 
     // S.5

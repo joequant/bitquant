@@ -12,18 +12,15 @@ define (function() {
 	this.header = (function () {/*
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 	this.terms = (function () {/*
-The lender has agreed to be bound by the Code of Money Lending Practice issued by the Licensed Money Lending Association of Hong Kong, regardless of whether or not the lender is a member of the LMLA.  A copy of the code may be found at http://www.lmla.com.hk/practice.pdf .
-
-Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by Money Lending Ordinance, there will be no penalty interest for late payments (see Section 22(1)(c))  and there will be no compounding of interest (see Section 22(1)(a))
-
+Loan Terms
+----------
+The lender has agreed to be bound by the Code of Money Lending Practice issued by the Licensed Money Lending Association of Hong Kong, regardless of whether or not the lender is a member of the LMLA.  A copy of the code may be found at http://www.lmla.com.hk/practice.pdf.  
+Schedule A states that the interest rate is {{annual_interest_rate}} percent per year with simple interest.  The initial loan amount is {{currency}} {{initial_loan_amount}}.  As required by Money Lending Ordinance, there will be no penalty interest for late payments (see MLO Section 22(1)(c))  and there will be no compounding of interest (see MLO Section 22(1)(a))  
 Schedule B S.1 states that the lender will provide the inital loan
-amount on the date stated in the contract.
-
-Schedule B S.2 states that early payments are allowed as required by the Money Lending Ordinance Section 22(1)(b).
-
-Schedule B S.3 states that any payments shall be appropriated to principal and interest in the proportion that the total amount of principal bears to the total amount of the interest as required by the money lending ordinance (see MLO Schedule 2(1))
-
-Schedule B S.4 The borrower intends make a payment of {{currency}} {{payment_amount}} with an interval of {{interval}} until either the loan is paid off, or {{number_payments}} payments are made at which point the borrower will pay the balance.  The payments will be due on the first of the month.
+amount on the date stated in the contract.  
+Schedule B S.2 states that early payments are allowed (see MLO Section 22(1)(b)).  
+Schedule B S.3 states that any payments shall be appropriated to principal and interest in the proportion that the total amount of principal bears to the total amount of the interest as required by the money lending ordinance (see MLO Schedule 2(1))  
+Schedule B S.4 The borrower intends make a payment of {{currency}} {{payment_amount}} with an interval of {{interval}} until either the loan is paid off, or {{number_payments}} payments are made at which point the borrower will pay the balance.  The payments will be due on the first of the month.  
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
 	this.mlo_summary = (function () {/*
