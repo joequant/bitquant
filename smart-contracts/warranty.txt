@@ -1,0 +1,9 @@
+The lender hereby warranties to the borrower that the terms of the
+contract as viewed by the contract viewer are a reasonable
+representation of the machine executable contract.  
+
+The borrower shall receive:
+
+1) a machine copy of the contract
+2) a written paper copy of the contract viewer
+
