@@ -366,12 +366,6 @@ Schedule_B.prototype.payments = function(calc) {
                "amount" : this.initial_amount,
                "note" : "Initial funding"});
 
-    // S.2
-    this.early_payment.forEach(function(i) {
-	i.note = "Early payment";
-        calc.payment(i);
-    });
-
     // S.3
     var payment_function = function(calc, params) {
 	var payment = calc.extract_payment(params);
@@ -429,6 +423,13 @@ Schedule_B.prototype.payments = function(calc) {
 	}
     }
 
+    // S.2
+    this.early_payment.forEach(function(i) {
+	i.note = "Early payment";
+	i.payment_func = payment_function;
+        calc.payment(i);
+    });
+    
     // S.4
     var i;
     for (i=1; i<=this.number_payments; i++) {
