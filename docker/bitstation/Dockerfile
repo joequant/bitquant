@@ -24,25 +24,23 @@ RUN useradd user ;\
    cd ~user ; mkdir git ; cd git ; \
    git clone https://github.com/joequant/bitquant.git ;\
    git clone https://github.com/joequant/algobroker.git ;\
-   git clone https://github.com/joequant/cryptoexchange.git
-RUN  mkdir -p /etc/sysusers.d ; \
-  cp ~user/git/bitquant/docker/system.conf /etc/sysusers.d ; \
-  systemd-sysusers
-RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
-RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
-RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
-  rm -f /etc/systemd/system/*.wants/*;\
-  rm -f /lib/systemd/system/local-fs.target.wants/*; \
-  rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
-  rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
-  rm -f /lib/systemd/system/basic.target.wants/*;\
-  rm -f /lib/systemd/system/anaconda.target.wants/* \
-  rm -f /lib/systemd/system/*resolve1* \
-  rm -f /lib/systemd/system/*resolved* \
-  rm -f /lib/systemd/system/*udev* \
-  rm -f /lib/systemd/system/*journal* \
-  rm -f /lib/systemd/system/*networkd* \
-  rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
+   git clone https://github.com/joequant/cryptoexchange.git ;\	
+   cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
+RUN systemd-sysusers ; \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
+rm -f /etc/systemd/system/*.wants/*;\
+rm -f /lib/systemd/system/local-fs.target.wants/*; \
+rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
+rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
+rm -f /lib/systemd/system/basic.target.wants/*;\
+rm -f /lib/systemd/system/anaconda.target.wants/* \
+rm -f /lib/systemd/system/*resolve1* \
+rm -f /lib/systemd/system/*resolved* \
+rm -f /lib/systemd/system/*udev* \
+rm -f /lib/systemd/system/*journal* \
+rm -f /lib/systemd/system/*networkd* \
+rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
+
 RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    /usr/share/bitquant/install-build-deps.sh ; \
    su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
