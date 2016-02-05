@@ -27,7 +27,8 @@ RUN useradd user ;\
    git clone https://github.com/joequant/algobroker.git ;\
    git clone https://github.com/joequant/cryptoexchange.git ;\	
    cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
-RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
+RUN systemd-sysusers ; \
+rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /etc/systemd/system/*.wants/*;\
 rm -f /lib/systemd/system/local-fs.target.wants/*; \
 rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
