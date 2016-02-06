@@ -20,49 +20,14 @@ width: 100%;
 }
 </style>
 <script>
-function check_log() {
-   setTimeout(function() {
-       $("#log").attr("src", "/cgi-bin/bittrader/model.py/log/bootstrap");
-   }, 3000);
-   bootstrap_running();
-}
-
-function run_bootstrap() {
-   $.get("/cgi-bin/bittrader/model.py/bootstrap", check_log);
-}
-var interval_id = -1;
-
-function bootstrap_running() {
-   $('.bootstrap-yes').hide();
-   $('#bootstrap-notice').html("<b>System install currently running</b> <a href='log' target='logfiles'>All log files</a>");
-   interval_id = setTimeout(function() { check_installed();}, 5000);
-   scroll_log();
- }
-
-function check_installed() {
-   $.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
-	     function(data) {
-     if (data['bootstrap_running']) {
-       bootstrap_running();
-     } else if (data["bootstrap_finished"]) {
-       $('#bootstrap-notice').html("");
-       set_timezone();
-       $('.bootstrap-yes').show();
-       scroll_log();
-     } else  {
-       $('#bootstrap-notice').html("<b>System install incomplete</b><br><br><a href='javascript:run_bootstrap()' class='button primary large'>Start installation</a>");
-     }});
- }
 
 function check_password() {
 $.getJSON("/cgi-bin/bittrader/model.py/version/default_password",
 	  function(data) {
      if (data['default_password']) {
        $("#password-input").show();
-       $("#password-done").hide();
      } else {
        $("#password-input").hide();
-       $("#password-done").show();
      };
    });
  }
@@ -75,23 +40,6 @@ function set_timezone() {
    });
  }
 
-
-$.getJSON("/cgi-bin/bittrader/model.py/version/bootstrap_status",
-	  function(data) {
-   if (data["bootstrap_running"]) {
-     $("#password-input").hide();
-     $("#password-done").show();
-     check_log();
-   } else if (data['bootstrap_finished']) {
-     $("#password-input").hide();
-     $("#password-done").show();
-     check_installed();
-   } else {
-     set_timezone();
-     check_installed();
-     check_password();
-   }
- });
 
 $("#logframe").resizable({});
 function scroll_log() {
@@ -245,14 +193,7 @@ Confirm Password: <input name='newpass2' type='password' title='Please Enter You
 </select>
 </div>
 
-<div id="password-done" style="display:none">
-<p>
-<span id="bootstrap-notice"></span>
-</div>
-
-<div class="bootstrap-yes" style="display:none">
-<a class="button primary large" href="index.html">Bittrader main
-  page</a><br><br>
+<a class="button primary large" href="index.html">Main page</a><br><br>
 <form action='/cgi-bin/bittrader/model.py/setup' target='log'
       METHOD='POST'>
 User Password: <input name='password' type='password' title='Please
@@ -267,11 +208,13 @@ Httpd access: <input type="submit" name="submit"
 			      value="Lock httpd">
 <input type="submit" name="submit" value="Unlock httpd"><br>
 </form>
-</div>
-
 <p>
-<iframe id="log" name="log" onload="scroll_log();check_installed();check_password();">
+<iframe id="log" name="log">
 </iframe>
+<script>
+    check_password()
+    set_timezone()
+</script>
 </body>
 </html>
 
