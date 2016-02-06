@@ -142,10 +142,7 @@ def version(tag=None):
                                                    "--short", "HEAD"]).strip();
     if tag == "bootstrap_finished" or \
            tag == "bootstrap_status" or tag == None:
-        retval['bootstrap_finished'] = \
-                               os.path.exists(os.path.join(bitquant_root(),
-                                                           "web", "log",
-                                                           "bootstrap.done"));
+        retval['bootstrap_finished'] = True;
     if tag == "default_password" or tag == None:
         retval["default_password"] = login.auth(user(), default_password)
     if tag == "bootstrap_running" or \
