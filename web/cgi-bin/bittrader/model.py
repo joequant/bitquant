@@ -81,23 +81,11 @@ def setup():
     if (not login.auth(user(), request.values['password'])):
         return "password invalid"
     submit = request.values['submit']
-    if submit == "Startup servers":
-        try:
-            return subprocess.check_output(["./servers.sh", "/on"])
-        except:
-            return traceback.extract_stack()
-    elif submit == "Shutdown servers":
-        try:
-            return subprocess.check_output(["./servers.sh", "/off"])
-        except:
-            return traceback.extract_stack()
-    elif submit == "Set time zone":
+    if submit == "Set time zone":
         timezone = request.values['timezone']
         return subprocess.check_output(["sudo" "/usr/share/bitquant/timezone.sh", timezone])
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
-    elif submit == "Remove local install":
-        return subprocess.check_output(["./clean-to-factory.sh"])
     elif submit == "Lock wiki":
 #        password = request.values['password']
 #        salt = os.urandom(6).encode('base_64').strip()
@@ -149,14 +137,9 @@ def version(tag=None):
            tag == "bootstrap_status" or tag == None:
         retval['bootstrap_running'] = is_locked("bootstrap")
     if tag == "timezone" or tag == None:
-        for line in subprocess.check_output(['timedatectl',
-                                              'status']).splitlines():
-            if "zone:" in line:
-                retval['timezone'] = line.strip().split(":")[1].split()[0]
-        if retval['timezone'] == "n/a":
-            retval['timezone'] = subprocess.check_output(["grep",
-                   "ZONE=",
-                   "/etc/sysconfig/clock"]).strip().replace("ZONE=","")
+        retval['timezone'] = subprocess.check_output(["grep",
+                       "ZONE=",
+                       "/etc/sysconfig/clock"]).decode('utf-8').strip().replace("ZONE=","")
     return Response(json.dumps(retval), mimetype='application/json')
 
 def tail(f, n):
@@ -172,11 +155,6 @@ def tail(f, n):
             lines = list(f)
             pos *= 2
     return lines[-n:]
-
-@app.route("/bootstrap")
-def bootstrap():
-    os.system("./bootstrap.sh > /dev/null &")
-    return "Bootstrap started"
 
 @app.route("/log/<tag>")
 def log(tag="bootstrap"):
@@ -207,103 +185,6 @@ def log(tag="bootstrap"):
             time.sleep(1)
         return
     return Response(generate(), mimetype="text/plain")
-
-@app.route("/generate-data-dump", methods = ['GET', 'POST'])
-def generate_data_dump():
-    if (not login.auth(user(), request.values['password'])):
-        return "Error: password invalid"
-    def dump_data():
-        yield "Generate user data"
-        proc = subprocess.Popen([os.path.join(bitquant_root(),
-                                              "web", "scripts",
-                                              "dump-data.sh")],
-                                stdout=subprocess.PIPE)
-        for line in iter(proc.stdout.readline, ''):
-            if (line == b''):
-                break
-            print(line.rstrip())
-        yield "Return files"
-        return
-    return Response(dump_data(), mimetype="text/plain")
-
-@app.route("/generate-log-dump", methods = ['GET', 'POST'])
-def generate_log_dump():
-    if (not login.auth(user(), request.values['password'])):
-        return "Error: password invalid"
-    def dump_data():
-        yield "Generate user data"
-        proc = subprocess.Popen([os.path.join(bitquant_root(),
-                                              "web", "scripts",
-                                              "dump-log.sh")],
-                                stdout=subprocess.PIPE)
-        for line in iter(proc.stdout.readline, ''):
-            if (line == b''):
-                break
-            print(line.rstrip())
-        yield "Return files"
-        return
-    return Response(dump_data(), mimetype="text/plain")
-
-@app.route("/upload-dump", methods = ['GET', 'POST'])
-def upload_dump():
-    if (not login.auth(user(), request.values['password'])):
-        return "Error: password invalid"
-    file = request.files['upload']
-    if not file:
-        return "Error: no file"
-    filename = secure_filename(file.filename)
-    save_file = os.path.join(bitquant_root(),
-                             "web", "data", filename)
-    if os.path.exists(save_file):
-        return "Error: file exists"
-    file.save(os.path.join(bitquant_root(),
-                           "web", "data", filename))
-    return "File uploaded"
-
-@app.route("/install-data-dump", methods = ['GET', 'POST'])
-def install_data_dump():
-    if (not login.auth(user(), request.values['password'])):
-        return "Error: password invalid"
-    filename = request.values['filename']
-    if "/" in filename:
-        return "Error: bad filename"
-    def dump_data():
-        yield "Generate user data"
-        proc = subprocess.Popen([os.path.join(bitquant_root(),
-                                              "web", "scripts",
-                                              "install-data.sh"),
-                                 os.path.join(bitquant_root(),
-                                              "web", "scripts",
-                                              filename)
-                                 ],
-                                stdout=subprocess.PIPE)
-        for line in iter(proc.stdout.readline, ''):
-            if (line == b''):
-                break
-            print(line.rstrip())
-        yield "Return files"
-        return
-    return Response(dump_data(), mimetype="text/plain")
-
-@app.route("/clear-data-dump", methods = ['GET', 'POST'])
-def clear_data_dump():
-    if (not login.auth(user(), request.values['password'])):
-        return "Error: password invalid"
-    filename = request.values['filename']
-    if "/" in filename:
-        return "Error: bad filename"
-    try:
-        os.remove(os.path.join(bitquant_root(),
-                               "web", "data", filename))
-    except:
-        return "Error: exception thrown in file"
-    return Response(filename + " deleted", mimetype="text/plain")
-
-@app.route("/get-dump-files")
-def get_dump_files():
-    filenames = next(os.walk(os.path.join(bitquant_root(), "web", "data")))[2]
-    filenames = [x for x in filenames if ".tar.xz" in x]
-    return Response(json.dumps(filenames), mimetype='application/json')
 
 if __name__ == '__main__' and len(sys.argv) == 1:
     from wsgiref.handlers import CGIHandler
