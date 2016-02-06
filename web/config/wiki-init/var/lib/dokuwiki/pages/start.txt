@@ -32,7 +32,6 @@ document.write('<a class="button" target="_blank" href="https://' +
 window.location.hostname + '/ajenti/">Ajenti server admin</a>' );
 </script>
 <a class="button" target="_blank" href="/bittrader/setup.html">Setup page</a>
-<a class="button" target="_blank" href="/bittrader/data.html">Data</a>
 <a class="button" target="_blank" href="/bittrader/sandbox.html">Sandbox</a>
 </div>
 </div>
