@@ -1,1 +1,1 @@
-sudo systemctl reload httpd
+sudo kill -USR1 `cat /var/run/httpd/httpd.pid`
