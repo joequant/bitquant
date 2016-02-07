@@ -25,9 +25,12 @@ for packages in \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/matta.git \
             configproxy prettyplotlib mpld3 networkx \
-            iminuit lmfit redis_kernel ; 
+            iminuit lmfit redis_kernel bash_kernel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
+
+cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
+chown $ME:$ME -R /home/$ME/.local/share/jupyter/kernels
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
