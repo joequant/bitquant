@@ -31,7 +31,7 @@ done
 
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
-chown $ME:$ME -R /home/$ME/.local/share/jupyter/kernels
+chown $ME:$ME -R /home/$ME/.local
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
