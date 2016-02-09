@@ -8,6 +8,7 @@ ME=`stat -c "%U" $SCRIPT_DIR/install-r-pkgs.sh`
 pushd $SCRIPT_DIR > /dev/null
 . norootcheck.sh
 sudo /usr/share/bitquant/install-python-sudo.sh $SCRIPT_DIR $ME
+python3 -m bash_kernel.install --user
 popd > /dev/null
 
 
