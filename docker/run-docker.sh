@@ -7,6 +7,9 @@ fi
 
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
+mkdir -p var/lib
+chmod a+rwx var
+chmod a+rwx var/lib
 
 if [ ! -e ~/volumes/bitstation/home ] ; then
 # This will fail on docker < 1.8
@@ -14,7 +17,6 @@ id=$($SUDO docker create $IMAGE)
 $SUDO docker cp $id:/home - | tar xf -
 $SUDO docker rm -v $id
 fi
-
 
 if [ ! -e ~/volumes/bitstation/var/log ] ; then
 mkdir -p var/log
@@ -34,16 +36,23 @@ $IMAGE \
 cp -a -P -R /etc /mnt
 fi
 
-mkdir -p var/lib
-chmod a+rwx var
-chmod a+rwx var/lib
-
+root=var/lib
 for app in dokuwiki mongodb redis ; do
-if [ ! -e ~/volumes/bitstation/var/lib/$app ] ; then
+if [ ! -e ~/volumes/bitstation/$root/$app ] ; then
 $SUDO docker run \
--v ~/volumes/bitstation/var/lib:/mnt \
+-v ~/volumes/bitstation/$root:/mnt \
 $IMAGE \
-cp -a -P -R /var/lib/$app /mnt
+cp -a -P -R /$root/$app /mnt
+fi
+done
+
+root=home/user/.local/share/jupyter/kernels
+for app in redis ; do
+if [ ! -e ~/volumes/bitstation/$root/$app ] ; then
+$SUDO docker run \
+-v ~/volumes/bitstation/$root:/mnt \
+$IMAGE \
+cp -a -P -R /$root/$app /mnt
 fi
 done
 
