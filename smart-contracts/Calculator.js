@@ -85,7 +85,7 @@ Calculator.prototype.run_events = function(term_sheet) {
 		late_amount = this.late_principal;
 		amount = this.principal;
 	    } else {
-		late_amount = this.balance;
+		late_amount = this.late_balance;
 		amount = this.balance;
 	    }
 	    var late_interest = this.capitalization_factor(prev_date,
