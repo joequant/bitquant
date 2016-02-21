@@ -58,21 +58,21 @@ Calculator.prototype.run_events = function(term_sheet) {
 	    var late_annual_interest_rate;
 	    var late_compound_per_year;
 	    var late_day_count_convention;
-	    if (term_sheet.late_annual_interest_rate === undefined) {
+	    if (term_sheet.late_annual_interest_rate !== undefined) {
 		late_annual_interest_rate =
 		    term_sheet.late_annual_interest_rate;
 	    } else {
 		late_annual_interest_rate =
 		    term_sheet.annual_interest_rate;
 	    }
-	    if (term_sheet.late_compound_per_year === undefined) {
+	    if (term_sheet.late_compound_per_year !== undefined) {
 		late_compound_per_year =
 		    term_sheet.late_compound_per_year;
 	    } else {
 		late_compound_per_year =
 		    term_sheet.compound_per_year;
 	    }
-	    if (term_sheet.late_day_count_convention === undefined) {
+	    if (term_sheet.late_day_count_convention !== undefined) {
 		late_day_count_convention =
 		    term_sheet.late_day_count_convention;
 	    } else {
@@ -375,6 +375,14 @@ Calculator.prototype.amortize = function(params) {
     }
     var _amortize = function(o, params) {
 	var p = o.extract_payment(params);
+	var remainder = 0.0;
+	if (params.remainder != undefined) {
+	    remainder = params.remainder;
+	    if (typeof(remainder) == "function") {
+		remainder = remainder();
+	    }
+	}
+	p = p - remainder;
 	var npayments = params.payments;
 	var on = params.on;
 	var forward_date = 
