@@ -11,7 +11,8 @@ This view can be used to see the contracts under models.
 http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/(contract-name)
 
 
-=== Model Contracts ===
+Model Contracts
+---------------
 
 [loan](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/loan) - small business loans
 
@@ -21,13 +22,17 @@ http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract
 [hk-money-lender](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-money-lender)
 - Contract compliant with HK money lending rules
 
+[hire-purchase](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hire-purchase)
+- Contract for hire purchase of appliance
+
 [profit-share](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/profit-share) - a smart trust profit sharing agreement
 
 [simple-amortized](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/simple-amortized) - a simple amortized loan
 
 [subclass](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/subclass) - example of the use of subclassing
 
-=== Under construction ===
+Under construction
+------------------
 
 [equity-finance](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/equity-finance) - Working on convertible note example (still working)
 
