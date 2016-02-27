@@ -91,9 +91,6 @@ class Portfolio(object):
             elif asset[1] == "spot":
                 quantity = asset[0]
                 underlying = asset[2]
-                purchase = asset[3]
-                if  purchase < 0.0:
-                    raise ValueError
                 retval.append(quantity * prices[underlying])
             elif asset[1] == "put" or asset[1] == "call":
                 quantity = asset[0]
@@ -101,10 +98,9 @@ class Portfolio(object):
                 expiry = asset[2]
                 strike = asset[3]
                 underlying = asset[4]
-                purchase = asset[5]
                 price = prices[underlying]
                 value = 0.0
-                if strike < 0.0 or purchase < 0.0:
+                if strike < 0.0:
                     raise ValueError
                 if not mtm or underlying == payoff_asset:
                     if asset[1] == "put" and price < strike:
@@ -151,23 +147,23 @@ class Portfolio(object):
 if __name__ == '__main__':
     get_ipython().magic('matplotlib inline')
     portfolio = [
-        [-10000, "put", "2015-09", 24.00, "3888.HK", 1.0],
-        [-10000, "put", "2015-07", 25.00, "3888.HK", 0.55],
-        [-10000, "put", "2015-07", 26.00, "3888.HK", 0.63],
-        [-10000, "put", "2015-08", 26.00, "3888.HK", 1.06],
-        [-5000, "call", "2015-08", 26.00, "3888.HK", 1.06],
-        [-5000, "call", "2015-08", 27.00, "3888.HK", 0.88],
+        [-10000, "put", "2015-09", 24.00, "3888.HK"],
+        [-10000, "put", "2015-07", 25.00, "3888.HK"],
+        [-10000, "put", "2015-07", 26.00, "3888.HK"],
+        [-10000, "put", "2015-08", 26.00, "3888.HK"],
+        [-5000, "call", "2015-08", 26.00, "3888.HK"],
+        [-5000, "call", "2015-08", 27.00, "3888.HK"],
         [975928.19, "cash"]
     ]
 
     trade = [
-        [-10000, "put","2015-08", 18.50, "3888.HK", 1.05]
+        [-10000, "put","2015-08", 18.50, "3888.HK"]
     ]
 
     exercise = [
-        [10000, "put", "2015-08", 25.00, "3888.HK", 0.0],
+        [10000, "put", "2015-08", 25.00, "3888.HK"],
         [-250000, "cash"],
-        [10000, "spot", '3888.HK', 25.00]
+        [10000, "spot", '3888.HK']
     ]
     prices = {
         "3888.HK": 22.6
