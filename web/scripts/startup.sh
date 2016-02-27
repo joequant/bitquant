@@ -25,6 +25,7 @@ pushd $GIT_DIR/ethercalc > /dev/null
 echo "Restarting ethercalc"
 make all >> $LOG_DIR/ethercalc.log 2>&1
 node app.js --basepath /calc/ --port 8001 >> $LOG_DIR/ethercalc.log 2>&1 &
+$SCRIPT_DIR/install-ethercalc.py
 popd > /dev/null
 fi
 
