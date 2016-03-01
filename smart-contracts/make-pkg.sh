@@ -1,24 +1,28 @@
 #!/bin/bash
 
 ITEM=$1
+DATE=`date +'%Y%m%d'`
+DIR=$ITEM-$DATE
 
-if [ -e ~/$ITEM.zip ] ; then
+if [ -e ~/$DIR.zip ] ; then
     echo "package already exists.  ending"
     exit 1
 fi
 
-if [ -e ~/$ITEM ] ; then
-    mv ~/$ITEM ~/$ITEM.old
+if [ -e ~/$DIR ] ; then
+    mv ~/$DIR ~/$DIR.old
 fi
 
-mkdir ~/$ITEM
-cp *.sh *.js *.css *.md *.html *.txt ~/$ITEM
-cp -r node_modules ~/$ITEM
+mkdir ~/$DIR
+cp *.sh *.js *.css *.md *.html *.txt ~/$DIR
+cp -r node_modules ~/$DIR
 rm -f $ITEM/*~
-cp -r $ITEM ~/$ITEM
-sed -i -e s!models/loan!$ITEM! ~/$ITEM/contract_viewer.html
-sed -i -e s!models/loan!$ITEM! ~/$ITEM/calc-contract.js
+cp -r $ITEM ~/$DIR
+sed -i -e s!models/loan!$ITEM! ~/$DIR/contract_viewer.html
+sed -i -e s!models/loan!$ITEM! ~/$DIR/calc-contract.js
 
 cd ~
-zip -r ~/$ITEM $ITEM
-echo "md5 hash" : `md5sum ~/$ITEM/$ITEM/TermSheet.js`
+zip -r ~/$DIR $DIR
+echo "md5 hash" : `md5sum ~/$DIR/$ITEM/TermSheet.js`
+rm -rf $DIR
+
