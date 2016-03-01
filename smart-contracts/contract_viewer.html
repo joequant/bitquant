@@ -11,7 +11,7 @@
 <style>
   .number { text-align: right;
   width: 1in}
-  #analyze {
+  #recalc {
   height: 60px;
   font-size: 22px;
   color: white;
@@ -33,7 +33,7 @@ Copyright (c) 2015 - Bitquant Research Laboratories (Asia) Ltd.<br>
   <div id="contract_params"></div>
   <p>
   <div id="event_inputs"></div>
-<button id="analyze" type="button">Analyze</button>
+<button id="recalc" type="button">Recalculate</button>
 <div style="font-family: monospace">
 <div id="item"></div>
 </div>
@@ -59,19 +59,21 @@ if (contract === undefined) {
 }
 
 require (["./Viewer"], function(load_viewer) {
-    var analyze_button = document.getElementById('analyze');
-    analyze_button.style.display = "block";
+    var recalc_button = document.getElementById('recalc');
+			recalc_button.style.display = "block";
     load_viewer("./" + contract + "/TermSheet",
 		"./" + contract + "/Notes",
-		function(analyze_function) {
-		    $("#analyze").click(analyze_function);
+			function(calc_function) {
+			$("#recalc").click(calc_function);
+			calc_function();
 		},
 		function(err) {
 		    analyze_button.style.display = "none";
 		    document.getElementById('text').innerHTML =
 			'<h3>Error loading ' + contract + '</h3>';
 		}
-	       );
+			);
+			recalc();
 });
 </script>
 </body>

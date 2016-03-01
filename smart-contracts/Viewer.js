@@ -268,7 +268,7 @@ Attention: {{name}}
 			 $('#item'));
 	}
     };
-    callback(analyze);
+
     function add_item(name, value, type) {
 	var field_value = "value='" +  value + "'";
 	if (type == "date") {
@@ -376,6 +376,7 @@ Attention: {{name}}
 	    }
 	});
 	webshims.polyfill('forms forms-ext es5');
+	callback(analyze);
     });
     },
 	errback);
