@@ -10,7 +10,7 @@ define([], function() {
     function load_viewer(term_sheet, notes, callback, errback) {
 require.config({
     paths: {
-        "moment": "node_modules/moment/moment",
+        "moment": "node_modules/moment/min/moment.min",
 	"Calculator": "Calculator",
 	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
 	"modernizr" : "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min",
