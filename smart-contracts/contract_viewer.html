@@ -68,12 +68,11 @@ require (["./Viewer"], function(load_viewer) {
 			calc_function();
 		},
 		function(err) {
-		    analyze_button.style.display = "none";
+		    recalc_button.style.display = "none";
 		    document.getElementById('text').innerHTML =
 			'<h3>Error loading ' + contract + '</h3>';
 		}
 			);
-			recalc();
 });
 </script>
 </body>
