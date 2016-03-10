@@ -31,7 +31,7 @@ Each party irrevocably agrees that any dispute or claim arising out of or in con
 3. Interpretation
 -----------------
 3.1 The following definitions and rules of interpretation apply in this agreement.  
-  * Business Day: a day other than a Saturday, Sunday or public holiday in Kenya when banks in Nairobi are open for business.  
+  * Business Day: a day other than a Saturday, Sunday or public holiday in {{business_day_location}} when banks in {{business_day_location}} are open for business.  
   * Commencement Date: the date that the Lessee takes Delivery of the Equipment.  
   * Delivery: the transfer of physical possession of the Equipment to the Lessee at the Site.  
   * Deposit: the deposit amount set out in the Payment Schedule.  
@@ -94,12 +94,12 @@ The Rental Period starts on the Commencement Date and shall continue for a perio
 
 10. Liability
 -------------  
-10.1 Without prejudice to clause 10.2, the Lessor's maximum aggregate liability for breach of this agreement (including any liability for the acts or omissions of its employees, agents and subcontractors), whether arising in contract, tort (including negligence), misrepresentation or otherwise, shall in no circumstances exceed £[AMOUNT].
+10.1 Without prejudice to clause 10.2, the Lessor's maximum aggregate liability for breach of this agreement (including any liability for the acts or omissions of its employees, agents and subcontractors), whether arising in contract, tort (including negligence), misrepresentation or otherwise, shall in no circumstances exceed {{currency}} {{max_liability}}  
 10.2 Nothing in this agreement shall exclude or in any way limit:
 (a) either party's liability for death or personal injury caused by its own negligence;
 (b) either party's liability for fraud or fraudulent misrepresentation; or
-(c) any other liability which cannot be excluded by law.
-10.3 This agreement sets forth the full extent of the Lessor's obligations and liabilities in respect of the Equipment and its hiring [and sale] to the Lessee. In particular, there are no conditions, warranties or other terms, express or implied, including as to quality, fitness for a particular purpose or any other kind whatsoever, that are binding on the Lessor except as specifically stated in this agreement. Any condition, warranty or other term concerning the Equipment which might otherwise be implied into or incorporated within this agreement, whether by statute, common law or otherwise, is expressly excluded.
+(c) any other liability which cannot be excluded by law.  
+10.3 This agreement sets forth the full extent of the Lessor's obligations and liabilities in respect of the Equipment and its hiring [and sale] to the Lessee. In particular, there are no conditions, warranties or other terms, express or implied, including as to quality, fitness for a particular purpose or any other kind whatsoever, that are binding on the Lessor except as specifically stated in this agreement. Any condition, warranty or other term concerning the Equipment which might otherwise be implied into or incorporated within this agreement, whether by statute, common law or otherwise, is expressly excluded.  
 10.4 Without prejudice to clause 10.2, neither party shall be liable under this agreement for any:
 (a) loss of profit;
 (b) loss of revenue
@@ -216,6 +216,7 @@ function Contract_Text(obj) {
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
 
     obj.choice_of_law = "Hong Kong";
+    obj.business_day_location = "Hong Kong";
     obj.jurisdiction = "non-exclusive jurisdiction of the Courts of Hong Kong";
     obj.parties = {
 	roles : ["lessee", "lessor"],
@@ -264,6 +265,7 @@ function Schedule_1(obj) {
     obj.initial_date_string = obj.initial_date.toDateString();
     obj.currency = 'HKD';
     obj.initial_amount = 56800.00;
+    obj.max_liability = 1.5 * obj.initial_amount;
     obj.interval = [ 1, 'month']
     obj.number_payments = 12;
     obj.depreciation_allowance = 0.2;
@@ -478,7 +480,7 @@ Schedule_1.prototype.payments = function(calc) {
 
 // Schedule 2
     function Schedule_2(obj) {
-	obj.equipment = "one Panasonic MDF-U54V freezer with watermelon compression system";
+	obj.equipment = "one Panasonic MDF-U54V freezer";
     }
 
 function contains(a, obj) {
