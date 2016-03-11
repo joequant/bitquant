@@ -8,3 +8,6 @@ popd
 pushd $WORKSPACE
 git clone https://github.com/openblockchain/obc-dev-env.git
 popd
+pushd $WORKSPACE/obc-dev-env
+vagrant up
+popd
