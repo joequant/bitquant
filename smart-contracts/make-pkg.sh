@@ -23,6 +23,11 @@ sed -i -e s!models/loan!$ITEM! ~/$DIR/calc-contract.js
 
 cd ~
 zip -r ~/$DIR $DIR
-echo "md5 hash" : `md5sum ~/$DIR/$ITEM/TermSheet.js`
+echo
+pushd ~/$DIR/$ITEM > /dev/null
+for i in *.js ; do
+    echo `md5sum $i`
+done
+popd > /dev/null
 rm -rf $DIR
 
