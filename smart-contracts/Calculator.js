@@ -385,11 +385,15 @@ Calculator.prototype.amortize = function(params) {
 	p = p - remainder;
 	var npayments = params.payments;
 	var on = params.on;
-	var forward_date = 
-	    o.add_duration(on, params.interval);
+	var first_payment_date;
+	if (params.first_payment_date == undefined) {
+	    first_payment_date = o.add_duration(on, params.interval);
+	} else {
+	    first_payment_date = params.first_payment_date;
+	}
 	var capitalization_factor = 
 	    o.capitalization_factor(on,
-				 forward_date,
+				 first_payment_date,
 				 o.term_sheet.annual_interest_rate,
 				 o.term_sheet.compound_per_year,
 				    o.term_sheet.day_count_convention);
@@ -400,7 +404,7 @@ Calculator.prototype.amortize = function(params) {
 	    payment = capitalization_factor / 
 		(1.0 - Math.pow(1 + capitalization_factor, -npayments)) * p
 	}
-	var d = forward_date;
+	var d = first_payment_date;
 	for (var i=0; i < npayments; i++) {
 	    var payment_info = {};
 	    payment_info.on = d;

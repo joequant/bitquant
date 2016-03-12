@@ -392,8 +392,11 @@ Schedule_C.prototype.payments = function(calc) {
 
     // S.4
     var start_payment_date = this.initial_date;
+    var first_payment_date =
+	following_1st_of_month_exclusive(this.initial_date);
 
     calc.amortize({"on":start_payment_date,
+		   "first_payment_date" : first_payment_date,
                    "amount": calc.remaining_balance(),
                    "payments" : this.number_payments,
                    "interval" : this.interval,
@@ -414,10 +417,7 @@ function contains(a, obj) {
     return undefined;
 }
 
-function following_1st_of_month(a) {
-    if (a.getDate() == 1) {
-	return a;
-    };
+function following_1st_of_month_exclusive(a) {
     if (a.getMonth() == 12) {
 	return new Date(a.getFullYear() + 1, 0, 1);
     } 
