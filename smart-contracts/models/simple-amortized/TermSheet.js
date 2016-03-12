@@ -159,10 +159,6 @@ party to the other from time to time.
 
 define(["./Parties"], function(parties) {
 
-function Contract_Config(obj) {
-    obj.allow_skip_principal = false;
-}
-
 function Contract_Text(obj) {
     obj.contract_text = contract_template;
     obj.header_text = (function () {/*
@@ -173,9 +169,9 @@ Legal text prepared by CryptoLaw (http://crypto-law.com/)
 
 Released under terms of the Simplified BSD License.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-    obj.parties = parties; 
     obj.additional_provisions = (function () {/*
-*/}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+					       */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+    parties.set(obj);
 };
 
 // SCHEDULES
@@ -434,7 +430,6 @@ function new_date(year, month, day) {
 }
 
 function TermSheet() {
-    Contract_Config(this);
     Contract_Text(this);
     Schedule_A(this);
     Schedule_B(this);
