@@ -22,6 +22,9 @@ Model Contracts
 [hk-money-lender](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-money-lender)
 - Contract compliant with HK money lending rules
 
+[hk-company-secured](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-company-secured)
+- Contract for secured lending to HK company
+
 [hire-purchase](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hire-purchase)
 - Contract for hire purchase of appliance
 
