@@ -8,7 +8,7 @@ if (typeof define !== 'function') {
 }
 
 define(function() {
-    function.set(obj) {
+    return {"set" : function(obj) {
 	obj.parties = {
 	    roles : ["borrower", "lender"],
 	    borrower : {
@@ -37,4 +37,5 @@ define(function() {
 	    }
 	};
     }
+	   };
 });
