@@ -393,9 +393,9 @@ Calculator.prototype.amortize = function(params) {
 	}
 	var capitalization_factor = 
 	    o.capitalization_factor(on,
-				 first_payment_date,
-				 o.term_sheet.annual_interest_rate,
-				 o.term_sheet.compound_per_year,
+				    o.add_duration(on, params.interval),
+				    o.term_sheet.annual_interest_rate,
+				    o.term_sheet.compound_per_year,
 				    o.term_sheet.day_count_convention);
 	var payment;
 	if (o.term_sheet.compound_per_year === 0) {
