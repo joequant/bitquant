@@ -81,6 +81,7 @@ $PYTHON-xlrd \
       $PYTHON-sqlalchemy \
       $PYTHON-sympy \
       $PYTHON-pillow \
+      $PYTHON-lxml \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
@@ -126,3 +127,4 @@ $SUDO systemctl disable hsqldb
 
 # sox to play sounds for algobroker
 # pillow is for toyplot
+# lxml for matta
