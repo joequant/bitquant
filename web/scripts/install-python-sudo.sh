@@ -23,6 +23,7 @@ for packages in \
 	    blaze statsmodels redis redis-dump-load \
 	    git+https://github.com/joequant/ethercalc-python.git \
             git+https://github.com/joequant/spyre.git \
+	    git+https://github.com/joequant/cryptoexchange.git \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/bitcoin-price-api.git \
 	    git+https://github.com/joequant/matta.git \
