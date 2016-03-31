@@ -1,7 +1,7 @@
 FROM mageia:cauldron
 MAINTAINER Joseph C Wang <joequant@gmail.com>
 VOLUME [ "/sys/fs/cgroup", "/var/lib/machines" ]
-RUN echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
+RUN echo "ZONE=Asia/Taipei" > /etc/sysconfig/clock
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 
