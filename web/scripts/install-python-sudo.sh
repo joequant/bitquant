@@ -27,6 +27,7 @@ for packages in \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/bitcoin-price-api.git \
 	    git+https://github.com/joequant/matta.git \
+	    git+https://github.com/joequant/pythalesians.git \
             configproxy prettyplotlib mpld3 networkx \
             iminuit lmfit redis_kernel bash_kernel ; 
 do pip3 install $PYTHON_ARGS $packages ;
