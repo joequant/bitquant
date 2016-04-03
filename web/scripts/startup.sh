@@ -51,14 +51,14 @@ echo "Restarting rserver"
 /usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
 fi
 
-if [ -f /usr/bin/ipython3 ] ; then
-echo "Restarting ipython"
+if [ -f /usr/bin/jupyter ] ; then
+echo "Restarting jupyter"
 mkdir -p ~/ipython
 # Override mathjax so that ipython will pull the a secure mathjax to avoid 
 # failures if ipython is pulled through https
 /usr/bin/python3 -m bash_kernel.install --user
 
-/usr/bin/ipython3 notebook --no-browser --NotebookApp.base_url=jupyter --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --config=$SCRIPT_DIR/ipython_config.py --notebook-dir=~/ipython --script  >> $LOG_DIR/jupyter.log 2>&1 &
+/usr/bin/jupyter notebook --no-browser --NotebookApp.base_url=jupyter --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --config=$SCRIPT_DIR/ipython_config.py --notebook-dir=~/ipython --script  >> $LOG_DIR/jupyter.log 2>&1 &
 fi
 
 
