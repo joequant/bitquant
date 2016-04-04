@@ -13,7 +13,7 @@ ME=$2
 
 pip3 install --upgrade pip
 for packages in \
-    notebook jupyterhub \
+    notebook jupyterhub ipywidgets \
     vispy pyalgotrade statsmodels quandl \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
