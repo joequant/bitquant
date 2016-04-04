@@ -22,13 +22,14 @@ RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
    echo 'cubswin:)' | passwd root --stdin ; \
    cd ~user ; mkdir git ; cd git ; \
-   git clone https://github.com/joequant/bitquant.git ;\
-   git clone https://github.com/joequant/algobroker.git ;\
-   git clone https://github.com/joequant/cryptoexchange.git
+   git clone https://github.com/joequant/bitquant.git 
 RUN  mkdir -p /etc/sysusers.d ; \
   cp ~user/git/bitquant/docker/system.conf /etc/sysusers.d ; \
   systemd-sysusers
-RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "sudo", "apache", "apache-mod_suexec", "apache-mod_proxy", "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
+RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs",
+    "--auto", "sudo", "apache", "apache-mod_suexec",
+    "apache-mod_proxy",
+    "apache-mod_php", "apache-mod_authnz_external", "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
 RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
   rm -f /etc/systemd/system/*.wants/*;\
