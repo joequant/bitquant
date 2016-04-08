@@ -50,8 +50,6 @@ RUN  URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" \
    su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" ; \
    su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" ; \
    ~user/git/bitquant/web/scripts/remove-build-deps.sh ; \
-   cd ~user/git/cryptoexchange ; python3 setup.py install ; \
-   cd ~user/git/algobroker ; python3 setup.py install ; \
    rm -rf /usr/lib64/python*/test ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/tests ; \
    rm -rf /usr/lib64/python*/site-packages/pandas/io/tests ; \
