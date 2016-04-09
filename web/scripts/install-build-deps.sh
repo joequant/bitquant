@@ -21,7 +21,7 @@ fi
 PYTHON=python3
 IPYTHON=python3-ipython
 PYTHON_COMPAT=
-ADMIN=ajenti
+#ADMIN=ajenti
 
 #repeat packages in setup
 $SUDO urpmi --no-recommends \
