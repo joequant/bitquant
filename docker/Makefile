@@ -12,13 +12,13 @@ ARGS="--no-cache=true"
 endif
 
 bitstation:
-	 docker build -t joequant/bitstation $(ARGS) bitstation
+	 docker build -t joequant/bitstation $(ARGS) .
 
 bitquant-web:
 	 docker build -t bitquant-web $(ARGS) bitquant-web
 
 bitstation-clean-docker:
-	 docker build -rm=true - < bitstation/Dockerfile
+	 docker build -rm=true - < Dockerfile
 
 mageia-import: rootfs-systemd.tar.xz
 	 cat rootfs-systemd.tar.xz |  docker import - mageia:systemd
