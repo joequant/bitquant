@@ -1,10 +1,11 @@
 #!/bin/bash
 
-IMAGE=bitstation
+IMAGE=joequant/bitstation
 if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
 
+$SUDO docker run $IMAGE echo 
 mkdir -p ~/volumes/bitstation
 pushd ~/volumes/bitstation
 mkdir -p var/lib

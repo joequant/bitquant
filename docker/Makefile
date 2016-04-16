@@ -12,7 +12,7 @@ ARGS="--no-cache=true"
 endif
 
 bitstation:
-	 docker build -t bitstation $(ARGS) bitstation 
+	 docker build -t joequant/bitstation $(ARGS) bitstation
 
 bitquant-web:
 	 docker build -t bitquant-web $(ARGS) bitquant-web

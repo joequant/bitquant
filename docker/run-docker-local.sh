@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE=bitstation
+IMAGE=joequant/bitstation
 if [ "$1" != "" ] ; then
    IMAGE=$1
 fi
