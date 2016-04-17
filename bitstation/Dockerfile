@@ -24,7 +24,7 @@ RUN useradd user ;\
    cd ~user ; mkdir git ; cd git ; \
    git clone https://github.com/joequant/bitquant.git 
 RUN  mkdir -p /etc/sysusers.d ; \
-  cp ~user/git/bitquant/docker/system.conf /etc/sysusers.d ; \
+  cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d ; \
   systemd-sysusers
 RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", \
     "--auto", "sudo", "apache", "apache-mod_suexec", \
