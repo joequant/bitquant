@@ -15,9 +15,9 @@ Bitstation trading/analytics platform
 =====================================
 
 Bitstation is a web-based trading/analytics system built on top of
-docker.  Documentation is located in the docker directory.
+docker.  Documentation is located in the bitstation directory.
 
-This will create a local docker image with bitstation.  Running the
-system with the included scripts will run that image on port 80
+The system is in the directory bitstation.  Running the system with
+the included scripts will run that image on port 80
 
 
