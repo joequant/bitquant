@@ -1,21 +1,12 @@
 bitstation-nocache: ARGS="--no-cache=true"
 bitstation-nocache: bitstation
 
-bitstation-prod-nocache: ARGS="--no-cache=true"
-bitstation-prod-nocache: bitstation-prod
-
-bitstation-example-nocache: ARGS="--no-cache=true"
-bitstation-example-nocache: bitstation-example
-
 ifeq ($(NOCACHE),true)
 ARGS="--no-cache=true"
 endif
 
 bitstation:
 	 docker build -t joequant/bitstation $(ARGS) .
-
-bitquant-web:
-	 docker build -t bitquant-web $(ARGS) bitquant-web
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile
@@ -38,6 +29,7 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
-.PHONY: bitstation bitquant-web
+.PHONY: bitstation
+
 
 
