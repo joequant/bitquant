@@ -84,6 +84,9 @@ $PYTHON-xlrd \
       $PYTHON-lxml \
       $PYTHON-jupyter-notebook \
       $PYTHON-ipywidgets \
+      jupyter-client \
+      jupyter-core \
+      jupyter-console \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
