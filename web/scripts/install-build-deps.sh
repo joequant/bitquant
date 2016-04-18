@@ -82,6 +82,8 @@ $PYTHON-xlrd \
       $PYTHON-sympy \
       $PYTHON-pillow \
       $PYTHON-lxml \
+      $PYTHON-jupyter-notebook \
+      $PYTHON-ipywidgets \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
