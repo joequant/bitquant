@@ -87,6 +87,7 @@ $PYTHON-xlrd \
       jupyter-client \
       jupyter-core \
       jupyter-console \
+      jupyter-notebook \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
