@@ -25,15 +25,16 @@ define(function() {
 	    },
 	    lender:  {
 		type: "corporation",
-		name : "Banzai Institute for Biomedical Engineering and Strategic Information Limited",
+		name : "Bitquant Research Laboratories (Asia) Limited",
 		domicile : "Hong Kong",
-		company_number : "2334455",
-		registered_office : "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
+		company_number : "2022190",
+		registered_office : "B-25, 3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
 		contact : {
-		    name: "Dr. Buckaroo Banzai",
-		    address: "Banzai Institute, 1 Banzai Road, Holland Township, New Jersey",
-		    email: "buckaroo@example.com"
-		}
+		    name: "Joseph Wang",
+		    address: "B-25, 3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
+		    email: "joequant@gmail.com"
+		},
+		extra : ", a licensed Hong Kong Money Lender with license 811/2015"
 	    }
 	};
     }
