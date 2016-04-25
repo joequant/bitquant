@@ -164,7 +164,7 @@ party to the other from time to time.
 
 
 
-define(function() {
+define(["./Parties"], function(parties) {
 
 function Contract_Config(obj) {
     obj.allow_skip_principal = false;
@@ -180,37 +180,10 @@ Legal text prepared by CryptoLaw (http://crypto-law.com/)
 
 Released under terms of the Simplified BSD License.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
-    obj.parties = {
-	roles : ["borrower", "lender"],
-	borrower : {
-	    type: "corporation",
-	    name : "Yoyodyne Propulsion Systems Limited",
-	    domicile : "Hong Kong",
-	    company_number : "1234552",
-	    registered_office : "3/F, Nam Wo Hong Building, 148 Wing Lok Street, Sheung Wan, Hong Kong",
-	    contact : {
-		name: "John Bigboote",
-		address: "Yoyodyne Propulsion Systems, 1938 Cranbury Road, Grovers Mills, New Jersey",
-		email: "bigboote@example.com"
-	    }
-	},
-	lender:  {
-	    type: "corporation",
-	    name : "Banzai Institute for Biomedical Engineering and Strategic Information Limited",
-	    domicile : "Hong Kong",
-	    company_number : "2334455",
-	    registered_office : "3/F, Citicorp Centre, 18 Whitfield Road, Tin Hau, Hong Kong",
-	    contact : {
-		name: "Dr. Buckaroo Banzai",
-		address: "Banzai Institute, 1 Banzai Road, Holland Township, New Jersey",
-		email: "buckaroo@example.com"
-	    }
-	}
-    };
-
     obj.additional_provisions = (function () {/*
 The lender agrees to abide by the terms of the Code of Money Lending Practice adopted by the Licensed Money Lending Association of Hong Kong, irregardless of whether the lender is a member of that organization.
 */}).toString().match(/[^]*\/\*([^]*)\*\/\}$/)[1];
+    parties.set(obj);
 };
 
 // SCHEDULES
