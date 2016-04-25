@@ -84,6 +84,7 @@ $PYTHON-xlrd \
       $PYTHON-lxml \
       $PYTHON-jupyter-notebook \
       $PYTHON-ipywidgets \
+      $PYTHON-mistune \
       jupyter-client \
       jupyter-core \
       jupyter-console \
@@ -119,6 +120,9 @@ mongo-tools \
 # python-pandas
 # python-tables
 # python-scipy
+
+# python-mistune is needed by jupyter-nbconvert but the autorequires
+# seems broken
 
 # curl-devel is needed for Rcurl
 # icu-i18n-devel is needed for Rpy
