@@ -1,7 +1,7 @@
 FROM mageia:cauldron
 MAINTAINER Joseph C Wang <joequant@gmail.com>
 VOLUME [ "/sys/fs/cgroup", "/var/lib/machines" ]
-RUN echo "ZONE=Asia/Taipei" > /etc/sysconfig/clock
+RUN echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 
@@ -9,20 +9,20 @@ RUN urpmi.removemedia -a ;\
     urpmi.addmedia --distrib \
        --mirrorlist \
        'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list' ; \
-    urpmi.addmedia \
+    urpmi.addmedia --no-md5sum \
        "Core backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release ; \
-    urpmi.addmedia \
+    urpmi.addmedia --no-md5sum \
        "Core updates backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/updates ; \
    urpmi --no-recommends --auto --excludedocs urpmi ; \
    urpmi --replacepkgs --excludedocs locales glibc ; \
    urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs ; \
+   urpmi --no-recommends --no-md5sum --excludedocs --auto git ; \
    urpme --auto-orphans --auto 
-RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", "--auto", "git"]
 RUN useradd user ;\
    echo 'cubswin:)' | passwd user --stdin ; \
    echo 'cubswin:)' | passwd root --stdin ; \
    cd ~user ; mkdir git ; cd git ; \
-   git clone https://github.com/joequant/bitquant.git 
+   git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 RUN  mkdir -p /etc/sysusers.d ; \
   cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d ; \
   systemd-sysusers
@@ -31,8 +31,8 @@ RUN ["urpmi", "--no-recommends", "--no-md5sum", "--excludedocs", \
     "apache-mod_proxy", \
     "apache-mod_php", "apache-mod_authnz_external", \
     "apache-mod_ssl", "dokuwiki", "python3-flask", "python3-pexpect"]
-RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation
-RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
+RUN cd ~user/git/bitquant/web/scripts ; ./setup_vimage.sh bitstation ; \
+  rm -f /lib/systemd/system/multi-user.target.wants/*;\
   rm -f /etc/systemd/system/*.wants/*;\
   rm -f /lib/systemd/system/local-fs.target.wants/*; \
   rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
