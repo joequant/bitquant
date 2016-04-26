@@ -10,7 +10,7 @@ The image for bitstation is stored on docker hub as joequant/bitstation
 
 To run
 
-    ./run-docker.sh
+    ./start-server.sh
 
 The images assume that you have set up docker to be runnable by your
 user account.  You can also set the environment variable SUDO to sudo
@@ -27,7 +27,7 @@ You may need to run make with "sudo make" if docker can only run under root
 
 To run docker
 
-    ./run-docker.sh
+    ./start-server.sh
 
 Notes
 -----
