@@ -9,11 +9,13 @@ pushd ../.. > /dev/null
 for repo in $repos_misc ; do
 if [ ! -d "$repo" ] 
 then
-git clone --progress --single-branch --depth 1 https://github.com/$MY_NAME/$repo
+git clone --progress https://github.com/$MY_NAME/$repo
 pushd $repo > /dev/null
 if [[ ${upstream[$repo]} ]]; then
 git remote add upstream ${upstream[$repo]}
+git fetch upstream
 fi
+git fetch origin
 popd > /dev/null
 else
 echo "Repo $repo already present"
