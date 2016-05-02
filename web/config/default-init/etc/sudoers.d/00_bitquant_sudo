@@ -55,6 +55,8 @@ Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 
 Cmnd_Alias USER = /bin/passwd
 
+Cmnd_Alias TIME = /bin/timedatectl
+
 # Defaults specification
 
 #
@@ -84,6 +86,7 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 Defaults!BITQUANT !requiretty
 Defaults!USER !requiretty
 Defaults!SERVICES !requiretty
+Defaults!TIME !requiretty
 %USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER
 
 
