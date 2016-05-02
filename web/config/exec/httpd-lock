@@ -1,2 +1,3 @@
-sudo kill -USR1 `cat /var/run/httpd/httpd.pid`
+sudo kill -USR1 `cat /var/run/httpd/httpd.pid` 2>&1
+
 

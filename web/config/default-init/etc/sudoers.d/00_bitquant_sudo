@@ -48,7 +48,7 @@ Cmnd_Alias SERVICES = /sbin/service, /sbin/chkconfig, /bin/systemctl
 #Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 
 
 ## Processes
-# Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
 
 ## Drivers
 # Cmnd_Alias DRIVERS = /sbin/modprobe
@@ -87,6 +87,8 @@ Defaults!BITQUANT !requiretty
 Defaults!USER !requiretty
 Defaults!SERVICES !requiretty
 Defaults!TIME !requiretty
-%USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER
+Defaults!PROCESSES !requiretty
+%USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER, NOPASSWD: TIME, NOPASSWD: PROCESSES
+
 
 
