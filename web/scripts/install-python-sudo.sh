@@ -28,12 +28,18 @@ for packages in \
 	    git+https://github.com/joequant/matta.git \
 	    git+https://github.com/joequant/pythalesians.git \
             configproxy prettyplotlib mpld3 networkx \
-            iminuit lmfit redis_kernel bash_kernel ; 
+            iminuit lmfit redis_kernel bash_kernel \
+            caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
 chown $ME:$ME -R /home/$ME/.local/share/jupyter/kernels
+
+fabmanager create-admin --app caravel
+caravel db upgrade
+caravel init
+caravel load_examples
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
