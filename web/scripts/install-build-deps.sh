@@ -85,6 +85,8 @@ $PYTHON-xlrd \
       $PYTHON-jupyter-notebook \
       $PYTHON-ipywidgets \
       $PYTHON-mistune \
+      $PYTHON-cffi \
+      $PYTHON-cryptography \
       jupyter-client \
       jupyter-core \
       jupyter-console \
@@ -109,6 +111,7 @@ mongo-tools \
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
 #unzip for R devtool builds
+#cffi for caravel
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
