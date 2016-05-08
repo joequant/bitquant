@@ -15,12 +15,11 @@ require.config({
 	"jquery" : "http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min",
 	"modernizr" : "https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min",
 	"jquery-ui" : "http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min",
-	"append-grid" :  "jquery.appendGrid-1.6.1.min",
+	"append-grid" :  "jquery.appendGrid-1.6.2.min",
 	"polyfiller" :    "http://cdn.jsdelivr.net/webshim/1.15.10/polyfiller",
-	"markdown" :
-    "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min",
+	"markdown" :    "http://cdnjs.cloudflare.com/ajax/libs/pagedown/1.0/Markdown.Converter.min",
 	"collapse" : "jquery.collapse",
-	"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.3/handlebars.min"
+	"handlebars" : "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min"
     },
     shim: {
         "jquery-ui": {
@@ -112,15 +111,15 @@ Attention: {{name}}
 	    };
 	    
 	    output.html("");
-	    output.append("<span class='block'>event</span> ");
-	    output.append("<span class='date-block'>date</span> ");
-	    output.append("<span class='block'>principal</span> ");
-	    output.append("<span class='block'>fees</span> ");
-	    output.append("<span class='block'>balance</span> ");
-	    output.append("<span class='block'>late balance</span> ");
-	    output.append("<span class='block'>principal payment</span> ");
-	    output.append("<span class='block'>fee payment</span> ");
-	    output.append("<span class='block'>total payment</span> ");
+	    output.append("<span class='event block'>event</span> ");
+	    output.append("<span class='date block'>date</span> ");
+	    output.append("<span class='number block'>principal</span> ");
+	    output.append("<span class='number block'>fees</span> ");
+	    output.append("<span class='number block'>balance</span> ");
+	    output.append("<span class='number block'>late balance</span> ");
+	    output.append("<span class='number block'>principal payment</span> ");
+	    output.append("<span class='number block'>fee payment</span> ");
+	    output.append("<span class='number block'>total payment</span> ");
 	    output.append("<br>");
 	    
 	    payment_schedule.forEach(function(i) {
@@ -132,9 +131,9 @@ Attention: {{name}}
 		if (i.event == "Note" ||
 		    i.event == "Terminate" ||
 		    i.event == "Action" ) {
-		    output.append("<span class='block'>" +
+		    output.append("<span class='event block'>" +
 				  i.event + "</span> ");
-		    output.append("<span class='date-block'>" +
+		    output.append("<span class='date block'>" +
 				  i.on.toDateString() + "</span> ");
 		    output.append("<span>" +
 				  note + "</span> ");
@@ -164,8 +163,8 @@ Attention: {{name}}
 		    append_span(list);
 		    output.append("<br>");
 		} else {
-		    output.append("<span class='block'>" +
-				  i.event + "</span> <span class='date-block'>" +
+		    output.append("<span class='event block'>" +
+				  i.event + "</span> <span class='date block'>" +
 				  i.on.toDateString() + "</span> <span class='number block'>" +
 				  Number(i.principal).toFixed(2) +
 				  "</span> <span class='number block'>" +
@@ -186,18 +185,6 @@ Attention: {{name}}
 		}
 	    });
 	    output.append("<br><br>Annual percentage rate:" + Number(calculator.apr(payment_schedule)).toFixed(4) + "<br>");
-	    var myElements = document.querySelectorAll(".block");
-	    
-	    for (var i = 0; i < myElements.length; i++) {
-		myElements[i].style.width = "80px";
-		myElements[i].style.display = "inline-block";
-	    }
-	    
-	    myElements = document.querySelectorAll(".date-block");
-	    for (var i = 0; i < myElements.length; i++) {
-		myElements[i].style.width = "150px";
-		myElements[i].style.display = "inline-block";
-	    }
 	} catch (err) {
 	    output.html(err.message);
 	}
