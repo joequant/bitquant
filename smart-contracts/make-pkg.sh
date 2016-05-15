@@ -23,6 +23,8 @@ mkdir -p ~/$ZIPDIR/$ITEMDIR
 cp -r $ITEM ~/$ZIPDIR/$ITEMDIR
 sed -i -e s!models/loan!$ITEM! ~/$ZIPDIR/contract_viewer.html
 sed -i -e s!models/loan!$ITEM! ~/$ZIPDIR/calc-contract.js
+rm -rf ~/$ZIPDIR/node_modules/moment/min/tests.js
+rm -rf ~/$ZIPDIR/node_modules/requirejs/bin
 
 cd ~
 zip -r ~/$ZIPDIR $ZIPDIR
