@@ -405,7 +405,20 @@ Calculator.prototype.amortize = function(params) {
 		(1.0 - Math.pow(1 + capitalization_factor, -npayments)) * p
 	}
 	var d = first_payment_date;
-	for (var i=0; i < npayments; i++) {
+	var payment_info = {};
+	var partial_time = o.year_frac(on, first_payment_date,
+					  o.term_sheet.day_count_convention) /
+	    o.year_frac(on, o.add_duration(on, params.interval),
+			o.term_sheet.day_count_convention);
+	payment_info.on = d;
+	payment_info.amount = payment * partial_time;
+	payment_info.prepend = true;
+	payment_info.required = 
+	    params.required;
+	o.add_to_event_table(params.payment_func)(payment_info);
+	d = o.add_duration(d, params.interval);
+
+	for (var i=1; i < npayments; i++) {
 	    var payment_info = {};
 	    payment_info.on = d;
 	    payment_info.amount = payment;
