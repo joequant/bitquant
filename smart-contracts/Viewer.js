@@ -82,8 +82,13 @@ Attention: {{name}}
 	    t.contact_formatted = "";
 	    t.parties.roles.forEach(function(role) {
 		if (t.parties[role] !== undefined) {
+		    var template_string = 
+			templates[t.parties[role].type];
+		    if (template_string === undefined) {
+			template_string = templates['individual'];
+		    }
 		    var template = 
-			Handlebars.compile(templates[t.parties[role].type]);
+			Handlebars.compile(template_string);
 		    var compiled_contact_template =
 			Handlebars.compile(contact_template);
 		    t.parties_formatted = t.parties_formatted + 
