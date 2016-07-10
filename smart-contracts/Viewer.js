@@ -1,4 +1,5 @@
-// Copyright (c) 2015, Bitquant Research Laboratories (Asia) Limited
+// Copyright (c) 2014-2016, New Systems Technology Ltd.
+// Copyright (c) 2015-2016, Bitquant Research Laboratories (Asia) Limited
 // Licensed under the Simplified BSD License
 
 "use strict";
