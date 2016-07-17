@@ -29,7 +29,7 @@ for packages in \
 	    git+https://github.com/joequant/cryptoexchange.git \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/bitcoin-price-api.git \
-	    git+https://github.com/joequant/matta.git \
+            git+https://github.com/joequant/datagramas.git \
 	    git+https://github.com/joequant/pythalesians.git \
             configproxy prettyplotlib mpld3 networkx \
             iminuit lmfit redis_kernel bash_kernel \
