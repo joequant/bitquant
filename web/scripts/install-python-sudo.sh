@@ -18,7 +18,8 @@ export LANG=en_US.UTF-8
 pip3 install --upgrade pip
 for packages in \
     jupyterhub \
-    vispy pyalgotrade statsmodels quandl \
+	vispy pyalgotrade statsmodels quandl ipywidgets \
+	jupyter_declarativewidgets \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
@@ -36,6 +37,11 @@ for packages in \
             caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+jupyter serverextension enable --py declarativewidgets --sys-prefix
+jupyter nbextension install --py declarativewidgets --sys-prefix
+jupyter nbextension enable --py declarativewidgets --sys-prefix
+
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
 chown $ME:$ME -R /home/$ME/.local/share/jupyter
