@@ -19,7 +19,8 @@ pip3 install --upgrade pip
 for packages in \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
-	jupyter_declarativewidgets \
+	jupyter_declarativewidgets pythreejs \
+	ipyleaflet bqplot cookiecutter \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
