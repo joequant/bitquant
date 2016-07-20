@@ -19,7 +19,7 @@ pip3 install --upgrade pip
 for packages in \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
-	jupyter_declarativewidgets \
+	jupyter_declarativewidgets vega \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
@@ -37,10 +37,20 @@ for packages in \
             caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
-jupyter nbextension enable --py widgetsnbextension --sys-prefix
-jupyter serverextension enable --py declarativewidgets --sys-prefix
-jupyter nbextension install --py declarativewidgets --sys-prefix
-jupyter nbextension enable --py declarativewidgets --sys-prefix
+
+for extension in \
+    widgetsnbextension declarativewidgets vega pythreejs ; 
+    do jupyter nbextension install --py $extension --sys-prefix 
+       jupyter nbextension enable --py $extension --sys-prefix ;
+done
+
+for extension in \
+    declarativewidgets ; 
+    do jupyter serverextension install --py $extension --sys-prefix 
+       jupyter serverextension enable --py $extension --sys-prefix ;
+done
+       
+
 
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
