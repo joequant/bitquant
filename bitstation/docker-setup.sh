@@ -13,7 +13,6 @@ urpmi --no-recommends --auto --excludedocs urpmi
 urpmi --replacepkgs --excludedocs locales glibc
 urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
 urpmi --no-recommends --no-md5sum --excludedocs --auto git
-urpme --auto-orphans --auto 
 useradd user
 echo 'cubswin:)' | passwd user --stdin
 echo 'cubswin:)' | passwd root --stdin
@@ -63,3 +62,5 @@ rm -rf /usr/lib/python*/site-packages/ggplot/tests
 rm -rf /usr/lib/python*/site-packages/sympy/*/tests
 rm -rf /usr/share/doc
 rm -rf /home/user/git/shiny-server 
+urpme --auto-orphans --auto
+
