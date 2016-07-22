@@ -46,8 +46,8 @@ rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 
 URPMI_OPTIONS="--excludedocs --no-md5sum --no-verify-rpm" /usr/share/bitquant/install-build-deps.sh 
-su user -c "~user/git/bitquant/web/scripts/bootstrap.sh" || true 
-su user -c "touch ~user/git/bitquant/web/log/bootstrap.done" || true
+sudo -u user ~user/git/bitquant/web/scripts/bootstrap.sh
+sudo -u user touch ~user/git/bitquant/web/log/bootstrap.done
 ~user/git/bitquant/web/scripts/remove-build-deps.sh
 rm -rf /usr/lib64/python*/test
 rm -rf /usr/lib64/python*/site-packages/pandas/tests
