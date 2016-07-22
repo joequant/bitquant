@@ -61,5 +61,4 @@ rm -rf /usr/lib/python*/site-packages/ggplot/tests
 rm -rf /usr/lib/python*/site-packages/sympy/*/tests
 rm -rf /usr/share/doc
 rm -rf /home/user/git/shiny-server 
-urpme --auto-orphans --auto
 
