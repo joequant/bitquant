@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
+export TZ="Asia/Hong_Kong"
 urpmi.removemedia -a
 urpmi.addmedia --distrib \
 	       --mirrorlist \
