@@ -20,7 +20,7 @@ for packages in \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
 	jupyter_declarativewidgets pythreejs vega \
-	ipyleaflet bqplot cookiecutter \
+	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
