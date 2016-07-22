@@ -1,4 +1,5 @@
 #!/bin/bash
+echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 urpmi.removemedia -a
 urpmi.addmedia --distrib \
 	       --mirrorlist \
