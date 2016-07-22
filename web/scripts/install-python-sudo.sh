@@ -19,7 +19,7 @@ pip3 install --upgrade pip
 for packages in \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
-	jupyter_declarativewidgets pythreejs vega \
+	jupyter_declarativewidgets pythreejs vega nbpresent \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
@@ -40,7 +40,7 @@ do pip3 install $PYTHON_ARGS $packages ;
 done
 
 for extension in \
-    widgetsnbextension declarativewidgets vega pythreejs ; 
+    widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
     do jupyter nbextension install --py $extension --sys-prefix 
        jupyter nbextension enable --py $extension --sys-prefix ;
 done
