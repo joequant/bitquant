@@ -34,6 +34,7 @@ for packages in \
             git+https://github.com/joequant/datagramas.git \
 	    git+https://github.com/joequant/pythalesians.git \
             configproxy prettyplotlib mpld3 networkx \
+	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
             caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
