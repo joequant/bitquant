@@ -51,7 +51,7 @@ for extension in \
 done
 
 for extension in \
-    declarativewidgets nbextensions_configurator ; 
+    declarativewidgets jupyter_nbextensions_configurator ; 
     do jupyter serverextension install --py $extension --sys-prefix 
        jupyter serverextension enable --py $extension --sys-prefix ;
 done
