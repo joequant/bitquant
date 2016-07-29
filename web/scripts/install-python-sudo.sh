@@ -43,20 +43,14 @@ do pip3 install $PYTHON_ARGS $packages ;
 done
 
 jupyter contrib nbextension install --sys-prefix
+jupyter declarativewidgets quick-setup --sys-prefix
+jupyter nbextensions_configurator enable --sys-prefix 
 
 for extension in \
     widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
     do jupyter nbextension install --py $extension --sys-prefix 
        jupyter nbextension enable --py $extension --sys-prefix ;
 done
-
-for extension in \
-    declarativewidgets jupyter_nbextensions_configurator ; 
-    do jupyter serverextension install --py $extension --sys-prefix 
-       jupyter serverextension enable --py $extension --sys-prefix ;
-done
-
-
 
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
