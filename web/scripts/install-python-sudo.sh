@@ -37,9 +37,12 @@ for packages in \
             configproxy prettyplotlib mpld3 networkx qgrid \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
+	    jupyter_nbextensions_configurator \
             caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
+
+jupyter contrib nbextension install --sys-prefix
 
 for extension in \
     widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
@@ -48,12 +51,12 @@ for extension in \
 done
 
 for extension in \
-    declarativewidgets ; 
+    declarativewidgets nbextensions_configurator ; 
     do jupyter serverextension install --py $extension --sys-prefix 
        jupyter serverextension enable --py $extension --sys-prefix ;
 done
 
-jupyter contrib nbextension install --system
+
 
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
