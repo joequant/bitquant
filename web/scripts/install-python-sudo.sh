@@ -33,7 +33,8 @@ for packages in \
 	    git+https://github.com/joequant/bitcoin-price-api.git \
             git+https://github.com/joequant/datagramas.git \
 	    git+https://github.com/joequant/pythalesians.git \
-            configproxy prettyplotlib mpld3 networkx \
+	    git+https://github.com/quantopian/pyfolio.git \
+            configproxy prettyplotlib mpld3 networkx qgrid \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
             caravel ; 
