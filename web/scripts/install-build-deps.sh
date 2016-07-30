@@ -87,6 +87,7 @@ $PYTHON-xlrd \
       $PYTHON-mistune \
       $PYTHON-cffi \
       $PYTHON-cryptography \
+      $PYTHON-pyasn1 \
       jupyter-client \
       jupyter-core \
       jupyter-console \
@@ -141,3 +142,5 @@ $SUDO systemctl disable hsqldb
 # sox to play sounds for algobroker
 # pillow is for toyplot
 # lxml for matta
+
+# pyasn1 for jupyter extensions
