@@ -2,6 +2,13 @@ Here are some smart contracts.
 
 https://github.com/joequant/bitquant/tree/master/smart-contracts
 
+Here is a youtube presentation on smart contracts
+
+https://www.youtube.com/watch?v=0nzUZRDSwkk
+
+and some of the legal issues involved in smart contracts see [NOTES.md](NOTES.md)
+
+
 To see them in action:
 
 http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html
