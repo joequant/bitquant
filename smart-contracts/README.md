@@ -1,10 +1,10 @@
 Here are some smart contracts.
 
-https://github.com/joequant/bitquant/tree/master/smart-contracts
+   https://github.com/joequant/bitquant/tree/master/smart-contracts
 
 Here is a youtube presentation on smart contracts
 
-https://www.youtube.com/watch?v=0nzUZRDSwkk
+   https://www.youtube.com/watch?v=0nzUZRDSwkk
 
 and some of the legal issues involved in smart contracts see [NOTES.md](NOTES.md)
 
@@ -27,7 +27,8 @@ Model Contracts
 - Credit line contract to SME's loaned against HK government grant
 
 [hk-money-lender](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-money-lender)
-- Contract compliant with HK money lending rules
+- Contract compliant with HK money lending rules - Note that this
+contract has been litigated in a HK court proceeding
 
 [hk-company-secured](http://joequant.github.io/bitquant/smart-contracts/contract_viewer.html?contract=models/hk-company-secured)
 - Contract for secured lending to HK company

@@ -220,4 +220,25 @@ to more carefully specify the exchange rate.
 The documentation requirements for verifying revenue is likewise
 somewhat informal.
 
+LITIGATING A SMART CONTRACT IN A PAPER WORLD
+
+One of the issues that we ran into was the process of litigating a
+smart contract in HK courts, and the issue was the legality of a Hong
+Kong money lending contract under the Money Lending Ordinance.  What
+we did was to print out on paper a representation of the contract and
+also do a paper printout of the source code.  We then also printed out
+several screenshots showing the behaviour of the contract under
+relevant situations.  These documents were provided to the opposing
+counsel in the pre-trial document bundle.
+
+If there was any dispute over the behaviour and contents of the
+contract, then this could have been challenged by opposing counsel
+(and that that point we could have brought in expert witnesses), but
+since this was not the issue that was being litigated, using paper
+printouts of the smart contract was sufficient for the litigation.
+Also note that had the meaning of the contract been under dispute,
+because it is all written in javascript, getting programmers to
+testify as to the proper behaviour of the contract would have been
+fast and cheap.
+
 
