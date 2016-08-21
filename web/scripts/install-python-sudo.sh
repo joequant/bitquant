@@ -37,7 +37,7 @@ for packages in \
             configproxy prettyplotlib mpld3 networkx qgrid \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
-	    jupyter_nbextensions_configurator \
+	    jupyter_nbextensions_configurator pyfolio \
             caravel ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
