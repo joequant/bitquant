@@ -38,7 +38,10 @@ for packages in \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
 	    jupyter_nbextensions_configurator pyfolio \
-            caravel ; 
+            caravel VisualPortfolio empyrical qfrm tradingWithPython \
+            trade pybacktest dynts chinesestockapi bizdays \
+            git+https://github.com/bashtage/arch.git ffn \
+            quantdsl pynance; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
