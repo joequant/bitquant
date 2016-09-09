@@ -53,14 +53,14 @@ jupyter nbextensions_configurator enable --sys-prefix
 
 for extension in \
     codefolding/main search-replace/main ;
-    do jupyter nbextension enable $extension --sys-prefix
+    do jupyter nbextension enable $extension --sys-prefix --system ;
 done
 
 
 for extension in \
     widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
     do jupyter nbextension install --py $extension --sys-prefix 
-       jupyter nbextension enable --py $extension --sys-prefix ;
+       jupyter nbextension enable --py $extension --sys-prefix --system ;
 done
 
 mkdir -p /home/$ME/.local/share/jupyter/kernels
