@@ -17,6 +17,7 @@ export LANG=en_US.UTF-8
 
 pip3 install --upgrade pip
 for packages in \
+    git+https://github.com/joequant/datagramas.git \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
@@ -31,7 +32,6 @@ for packages in \
 	    git+https://github.com/joequant/cryptoexchange.git \
 	    git+https://github.com/joequant/algobroker.git \
 	    git+https://github.com/joequant/bitcoin-price-api.git \
-            git+https://github.com/joequant/datagramas.git \
 	    git+https://github.com/joequant/pythalesians.git \
 	    git+https://github.com/quantopian/pyfolio.git \
             configproxy prettyplotlib mpld3 networkx qgrid \
@@ -45,12 +45,16 @@ for packages in \
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
+#            
+
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 
-jupyter nbextension enable codefolding/main
-jupyter nbextension enable search-replace/main
+for extension in \
+    codefolding/main search-replace/main ;
+    do jupyter nbextension enable $extension --sys-prefix
+done
 
 
 for extension in \
