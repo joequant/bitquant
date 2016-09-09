@@ -47,7 +47,11 @@ done
 
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup --sys-prefix
-jupyter nbextensions_configurator enable --sys-prefix 
+jupyter nbextensions_configurator enable --sys-prefix
+
+jupyter nbextension enable codefolding/main
+jupyter nbextension enable search-replace/main
+
 
 for extension in \
     widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
