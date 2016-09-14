@@ -4,6 +4,9 @@ Bitquant
 Scripts and installation routines for Bitquant Research Laboratories
 (Asia) Ltd.
 
+If any of this is useful please make a contribution to https://www.patreon.com/user?u=3971025
+
+
 Smart Contract
 ==============
 
