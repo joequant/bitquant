@@ -41,7 +41,7 @@ for packages in \
             caravel VisualPortfolio empyrical qfrm tradingWithPython \
             trade pybacktest dynts chinesestockapi bizdays \
             git+https://github.com/bashtage/arch.git ffn \
-            quantdsl pynance; 
+            quantdsl pynance jupyterlab ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
@@ -50,6 +50,7 @@ done
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
+jupyter serverextension enable --py jupyterlab --sys-prefix
 
 for extension in \
     codefolding/main search-replace/main ;
