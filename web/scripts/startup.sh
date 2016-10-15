@@ -61,4 +61,8 @@ export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
 /usr/bin/jupyter notebook --no-browser --NotebookApp.base_url=jupyter --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyter.log 2>&1 &
 fi
 
-
+if [ -f /usr/bin/jupyter-lab ] ; then
+    echo "Restarting jupyterlab"
+    export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
+    /usr/bin/jupyter lab --no-browser --NotebookApp.base_url=jupyterlab --port 9999 --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyterlab/static/', 'mathjax_url' : 'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyterlab.log 2>&1 &
+fi

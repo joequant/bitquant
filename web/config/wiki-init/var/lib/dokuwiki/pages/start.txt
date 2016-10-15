@@ -17,6 +17,7 @@ href="doku.php?id=links">Links</a>
 <a class="button primary large" target="_blank" href="/jupyter">Calculation Engine</a>
 <a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/pad">Pads</a><br>
+<a class="button primary large" target="_blank" href="/jupyterlab">Calculation Engine (Alpha)</a><br>
 <a class="button" target="_blank" href="/bittrader/sandbox.html">Sandbox</a>
 <a class="button" target="_blank" href="/bittrader/setup.html">Setup page</a>
 </div>
