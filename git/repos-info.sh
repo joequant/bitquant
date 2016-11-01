@@ -4,6 +4,7 @@ declare -A repos
 repos[misc]="etherpad-lite ethercalc"
 repos[quantlib]="quantlib"
 repos[og]="OG-PlatformNative OG-Tools OG-Platform"
+repos[algo]="PyLimitBook PyStrategies sptrader"
 
 declare -A branch
 branch[XChange]="develop"
