@@ -41,6 +41,7 @@ for packages in \
             caravel VisualPortfolio empyrical qfrm tradingWithPython \
             trade pybacktest dynts chinesestockapi bizdays \
             git+https://github.com/bashtage/arch.git ffn \
+	    git+https://github.com/joequant/OrderBook.git \
             quantdsl pynance jupyterlab ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
