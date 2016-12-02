@@ -15,8 +15,11 @@ ME=$2
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# Astropy is needed for tushare
+
 pip3 install --upgrade pip
 for packages in \
+    astropy \
     git+https://github.com/joequant/datagramas.git \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
