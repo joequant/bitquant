@@ -48,6 +48,7 @@ $SUDO urpmi --no-recommends \
 --curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
 $URPMI_OPTIONS \
 nodejs \
+npm \
 gcc-c++ \
 make \
 $PYTHON-pexpect \
