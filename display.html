@@ -1,0 +1,14 @@
+<head>
+  <meta charset="UTF-8">
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script type="text/babel" data-presets="es2015,stage-2"></script>
+  <script type="text/babel" src="convert.js"></script>
+</head>
+<body>
+  <div id="contract_text"/>
+  <script type="text/babel">
+    var contract_text = contract_template();
+    var div = document.getElementById("contract_text");
+    div.innerHTML = contract_text;
+  </script>
+</body>

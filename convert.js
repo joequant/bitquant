@@ -1,41 +1,47 @@
-NEITHER THIS CONVERTIBLE NOTE (THIS “NOTE”) NOR THE SECURITIES INTO WHICH THIS NOTE IS CONVERTIBLE HAVE BEEN REGISTERED UNDER THE U.S. SECURITIES ACT OF 1933, AS AMENDED (THE “ACT”), OR APPLICABLE STATE SECURITIES LAWS. THIS NOTE AND THE SECURITIES INTO WHICH IT IS CONVERTIBLE MAY NOT BE OFFERED FOR SALE, SOLD, TRANSFERRED, ASSIGNED OR PLEDGED (I) IN THE ABSENCE OF (A) AN EFFECTIVE REGISTRATION STATEMENT UNDER THE ACT, OR (B) AN OPINION OF COUNSEL, IN A FORM ACCEPTABLE TO THE ISSUER, THAT REGISTRATION IS NOT REQUIRED UNDER THE ACT OR (II) UNLESS SOLD PURSUANT TO AN EXEMPTION FROM REGISTRATION UNDER THE ACT. 
 
-Convertible Note
 
-Reference date: 1 January 2017
-Maturity date: 1 July 2018
-Face value: USD 1000
-Company: Kuaiwear Limited, a company incorporated under the laws of Hong Kong
-Initial Purchaser: Joseph Chen-Yu Wang
-Funding Round: convertible notes issued for the purpose of raising approximately USD 500k after 1 July 2016 until 1 July 2017 or a later date specified by the company if the target fund raise has not been achieved
-Interest Rate: simple interest at annual rate of ten percent (10%).  Interest shall be computed on the basis of a year of 365 days for the actual number of days elapsed
-Payment Notice Period: 10 business days
-Qualfied financing amounts: USD 500k
-Discount factor: 80%
-Valuation cap: USD 4,000,000
-Nonelection Conversion Factor: 1.5
-Transfer objection period: 5 business days
 
-Company notice address:	Kuaiwear Limited
-			Unit A10, 6/F, Wong’s Building 
-			33 Hung To Road 
-			Kwun Tong
-			Kowloon
-			Hong Kong
-				
-Purchaser notice address:	
-	
-	
+function contract_template() {
+return `For value received, {{company}}, the "Company", hereby promises to pay
+to the order of {{initial_purchaser}} (hereinafter together with
+permitted transferees, successors in title and assigns referred to as
+the “Purchaser" the {{reference_value}}, the "Reference Value", and
+accrued interest from time to time, as specified below. The Company
+intends on using the proceeds for general corporate purposes and
+working capital.
 
-For value received, the “Company, hereby promises to pay to the order of the Initial Purchaser (hereinafter together with permitted transferees, successors in title and assigns referred to as the “Purchaser”), the "face value" and accrued interest from time to time, as specified below. The Company intends on using the proceeds for general corporate purposes and working capital. 
+This Convertible Note (this “Note”) is one in a series of
+Convertible Notes (collectively, the “Notes”) issued by the Companas
+part of a funding round which includes {{funding_round}}.  As used in
+this and any notes, “Majority Note Holders” shall mean the holders
+of a majority of the aggregate outstanding amounts of {{note_class}},
+(the "Notes Class")
 
-This Convertible Note (this “Note”) is one in a series of Convertible Notes (collectively, the “Notes”) issued by the Company for a funding round.  As used in this and any other Notes, “Majority Note Holders” shall mean the holders of a majority of the aggregate outstanding principal amount of all Convertible Notes issued as a result of the funding round which includes this note.
+1. Interest.  This Note shall bear interest at
+{{interest_rate_percent}} percent per {{interest_period}} with
+{{interest_compounding}} compounding and a date count convention of
+{{date_count_convention}} .  Interest shall be calculated as accruing
+from {{reference_date}}, the "Reference Date", until the date on which
+this Note is converted as provided herein or paid in connection with
+repayment in full of the amount due of this Note, and shall not be
+payable until it is so converted or repaid.
 
-1. Interest.  This Note shall bear interest at an specified by the Interest Rate.  Interest shall be calculated as accruing from the reference date until the date on which this Note is converted as provided in Section 3 hereof or paid in connection with repayment in full of the amount due of this Note, and shall not be payable until it is so converted or repaid.
+2. Amount Due.  Unless earlier converted into shares of Preferred
+Shares or Ordinary Shares (each term as defined below) pursuant to the
+terms of this Note and subject to the default provisions set forth
+herein, the face value of this Note together with accrued interest
+(the sum of such principal and accrued interest being hereinafter
+referred to as the “Amount Due”) shall be payable at any time
+following {{maturity_date}}, the "Maturity Date", at the discretion of
+the Company or alternately upon the demand of the Purchaser or an
+authorized agent of the Purchaser having given the company a notice of
+{{exercise_notice_period}} specified by this note.  The Amount Due may
+not be prepaid before the Maturity Date in whole or in part without
+the prior written consent of the Majority Note Holders.
 
-2. Amount Due.  Unless earlier converted into shares of Preferred Shares or Ordinary Shares (each term as defined below) pursuant to the terms of this Note and subject to the default provisions set forth herein, the face value of this Note together with accrued interest (the sum of such principal and accrued interest being hereinafter referred to as the “Amount Due”) shall be payable at any time following the maturity date at the discretion of the Company or alternately upon the demand of the Purchaser or an authorized agent of the Purchaser having given the company the "payment notice period" specified by this note.  The Amount Due may not be prepaid before the Maturity Date in whole or in part without the prior written consent of the Majority Note Holders. 
+3. Conversion of the Notes.  The Note shall be convertible according
+to the following terms:
 
-3. Conversion of the Notes.  The Note shall be convertible according to the following terms:
 (a) Subject to Section 9, the  allowing terms shall have the meanings assigned below:
 (i) “Change of Control” shall mean and include any of the following: 
 (a) consummation of merger or consolidation of the Company (or the Parent) with or into any other corporation or other entity in which the holders of the Company’s (or the Parent’s, as applicable) voting securities immediately prior to such merger or consolidation will not, directly or indirectly, continue to hold at least a majority of the outstanding voting securities of the Company (or the Parent, as applicable); 
@@ -46,13 +52,49 @@ This Convertible Note (this “Note”) is one in a series of Convertible Notes 
 (iv) “Hong Kong” means the Hong Kong Special Administrative Region of the People’s Republic of China; 
 (v) “Ordinary Shares” means the ordinary shares of the Company or Parent; 
 (vi) “Preferred Shares” means the preferred shares of the Company or Parent (or any similar equity security to be issued in connection with the Qualified Financing) to be authorized immediately prior to the closing of the Qualified Financing; and
-(vii) “Qualified Financing” means the first bona fide sale (or series of related sales) by the Company or Parent of its Preferred Shares (or a similar equity security) following the date of this Note in which the Company or Parent receives gross proceeds of at least the "Qualified Financing Amount" (excluding the principal amount of and accrued interest on the Notes).
-(viii) “Parent” means a company which will own controlling interest of the equity interest in the Company. 
-(b) Subject to Section 9, the Amount Due shall automatically be converted by the Company, without need of any further action by the Purchaser, into Preferred Shares issued in the Qualified Financing.  The number of Preferred Shares to be issued upon such conversion shall be equal to the quotient obtained by dividing (x) the Amount Due on the date of conversion and (y) the "discount factor" times  price per share of the Preferred Shares sold to the investors in the Qualified Financing; provided that the conversion price per share (or similar equity securities) shall not exceed the quotient obtained by dividing the "valuation cap" by the total number of Ordinary Shares of the Company outstanding on a fully diluted basis, assuming exercise in full of outstanding options and warrants and conversion of any outstanding convertible securities of the Company (the “Conversion Cap”). Notwithstanding the foregoing, the Company shall provide written notice to the Purchaser a reasonable period of time prior to the Qualified Financing.
-(c) Subject to Section 9, upon the non-consummation of a Qualified Financing at or prior to Maturity Date, the Amount Due on the Maturity Date shall automatically be converted by the Company, without need of any further action by the Purchaser, into Ordinary Shares at a conversion price per share (or similar equity securities) that is equal to the Conversion Cap.
-(d) Upon the conversion of this Note into Preferred Shares or Ordinary Shares, as the case may be, in lieu of any fractional shares to which the Purchaser would otherwise be entitled, the Company shall pay the Purchaser an amount in cash equal to such fraction multiplied by the issue price of such Preferred Shares or Ordinary Shares, as the case may be.
-(e) As promptly as practicable after the conversion of this Note, the Company at its expense will issue and deliver, or procure the Parent to issue and deliver, to the Purchaser, upon surrender of the Note, a certificate or certificates for the number of Preferred Shares or Ordinary Shares, as the case may be, issuable upon such conversion.
-(viii) Business day means a day excluding weekends and public holidays and weather emergencies in which stock exchanges within Hong Kong are closed for regular trading the entire day
+(vii) “Qualified Financing” means the first bona fide sale (or
+series of related sales) by the Company or Parent of its Preferred
+Shares (or a similar equity security) following the date of this Note
+in which the Company or Parent receives gross proceeds of at least the
+{{qualified_financing_amount}} (excluding the principal amount of and
+accrued interest on the Notes).
+
+(viii) “Parent” means a compandirectly or indirectlowning
+controlling interest of the equity interest in the Company.
+
+(b) Subject to Section 9, the Amount Due shall automatically be
+converted by the Company, without need of any further action by the
+Purchaser, into Preferred Shares issued in the Qualified Financing.
+The number of Preferred Shares to be issued upon such conversion shall
+be equal to the quotient obtained by dividing (x) the Amount Due on
+the date of conversion and (y) the {{discount_factor_percentage}}
+percent times price per share of the Preferred Shares sold to the
+investors in the Qualified Financing; provided that the conversion
+price per share (or similar equity securities) shall not exceed the
+quotient obtained by dividing the {{valuation cap}} by the total number
+of Ordinary Shares of the Company outstanding on a fully diluted
+basis, assuming exercise in full of outstanding options and warrants
+and conversion of any outstanding convertible securities of the
+Company (the “Conversion Cap”). Notwithstanding the foregoing, the
+Company shall provide written notice to the Purchaser a reasonable
+period of time prior to the Qualified Financing.
+
+(c) Upon the conversion of this Note into Preferred Shares or Ordinary
+Shares, as the case may be, in lieu of any fractional shares to which
+the Purchaser would otherwise be entitled, the Company shall pay the
+Purchaser an amount in cash equal to such fraction multiplied by the
+issue price of such Preferred Shares or Ordinary Shares, as the case
+may be.
+
+(e) As promptly as practicable after the conversion of this Note, the
+Company at its expense will issue and deliver, or procure the Parent
+to issue and deliver, to the Purchaser, upon surrender of the Note, a
+certificate or certificates for the number of Preferred Shares or
+Ordinary Shares, as the case may be, issuable upon such conversion.
+
+(viii) Business day means a day excluding weekends and public holidays
+and weather emergencies in which stock exchanges within Hong Kong are
+closed for regular trading the entire day
 
 4. Default.  
 (a) This Note shall, at the election of the Majority Note Holders, become immediately due and payable, upon notice and demand by the Majority Note Holders (except in the case of clauses (i) and (ii) below, which shall not require notice or demand), upon the occurrence of any of the following events of default (individually, an “Event of Default” and collectively, “Events of Default”):
@@ -68,7 +110,7 @@ Subject to Section 9:
 (b) The Company shall deliver to the Purchaser a Change of Control Notice no less than ten (10) days prior to any anticipated Change of Control. The Purchaser will be required to make an election (a “Change of Control Election”) with respect to the Notes in writing by notice to the Company no later than the fifth (5th) day after delivery of the Change of Control Notice.  Following delivery of such Change of Control Notice, the Company shall provide the Purchaser with such information regarding the terms of the Change of Control as it may reasonably request, subject to any restrictions on the Company (or Parent, as applicable) pursuant to any applicable confidentiality agreement.  Any such election to convert the Note in connection with a Change of Control shall be irrevocable once delivered to the Company and upon such election, the Purchaser shall not be entitled to the prepayment option under this Section 6. 
 (c) If the Purchaser timely delivers a Change of Control Election, the Note shall automatically convert into Ordinary Shares at a conversion price per share (or similar equity securities) that is equal to the Conversion Cap.
 (d) Upon conversion, the Purchaser shall be entitled to participate in any sale of equity securities of the Company (or Parent, as applicable) pursuant to a Change of Control, in proportion to its shareholding in the Company (or Parent, as applicable), (on a fully diluted basis). 
-(e) If the Purchaser fails to timely deliver a Change of Control Election or declines to convert its Note into Ordinary Shares, the Company shall (i) prepay all of this Note for an amount equal to the Nonelection Conversion Factor times the entire Maturity Amount.
+(e) If the Purchaser fails to timely deliver a Change of Control Election or declines to convert its Note into Ordinary Shares, the Company shall (i) prepay all of this Note for an amount equal to the {{nonelection_conversion_factor}} times the entire {{reference_value}}.
 
 7. Collection Expenses.  If this Note is not paid in accordance with its terms, the Company shall pay to the Purchaser, in addition to principal and accrued interest thereon, all costs of collection of this Note, including but not limited to reasonable attorneys’ fees, court costs and other costs for the enforcement of payment of this Note.
 
@@ -85,7 +127,7 @@ Subject to Section 9:
 
 The Purchaser may not transfer or assign its rights hereunder except to a wholly-owned and controlled affiliate, by operation of law or otherwise, unless
 a) it has obtained the written consent of the company.  This consent may be general and may be also given in advance to a general set of transactions, or
-b) having given the Company written notice of the proposed transfer or assignment, it has not received from the Company a written notice of objection within the transfer objection notice period.
+b) having given the Company written notice of the proposed transfer or assignment, it has not received from the Company a written notice of objection within the {{transfer_objection_period}}.
 
 (b) Changes.  Changes in or additions to this Note may be made or compliance with any term, covenant, agreement, condition or provision set forth herein may be omitted or waived (either generally or in a particular instance and either retroactively or prospectively), upon written consent of the Company and the Majority Note Holders; provided, however, that no such change, addition, omission or waiver shall adversely and disproportionately affect any Purchaser in a manner different than any other holder of the other Notes without the prior written consent of such Purchaser.
 (c) Notices.  All notices and other communications given or made pursuant hereto shall be in writing and shall be deemed effectively given:  (i) upon personal delivery to the party to be notified, (ii) when sent by confirmed facsimile if sent during normal business hours of the recipient, if not so confirmed, then on the next business day, (iii) five (5) business days after having been sent by registered or certified mail, return receipt requested, postage prepaid or (iv) one (1) business day after deposit with a nationally recognized overnight courier, specifying next day delivery, with written verification of receipt or (v) or by electronic mail when receipt of the mail has been confirmed.  All communications shall be sent to the respective parties at the following addresses (or at such other addresses as shall be specified by notice given in accordance with this Section 9(d) 
@@ -99,5 +141,7 @@ b) having given the Company written notice of the proposed transfer or assignmen
 (v) In an arbitration arising out of or related to this Note and the obligations of the Company hereunder, the arbitration tribunal shall award to the prevailing party, the cost of arbitration (including legal, accounting and other professional fees and expenses reasonably incurred by any prevailing party with respect to the investigation, collection, prosecution and/or defense of any claim in the Dispute). If the arbitration tribunal determines a party to be the prevailing party under circumstances where the prevailing party won on some but not all of the claims and counterclaims, the panel may award the prevailing party an appropriate percentage of the costs of arbitration (including legal, accounting and other professional fees and expenses reasonably incurred, by any prevailing party with respect to the investigation, collection, prosecution and/or defense of any claim in the Dispute).
 (vi) The existence and content of the arbitration proceedings and any rulings or award shall be kept confidential by the parties and members of the arbitration tribunal except (i) to the extent that disclosure may be required of a party to fulfill a legal duty, protect or pursue a legal right, or enforce or challenge an award in bona fide legal proceedings before a state court or other judicial authority, or (ii) with the consent of all parties. Notwithstanding anything to the contrary, a party may disclose matters relating to the arbitration or the arbitration proceedings where necessary for the preparation or presentation of a claim or defense in this arbitration.
 (g) Entire Agreement.  Without prejudice to any party’s liability for any fraudulent misrepresentation, this Note constitutes the full and entire understanding and agreement between the parties with regard to the subject matter hereof.
-(h) Third Party Rights.  A person who is not a party has no right under the Contracts (Rights of Third Parties) Ordinance (Cap. 623 of the laws of Hong Kong) to enforce or to enjoy the benefit of any term of this Note.
+(h) Third Party Rights.  A person who is not a party has no right under the Contracts (Rights of Third Parties) Ordinance (Cap. 623 of the laws of Hong Kong) to enforce or to enjoy the benefit of any term of this Note.`;
+}
+
 
