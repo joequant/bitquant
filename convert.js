@@ -1,5 +1,26 @@
 
-
+function contract_data() {
+    return {
+	"reference_date": "2017-Jan-01",
+	"maturity_date": "2018-Jul-01",
+	"reference_value": ["USD", 1000],
+	"company": "Kuaiwear Limited, a company incorporated under the laws of Hong Kong",
+	"initial_purchaser": "Joseph Chen-Yu Wang",
+	"note_class": "convertible notes issued for the purpose of raising approximately USD 500k after 1 July 2016 until 1 July 2017 or a later date specified by the company if the target fund raise has not been achieved",
+	"interest_rate_percentage": 10,
+	"interest_period": "year",
+	"interest_compounding": "simple",
+	"date_count_convention": "365/Actual",
+	"exercise_notice_period": [10, "business_days"],
+	"qualified_financing_amount": ["USD", 500000],
+	"discount_factor_percentage": 80,
+	"valuation_cap": ["USD", 4000000],
+	"nonelection_conversion_factor": 1.5,
+	"transfer_objection_period": [5, "business_days"],
+	"change_of_control_notice_period": [10, "business_days"],
+	"change_of_control_election_period", [5, "business_days"]
+    };
+};
 
 function contract_template() {
 return `For value received, {{company}}, the "Company", hereby promises to pay
@@ -71,7 +92,7 @@ the date of conversion and (y) the {{discount_factor_percentage}}
 percent times price per share of the Preferred Shares sold to the
 investors in the Qualified Financing; provided that the conversion
 price per share (or similar equity securities) shall not exceed the
-quotient obtained by dividing the {{valuation cap}} by the total number
+quotient obtained by dividing the {{valuation_cap}} by the total number
 of Ordinary Shares of the Company outstanding on a fully diluted
 basis, assuming exercise in full of outstanding options and warrants
 and conversion of any outstanding convertible securities of the
@@ -107,7 +128,7 @@ closed for regular trading the entire day
 6. Conversion or Repayment upon Change of Control. 
 Subject to Section 9: 
 (a) Notwithstanding any other term contained in this Note, prior to any anticipated Change of Control that occurs before the Maturity Date, the Company hereby grants the Purchaser the option, exercisable at the sole discretion of the Purchaser, to convert the Notes held by it into Ordinary Shares in the manner set forth below.
-(b) The Company shall deliver to the Purchaser a Change of Control Notice no less than ten (10) days prior to any anticipated Change of Control. The Purchaser will be required to make an election (a “Change of Control Election”) with respect to the Notes in writing by notice to the Company no later than the fifth (5th) day after delivery of the Change of Control Notice.  Following delivery of such Change of Control Notice, the Company shall provide the Purchaser with such information regarding the terms of the Change of Control as it may reasonably request, subject to any restrictions on the Company (or Parent, as applicable) pursuant to any applicable confidentiality agreement.  Any such election to convert the Note in connection with a Change of Control shall be irrevocable once delivered to the Company and upon such election, the Purchaser shall not be entitled to the prepayment option under this Section 6. 
+(b) The Company shall deliver to the Purchaser a Change of Control Notice no less than {{change_of_control_notice_period}} prior to any anticipated Change of Control. The Purchaser will be required to make an election (a “Change of Control Election”) with respect to the Notes in writing by notice to the Company no later than {{change_of_control_election_period}} after delivery of the Change of Control Notice.  Following delivery of such Change of Control Notice, the Company shall provide the Purchaser with such information regarding the terms of the Change of Control as it may reasonably request, subject to any restrictions on the Company (or Parent, as applicable) pursuant to any applicable confidentiality agreement.  Any such election to convert the Note in connection with a Change of Control shall be irrevocable once delivered to the Company and upon such election, the Purchaser shall not be entitled to the prepayment option under this Section 6. 
 (c) If the Purchaser timely delivers a Change of Control Election, the Note shall automatically convert into Ordinary Shares at a conversion price per share (or similar equity securities) that is equal to the Conversion Cap.
 (d) Upon conversion, the Purchaser shall be entitled to participate in any sale of equity securities of the Company (or Parent, as applicable) pursuant to a Change of Control, in proportion to its shareholding in the Company (or Parent, as applicable), (on a fully diluted basis). 
 (e) If the Purchaser fails to timely deliver a Change of Control Election or declines to convert its Note into Ordinary Shares, the Company shall (i) prepay all of this Note for an amount equal to the {{nonelection_conversion_factor}} times the entire {{reference_value}}.
@@ -142,6 +163,7 @@ b) having given the Company written notice of the proposed transfer or assignmen
 (vi) The existence and content of the arbitration proceedings and any rulings or award shall be kept confidential by the parties and members of the arbitration tribunal except (i) to the extent that disclosure may be required of a party to fulfill a legal duty, protect or pursue a legal right, or enforce or challenge an award in bona fide legal proceedings before a state court or other judicial authority, or (ii) with the consent of all parties. Notwithstanding anything to the contrary, a party may disclose matters relating to the arbitration or the arbitration proceedings where necessary for the preparation or presentation of a claim or defense in this arbitration.
 (g) Entire Agreement.  Without prejudice to any party’s liability for any fraudulent misrepresentation, this Note constitutes the full and entire understanding and agreement between the parties with regard to the subject matter hereof.
 (h) Third Party Rights.  A person who is not a party has no right under the Contracts (Rights of Third Parties) Ordinance (Cap. 623 of the laws of Hong Kong) to enforce or to enjoy the benefit of any term of this Note.`;
-}
+};
+
 
 

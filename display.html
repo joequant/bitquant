@@ -1,14 +1,17 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
   <script type="text/babel" data-presets="es2015,stage-2"></script>
   <script type="text/babel" src="convert.js"></script>
 </head>
 <body>
   <div id="contract_text"/>
   <script type="text/babel">
-    var contract_text = contract_template();
+    var source = contract_template();
+    var data = contract_data();
+    var template = Handlebars.compile(source);
     var div = document.getElementById("contract_text");
-    div.innerHTML = contract_text;
+    div.innerHTML = template(data);
   </script>
 </body>
