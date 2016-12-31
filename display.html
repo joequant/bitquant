@@ -1,5 +1,6 @@
 <head>
   <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.5.4/showdown.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
   <script type="text/babel" data-presets="es2015,stage-2"></script>
@@ -12,6 +13,7 @@
     var data = contract_data();
     var template = Handlebars.compile(source);
     var div = document.getElementById("contract_text");
-    div.innerHTML = template(data);
+    var converter = new showdown.Converter();
+    div.innerHTML = converter.makeHtml(template(data));
   </script>
 </body>
