@@ -401,6 +401,7 @@ of this Note.`,
 		   },
 		   {
 		       "name" : "shares_outstanding",
+		       "display" : "Shares outstanding",
 		       "description" : "the total number of Ordinary Shares of the Company outstanding on a fully diluted basis, assuming exercise in full of outstanding options and warrants and conversion of any outstanding convertible securities of the Company",
 		       "type": "number",
 		   }
@@ -420,11 +421,13 @@ of this Note.`,
 	       "parameters" : [
 		   {
 		       "name" : "conversion_cap",
+		       "display" : "Conversion Cap",
 		       "description" : "Conversion cap",
-		       "type" : "number"
+		       "type" : "money"
 		   },
 		   {
 	               "name" : "conversion_discount_percent",
+		       "display": "Conversion discount (%)",
                        "description": "Conversion discount",
                        "type" : "percent"
 		   }
