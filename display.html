@@ -7,13 +7,23 @@
   <script type="text/babel" src="convert.js"></script>
 </head>
 <body>
+  <a href="convert.js" type="text/plain;charset=utf-8">View contract source</a>
   <div id="contract_text"/>
   <script type="text/babel">
-    var source = contract_template();
-    var data = contract_data();
-    var template = Handlebars.compile(source);
-    var div = document.getElementById("contract_text");
-    var converter = new showdown.Converter();
-    div.innerHTML = converter.makeHtml(template(data));
-  </script>
+var source = contract.template;
+var data = contract.data;
+for(var key in data) {
+    if(data.hasOwnProperty(key)) {
+	if (data[key].constructor == Array) {
+	    data[key] =
+		data[key].map(function(x) {return
+		    x.toString().replace("_", " ")}).join(" ");
+	}
+    }
+}
+var template = Handlebars.compile(source);
+var div = document.getElementById("contract_text");
+var converter = new showdown.Converter();
+div.innerHTML = converter.makeHtml(template(data));
+</script>
 </body>

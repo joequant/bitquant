@@ -1,71 +1,67 @@
-
-function contract_data() {
-    return {
+var contract = {
+    "data" : {
 	"reference_date": "2017-Jan-01",
 	"maturity_date": "2018-Jul-01",
 	"reference_value": ["USD", 1000],
 	"company": "Kuaiwear Limited, a company incorporated under the laws of Hong Kong",
 	"initial_purchaser": "Joseph Chen-Yu Wang",
 	"note_class": "convertible notes issued for the purpose of raising approximately USD 500k after 1 July 2016 until 1 July 2017 or a later date specified by the company if the target fund raise has not been achieved",
-	"interest_rate_percentage": 10,
+	"interest_rate_percent": 10,
 	"interest_period": "year",
 	"interest_compounding": "simple",
 	"date_count_convention": "365/Actual",
 	"exercise_notice_period": [10, "business_days"],
 	"qualified_financing_amount": ["USD", 500000],
-	"discount_factor_percentage": 80,
+	"discount_factor_percent": 80,
 	"valuation_cap": ["USD", 4000000],
 	"nonelection_conversion_factor": 1.5,
 	"transfer_objection_period": [5, "business_days"],
 	"change_of_control_notice_period": [10, "business_days"],
 	"change_of_control_election_period": [5, "business_days"]
-    };
-};
-
-function contract_template() {
-return `For value received, {{company}}, the "Company", hereby promises to pay
-to the order of {{initial_purchaser}} (hereinafter together with
-permitted transferees, successors in title and assigns referred to as
-the “Holder" the {{reference_value}}, the "Reference Value", and
-accrued interest from time to time, as specified below. The Company
-intends on using the proceeds for general corporate purposes and
-working capital.
+    },
+    "template" :
+`For value received, {{company}}, the "Company", hereby
+promises to pay to the order of {{initial_purchaser}} (hereinafter
+together with permitted transferees, successors in title and assigns
+referred to as the “Holder) {{reference_value}}, the "Reference
+Value", and accrued interest from time to time. The Company intends on
+using the proceeds for general corporate purposes.
 
 This Convertible Note (this “Note”) is one in a series of
-Convertible Notes (collectively, the “Notes”) issued by the Companas
-part of a funding round which includes {{funding_round}}.  As used in
-this and any notes, “Majority Note Holders” shall mean the holders
-of a majority of the aggregate outstanding amounts of {{note_class}},
-(the "Notes Class")
+Convertible Notes (collectively, the “Notes”) issued by the Compy.
+As used in this note, “Majority Note Holders” shall meathe holders
+of a majority of the aggregate outstanding amounts of {{note_class}}
+(the "Note Class")
 
 1. **Interest**.  This Note shall bear interest at
 {{interest_rate_percent}} percent per {{interest_period}} with
 {{interest_compounding}} compounding and a date count convention of
 {{date_count_convention}} .  Interest shall be calculated as accruing
-from {{reference_date}}, the "Reference Date", until the date on which
+from {{reference_date}} (the "Reference Date") until the date on which
 this Note is converted as provided herein or paid in connection with
 repayment in full of the amount due of this Note, and shall not be
 payable until it is so converted or repaid.
 
 2. **Amount Due**.  Unless earlier converted into shares of Preferred
-Shares or Ordinary Shares (each term as defined below) pursuant to the
-terms of this Note and subject to the default provisions set forth
-herein, the face value of this Note together with accrued interest
-(the sum of such principal and accrued interest being hereinafter
-referred to as the “Amount Due”) shall be payable at any time
-following {{maturity_date}}, the "Maturity Date", at the discretion of
-the Company or alternately upon the demand of the Holder or an
-authorized agent of the Holder having given the company a notice of
-{{exercise_notice_period}}.  The Amount Due may
-not be prepaid before the Maturity Date in whole or in part without
-the prior written consent of the Majority Note Holders.
+Shares or Ordinary Shares pursuant to the terms of this Note and
+subject to the default provisions set forth herein, the face value of
+this Note together with accrued interest (the sum of such principal
+and accrued interest being hereinafter referred to as the “Amount
+Due”) shall be payable at any time following {{maturity_date}} (the
+"Maturity Date") at the discretion of the Company or alternatively
+upon the demand of the Holder or an authorized agent of the Holder
+having given the company a notice of {{exercise_notice_period}}.  The
+Amount Due may not be prepaid before the Maturity Date in whole or in
+part without the prior written consent of the Majority Note Holders.
 
 3. **Conversion of the Notes**.  The Note shall be convertible according
 to the following terms:  
 
     > (a) Subject to Section 9, the following terms shall have the
       meanings assigned below:
-    >> (i) “Change of Control” shall mean and include any of the following: 
+
+    >> (i) “Change of Control” shall mean and include any of the followin
+
     >>> (a) consummation of merger or consolidation of the Company (or
         the Parent) with or into any other corporation or other entity
         in which the holders of the Company’s (or the Parent’s, as
@@ -125,7 +121,7 @@ to the following terms:
     >> (vii) “Qualified Financing” means the first bona fide sale
        (or series of related sales) by the Company or Parent of its
        Preferred Shares (or a similar equity security) following the
-       Eeference Date of this Note in which the Company or Parent
+       Reference Date of this Note in which the Company or Parent
        receives gross proceeds of at least
        {{qualified_financing_amount}} (excluding the principal amount
        of and accrued interest on the Notes).
@@ -143,7 +139,7 @@ closed for regular trading the entire day
       Financing.  The number of Preferred Shares to be issued upon
       such conversion shall be equal to the quotient obtained by
       dividing (x) the Amount Due on the date of conversion and (y)
-      the {{discount_factor_percentage}} percent times price per share
+      the {{discount_factor_percent}} percent times price per share
       of the Preferred Shares sold to the investors in the Qualified
       Financing; provided that the conversion price per share (or
       similar equity securities) shall not exceed the quotient
@@ -394,4 +390,5 @@ the subject matter hereof.
 17. **Third Party Rights**.  A person who is not a party has no right
 under the Contracts (Rights of Third Parties) Ordinance (Cap. 623 of
 the laws of Hong Kong) to enforce or to enjoy the benefit of any term
-of this Note.`; };
+of this Note.`
+};
