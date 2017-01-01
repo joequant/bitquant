@@ -1,0 +1,29 @@
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.5.4/showdown.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+  <script type="text/babel" data-presets="es2015,stage-2"></script>
+  <script type="text/babel" src="convert.js"></script>
+</head>
+<body>
+  <a href="convert.js" type="text/plain;charset=utf-8">View contract source</a>
+  <div id="contract_text"/>
+  <script type="text/babel">
+var source = contract.template;
+var data = contract.data;
+for(var key in data) {
+    if(data.hasOwnProperty(key)) {
+	if (data[key].constructor == Array) {
+	    data[key] =
+		data[key].map(function(x) {return
+		    x.toString().replace("_", " ")}).join(" ");
+	}
+    }
+}
+var template = Handlebars.compile(source);
+var div = document.getElementById("contract_text");
+var converter = new showdown.Converter();
+div.innerHTML = converter.makeHtml(template(data));
+</script>
+</body>
