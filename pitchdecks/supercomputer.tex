@@ -3,6 +3,8 @@
 \author{Joseph Chen-Yu~Wang}
 \institute{Bitquant Research Laboratories (Asia) Limited}
 \date{\today}
+\usetheme{Dresden}
+\usecolortheme{beaver}
 \begin{document}
 \frame{\titlepage}
 \begin{frame}
@@ -13,13 +15,14 @@ infrastructure at JPMorgan.
 \end{frame}
 \begin{frame}
   \frametitle{Blockchain supercomputer}
-The world's largest computer is being used for bitcoin mining.  How do
-we using blockchain to create a general purpose supercomputer.  
-\end{frame}
-\begin{frame}
-  \frametitle{HPC Supercomputing Today}
-  Fastest supercomputers consist of clusters of standard
-  supercomputing components.
+  \begin{itemize}
+  \item The world's largest computer is being used for bitcoin mining.  How do
+    we using blockchain to create a general purpose supercomputer.  
+  \item Fastest supercomputers consist of clusters of standard
+    supercomputing components.
+  \item Most large companies have large amounts of internal compute
+    power which is not being used
+  \end{itemize}
 \end{frame}
 \begin{frame}
   \frametitle{The Basic Idea}
@@ -33,11 +36,6 @@ Most math problems of interest are set up that the solution is easy to
 verify but hard to calculate.  The blockchain network would be used
 only to register bounties to solve math problems and distribute cash
 bounties.
-\end{frame}
-\begin{frame}
-  \frametitle{Idle computers - Internal Corporate Computing}
-Most large institutions have large amounts of internal compute power
-which is not being used.
 \end{frame}
 \begin{frame}
   \frametitle{User interface}
@@ -56,7 +54,10 @@ which is not being used.
       the bounty
     \item Use metadata and conventions to allow solvers to determine
       what programs to solve
-   \end{itemize}
+    \item Equations can be disguised to remove sensitive information
+      (i.e. add random numbers to the problem to be solved)
+  \end{itemize}
+\end{frame}
 \begin{frame}
   \frametitle{Solver interface}
 The solver would solve the problem in any possible way.
@@ -67,5 +68,24 @@ The solver would solve the problem in any possible way.
     needed only for the bounty
   \end{itemize}
 \end{frame}
+\begin{frame}
+  \frametitle{Bootstraping the system}
+  \begin{itemize}
+    \item Have a simple framework that allows registration of problems and
+      funds transfers
+    \item Create reference API
+    \item Create simple network to allow for compute calculations
+    \item Companies can create a supercomputer with no hardware outlay
+    \item One developer - Two Months of work
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Extending the system}
+  \begin{itemize}
+  \item Create floating point system in ethereum
+  \item Interface with standard math libraries (BLAS and LAPACK)
+  \item Add supercomputing centers to the system
+  \item Add better meta-data for certain types of problems
+  \end{itemize}
 \end{frame}
 \end{document}
