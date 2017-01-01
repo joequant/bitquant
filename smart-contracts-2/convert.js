@@ -12,8 +12,8 @@ var contract = {
 	"date_count_convention": "365/Actual",
 	"exercise_notice_period": [10, "business_days"],
 	"qualified_financing_amount": ["USD", 500000],
-	"discount_factor_percent": 80,
-	"valuation_cap": ["USD", 4000000],
+	"conversion_discount_percent": 80,
+	"conversion_cap": ["USD", 4000000],
 	"nonelection_conversion_factor": 1.5,
 	"transfer_objection_period": [5, "business_days"],
 	"change_of_control_notice_period": [10, "business_days"],
@@ -23,15 +23,15 @@ var contract = {
 `For value received, {{company}}, the "Company", hereby
 promises to pay to the order of {{initial_purchaser}} (hereinafter
 together with permitted transferees, successors in title and assigns
-referred to as the “Holder) {{reference_value}}, the "Reference
+referred to as the "Holder") {{reference_value}}, the "Reference
 Value", and accrued interest from time to time. The Company intends on
 using the proceeds for general corporate purposes.
 
-This Convertible Note (this “Note”) is one in a series of
-Convertible Notes (collectively, the “Notes”) issued by the Compy.
-As used in this note, “Majority Note Holders” shall meathe holders
-of a majority of the aggregate outstanding amounts of {{note_class}}
-(the "Note Class")
+This Convertible Note (this "Note") is one in a series of Convertible
+Notes (collectively, the "Notes") issued by the Company.  As used in
+this note, "Majority Note Holders" shall mean the holders of a
+majority of the aggregate outstanding amounts of {{note_class}}
+(the"Note Class")
 
 1. **Interest**.  This Note shall bear interest at
 {{interest_rate_percent}} percent per {{interest_period}} with
@@ -46,8 +46,8 @@ payable until it is so converted or repaid.
 Shares or Ordinary Shares pursuant to the terms of this Note and
 subject to the default provisions set forth herein, the face value of
 this Note together with accrued interest (the sum of such principal
-and accrued interest being hereinafter referred to as the “Amount
-Due”) shall be payable at any time following {{maturity_date}} (the
+and accrued interest being hereinafter referred to as the "Amount
+Due") shall be payable at any time following {{maturity_date}} (the
 "Maturity Date") at the discretion of the Company or alternatively
 upon the demand of the Holder or an authorized agent of the Holder
 having given the company a notice of {{exercise_notice_period}}.  The
@@ -60,7 +60,7 @@ to the following terms:
     > (a) Subject to Section 9, the following terms shall have the
       meanings assigned below:
 
-    >> (i) “Change of Control” shall mean and include any of the followin
+    >> (i) "Change of Control" shall mean and include any of the following
 
     >>> (a) consummation of merger or consolidation of the Company (or
         the Parent) with or into any other corporation or other entity
@@ -98,27 +98,27 @@ to the following terms:
          internal restructuring shall not constitute a Change of
          Control;
 
-    >> (ii) “Change of Control Effective Date” means the date on
+    >> (ii) "Change of Control Effective Date" means the date on
        which a Change of Control occurs;
 
-    >> (iii) “Change of Control Notice” means a notice from the
+    >> (iii) "Change of Control Notice" means a notice from the
        Company to the Holder stating: (a) that a Change of Control
        is anticipated to occur, and (b) the anticipated Change of
        Control Effective Date with respect to such Change of Control;
 
-    >> (iv) “Hong Kong” means the Hong Kong Special Administrative
+    >> (iv) "Hong Kong" means the Hong Kong Special Administrative
        Region of the People’s Republic of China;
 
-    >> (v) “Ordinary Shares” means the ordinary shares of the
+    >> (v) "Ordinary Shares" means the ordinary shares of the
        Company or Parent;
 
-    >> (vi) “Preferred Shares” means the preferred shares of the
+    >> (vi) "Preferred Shares" means the preferred shares of the
        Company or Parent (or any similar equity security to be issued
        in connection with the Qualified Financing) to be authorized
        immediately prior to the closing of the Qualified Financing;
        and
 
-    >> (vii) “Qualified Financing” means the first bona fide sale
+    >> (vii) "Qualified Financing" means the first bona fide sale
        (or series of related sales) by the Company or Parent of its
        Preferred Shares (or a similar equity security) following the
        Reference Date of this Note in which the Company or Parent
@@ -126,7 +126,7 @@ to the following terms:
        {{qualified_financing_amount}} (excluding the principal amount
        of and accrued interest on the Notes).
 
-    >> (viii) “Parent” means a company directly or indirectly owning
+    >> (viii) "Parent" means a company directly or indirectly owning
 controlling interest of the equity interest in the Company.
 
     >> (ix) "Business day" means a day excluding weekends and public holidays
@@ -137,20 +137,10 @@ closed for regular trading the entire day
       converted by the Company, without need of any further action by
       the Holder, into Preferred Shares issued in the Qualified
       Financing.  The number of Preferred Shares to be issued upon
-      such conversion shall be equal to the quotient obtained by
-      dividing (x) the Amount Due on the date of conversion and (y)
-      the {{discount_factor_percent}} percent times price per share
-      of the Preferred Shares sold to the investors in the Qualified
-      Financing; provided that the conversion price per share (or
-      similar equity securities) shall not exceed the quotient
-      obtained by dividing the {{valuation_cap}} by the total number
-      of Ordinary Shares of the Company outstanding on a fully diluted
-      basis, assuming exercise in full of outstanding options and
-      warrants and conversion of any outstanding convertible
-      securities of the Company (the “Conversion
-      Cap”). Notwithstanding the foregoing, the Company shall provide
-      written notice to the Holder a reasonable period of time
-      prior to the Qualified Financing.
+      such conversion shall be as specified in Schedule
+      A. Notwithstanding the foregoing, the Company shall provide
+      written notice to the Holder a reasonable period of time prior
+      to the Qualified Financing.
 
     > (c) Upon the conversion of this Note into Preferred Shares or
       Ordinary Shares, as the case may be, in lieu of any fractional
@@ -167,8 +157,8 @@ closed for regular trading the entire day
 
 4. **Default**  This Note shall become immediately due and payable upon
 the occurrence of any of the following events of default
-(individually, an “Event of Default” and collectively, “Events of
-Default”):
+(individually, an "Event of Default" and collectively, "Events of
+Default"):
 
     >> (a) the liquidation, dissolution or insolvency of the Company
        (or Parent), or the appointment of a receiver or custodian for
@@ -202,7 +192,7 @@ Subject to Section 9:
     > (b) The Company shall deliver to the Holder a Change of
       Control Notice no less than {{change_of_control_notice_period}}
       prior to any anticipated Change of Control. The Holder may
-      make an election (a “Change of Control Election”) with respect
+      make an election (a "Change of Control Election") with respect
       to the Notes in writing by notice to the Company no later than
       {{change_of_control_election_period}} after delivery of the
       Change of Control Notice.  Following delivery of such Change of
@@ -340,7 +330,7 @@ law of any jurisdiction.
 15. **Arbitration**.
 
     >> (i) Any party to a dispute, controversy or claim (each, a
-       “Dispute”) arising out of or relating to this Note and the
+       "Dispute") arising out of or relating to this Note and the
        obligations of the Company hereunder, or the interpretation,
        breach, or validity hereof, is entitled to submit the Dispute
        to arbitration process with notice to the other party to the
@@ -348,7 +338,7 @@ law of any jurisdiction.
 
     >> (ii) Arbitration shall be conducted in Hong Kong under the
        auspices of the Hong Kong International Arbitration Centre
-       (“HKIAC”) by one arbitrator. The arbitration proceedings
+       ("HKIAC") by one arbitrator. The arbitration proceedings
        shall be conducted in English. The arbitration tribunal shall
        apply the HKIAC Administered Arbitration Rules in effect at the
        time of the arbitration.
@@ -390,5 +380,77 @@ the subject matter hereof.
 17. **Third Party Rights**.  A person who is not a party has no right
 under the Contracts (Rights of Third Parties) Ordinance (Cap. 623 of
 the laws of Hong Kong) to enforce or to enjoy the benefit of any term
-of this Note.`
+of this Note.`,
+   "schedules" : [
+           {
+	       "name" : "schedule_a",
+	       "display" : "Schedule A",
+               "description" : `Schedule A describes the preferred shares to be issued upon automatic conversion.`,
+	       "inputs" : [
+		   {
+		       "name" : "amount_due",
+		       "display" : "Amount Due",
+		       "description" : "Amount Due on date of conversion",
+		       "type" : "number"
+		   },
+		   {
+		       "name": "price_per_share",
+		       "display": "Price per share",
+		       "description" : "Price per share of the preferred shares sold to investors",
+		       "type" : "number"
+		   },
+		   {
+		       "name" : "shares_outstanding",
+		       "description" : "the total number of Ordinary Shares of the Company outstanding on a fully diluted basis, assuming exercise in full of outstanding options and warrants and conversion of any outstanding convertible securities of the Company",
+		       "type": "number",
+		   }
+	       ],
+	       "outputs" : [
+		   {
+		       "name": "shares_issued",
+		       "description": "Number of preferred shares to be issued upon conversion",
+		       "type" : "number"
+		   },
+		   {
+		       "name" : "cash_issued",
+		       "description" : "Cash issued",
+		       "type" : "money"
+		   }
+	       ],
+	       "parameters" : [
+		   {
+		       "name" : "conversion_cap",
+		       "description" : "Conversion cap",
+		       "type" : "number"
+		   },
+		   {
+	               "name" : "conversion_discount_percent",
+                       "description": "Conversion discount",
+                       "type" : "percent"
+		   }
+               ],
+               "function" : function(input, params) {
+		   var conversion_price =
+		       params['conversion_discount_percent'] / 100.0 *
+		       input['price_per_share'];
+		   var conversion_price_cap =
+		       params['conversion_cap'] /
+		       params['shares_outstanding'];
+		   if (conversion_price > conversion_price_cap) {
+		       conversion_price = conversion_price_cap;
+		   }
+		   var shares_issued = input['amount_due'] /
+		       conversion_price;
+		   shares_issued = int(shares_issued);
+		   var cash_issued = input['amount_due'] -
+		       shares_issued * conversion_price;
+		   return {
+		       "shares_issued": shares_issued,
+		       "cash_issued": cash_issued,
+		       "conversion_price_cap": conversion_price_cap,
+		       "conversion_price": conversion_price
+		   };
+	       }
+	   }
+   ]
 };
