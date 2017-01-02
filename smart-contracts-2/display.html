@@ -3,31 +3,36 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.5.4/showdown.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  
   <script type="text/babel" src="calculate.js"></script>
   <script type="text/babel" data-presets="es2015,stage-2"></script>
   <script type="text/babel" src="convert.js"></script>
 </head>
 <body>
-  <a href="convert.js" type="text/plain;charset=utf-8">View contract source</a>
+  <a href="convert.js" type="text/plain;charset=utf-8">View contract</a>
   <div id="calculator"></div>
   <div id="contract_text"></div>
   <script type="text/babel">
 var source = contract.template;
 var data = contract.data;
+var data_display = {};
 for(var key in data) {
     if(data.hasOwnProperty(key)) {
 	if (data[key].constructor == Array) {
-	    data[key] =
+	    data_display[key] =
 		data[key].map(function(x) {return
 		    x.toString().replace("_", " ")}).join(" ");
+	} else {
+	    data_display[key] = data[key];
 	}
     }
 }
 var template = Handlebars.compile(source);
 var div = document.getElementById("contract_text");
 var converter = new showdown.Converter();
-div.innerHTML = converter.makeHtml(template(data));
+div.innerHTML = converter.makeHtml(template(data_display));
 var div1 = document.getElementById("calculator");
-calculate(div1, contract.schedules);
+calculate(div1, contract.schedules, contract.data);
 </script>
 </body>

@@ -409,16 +409,30 @@ of this Note.`,
 	       "outputs" : [
 		   {
 		       "name": "shares_issued",
+		       "display" : "Shares issued",
 		       "description": "Number of preferred shares to be issued upon conversion",
 		       "type" : "number"
 		   },
 		   {
 		       "name" : "cash_issued",
+		       "display": "Cash issued",
 		       "description" : "Cash issued",
+		       "type" : "money"
+		   },
+		   {
+		       "name" : "conversion_price",
+		       "display" : "Conversion price",
+		       "description" : "Conversion price",
+		       "type" : "money"
+		   },
+		   {
+		       "name" : "conversion_price_cap",
+		       "display" : "Conversion price cap",
+		       "description" : "Cap for conversion price",
 		       "type" : "money"
 		   }
 	       ],
-	       "parameters" : [
+	       "terms" : [
 		   {
 		       "name" : "conversion_cap",
 		       "display" : "Conversion Cap",
@@ -432,26 +446,28 @@ of this Note.`,
                        "type" : "percent"
 		   }
                ],
-               "function" : function(input, params) {
+               "calculate" : function(inputs, terms) {
+		   console.log(inputs, terms);
 		   var conversion_price =
-		       params['conversion_discount_percent'] / 100.0 *
-		       input['price_per_share'];
+		       terms['conversion_discount_percent'] / 100.0 *
+		       inputs['price_per_share'];
 		   var conversion_price_cap =
-		       params['conversion_cap'] /
-		       params['shares_outstanding'];
+		       terms['conversion_cap'] /
+		       inputs['shares_outstanding'];
+		   console.log(conversion_price, conversion_price_cap);
 		   if (conversion_price > conversion_price_cap) {
 		       conversion_price = conversion_price_cap;
 		   }
-		   var shares_issued = input['amount_due'] /
+		   var shares_issued = inputs['amount_due'] /
 		       conversion_price;
-		   shares_issued = int(shares_issued);
-		   var cash_issued = input['amount_due'] -
+		   shares_issued = Math.floor(shares_issued);
+		   var cash_issued = inputs['amount_due'] -
 		       shares_issued * conversion_price;
 		   return {
 		       "shares_issued": shares_issued,
 		       "cash_issued": cash_issued,
-		       "conversion_price_cap": conversion_price_cap,
-		       "conversion_price": conversion_price
+		       "conversion_price": conversion_price,
+		       "conversion_price_cap": conversion_price_cap
 		   };
 	       }
 	   }
