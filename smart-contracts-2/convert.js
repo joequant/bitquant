@@ -1,5 +1,6 @@
 var contract = {
-    "data" : {
+    "format" : "bitquant-1",
+    "terms" : {
 	"reference_date": "2017-Jan-01",
 	"maturity_date": "2018-Jul-01",
 	"reference_value": ["USD", 1000],
@@ -385,6 +386,7 @@ of this Note.`,
            {
 	       "name" : "schedule_a",
 	       "display" : "Schedule A",
+	       "format" : "bitquant-s1",
                "description" : `Schedule A describes the preferred shares to be issued upon automatic conversion.`,
 	       "inputs" : [
 		   {

@@ -1,11 +1,8 @@
+"use strict";
 class Viewer {
-    constructor(schedules) {
-	this.schedules = schedules;
-	this.schedule_store = {};
-	var o = this;
-	schedules.forEach(function(x) {
-	    o.schedule_store[x.name] = x;
-	});
+    constructor(schedule, terms) {
+	this.schedule = schedule;
+	this.terms = terms;
     }
     add_item(name, value, type) {
 	var field_value = "value='" +  value + "'";
@@ -48,18 +45,19 @@ class Viewer {
 	});
     }
     
-    handle_click(schedule_name) {
+    handle_click() {
 	var inputs = {};
 	var terms = {};
-	var x = this.schedule_store[schedule_name];
-	this.read_inputs(schedule_name, 'input', x.inputs, inputs);
-	this.read_inputs(schedule_name, 'term', x.terms, terms);
-	var outputs = x.calculate(inputs, terms);
+	this.read_inputs(this.schedule.name, 'input', this.schedule.inputs,
+			 inputs);
+	this.read_inputs(this.schedule.name, 'term', this.schedule.terms,
+			 terms);
+	var outputs = this.schedule.calculate(inputs, terms);
 	var html = "";
-	x.outputs.forEach(function(y) {
+	this.schedule.outputs.forEach(function(y) {
 	    html += `${y.display}: ${outputs[y.name]}<br>`;
 	});
-	document.getElementById(schedule_name + "_output").innerHTML = html;
+	document.getElementById(this.schedule.name + "_output").innerHTML = html;
     }
     
     generate_inputs(plist, prefix, suffix, values) {
@@ -71,26 +69,54 @@ class Viewer {
 		value = values[y.name];
 	    }
 	    input += `${y.display}:
-	    ${o.add_item(prefix + "_" + y.name + "_" + suffix, value, y.type)}<br>`;
+	    ${o.add_item(prefix + "_" + y.name + "_" + suffix,
+			 value, y.type)}<br>`;
 	});
 	return input;
     }
     
-    view(div, terms) {
+    view(div) {
 	var o = this;
-	this.schedules.forEach(function(x) {
-	    var html = `<h3>${x.display}</h3>
-		${x.description}<p>
-		<b>Contract terms</b><br>
-		${o.generate_inputs(x.terms, x.name, 'term', terms)}
-		<b>Inputs</b><br>
-		${o.generate_inputs(x.inputs, x.name, 'input', {})}
-		<br>
-		<button id='${x.name + "_recalc"}' type="button">Recalculate</button>
-		<div id='${x.name + "_output"}'></div>`;
-	    $(div).append(html);
-	    $(`#${x.name}_recalc`).click(function() {o.handle_click(x.name);});
-	});
+	var html = `<h3>${this.schedule.display}</h3>
+	    ${this.schedule.description}<p>
+	    <b>Contract terms</b><br>
+	    ${this.generate_inputs(this.schedule.terms, this.schedule.name,
+				   'term', this.terms)}
+	    <b>Inputs</b><br>
+	    ${this.generate_inputs(this.schedule.inputs, this.schedule.name,
+				   'input', {})}
+	    <br>
+	    <button id='${this.schedule.name + "_recalc"}' type="button">Recalculate</button>
+	    <div id='${this.schedule.name + "_output"}'></div>`;
+	$(div).append(html);
+	$(`#${this.schedule.name}_recalc`).click(function() {o.handle_click();});
     }
 };
 
+var converter = new showdown.Converter();
+function show_text(div, contract) {
+    var source = contract.template;
+    var terms = contract.terms;
+    var terms_display = {};
+    for(var key in terms) {
+	if(terms.hasOwnProperty(key)) {
+	    if (terms[key].constructor == Array) {
+		terms_display[key] =
+		    terms[key].map(function(x) {return
+						x.toString().replace("_", " ")}).join(" ");
+	    } else {
+		terms_display[key] = terms[key];
+	    }
+	}
+    }
+    var template = Handlebars.compile(source);
+    $(div).html(converter.makeHtml(template(terms_display)));
+}
+
+function show_schedules(div, contract) {
+    $(div).empty();
+    contract.schedules.forEach(function(x) {
+	var s = new Viewer(x, contract.terms);
+	s.view(div);
+    });
+}

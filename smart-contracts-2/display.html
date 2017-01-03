@@ -10,30 +10,11 @@
   <script type="text/babel" src="convert.js"></script>
 </head>
 <body>
-  <a href="convert.js" type="text/plain;charset=utf-8">View contract</a>
-  <div id="calculator"></div>
-  <div id="contract_text"></div>
+  <a href="convert.js" type="text/plain">View contract</a>
+  <div id="schedules"></div>
+  <div id="text"></div>
   <script type="text/babel">
-var source = contract.template;
-var data = contract.data;
-var data_display = {};
-for(var key in data) {
-    if(data.hasOwnProperty(key)) {
-	if (data[key].constructor == Array) {
-	    data_display[key] =
-		data[key].map(function(x) {return
-		    x.toString().replace("_", " ")}).join(" ");
-	} else {
-	    data_display[key] = data[key];
-	}
-    }
-}
-var template = Handlebars.compile(source);
-var div = document.getElementById("contract_text");
-var converter = new showdown.Converter();
-div.innerHTML = converter.makeHtml(template(data_display));
-var div1 = document.getElementById("calculator");
-var viewer = new Viewer(contract.schedules);
-viewer.view(div1, contract.data);
+show_text("#text", contract);
+show_schedules("#schedules", contract);
 </script>
 </body>
