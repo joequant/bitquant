@@ -26,25 +26,53 @@ infrastructure at JPMorgan.
 \end{frame}
 \begin{frame}
   \frametitle{The Basic Idea}
-  You use a blockchain network to offer cash bounties on whoever is
-  the first person to solve a math equation.  The blockchain network
-  registers and verifies solutions, but does not to the calculation.
+You use a blockchain network to offer cash bounties on whoever is
+the first person to solve a math equation.  The blockchain network
+registers and verifies solutions.
+
+The important idea here is that the ethereum network is extremely
+slow, and will take a very long time to verify the calculation.  However,
+this does not matter, since the role of the ethereum system is to
+verify who gets the cash bounty.  It does not matter how long it takes
+the blockchain to do the calculation as long as the cash is eventually
+sent to the winner.
 \end{frame}
 \begin{frame}
-  \frametitle{Why this works}
-Most math problems of interest are set up that the solution is easy to
-verify but hard to calculate.  The blockchain network would be used
-only to register bounties to solve math problems and distribute cash
-bounties.
+  \frametitle{More details}
+  The asker registers a math problem onto the ethereum blockchain and
+  a payment which is escrowed.  The blockchain begins to do the
+  calculation very, very slowly, while recording the proposed
+  solutions that are received in order of priority.
+  
+  When the ethereum calculation is finished, it will forward the payment
+  to the first N systems with the correct answer.
 \end{frame}
 \begin{frame}
-  \frametitle{User interface}
-  User would upload to the blockchain three pieces of information
+  \frametitle{Solution deposit}
+  A person with a proposed solution must agree to pay a deposit.  The
+  deposit will be used as gas to verify the solution.  If the solution
+  is correct, the deposit will be returned to the solution provider.
+  If the solution is incorrect, the deposit will be given to the the
+  poser.  The purpose of this system is to avoid spamming of incorrect
+  answers.
+
+  This system also has the added benefit that the poser of the problem
+  can look at the proposed solutions, and use the correct solution
+  before the ethereum network has verified the solution.
+\end{frame}  
+\begin{frame}
+  \frametitle{Asker interface}
+  Asker would upload to the blockchain following pieces of information
   \begin{itemize}
-  \item The cash bounty for solving the problem which will be escrowed.
+  \item The cash bounty for solving the problem which will be
+    escrowed and how the bounty is to be distributed among the first
+    N correct answers.
+  \item A minimum deposit for proposed solutions
   \item The math problem to be solved
   \item A timeout limit at which point the bounty will be canceled
-    and the cash will be returned to the originator.
+    and the cash will be returned to the originator.  The timeout will
+    only return the coin if no correct solution has been offered
+    within the timeout.
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -62,10 +90,12 @@ bounties.
   \frametitle{Solver interface}
 The solver would solve the problem in any possible way.
   \begin{itemize}
-  \item A digital currency interface to send the bounty
+  \item A digital currency address to send the bounty
   \item Proposed solution - The proposed solution can be sent
     immediately to the user.  The verification on the blockchain is
     needed only for the bounty
+  \item A deposit which will be returned to the solver if the answer
+    is correct or given to the asker if the answer is not.
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -76,7 +106,7 @@ The solver would solve the problem in any possible way.
     \item Create reference API
     \item Create simple network to allow for compute calculations
     \item Companies can create a supercomputer with no hardware outlay
-    \item One developer - Two Months of work
+    \item One developer - Three Months of work
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -86,6 +116,55 @@ The solver would solve the problem in any possible way.
   \item Interface with standard math libraries (BLAS and LAPACK)
   \item Add supercomputing centers to the system
   \item Add better meta-data for certain types of problems
+  \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Comparison with other systems}
+  \begin{itemize}
+    \item Golem, Zennet, 21.co and iex.ec are asking for millions of
+      dollars.  This mechanism can be implemented in a computer
+      cluster by one developer.
+    \item Every other system will take a year and massive spend before
+      you know if it works.  This system will have something up and
+      running in a matter of one to two months.
+    \item This system will allow you to distribute compute tasks
+      across a small network. I can use it to off load compute from my
+      laptop to my big server.
+    \item This system will allow for ``stealth marketing'' into the
+      enterprise.  If you want a problem solved, just upload the
+      problem, and get an answer.
+  \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Comparison with other systems}
+    \begin{itemize}
+    \item I do not understand the the business model for the other
+      projects.  In this architecture, the transaction layer makes no
+      money.  My business model is that if I have access to the
+      world's biggest supercomputer, I'll find some way of making
+      money as a user
+    \item All of the other blockchain supercomputer proposals assume
+      that people are going to be using desktop systems.  This system
+      distributes math problems and doesn't care what mechanism is
+      used to solve them.
+    \item Assumption that once a market exists that there will be
+      enough money involved that people will develop special purpose
+      hardware (i.e. GPU's, hardware systems, quantum computers) to
+      collect the bounty.  
+    \end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{What I need to make this happen}
+  \begin{itemize}
+  \item Estimated cost: USD 10,000/month for three to six months of work
+  \item Will allow a company to set up a compute farm
+  \item Alternatively, if someone can help me do an ICO that can
+    raise USD 6 million (which is what some of the other projects
+    have raised) we can it that way.
+  \item Alternatively, I really do not think that the approaches that
+    the other systems are taking will work.  If someone can convince
+    them to give up what they are doing, and to implement this, that
+    will work for me.
   \end{itemize}
 \end{frame}
 \end{document}
