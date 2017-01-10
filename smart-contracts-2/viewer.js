@@ -1,4 +1,5 @@
 "use strict";
+var converter = new showdown.Converter();
 class Viewer {
     constructor(schedule, terms) {
 	this.schedule = schedule;
@@ -59,7 +60,6 @@ class Viewer {
 	});
 	document.getElementById(this.schedule.name + "_output").innerHTML = html;
     }
-    
     generate_inputs(plist, prefix, suffix, values) {
 	var input = "";
 	var o = this;
@@ -77,11 +77,20 @@ class Viewer {
     
     view(div) {
 	var o = this;
+	var terms = {}
+	this.terms.forEach(function(term) {
+	    if (term.type == "duration") {
+		terms[term.name] = term.value[0];
+	    } else {
+		terms[term.name] = term.value;
+	    }
+	});
+	
 	var html = `<h3>${this.schedule.display}</h3>
 	    ${this.schedule.description}<p>
-	    <b>Contract terms</b><br>
+	    <b>Schedule terms</b><br>
 	    ${this.generate_inputs(this.schedule.terms, this.schedule.name,
-				   'term', this.terms)}
+				   'term', terms)}
 	    <b>Inputs</b><br>
 	    ${this.generate_inputs(this.schedule.inputs, this.schedule.name,
 				   'input', {})}
@@ -93,24 +102,38 @@ class Viewer {
     }
 };
 
-var converter = new showdown.Converter();
+
 function show_text(div, contract) {
     var source = contract.template;
     var terms = contract.terms;
     var terms_display = {};
-    for(var key in terms) {
-	if(terms.hasOwnProperty(key)) {
-	    if (terms[key].constructor == Array) {
-		terms_display[key] =
-		    terms[key].map(function(x) {return
-						x.toString().replace("_", " ")}).join(" ");
-	    } else {
-		terms_display[key] = terms[key];
-	    }
+    terms.forEach(function(term) {
+	if (term.type == "money" || term.type == "duration") {
+	    terms_display[term.name] =
+		term.value.map(function(x) {
+		    return x.toString().replace("_", " ")}).join(" ");
+	} else {
+	    terms_display[term.name] = term.value;
 	}
-    }
+    });
     var template = Handlebars.compile(source);
     $(div).html(converter.makeHtml(template(terms_display)));
+}
+
+function show_terms(div, contract) {
+    var terms = contract.terms;
+    var term_list = "<h3>Contract Terms</h3>";
+    terms.forEach(function(term) {
+	if (term.type == "money" || term.type == "duration") {
+	    term_list += term.display + ": " +
+		term.value.map(function(x) {
+		    return x.toString().replace("_", " ")}).join(" ");
+	} else {
+	    term_list += term.display + ": " + term.value;
+	}
+	term_list += "<br>";
+    });
+    $(div).html(term_list);
 }
 
 function show_schedules(div, contract) {
