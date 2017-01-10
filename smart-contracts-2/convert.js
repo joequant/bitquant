@@ -1,8 +1,8 @@
 var contract = {
     "format" : "bitquant-1",
     "terms" : {
-	"reference_date": "2017-Jan-01",
-	"maturity_date": "2018-Jul-01",
+	"reference_date": "2017-01-01",
+	"maturity_date": "2018-07-01",
 	"reference_value": ["USD", 1000],
 	"company": "Kuaiwear Limited, a company incorporated under the laws of Hong Kong",
 	"initial_purchaser": "Joseph Chen-Yu Wang",
