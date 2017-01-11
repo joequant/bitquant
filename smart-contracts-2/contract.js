@@ -21,11 +21,6 @@ var contract = {
 	 "value": "Kuaiwear Limited, a company incorporated under the laws of Hong Kong",
 	 "type": "person"
 	},
-	{"name" : "initial_purchaser",
-	 "display" : "Initial purchaser",
-	 "value" : "Joseph Chen-Yu Wang",
-	 "type" : "person"
-	},
 	{"name" : "note_class",
 	 "display" : "Note class",
 	 "value" : "convertible notes issued for the purpose of raising approximately USD 500k after 1 July 2016 until 1 July 2017 or a later date specified by the company if the target fund raise has not been achieved",
@@ -94,7 +89,7 @@ var contract = {
     ],
     "template" :
 `For value received, {{issuer}}, the "Issuer", hereby
-promises to pay to the order of {{initial_purchaser}} (hereinafter
+promises to pay to the order of the Initial Purchaser (hereinafter
 together with permitted transferees, successors in title and assigns
 referred to as the "Holder") {{reference_value}}, the "Reference
 Value", and accrued interest from time to time. The Issuer intends on
