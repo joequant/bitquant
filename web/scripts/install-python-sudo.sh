@@ -45,7 +45,7 @@ for packages in \
             trade pybacktest dynts chinesestockapi bizdays \
             git+https://github.com/bashtage/arch.git ffn \
 	    git+https://github.com/joequant/OrderBook.git \
-            quantdsl pynance jupyterlab ; 
+            quantdsl pynance jupyterlab ipyleaflet ; 
 do pip3 install $PYTHON_ARGS $packages ;
 done
 
@@ -63,7 +63,8 @@ done
 
 
 for extension in \
-    widgetsnbextension declarativewidgets vega pythreejs nbpresent ; 
+    widgetsnbextension declarativewidgets vega pythreejs nbpresent \
+      bqplot ipyleaflet ; 
     do jupyter nbextension install --py $extension --sys-prefix 
        jupyter nbextension enable --py $extension --sys-prefix --system ;
 done
