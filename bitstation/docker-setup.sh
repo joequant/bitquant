@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 export TZ="Asia/Hong_Kong"
-umask 022
 urpmi.removemedia -a
 urpmi.addmedia --distrib \
 	       --mirrorlist \
@@ -17,6 +16,7 @@ urpmi --replacepkgs --excludedocs locales glibc
 urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
 urpmi --no-recommends --no-md5sum --excludedocs --auto git
 useradd user
+chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
 echo 'cubswin:)' | passwd root --stdin
 cd ~user
