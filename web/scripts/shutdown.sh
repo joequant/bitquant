@@ -24,7 +24,9 @@ killmatch ethercalc
 killmatch dynamic-reverse-proxy
 killmatch configurable-http-proxy
 
-
+if [ -f /etc/webmin/stop ] ; then
+    /etc/webmin/stop
+fi
 
 
 

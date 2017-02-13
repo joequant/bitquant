@@ -9,7 +9,10 @@ cd $SCRIPT_DIR
 su redis -s "/bin/bash" -c "/usr/bin/redis-server /etc/redis.conf" &
 su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
 /usr/sbin/httpd -DFOREGROUND &
-
+if [ -f /etc/webmin/start ] ; then
+    echo "Start webmin"
+    /etc/webmin/start
+fi
 su user -c ./startup.sh
 while :; do sleep 2; done
 

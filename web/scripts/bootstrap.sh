@@ -30,3 +30,7 @@ cp -r $GIT_DIR/web/home/R/* $MY_HOME/R
 
 # Refresh configurations
 sudo /usr/share/bitquant/conf.sh /default-init
+
+# set webmin
+echo "Set up webmin"
+sudo /usr/share/bitquant/conf.sh /webmin-init
