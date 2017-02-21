@@ -89,6 +89,7 @@ $PYTHON-xlrd \
       $PYTHON-cffi \
       $PYTHON-cryptography \
       $PYTHON-pyasn1 \
+      $PYTHON-cython \
       jupyter-client \
       jupyter-core \
       jupyter-console \
@@ -132,6 +133,7 @@ mongo-tools \
 # curl-devel is needed for Rcurl
 # icu-i18n-devel is needed for Rpy
 
+#python-cythong is for Finance-Python
 # don't start up server
 $SUDO systemctl disable hsqldb
 
