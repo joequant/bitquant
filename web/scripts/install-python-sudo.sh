@@ -15,6 +15,11 @@ ME=$2
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+#set default python to python3
+pushd /usr/bin
+ln -sf python3 python
+popd
+
 # Astropy is needed for tushare
 
 pip3 install --upgrade pip
