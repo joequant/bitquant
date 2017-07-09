@@ -8,8 +8,8 @@ if grep -q Cauldron /etc/release  ; then
 echo "cauldron" 
 VERSION=cauldron
 else
-echo "version 5"
-VERSION=5
+echo "version 6"
+VERSION=6
 fi
 
 TESTING=false
