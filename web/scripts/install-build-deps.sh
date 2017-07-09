@@ -45,7 +45,7 @@ $SUDO urpmi --no-recommends \
 --auto \
 --no-verify-rpm \
 --downloader "curl" \
---curl-options "--retry 5 --speed-time 30 --connect-timeout 30" \
+--curl-options "--retry 5 --speed-time 30 --connect-timeout 30 --silent --show-error" \
 $URPMI_OPTIONS \
 nodejs \
 npm \
