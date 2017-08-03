@@ -26,6 +26,10 @@ chown -R $USER":"$USER git
 echo "Resetting urpmi"
 urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.'`uname -m`'.list'
+
+urpmi.update --ignore "Core 32bit Release" "Core 32bit Updates"
+urpmi.update --no-ignore "Nonfree Release" "Nonfree Updates"
+urpmi.update --no-ignore "Tainted Release" "Tainted Updates" 
 if $TESTING ; then
     urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
     urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
@@ -35,7 +39,11 @@ fi
 if [ "$VERSION" = "cauldron" ] ; then
 urpmi.addmedia "Core backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/release --no-md5sum
 urpmi.addmedia "Core updates backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/updates --no-md5sum
-#urpmi.addmedia "Bitquant sourceforge" https://sourceforge.net/projects/bitquant/files/rpms/`uname -m`/ --no-md5sum
+urpmi.addmedia "Nonfree backup" $URPMI_ROOT/$VERSION/`uname -m`/media/nonfree/release --no-md5sum
+urpmi.addmedia "Nonfree updates backup" $URPMI_ROOT/$VERSION/`uname -m`/media/nonfree/updates --no-md5sum
+urpmi.addmedia "Tainted backup" $URPMI_ROOT/$VERSION/`uname -m`/media/tainted/release --no-md5sum
+urpmi.addmedia "Tainted updates backup" $URPMI_ROOT/$VERSION/`uname -m`/media/tainted/updates --no-md5sum
+
 if $TESTING ; then
 urpmi.addmedia "Core updates testing backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/updates_testing
 fi
