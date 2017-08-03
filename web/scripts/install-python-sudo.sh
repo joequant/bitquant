@@ -46,7 +46,7 @@ for packages in \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
             iminuit lmfit redis_kernel bash_kernel \
 	    jupyter_nbextensions_configurator pyfolio \
-            caravel VisualPortfolio empyrical qfrm tradingWithPython \
+            superset VisualPortfolio empyrical qfrm tradingWithPython \
             trade pybacktest dynts chinesestockapi bizdays \
             git+https://github.com/bashtage/arch.git ffn \
 	    git+https://github.com/joequant/OrderBook.git \
