@@ -27,9 +27,10 @@ echo "Resetting urpmi"
 urpmi.removemedia -a
 urpmi.addmedia --distrib --mirrorlist 'http://mirrors.mageia.org/api/mageia.'$VERSION'.'`uname -m`'.list'
 if $TESTING ; then
-urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
+    urpmi.update --no-ignore "Core Updates" "Core Updates Testing"
+    urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
 fi
-urpmi.update --no-ignore "Core Backports" "Core Backports Testing"
+
 # Add backup server to make sure that we get fresh rpms
 if [ "$VERSION" = "cauldron" ] ; then
 urpmi.addmedia "Core backup" $URPMI_ROOT/$VERSION/`uname -m`/media/core/release --no-md5sum
