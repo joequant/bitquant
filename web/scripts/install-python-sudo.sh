@@ -25,7 +25,6 @@ popd
 pip3 install --upgrade pip
 for packages in \
     astropy \
-    git+https://github.com/joequant/datagramas.git \
     jupyterhub \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
