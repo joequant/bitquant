@@ -1,14 +1,15 @@
 #!/bin/bash
 echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 export TZ="Asia/Hong_Kong"
+BACKUP_DISTRIB=http://mirrors.kernel.org/mageia/distrib
 urpmi.removemedia -a
 urpmi.addmedia --distrib \
 	       --mirrorlist \
 	       'http://mirrors.mageia.org/api/mageia.cauldron.x86_64.list'
 urpmi.addmedia --no-md5sum \
-	       "Core backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release
+	       "Core backup" $BACKUP_DISTRIB/cauldron/x86_64/media/core/release
 urpmi.addmedia --no-md5sum \
-	       "Core updates backup" http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/updates
+	       "Core updates backup" $BACKUP_DISTRIB/cauldron/x86_64/media/core/updates
 urpmi --no-recommends --auto --excludedocs urpmi
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
