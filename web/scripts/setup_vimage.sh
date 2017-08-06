@@ -14,7 +14,7 @@ fi
 
 TESTING=false
 USER=user
-URPMI_ROOT=http://distro.ibiblio.org/mageia/distrib
+URPMI_ROOT=http://mirrors.kernel.org/mageia/distrib
 # Change everything to local user so that suexec will work
 # ./setup.sh will take the owner of the scripts to set up the
 # suexec environment, so this should be set correctly for 
