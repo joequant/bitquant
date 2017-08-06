@@ -16,6 +16,7 @@ urpmi --no-recommends --auto --excludedocs urpmi
 urpmi --replacepkgs --excludedocs locales glibc
 urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
 urpmi --no-recommends --no-md5sum --excludedocs --auto git
+urpme --auto-orphans --auto
 useradd user
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
