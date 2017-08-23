@@ -1,0 +1,87 @@
+Using new technology for innovative financial products
+------------------------------------------------------
+
+Current technology requires that the project or funder invest several
+tens of millions of dollars to create an investment.  To set up a fund
+your costs are USD 100k/year, assuming 1-5% fund management, you need
+AUM of 2 million to breakeven.
+
+Need to reduce backend processing costs to zero, so funds go into deal
+making and due dilligence
+
+Projects that are not funded
+----------------------------
+1) Seed stage companies - Convertible bonds
+2) Factoring and cash flow companies - gadget manufacturers in south
+China
+3) Geographically diverse areas - Southeast Asia, Africa, Russia
+
+People who want to invest and can't
+-----------------------------------
+1) Mass affluent - People that want to invest USD 10k-50k in a project
+2) People in various parts of the world - Southeast Asia, Africa, and
+Russia
+
+Use ICO technology to reduce backend costs
+------------------------------------------
+
+What to do:
+
+Create exchange for professional investors
+------------------------------------------
+
+Use bitcoin exchange infrastructure.  Find an exchange which is
+already profitable trading bitcoin and add the ability to trade shares
+of hedge funds and innovative products.
+
+Exchange will charge USD 5k for listing.  Regulatory/AML/KYC is done
+by the issuer.  Exchange will display trades for products, but will
+only authorize an account for trading if approved by issuer.  Issuer
+can sell new shares on exchange.  Also transfers to and from exchange
+is done by exchange communicating with issuer.
+
+Since exchange is already profitable trading bitcoin, cost for adding
+new trading pair is small.
+
+Trading bitcoin will allow company to accept investors from all over
+the world.  Opening accounts for companies authorized by issuer moves
+AML/KYC/regulation to issuer.  Also allows for algo trading between
+non-traditional products.  Also the exchange can be a marketing
+channel, as providing information and limiting trading will prevent
+the marketing from being seen as an offerring.
+
+What is different from existing exchanges:
+
+1) all efforts at existing exchanges have been product centered.  This
+is a problem because the exchange can't make money if the product
+isn't successful and the exchange cannot bootstrap listing of new
+products.  In this system, the exchange is already making money
+trading bitcoin. they can amortize costs among many different
+products
+
+2) AML/KYC/regulation is done by the issuer.  Also the issuer pays for
+costs.
+
+Create HKD/CNH coin
+-------------------
+
+Coin will be HKD/CNH token which is linked to an bank account.  Allows
+user to store value, and buy and sell items
+
+Create standardized tradable products
+-------------------------------------
+
+Set up convertible notes that are standarized for trading.
+
+Create coin-based registration
+------------------------------
+
+Set up coins so that possession of the coin gives you the ability to
+register ownership, and allows issuer to burn coins.  Coins then
+become tokens that allow for registration rather than bearer shares.
+
+Create legal box to allow coin owners to hold assets
+----------------------------------------------------
+
+Create badges for AML/KYC/regulation
+------------------------------------
