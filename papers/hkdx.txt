@@ -1,0 +1,133 @@
+HKDX Coin
+CNHX Coin
+
+Proposal:
+
+Create two coins.  One is backed by the Hong Kong dollar.  The other
+will be backed by Renminbi on deposit in Hong Kong.
+
+Who would be interested in this?
+
+1) Hedge funds and VC's
+1a) They need a reliable way of settling payments throughout the world
+1b) Right now it is impossible to hedge CNH risk or develop
+CNH/HKD-based products because of a lack of a settlement mechanism.
+Current settlement mechanism require government-to-government
+negotiations and the creation of settlement mechanisms which can take
+years.  The lack of a settlement mechanism makes it impossible for
+overseas investors to create CNH/HKD denominated products.
+1c) Methods to automate back office systems and due dilgence.  A fund
+can cryptographically verify that it has funds under control, and
+automate settlement and reconcilation
+
+2) ICO's need
+2a) a stable unit of exchange to receive funds.  Using ethereum
+to onboard or off-board funds creates volatility in ICO worl
+2b) a method of storing value that bypasses banks
+2c) a way of transfering stable currencies via smart contracts.  
+
+3) Hong Kong businesses need:
+3a) A way of storing funds that allows one to operate without an
+HK bank account
+
+4) Hong Kong bitcoin exchanges need:
+4a) A way of pooling liquidity and a mechanism to conduct
+interexchange transmission
+
+5) Banks need:
+5a) A way of getting this technology out.  All of the major banks have
+developed this settlement technology, but they have been unable to
+deploy for regulatory reasons.  A HK based token system will be
+subject to regulation only by HKMA, and once it is operational, it can
+be more easily adapted by the banks than developing internal systems
+
+6) Hong Kong needs:
+6a) A way of promoting the HK dollar.  Having the HKD being used
+as the standard currency for raising money through ICO's will
+create a pool of liquidity that will promote HK.  Once ICO's use
+the HKD as the basis for their activities, this will encourage
+them to use HK as a banking center.
+6b) A way of promoting Renminbi products.  The problem with RMB
+denominated products is that an asset manager in most places simply
+cannot deal settle in RMB.  A Wall Street investment fund may love to
+buy dim-sum bonds but they simply cannot because they have no way of
+accepting/rejecting RMB
+
+7) Everyone needs
+7a) A way of reducing AML/KYC costs.  Once the holder of one
+wallet has been identified, then law enforcement can trace the
+transactions through that wallet.  It is therefore unnecessary to
+perform AML/KYC on all accounts  You merely need to 
+
+What is the technology?
+
+1) OKLink has done this with the OKDollar a token that is pegging
+to the USD.  Access to the OKDollar is limited to companies on
+the OKLink network which is restricted to institutions that are
+licensed to send/receive money
+
+2) Tether has also has created a USD token
+
+Why HKD is better than USD:
+
+1) Deposits to the Tether token has been shut down because the
+bank involved is located in Taiwan and the international
+correspondent banks have shut down wire transfers to the tether
+account.  Deposits can only be made through local Taiwan banks,
+and Taiwan is not enough of a banking center for overseas
+companies to get bank accounts.
+
+1a) The HKD token need only be redeemable for fiat in HK.  In
+order to on-board or off-board fiat you need to do that in HK
+through local bank transfer, and other people will be able to hit
+it through
+
+2) Tether and OKLink can't talk directly to the FBI, the Federal
+Reserve, and the SEC.  An HK company that creates a HKD token can
+talk directly to HK Police, the HKMA, and the SFC.
+
+The killer coin - CNHX coin
+
+1) Internationalize the RMB!!!!!
+2) Create RMB denominated products!!!!!  If someone in Peoria,
+Illinois or Johannesburg, South Africa wants to buy a dim-sum bond,
+they now can!!!!
+
+------------------
+
+Implementation:
+
+Central bank model.  
+
+Create a company limited by guarantee with a set of members:
+
+1) Members will be required to post a minimum deposit and pay a
+monthly membership fee.
+
+2) Only members will be able to exchange HKD or CNH directly with the
+central foundation.  The fiat currency exchanged for tokens will be
+subject to a minimum amount
+
+3) The fact that you have a small number of members which can only do
+large infrequent transactions makes this easier to sell to bank
+compliance
+
+Types of members:
+
+1) Initial members will include all of the major bitcoin exchanges in
+Hong Kong, since they will be responsible for circulating the coin to
+the general public
+2) Hedge funds and VC funds that want to make token exchanges directly
+with the foundation
+3) Money services companies that can now use the tokens to exchange
+directly with cash
+
+Member elect a board which appoints staff:
+
+The people who are necessary
+
+1) legal/compliance
+2) technical
+3) business development
+4) marketing/social media expert
+

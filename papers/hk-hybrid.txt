@@ -1,0 +1,171 @@
+Registering Hong Kong Financial Products on Public Blockchains: A
+Hybrid Approach to Token Issuance
+
+
+Blockchain and financial products are radically changing the nature of
+financing.  However, the full potential of blockchain for issuing
+financial products has not been fully realized.
+
+Thus far the issuance
+and settlement of financial products has been characterized by two
+approaches.  One is the "code-only" approach in which possession of a
+wallet is ownership.  The other is a "private blockchain"i approach in
+which settlement is under taken among private actors.
+
+
+Code-Only Approach
+
+* theft and loss
+
+* corporate governance
+
+* public policy 
+
+* dispute resolution
+
+* cash liquidity value
+
+* inability to connect with legacy systems
+
+
+Private blockchain
+
+* high cost of setup
+
+* requires that companies work through intermediaries
+
+* incompatible systems
+
+
+-----------
+
+In this paper we propose a hybrid approach in which a token based
+financial instrument is linked to the legacy financial system via the
+Hong Kong common law legal system.  We note that the approach we are
+taking does not require that the token issuance system involve
+businesses or securities that are issued in Hong Kong.
+
+\begin{The Hong Kong Legal System}
+
+Under the "one country, two systems" policy, the Special
+Administrative Region of the People's Republic of China
+
+The legal system of Hong Kong is based on English common law, which
+allows legal disputes to be adjudicated in a framework which is
+familar to legal experts throughout the world.  The Hong Kong judicial
+system has a strong reputation of being impartial and efficient when
+it comes to adjudicating commercial disputes, and Hong Kong also has a
+very extensive network of private arbitration panels which can resolve
+disputes quickly, cheaply, and fairly.
+
+In addition to a favourable legal environment, Hong Kong has a
+favourable environment for securities regulation and taxation.  With
+respect to securities regulation and taxation, Hong Kong takes a
+"territorial approach" by which securities which are not actively
+marketed in Hong Kong are not subject to local regulation, and
+business activities which occur outside of Hong Kong are not taxed.
+These factors allow a token which is intended for use outside of Hong
+Kong to take advantage of Hong Kong's legal system without being
+subject to securities regulation or taxation.
+
+\section{Tokens as Bookkeeping mechanism}
+
+In the framework that we have proposed, a public blockchain serves
+only as a bookkeeping mechanism, and the entries on the public ledger
+serve only to record changes in legal ownership.  Because the ledger
+serves only as bookkeepping mechanism, the entries on the ledger serve
+only as evidence that a change in ownership has taken place, and if
+the ledger entries change as a result of theft or accident, no actual
+change in ownership will have taken place.
+
+Our mechanism does not depend on a specific implementation of
+blockchain, and is sufficiently general such that any public
+blockchain with immutable message passing can be used to implement are
+system.
+
+\section{Failure modes}
+
+Our system begins with a legal entity that is formed under Hong Kong
+law.  This legal entity can be a for-profit company limited by shares,
+a non-profit limited by guarantee, or a trust.  The legal entity would
+have three wallets associated with it.
+
+token creation wallet - This wallet will hold newly created tokens,
+and the legal entity will have the authority to create new tokens
+within this wallet
+
+identity wallet - Messages to this wallet will be used to identify the
+holder of the wallet
+
+authorization wallet - Messages from this wallet will be used to
+authorize a wallet to receive tokens or to send tokens.
+
+burn notice wallet - Messages from this wallet will be used to force
+tokens to be sent to the burn wallet.
+
+burn wallet - This wallet will contain tokens that have been burned.
+
+In a typical use case a token holder will create a wallet, and then
+send a registration message to the identity wallet.  This message will
+register the wallet to a particular user.  The message to register
+identity need only be known by the user or by the legal entity.
+
+
+\section{Forced Token Transfers}
+
+Our system allows for mandatory transfers of tokens.  This can be used
+not only to recover tokens in case of theft of loss, but to also to
+execute legal processes such as foreclosure, asset recovery, or to
+execute a will.
+
+1. The administrator sends a message from the burn notice wallet to
+the wallet.  This will force a transfer of the tokens from the wallet
+to the burn wallet.
+
+2. The administrator creates new tokens in the token creation wallet
+and sends these tokens to the appropriate wallet.
+
+All forced token transfers will result in the tokens being delivered
+to the burn wallet, thereby clearly marking in the ledger that this was
+
+
+
+
+
+
+We emphasize that the system is used only to record information about
+transfers but does not in itself reflect a legal transfer.  Should the
+system become compromised, the actual ownership of the instruments does
+not change, and it merely because sufficient for the blockchain to
+record enough information to allow the ownership of the instruments to
+be reconsturcted.  In a situation where there is dispute over the
+legal situation, at that point, the situation would be referred to
+arbitration or the Hong Kong legal system to resolve.
+
+\section{Legal Box}
+
+
+
+In our design we have specificied the tech
+
+We propose to create a "legal box" which consists of a trust.  The
+trust would be governed by a trust agreement which appoints a trust
+administrator and requires that the trust administrator administer the
+trust in the interest of the token holds.  The trust can hold any
+piece of property on behalf of the token holders.
+
+This common "legal box" allows any asset to be tokenized.  Stocks,
+bonds, gold, diamonds, real estate, can be placed into the standard
+legal box.
+
+We note that under some circumstances the resulting structure would
+become subject to Hong Kong securities regulation.  For example, if
+one were to put stocks and bonds into the legal box and have an
+investment adviser with the power to buy and sell the contents of the
+box, this would become a collective investment scheme that would be
+subject to Hong Kong securities regulation.  However, even in these
+situations, having a standardized legal container would greatly reduce
+the cost of creating a collective investment scheme.  Furthermore,
+once the structure is standardized and automated, the necessary
+paperwork to make the container regulatory compliant.
+
