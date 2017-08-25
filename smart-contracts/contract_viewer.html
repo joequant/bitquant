@@ -9,19 +9,28 @@
 <link href="https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet"/>
 <link href="jquery.appendGrid-1.6.2.min.css" rel="stylesheet"/>
 <style>
+  .numbertable {
+  font-family: monospace;
+  font-size: x-small;
+  }
   .block {
-  width: 80px;
+  width: 1.5cm;
   display: inline-block;
   }
   .date {
-  width: 160px;
+  width: 1.5cm;
   }
   .event {
-  width: 160px;
+  width: 1cm;
   }
-  .number { text-align: right;
-  width: 1in;
+  .number {
+  text-align: right;
   }
+  .date-block {
+  width: 2.5cm;
+  display: inline-block;
+  }
+  
   #recalc {
   height: 60px;
   font-size: 22px;
@@ -45,7 +54,7 @@ Copyright (c) 2015 - Bitquant Research Laboratories (Asia) Ltd.<br>
   <p>
   <div id="event_inputs"></div>
 <button id="recalc" type="button">Recalculate</button>
-<div style="font-family: monospace">
+<div class="numbertable">
 <div id="item"></div>
 </div>
 <div id="text"></div>

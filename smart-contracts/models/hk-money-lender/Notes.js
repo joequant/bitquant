@@ -141,18 +141,6 @@ The lender has agreed to abide by the terms of the Code of Money Lending Practic
 				      note + "</span><br>");
 		    }
 		});
-	    var myElements = document.querySelectorAll(".block");
-	    
-	    for (var i = 0; i < myElements.length; i++) {
-		myElements[i].style.width = "80px";
-		myElements[i].style.display = "inline-block";
-	    }
-	    
-	    myElements = document.querySelectorAll(".date-block");
-	    for (var i = 0; i < myElements.length; i++) {
-		myElements[i].style.width = "150px";
-		myElements[i].style.display = "inline-block";
-	    }
 	} catch (err) {
 	    output.html(err.message);
 	}
