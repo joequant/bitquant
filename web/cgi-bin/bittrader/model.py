@@ -72,7 +72,7 @@ def passwd():
     timezone = request.form['timezone']
     if newpass1 != newpass2:
         return "passwords do not match"
-    return subprocess.check_output(["./timezone.sh", timezone]) + \
+    return subprocess.check_output(["./timezone.sh", timezone]).decode("utf-8") + \
            login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
            login.chpasswd("root", request.form['newpass1']) + "\n"
 
@@ -83,7 +83,7 @@ def setup():
     submit = request.values['submit']
     if submit == "Set time zone":
         timezone = request.values['timezone']
-        return subprocess.check_output(["sudo" "/usr/share/bitquant/timezone.sh", timezone])
+        return subprocess.check_output(["sudo" "/usr/share/bitquant/timezone.sh", timezone]).decode("utf-8")
     elif submit == "Refresh CGI scripts":
         return refresh_scripts()
     elif submit == "Lock wiki":
