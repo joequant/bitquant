@@ -49,7 +49,8 @@ for packages in \
             trade pybacktest dynts chinesestockapi bizdays \
             git+https://github.com/bashtage/arch.git ffn \
 	    git+https://github.com/joequant/OrderBook.git \
-            quantdsl pynance jupyterlab ipyleaflet \
+	    git+https://github.com/joequant/quantdsl.git \
+            pynance jupyterlab ipyleaflet \
 	    dash dash_renderer dash_core_components dash_html_components ;
 do pip3 install $PYTHON_ARGS $packages --prefix /usr ;
 done
