@@ -22,7 +22,7 @@ popd
 
 # Astropy is needed for tushare
 
-pip3 install --upgrade pip
+pip3 install --upgrade pip --prefix /usr
 for packages in \
     astropy \
     jupyterhub \
@@ -51,7 +51,7 @@ for packages in \
 	    git+https://github.com/joequant/OrderBook.git \
             quantdsl pynance jupyterlab ipyleaflet \
 	    dash dash_renderer dash_core_components dash_html_components ;
-do pip3 install $PYTHON_ARGS $packages ;
+do pip3 install $PYTHON_ARGS $packages --prefix /usr ;
 done
 
 jupyter contrib nbextension install --sys-prefix
