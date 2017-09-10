@@ -27,7 +27,7 @@ ADMIN=webmin
 $SUDO urpmi --no-recommends \
 --auto \
 --downloader "curl" \
---curl-options "--retry 5 --speed-time 30 --connect-timeout 30 --progress-bar" \
+--curl-options "--retry 5 --speed-time 10 --connect-timeout 30 --progress-bar" \
 apache \
 apache-mod_suexec \
 apache-mod_proxy \
@@ -45,7 +45,7 @@ $SUDO urpmi --no-recommends \
 --auto \
 --no-verify-rpm \
 --downloader "curl" \
---curl-options "--retry 5 --speed-time 30 --connect-timeout 30 --progress-bar" \
+--curl-options "--retry 5 --speed-time 10 --connect-timeout 30 --progress-bar" \
 $URPMI_OPTIONS \
 nodejs \
 npm \
