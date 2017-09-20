@@ -25,7 +25,8 @@ popd
 pip3 install --upgrade pip --prefix /usr
 for packages in \
     astropy \
-    jupyterhub \
+	jupyterhub \
+	sudospawner \
 	vispy pyalgotrade statsmodels quandl ipywidgets \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
@@ -87,3 +88,6 @@ pushd /usr/bin
 ln -s ipython3 ipython
 popd
 fi
+
+#Create rhea user to spawn jupyterhub
+useradd -r rhea -s /bin/false -M
