@@ -14,6 +14,8 @@ The image for bitstation is stored on docker hub as
 joequant/bitstation which will be downloaded automatically by the
 script.
 
+The default user and password are "user" and "cubswin:)"
+
 The scripts assume that you have set up docker to be runnable by your
 user account.  You can also set the environment variable SUDO to sudo
 if you are running docker via root.
