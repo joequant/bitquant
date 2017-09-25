@@ -97,4 +97,4 @@ Cmnd_Alias JUPYTER_CMD = /usr/bin/sudospawner
 
 # actually give the Hub user permission to run the above command on behalf
 # of the above users without prompting for a password
-rhea ALL=ALL NOPASSWD:JUPYTER_CMD
+rhea ALL=ALL, NOPASSWD:JUPYTER_CMD
