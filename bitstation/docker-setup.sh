@@ -19,9 +19,6 @@ urpmi.addmedia --no-md5sum \
 urpmi.addmedia --no-md5sum \
 	       "Core updates backup" $BACKUP_DISTRIB/$VERSION/x86_64/media/core/updates
 urpmi --no-recommends --auto --excludedocs urpmi
-# Refresh locale and glibc for missing latin items
-# needed for R to build packages
-urpmi --replacepkgs --excludedocs locales glibc
 urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
 urpmi --no-recommends --no-md5sum --excludedocs --auto git
 urpme --auto-orphans --auto
