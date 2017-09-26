@@ -51,6 +51,7 @@ echo "Restarting rserver"
 /usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
 fi
 
+if false ; then
 if [ -f /usr/bin/jupyter ] ; then
 echo "Restarting jupyter"
 mkdir -p ~/ipython
@@ -59,6 +60,7 @@ mkdir -p ~/ipython
 /usr/bin/python3 -m bash_kernel.install --user
 export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
 /usr/bin/jupyter notebook --no-browser --NotebookApp.base_url=jupyter/ --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyter.log 2>&1 &
+fi
 fi
 
 if [ -f /usr/bin/jupyter-lab ] ; then
