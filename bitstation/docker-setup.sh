@@ -10,20 +10,10 @@ echo "version 6"
 VERSION=6
 fi
 
-urpmi.removemedia -a
-urpmi.addmedia --distrib \
-	       --mirrorlist \
-	       http://mirrors.mageia.org/api/mageia.$VERSION.x86_64.list
-urpmi.addmedia --no-md5sum \
-	       "Core backup" $BACKUP_DISTRIB/$VERSION/x86_64/media/core/release
-urpmi.addmedia --no-md5sum \
-	       "Core updates backup" $BACKUP_DISTRIB/$VERSION/x86_64/media/core/updates
-
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs \
     locales glibc
-dnf --setopt=install_weak_deps=False --best install -v -y --nodocs urpmi
 dnf --setopt=install_weak_deps=False --best -v -y --nodocs --obsoletes upgrade
 dnf --setopt=install_weak_deps=False --best install -v -y --nodocs git
 dnf --setopt=install_weak_deps=False --best -v -y --nodocs autoremove
