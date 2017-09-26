@@ -39,7 +39,6 @@ $PYTHON-matplotlib-tk \
 $ADMIN
 
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
-$URPMI_OPTIONS \
 nodejs \
 npm \
 gcc-c++ \
