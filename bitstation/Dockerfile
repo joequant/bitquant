@@ -7,6 +7,5 @@ VOLUME [ "/sys/fs/cgroup", "/var/lib/machines" ]
 RUN dnf install -v -y --nodocs curl
 RUN cd /tmp ; curl -O https://raw.githubusercontent.com/joequant/bitquant/master/bitstation/docker-setup.sh ; chmod a+x docker-setup.sh ; ./docker-setup.sh ; rm docker-setup.sh
 RUN for i in `find / -perm +6000 -type f`; do chmod a-s $i; done
-USER user
 EXPOSE 80 443
 CMD ["/home/user/git/bitquant/web/scripts/startup-all.sh"]
