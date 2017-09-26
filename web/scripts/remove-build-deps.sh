@@ -22,13 +22,13 @@ lib="lib64"
 fi
 
 
-$SUDO urpme \
---auto \
+$SUDO dnf \
+autoremove \
 cmake \
 gcc-c++ \
 `rpm -qa | grep devel | grep -v python | grep -v glibc`
 
-$SUDO urpme --auto-orphans --auto
+$SUDO dnf autoremove
 
 
 
