@@ -24,10 +24,7 @@ PYTHON_COMPAT=
 ADMIN=webmin
 
 #repeat packages in setup
-$SUDO urpmi --no-recommends \
---auto \
---downloader "curl" \
---curl-options "--retry 5 --speed-time 10 --connect-timeout 30" \
+$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
 apache \
 apache-mod_suexec \
 apache-mod_proxy \
@@ -41,11 +38,7 @@ $PYTHON-matplotlib \
 $PYTHON-matplotlib-tk \
 $ADMIN
 
-$SUDO urpmi --no-recommends \
---auto \
---no-verify-rpm \
---downloader "curl" \
---curl-options "--retry 5 --speed-time 10 --connect-timeout 30" \
+$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
 $URPMI_OPTIONS \
 nodejs \
 npm \

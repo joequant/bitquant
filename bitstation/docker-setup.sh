@@ -38,8 +38,8 @@ git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 mkdir -p /etc/sysusers.d
 cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d
 systemd-sysusers
-urpmi --no-recommends --no-md5sum --excludedocs \
-    --auto sudo apache apache-mod_suexec \
+dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
+    sudo apache apache-mod_suexec \
     apache-mod_proxy \
     apache-mod_php apache-mod_authnz_external \
     apache-mod_ssl dokuwiki python3-flask python3-pexpect
