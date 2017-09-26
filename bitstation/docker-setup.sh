@@ -21,11 +21,12 @@ urpmi.addmedia --no-md5sum \
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs locales glibc
-urpmi --no-recommends --auto --excludedocs urpmi
-urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
-urpmi --no-recommends --no-md5sum --excludedocs --auto git
-urpme --auto-orphans --auto
+dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs \
+    locales glibc
+dnf --setopt=install_weak_deps=False --best install -v -y --nodocs urpmi
+dnf --setopt=install_weak_deps=False --best -v -y --nodocs --obsoletes upgrade
+dnf --setopt=install_weak_deps=False --best install -v -y --nodocs git
+dnf --setopt=install_weak_deps=False --best -v -y --nodocs autoremove
 useradd user
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
