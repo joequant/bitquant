@@ -21,7 +21,7 @@ urpmi.addmedia --no-md5sum \
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-urpmi --replacepkgs --excludedocs locales glibc
+dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs locales glibc
 urpmi --no-recommends --auto --excludedocs urpmi
 urpmi --auto-select --auto --no-recommends --no-md5sum --excludedocs
 urpmi --no-recommends --no-md5sum --excludedocs --auto git
