@@ -22,7 +22,7 @@ lib="lib64"
 fi
 
 
-$SUDO dnf \
+$SUDO dnf -y \
 autoremove \
 cmake \
 gcc-c++ \
