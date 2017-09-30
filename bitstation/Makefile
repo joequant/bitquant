@@ -8,6 +8,9 @@ endif
 bitstation:
 	 docker build -t joequant/bitstation $(ARGS) .
 
+bitstation-cauldron:
+	 docker build -t joequant/bitstation $(ARGS) . --build-arg version=cauldron
+
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile
 
