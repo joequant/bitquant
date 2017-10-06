@@ -51,7 +51,7 @@ for packages in \
             git+https://github.com/bashtage/arch.git ffn \
 	    git+https://github.com/joequant/OrderBook.git \
 	    git+https://github.com/joequant/quantdsl.git \
-	    pulsar \
+	    pulsar pyspark \
 	    git+https://github.com/joequant/dynts.git \
             pynance jupyterlab ipyleaflet \
 	    dash dash_renderer dash_core_components dash_html_components ;
