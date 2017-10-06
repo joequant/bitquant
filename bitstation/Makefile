@@ -1,14 +1,17 @@
-bitstation-nocache: ARGS="--no-cache=true"
-bitstation-nocache: bitstation
+bitstation: ARGS="--no-cache=true"
+bitstation: bitstation-cache
+
+bitstation-cauldron: ARGS="--no-cache=true"
+bitstation-cauldron: bitstation-cauldron-cache
 
 ifeq ($(NOCACHE),true)
 ARGS="--no-cache=true"
 endif
 
-bitstation:
+bitstation-cache:
 	 docker build -t joequant/bitstation $(ARGS) .
 
-bitstation-cauldron:
+bitstation-cauldron-cache:
 	 docker build -t joequant/bitstation $(ARGS) . --build-arg version=cauldron
 
 bitstation-clean-docker:
