@@ -11,9 +11,9 @@ npm install -g node-gyp
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
 for repo in ijavascript jupyter/configurable-http-proxy ; do
-npm install -g $repo
+npm install -g --unsafe $repo
 done
 
 pushd /home/$ME/git/ethercalc
-npm i -g ethercalc
+npm i -g --unsafe ethercalc
 popd
