@@ -53,7 +53,8 @@ for packages in \
 	    git+https://github.com/joequant/quantdsl.git \
 	    pulsar pyspark \
 	    git+https://github.com/joequant/dynts.git \
-            pynance jupyterlab ipyleaflet \
+            pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
+	    theano tensorflow nltk gensim scrapy statsmodels \
 	    dash dash_renderer dash_core_components dash_html_components ;
 do pip3 install $PYTHON_ARGS $packages --prefix /usr ;
 done
