@@ -59,12 +59,12 @@ mkdir -p ~/ipython
 # failures if ipython is pulled through https
 /usr/bin/python3 -m bash_kernel.install --user
 export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
-/usr/bin/jupyter notebook --no-browser --NotebookApp.base_url=jupyter/ --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyter.log 2>&1 &
+/usr/bin/jupyter notebook --no-browser --NotebookApp.base_url=jupyter/ --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyter/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyter.log 2>&1 &
 fi
 fi
 
 if [ -f /usr/bin/jupyter-lab ] ; then
     echo "Restarting jupyterlab"
     export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
-    /usr/bin/jupyter lab --no-browser --NotebookApp.base_url=jupyterlab/ --port 9999 --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyterlab/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyterlab.log 2>&1 &
+    /usr/bin/jupyter lab --no-browser --NotebookApp.base_url=jupyterlab/ --port 9999 --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyterlab/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js' }" --notebook-dir=~/ipython  >> $LOG_DIR/jupyterlab.log 2>&1 &
 fi
