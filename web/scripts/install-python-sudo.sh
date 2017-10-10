@@ -24,6 +24,10 @@ popd
 
 pip3 install --upgrade pip --prefix /usr
 for packages in \
+    numpy \
+	matplotlib \
+	pandas \
+	scipy \
     astropy \
 	jupyterhub \
 	sudospawner \
