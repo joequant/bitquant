@@ -60,7 +60,7 @@ for packages in \
             pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
 	    theano tensorflow nltk gensim scrapy statsmodels \
 	    dash dash_renderer dash_core_components dash_html_components ;
-do pip3 install $PYTHON_ARGS $packages --prefix /usr ;
+do pip3 install --upgrade $PYTHON_ARGS $packages --prefix /usr ;
 done
 
 jupyter contrib nbextension install --sys-prefix
