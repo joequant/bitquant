@@ -102,13 +102,16 @@ mongodb \
 mongo-tools \
       redis \
       make \
-      ruby-sass
+      ruby-sass \
+      $PYTHON-cairo-devel \
+      jpeg-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
 #unzip for R devtool builds
 #cffi for caravel
+#cairo for jupyterlab_bokeh.git or jpeg-devel
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython

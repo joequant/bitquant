@@ -67,6 +67,9 @@ jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyterlab --sys-prefix
+jupyter labextension install jupyterlab_bokeh
+jupyter labextension enable jupyterlab_bokeh
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 for extension in \
     codefolding/main search-replace/main ;
