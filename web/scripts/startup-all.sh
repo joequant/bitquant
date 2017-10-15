@@ -7,12 +7,17 @@ cd $SCRIPT_DIR
 . rootcheck.sh
 
 su redis -s "/bin/bash" -c "/usr/bin/redis-server /etc/redis.conf" &
+chown mongod:mongod /var/lib/mongodb
 su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
 /usr/sbin/httpd -DFOREGROUND &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
     /etc/webmin/start
 fi
+echo "Pulling git"
+pushd $WEB_DIR/..
+su user -c "git pull"
+popd
 su user -c ./startup.sh
 while :; do sleep 2; done
 
