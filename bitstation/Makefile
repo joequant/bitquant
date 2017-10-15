@@ -1,8 +1,8 @@
-bitstation: ARGS="--no-cache=true"
-bitstation: bitstation-cache
-
 bitstation-cauldron: ARGS="--no-cache=true"
 bitstation-cauldron: bitstation-cauldron-cache
+
+bitstation: ARGS="--no-cache=true"
+bitstation: bitstation-cache
 
 ifeq ($(NOCACHE),true)
 ARGS="--no-cache=true"

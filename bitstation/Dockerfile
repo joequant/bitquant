@@ -20,7 +20,7 @@ RUN if [ "x$version" = "xcauldron" ] ; then dnf install -v -y \
   dnf -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False upgrade ; fi
 
 
-RUN dnf --setopt=install_weak_deps=False --nodocs -v -y install curl dnf python3
+RUN dnf --setopt=install_weak_deps=False --allowerasing --best --nodocs -v -y install curl dnf python3
 RUN cd /tmp ; \
   curl -O https://raw.githubusercontent.com/joequant/bitquant/master/bitstation/docker-setup.sh ; \
   chmod a+x docker-setup.sh ; \
