@@ -64,7 +64,7 @@ do pip3 install --upgrade $PYTHON_ARGS $packages --prefix /usr ;
 done
 
 jupyter contrib nbextension install --sys-prefix
-jupyter declarativewidgets quick-setup --sys-prefix
+jupyter declarativewidgets quick-setup
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh

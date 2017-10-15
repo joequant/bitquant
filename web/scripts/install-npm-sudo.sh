@@ -10,7 +10,7 @@ ME=$2
 npm install -g node-gyp
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
-for repo in ijavascript jupyter/configurable-http-proxy ; do
+for repo in webpack ijavascript jupyter/configurable-http-proxy ; do
 npm install -g --unsafe $repo
 done
 
