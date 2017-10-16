@@ -11,4 +11,4 @@ repo enable cauldron-x86_64-tainted
 config-manager  --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
 run
 EOF
-dnf upgrade  --allowerasing --best --nodocs --setopt=install_weak_deps=False
+dnf upgrade -y -v --allowerasing --best --nodocs --setopt=install_weak_deps=False
