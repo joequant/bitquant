@@ -3,6 +3,7 @@ dnf shell -v -y <<EOF
 install  \
        --setopt=install_weak_deps=False --nodocs \
      'dnf-command(config-manager)' mageia-repos-cauldron
+run
 repo disable mageia-x86_64
 repo disable updates-x86_64
 repo enable cauldron-x86_64
