@@ -49,7 +49,7 @@ for packages in \
 	    git+https://github.com/quantopian/pyfolio.git \
             configproxy prettyplotlib mpld3 networkx qgrid \
 	    git+https://github.com/joequant/IPython-notebook-extensions.git \
-            iminuit lmfit redis_kernel bash_kernel \
+            iminuit lmfit redis_kernel bash_kernel octave_kernel \
 	    jupyter_nbextensions_configurator pyfolio \
             superset VisualPortfolio empyrical qfrm tradingWithPython \
             trade pybacktest chinesestockapi bizdays \
