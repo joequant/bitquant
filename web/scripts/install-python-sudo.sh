@@ -31,7 +31,8 @@ for packages in \
     astropy \
 	jupyterhub \
 	sudospawner \
-	vispy pyalgotrade statsmodels quandl ipywidgets \
+	lightning-python \
+	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
@@ -58,7 +59,8 @@ for packages in \
 	    pulsar pyspark \
 	    git+https://github.com/joequant/dynts.git \
             pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
-	    theano tensorflow nltk gensim scrapy statsmodels \
+	    theano tensorflow nltk gensim scrapy statsmodels gym milk \
+	    neurolab pyrenn \
 	    dash dash_renderer dash_core_components dash_html_components ;
 do pip3 install --upgrade $PYTHON_ARGS $packages --prefix /usr ;
 done
