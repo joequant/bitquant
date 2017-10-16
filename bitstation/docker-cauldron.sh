@@ -1,13 +1,14 @@
 #!/bin/bash
-dnf install -v -y \
+dnf shell -v -y <<EOF
+install  \
        --setopt=install_weak_deps=False --nodocs \
      'dnf-command(config-manager)' mageia-repos-cauldron
-dnf config-manager -v -y --set-disabled mageia-x86_64
-dnf config-manager -v -y --set-disabled updates-x86_64
-dnf config-manager -v -y --set-enabled cauldron-x86_64
-dnf config-manager -v -y --set-enabled cauldron-x86_64-nonfree
-dnf config-manager -v -y --set-enabled cauldron-x86_64-tainted
-dnf config-manager -v -y --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
-dnf --refresh --allowerasing --best distro-sync \
-       -v -y --setopt=install_weak_deps=False --nodocs
-dnf -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False upgrade
+repo disable mageia-x86_64
+repo disable updates-x86_64
+repo enable cauldron-x86_64
+repo enable cauldron-x86_64-nonfree
+repo enable cauldron-x86_64-tainted
+config-manager  --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
+upgrade  --allowerasing --best --nodocs --setopt=install_weak_deps=False 
+run
+EOF
