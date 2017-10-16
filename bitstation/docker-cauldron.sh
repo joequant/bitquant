@@ -1,5 +1,5 @@
 #!/bin/bash
-dnf install  \
+dnf install -v -y \
      --setopt=install_weak_deps=False --nodocs \
      'dnf-command(config-manager)' mageia-repos-cauldron
 dnf shell -v -y <<EOF
