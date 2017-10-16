@@ -12,7 +12,7 @@ bitstation-cache:
 	 docker build -t joequant/bitstation $(ARGS) .
 
 bitstation-cauldron-cache:
-	 docker build -t joequant/bitstation $(ARGS) . --build-arg version=cauldron
+	 docker build -t joequant/bitstation $(ARGS) cauldron
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile
