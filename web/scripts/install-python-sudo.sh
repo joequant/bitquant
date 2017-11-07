@@ -60,7 +60,7 @@ for packages in \
 	    git+https://github.com/joequant/dynts.git \
             pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
 	    theano tensorflow nltk gensim scrapy statsmodels gym milk \
-	    neurolab pyrenn \
+	    neurolab pyrenn jupyterlab_widgets\
 	    dash dash_renderer dash_core_components dash_html_components ;
 do pip3 install --upgrade $PYTHON_ARGS $packages --prefix /usr ;
 done
@@ -72,6 +72,8 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install --sys-prefix --py jupyterlab_widgets
+jupyter labextension enable --sys-prefix --py jupyterlab_widgets
 
 for extension in \
     codefolding/main search-replace/main ;
