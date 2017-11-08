@@ -82,6 +82,7 @@ $PYTHON-xlrd \
       $PYTHON-cryptography \
       $PYTHON-pyasn1 \
       $PYTHON-cython \
+      $PYTHON-pyglet \
       jupyter-client \
       jupyter-core \
       jupyter-console \
