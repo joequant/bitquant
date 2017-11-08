@@ -72,8 +72,6 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install --sys-prefix --py jupyterlab_widgets
-jupyter labextension enable --sys-prefix --py jupyterlab_widgets
 
 for extension in \
     codefolding/main search-replace/main ;
