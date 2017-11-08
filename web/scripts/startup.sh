@@ -54,5 +54,7 @@ fi
 if [ -f /usr/bin/jupyter-lab ] ; then
     echo "Restarting jupyterlab"
     export PYTHONPATH=$HOME/ipython:$HOME/ipython/examples
+    pushd $HOME/ipython
     /usr/bin/jupyter lab --no-browser --NotebookApp.base_url=jupyterlab/ --ip 127.0.0.1 --port 9999 --NotebookApp.token= --NotebookApp.webapp_settings="{'static_url_prefix':'/jupyterlab/static/', 'mathjax_url' : 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js' }" --notebook-dir=~/ipython --app-dir='/usr/share/jupyter/lab/' >> $LOG_DIR/jupyterlab.log 2>&1 &
+    popd
 fi
