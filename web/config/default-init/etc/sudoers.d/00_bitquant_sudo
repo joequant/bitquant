@@ -94,7 +94,9 @@ Defaults!PROCESSES !requiretty
 # the command(s) the Hub can run on behalf of the above users without needing a password
 # the exact path may differ, depending on how sudospawner was installed
 Cmnd_Alias JUPYTER_CMD = /usr/bin/sudospawner
+Cmnd_Alias JPHUB_CMD = /usr/bin/jupyterhub
 
 # actually give the Hub user permission to run the above command on behalf
 # of the above users without prompting for a password
+Defaults!JPHUB_CMD !requiretty
 rhea ALL=ALL, NOPASSWD:JUPYTER_CMD

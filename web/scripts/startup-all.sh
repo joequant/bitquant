@@ -16,6 +16,20 @@ if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
     /etc/webmin/start
 fi
+
+if [ ! -f /etc/jupyterhub ] ; then
+    echo "Create jupyterhub"
+    mkdir -p /etc/jupyterhub
+    chown -R rhea:rhea /etc/jupyterhub
+fi
+
+if [ -x /usr/bin/jupyterhub ] ; then
+    echo "Start jupyterhub"
+    pushd /etc/jupyterhub
+    sudo -u rhea /usr/bin/jupyterhub --JupyterHub.spawner_class=sudospawner.SudoSpawner
+    popd
+fi
+
 echo "Pulling git"
 pushd $WEB_DIR/..
 su user -c "git pull"

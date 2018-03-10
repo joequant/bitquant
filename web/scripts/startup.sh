@@ -24,15 +24,10 @@ if [ -d $GIT_DIR/ethercalc ] ; then
 pushd $GIT_DIR/ethercalc > /dev/null
 echo "Restarting ethercalc"
 make all >> $LOG_DIR/ethercalc.log 2>&1
-node app.js --basepath /calc/ --port 8001 >> $LOG_DIR/ethercalc.log 2>&1 &
+node app.js --basepath /calc/ --port 8100 >> $LOG_DIR/ethercalc.log 2>&1 &
 $SCRIPT_DIR/install-ethercalc.py
 popd > /dev/null
 fi
-
-#if [ -e /usr/bin/ethercalc ] ; then
-#    echo "Restarting ethercalc"
-#    /usr/bin/ethercalc --port=8001 --basepath=/calc/ >> $LOG_DIR/ethercalc.log 2>&1 &
-#fi
 
 if [ -e /usr/bin/configurable-http-proxy ] ; then
 echo "Restarting configurable-http-proxy"
