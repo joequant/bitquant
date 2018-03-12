@@ -26,7 +26,7 @@ fi
 if [ -x /usr/bin/jupyterhub ] ; then
     echo "Start jupyterhub"
     pushd /etc/jupyterhub
-    sudo -u rhea /usr/bin/jupyterhub --JupyterHub.spawner_class=sudospawner.SudoSpawner
+    sudo -u rhea /usr/bin/jupyterhub --JupyterHub.spawner_class=sudospawner.SudoSpawner --base-url='/jupyterhub' >> $LOG_DIR/jupyterhub.log 2>&1 &
     popd
 fi
 

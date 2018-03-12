@@ -102,4 +102,4 @@ popd
 fi
 
 #Create rhea user to spawn jupyterhub
-useradd -r rhea -s /bin/false -M
+useradd -r rhea -s /bin/false -M -G shadow
