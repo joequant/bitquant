@@ -83,20 +83,21 @@ Defaults    secure_path = /sbin:/bin:/usr/sbin:/usr/bin
 ##
 ## The COMMANDS section may have other options added to it.
 ##
+Cmnd_Alias JUPYTER_CMD=/bin/sudospawner
+Cmnd_Alias JPHUB_CMD=/bin/jupyterhub
 Defaults!BITQUANT !requiretty
 Defaults!USER !requiretty
 Defaults!SERVICES !requiretty
 Defaults!TIME !requiretty
 Defaults!PROCESSES !requiretty
-%USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER, NOPASSWD: TIME, NOPASSWD: PROCESSES
+%USER%  ALL= ALL, NOPASSWD:BITQUANT, NOPASSWD: SERVICES, NOPASSWD: USER, NOPASSWD: TIME, NOPASSWD: PROCESSES, NOPASSWD: JUPYTER_CMD, NOPASSWD: JPHUB_CMD
 
 
 # the command(s) the Hub can run on behalf of the above users without needing a password
 # the exact path may differ, depending on how sudospawner was installed
-Cmnd_Alias JUPYTER_CMD = /usr/bin/sudospawner
-Cmnd_Alias JPHUB_CMD = /usr/bin/jupyterhub
 
 # actually give the Hub user permission to run the above command on behalf
 # of the above users without prompting for a password
 Defaults!JPHUB_CMD !requiretty
-rhea ALL=ALL, NOPASSWD:JUPYTER_CMD
+Defaults!JUPYTER_CMD !requiretty
+rhea ALL=(ALL) ALL, NOPASSWD:JPHUB_CMD, NOPASSWD:JUPYTER_CMD
