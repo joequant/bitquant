@@ -14,7 +14,7 @@ href="doku.php?id=scratchpad">Scratchpad</a>
 <a class="button primary large" target="_blank"
 href="doku.php?id=links">Links</a>
 <br><br>
-<a class="button primary large" target="_blank" href="/jupyterlab">Calculation Engine</a><br><br>
+<a class="button primary large" target="_blank" href="/jupyterhub">Calculation Engine</a><br><br>
 <a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/pad">Pads</a><br><br>
 <a class="button" target="_blank" href="/bittrader/sandbox.html">Sandbox</a>
