@@ -56,7 +56,7 @@ for packages in \
             git+https://github.com/bashtage/arch.git ffn \
 	    git+https://github.com/joequant/OrderBook.git \
 	    git+https://github.com/joequant/quantdsl.git \
-	    pulsar pyspark \
+	    pulsar pyspark cvxopt \
 	    git+https://github.com/joequant/dynts.git \
             pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
 	    theano tensorflow nltk gensim scrapy statsmodels gym milk \
