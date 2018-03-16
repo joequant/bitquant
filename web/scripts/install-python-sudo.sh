@@ -61,6 +61,7 @@ for packages in \
             pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
 	    theano tensorflow nltk gensim scrapy statsmodels gym milk \
 	    neurolab pyrenn jupyterlab_widgets\
+	    jhub_remote_user_authenticator \
 	    dash dash_renderer dash_core_components dash_html_components ;
 do pip3 install --upgrade $PYTHON_ARGS $packages --prefix /usr ;
 done
