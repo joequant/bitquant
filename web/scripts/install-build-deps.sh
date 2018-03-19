@@ -75,7 +75,6 @@ $PYTHON-xlrd \
       $PYTHON-sympy \
       $PYTHON-pillow \
       $PYTHON-lxml \
-      $PYTHON-jupyter-notebook \
       $PYTHON-ipywidgets \
       $PYTHON-mistune \
       $PYTHON-cffi \
@@ -83,10 +82,6 @@ $PYTHON-xlrd \
       $PYTHON-pyasn1 \
       $PYTHON-cython \
       $PYTHON-pyglet \
-      jupyter-client \
-      jupyter-core \
-      jupyter-console \
-      jupyter-notebook \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
