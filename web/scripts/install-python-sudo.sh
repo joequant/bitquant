@@ -29,7 +29,9 @@ for packages in \
 	pandas \
 	scipy \
     astropy \
-	jupyterhub \
+    jupyterhub \
+    entrypoints \
+    nbconvert \
 	sudospawner \
 	lightning-python \
 	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
