@@ -21,6 +21,7 @@ ln -sf python3 python
 popd
 
 # Astropy is needed for tushare
+# nnabla has dependence on old cython which breaks things
 
 pip3 install --upgrade pip --prefix /usr
 for packages in \
@@ -60,7 +61,7 @@ for packages in \
 	    git+https://github.com/joequant/quantdsl.git \
 	    pulsar pyspark cvxopt \
 	    git+https://github.com/joequant/dynts.git \
-            pynance jupyterlab ipyleaflet nnabla keras mxnet nolearn \
+            pynance jupyterlab ipyleaflet keras mxnet nolearn \
 	    theano tensorflow nltk gensim scrapy statsmodels gym milk \
 	    neurolab pyrenn jupyterlab_widgets\
 	    jhub_remote_user_authenticator jupyterlab-discovery \
