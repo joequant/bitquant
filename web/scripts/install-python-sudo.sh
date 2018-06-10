@@ -22,9 +22,11 @@ popd
 
 # Astropy is needed for tushare
 # nnabla has dependence on old cython which breaks things
+# install eventsourcing for dateutil
 
 pip3 install --upgrade pip --prefix /usr
 for packages in \
+    eventsourcing \
     numpy \
 	matplotlib \
 	pandas \
