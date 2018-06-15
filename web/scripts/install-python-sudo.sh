@@ -26,6 +26,7 @@ popd
 
 pip3 install --upgrade pip --prefix /usr
 for packages in \
+    python-dateutil==2.6.1 \
     eventsourcing \
     numpy \
 	matplotlib \
