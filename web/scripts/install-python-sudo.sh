@@ -24,7 +24,10 @@ popd
 # nnabla has dependence on old cython which breaks things
 # install eventsourcing for dateutil
 
-pip3 install --upgrade pip --force-reinstall --prefix /usr
+pip3 install --upgrade pip --prefix /usr
+# reinstall to get jupyter executable
+pip3 install --upgrade --force-reinstall jupyter-core
+
 for packages in \
     entrypoints \
     python-dateutil==2.6.1 \
@@ -34,7 +37,6 @@ for packages in \
     pandas \
     scipy \
     astropy \
-    jupyter-core \
     jupyterhub \
     nbconvert \
 	sudospawner \
