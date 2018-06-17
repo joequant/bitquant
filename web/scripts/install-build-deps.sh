@@ -75,7 +75,6 @@ $PYTHON-xlrd \
       $PYTHON-sympy \
       $PYTHON-pillow \
       $PYTHON-lxml \
-      $PYTHON-ipywidgets \
       $PYTHON-mistune \
       $PYTHON-cffi \
       $PYTHON-cryptography \
