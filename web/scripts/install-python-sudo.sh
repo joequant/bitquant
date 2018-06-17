@@ -26,15 +26,15 @@ popd
 
 pip3 install --upgrade pip --prefix /usr
 for packages in \
+    entrypoints \
     python-dateutil==2.6.1 \
     eventsourcing \
     numpy \
-	matplotlib \
-	pandas \
-	scipy \
+    matplotlib \
+    pandas \
+    scipy \
     astropy \
     jupyterhub \
-    entrypoints \
     nbconvert \
 	sudospawner \
 	lightning-python \
