@@ -26,7 +26,7 @@ popd
 
 pip3 install --upgrade pip --prefix /usr
 # reinstall to get jupyter executable
-pip3 install --upgrade --force-reinstall jupyter-core
+pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 
 for packages in \
     entrypoints \
