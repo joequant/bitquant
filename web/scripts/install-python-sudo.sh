@@ -28,10 +28,11 @@ pip3 install --upgrade pip --prefix /usr
 # reinstall to get jupyter executable
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 
+PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
+
 for packages in \
     entrypoints \
 	python-dateutil==2.6.1 \
-	pycurl \
     eventsourcing \
     numpy \
     matplotlib \
