@@ -45,6 +45,7 @@ for packages in \
 	lightning-python \
 	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
+	jupyter_latex_envs \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn ipysheet \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
@@ -80,6 +81,7 @@ done
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup
 jupyter nbextensions_configurator enable --sys-prefix
+
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
@@ -97,7 +99,7 @@ done
 
 for extension in \
     widgetsnbextension declarativewidgets vega pythreejs nbpresent \
-      bqplot ipyleaflet ; 
+      bqplot ipyleaflet latex_envs ;
     do jupyter nbextension install --py $extension --sys-prefix 
        jupyter nbextension enable --py $extension --sys-prefix --system ;
 done
