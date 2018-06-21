@@ -41,7 +41,8 @@ for packages in \
     astropy \
     jupyterhub \
     nbconvert \
-	sudospawner \
+    sudospawner \
+    circuits \
 	lightning-python \
 	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
