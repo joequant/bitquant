@@ -30,7 +30,8 @@ pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 
 for packages in \
     entrypoints \
-    python-dateutil==2.6.1 \
+	python-dateutil==2.6.1 \
+	pycurl \
     eventsourcing \
     numpy \
     matplotlib \
