@@ -45,7 +45,7 @@ for packages in \
 	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
-	    patsy beautifulsoup4 pymongo ipython_mongo seaborn \
+	    patsy beautifulsoup4 pymongo ipython_mongo seaborn ipysheet \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
 	    openpyxl param xray FinDates html5lib twilio plivo ggplot pygal \
 	    plotly holoviews bokeh fastcluster ib-api pandas-datareader \
@@ -83,6 +83,10 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension ipysheet
+
+jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
+jupyter labextension disable ipysheet:renderer # for jupyter lab
 
 for extension in \
     codefolding/main search-replace/main ;
