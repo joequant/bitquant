@@ -87,7 +87,9 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension ipysheet
+jupyter labextension install ipysheet
+jupyter labextension install jupyterlab-toc
+
 
 jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 jupyter labextension disable ipysheet:renderer # for jupyter lab
