@@ -35,6 +35,7 @@ for packages in \
 	python-dateutil==2.6.1 \
     eventsourcing \
     numpy \
+    ipympl \
     matplotlib \
     pandas \
     scipy \
@@ -91,8 +92,8 @@ jupyter labextension install ipysheet
 jupyter labextension install jupyterlab-toc
 
 
-jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
-jupyter labextension disable ipysheet:renderer # for jupyter lab
+#jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
+#jupyter labextension disable ipysheet:renderer # for jupyter lab
 
 for extension in \
     codefolding/main search-replace/main ;
