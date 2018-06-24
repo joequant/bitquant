@@ -44,10 +44,13 @@ for packages in \
     nbconvert \
     sudospawner \
     circuits \
+    dask \
+    xarray \
+    networkx \
 	lightning-python \
 	vispy pyalgotrade statsmodels quandl ipywidgets ipyvolume \
 	jupyter_declarativewidgets pythreejs vega nbpresent \
-	jupyter_latex_envs \
+	jupyter_latex_envs jupyterlab_latex \
 	ipyleaflet bqplot cookiecutter pyquickhelper scikit-image \
 	    patsy beautifulsoup4 pymongo ipython_mongo seaborn ipysheet \
 	    toyplot ad collections-extended TA-Lib mpmath multimethods \
@@ -90,7 +93,16 @@ jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install ipysheet
 jupyter labextension install jupyterlab-toc
-
+jupyter labextension install @jupyterlab/latex
+jupyter labextension install jupyterlab-kernelspy
+jupyter labextension install @jupyterlab/hub-extension
+jupyter labextension install @mflevine/jupyterlab_html
+jupyter labextension install @pyviz/jupyterlab_holoviews
+jupyter labextension install @jupyterlab/fasta-extension
+jupyter labextension install @jupyterlab/geojson-extension
+jupyter labextension install @jupyterlab/katex-extension
+jupyter labextension install @jupyterlab/plotly-extension
+jupyter labextension install @jupyterlab/vega2-extension
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab

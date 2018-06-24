@@ -100,7 +100,8 @@ mongo-tools \
       ruby-sass \
       $PYTHON-cairo-devel \
       jpeg-devel \
-      octave
+      octave \
+      texlive
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
