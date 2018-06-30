@@ -1,6 +1,6 @@
 #!/bin/bash
 dnf install -v -y \
-     --setopt=install_weak_deps=False --nodocs \
+     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
      'dnf-command(config-manager)' mageia-repos-cauldron
 dnf shell -v -y  <<EOF
 repo disable mageia-x86_64
