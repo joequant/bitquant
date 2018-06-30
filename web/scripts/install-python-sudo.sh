@@ -120,6 +120,8 @@ for extension in \
        jupyter nbextension enable --py $extension --sys-prefix --system ;
 done
 
+jupyter lab build
+
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
 chown $ME:$ME -R /home/$ME/.local/share/jupyter
