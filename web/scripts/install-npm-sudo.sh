@@ -13,6 +13,7 @@ node-gyp -g install
 for repo in webpack ijavascript configurable-http-proxy ; do
 npm install -g --unsafe $repo
 done
+ijsinstall --install=global
 
 pushd /home/$ME/git/ethercalc
 npm i -g --unsafe ethercalc
