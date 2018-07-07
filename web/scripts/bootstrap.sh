@@ -8,10 +8,13 @@ echo "Doing initial installation"
 echo "Installing misc"
 $GIT_DIR/git/setup-git.sh misc
 $GIT_DIR/git/rebuild-misc.sh
+
+# install python first so that ijavascript dependencies
+# are met
+echo "Installing python packages"
+$GIT_DIR/web/scripts/install-python.sh
 echo "Installing npm packages"
 $GIT_DIR/web/scripts/install-npm.sh
-echo "Installing npm packages"
-$GIT_DIR/web/scripts/install-python.sh
 echo "Installing R packages"
 $GIT_DIR/web/scripts/install-r-pkgs.sh
 
