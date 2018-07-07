@@ -157,8 +157,6 @@ dash_renderer
 dash_core_components
 dash_html_components
 EOF
-do 
-done
 
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup
