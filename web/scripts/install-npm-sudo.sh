@@ -10,7 +10,7 @@ ME=$2
 npm install -g node-gyp
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
-npm install -g --unsafe webpack webpack-cli ijavascript configurable-http-proxy
+npm install -g --unsafe ijavascript configurable-http-proxy
 ijsinstall --install=global
 
 pushd /home/$ME/git/ethercalc
