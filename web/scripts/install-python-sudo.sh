@@ -122,7 +122,7 @@ empyrical
 qfrm
 tradingWithPython
 trade
-pybacktest
+git+https://github.com/ematvey/pybacktest.git
 chinesestockapi
 bizdays
 git+https://github.com/bashtage/arch.git
