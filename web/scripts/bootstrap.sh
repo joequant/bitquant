@@ -11,8 +11,6 @@ $GIT_DIR/git/rebuild-misc.sh
 
 # install python first so that ijavascript dependencies
 # are met
-echo "Installing webpack"
-sudo npm install -g --unsafe webpack-command
 echo "Installing python packages"
 $GIT_DIR/web/scripts/install-python.sh
 echo "Installing npm packages"
