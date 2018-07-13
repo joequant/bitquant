@@ -1,1 +1,1 @@
-{"argv":["node","/usr/lib/node_modules/ijavascript/lib/kernel.js","/home/%%ME%%/ijavascript","{connection_file}","--protocol=5.0"],"display_name":"Javascript (Node.js)","language":"javascript"}
+{"argv":["node","/usr/lib/node_modules/ijavascript/lib/kernel.js","--session-working-dir=/home/%%ME%%","{connection_file}","--protocol=5.0"],"display_name":"Javascript (Node.js)","language":"javascript"}
