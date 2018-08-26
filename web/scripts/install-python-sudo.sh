@@ -8,7 +8,6 @@ SCRIPT_DIR=$1
 ME=$2
 
 #PYTHON_ARGS=--upgrade
-#missing numba for now
 #missing zipline since requirements installation causes issues
 
 # see http://click.pocoo.org/5/python3/
@@ -34,6 +33,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
 eventsourcing
+numba
 numpy
 ipympl
 matplotlib

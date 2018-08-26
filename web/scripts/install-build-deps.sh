@@ -101,7 +101,8 @@ mongo-tools \
       $PYTHON-cairo-devel \
       jpeg-devel \
       octave \
-      texlive
+      texlive \
+      lib64llvm6.0
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
@@ -109,6 +110,7 @@ mongo-tools \
 #unzip for R devtool builds
 #cffi for caravel
 #cairo for jupyterlab_bokeh.git or jpeg-devel
+# llvm for numba
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
