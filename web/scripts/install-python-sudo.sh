@@ -159,7 +159,7 @@ dash_html_components
 EOF
 
 echo "Installing webpack"
-sudo npm install -g --unsafe webpack-command
+npm install -g --unsafe webpack webpack-command
 
 jupyter contrib nbextension install --sys-prefix
 jupyter declarativewidgets quick-setup
