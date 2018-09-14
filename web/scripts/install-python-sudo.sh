@@ -156,6 +156,8 @@ dash
 dash_renderer
 dash_core_components
 dash_html_components
+torch
+torchvision
 EOF
 
 echo "Installing webpack"
