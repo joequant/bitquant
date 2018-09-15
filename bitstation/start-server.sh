@@ -65,7 +65,7 @@ done
 popd
 
 $SUDO docker run -i \
---privileged -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+--privileged --init \
 -v $BTQNT_IMAGE_DIR/home:/home \
 -v $BTQNT_IMAGE_DIR/var/lib/dokuwiki:/var/lib/dokuwiki \
 -v $BTQNT_IMAGE_DIR/var/lib/mongodb:/var/lib/mongodb \
