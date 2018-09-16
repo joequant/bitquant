@@ -1,7 +1,0 @@
-language: minimal
-script:
-  - cd bitstation
-  - make
-sudo: required
-services:
-  - docker
