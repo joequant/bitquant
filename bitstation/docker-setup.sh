@@ -13,8 +13,9 @@ fi
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs \
-    locales locales-en glibc
-dnf --setopt=install_weak_deps=False --best -v -y --nodocs --obsoletes upgrade
+    --allowerasing locales locales-en glibc
+dnf --setopt=install_weak_deps=False --best -v -y --nodocs \
+    --allowerasing --obsoletes upgrade
 dnf --setopt=install_weak_deps=False --best install -v -y --nodocs git
 dnf --setopt=install_weak_deps=False --best -v -y --nodocs autoremove
 useradd user
