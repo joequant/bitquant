@@ -1,6 +1,3 @@
-bitstation-cauldron: ARGS="--no-cache=true"
-bitstation-cauldron: bitstation-cauldron-cache
-
 bitstation: ARGS="--no-cache=true"
 bitstation: bitstation-cache
 
@@ -10,9 +7,6 @@ endif
 
 bitstation-cache:
 	 docker build -t joequant/bitstation $(ARGS) .
-
-bitstation-cauldron-cache:
-	 docker build -t joequant/bitstation $(ARGS) cauldron
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile

@@ -8,7 +8,7 @@ ARG version
 RUN dnf --setopt=install_weak_deps=False --allowerasing --best \
    --nodocs -v -y install curl
 
-RUN if [ "x$version" = "xcauldron" ] ; then cd /tmp ; \
+RUN if [ "x$version" != "x6" ] ; then cd /tmp ; \
   curl -O https://raw.githubusercontent.com/joequant/bitquant/master/bitstation/docker-cauldron.sh ; \
   chmod a+x docker-cauldron.sh ; \
   ./docker-cauldron.sh ; \
