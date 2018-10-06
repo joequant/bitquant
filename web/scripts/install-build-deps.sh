@@ -102,7 +102,7 @@ mongo-tools \
       jpeg-devel \
       octave \
       texlive \
-      lib64llvm6.0
+      lib64llvm
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
