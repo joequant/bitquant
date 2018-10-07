@@ -101,8 +101,8 @@ mongo-tools \
       $PYTHON-cairo-devel \
       jpeg-devel \
       octave \
-      texlive \
-      lib64llvm
+      texlive
+
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
