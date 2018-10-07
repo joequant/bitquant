@@ -13,6 +13,7 @@ pushd $SCRIPT_DIR > /dev/null
 R_VERSION=$(R --version | head -1 | cut -d \  -f 3 | awk -F \. {'print $1"."$2'})
 
 LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
+export PATH=/usr/lib64/R/bin:/usr/lib/R/bin:$PATH
 mkdir -p $LOCAL_R_DIR
 mkdir -p /home/$ME/attic/$$
 echo "Generating new modules"
