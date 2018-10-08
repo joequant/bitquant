@@ -158,6 +158,7 @@ dash_core_components
 dash_html_components
 torch
 torchvision
+superset
 EOF
 
 echo "Installing webpack"
@@ -206,10 +207,10 @@ mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
 chown $ME:$ME -R /home/$ME/.local/share/jupyter
 
-fabmanager create-admin --app caravel
-caravel db upgrade
-caravel init
-caravel load_examples
+fabmanager create-admin --app superset
+superset db upgrade
+superset init
+superset load_examples
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
