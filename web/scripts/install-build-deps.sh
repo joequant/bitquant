@@ -35,7 +35,6 @@ dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect \
 $PYTHON-matplotlib \
-$PYTHON-matplotlib-tk \
 $ADMIN
 
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
