@@ -142,3 +142,14 @@ $SUDO systemctl disable hsqldb
 # lxml for matta
 
 # pyasn1 for jupyter extensions
+
+$SUDO chmod a+x /usr/lib64/R/bin/INSTALL
+$SUDO chmod a+x /usr/lib64/R/bin/SHLIB
+$SUDO chmod a+x /usr/lib64/R/bin/LINK
+$SUDO chmod a+x /usr/lib64/R/bin/COMPILE
+$SUDO chmod a+x /usr/lib64/R/bin/BATCH
+$SUDO chmod a+x /usr/lib64/R/bin/REMOVE
+
+
+
+
