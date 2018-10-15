@@ -151,7 +151,6 @@ neurolab
 pyrenn
 jupyterlab_widgets
 jhub_remote_user_authenticator
-jupyterlab-discovery
 dash
 dash_renderer
 dash_core_components
