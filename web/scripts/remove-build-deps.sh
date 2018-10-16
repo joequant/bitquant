@@ -26,7 +26,7 @@ $SUDO dnf -y \
 autoremove \
 cmake \
 gcc-c++ \
-`rpm -qa | grep devel | grep -v python | grep -v glibc`
+`rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
 $SUDO dnf autoremove
 
