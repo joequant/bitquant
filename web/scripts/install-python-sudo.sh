@@ -182,7 +182,6 @@ jupyter labextension install @jupyterlab/fasta-extension
 jupyter labextension install @jupyterlab/geojson-extension
 jupyter labextension install @jupyterlab/katex-extension
 #jupyter labextension install @jupyterlab/plotly-extension
-jupyter labextension install @jupyterlab/vega2-extension
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
@@ -194,7 +193,7 @@ done
 
 
 for extension in \
-    widgetsnbextension declarativewidgets vega pythreejs nbpresent \
+    widgetsnbextension declarativewidgets pythreejs nbpresent \
       bqplot ipyleaflet latex_envs ;
     do jupyter nbextension install --py $extension --sys-prefix 
        jupyter nbextension enable --py $extension --sys-prefix --system ;
