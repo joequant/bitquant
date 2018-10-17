@@ -36,6 +36,7 @@ eventsourcing
 numba
 numpy
 ipympl
+import-ipynb
 matplotlib
 pandas
 scipy
