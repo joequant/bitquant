@@ -5,7 +5,7 @@ MAINTAINER Joseph C Wang <joequant@gmail.com>
 # with user switching
 
 ARG version
-RUN dnf --setopt=install_weak_deps=False --allowerasing --best \
+RUN echo "fastestmirror=true" >> /etc/dnf/dnf.conf ; dnf --setopt=install_weak_deps=False --allowerasing --best \
    --nodocs -v -y install curl
 
 RUN if [ "x$version" != "x6" ] ; then cd /tmp ; \
