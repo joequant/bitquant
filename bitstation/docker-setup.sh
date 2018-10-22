@@ -12,12 +12,13 @@ fi
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-dnf --setopt=install_weak_deps=False --best reinstall -v -y --nodocs \
-    --allowerasing locales locales-en glibc
-dnf --setopt=install_weak_deps=False --best -v -y --nodocs \
-    --allowerasing --obsoletes upgrade
-dnf --setopt=install_weak_deps=False --best install -v -y --nodocs git
-dnf --setopt=install_weak_deps=False --best -v -y --nodocs autoremove
+dnf shell -v -y --setopt=install_weak_deps=False <<EOF
+reinstall --best --nodocs --allowerasing locales locales-en glibc
+upgrade --best --nodocs --allowerasing --obsoletes
+install --best --nodocs git
+autoremove --best --nodocs
+run
+EOF
 useradd user
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
