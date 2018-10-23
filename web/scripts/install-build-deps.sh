@@ -46,7 +46,7 @@ $PYTHON-pexpect \
 R-base \
 r-quantlib \
 vim-minimal \
-$PYTHON-pyzmq \
+zeromq-devel \
 dokuwiki \
 cmake \
 $PYTHON-tornado \
