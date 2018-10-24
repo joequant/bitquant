@@ -1,23 +1,16 @@
 FROM mageia:6
-MAINTAINER Joseph C Wang <joequant@gmail.com>
+LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 
 # Save to temp file rather than piping because piping doesn't work
 # with user switching
 
 ARG version
-RUN echo "fastestmirror=true" >> /etc/dnf/dnf.conf ; dnf --setopt=install_weak_deps=False --allowerasing --best \
-   --nodocs -v -y install curl
+RUN echo "fastestmirror=true" >> /etc/dnf/dnf.conf
+COPY docker-cauldron.sh /tmp
+RUN if [ "x$version" != "x6" ] ; then source /tmp/docker-cauldron.sh ; \
+  rm /tmp/docker-cauldron.sh ; fi
 
-RUN if [ "x$version" != "x6" ] ; then cd /tmp ; \
-  curl -O https://raw.githubusercontent.com/joequant/bitquant/master/bitstation/docker-cauldron.sh ; \
-  chmod a+x docker-cauldron.sh ; \
-  ./docker-cauldron.sh ; \
-  rm docker-cauldron.sh ; fi
-
-RUN cd /tmp ; \
-  curl -O https://raw.githubusercontent.com/joequant/bitquant/master/bitstation/docker-setup.sh ; \
-  chmod a+x docker-setup.sh ; \
-  ./docker-setup.sh ; \
-  rm docker-setup.sh
+COPY docker-setup.sh /tmp
+RUN source /tmp/docker-setup.sh ; rm /tmp/docker-setup.sh
 EXPOSE 80 443
 CMD ["/home/user/git/bitquant/web/scripts/startup-all.sh"]
