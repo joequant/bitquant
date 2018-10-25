@@ -23,8 +23,6 @@ USER=user
 cd /home/$USER
 chown -R $USER":"$USER git
 
-dnf --setopt=install_weak_deps=False --best -v -y --nodocs upgrade 
-
 echo "Copy configuration files"
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
