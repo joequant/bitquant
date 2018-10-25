@@ -32,6 +32,7 @@ cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d
 systemd-sysusers
 
 cd ~user/git/bitquant/web/scripts
+./install-build-deps.sh 
 ./setup_vimage.sh bitstation
 rm -f /lib/systemd/system/multi-user.target.wants/*
 rm -f /etc/systemd/system/*.wants/*
@@ -47,7 +48,7 @@ rm -f /lib/systemd/system/*journal*
 rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 
-/usr/share/bitquant/install-build-deps.sh 
+
 su user - -c "~user/git/bitquant/web/scripts/bootstrap.sh"
 su user - -c "touch ~user/git/bitquant/web/log/bootstrap.done"
 ~user/git/bitquant/web/scripts/remove-build-deps.sh

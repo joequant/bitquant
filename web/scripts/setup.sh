@@ -36,7 +36,6 @@ popd > /dev/null
 rm -rf /usr/share/bitquant
 mkdir -p /usr/share/bitquant
 cp $WEB_DIR/scripts/*-sudo.sh /usr/share/bitquant
-cp $WEB_DIR/scripts/install-build-deps.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/*root*.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
