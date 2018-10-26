@@ -30,7 +30,6 @@ cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d
 systemd-sysusers
 
 cd ~user/git/bitquant/web/scripts
-./install-build-deps.sh 
 ./setup_vimage.sh bitstation
 rm -f /lib/systemd/system/multi-user.target.wants/*
 rm -f /etc/systemd/system/*.wants/*
