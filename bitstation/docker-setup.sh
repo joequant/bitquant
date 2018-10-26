@@ -14,8 +14,6 @@ fi
 # needed for R to build packages
 dnf shell -v -y --setopt=install_weak_deps=False <<EOF
 reinstall --best --nodocs --allowerasing locales locales-en glibc
-upgrade --best --nodocs --allowerasing --obsoletes
-install --best --nodocs git
 autoremove --best --nodocs
 run
 EOF

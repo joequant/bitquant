@@ -7,8 +7,6 @@
 # to reload httpd which causes the httpd connection to go down
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $SCRIPT_DIR/environment.sh
 
 if grep -q Cauldron /etc/release  ; then 
 JAVA=java-1.8.0-openjdk-devel
@@ -35,7 +33,9 @@ dokuwiki \
 $PYTHON-flask \
 $PYTHON-pexpect \
 $PYTHON-matplotlib \
-$ADMIN
+      $ADMIN \
+      sudo \
+      git
 
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
 nodejs \

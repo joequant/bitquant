@@ -10,6 +10,9 @@ COPY docker-cauldron.sh /tmp
 RUN if [ "x$version" != "x6" ] ; then source /tmp/docker-cauldron.sh ; \
   rm /tmp/docker-cauldron.sh ; fi
 
+COPY install-build-deps.sh /tmp
+RUN source /tmp/install-build-deps.sh ; rm /tmp/install-build-deps.sh
+
 COPY docker-setup.sh /tmp
 RUN source /tmp/docker-setup.sh ; rm /tmp/docker-setup.sh
 EXPOSE 80 443
