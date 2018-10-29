@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
 export TZ="Asia/Hong_Kong"
 BACKUP_DISTRIB=http://mirrors.kernel.org/mageia/distrib
