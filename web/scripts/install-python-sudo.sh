@@ -160,6 +160,7 @@ dash_html_components
 torch
 torchvision
 superset
+py4j
 EOF
 
 echo "Installing webpack"
