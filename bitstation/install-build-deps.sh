@@ -129,8 +129,6 @@ mongo-tools \
 # icu-i18n-devel is needed for Rpy
 
 #python-cythong is for Finance-Python
-# don't start up server
-$SUDO systemctl disable hsqldb
 
 #gcc-c++ is needed for ethercalc
 #make is needed for ethercalc
