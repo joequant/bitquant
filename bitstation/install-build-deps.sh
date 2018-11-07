@@ -80,6 +80,7 @@ $PYTHON-xlrd \
       $PYTHON-pyasn1 \
       $PYTHON-cython \
       $PYTHON-pyglet \
+      $PYTHON-py4j \
 curl-devel \
 dokuwiki-plugin-auth \
 dokuwiki-plugin-dokufreaks \
