@@ -101,7 +101,8 @@ mongo-tools \
       $PYTHON-cairo-devel \
       jpeg-devel \
       octave \
-      texlive
+      texlive \
+      java-devel
 
 
 # ruby-sass for ethercalc
