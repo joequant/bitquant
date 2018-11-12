@@ -11,6 +11,8 @@ echo "version 6"
 VERSION=6
 fi
 
+source /tmp/install-build-deps.sh
+
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 dnf shell -v -y --setopt=install_weak_deps=False <<EOF
@@ -46,10 +48,9 @@ rm -f /lib/systemd/system/*journal*
 rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 
-
 su user - -c "~user/git/bitquant/web/scripts/bootstrap.sh"
 su user - -c "touch ~user/git/bitquant/web/log/bootstrap.done"
-~user/git/bitquant/web/scripts/remove-build-deps.sh
+source /tmp/remove-build-deps.sh
 rm -rf /usr/lib64/python*/test
 rm -rf /usr/lib64/python*/site-packages/pandas/tests
 rm -rf /usr/lib64/python*/site-packages/pandas/io/tests
