@@ -103,7 +103,8 @@ mongo-tools \
       jpeg-devel \
       octave \
       texlive \
-      java-devel
+      java-devel \
+      bitcoind
 
 
 # ruby-sass for ethercalc
