@@ -161,6 +161,7 @@ torch
 torchvision
 superset
 py4j
+BlockSci
 EOF
 
 echo "Installing webpack"
