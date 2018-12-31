@@ -20,6 +20,6 @@ echo "Generating new modules"
 /usr/bin/R -e "install.packages(c('stringi', 'magrittr', 'devtools'), repos='http://cran.r-project.org/', dependencies=TRUE)"
 /usr/bin/R -e "install.packages(c('shiny','Quandl','knitr'), repos='http://cran.r-project.org/')"
 /usr/bin/R -e 'options(repos=c(CRAN = "http://cran.r-project.org/")); library(devtools) ; devtools::install_github("rstudio/rmarkdown")'
-/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.r-project.org/")); library(devtools) ; install_github("IRkernel/repr"); devtools::install_github("armstrtw/rzmq"); devtools::install_github("IRKernel/IRdisplay"); devtools::install_github("IRKernel/IRkernel") ; IRkernel::installspec()'
+/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.r-project.org/")); library(devtools) ; install_github("IRkernel/repr"); devtools::install_github("ropensci/rzmq"); devtools::install_github("IRKernel/IRdisplay"); devtools::install_github("IRKernel/IRkernel") ; IRkernel::installspec()'
 sudo /usr/share/bitquant/install-r-pkgs-sudo.sh $SCRIPT_DIR $ME
 
