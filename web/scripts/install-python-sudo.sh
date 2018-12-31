@@ -166,6 +166,12 @@ torchvision
 superset
 py4j
 BlockSci
+xgboost
+tensorly
+pyro-ppl
+gpytorch
+allennlp
+horovod
 EOF
 
 echo "Installing webpack"
