@@ -100,7 +100,9 @@ statsmodels
 redis
 redis-dump-load
 picos
-PYSCIOpt
+ecos
+swiglpk
+smcp
 optlang
 smcp
 git+https://github.com/joequant/ethercalc-python.git
