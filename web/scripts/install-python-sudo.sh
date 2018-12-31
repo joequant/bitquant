@@ -110,7 +110,7 @@ git+https://github.com/joequant/algobroker.git
 git+https://github.com/joequant/bitcoin-price-api.git
 git+https://github.com/joequant/pythalesians.git
 git+https://github.com/quantopian/pyfolio.git
-git+https://github.com/sony/nnabla.git
+nnabla
 configproxy
 prettyplotlib
 mpld3
