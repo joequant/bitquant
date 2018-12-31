@@ -99,6 +99,9 @@ blaze
 statsmodels
 redis
 redis-dump-load
+picos
+cplex
+smcp
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -106,6 +109,7 @@ git+https://github.com/joequant/algobroker.git
 git+https://github.com/joequant/bitcoin-price-api.git
 git+https://github.com/joequant/pythalesians.git
 git+https://github.com/quantopian/pyfolio.git
+git+https://github.com/sony/nnabla.git
 configproxy
 prettyplotlib
 mpld3
