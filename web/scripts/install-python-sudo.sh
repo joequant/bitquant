@@ -100,7 +100,8 @@ statsmodels
 redis
 redis-dump-load
 picos
-cplex
+PYSCIOpt
+optlang
 smcp
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
