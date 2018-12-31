@@ -115,7 +115,6 @@ prettyplotlib
 mpld3
 networkx
 qgrid
-git+https://github.com/joequant/IPython-notebook-extensions.git
 iminuit
 lmfit
 redis_kernel
