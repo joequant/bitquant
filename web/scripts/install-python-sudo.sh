@@ -167,6 +167,8 @@ superset
 py4j
 BlockSci
 xgboost
+catboost
+lightgbm
 tensorly
 pyro-ppl
 gpytorch
