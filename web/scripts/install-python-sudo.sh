@@ -32,6 +32,7 @@ pip3 install --upgrade $PYTHON_ARGS entrypoints python-dateutil==2.6.1 --prefix 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
+six
 pyzmq
 jupyterlab
 eventsourcing
