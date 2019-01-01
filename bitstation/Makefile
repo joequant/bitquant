@@ -6,7 +6,8 @@ ARGS="--no-cache=true"
 endif
 
 bitstation-cache:
-	 docker build -t joequant/bitstation $(ARGS) .
+	docker build -t cauldron $(ARGS) -f Dockerfile.01.cauldron .
+	docker build -t joequant/bitstation $(ARGS) -f Dockerfile.02.pkgs .
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile

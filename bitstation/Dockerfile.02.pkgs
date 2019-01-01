@@ -1,0 +1,8 @@
+FROM cauldron:latest
+LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
+COPY install-build-deps.sh /tmp
+COPY docker-setup.sh /tmp
+COPY remove-build-deps.sh /tmp
+RUN source /tmp/docker-setup.sh ; rm /tmp/*.sh 
+EXPOSE 80 443
+CMD ["/home/user/git/bitquant/web/scripts/startup-all.sh"]
