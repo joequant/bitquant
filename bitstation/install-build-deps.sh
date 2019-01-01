@@ -104,8 +104,8 @@ mongo-tools \
       octave \
       texlive \
       java-devel \
-      bitcoind
-
+      bitcoind \
+      openmpi-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
@@ -114,6 +114,7 @@ mongo-tools \
 #cffi for caravel
 #cairo for jupyterlab_bokeh.git or jpeg-devel
 # llvm for numba
+# openmpi-devel for horvod
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
