@@ -178,6 +178,7 @@ pyro-ppl
 gpytorch
 allennlp
 horovod
+skflow
 EOF
 
 echo "Installing webpack"
