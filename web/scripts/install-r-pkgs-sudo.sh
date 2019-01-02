@@ -9,10 +9,10 @@ SCRIPT_DIR=$1
 ME=$2
 R_PKGS="base64enc brew curl git2r IRkernel magrittr repr roxygen2 rzmq stringi xml2 \
 BH crayon devtools IRdisplay knitr Quandl rmarkdown rversions shiny testthat \
-R6      caTools   highr      jsonlite  rstudioapi xtable \
+R6      highr      jsonlite  rstudioapi xtable \
 digest    htmltools  markdown  stringr xts \
 Rcpp    evaluate  httpuv     memoise   uuid yaml \
-bitops  formatR   httr mime whisker zoo pbdZMQ"
+bitops  httr mime whisker zoo pbdZMQ"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
 else
