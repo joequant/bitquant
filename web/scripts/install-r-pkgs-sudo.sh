@@ -33,7 +33,7 @@ for i in $R_PKGS ; do
 done
 popd > /dev/null
 
-jupyter declarativewidgets installr --library /usr/$LIBDIR/R/library
+/usr/bin/R -e 'IRkernel::installspec(prefix="/usr", user=FALSE)'
 
 if [ -d /home/$ME/git/shiny-server ]
 then echo "Installing shiny server"
