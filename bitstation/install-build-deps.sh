@@ -105,7 +105,9 @@ mongo-tools \
       texlive \
       java-devel \
       bitcoind \
-      openmpi-devel
+      openmpi-devel \
+      zeromq-utils \
+      java
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
@@ -143,13 +145,7 @@ mongo-tools \
 # sox to play sounds for algobroker
 # pillow is for toyplot
 # lxml for matta
-
+# zeromq-utils are necessary for IRkernel
 # pyasn1 for jupyter extensions
 
 $SUDO chmod a+x /usr/lib64/R/bin/*
-
-
-
-
-
-
