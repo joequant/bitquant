@@ -10,13 +10,14 @@ if [ "$BTQNT_IMAGE_DIR" == "" ] ; then
 fi
 
 $SUDO docker run -i \
---privileged --init \
--v $BTQNT_IMAGE_DIR-home:/home \
--v $BTQNT_IMAGE_DIR-dokuwiki:/var/lib/dokuwiki \
--v $BTQNT_IMAGE_DIR-mongodb:/var/lib/mongodb \
--v $BTQNT_IMAGE_DIR-redis:/var/lib/redis \
--v $BTQNT_IMAGE_DIR-log:/var/log \
--v $BTQNT_IMAGE_DIR-etc:/etc \
--p 80:80 -p 443:443 $IMAGE >& docker.log &
+      --privileged --init \
+      -v $BTQNT_IMAGE_DIR-home:/home \
+      -v $BTQNT_IMAGE_DIR-dokuwiki:/var/lib/dokuwiki \
+      -v $BTQNT_IMAGE_DIR-mongodb:/var/lib/mongodb \
+      -v $BTQNT_IMAGE_DIR-redis:/var/lib/redis \
+      -v $BTQNT_IMAGE_DIR-redis:/var/lib/bitcoin \
+      -v $BTQNT_IMAGE_DIR-log:/var/log \
+      -v $BTQNT_IMAGE_DIR-etc:/etc \
+      -p 80:80 -p 443:443 $IMAGE >& docker.log &
 echo "Docker started"
 
