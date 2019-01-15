@@ -29,8 +29,8 @@ rm -f /lib/systemd/system/*journal*
 rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 
-su user - -c "~user/git/bitquant/web/scripts/bootstrap.sh"
-su user - -c "touch ~user/git/bitquant/web/log/bootstrap.done"
+su user - -c "~user/git/bitquant/bitstation/web/scripts/bootstrap.sh"
+su user - -c "touch ~user/git/bitquant/bitstation/web/log/bootstrap.done"
 source /tmp/remove-build-deps.sh
 rm -rf /usr/lib64/python*/test
 rm -rf /usr/lib64/python*/site-packages/pandas/tests

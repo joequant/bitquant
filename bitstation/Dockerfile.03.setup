@@ -3,7 +3,8 @@ LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 COPY install-build-deps.sh /tmp
 COPY docker-setup.sh /tmp
 COPY remove-build-deps.sh /tmp
-RUN dnf upgrade -y --best --allowerasing --nodocs -x filesystem && \
+RUN dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron && \
+   dnf upgrade -y --best --allowerasing --nodocs -x filesystem && \
    source /tmp/docker-setup.sh ; rm /tmp/*.sh 
 EXPOSE 80 443
 CMD ["/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh"]
