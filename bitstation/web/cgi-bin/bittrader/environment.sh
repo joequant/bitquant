@@ -9,5 +9,5 @@ MY_HOME=$(eval echo ~$ME)
 USERPROFILE=$MY_HOME
 export HOME=$MY_HOME
 GIT_DIR=$MY_HOME/git/bitquant
-WEB_DIR=$MY_HOME/git/bitquant/web
+WEB_DIR=$GIT_DIR/bitstation/web
 LOG_DIR=$WEB_DIR/log
