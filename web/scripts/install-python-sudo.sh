@@ -23,10 +23,10 @@ popd
 # nnabla has dependence on old cython which breaks things
 # install eventsourcing for dateutil
 
-#remove to avoid attribute error
-pip3 uninstall numpy
-
 pip3 install --upgrade pip --prefix /usr
+#remove to avoid attribute error
+pip3 uninstall numpy -y
+
 # reinstall to get jupyter executable
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints python-dateutil==2.6.1 --prefix /usr
