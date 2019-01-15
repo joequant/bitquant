@@ -7,107 +7,60 @@
 # to reload httpd which causes the httpd connection to go down
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
-set -e
-
-if grep -q Cauldron /etc/release  ; then 
-JAVA=java-1.8.0-openjdk-devel
-fi
+set -e -v
 
 if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
 PYTHON=python3
-IPYTHON=python3-ipython
-PYTHON_COMPAT=
-ADMIN=webmin
-
-#repeat packages in setup
-$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
-apache \
-apache-mod_suexec \
-apache-mod_proxy \
-apache-mod_php \
-apache-mod_authnz_external \
-apache-mod_ssl \
-dokuwiki \
-$PYTHON-flask \
-$PYTHON-pexpect \
-$PYTHON-matplotlib \
-      $ADMIN \
-      sudo \
-      git
 
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
-nodejs \
-npm \
-gcc-c++ \
-make \
-$PYTHON-pexpect \
-R-base \
-r-quantlib \
-vim-minimal \
-zeromq-devel \
-dokuwiki \
-cmake \
-$PYTHON-tornado \
-$PYTHON-mglob \
-dokuwiki-plugin-s5  \
-$PYTHON-pytz \
-$PYTHON-pip \
-$PYTHON-devel \
-readline-devel \
-lapack-devel \
-$PYTHON-pandas \
-$PYTHON-numpy \
-$PYTHON-numpy-devel \
-$PYTHON_COMPAT \
-$PYTHON-tables \
-$PYTHON-scipy \
-$PYTHON-qstk \
-$PYTHON-quantlib \
-$PYTHON-scikits-learn \
-$PYTHON-rpy2 \
-$PYTHON-xlwt \
-$PYTHON-xlrd \
-      $PYTHON-gevent \
-      $PYTHON-sqlalchemy \
-      $PYTHON-sympy \
-      $PYTHON-pillow \
-      $PYTHON-lxml \
-      $PYTHON-mistune \
-      $PYTHON-cffi \
-      $PYTHON-cryptography \
-      $PYTHON-pyasn1 \
-      $PYTHON-cython \
-      $PYTHON-pyglet \
-      $PYTHON-py4j \
-curl-devel \
-dokuwiki-plugin-auth \
-dokuwiki-plugin-dokufreaks \
-icu-devel \
-libpcre-devel \
-liblzma-devel \
-libbzip2-devel \
-zeromq-devel \
-ta-lib-devel \
-libxml2-devel \
-unzip \
-mongodb-server \
-mongodb \
-mongo-tools \
-      redis \
+      gcc-c++ \
       make \
-      ruby-sass \
-      $PYTHON-cairo-devel \
+      r-quantlib \
+      zeromq-devel \
+      cmake \
+      python3-tornado \
+      python3-mglob \
+      python3-pytz \
+      python3-devel \
+      readline-devel \
+      lapack-devel \
+      python3-pandas \
+      python3-numpy \
+      python3-numpy-devel \
+      python3-tables \
+      python3-scipy \
+      python3-qstk \
+      python3-quantlib \
+      python3-scikits-learn \
+      python3-rpy2 \
+      python3-xlwt \
+      python3-xlrd \
+      python3-gevent \
+      python3-sqlalchemy \
+      python3-sympy \
+      python3-pillow \
+      python3-lxml \
+      python3-mistune \
+      python3-cryptography \
+      python3-pyasn1 \
+      python3-pyglet \
+      python3-py4j \
+      curl-devel \
+      icu-devel \
+      libpcre-devel \
+      liblzma-devel \
+      libbzip2-devel \
+      zeromq-devel \
+      ta-lib-devel \
+      libxml2-devel \
+      make \
+      python3-cairo-devel \
       jpeg-devel \
-      octave \
-      texlive \
       java-devel \
-      bitcoind \
-      openmpi-devel \
-      zeromq-utils \
-      java
+      openmpi-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
@@ -147,5 +100,3 @@ mongo-tools \
 # lxml for matta
 # zeromq-utils are necessary for IRkernel
 # pyasn1 for jupyter extensions
-
-$SUDO chmod a+x /usr/lib64/R/bin/*

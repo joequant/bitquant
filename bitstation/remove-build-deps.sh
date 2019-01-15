@@ -28,14 +28,4 @@ autoremove \
 cmake \
 gcc-c++ \
 `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
-$SUDO dnf autoremove
-
-
-
-
-
-
-
-
-
-
+$SUDO dnf autoremove -y

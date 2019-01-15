@@ -1,25 +1,9 @@
 #!/bin/bash
 set -e
-echo "ZONE=Asia/Hong_Kong" > /etc/sysconfig/clock
-export TZ="Asia/Hong_Kong"
-BACKUP_DISTRIB=http://mirrors.kernel.org/mageia/distrib
-if grep -q Cauldron /etc/release  ; then 
-echo "cauldron" 
-VERSION=cauldron
-else
-echo "version 6"
-VERSION=6
-fi
+echo "ZONE=UTC" > /etc/sysconfig/clock
+export TZ="UTC"
 
 source /tmp/install-build-deps.sh
-
-# Refresh locale and glibc for missing latin items
-# needed for R to build packages
-dnf shell -v -y --setopt=install_weak_deps=False <<EOF
-reinstall --best --nodocs --allowerasing locales locales-en glibc
-autoremove --best --nodocs
-run
-EOF
 useradd user
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
@@ -28,9 +12,6 @@ cd ~user
 mkdir git
 cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
-mkdir -p /etc/sysusers.d
-cp ~user/git/bitquant/bitstation/system.conf /etc/sysusers.d
-systemd-sysusers
 
 cd ~user/git/bitquant/web/scripts
 ./setup_vimage.sh bitstation
@@ -65,5 +46,3 @@ rm -rf /usr/share/doc
 rm -rf /home/user/git/shiny-server 
 rm -rf /root/.cache
 rm -rf /usr/local/share
-
-

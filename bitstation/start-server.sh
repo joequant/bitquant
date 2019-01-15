@@ -15,7 +15,7 @@ $SUDO docker run -i \
       -v $BTQNT_IMAGE_DIR-dokuwiki:/var/lib/dokuwiki \
       -v $BTQNT_IMAGE_DIR-mongodb:/var/lib/mongodb \
       -v $BTQNT_IMAGE_DIR-redis:/var/lib/redis \
-      -v $BTQNT_IMAGE_DIR-redis:/var/lib/bitcoin \
+      -v $BTQNT_IMAGE_DIR-bitcoin:/var/lib/bitcoin \
       -v $BTQNT_IMAGE_DIR-log:/var/log \
       -v $BTQNT_IMAGE_DIR-etc:/etc \
       -p 80:80 -p 443:443 $IMAGE >& docker.log &
