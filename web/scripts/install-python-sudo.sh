@@ -34,6 +34,8 @@ pip3 install --upgrade $PYTHON_ARGS entrypoints python-dateutil==2.6.1 --prefix 
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
+#Use tf-nightly-gpu instead of tensorflow to get python 3.7
+
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
 six
 pyzmq
@@ -153,7 +155,7 @@ keras
 mxnet
 nolearn
 theano
-tensorflow
+tf-nightly-gpu
 nltk
 gensim
 scrapy
