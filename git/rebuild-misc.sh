@@ -4,7 +4,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PYTHON=`which python2`
 
 cd $SCRIPT_DIR
-. ../web/scripts/norootcheck.sh
+. ../bitstation/web/scripts/norootcheck.sh
 for repo in ethercalc
 do
 if [ -d "../../$repo" ]
