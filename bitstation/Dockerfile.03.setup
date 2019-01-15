@@ -6,4 +6,4 @@ COPY remove-build-deps.sh /tmp
 RUN dnf upgrade -y --best --allowerasing --nodocs -x filesystem && \
    source /tmp/docker-setup.sh ; rm /tmp/*.sh 
 EXPOSE 80 443
-CMD ["/home/user/git/bitquant/web/scripts/startup-all.sh"]
+CMD ["/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh"]

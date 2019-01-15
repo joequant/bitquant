@@ -13,7 +13,7 @@ mkdir git
 cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 
-cd ~user/git/bitquant/web/scripts
+cd ~user/git/bitquant/bitstation/web/scripts
 ./setup_vimage.sh bitstation
 rm -f /lib/systemd/system/multi-user.target.wants/*
 rm -f /etc/systemd/system/*.wants/*
