@@ -26,6 +26,7 @@ popd
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
+pip3 install --upgrade numpy --prefix /usr
 
 # reinstall to get jupyter executable
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
