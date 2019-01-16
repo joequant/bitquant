@@ -43,7 +43,6 @@ pyzmq
 jupyterlab
 eventsourcing
 numba
-numpy
 ipympl
 import-ipynb
 matplotlib
