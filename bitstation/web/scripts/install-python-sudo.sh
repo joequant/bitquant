@@ -39,8 +39,11 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
 six
+Werkzeug
+Flask
 pyzmq
 jupyterlab
+superset
 eventsourcing
 numba
 ipympl
@@ -132,7 +135,6 @@ bash_kernel
 octave_kernel
 jupyter_nbextensions_configurator
 pyfolio
-superset
 VisualPortfolio
 empyrical
 qfrm
