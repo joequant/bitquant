@@ -192,8 +192,7 @@ EOF
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
 
-jupyter contrib nbextension install --sys-prefix
-jupyter declarativewidgets quick-setup
+jupyter contrib nbextension install
 jupyter nbextensions_configurator enable --sys-prefix
 
 jupyter serverextension enable --py jupyterlab --sys-prefix
