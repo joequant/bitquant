@@ -13,8 +13,6 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
-PYTHON=python3
-
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       gcc-c++ \
       make \
@@ -60,7 +58,8 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       python3-cairo-devel \
       jpeg-devel \
       java-devel \
-      openmpi-devel
+      openmpi-devel \
+      libssh2-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
@@ -70,6 +69,7 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
 #cairo for jupyterlab_bokeh.git or jpeg-devel
 # llvm for numba
 # openmpi-devel for horvod
+# libssh2-devel for git2r ssh transport
 
 #cmake is for building shiny-server
 #tornado and mglob is for ipython
