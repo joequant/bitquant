@@ -187,6 +187,11 @@ allennlp
 horovod
 skflow
 pyomo
+jupyter-tensorboard
+flake8
+vega_datasets
+altair
+Candela
 EOF
 
 echo "Installing webpack"
@@ -196,20 +201,28 @@ jupyter contrib nbextension install
 jupyter nbextensions_configurator enable --sys-prefix
 
 jupyter serverextension enable --py jupyterlab --sys-prefix
+jupyter labextension install @jupyterlab/git
+jupyter labextension install @jupyterlab/google-drive
+jupyter labextension install jupyterlab-spreadsheet
+jupyter labextension install holmantai/xyz-extension
+jupyter labextension install jupyterlab_tensorboard
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install ipysheet
-jupyter labextension install jupyterlab-toc
+jupyter labextension install @jupyterlab/toc
 jupyter labextension install @jupyterlab/latex
 jupyter labextension install jupyterlab-kernelspy
+jupyter labextension install @ijmbarr/jupyterlab_spellchecker
+jupyter labextension install jupyterlab-flake8
 jupyter labextension install @jupyterlab/hub-extension
 jupyter labextension install @mflevine/jupyterlab_html
 jupyter labextension install @pyviz/jupyterlab_holoviews
 jupyter labextension install @jupyterlab/fasta-extension
 jupyter labextension install @jupyterlab/geojson-extension
 jupyter labextension install @jupyterlab/katex-extension
-#jupyter labextension install @jupyterlab/plotly-extension
+jupyter labextension install @jupyterlab/plotly-extension
+jupyter labextension install @candela/jupyterlab
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
