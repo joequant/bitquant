@@ -15,10 +15,12 @@ fi
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-dnf shell -v -y --setopt=install_weak_deps=False <<EOF
+$SUDO dnf shell -v -y --setopt=install_weak_deps=False <<EOF
 reinstall --best --nodocs --allowerasing locales locales-en glibc
 run
 EOF
+
+$SUDO dnf remove -y lib64python2.7-stdlib
 
 #repeat packages in setup
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
