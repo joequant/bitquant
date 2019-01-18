@@ -42,7 +42,7 @@ refresh-script:
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
 clean-vols:
-	docker volume rm `docker volume ls | grep -v VOLUME | grep bitstation | awk '{print $2}'`
+	docker volume rm `docker volume ls | grep -v VOLUME | grep bitstation | awk '{print $$2}'`
 
 .PHONY: bitstation
 
