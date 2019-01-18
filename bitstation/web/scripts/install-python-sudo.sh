@@ -203,7 +203,7 @@ jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install @jupyterlab/git
 jupyter labextension install @jupyterlab/google-drive
-jupyter labextension install jupyterlab-spreadsheet
+#jupyter labextension install jupyterlab-spreadsheet
 jupyter labextension install holmantai/xyz-extension
 jupyter labextension install jupyterlab_tensorboard
 jupyter labextension install jupyterlab_bokeh
