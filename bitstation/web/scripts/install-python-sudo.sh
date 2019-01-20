@@ -18,6 +18,7 @@ export LANG=en_US.UTF-8
 pushd /usr/bin
 ln -sf python3 python
 popd
+SUPERSET=git+https://github.com/apache/incubator-superset.git
 
 # Astropy is needed for tushare
 # nnabla has dependence on old cython which breaks things
@@ -174,9 +175,8 @@ dash_core_components
 dash_html_components
 torch
 torchvision
-superset
+$SUPERSET
 py4j
-BlockSci
 xgboost
 catboost
 lightgbm
