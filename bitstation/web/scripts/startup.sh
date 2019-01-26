@@ -1,7 +1,7 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WEB_DIR=$SCRIPT_DIR/..
-GIT_DIR=$WEB_DIR/../..
+GIT_DIR=$WEB_DIR/../../..
 LOG_DIR=$WEB_DIR/log
 cd $SCRIPT_DIR
 . norootcheck.sh
