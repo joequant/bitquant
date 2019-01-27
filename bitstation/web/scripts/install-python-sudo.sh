@@ -216,7 +216,6 @@ jupyter labextension install @jupyterlab/toc
 jupyter labextension install @jupyterlab/latex
 jupyter labextension install jupyterlab-kernelspy
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
-jupyter labextension install jupyterlab-flake8
 jupyter labextension install @jupyterlab/hub-extension
 jupyter labextension install @mflevine/jupyterlab_html
 jupyter labextension install @pyviz/jupyterlab_holoviews
