@@ -151,7 +151,6 @@ git+https://github.com/joequant/dynts.git
 pynance
 ipyleaflet
 keras
-mxnet
 nolearn
 theano
 tf-nightly-gpu
@@ -189,6 +188,12 @@ vega_datasets
 altair
 Candela
 EOF
+
+cat <<EOF > /tmp/constraints.txt
+numpy
+EOF
+
+pip3 install --upgrade mxnet --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
