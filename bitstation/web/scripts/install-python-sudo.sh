@@ -193,6 +193,7 @@ cat <<EOF > /tmp/constraints.txt
 numpy
 EOF
 
+pip3 install --no-deps mxnet --prefix /usr
 pip3 install --upgrade mxnet --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
