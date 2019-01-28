@@ -188,6 +188,7 @@ vega_datasets
 altair
 Candela
 web3
+py-solc
 EOF
 
 cat <<EOF > /tmp/constraints.txt
