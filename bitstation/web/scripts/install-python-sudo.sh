@@ -187,6 +187,7 @@ flake8
 vega_datasets
 altair
 Candela
+web3
 EOF
 
 cat <<EOF > /tmp/constraints.txt
