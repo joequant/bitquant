@@ -153,7 +153,7 @@ ipyleaflet
 keras
 nolearn
 theano
-tf-nightly-gpu
+tf-nightly
 nltk
 gensim
 scrapy
