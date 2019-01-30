@@ -189,6 +189,7 @@ altair
 Candela
 web3
 py-solc
+torchvision
 EOF
 
 cat <<EOF > /tmp/constraints.txt
