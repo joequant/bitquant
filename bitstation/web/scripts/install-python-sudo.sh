@@ -36,6 +36,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
 six
+sklearn
 Werkzeug
 Flask
 pyzmq
@@ -171,6 +172,7 @@ dash_html_components
 torch
 torchvision
 $SUPERSET
+OpenNN
 py4j
 xgboost
 catboost
@@ -190,6 +192,8 @@ Candela
 web3
 py-solc
 torchvision
+cv2
+imlib
 EOF
 
 cat <<EOF > /tmp/constraints.txt
