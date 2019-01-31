@@ -194,6 +194,7 @@ py-solc
 torchvision
 cv2
 imlib
+dm-sonnet
 EOF
 
 cat <<EOF > /tmp/constraints.txt
