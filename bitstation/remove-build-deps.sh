@@ -24,8 +24,10 @@ fi
 
 
 $SUDO dnf -y \
-autoremove \
-cmake \
-gcc-c++ \
+      autoremove \
+      cmake \
+      gcc-c++ \
+      elfutils \
+      dmsetup \
 `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
-$SUDO dnf autoremove -y
+
