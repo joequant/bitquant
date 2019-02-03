@@ -195,6 +195,7 @@ torchvision
 cv2
 imlib
 dm-sonnet
+caffe2
 EOF
 
 cat <<EOF > /tmp/constraints.txt
