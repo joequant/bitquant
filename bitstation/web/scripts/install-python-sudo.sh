@@ -41,8 +41,6 @@ Werkzeug
 Flask
 pyzmq
 jupyterlab
-superset
-eventsourcing
 numba
 ipympl
 import-ipynb
