@@ -9,7 +9,7 @@ endif
 
 bitstation-cache bitstation bitstation-squash: cauldron-cache pkgs-cache setup-cache
 cauldron cauldron-squash: cauldron-cache
-pkgs pkg-squash: pkgs-cache
+pkgs pkgs-squash: pkgs-cache
 setup setup-squash: setup-cache
 
 cauldron-cache:
