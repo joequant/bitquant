@@ -18,6 +18,7 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       make \
       r-quantlib \
       zeromq-devel \
+      giflib-devel \
       cmake \
       python3-tornado \
       python3-mglob \
