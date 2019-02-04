@@ -20,12 +20,6 @@ reinstall --best --nodocs --allowerasing locales locales-en glibc
 run
 EOF
 
-$SUDO dnf remove -y lib64python2.7-stdlib
-
-#set default python to python3
-pushd /usr/bin
-$SUDO ln -sf python3 python
-popd
 
 #repeat packages in setup
 $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
@@ -66,4 +60,3 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       python3-pexpect
 
 $SUDO chmod a+x /usr/lib64/R/bin/*
-
