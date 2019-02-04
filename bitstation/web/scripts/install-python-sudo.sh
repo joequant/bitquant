@@ -177,7 +177,6 @@ lightgbm
 tensorly
 pyro-ppl
 gpytorch
-allennlp
 horovod
 skflow
 pyomo
@@ -207,10 +206,12 @@ EOF
 
 cat <<EOF > /tmp/constraints.txt
 numpy
+matplotlib
 EOF
 
 pip3 install --no-deps mxnet --prefix /usr
-pip3 install --upgrade mxnet --prefix /usr -c /tmp/constraints.txt
+pip3 install --no-deps allennlp --prefix /usr
+pip3 install --upgrade mxnet allennlp --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
