@@ -1,4 +1,4 @@
-FROM cauldron:latest
+FROM joequant/cauldron:latest
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 RUN mkdir -p /etc/sysusers.d 
 COPY system.conf /etc/sysusers.d

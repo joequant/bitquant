@@ -1,4 +1,4 @@
-FROM pkgs:latest
+FROM joequant/pkgs:latest
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 COPY install-build-deps.sh docker-setup.sh remove-build-deps.sh /tmp/
 RUN dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron && \
