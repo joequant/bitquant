@@ -196,6 +196,9 @@ cv2
 imlib
 dm-sonnet
 caffe2
+tributary
+pylantern
+mpld3
 EOF
 
 cat <<EOF > /tmp/constraints.txt
@@ -211,6 +214,11 @@ npm install -g --unsafe webpack webpack-command
 jupyter contrib nbextension install
 jupyter nbextensions_configurator enable --sys-prefix
 
+for extension in \
+    codefolding/main search-replace/main ;
+    do jupyter nbextension enable $extension --sys-prefix --system ;
+done
+
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install @jupyterlab/git
 jupyter labextension install @jupyterlab/google-drive
@@ -221,6 +229,7 @@ jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install ipysheet
+jupyter labextension install qgrid
 jupyter labextension install @jupyterlab/toc
 jupyter labextension install @jupyterlab/latex
 jupyter labextension install jupyterlab-kernelspy
@@ -230,25 +239,21 @@ jupyter labextension install @mflevine/jupyterlab_html
 jupyter labextension install @pyviz/jupyterlab_holoviews
 jupyter labextension install @jupyterlab/fasta-extension
 jupyter labextension install @jupyterlab/geojson-extension
+jupyter labextension install @jupyterlab/mathjax3-extension
 jupyter labextension install @jupyterlab/katex-extension
 jupyter labextension install @jupyterlab/plotly-extension
+jupyter labextension install @jupyterlab/vega2-extension
+jupyter labextension install @jupyterlab/vega3-extension
+jupyter labextension install @jupyterlab/celltags
 jupyter labextension install @candela/jupyterlab
+jupyter labextension install jupyterlab-drawio
+jupyter labextension install pylantern
+jupyter labextension install jupyter-leaflet
+jupyter labextension install bqplot
+jupyter labextension install @lckr/jupyterlab_variableinspector
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
-
-for extension in \
-    codefolding/main search-replace/main ;
-    do jupyter nbextension enable $extension --sys-prefix --system ;
-done
-
-
-for extension in \
-    widgetsnbextension declarativewidgets pythreejs nbpresent \
-      bqplot ipyleaflet latex_envs ;
-    do jupyter nbextension install --py $extension --sys-prefix 
-       jupyter nbextension enable --py $extension --sys-prefix --system ;
-done
 
 jupyter lab build
 
