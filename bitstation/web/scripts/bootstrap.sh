@@ -24,7 +24,7 @@ sudo /usr/share/bitquant/conf.sh /wiki-init
 
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
-cp -r $WEB_DIR/home/ipython/examples $MY_HOME/ipython/examples
+cp -r $WEB_DIR/home/examples $MY_HOME/examples
 
 echo "Set up R"
 mkdir -p $MY_HOME/R
