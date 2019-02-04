@@ -69,7 +69,6 @@ nbpresent
 jupyter_latex_envs
 jupyterlab_latex
 ipyleaflet
-xarray
 bqplot
 cookiecutter
 pyquickhelper
