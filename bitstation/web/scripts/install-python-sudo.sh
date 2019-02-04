@@ -199,6 +199,13 @@ caffe2
 tributary
 pylantern
 mpld3
+nbdime
+itkwidgets
+jupyterlab_templates
+jupyterlab_iframe
+pywwt
+Jupyter-Video-Widget
+jupytext
 EOF
 
 cat <<EOF > /tmp/constraints.txt
@@ -219,6 +226,11 @@ for extension in \
     do jupyter nbextension enable $extension --sys-prefix --system ;
 done
 
+
+
+jupyter nbextension install --py --sys-prefix jpy_video --system
+jupyter nbextension enable  --py --sys-prefix jpy_video --system
+
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install @jupyterlab/git
 jupyter labextension install @jupyterlab/google-drive
@@ -228,6 +240,10 @@ jupyter labextension install jupyterlab_tensorboard
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install jupyter-matplotlib
+jupyter labextension install jupyter-widgets
+jupyter labextension install jupyterlab_voyager
+jupyter labextension install jupyterlab_templates
 jupyter labextension install ipysheet
 jupyter labextension install qgrid
 jupyter labextension install @jupyterlab/toc
@@ -251,9 +267,20 @@ jupyter labextension install pylantern
 jupyter labextension install jupyter-leaflet
 jupyter labextension install bqplot
 jupyter labextension install @lckr/jupyterlab_variableinspector
+jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
+jupyter labextension install jupyterlab_iframe
+jupyter labextension install jupyterlab-spreadsheet
+jupyter labextension install jupyterlab-python-file
+jupyter labextension install jupyter-video
+jupyter labextension install jupyterlab_filetree
+jupyter labextension install @agoose77/jupyterlab-attachments
+jupyter labextension install @enlznep/jupyterlab_shell_file
+jupyter labextension install jupyterlab-jupytext
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
+jupyter serverextension enable --py jupyterlab_templates
+jupyter serverextension enable --py jupyterlab_iframe
 
 jupyter lab build
 
