@@ -76,6 +76,8 @@ scikit-image
 patsy
 beautifulsoup4
 pymongo
+pymc3
+emcee
 ipython_mongo
 seaborn
 ipysheet
@@ -200,6 +202,15 @@ pywwt
 Jupyter-Video-Widget
 jupytext
 pybrain
+ipyparallel
+astroml
+quantdsl
+ffn
+pyfin
+vollib
+FRB
+folium
+pattern
 EOF
 
 cat <<EOF > /tmp/constraints.txt
