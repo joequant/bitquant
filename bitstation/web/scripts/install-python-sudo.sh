@@ -1,6 +1,8 @@
 #!/bin/bash
 # sudo portion of python package installations
 
+set -v
+
 echo "Running python installation"
 ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $ROOT_SCRIPT_DIR/rootcheck.sh
@@ -224,14 +226,13 @@ for extension in \
     do jupyter nbextension enable $extension --sys-prefix --system ;
 done
 
-
-
 jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
 
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter labextension install @jupyterlab/git
 jupyter labextension install @jupyterlab/google-drive
+# There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
 jupyter labextension install holmantai/xyz-extension
 jupyter labextension install jupyterlab_tensorboard
@@ -267,7 +268,6 @@ jupyter labextension install bqplot
 jupyter labextension install @lckr/jupyterlab_variableinspector
 jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
 jupyter labextension install jupyterlab_iframe
-jupyter labextension install jupyterlab-spreadsheet
 jupyter labextension install jupyterlab-python-file
 jupyter labextension install jupyter-video
 jupyter labextension install jupyterlab_filetree
@@ -280,11 +280,11 @@ jupyter labextension install jupyterlab-jupytext
 jupyter serverextension enable --py jupyterlab_templates
 jupyter serverextension enable --py jupyterlab_iframe
 
-jupyter lab build
-
 mkdir -p /home/$ME/.local/share/jupyter/kernels
 cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
 chown $ME:$ME -R /home/$ME/.local/share/jupyter
+
+jupyter lab build
 
 fabmanager create-admin --app superset
 superset db upgrade

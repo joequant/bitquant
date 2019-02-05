@@ -1,5 +1,6 @@
 #!/bin/bash
 # sudo portion of python package installations
+set -v
 
 echo "Running python installation"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
