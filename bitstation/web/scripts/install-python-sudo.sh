@@ -167,7 +167,6 @@ dash_html_components
 torch
 torchvision
 $SUPERSET
-OpenNN
 py4j
 xgboost
 catboost
@@ -186,7 +185,7 @@ Candela
 web3
 py-solc
 torchvision
-cv2
+opencv-python
 imlib
 dm-sonnet
 caffe2
@@ -200,6 +199,7 @@ jupyterlab_iframe
 pywwt
 Jupyter-Video-Widget
 jupytext
+pybrain
 EOF
 
 cat <<EOF > /tmp/constraints.txt
