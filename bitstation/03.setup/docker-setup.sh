@@ -1,9 +1,7 @@
 #!/bin/bash
-set -e
+set -e -v
 echo "ZONE=UTC" > /etc/sysconfig/clock
 export TZ="UTC"
-
-source /tmp/install-build-deps.sh
 useradd user
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
@@ -14,4 +12,4 @@ cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 cd ~user/git/bitquant/bitstation/web/scripts
 ./setup_vimage.sh bitstation
-su user - -c "~user/git/bitquant/bitstation/web/scripts/bootstrap.sh"
+su user - -c "/tmp/bootstrap.sh"
