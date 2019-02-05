@@ -215,7 +215,8 @@ pip3 install --no-deps mxnet --prefix /usr
 pip3 install --no-deps nnabla --prefix /usr
 pip3 install --no-deps allennlp --prefix /usr
 pip3 install --no-deps pyquickhelper --prefix /usr
-pip3 install --upgrade mxnet allennlp nnabla pyquickhelper --prefix /usr -c /tmp/constraints.txt
+pip3 install --no-deps ipyleaflet --prefix /usr
+pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
