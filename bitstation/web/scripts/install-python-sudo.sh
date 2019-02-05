@@ -73,7 +73,7 @@ jupyterlab_latex
 ipyleaflet
 bqplot
 cookiecutter
-pyquickhelper
+
 scikit-image
 patsy
 beautifulsoup4
@@ -119,7 +119,6 @@ git+https://github.com/joequant/algobroker.git
 git+https://github.com/joequant/bitcoin-price-api.git
 git+https://github.com/joequant/pythalesians.git
 git+https://github.com/quantopian/pyfolio.git
-nnabla
 configproxy
 prettyplotlib
 mpld3
@@ -209,11 +208,14 @@ EOF
 cat <<EOF > /tmp/constraints.txt
 numpy
 matplotlib
+xarray
 EOF
 
 pip3 install --no-deps mxnet --prefix /usr
+pip3 install --no-deps nnabla --prefix /usr
 pip3 install --no-deps allennlp --prefix /usr
-pip3 install --upgrade mxnet allennlp --prefix /usr -c /tmp/constraints.txt
+pip3 install --no-deps pyquickhelper --prefix /usr
+pip3 install --upgrade mxnet allennlp nnabla pyquickhelper --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
