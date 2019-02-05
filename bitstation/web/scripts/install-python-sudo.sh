@@ -146,7 +146,6 @@ pyspark
 cvxopt
 git+https://github.com/joequant/dynts.git
 pynance
-ipyleaflet
 keras
 nolearn
 theano
