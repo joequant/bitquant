@@ -36,7 +36,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
-cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
+cat <<EOF | xargs --max-args=4 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
 six
 sklearn
 Werkzeug
@@ -70,10 +70,8 @@ vega
 nbpresent
 jupyter_latex_envs
 jupyterlab_latex
-ipyleaflet
 bqplot
 cookiecutter
-
 scikit-image
 patsy
 beautifulsoup4
@@ -211,11 +209,7 @@ matplotlib
 xarray
 EOF
 
-pip3 install --no-deps mxnet --prefix /usr
-pip3 install --no-deps nnabla --prefix /usr
-pip3 install --no-deps allennlp --prefix /usr
-pip3 install --no-deps pyquickhelper --prefix /usr
-pip3 install --no-deps ipyleaflet --prefix /usr
+pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
