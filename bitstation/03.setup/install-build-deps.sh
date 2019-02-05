@@ -47,6 +47,7 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       python3-pyasn1 \
       python3-pyglet \
       python3-py4j \
+      python3-mysql \
       curl-devel \
       icu-devel \
       libpcre-devel \
@@ -60,7 +61,9 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       jpeg-devel \
       java-devel \
       openmpi-devel \
-      libssh2-devel
+      libssh2-devel \
+      ruby-devel \
+      libtool
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
