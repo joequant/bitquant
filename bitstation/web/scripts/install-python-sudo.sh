@@ -36,7 +36,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
-cat <<EOF | xargs --max-args=4 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr
+cat <<EOF | xargs --max-args=4 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 six
 sklearn
 Werkzeug
