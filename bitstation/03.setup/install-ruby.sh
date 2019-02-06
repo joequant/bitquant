@@ -1,9 +1,9 @@
 #!/bin/bash
 set -v
-gem install cztop ffi-rzmq
+gem install --no-ri --no-rdoc cztop ffi-rzmq
 
 #disable Werror
-CPPFLAGS="-Wno-error=deprecated-declarations" gem install rbczmq
-gem install iruby --pre
+CPPFLAGS="-Wno-error=deprecated-declarations" gem install --no-ro --no-rdoc rbczmq
+gem install --no-ri --no-rdoc iruby --pre
 iruby register --force
 
