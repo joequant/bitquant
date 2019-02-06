@@ -250,10 +250,9 @@ jupyter labextension install @jupyterlab/git
 jupyter labextension install @jupyterlab/google-drive
 # There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
-jupyter labextension install holmantai/xyz-extension
+#jupyter labextension install holmantai/xyz-extension
 jupyter labextension install jupyterlab_tensorboard
 jupyter labextension install jupyterlab_bokeh
-jupyter labextension enable jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
 jupyter labextension install jupyter-matplotlib
 jupyter labextension install jupyter-widgets
