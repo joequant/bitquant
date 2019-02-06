@@ -26,7 +26,18 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy --prefix /usr
+pip3 install --upgrade numpy requests six --prefix /usr
+
+
+# Fix for eventsourcing
+pip3 install --upgrade pycryptodome --prefix /usr
+cat <<EOF > /tmp/constraints.es.txt
+six
+requests
+pycryptodome
+EOF
+pip3 install --no-deps eventsourcing --prefix /usr
+pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 
 # reinstall to get jupyter executable
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
@@ -38,7 +49,6 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 cat <<EOF | xargs --max-args=4 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
-six
 sklearn
 Werkzeug
 Flask
