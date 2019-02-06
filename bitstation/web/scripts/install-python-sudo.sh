@@ -26,7 +26,7 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy requests six dateutil --prefix /usr
+pip3 install --upgrade numpy requests six python-dateutil --prefix /usr
 
 
 # Fix for eventsourcing
@@ -35,7 +35,7 @@ cat <<EOF > /tmp/constraints.es.txt
 six
 requests
 pycryptodome
-dateutil
+python-dateutil
 EOF
 
 pip3 install --no-deps eventsourcing --prefix /usr
