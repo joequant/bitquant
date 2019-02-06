@@ -17,6 +17,7 @@ $SUDO dnf -y \
       libtool \
       automake \
       autoconf \
+      swig \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
 $SUDO dnf clean all

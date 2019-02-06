@@ -65,7 +65,8 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs --refre
       ruby-devel \
       libtool \
       automake \
-      autoconf
+      autoconf \
+      swig
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
