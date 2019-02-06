@@ -215,7 +215,6 @@ jupytext
 pybrain
 ipyparallel
 astroml
-quantdsl
 ffn
 pyfin
 vollib
