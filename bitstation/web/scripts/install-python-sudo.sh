@@ -188,9 +188,7 @@ web3
 py-solc
 torchvision
 opencv-python
-imlib
 dm-sonnet
-caffe2
 tributary
 pylantern
 mpld3
