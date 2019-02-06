@@ -18,6 +18,7 @@ $SUDO dnf -y \
       automake \
       autoconf \
       swig \
+      protobuf-compiler \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
 $SUDO dnf clean all

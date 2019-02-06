@@ -15,6 +15,7 @@ ME=$2
 # see http://click.pocoo.org/5/python3/
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export ONNX_ML=1
 
 SUPERSET=git+https://github.com/apache/incubator-superset.git
 
@@ -209,6 +210,7 @@ vollib
 FRB
 folium
 pattern
+onnx
 EOF
 
 cat <<EOF > /tmp/constraints.txt
