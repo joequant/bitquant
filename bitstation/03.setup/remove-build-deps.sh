@@ -26,6 +26,7 @@ pushd /usr/bin
 $SUDO ln -sf python3 python
 popd
 
+rm -rf /root/.cache
 rm -f /lib/systemd/system/multi-user.target.wants/*
 rm -f /etc/systemd/system/*.wants/*
 rm -f /lib/systemd/system/local-fs.target.wants/*
