@@ -179,7 +179,6 @@ dash
 dash_renderer
 dash_core_components
 dash_html_components
-torch
 torchvision
 $SUPERSET
 py4j
@@ -199,7 +198,6 @@ altair
 Candela
 web3
 py-solc
-torchvision
 opencv-python
 dm-sonnet
 tributary
