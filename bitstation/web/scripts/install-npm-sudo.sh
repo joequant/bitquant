@@ -1,6 +1,7 @@
 #!/bin/bash
 # sudo portion of npm package installations
 
+set -v
 echo "Running npm root installation"
 ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . $ROOT_SCRIPT_DIR/rootcheck.sh

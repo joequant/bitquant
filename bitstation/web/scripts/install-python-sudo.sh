@@ -237,11 +237,6 @@ npm install -g --unsafe webpack webpack-command
 jupyter contrib nbextension install
 jupyter nbextensions_configurator enable --sys-prefix
 
-for extension in \
-    codefolding/main search-replace/main ;
-    do jupyter nbextension enable $extension --sys-prefix --system ;
-done
-
 jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
 
