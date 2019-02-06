@@ -13,7 +13,7 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
-$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs --refresh \
+$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       gcc-c++ \
       make \
       r-quantlib \

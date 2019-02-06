@@ -15,7 +15,7 @@ fi
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-$SUDO dnf shell -v -y --setopt=install_weak_deps=False <<EOF
+$SUDO dnf shell -v -y --setopt=install_weak_deps=False  --refresh <<EOF
 reinstall --best --nodocs --allowerasing locales locales-en glibc
 run
 EOF
