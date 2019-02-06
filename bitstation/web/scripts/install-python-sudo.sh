@@ -26,7 +26,7 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy requests six --prefix /usr
+pip3 install --upgrade numpy requests six dateutil --prefix /usr
 
 
 # Fix for eventsourcing
@@ -35,13 +35,15 @@ cat <<EOF > /tmp/constraints.es.txt
 six
 requests
 pycryptodome
+dateutil
 EOF
+
 pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 
 # reinstall to get jupyter executable
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
-pip3 install --upgrade $PYTHON_ARGS entrypoints python-dateutil==2.6.1 --prefix /usr
+pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
