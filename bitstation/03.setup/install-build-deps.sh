@@ -13,7 +13,7 @@ if [[ $UID -ne 0 ]]; then
   SUDO=sudo
 fi
 
-$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
+$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs --refresh \
       gcc-c++ \
       make \
       r-quantlib \
@@ -63,7 +63,9 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       openmpi-devel \
       libssh2-devel \
       ruby-devel \
-      libtool
+      libtool \
+      automake \
+      autoconf
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel

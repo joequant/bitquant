@@ -14,6 +14,9 @@ $SUDO dnf -y \
       elfutils \
       dmsetup \
       lib64python2.7-stdlib \
+      libtool \
+      automake \
+      autoconf \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
 #set default python to python3
