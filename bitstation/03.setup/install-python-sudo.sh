@@ -47,6 +47,14 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+git+https://github.com/joequant/ethercalc-python.git
+git+https://github.com/joequant/spyre.git
+git+https://github.com/joequant/cryptoexchange.git
+git+https://github.com/joequant/algobroker.git
+git+https://github.com/joequant/bitcoin-price-api.git
+git+https://github.com/joequant/pythalesians.git
+git+https://github.com/quantopian/pyfolio.git
+$SUPERSET
 sklearn
 Werkzeug
 Flask
@@ -121,13 +129,6 @@ swiglpk
 smcp
 optlang
 smcp
-git+https://github.com/joequant/ethercalc-python.git
-git+https://github.com/joequant/spyre.git
-git+https://github.com/joequant/cryptoexchange.git
-git+https://github.com/joequant/algobroker.git
-git+https://github.com/joequant/bitcoin-price-api.git
-git+https://github.com/joequant/pythalesians.git
-git+https://github.com/quantopian/pyfolio.git
 configproxy
 prettyplotlib
 mpld3
@@ -175,7 +176,6 @@ dash
 dash_renderer
 dash_core_components
 dash_html_components
-$SUPERSET
 py4j
 xgboost
 catboost
@@ -228,6 +228,12 @@ pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet --prefix /
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /usr -c /tmp/constraints.txt
 
 echo "Installing webpack"
+#if [[ ! -z NPM_PROXY ]] ; then
+#    npm config set proxy $NPM_PROXY
+#    npm config set https-proxy $NPM_PROXY
+#    npm config set strict-ssl false
+#fi
+
 npm install -g --unsafe webpack webpack-command
 
 jupyter nbextensions_configurator enable --sys-prefix
