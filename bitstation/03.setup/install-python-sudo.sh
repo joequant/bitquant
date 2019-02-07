@@ -175,7 +175,6 @@ dash
 dash_renderer
 dash_core_components
 dash_html_components
-torchvision
 $SUPERSET
 py4j
 xgboost
@@ -183,6 +182,7 @@ catboost
 lightgbm
 tensorly
 pyro-ppl
+torchvision
 gpytorch
 horovod
 skflow
@@ -241,7 +241,7 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 #jupyter labextension install holmantai/xyz-extension
 
 #node-gyp requires that python be linked to python2
-echo <<EOF | xargs --max-args=12 --max-procs=$(nproc) jupyter labextension install
+echo <<EOF | xargs --max-args=1 --max-procs=$(nproc) jupyter labextension install
 @jupyterlab/git
 @jupyterlab/google-drive
 jupyterlab_tensorboard
