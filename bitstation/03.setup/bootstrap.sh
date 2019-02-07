@@ -6,7 +6,6 @@ echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Doing initial installation"
 echo "Installing misc"
 $GIT_DIR/git/setup-git.sh misc
-$GIT_DIR/git/rebuild-misc.sh
 
 # install python first so that ijavascript dependencies
 # are met
