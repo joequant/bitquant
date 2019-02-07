@@ -244,6 +244,7 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 #jupyter labextension install jupyterlab-spreadsheet
 #jupyter labextension install holmantai/xyz-extension
 
+#node-gyp requires that python be linked to python2
 echo <<EOF | xargs --max-args=12 --max-procs=$(nproc) jupyter labextension install
 @jupyterlab/git
 @jupyterlab/google-drive

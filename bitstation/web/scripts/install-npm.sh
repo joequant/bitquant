@@ -9,12 +9,7 @@ pushd $SCRIPT_DIR > /dev/null
 
 sudo /usr/share/bitquant/install-npm-sudo.sh $SCRIPT_DIR $ME
 
-pushd /home/$ME > /dev/null
-mkdir -p .ipython/kernels/javascript
-pushd .ipython/kernels/javascript > /dev/null
-cp $SCRIPT_DIR/javascript/* .
-sed -i -e s/%%ME%%/$ME/gi kernel.json
-popd > /dev/null
+pushd /home/$ME
 pushd git/ethercalc
 npm i
 popd
@@ -23,9 +18,4 @@ pushd git/etherpad-lite
 make
 popd
 fi
-popd > /dev/null
-popd > /dev/null
-
-
-
-
+popd

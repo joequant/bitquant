@@ -15,6 +15,8 @@ npm install -g --unsafe ijavascript configurable-http-proxy solc jp-coffeescript
 ijsinstall --install=global
 jp-coffee-install --install=global
 jp-livescript-install --install=global
+mkdir -p /usr/share/jupyter/kernels
+mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
 
 pushd /home/$ME/git/ethercalc
 npm i -g --unsafe ethercalc
