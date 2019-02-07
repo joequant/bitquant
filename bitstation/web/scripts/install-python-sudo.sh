@@ -244,46 +244,48 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 #jupyter labextension install jupyterlab-spreadsheet
 #jupyter labextension install holmantai/xyz-extension
 
-jupyter labextension install @jupyterlab/git
-jupyter labextension install @jupyterlab/google-drive
-jupyter labextension install jupyterlab_tensorboard
-jupyter labextension install jupyterlab_bokeh
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install jupyter-matplotlib
-jupyter labextension install jupyter-widgets
-jupyter labextension install jupyterlab_voyager
-jupyter labextension install jupyterlab_templates
-jupyter labextension install ipysheet
-jupyter labextension install qgrid
-jupyter labextension install @jupyterlab/toc
-jupyter labextension install @jupyterlab/latex
-jupyter labextension install jupyterlab-kernelspy
-jupyter labextension install @ijmbarr/jupyterlab_spellchecker
-jupyter labextension install @jupyterlab/hub-extension
-jupyter labextension install @mflevine/jupyterlab_html
-jupyter labextension install @pyviz/jupyterlab_holoviews
-jupyter labextension install @jupyterlab/fasta-extension
-jupyter labextension install @jupyterlab/geojson-extension
-jupyter labextension install @jupyterlab/mathjax3-extension
-jupyter labextension install @jupyterlab/katex-extension
-jupyter labextension install @jupyterlab/plotly-extension
-jupyter labextension install @jupyterlab/vega2-extension
-jupyter labextension install @jupyterlab/vega3-extension
-jupyter labextension install @jupyterlab/celltags
-jupyter labextension install @candela/jupyterlab
-jupyter labextension install jupyterlab-drawio
-jupyter labextension install pylantern
-jupyter labextension install jupyter-leaflet
-jupyter labextension install bqplot
-jupyter labextension install @lckr/jupyterlab_variableinspector
-jupyter labextension install @oriolmirosa/jupyterlab_materialdarker
-jupyter labextension install jupyterlab_iframe
-jupyter labextension install jupyterlab-python-file
-jupyter labextension install jupyter-video
-jupyter labextension install jupyterlab_filetree
-jupyter labextension install @agoose77/jupyterlab-attachments
-jupyter labextension install @enlznep/jupyterlab_shell_file
-jupyter labextension install jupyterlab-jupytext
+echo <<EOF | xargs --max-args=12 --max-procs=$(nproc) jupyter labextension install
+@jupyterlab/git
+@jupyterlab/google-drive
+jupyterlab_tensorboard
+jupyterlab_bokeh
+@jupyter-widgets/jupyterlab-manager
+jupyter-matplotlib
+jupyter-widgets
+jupyterlab_voyager
+jupyterlab_templates
+ipysheet
+qgrid
+@jupyterlab/toc
+@jupyterlab/latex
+jupyterlab-kernelspy
+@ijmbarr/jupyterlab_spellchecker
+@jupyterlab/hub-extension
+@mflevine/jupyterlab_html
+@pyviz/jupyterlab_holoviews
+@jupyterlab/fasta-extension
+@jupyterlab/geojson-extension
+@jupyterlab/mathjax3-extension
+@jupyterlab/katex-extension
+@jupyterlab/plotly-extension
+@jupyterlab/vega2-extension
+@jupyterlab/vega3-extension
+@jupyterlab/celltags
+@candela/jupyterlab
+jupyterlab-drawio
+pylantern
+jupyter-leaflet
+bqplot
+@lckr/jupyterlab_variableinspector
+@oriolmirosa/jupyterlab_materialdarker
+jupyterlab_iframe
+jupyterlab-python-file
+jupyter-video
+jupyterlab_filetree
+@agoose77/jupyterlab-attachments
+@enlznep/jupyterlab_shell_file
+jupyterlab-jupytext
+EOF
 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
