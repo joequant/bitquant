@@ -234,18 +234,18 @@ pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /
 echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
 
-jupyter contrib nbextension install
 jupyter nbextensions_configurator enable --sys-prefix
 
 jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
 
 jupyter serverextension enable --py jupyterlab --sys-prefix
-jupyter labextension install @jupyterlab/git
-jupyter labextension install @jupyterlab/google-drive
 # There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
 #jupyter labextension install holmantai/xyz-extension
+
+jupyter labextension install @jupyterlab/git
+jupyter labextension install @jupyterlab/google-drive
 jupyter labextension install jupyterlab_tensorboard
 jupyter labextension install jupyterlab_bokeh
 jupyter labextension install @jupyter-widgets/jupyterlab-manager
