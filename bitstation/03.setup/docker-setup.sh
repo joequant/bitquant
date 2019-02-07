@@ -12,4 +12,4 @@ cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 cd ~user/git/bitquant/bitstation/web/scripts
 ./setup_vimage.sh bitstation
-su user - -c "/tmp/bootstrap.sh"
+su user -p -c "/tmp/bootstrap.sh"

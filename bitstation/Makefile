@@ -13,13 +13,13 @@ pkgs pkgs-squash: pkgs-cache
 setup setup-squash: setup-cache
 
 cauldron-cache:
-	docker build -t joequant/cauldron $(ARGS) 01.cauldron
+	docker build -t joequant/cauldron $(ARGS) $(EXTRA_ARGS) 01.cauldron
 
 pkgs-cache:
-	docker build -t joequant/pkgs $(ARGS) 02.pkgs
+	docker build -t joequant/pkgs $(ARGS) $(EXTRA_ARGS) 02.pkgs
 
 setup-cache:
-	docker build -t joequant/bitstation $(ARGS) 03.setup
+	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 03.setup
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile

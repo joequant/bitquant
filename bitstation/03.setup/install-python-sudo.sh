@@ -4,11 +4,6 @@
 set -v
 
 echo "Running python installation"
-ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $ROOT_SCRIPT_DIR/rootcheck.sh
-SCRIPT_DIR=$1
-ME=$2
-
 #PYTHON_ARGS=--upgrade
 #missing zipline since requirements installation causes issues
 
@@ -293,10 +288,6 @@ EOF
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 jupyter serverextension enable --py jupyterlab_templates
 jupyter serverextension enable --py jupyterlab_iframe
-
-mkdir -p /home/$ME/.local/share/jupyter/kernels
-cp -r /root/.local/share/jupyter/kernels/* /home/$ME/.local/share/jupyter/kernels
-chown $ME:$ME -R /home/$ME/.local/share/jupyter
 
 jupyter lab build
 

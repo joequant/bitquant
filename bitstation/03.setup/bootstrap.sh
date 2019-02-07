@@ -9,8 +9,6 @@ $GIT_DIR/git/setup-git.sh misc
 
 # install python first so that ijavascript dependencies
 # are met
-echo "Installing python packages"
-$WEB_DIR/scripts/install-python.sh
 echo "Installing npm packages"
 $WEB_DIR/scripts/install-npm.sh
 echo "Installing R packages"
