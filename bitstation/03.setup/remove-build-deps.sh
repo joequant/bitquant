@@ -28,6 +28,9 @@ $SUDO ln -sf python3 python
 popd
 
 rm -rf /root/.cache
+rm -rf /root/.npm
+rm -rf /root/.superset
+rm -rf /var/lib/mongodb/journal
 rm -f /lib/systemd/system/multi-user.target.wants/*
 rm -f /etc/systemd/system/*.wants/*
 rm -f /lib/systemd/system/local-fs.target.wants/*
@@ -47,6 +50,12 @@ rm -rf /usr/lib64/python*/site-packages/pandas/io/tests
 rm -rf /usr/lib64/python*/site-packages/pandas/tseries/tests
 rm -rf /usr/lib64/python*/site-packages/matplotlib/tests
 rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests
+rm -rf /usr/lib64/python*/site-packages/numpy/core/tests
+rm -rf /usr/lib64/python*/site-packages/spacy/tests
+rm -rf /usr/lib/python*/site-packages/holoviews/examples
+rm -rf /usr/lib/python*/site-packages/pyspark/examples
+rm -rf /usr/lib/python*/site-packages/sonnet/examples
+rm -rf /usr/lib/python*/site-packages/allennlp/tests
 rm -rf /usr/lib/python*/site-packages/flask/testsuite
 rm -rf /usr/lib/python*/site-packages/jinja2/testsuite
 rm -rf /usr/lib/python*/site-packages/ggplot/tests
