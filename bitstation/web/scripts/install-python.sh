@@ -11,8 +11,3 @@ pushd $SCRIPT_DIR > /dev/null
 sudo /usr/share/bitquant/install-python-sudo.sh $SCRIPT_DIR $ME
 python3 -m bash_kernel.install --user
 popd > /dev/null
-
-
-
-
-

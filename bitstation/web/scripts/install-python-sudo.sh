@@ -23,11 +23,12 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 # nnabla has dependence on old cython which breaks things
 # install eventsourcing for dateutil
 
+echo "pip_index_url=" $PIP_INDEX_URL
+
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil --prefix /usr
-
 
 # Fix for eventsourcing
 pip3 install --upgrade pycryptodome --prefix /usr
