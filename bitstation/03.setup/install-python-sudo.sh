@@ -199,6 +199,7 @@ gpytorch
 horovod
 skflow
 pyomo
+tensorboard
 jupyter-tensorboard
 flake8
 vega_datasets
