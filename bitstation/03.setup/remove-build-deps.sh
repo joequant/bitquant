@@ -64,3 +64,8 @@ rm -rf /usr/share/doc
 rm -rf /home/user/git/shiny-server
 rm -rf /root/.cache
 rm -rf /usr/local/share
+
+# Reset npm registry
+npm config delete registry
+git config --unset --global http.proxy
+git config --unset --global http.sslVerify

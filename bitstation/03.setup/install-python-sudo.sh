@@ -2,17 +2,29 @@
 # sudo portion of python package installations
 
 set -v
+set +o errexit
 
 echo "Running python installation"
 #PYTHON_ARGS=--upgrade
 #missing zipline since requirements installation causes issues
+
+if [[ ! -z "$http_proxy" ]] ; then
+    npm config set registry http://registry.npmjs.org/
+    yarn config set registry http://registry.yarnpkg.com/
+    git config --global http.proxy $http_proxy
+    git config --global http.sslVerify false
+
+#    npm config set proxy $NPM_PROXY
+#    npm config set http-proxy $NPM_PROXY
+#    npm config set strict-ssl false
+fi
 
 # see http://click.pocoo.org/5/python3/
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export ONNX_ML=1
 
-SUPERSET=git+https://github.com/apache/incubator-superset.git
+SUPERSET=git+http://github.com/apache/incubator-superset.git
 
 # Astropy is needed for tushare
 # nnabla has dependence on old cython which breaks things
@@ -47,14 +59,19 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
-git+https://github.com/joequant/ethercalc-python.git
-git+https://github.com/joequant/spyre.git
-git+https://github.com/joequant/cryptoexchange.git
-git+https://github.com/joequant/algobroker.git
-git+https://github.com/joequant/bitcoin-price-api.git
-git+https://github.com/joequant/pythalesians.git
-git+https://github.com/quantopian/pyfolio.git
 $SUPERSET
+git+http://github.com/joequant/ethercalc-python.git
+git+http://github.com/joequant/spyre.git
+git+http://github.com/joequant/cryptoexchange.git
+git+http://github.com/joequant/algobroker.git
+git+http://github.com/joequant/bitcoin-price-api.git
+git+http://github.com/joequant/pythalesians.git
+git+http://github.com/quantopian/pyfolio.git
+git+http://github.com/ematvey/pybacktest.git
+git+http://github.com/bashtage/arch.git
+git+http://github.com/joequant/OrderBook.git
+git+http://github.com/joequant/quantdsl.git
+git+http://github.com/joequant/dynts.git
 sklearn
 Werkzeug
 Flask
@@ -146,17 +163,12 @@ empyrical
 qfrm
 tradingWithPython
 trade
-git+https://github.com/ematvey/pybacktest.git
 chinesestockapi
 bizdays
-git+https://github.com/bashtage/arch.git
 ffn
-git+https://github.com/joequant/OrderBook.git
-git+https://github.com/joequant/quantdsl.git
 pulsar
 pyspark
 cvxopt
-git+https://github.com/joequant/dynts.git
 pynance
 keras
 nolearn
@@ -227,12 +239,8 @@ EOF
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /usr -c /tmp/constraints.txt
 
+# Set registry to non-ssl to allow caching
 echo "Installing webpack"
-#if [[ ! -z NPM_PROXY ]] ; then
-#    npm config set proxy $NPM_PROXY
-#    npm config set https-proxy $NPM_PROXY
-#    npm config set strict-ssl false
-#fi
 
 npm install -g --unsafe webpack webpack-command
 
@@ -247,14 +255,14 @@ jupyter serverextension enable --py jupyterlab --sys-prefix
 #jupyter labextension install holmantai/xyz-extension
 
 #node-gyp requires that python be linked to python2
-echo <<EOF | xargs --max-args=1 --max-procs=$(nproc) jupyter labextension install
+
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 @jupyterlab/git
 @jupyterlab/google-drive
 jupyterlab_tensorboard
 jupyterlab_bokeh
 @jupyter-widgets/jupyterlab-manager
 jupyter-matplotlib
-jupyter-widgets
 jupyterlab_voyager
 jupyterlab_templates
 ipysheet
