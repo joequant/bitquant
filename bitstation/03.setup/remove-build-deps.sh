@@ -67,5 +67,6 @@ rm -rf /usr/local/share
 
 # Reset npm registry
 npm config delete registry
-git config --unset --global http.proxy
-git config --unset --global http.sslVerify
+git config --unset --global http.proxy || true
+git config --unset --global http.sslVerify || true
+git config --unset --global url."http://localhost:8080/".insteadOf || true
