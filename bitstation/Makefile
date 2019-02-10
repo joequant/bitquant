@@ -1,24 +1,25 @@
-bitstation cauldron pkgs setup : ARGS=--no-cache=true
+bitstation-nocache:
 
-bitstation-squash cauldron-squash pkgs-squash setup-squash : ARGS=--no-cache=true --squash=true
+%-nocache : ARGS=--no-cache=true
+%-squash : ARGS=--no-cache=true --squash=true
 
 
 ifeq ($(NOCACHE),true)
 ARGS="--no-cache=true"
 endif
 
-bitstation-cache bitstation bitstation-squash: cauldron-cache pkgs-cache setup-cache
-cauldron cauldron-squash: cauldron-cache
-pkgs pkgs-squash: pkgs-cache
-setup setup-squash: setup-cache
+bitstation-nocache bitstation bitstation-squash: cauldron pkgs setup
+cauldron-nocache cauldron-squash: cauldron
+pkgs-nocache pkgs-squash: pkgs
+setup-nocache setup-squash: setup
 
-cauldron-cache:
+cauldron:
 	docker build -t joequant/cauldron $(ARGS) $(EXTRA_ARGS) 01.cauldron
 
-pkgs-cache:
+pkgs:
 	docker build -t joequant/pkgs $(ARGS) $(EXTRA_ARGS) 02.pkgs
 
-setup-cache:
+setup:
 	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 03.setup
 
 bitstation-clean-docker:
