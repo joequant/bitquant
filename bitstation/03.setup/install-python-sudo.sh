@@ -232,6 +232,7 @@ FRB
 folium
 pattern
 onnx
+tzlocal
 EOF
 
 cat <<EOF > /tmp/constraints.txt
