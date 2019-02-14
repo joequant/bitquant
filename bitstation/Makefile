@@ -46,7 +46,5 @@ refresh-script:
 clean-vols:
 	docker volume rm `docker volume ls | grep -v VOLUME | grep bitstation | awk '{print $$2}'`
 
-.PHONY: bitstation
-
-
+.PHONY: bitstation setup pkgs cauldron
 
