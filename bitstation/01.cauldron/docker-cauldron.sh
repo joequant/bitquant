@@ -10,6 +10,7 @@ EOF
 dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
 dnf upgrade -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False -x filesystem -x chkconfig
 rpm -qa | grep mga6 | xargs dnf autoremove -y -x filesystem,chkconfig
+dnf clean all
 
 
 

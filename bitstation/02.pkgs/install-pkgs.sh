@@ -60,3 +60,4 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       python3-pexpect
 
 $SUDO chmod a+x /usr/lib64/R/bin/*
+dnf clean all

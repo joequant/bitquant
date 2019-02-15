@@ -73,3 +73,4 @@ git config --unset --global url."http://localhost:8080/".insteadOf || true
 
 #put in link to allow loading of iruby
 ln -s /usr/lib64/libzmq.so.5 /usr/lib64/libzmq.so
+dnf clean all
