@@ -12,6 +12,9 @@ sudo /usr/share/bitquant/install-npm-sudo.sh $SCRIPT_DIR $ME
 if [ -d git/etherpad-lite ] ; then
 pushd git/etherpad-lite
 make
+pushd src/node_modules
+modclean -r
+popd
 popd
 fi
 popd
