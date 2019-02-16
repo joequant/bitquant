@@ -9,10 +9,6 @@ pushd $SCRIPT_DIR > /dev/null
 
 sudo /usr/share/bitquant/install-npm-sudo.sh $SCRIPT_DIR $ME
 
-pushd /home/$ME
-pushd git/ethercalc
-npm i
-popd
 if [ -d git/etherpad-lite ] ; then
 pushd git/etherpad-lite
 make

@@ -20,13 +20,10 @@ mvn opengamma:server-start -Dconfig=bitquant >> $LOG_DIR/og.log &
 popd > /dev/null
 fi
 
-if [ -d $GIT_DIR/ethercalc ] ; then
-pushd $GIT_DIR/ethercalc > /dev/null
+if [ -f /usr/bin/ethercalc ] ; then
 echo "Restarting ethercalc"
-make all >> $LOG_DIR/ethercalc.log 2>&1
-node app.js --basepath /calc/ --port 8100 >> $LOG_DIR/ethercalc.log 2>&1 &
+/usr/bin/ethercalc --basepath /calc/ --port 8100 >> $LOG_DIR/ethercalc.log 2>&1 &
 $SCRIPT_DIR/install-ethercalc.py
-popd > /dev/null
 fi
 
 if [ -e /usr/bin/configurable-http-proxy ] ; then
