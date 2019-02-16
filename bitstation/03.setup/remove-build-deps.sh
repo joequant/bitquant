@@ -62,6 +62,7 @@ rm -rf /usr/lib/python*/site-packages/ggplot/tests
 rm -rf /usr/lib/python*/site-packages/sympy/*/tests
 rm -rf /usr/share/doc
 rm -rf /home/user/git/shiny-server
+rm -rf /home/user/.npm/
 rm -rf /root/.cache
 rm -rf /usr/local/share
 
