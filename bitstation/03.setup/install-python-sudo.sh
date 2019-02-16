@@ -63,7 +63,6 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
-$SUPERSET
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -239,10 +238,11 @@ cat <<EOF > /tmp/constraints.txt
 numpy
 matplotlib
 xarray
+pandas
 EOF
 
-pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet --prefix /usr
-pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet --prefix /usr -c /tmp/constraints.txt
+pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
+pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET --prefix /usr -c /tmp/constraints.txt
 
 # Set registry to non-ssl to allow caching
 echo "Installing webpack"
