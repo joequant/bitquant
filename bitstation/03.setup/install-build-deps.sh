@@ -66,7 +66,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       automake \
       autoconf \
       swig \
-      protobuf-devel
+      protobuf-devel \
+      unwind-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
