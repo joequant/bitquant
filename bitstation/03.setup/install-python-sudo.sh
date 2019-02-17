@@ -39,7 +39,8 @@ echo "pip_index_url=" $PIP_INDEX_URL
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy requests six python-dateutil --prefix /usr
+pip3 install --upgrade numpy requests six python-dateutil \
+     matplotlib pandas scipy pythreejs --prefix /usr
 
 # Fix for eventsourcing
 pip3 install --upgrade pycryptodome --prefix /usr
@@ -62,7 +63,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
-cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -83,9 +84,6 @@ jupyterlab
 numba
 ipympl
 import-ipynb
-matplotlib
-pandas
-scipy
 astropy
 jupyterhub
 nbconvert
@@ -102,7 +100,6 @@ quandl
 ipywidgets 
 ipyvolume
 jupyter_declarativewidgets 
-pythreejs
 vega
 nbpresent
 jupyter_latex_envs
