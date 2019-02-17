@@ -246,13 +246,6 @@ echo "Installing webpack"
 
 npm install -g --unsafe webpack webpack-command
 
-jupyter nbextensions_configurator enable --sys-prefix
-
-jupyter nbextension install --py --sys-prefix jpy_video --system
-jupyter nbextension enable  --py --sys-prefix jpy_video --system
-
-jupyter serverextension enable --py jupyterlab --sys-prefix
-jupyter serverextension enable --py jupyter_tensorboard --system --sys-prefix 
 
 # There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
@@ -302,12 +295,16 @@ jupyterlab_filetree
 jupyterlab-jupytext
 EOF
 
+jupyter lab build
+jupyter nbextensions_configurator enable --sys-prefix
+jupyter nbextension install --py --sys-prefix jpy_video --system
+jupyter nbextension enable  --py --sys-prefix jpy_video --system
+jupyter serverextension enable --py jupyterlab --sys-prefix
+jupyter serverextension enable --py jupyter_tensorboard --system --sys-prefix 
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 jupyter serverextension enable --py jupyterlab_templates
 jupyter serverextension enable --py jupyterlab_iframe
-
-jupyter lab build
 
 fabmanager create-admin --app superset
 superset db upgrade
