@@ -229,6 +229,7 @@ folium
 pattern
 onnx
 tzlocal
+mypy
 EOF
 
 cat <<EOF > /tmp/constraints.txt
