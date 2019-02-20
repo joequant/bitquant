@@ -56,6 +56,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       ta-lib-devel \
       libxml2-devel \
       make \
+      mypy \
       python3-cairo-devel \
       jpeg-devel \
       java-devel \
