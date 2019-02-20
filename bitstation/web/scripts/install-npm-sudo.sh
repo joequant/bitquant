@@ -22,6 +22,6 @@ pushd /home/$ME/git/ethercalc
 npm i -g --unsafe ethercalc
 popd
 
-pushd /usr/lib/node_modules
-modclean -r
-popd
+#pushd /usr/lib/node_modules
+#modclean -r
+#popd
