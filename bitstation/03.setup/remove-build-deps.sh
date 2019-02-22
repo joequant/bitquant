@@ -3,11 +3,7 @@
 
 set -e -v
 
-if [[ $UID -ne 0 ]]; then
-  SUDO=sudo
-fi
-
-$SUDO dnf -y \
+dnf -y \
       autoremove \
       cmake \
       gcc-c++ \
@@ -21,10 +17,10 @@ $SUDO dnf -y \
       protobuf-compiler \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
-$SUDO dnf clean all
+dnf clean all
 #set default python to python3
 pushd /usr/bin
-$SUDO ln -sf python3 python
+ln -sf python3 python
 popd
 
 rm -rf /root/.cache
@@ -66,6 +62,10 @@ rm -rf /home/user/git/ethercalc
 rm -rf /home/user/.npm/
 rm -rf /root/.cache
 rm -rf /usr/local/share
+
+pushd /usr/share/jupyter/lab/staging/node_modules
+modclean -r
+popd
 
 # Reset npm registry
 npm config delete registry

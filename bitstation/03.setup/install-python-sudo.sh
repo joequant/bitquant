@@ -41,6 +41,7 @@ pip3 install --upgrade pip --prefix /usr
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
      matplotlib pandas scipy pythreejs --prefix /usr
+pip3 install --upgrade tensorflow torch --prefix /usr
 
 # Fix for eventsourcing
 pip3 install --upgrade pycryptodome --prefix /usr
@@ -173,7 +174,6 @@ pynance
 keras
 nolearn
 theano
-tensorflow
 nltk
 gensim
 scrapy
@@ -217,7 +217,6 @@ jupyterlab_templates
 jupyterlab_iframe
 pywwt
 Jupyter-Video-Widget
-jupytext
 pybrain
 ipyparallel
 astroml
@@ -293,7 +292,6 @@ jupyter-video
 jupyterlab_filetree
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
-jupyterlab-jupytext
 EOF
 
 jupyter lab build
