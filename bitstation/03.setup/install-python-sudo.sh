@@ -253,7 +253,7 @@ npm install -g --unsafe webpack webpack-command
 
 #node-gyp requires that python be linked to python2
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --no-build
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 @jupyterlab/git
 @jupyterlab/google-drive
 jupyterlab_tensorboard
