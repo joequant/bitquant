@@ -46,5 +46,8 @@ refresh-script:
 clean-vols:
 	docker volume rm `docker volume ls | grep -v VOLUME | grep bitstation | awk '{print $$2}'`
 
+clean-images:
+	./rm-stopped-containers.sh ; ./rm-untagged-images.sh
+
 .PHONY: bitstation setup pkgs cauldron
 
