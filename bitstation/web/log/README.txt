@@ -1,1 +1,0 @@
-Log file directory
