@@ -4,8 +4,16 @@ import cgitb
 import subprocess
 cgitb.enable()
 
+def run_subprocess(arg, **kwargs):
+    try:
+        print(subprocess.check_output(arg, **kwargs).decode('utf-8'))
+    except subprocess.CalledProcessError:
+        pass
+
+print("Content-type: text/html\n")
 print("<pre>")
-print(subprocess.check_output(['pip3', 'list']).decode('utf-8'))
-print(subprocess.check_output(['npm', 'list', '-g']).decode('utf-8'))
-print(subprocess.check_output('rpm -qa | sort', shell=True).decode('utf-8'))
+
+run_subprocess(['pip3', 'list'])
+run_subprocess(['npm', 'list', '-g'])
+run_subprocess('rpm -qa | sort', shell=True)
 print("</pre>")
