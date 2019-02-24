@@ -320,7 +320,7 @@ jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
-jupyter serverextension enable --py jupyter_code_formatter --sys-prefix
+jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 jupyter serverextension enable --py jupyterlab_templates
