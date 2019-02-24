@@ -62,10 +62,9 @@ rm -rf /home/user/git/ethercalc
 rm -rf /home/user/.npm/
 rm -rf /root/.cache
 rm -rf /usr/local/share
-
-pushd /usr/share/jupyter/lab/staging/node_modules
-modclean -r
-popd
+jupyter lab clean
+jlpm cache clean
+npm cache clean --force
 
 # Reset npm registry
 npm config delete registry
@@ -76,3 +75,18 @@ git config --unset --global url."http://localhost:8080/".insteadOf || true
 #put in link to allow loading of iruby
 ln -s /usr/lib64/libzmq.so.5 /usr/lib64/libzmq.so
 dnf clean all
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

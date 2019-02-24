@@ -2,9 +2,12 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WEB_DIR=$SCRIPT_DIR/..
 GIT_DIR=$WEB_DIR/../..
-LOG_DIR=$WEB_DIR/log
+LOG_DIR=/var/log/bitquant
 cd $SCRIPT_DIR
 . rootcheck.sh
+
+mkdir -p $LOG_DIR
+chmod a+w $LOG_DIR
 
 echo "Start redis"
 su redis -s "/bin/bash" -c "/usr/bin/redis-server /etc/redis.conf" &
@@ -36,5 +39,3 @@ su user -c "git pull"
 popd
 su user -c ./startup.sh
 while :; do sleep 2; done
-
-

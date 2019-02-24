@@ -48,6 +48,7 @@ pip3 install --upgrade pycryptodome --prefix /usr
 cat <<EOF > /tmp/constraints.es.txt
 six
 requests
+pycrypto
 pycryptodome
 python-dateutil
 EOF
@@ -229,6 +230,12 @@ pattern
 onnx
 tzlocal
 mypy
+pytext-nlp
+sidecar
+black
+yapf
+autopep8
+beakerx
 EOF
 
 cat <<EOF > /tmp/constraints.txt
@@ -236,6 +243,7 @@ numpy
 matplotlib
 xarray
 pandas
+jupyterlab_autoversion
 EOF
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
@@ -246,6 +254,10 @@ echo "Installing webpack"
 
 npm install -g --unsafe webpack webpack-command
 
+#link staging jupyterlab yarn to system yarn
+pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
+ln -s -f ../../../../../lib/node_modules/yarn/lib/cli.js yarn.js
+popd
 
 # There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
@@ -254,6 +266,7 @@ npm install -g --unsafe webpack webpack-command
 #node-gyp requires that python be linked to python2
 
 cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
+nbdime-jupyterlab
 @jupyterlab/git
 @jupyterlab/google-drive
 jupyterlab_tensorboard
@@ -292,6 +305,13 @@ jupyter-video
 jupyterlab_filetree
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
+@jupyter-widgets/jupyterlab-sidecar
+@ryantam626/jupyterlab_code_formatter
+@krassowski/jupyterlab_go_to_definition
+jupyterlab-spreadsheet
+@lean-data-science/jupyterlab_credentialstore
+@hkjinlee/jupyterlab_gz
+jupyterlab_autoversion
 EOF
 
 jupyter lab build
@@ -299,7 +319,8 @@ jupyter nbextensions_configurator enable --sys-prefix
 jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
 jupyter serverextension enable --py jupyterlab --sys-prefix
-#jupyter serverextension enable --py jupyter_tensorboard --system --sys-prefix 
+jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
+jupyter serverextension enable --py jupyter_code_formatter --sys-prefix
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 jupyter serverextension enable --py jupyterlab_templates
