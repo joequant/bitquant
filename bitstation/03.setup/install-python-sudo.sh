@@ -236,7 +236,11 @@ black
 yapf
 autopep8
 beakerx
+jupytext>=1.0.1
 EOF
+
+#jupytext 1.0.1 fixes issue #185
+# https://github.com/mwouts/jupytext/issues/185
 
 cat <<EOF > /tmp/constraints.txt
 numpy
