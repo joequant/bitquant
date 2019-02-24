@@ -6,7 +6,9 @@ LOG_DIR=$WEB_DIR/log
 cd $SCRIPT_DIR
 . norootcheck.sh
 
-#ipython notebook &
+if [ -w /var/log/bitquant ] ; then
+    LOG_DIR=/var/log/bitquant
+fi
 
 java_arch="i386"
 if [ "`uname -m`" == "x86_64" ] ; then
@@ -30,11 +32,6 @@ if [ -e /usr/bin/configurable-http-proxy ] ; then
 echo "Restarting configurable-http-proxy"
 configurable-http-proxy --port 9010 --api-port 9011 --no-include-prefix >> $LOG_DIR/configurable-http-proxy 2 >&1 &
 fi
-
-#if [ -e /usr/bin/tensorboard ] ; then
-#    echo "Restarting tensorboard"
-#    tensorboard --logdir $LOG_DIR
-#fi
 
 if [ -d $GIT_DIR/etherpad-lite ] ; then
 echo "Restarting etherpad"
