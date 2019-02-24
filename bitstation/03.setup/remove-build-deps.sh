@@ -57,10 +57,13 @@ rm -rf /usr/lib/python*/site-packages/jinja2/testsuite
 rm -rf /usr/lib/python*/site-packages/ggplot/tests
 rm -rf /usr/lib/python*/site-packages/sympy/*/tests
 rm -rf /usr/share/doc
+rm -rf /usr/share/gems/doc
 rm -rf /home/user/git/shiny-server
 rm -rf /home/user/git/ethercalc
 rm -rf /home/user/.npm/
+rm -rf /home/user/.node-gyp
 rm -rf /root/.cache
+rm -rf /root/.node-gyp
 rm -rf /usr/local/share
 jupyter lab clean
 jlpm cache clean
