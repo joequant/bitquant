@@ -61,3 +61,7 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
 
 $SUDO chmod a+x /usr/lib64/R/bin/*
 dnf clean all
+rm -rf /var/log/*.log
+rm -rf /usr/share/gems/doc/*
+rm -rf /usr/lib/python3.5
+rm -rf /usr/lib64/python3.5
