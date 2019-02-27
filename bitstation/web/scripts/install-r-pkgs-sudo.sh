@@ -7,12 +7,6 @@ ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 SCRIPT_DIR=$1
 ME=$2
-R_PKGS="base64enc brew curl git2r IRkernel magrittr repr roxygen2 rzmq stringi xml2 \
-BH crayon devtools IRdisplay knitr Quandl rmarkdown rversions shiny testthat \
-R6      highr      jsonlite  rstudioapi xtable \
-digest    htmltools  markdown  stringr xts \
-Rcpp    evaluate  httpuv     memoise   uuid yaml \
-bitops  httr mime whisker zoo pbdZMQ"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
 else
@@ -27,10 +21,12 @@ pushd $SCRIPT_DIR > /dev/null
 LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
 
 echo "Installing new modules"
-for i in $R_PKGS ; do
+pushd $LOCAL_R_DIR
+for i in */ ; do
   rm -rf /usr/$LIBDIR/R/library/$i;
-  mv -f $LOCAL_R_DIR/$i /usr/$LIBDIR/R/library ;
+  mv -f $i /usr/$LIBDIR/R/library ;
 done
+popd > /dev/null
 popd > /dev/null
 
 /usr/bin/R -e 'IRkernel::installspec(prefix="/usr", user=FALSE)'
