@@ -43,8 +43,9 @@ pip3 install --upgrade pip --prefix /usr
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
      matplotlib pandas scipy pythreejs --prefix /usr
-# use non avx build
-pip3 install --upgrade http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl --prefix /usr
+# This will fail on non-avx machines
+pip3 install --upgrade tensorflow --prefix /usr
+#pip3 install --upgrade http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl --prefix /usr
 pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
