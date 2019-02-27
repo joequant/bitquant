@@ -237,6 +237,8 @@ yapf
 autopep8
 beakerx
 jupytext>=1.0.1
+jupyterlab_code_formatter
+cppyy-cling
 EOF
 
 #jupytext 1.0.1 fixes issue #185
@@ -269,7 +271,7 @@ popd
 
 #node-gyp requires that python be linked to python2
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
+cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) jupyter labextension install --no-build
 nbdime-jupyterlab
 @jupyterlab/git
 @jupyterlab/google-drive
