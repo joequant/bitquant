@@ -11,7 +11,9 @@ echo "Running python installation"
 if [[ ! -z "$http_proxy" ]] ; then
     npm config set registry http://registry.npmjs.org/
     npm install -g yarn
+    npm set strict-ssl false
     yarn config set registry http://registry.yarnpkg.com/
+    yarn config set strict-ssl false
     git config --global http.proxy $http_proxy
     if [[ ! -z "$GIT_PROXY" ]] ; then
 	git config --global url."$GIT_PROXY".insteadOf https://
