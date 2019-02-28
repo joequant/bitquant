@@ -44,6 +44,6 @@ firewalls.  You should open the port 80 to the docker network before
 running docker.  Also you make have to restart the docker after
 resetting the firewall.
 
-Add user to docker
-
-http://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo
+The default build loads in tensorflow and so will die on a non-AVX
+machine.  There is an image built here that will build the binary for
+SSE4, AVX machines.
