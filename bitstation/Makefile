@@ -49,7 +49,10 @@ refresh-script:
 	wget https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/.febootstrap-minimize
 	chmod a+x mkimage-urpmi.sh .febootstrap-minimize
 
-clean-vols:
+clean-vols-check:
+	@echo -n "Are you sure? [y/N] " && read ans && [ $${ans:-N} == y ]
+
+clean-vols: clean-vols-check
 	docker volume rm `docker volume ls | grep -v VOLUME | grep bitstation | awk '{print $$2}'`
 
 clean-images:
