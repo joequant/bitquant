@@ -255,6 +255,7 @@ matplotlib
 xarray
 pandas
 jupyterlab_autoversion
+ipyaggrid
 EOF
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
@@ -312,7 +313,6 @@ bqplot
 @oriolmirosa/jupyterlab_materialdarker
 jupyterlab_iframe
 jupyterlab-python-file
-jupyter-video
 jupyterlab_filetree
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
@@ -323,12 +323,14 @@ jupyterlab-spreadsheet
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
 jupyterlab_autoversion
+ipyaggrid
 EOF
 
 jupyter lab build
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter nbextension install --py --sys-prefix jpy_video --system
 jupyter nbextension enable  --py --sys-prefix jpy_video --system
+jupyter labextension install jupyter-video
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix

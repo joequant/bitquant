@@ -9,7 +9,7 @@ if [ "$BTQNT_IMAGE_DIR" == "" ] ; then
     BTQNT_IMAGE_DIR=bitstation-vol
 fi
 
-$SUDO docker run -t -i \
+$SUDO docker run -i \
       -v $BTQNT_IMAGE_DIR-home:/home \
       -v $BTQNT_IMAGE_DIR-dokuwiki:/var/lib/dokuwiki \
       -v $BTQNT_IMAGE_DIR-mongodb:/var/lib/mongodb \
