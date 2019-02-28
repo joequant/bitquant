@@ -9,20 +9,16 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-if [[ $UID -ne 0 ]]; then
-  SUDO=sudo
-fi
-
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-$SUDO dnf shell -v -y --setopt=install_weak_deps=False  --refresh <<EOF
+dnf shell -v -y --setopt=install_weak_deps=False  --refresh <<EOF
 reinstall --best --nodocs --allowerasing locales locales-en glibc
 run
 EOF
 
 
 #repeat packages in setup
-$SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
+dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       apache \
       apache-mod_suexec \
       apache-mod_proxy \
@@ -59,9 +55,13 @@ $SUDO dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
       python3-cython \
       python3-pexpect
 
-$SUDO chmod a+x /usr/lib64/R/bin/*
+chmod a+x /usr/lib64/R/bin/*
 dnf clean all
+npm install -g modclean
 rm -rf /var/log/*.log
 rm -rf /usr/share/gems/doc/*
 rm -rf /usr/lib/python3.5
 rm -rf /usr/lib64/python3.5
+pushd /usr/lib/node_modules
+modclean -r -f
+popd
