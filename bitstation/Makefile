@@ -8,10 +8,13 @@ ifeq ($(NOCACHE),true)
 ARGS="--no-cache=true"
 endif
 
-bitstation-nocache bitstation bitstation-squash: cauldron pkgs setup
+bitstation-nocache bitstation-squash: bitstation
 cauldron-nocache cauldron-squash: cauldron
 pkgs-nocache pkgs-squash: pkgs
 setup-nocache setup-squash: setup
+noavx-nocache noavx-squash: noavx
+
+bitstation: cauldron pkgs setup
 
 cauldron:
 	docker build -t joequant/cauldron $(ARGS) $(EXTRA_ARGS) 01.cauldron
@@ -21,6 +24,9 @@ pkgs:
 
 setup:
 	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 03.setup
+
+noavx:
+	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 04.noavx
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile
