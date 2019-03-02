@@ -244,6 +244,9 @@ beakerx
 jupytext>=1.0.1
 jupyterlab_code_formatter
 cppyy-cling
+modAL
+libact
+alipy
 EOF
 
 #jupytext 1.0.1 fixes issue #185
