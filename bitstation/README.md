@@ -45,5 +45,5 @@ running docker.  Also you make have to restart the docker after
 resetting the firewall.
 
 The default build loads in tensorflow and so will die on a non-AVX
-machine.  There is an image built here that will build the binary for
-SSE4, AVX machines.
+machine.  You will need to set the environment variable NOAVX in 03.setup
+to install an image that will work for SSE4, AVX machines.

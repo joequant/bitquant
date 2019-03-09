@@ -25,6 +25,13 @@ if [[ ! -z "$http_proxy" ]] ; then
 #    npm config set strict-ssl false
 fi
 
+# Pypi Tensorflow will fail on noavx
+if [[ ! -z "$NOAVX" ]] ; then
+    export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
+else
+    export TENSORFLOW=tensorflow
+fi
+
 # see http://click.pocoo.org/5/python3/
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -43,9 +50,8 @@ pip3 install --upgrade pip --prefix /usr
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
      matplotlib pandas scipy pythreejs --prefix /usr
-# This will fail on non-avx machines
-pip3 install --upgrade tensorflow --prefix /usr
-#pip3 install --upgrade http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl --prefix /usr
+
+pip3 install --upgrade $TENSORFLOW --prefix /usr
 pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
@@ -83,6 +89,7 @@ git+https://github.com/bashtage/arch.git
 git+https://github.com/joequant/OrderBook.git
 git+https://github.com/joequant/quantdsl.git
 git+https://github.com/joequant/dynts.git
+git+https://github.com/joequant/libact.git
 sklearn
 Werkzeug
 Flask
@@ -245,7 +252,6 @@ jupytext>=1.0.1
 jupyterlab_code_formatter
 cppyy-cling
 modAL
-libact
 alipy
 EOF
 

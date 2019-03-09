@@ -12,7 +12,6 @@ bitstation-nocache bitstation-squash: bitstation
 cauldron-nocache cauldron-squash: cauldron
 pkgs-nocache pkgs-squash: pkgs
 setup-nocache setup-squash: setup
-noavx-nocache noavx-squash: noavx
 
 bitstation: cauldron pkgs setup
 
@@ -24,9 +23,6 @@ pkgs:
 
 setup:
 	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 03.setup
-
-noavx:
-	docker build -t joequant/bitstation $(ARGS) $(EXTRA_ARGS) 04.noavx
 
 bitstation-clean-docker:
 	 docker build -rm=true - < Dockerfile
