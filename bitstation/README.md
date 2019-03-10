@@ -47,3 +47,10 @@ resetting the firewall.
 The default build loads in tensorflow and so will die on a non-AVX
 machine.  You will need to set the environment variable NOAVX in 03.setup
 to install an image that will work for SSE4, AVX machines.
+
+Proxy server
+------------
+1) Uncomment the proxy items
+2) Run squid
+3) install and run devpi-server from pypi
+4) install git-cache-http-server with npm on squid server
