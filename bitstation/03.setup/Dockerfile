@@ -1,6 +1,8 @@
 FROM joequant/pkgs:latest
-#ENV HTTP_PROXY http://192.168.1.102:3128/
-#ENV http_proxy http://192.168.1.102:3128/
+#ENV http_proxy http://172.17.0.1:3128/
+#ENV https_proxy http://172.17.0.1:3128/
+#ENV ftp_proxy http://172.17.0.1:3128/
+#ENV HTTP_PROXY http://172.17.0.1:3128/
 #ENV PIP_INDEX_URL http://localhost:3141/root/pypi/+simple/
 #ENV GIT_PROXY http://localhost:8080/
 
