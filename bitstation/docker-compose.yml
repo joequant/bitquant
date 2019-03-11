@@ -1,0 +1,27 @@
+version:  '3'
+services:
+  bitstation:
+     image: "joequant/bitstation"
+     stdin_open: true
+     tty: true
+     ports:
+       - 80:80
+       - 443:443
+     volumes:
+       - bitstation-vol-home:/home \
+       - bitstation-vol-dokuwiki:/var/lib/dokuwiki \
+       - bitstation-vol-mongodb:/var/lib/mongodb \
+       - bitstation-vol-redis:/var/lib/redis \
+       - bitstation-vol-bitcoin:/var/lib/bitcoin \
+       - bitstation-vol-log:/var/log \
+       - bitstation-vol-etc:/etc \
+       - bitstation-vol-srv:/srv \
+volumes:
+   bitstation-vol-home:
+   bitstation-vol-dokuwiki:
+   bitstation-vol-mongodb:
+   bitstation-vol-redis:
+   bitstation-vol-bitcoin:
+   bitstation-vol-log:
+   bitstation-vol-etc:
+   bitstation-vol-srv:
