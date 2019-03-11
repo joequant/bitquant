@@ -9,7 +9,7 @@ import os.path
 cwd = os.path.dirname(os.path.realpath(sys.argv[0]))
 ethercalc_dir = os.path.join(cwd, "ethercalc")
 ec = ethercalc.EtherCalc("http://localhost/calc/")
-lockfile = os.path.join("var", "log", "bitquant", "ethercalc-init.txt")
+lockfile = os.path.join("/var", "log", "bitquant", "ethercalc-init.txt")
 if os.path.isfile(lockfile):
     print("ethercalc already init. exiting")
     exit(0)
