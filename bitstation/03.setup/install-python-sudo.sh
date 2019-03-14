@@ -29,7 +29,7 @@ fi
 if [[ ! -z "$NOAVX" ]] ; then
     export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
 else
-    export TENSORFLOW=tensorflow
+    export TENSORFLOW=tensorflow==2.0.0-alpha0
 fi
 
 # see http://click.pocoo.org/5/python3/
