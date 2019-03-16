@@ -276,9 +276,9 @@ echo "Installing webpack"
 npm install -g --unsafe webpack webpack-command
 
 #link staging jupyterlab yarn to system yarn
-pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
-ln -s -f ../../../../../lib/node_modules/yarn/lib/cli.js yarn.js
-popd
+#pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
+#ln -s -f ../../../../../lib/node_modules/yarn/lib/cli.js yarn.js
+#popd
 
 # There are some compile errors
 #jupyter labextension install jupyterlab-spreadsheet
