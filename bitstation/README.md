@@ -8,7 +8,7 @@ Running an image
 
 To run
 
-    ./start-server.sh
+    docker-compose up
 
 The image for bitstation is stored on docker hub as
 joequant/bitstation which will be downloaded automatically by the
