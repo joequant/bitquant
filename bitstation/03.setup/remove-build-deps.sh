@@ -17,6 +17,13 @@ dnf -y \
       protobuf-compiler \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
 
+dnf -y \
+    autoremove \
+    `rpm -qa | grep openjdk`
+
+dnf -y \
+    install java-headless
+
 dnf clean all
 #set default python to python3
 pushd /usr/bin

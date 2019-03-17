@@ -286,6 +286,15 @@ npm install -g --unsafe webpack webpack-command
 
 #node-gyp requires that python be linked to python2
 
+if [[ ! -z "$http_proxy" ]] ; then
+    pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
+    cp .yarnrc .yarnrc.dist
+    cat >> .yarnrc <<EOF
+registry "http://registry.npmjs.org"
+EOF
+    popd
+fi
+
 cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) jupyter labextension install --no-build
 nbdime-jupyterlab
 @jupyterlab/git
@@ -361,3 +370,8 @@ fi
 
 #Create rhea user to spawn jupyterhub
 useradd -r rhea -s /bin/false -M -G shadow
+if [[ ! -z "$http_proxy" ]] ; then
+    pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
+    mv -f .yarnrc.dist .yarnrc
+    popd
+fi
