@@ -6,7 +6,3 @@ COPY system.conf /etc/sysusers.d
 COPY install-pkgs.sh /tmp
 RUN systemd-sysusers && source /tmp/install-pkgs.sh ; rm /tmp/*.sh
 CMD ["/bin/bash"]
-
-FROM scratch
-WORKDIR /
-COPY --from=0 / .
