@@ -8,14 +8,14 @@ services:
        - 80:80
        - 443:443
      volumes:
-       - home:/home \
-       - dokuwiki:/var/lib/dokuwiki \
-       - mongodb:/var/lib/mongodb \
-       - redis:/var/lib/redis \
-       - bitcoin:/var/lib/bitcoin \
-       - log:/var/log \
-       - etc:/etc \
-       - srv:/srv \
+       - home:/home
+       - dokuwiki:/var/lib/dokuwiki
+       - mongodb:/var/lib/mongodb
+       - redis:/var/lib/redis
+       - bitcoin:/var/lib/bitcoin
+       - log:/var/log
+       - etc:/etc
+       - srv:/srv
 volumes:
    home:
    dokuwiki:
