@@ -253,6 +253,7 @@ jupyterlab_code_formatter
 cppyy-cling
 modAL
 alipy
+mglearn
 EOF
 
 #jupytext 1.0.1 fixes issue #185
