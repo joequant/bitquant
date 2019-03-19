@@ -9,3 +9,9 @@ jp-coffee-install --install=global
 jp-livescript-install --install=global
 mkdir -p /usr/share/jupyter/kernels
 mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
+
+if [ -d /home/user/git/ethercalc ] ; then
+    pushd /home/user/git/ethercalc
+    npm i -g --unsafe ethercalc
+    popd
+fi
