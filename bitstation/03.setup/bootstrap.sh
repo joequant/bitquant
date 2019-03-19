@@ -12,7 +12,7 @@ $GIT_DIR/git/setup-git.sh misc
 echo "Installing npm packages"
 $WEB_DIR/scripts/install-npm.sh
 echo "Installing R packages"
-$WEB_DIR/scripts/install-r-pkgs.sh
+/tmp/install-r-pkgs.sh
 
 #set wiki conf
 echo "Set up wiki"

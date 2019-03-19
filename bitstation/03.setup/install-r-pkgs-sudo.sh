@@ -2,11 +2,6 @@
 # sudo portion of r package installations
 
 echo "Running r installation"
-ROOT_SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $ROOT_SCRIPT_DIR/rootcheck.sh
-
-SCRIPT_DIR=$1
-ME=$2
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
 else
@@ -17,8 +12,7 @@ fi
 # system directories where it does not have permissions
 
 R_VERSION=$(R --version | head -1 | cut -d \  -f 3 | awk -F \. {'print $1"."$2'})
-pushd $SCRIPT_DIR > /dev/null
-LOCAL_R_DIR=/home/$ME/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
+LOCAL_R_DIR=/home/user/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
 
 echo "Installing new modules"
 pushd $LOCAL_R_DIR
@@ -27,17 +21,16 @@ for i in */ ; do
   mv -f $i /usr/$LIBDIR/R/library ;
 done
 popd > /dev/null
-popd > /dev/null
 
 /usr/bin/R -e 'IRkernel::installspec(prefix="/usr", user=FALSE)'
 
-if [ -d /home/$ME/git/shiny-server ]
+if [ -d /home/user/git/shiny-server ]
 then echo "Installing shiny server"
-pushd /home/$ME/git/shiny-server 
+pushd /home/user/git/shiny-server
 sed -i -e s!bin/node!! -e s!bin/npm!! CMakeLists.txt
 sed -i -e s!add_subdirectory\(external/node\)!! CMakeLists.txt
 popd
-make -C /home/$ME/git/shiny-server install
+make -C /home/user/git/shiny-server install
 ln -s -f  ../lib/shiny-server/bin/shiny-server /usr/bin/shiny-server
 #Create shiny user. On some systems, you may need to specify the full path to 'useradd'
 useradd -r shiny -s /bin/false -M
