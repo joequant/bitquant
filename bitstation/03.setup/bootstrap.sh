@@ -10,7 +10,15 @@ $GIT_DIR/git/setup-git.sh misc
 # install python first so that ijavascript dependencies
 # are met
 echo "Installing npm packages"
-$WEB_DIR/scripts/install-npm.sh
+if [ -d /home/user/git/etherpad-lite ] ; then
+pushd /home/user/git/etherpad-lite
+make
+pushd src/node_modules
+modclean -r
+popd
+popd
+fi
+
 echo "Installing R packages"
 /tmp/install-r-pkgs.sh
 
