@@ -9,7 +9,7 @@ set -e
 
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
-excludepkgs=filesystem
+excludepkgs=filesystem,chkconfig
 EOF
 
 dnf install -v -y \
@@ -22,7 +22,7 @@ EOF
 
 dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
 dnf upgrade -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False
-rpm -qa | grep mga6 | xargs dnf autoremove -y -x filesystem
+rpm -qa | grep mga6 | xargs dnf autoremove -y -x filesystem -x chkconfig
 dnf autoremove -y urpmi
 dnf clean all
 rm -f /var/log/*.log
