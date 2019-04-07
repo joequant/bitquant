@@ -75,6 +75,9 @@ rm -rf /usr/local/share
 jupyter lab clean
 jlpm cache clean
 npm cache clean --force
+pushd /usr/lib/node_modules
+modclean -r -f
+popd
 
 # Reset npm registry
 npm config delete registry
