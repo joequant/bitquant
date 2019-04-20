@@ -1,11 +1,6 @@
 #!/bin/bash
 set -e
-#export http_proxy=http://172.17.0.1:3128/
-#export https_proxy=http://172.17.0.1:3128/
-#export ftp_proxy=http://172.17.0.1:3128/
-#export HTTP_PROXY=http://172.17.0.1:3128/
-#export PIP_INDEX_URL=http://localhost:3141/root/pypi/+simple/
-#export GIT_PROXY=http://localhost:8080/
+. /tmp/proxy.sh
 
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
@@ -23,9 +18,14 @@ EOF
 dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
 dnf upgrade -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False
 rpm -qa | grep mga6 | xargs dnf autoremove -y -x filesystem -x chkconfig
+rpm --erase info-install
 dnf autoremove -y urpmi
 dnf clean all
 rm -f /var/log/*.log
+rm -rf /var/cache/dnf/*
+rm -rf /usr/lib/systemd
+rm -rf /usr/lib/udev
+rm -rf /usr/lib/.build-id
 rm -rf /code
 
 
