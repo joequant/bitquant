@@ -23,7 +23,6 @@ dnf autoremove -y urpmi
 dnf clean all
 rm -f /var/log/*.log
 rm -rf /var/cache/dnf/*
-rm -rf /usr/lib/systemd
 rm -rf /usr/lib/udev
 rm -rf /usr/lib/.build-id
 rm -rf /code
