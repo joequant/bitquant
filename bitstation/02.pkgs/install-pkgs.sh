@@ -9,12 +9,7 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-#export http_proxy=http://172.17.0.1:3128/
-#export https_proxy=http://172.17.0.1:3128/
-#export ftp_proxy=http://172.17.0.1:3128/
-#export HTTP_PROXY=http://172.17.0.1:3128/
-#export PIP_INDEX_URL=http://localhost:3141/root/pypi/+simple/
-#export GIT_PROXY=http://localhost:8080/
+source /tmp/proxy.sh
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
