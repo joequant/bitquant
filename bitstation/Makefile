@@ -54,5 +54,15 @@ clean-vols: clean-vols-check
 clean-images:
 	./rm-stopped-containers.sh ; ./rm-untagged-images.sh
 
+proxy-install:
+	sudo dnf install squid python3-pip
+	sudo pip3 install devpi-server
+	sudo npm install -g git-cache-http-server verdaccio
+
+proxy-start:
+	devpi-server > devpi-server.log &
+	git-cache-http-server > git-cache-http-server.log &
+	verdaccio > verdaccio.log &
+
 .PHONY: bitstation setup pkgs cauldron
 

@@ -16,6 +16,11 @@ services:
        - log:/var/log
        - etc:/etc
        - srv:/srv
+  cauldron:
+     image: "joequant/cauldron"
+     stdin_open: true
+     tty: true
+     command: "/bin/bash"
 volumes:
    home:
    dokuwiki:
