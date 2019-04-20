@@ -333,26 +333,29 @@ jupyterlab-spreadsheet
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
 jupyterlab_autoversion
-ipyaggrid
 EOF
+
+#ipyaggrid
 
 jupyter lab build
 jupyter nbextensions_configurator enable --sys-prefix
-jupyter nbextension install --py --sys-prefix jpy_video --system
-jupyter nbextension enable  --py --sys-prefix jpy_video --system
-jupyter labextension install jupyter-video
+#jupyter nbextension install --py --sys-prefix jpy_video --system
+#jupyter nbextension enable  --py --sys-prefix jpy_video --system
+#jupyter labextension install jupyter-video
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
-jupyter serverextension enable --py jupyterlab_templates
-jupyter serverextension enable --py jupyterlab_iframe
+#jupyter serverextension enable --py jupyterlab_templates
+#jupyter serverextension enable --py jupyterlab_iframe
 
+:'
 fabmanager create-admin --app superset
 superset db upgrade
 superset init
 superset load_examples
+'
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
