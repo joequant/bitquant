@@ -9,20 +9,11 @@ echo "Running python installation"
 #missing zipline since requirements installation causes issues
 
 if [[ ! -z "$http_proxy" ]] ; then
-    npm config set registry http://registry.npmjs.org/
-    npm install -g yarn
-    npm set strict-ssl false
-    yarn config set registry http://registry.yarnpkg.com/
-    yarn config set strict-ssl false
     git config --global http.proxy $http_proxy
     if [[ ! -z "$GIT_PROXY" ]] ; then
 	git config --global url."$GIT_PROXY".insteadOf https://
     fi
     git config --global http.sslVerify false
-
-#    npm config set proxy $NPM_PROXY
-#    npm config set http-proxy $NPM_PROXY
-#    npm config set strict-ssl false
 fi
 
 # Pypi Tensorflow will fail on noavx
