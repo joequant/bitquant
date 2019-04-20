@@ -64,5 +64,10 @@ proxy-start:
 	git-cache-http-server > git-cache-http-server.log &
 	verdaccio > verdaccio.log &
 
+proxy-set:
+	cp proxy.sh 01.cauldron
+	cp proxy.sh 02.pkg
+	cp proxy.sh 03.setup 
+
 .PHONY: bitstation setup pkgs cauldron
 
