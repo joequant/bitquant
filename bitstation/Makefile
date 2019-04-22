@@ -60,9 +60,10 @@ proxy-install:
 	sudo npm install -g git-cache-http-server verdaccio
 
 proxy-start:
-	devpi-server > devpi-server.log &
-	git-cache-http-server > git-cache-http-server.log &
-	verdaccio > verdaccio.log &
+	mkdir -p log
+	devpi-server >> log/devpi-server.log 2>&1 &
+	git-cache-http-server >> log/git-cache-http-server.log 2>&1 &
+	verdaccio >> log/verdaccio.log 2>&1 &
 
 proxy-set:
 	cp proxy.sh 01.cauldron
