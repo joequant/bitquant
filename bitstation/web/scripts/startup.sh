@@ -44,3 +44,8 @@ if [ -f /usr/bin/rserver ] ; then
 echo "Restarting rserver"
 /usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
 fi
+
+if [ -e /usr/sbin/php-fpm ] ; then
+echo "Restarting php-fpm"
+/usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> $LOG_DIR/php-fpm.log 2>&1 &
+fi
