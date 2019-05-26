@@ -69,7 +69,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       autoconf \
       swig \
       protobuf-devel \
-      unwind-devel
+      unwind-devel \
+      graphviz-devel
 
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel

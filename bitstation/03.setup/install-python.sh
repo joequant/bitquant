@@ -62,6 +62,8 @@ pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
+# get fix for libpacke
+pip3 install --upgrade git+https://github.com/joequant/libact.git --prefix /usr
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
@@ -80,7 +82,7 @@ git+https://github.com/bashtage/arch.git
 git+https://github.com/joequant/OrderBook.git
 git+https://github.com/joequant/quantdsl.git
 git+https://github.com/joequant/dynts.git
-git+https://github.com/joequant/libact.git
+git+https://github.com/pymc-devs/pymc3
 sklearn
 Werkzeug
 Flask
@@ -115,13 +117,13 @@ scikit-image
 patsy
 beautifulsoup4
 pymongo
-pymc3
 emcee
 ipython_mongo
 seaborn
 ipysheet
 toyplot
 ad
+arviz
 collections-extended
 TA-Lib
 mpmath
