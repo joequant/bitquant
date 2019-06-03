@@ -85,6 +85,7 @@ git+https://github.com/joequant/dynts.git
 git+https://github.com/pymc-devs/pymc3
 sklearn
 Werkzeug
+dgl
 Flask
 pyzmq
 jupyterlab
