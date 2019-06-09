@@ -69,9 +69,7 @@ pushd /usr/lib/node_modules
 modclean -r -f
 popd
 
-#fix up php-fpm
 pushd /etc/httpd/conf
 rm -f conf.d/security.conf
-mv -f modules.d/00-php-fpm.conf modules.d/01_php_fpm.conf
 cp /tmp/00_mpm.conf modules.d
 popd
