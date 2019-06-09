@@ -89,6 +89,7 @@ dgl
 Flask
 pyzmq
 ccxt
+bitcoin-etl
 jupyterlab
 numba
 ipympl
