@@ -88,6 +88,7 @@ Werkzeug
 dgl
 Flask
 pyzmq
+ccxt
 jupyterlab
 numba
 ipympl
