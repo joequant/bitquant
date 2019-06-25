@@ -54,3 +54,12 @@ Proxy server
 2) Run squid
 3) install and run devpi-server from pypi
 4) install git-cache-http-server with npm on squid server
+
+License
+-------
+
+Copyright (C) 2016-
+Bitquant Research Laboratories (Asia) Limited
+
+The contents of this directory are released under the terms of the GNU
+Lesser General Public License.
