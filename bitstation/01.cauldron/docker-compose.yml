@@ -1,0 +1,8 @@
+version:  '3'
+services:
+  cauldron:
+     image: "joequant/cauldron"
+     stdin_open: true
+     tty: true
+     command: "/bin/bash"
+

@@ -2,11 +2,14 @@ version:  '3'
 services:
   bitstation:
      image: "joequant/bitstation"
+     build: 03.setup
      stdin_open: true
      tty: true
      ports:
        - 80:80
        - 443:443
+     depends_on:
+       - pkgs
      volumes:
        - home:/home
        - dokuwiki:/var/lib/dokuwiki
@@ -16,6 +19,15 @@ services:
        - log:/var/log
        - etc:/etc
        - srv:/srv
+  pkgs:
+     image: "joequant/pkgs"
+     build: 02.pkgs
+     depends_on:
+       - cauldron
+  cauldron:
+     image: "joequant/cauldron"
+     build: 01.cauldron
+
 volumes:
    home:
    dokuwiki:

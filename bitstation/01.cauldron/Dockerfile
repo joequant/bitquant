@@ -1,4 +1,4 @@
-FROM mageia:6
+FROM mageia:7
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 
 # Save to temp file rather than piping because piping doesn't work

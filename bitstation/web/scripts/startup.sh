@@ -44,3 +44,4 @@ if [ -f /usr/bin/rserver ] ; then
 echo "Restarting rserver"
 /usr/bin/rserver >> $LOG_DIR/rserver.log 2>&1 &
 fi
+

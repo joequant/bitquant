@@ -33,6 +33,11 @@ if [ -x /usr/bin/jupyterhub ] ; then
     popd
 fi
 
+if [ -x /usr/sbin/php-fpm ] ; then
+echo "Restarting php-fpm"
+sudo -u apache /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> $LOG_DIR/php-fpm.log 2>&1 &
+fi
+
 echo "Pulling git"
 pushd $WEB_DIR/..
 su user -c "git pull"
