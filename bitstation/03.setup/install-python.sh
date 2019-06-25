@@ -59,7 +59,9 @@ pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 
 # reinstall to get jupyter executable
-pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
+# force 4.4.0 to work around ijavascript install issue
+# https://github.com/n-riesco/ijavascript/issues/200
+pip3 install --upgrade --force-reinstall jupyter-core==4.4.0 --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
@@ -81,6 +83,7 @@ git+https://github.com/ematvey/pybacktest.git
 git+https://github.com/bashtage/arch.git
 git+https://github.com/joequant/OrderBook.git
 git+https://github.com/joequant/quantdsl.git
+git+https://github.com/joequant/bitcoin-etl.git
 git+https://github.com/joequant/dynts.git
 git+https://github.com/pymc-devs/pymc3
 sklearn
@@ -89,7 +92,6 @@ dgl
 Flask
 pyzmq
 ccxt
-bitcoin-etl
 jupyterlab
 numba
 ipympl
@@ -250,6 +252,7 @@ cppyy-cling
 modAL
 alipy
 mglearn
+bitcoin-tools
 EOF
 
 #jupytext 1.0.1 fixes issue #185
