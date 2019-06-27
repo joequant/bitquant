@@ -72,4 +72,7 @@ popd
 pushd /etc/httpd/conf
 rm -f conf.d/security.conf
 cp /tmp/00_mpm.conf modules.d
+if [ -e modules.d/00-php-fpm.conf ] ; then
+    mv modules.d/00-php-fpm.conf modules.d/10_php_fpm.conf
+fi
 popd
