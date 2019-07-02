@@ -8,8 +8,6 @@ services:
      ports:
        - 80:80
        - 443:443
-     depends_on:
-       - pkgs
      volumes:
        - home:/home
        - dokuwiki:/var/lib/dokuwiki
@@ -22,8 +20,6 @@ services:
   pkgs:
      image: "joequant/pkgs"
      build: 02.pkgs
-     depends_on:
-       - cauldron
   cauldron:
      image: "joequant/cauldron"
      build: 01.cauldron
