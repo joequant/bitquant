@@ -43,6 +43,8 @@ pip3 install --upgrade numpy requests six python-dateutil \
      matplotlib pandas scipy pythreejs --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
+
+"""
 pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
@@ -57,6 +59,7 @@ EOF
 
 pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
+"""
 
 # reinstall to get jupyter executable
 # force 4.4.0 to work around ijavascript install issue
@@ -82,7 +85,6 @@ git+https://github.com/quantopian/pyfolio.git
 git+https://github.com/ematvey/pybacktest.git
 git+https://github.com/bashtage/arch.git
 git+https://github.com/joequant/OrderBook.git
-git+https://github.com/joequant/quantdsl.git
 git+https://github.com/joequant/bitcoin-etl.git
 git+https://github.com/joequant/dynts.git
 git+https://github.com/pymc-devs/pymc3
@@ -107,8 +109,7 @@ networkx
 lightning-python
 vispy 
 pyalgotrade 
-statsmodels 
-quandl
+statsmodels
 ipywidgets 
 ipyvolume
 jupyter_declarativewidgets 
@@ -130,7 +131,6 @@ toyplot
 ad
 arviz
 collections-extended
-TA-Lib
 mpmath
 multimethods
 openpyxl
@@ -220,13 +220,9 @@ py-solc
 opencv-python
 dm-sonnet
 tributary
-pylantern
 mpld3
-nbdime
 itkwidgets
 jupyterlab_templates
-jupyterlab_iframe
-pywwt
 Jupyter-Video-Widget
 pybrain
 ipyparallel
@@ -240,7 +236,6 @@ pattern
 onnx
 tzlocal
 mypy
-pytext-nlp
 sidecar
 black
 yapf
@@ -255,9 +250,24 @@ mglearn
 bitcoin-tools
 EOF
 
+#broken
+#TA-Lib
+#pylantern
+#pytext-nlp
+#quandl
+#jupyterlab_iframe
+
+# eventsourcing
+#git+https://github.com/joequant/quantdsl.git
+
+#not instaled
+#pywwt
+#nbdime
+
 #jupytext 1.0.1 fixes issue #185
 # https://github.com/mwouts/jupytext/issues/185
 
+:'
 cat <<EOF > /tmp/constraints.txt
 numpy
 matplotlib
@@ -269,6 +279,7 @@ EOF
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET --prefix /usr -c /tmp/constraints.txt
+'
 
 # Set registry to non-ssl to allow caching
 echo "Installing webpack"
@@ -295,24 +306,35 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=1 --max-procs=$(nproc) jupyter labextension install --no-build
-nbdime-jupyterlab
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --no-build
 @jupyterlab/git
-@jupyterlab/google-drive
 jupyterlab_tensorboard
-jupyterlab_bokeh
-@jupyter-widgets/jupyterlab-manager
 jupyter-matplotlib
-jupyterlab_voyager
 jupyterlab_templates
 ipysheet
-qgrid
+jupyterlab-drawio
+jupyterlab-python-file
+jupyterlab-spreadsheet
+jupyterlab_filetree
 @jupyterlab/toc
 @jupyterlab/latex
+bqplot
+@lckr/jupyterlab_variableinspector
+@agoose77/jupyterlab-attachments
+@enlznep/jupyterlab_shell_file
+@mflevine/jupyterlab_html
+EOF
+
+:'
+@jupyterlab/google-drive
+nbdime-jupyterlab
+jupyterlab_bokeh
+@jupyter-widgets/jupyterlab-manager
+jupyterlab_voyager
+qgrid
 jupyterlab-kernelspy
 @ijmbarr/jupyterlab_spellchecker
 @jupyterlab/hub-extension
-@mflevine/jupyterlab_html
 @pyviz/jupyterlab_holoviews
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
@@ -323,26 +345,19 @@ jupyterlab-kernelspy
 @jupyterlab/vega3-extension
 @jupyterlab/celltags
 @candela/jupyterlab
-jupyterlab-drawio
-pylantern
 jupyter-leaflet
-bqplot
-@lckr/jupyterlab_variableinspector
 @oriolmirosa/jupyterlab_materialdarker
 jupyterlab_iframe
-jupyterlab-python-file
-jupyterlab_filetree
-@agoose77/jupyterlab-attachments
-@enlznep/jupyterlab_shell_file
 @jupyter-widgets/jupyterlab-sidecar
 @ryantam626/jupyterlab_code_formatter
 @krassowski/jupyterlab_go_to_definition
-jupyterlab-spreadsheet
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
 jupyterlab_autoversion
-EOF
+'
 
+# broken packages
+# pylantern
 #ipyaggrid
 
 jupyter lab build

@@ -8,7 +8,7 @@
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
-#dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
+dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
 
 source /tmp/proxy.sh
 

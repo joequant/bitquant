@@ -8,6 +8,7 @@
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
+dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
 
 source /tmp/proxy.sh
 
@@ -20,7 +21,7 @@ EOF
 
 
 #repeat packages in setup
-dnf --setopt=install_weak_deps=False --best install -v -y --nodocs \
+dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs \
       apache \
       apache-mod_suexec \
       apache-mod_proxy \

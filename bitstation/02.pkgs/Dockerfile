@@ -1,4 +1,6 @@
-FROM joequant/cauldron:latest
+#FROM joequant/cauldron:latest
+FROM mageia:7
+
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 
 RUN mkdir -p /etc/sysusers.d 
