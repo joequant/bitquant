@@ -20,7 +20,7 @@ fi
 if [[ ! -z "$NOAVX" ]] ; then
     export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
 else
-    export TENSORFLOW=tensorflow==2.0.0-alpha0
+    export TENSORFLOW=tensorflow==2.0.0-beta1
 fi
 
 # see http://click.pocoo.org/5/python3/
@@ -64,7 +64,7 @@ pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 # reinstall to get jupyter executable
 # force 4.4.0 to work around ijavascript install issue
 # https://github.com/n-riesco/ijavascript/issues/200
-pip3 install --upgrade --force-reinstall jupyter-core==4.4.0 --prefix /usr
+pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
@@ -323,10 +323,14 @@ bqplot
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
 @mflevine/jupyterlab_html
+@jupyterlab/google-drive
+@jupyterlab/mathjax3-extension
+jupyterlab_autoversion
+@oriolmirosa/jupyterlab_materialdarker
+@ryantam626/jupyterlab_code_formatter
 EOF
 
 :'
-@jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_bokeh
 @jupyter-widgets/jupyterlab-manager
@@ -338,7 +342,6 @@ jupyterlab-kernelspy
 @pyviz/jupyterlab_holoviews
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
-@jupyterlab/mathjax3-extension
 @jupyterlab/katex-extension
 @jupyterlab/plotly-extension
 @jupyterlab/vega2-extension
@@ -346,14 +349,11 @@ jupyterlab-kernelspy
 @jupyterlab/celltags
 @candela/jupyterlab
 jupyter-leaflet
-@oriolmirosa/jupyterlab_materialdarker
 jupyterlab_iframe
 @jupyter-widgets/jupyterlab-sidecar
-@ryantam626/jupyterlab_code_formatter
 @krassowski/jupyterlab_go_to_definition
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
-jupyterlab_autoversion
 '
 
 # broken packages
