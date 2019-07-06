@@ -248,7 +248,7 @@ modAL
 alipy
 mglearn
 bitcoin-tools
-ipyleaflet
+
 EOF
 
 #broken
@@ -257,6 +257,7 @@ EOF
 #pytext-nlp
 #quandl
 #jupyterlab_iframe
+#ipyleaflet
 
 # eventsourcing
 #git+https://github.com/joequant/quantdsl.git
@@ -268,7 +269,7 @@ EOF
 #jupytext 1.0.1 fixes issue #185
 # https://github.com/mwouts/jupytext/issues/185
 
-:'
+"""
 cat <<EOF > /tmp/constraints.txt
 numpy
 matplotlib
@@ -280,7 +281,7 @@ EOF
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET --prefix /usr -c /tmp/constraints.txt
-'
+"""
 
 # Set registry to non-ssl to allow caching
 echo "Installing webpack"
@@ -336,10 +337,10 @@ jupyterlab_autoversion
 @jupyterlab/vega3-extension
 @jupyterlab/vega4-extension
 @jupyterlab/celltags
-jupyter-leaflet
 EOF
 
 :'
+jupyter-leaflet
 @jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_bokeh
