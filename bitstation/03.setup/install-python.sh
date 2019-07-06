@@ -251,6 +251,8 @@ bitcoin-tools
 
 EOF
 
+python3 -m bash_kernel.install --sys-prefix
+
 #broken
 #TA-Lib
 #pylantern
@@ -320,7 +322,8 @@ jupyterlab-spreadsheet
 jupyterlab_filetree
 @jupyterlab/toc
 @jupyterlab/latex
-bqplot
+@jupyter-widgets/jupyterlab-manager
+bqplot-jupyterlab
 @lckr/jupyterlab_variableinspector
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
@@ -344,7 +347,7 @@ jupyter-leaflet
 @jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_bokeh
-@jupyter-widgets/jupyterlab-manager
+
 jupyterlab_voyager
 qgrid
 jupyterlab-kernelspy
