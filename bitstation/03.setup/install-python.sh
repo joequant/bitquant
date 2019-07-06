@@ -248,6 +248,7 @@ modAL
 alipy
 mglearn
 bitcoin-tools
+ipyleaflet
 EOF
 
 #broken
@@ -323,14 +324,23 @@ bqplot
 @agoose77/jupyterlab-attachments
 @enlznep/jupyterlab_shell_file
 @mflevine/jupyterlab_html
-@jupyterlab/google-drive
 @jupyterlab/mathjax3-extension
 jupyterlab_autoversion
 @oriolmirosa/jupyterlab_materialdarker
 @ryantam626/jupyterlab_code_formatter
+@jupyterlab/fasta-extension
+@jupyterlab/geojson-extension
+@jupyterlab/katex-extension
+@jupyterlab/plotly-extension
+@jupyterlab/vega2-extension
+@jupyterlab/vega3-extension
+@jupyterlab/vega4-extension
+@jupyterlab/celltags
+jupyter-leaflet
 EOF
 
 :'
+@jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_bokeh
 @jupyter-widgets/jupyterlab-manager
@@ -340,15 +350,7 @@ jupyterlab-kernelspy
 @ijmbarr/jupyterlab_spellchecker
 @jupyterlab/hub-extension
 @pyviz/jupyterlab_holoviews
-@jupyterlab/fasta-extension
-@jupyterlab/geojson-extension
-@jupyterlab/katex-extension
-@jupyterlab/plotly-extension
-@jupyterlab/vega2-extension
-@jupyterlab/vega3-extension
-@jupyterlab/celltags
 @candela/jupyterlab
-jupyter-leaflet
 jupyterlab_iframe
 @jupyter-widgets/jupyterlab-sidecar
 @krassowski/jupyterlab_go_to_definition
