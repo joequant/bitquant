@@ -248,7 +248,8 @@ modAL
 alipy
 mglearn
 bitcoin-tools
-
+jupyter_dashboards
+tributary
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
@@ -310,7 +311,7 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --no-build
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --dev-build=False
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyter-matplotlib
@@ -336,8 +337,6 @@ jupyterlab_autoversion
 @jupyterlab/geojson-extension
 @jupyterlab/katex-extension
 @jupyterlab/plotly-extension
-@jupyterlab/vega2-extension
-@jupyterlab/vega3-extension
 @jupyterlab/vega4-extension
 @jupyterlab/celltags
 EOF
@@ -347,7 +346,6 @@ jupyter-leaflet
 @jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_bokeh
-
 jupyterlab_voyager
 qgrid
 jupyterlab-kernelspy
@@ -360,13 +358,16 @@ jupyterlab_iframe
 @krassowski/jupyterlab_go_to_definition
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
+@jupyterlab/vega2-extension
+@jupyterlab/vega3-extension
 '
 
 # broken packages
 # pylantern
 #ipyaggrid
 
-jupyter lab build
+
+jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 #jupyter nbextension install --py --sys-prefix jpy_video --system
 #jupyter nbextension enable  --py --sys-prefix jpy_video --system
