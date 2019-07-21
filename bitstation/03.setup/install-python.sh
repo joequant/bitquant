@@ -311,7 +311,7 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --dev-build=False
+cat <<EOF | xargs --max-args=12 --max-procs=1 jupyter labextension install --dev-build=False
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyter-matplotlib
