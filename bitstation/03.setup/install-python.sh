@@ -250,6 +250,7 @@ mglearn
 bitcoin-tools
 jupyter_dashboards
 tributary
+jupyter-git
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
@@ -311,7 +312,7 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --dev-build=False
+cat <<EOF | xargs --max-args=12 --max-procs=1 jupyter labextension install --dev-build=False
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyter-matplotlib
@@ -325,9 +326,6 @@ jupyterlab_filetree
 @jupyterlab/latex
 @jupyter-widgets/jupyterlab-manager
 bqplot-jupyterlab
-@lckr/jupyterlab_variableinspector
-@agoose77/jupyterlab-attachments
-@enlznep/jupyterlab_shell_file
 @mflevine/jupyterlab_html
 @jupyterlab/mathjax3-extension
 jupyterlab_autoversion
@@ -339,9 +337,13 @@ jupyterlab_autoversion
 @jupyterlab/plotly-extension
 @jupyterlab/vega4-extension
 @jupyterlab/celltags
+@jupyterlab/git
 EOF
 
 :'
+@enlznep/jupyterlab_shell_file
+@lckr/jupyterlab_variableinspector
+@agoose77/jupyterlab-attachments
 jupyter-leaflet
 @jupyterlab/google-drive
 nbdime-jupyterlab
@@ -375,6 +377,7 @@ jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
+jupyter serverextension enable --py jupyterlab_git --sys-prefix
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 #jupyter serverextension enable --py jupyterlab_templates
