@@ -251,6 +251,10 @@ bitcoin-tools
 jupyter_dashboards
 tributary
 jupyter-git
+cryptocompare
+coinmarketcap
+bitfinex-tencars
+cryptowatch-client
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
