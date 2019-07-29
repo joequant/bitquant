@@ -334,20 +334,21 @@ jupyterlab_autoversion
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
 @jupyterlab/katex-extension
-@jupyterlab/plotly-extension
 @jupyterlab/vega4-extension
 @jupyterlab/celltags
 @jupyterlab/git
+jupyterlab_bokeh
 EOF
 
 :'
 @enlznep/jupyterlab_shell_file
 @lckr/jupyterlab_variableinspector
 @agoose77/jupyterlab-attachments
+@jupyterlab/plotly-extension
+>>>>>>> 05097627978969f24871b43c65ada2b34cd44f41
 jupyter-leaflet
 @jupyterlab/google-drive
 nbdime-jupyterlab
-jupyterlab_bokeh
 jupyterlab_voyager
 qgrid
 jupyterlab-kernelspy
@@ -368,7 +369,7 @@ jupyterlab_iframe
 # pylantern
 #ipyaggrid
 
-
+#jupyter lab build --dev-build=False
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 #jupyter nbextension install --py --sys-prefix jpy_video --system
