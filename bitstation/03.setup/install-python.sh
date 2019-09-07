@@ -260,6 +260,7 @@ RISE
 lolviz
 papermill
 ipytree
+apache-airflow
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
