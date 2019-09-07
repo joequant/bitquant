@@ -8,9 +8,16 @@
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
-dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
+
+cat <<EOF >> /etc/dnf/dnf.conf
+fastestmirror=true
+excludepkgs=filesystem,chkconfig
+max_parallel_downloads=10
+EOF
 
 source /tmp/proxy.sh
+
+dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
@@ -57,7 +64,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-pip \
       python3-cffi \
       python3-cython \
-      python3-pexpect
+      python3-pexpect \
+      python2
 
 chmod a+x /usr/lib64/R/bin/*
 dnf clean all
@@ -74,6 +82,6 @@ pushd /etc/httpd/conf
 rm -f conf.d/security.conf
 cp /tmp/00_mpm.conf modules.d
 if [ -e modules.d/00-php-fpm.conf ] ; then
-    mv modules.d/00-php-fpm.conf modules.d/10_php_fpm.conf
+    mv modules.d/00-php-fpm.conf modules.d/10-php-fpm.conf
 fi
 popd
