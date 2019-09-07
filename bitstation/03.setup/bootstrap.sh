@@ -13,9 +13,11 @@ echo "Installing npm packages"
 if [ -d /home/user/git/etherpad-lite ] ; then
 pushd /home/user/git/etherpad-lite
 make
+if [ -d src/node_modules ] ; then
 pushd src/node_modules
 modclean -r
 popd
+fi
 popd
 fi
 

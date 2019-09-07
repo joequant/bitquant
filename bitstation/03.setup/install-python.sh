@@ -255,6 +255,11 @@ cryptocompare
 coinmarketcap
 bitfinex-tencars
 cryptowatch-client
+voila
+RISE
+lolviz
+papermill
+ipytree
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
@@ -342,6 +347,8 @@ jupyterlab_autoversion
 @jupyterlab/celltags
 @jupyterlab/git
 jupyterlab_bokeh
+@jupyter-voila/jupyterlab-preview
+ipytree
 EOF
 
 :'
