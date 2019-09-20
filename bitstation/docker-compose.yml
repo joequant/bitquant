@@ -2,7 +2,11 @@ version:  '3'
 services:
   bitstation:
      image: "joequant/bitstation"
-     build: 03.setup
+     build:
+       context: 03.setup
+       dockerfile: Dockerfile
+       args:
+          base: "joequant/pkgs:7"
      stdin_open: true
      tty: true
      ports:
@@ -17,9 +21,20 @@ services:
        - log:/var/log
        - etc:/etc
        - srv:/srv
-  pkgs:
-     image: "joequant/pkgs"
-     build: 02.pkgs
+  pkgs-cauldron:
+     image: "joequant/pkgs:cauldron"
+     build:
+       context: 02.pkgs
+       dockerfile: Dockerfile
+       args:
+          base: joequant/cauldron
+  pkgs-7:
+     image: "joequant/pkgs:7"
+     build:
+       context: 02.pkgs
+       dockerfile: Dockerfile
+       args:
+         base: mageia:7
   cauldron:
      image: "joequant/cauldron"
      build: 01.cauldron

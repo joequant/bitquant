@@ -1,4 +1,5 @@
-FROM joequant/pkgs:latest
+ARG base
+FROM $base
 
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 COPY install-build-deps.sh docker-setup.sh remove-build-deps.sh install-ruby.sh environment.sh bootstrap.sh install-python.sh install-npm.sh install-r-pkgs.sh install-r-pkgs-sudo.sh proxy.sh /tmp/
