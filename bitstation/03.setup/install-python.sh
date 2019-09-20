@@ -20,7 +20,7 @@ fi
 if [[ ! -z "$NOAVX" ]] ; then
     export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
 else
-    export TENSORFLOW=tensorflow==2.0.0-beta1
+    export TENSORFLOW=tensorflow==2.0.0-rc0
 fi
 
 # see http://click.pocoo.org/5/python3/
@@ -261,6 +261,12 @@ lolviz
 papermill
 ipytree
 apache-airflow
+jupyterlab-git
+cryptofeed
+jupyterlab-hdf
+jupyterthemes
+perspective-python
+pulp
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
@@ -322,7 +328,7 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=12 --max-procs=1 jupyter labextension install --dev-build=False
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --dev-build=False
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyter-matplotlib
@@ -350,16 +356,23 @@ jupyterlab_autoversion
 jupyterlab_bokeh
 @jupyter-voila/jupyterlab-preview
 ipytree
+@jupyterlab/commenting-extension
+@jupyterlab/google-drive
+jupyterlab-hdf
+@jupyterlab/dataregistry-extension
+@finos/perspective-jupyterlab
+@lckr/jupyterlab_variableinspector
+@krassowski/jupyterlab_go_to_definition
+@jupyterlab/htmlviewer-extension
 EOF
 
 :'
 @enlznep/jupyterlab_shell_file
 @lckr/jupyterlab_variableinspector
-@agoose77/jupyterlab-attachments
+@agoose77/jupytreextlab-attachments
 @jupyterlab/plotly-extension
 >>>>>>> 05097627978969f24871b43c65ada2b34cd44f41
 jupyter-leaflet
-@jupyterlab/google-drive
 nbdime-jupyterlab
 jupyterlab_voyager
 qgrid
