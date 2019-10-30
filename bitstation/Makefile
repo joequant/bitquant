@@ -55,15 +55,10 @@ clean-images:
 	./rm-stopped-containers.sh ; ./rm-untagged-images.sh
 
 proxy-install:
-	sudo dnf install squid python3-pip
-	sudo pip3 install devpi-server
-	sudo npm install -g git-cache-http-server verdaccio
+	sudo ./utils/proxy-install.sh
 
 proxy-start:
-	mkdir -p log
-	devpi-server >> log/devpi-server.log 2>&1 &
-	git-cache-http-server >> log/git-cache-http-server.log 2>&1 &
-	verdaccio >> log/verdaccio.log 2>&1 &
+	./utils/proxy-start.sh
 
 proxy-set:
 	cp proxy.sh 01.cauldron
