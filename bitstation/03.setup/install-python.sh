@@ -20,7 +20,7 @@ fi
 if [[ ! -z "$NOAVX" ]] ; then
     export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
 else
-    export TENSORFLOW=tensorflow==2.0.0-rc0
+    export TENSORFLOW=tensorflow==2.0.0
 fi
 
 # see http://click.pocoo.org/5/python3/
@@ -68,11 +68,20 @@ pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
-pip3 install --upgrade git+https://github.com/joequant/libact.git --prefix /usr
+pip3 install --upgrade git+https://github.com/ntucllab/libact.git --prefix /usr
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
+
+# work around cython changes in 3.8
+pip3 download statsmodels
+tar xzf statsmodels-*.tar.gz
+pushd statsmodels-*/
+find -name "*.pyx" | sed -e 's!.pyx!.c!g' | xargs rm
+python3 setup.py install --prefix /usr
+popd
+rm -rf statsmodels-*/
 
 cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 git+https://github.com/joequant/ethercalc-python.git
@@ -109,7 +118,6 @@ networkx
 lightning-python
 vispy 
 pyalgotrade 
-statsmodels
 ipywidgets 
 ipyvolume
 jupyter_declarativewidgets 
@@ -267,6 +275,8 @@ jupyterlab-hdf
 jupyterthemes
 perspective-python
 pulp
+tsfresh
+jupyterlab_code_formatter
 EOF
 
 python3 -m bash_kernel.install --sys-prefix

@@ -8,6 +8,7 @@
 #
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
+
 dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
 
 source /tmp/proxy.sh
@@ -33,7 +34,6 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       python3-tables \
       python3-scipy \
       python3-qstk \
-      python3-quantlib \
       python3-scikits-learn \
       python3-rpy2 \
       python3-xlwt \
@@ -70,8 +70,11 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       swig \
       protobuf-devel \
       unwind-devel \
-      graphviz-devel
+      graphviz-devel \
+      glpk-devel \
+      glpk
 
+#      python3-quantlib
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
 #libxml2-devel for RCurl
