@@ -7,17 +7,13 @@ import requests
 import os.path
 
 cwd = os.path.dirname(os.path.realpath(sys.argv[0]))
-ethercalc_dir = os.path.join(cwd, "ethercalc")
+ethercalc_dir = os.path.join(cwd, "ethercalc-data")
 ec = ethercalc.EtherCalc("http://localhost/calc/")
 lockfile = os.path.join("/var", "log", "bitquant", "ethercalc-init.txt")
 if os.path.isfile(lockfile):
     print("ethercalc already init. exiting")
     exit(0)
 
-f = open(lockfile, "w")
-f.write("This file shows that ethercalc has been init.")
-f.close()
-    
 for i in os.listdir(ethercalc_dir):
     if i.endswith(".clc"):
         item = i.rsplit(".", maxsplit=1)[0]
@@ -29,4 +25,7 @@ for i in os.listdir(ethercalc_dir):
 #            print (data)
             print (ec.update(item, data))
 
+f = open(lockfile, "w")
+f.write("This file shows that ethercalc has been init.")
+f.close()
 
