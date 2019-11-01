@@ -13,7 +13,7 @@ lockfile = os.path.join("/var", "log", "bitquant", "ethercalc-init.txt")
 if os.path.isfile(lockfile):
     print("ethercalc already init. exiting")
     exit(0)
-
+    
 for i in os.listdir(ethercalc_dir):
     if i.endswith(".clc"):
         item = i.rsplit(".", maxsplit=1)[0]
@@ -28,4 +28,3 @@ for i in os.listdir(ethercalc_dir):
 f = open(lockfile, "w")
 f.write("This file shows that ethercalc has been init.")
 f.close()
-
