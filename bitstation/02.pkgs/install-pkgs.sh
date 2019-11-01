@@ -12,16 +12,16 @@ set -e -v
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
 excludepkgs=filesystem,chkconfig
-max_parallel_downloads=10
+max_parallel_downloads=15
 EOF
 
 source /tmp/proxy.sh
 
-dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
+dnf upgrade --best --nodocs --allowerasing -y
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-dnf shell -v -y --setopt=install_weak_deps=False  --refresh <<EOF
+dnf shell -v -y --setopt=install_weak_deps=False <<EOF
 reinstall --best --nodocs --allowerasing locales locales-en glibc
 run
 EOF
