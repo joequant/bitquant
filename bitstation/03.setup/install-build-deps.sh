@@ -72,8 +72,14 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       unwind-devel \
       graphviz-devel \
       glpk-devel \
-      glpk
+      glpk \
+      llvm-devel \
+      llvm \
+      rdkafka-devel
 
+# glpk for swiglpk
+# llvm-devel for pyfolio
+# kafka for tributary?
 #      python3-quantlib
 # ruby-sass for ethercalc
 #zeromq-devel for R kernel
