@@ -82,7 +82,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       llvm-devel \
       llvm \
       $RDKAFKA \
-      libumfpack-devel
+      libumfpack-devel \
+      hdf5-devel
 
 # glpk for swiglpk
 # llvm-devel for pyfolio

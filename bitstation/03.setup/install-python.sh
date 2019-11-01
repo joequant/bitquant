@@ -84,11 +84,8 @@ popd
 rm -rf statsmodels-*/
 
 #install first
-cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+cat <<EOF | xargs --max-args=15 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 h5py
-EOF
-
-cat <<EOF | xargs --max-args=12 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -345,7 +342,7 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --dev-build=False
+cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --dev-build=False
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyter-matplotlib
