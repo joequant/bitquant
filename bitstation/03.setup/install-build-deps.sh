@@ -9,12 +9,18 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-dnf upgrade --best --nodocs --allowerasing --refresh -y -x chkconfig -x filesystem
+dnf upgrade --best --nodocs --allowerasing -y
 
 source /tmp/proxy.sh
 
+if grep -q '^7 ' /etc/version
+then export RDKAFKA=
+else  export RDKAFKA=librdkafka-devel
+fi
+
+
 dnf --setopt=install_weak_deps=False --best install -v -y \
-    --nodocs --allowerasing --refresh \
+    --nodocs --allowerasing \
       gcc-c++ \
       make \
       r-quantlib \
@@ -75,7 +81,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       glpk \
       llvm-devel \
       llvm \
-      rdkafka-devel
+      $RDKAFKA \
+      libumfpack-devel
 
 # glpk for swiglpk
 # llvm-devel for pyfolio
