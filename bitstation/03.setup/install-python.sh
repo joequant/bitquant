@@ -109,7 +109,6 @@ Flask
 pyzmq
 ccxt
 jupyterlab
-numba
 ipympl
 import-ipynb
 astropy
@@ -313,6 +312,9 @@ pandas
 jupyterlab_autoversion
 ipyaggrid
 EOF
+
+# Skip for llvm9
+# numba
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET --prefix /usr -c /tmp/constraints.txt
