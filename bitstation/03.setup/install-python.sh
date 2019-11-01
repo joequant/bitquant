@@ -84,7 +84,7 @@ popd
 rm -rf statsmodels-*/
 
 #install first
-cat <<EOF | xargs --max-args=15 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+cat <<EOF | xargs --max-args=5 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 h5py
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
