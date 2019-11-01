@@ -2,7 +2,7 @@
 # remove build deps
 
 set -e -v
-
+source /tmp/proxy.sh
 dnf -y \
       autoremove \
       cmake \
@@ -83,23 +83,8 @@ popd
 npm config delete registry
 git config --unset --global http.proxy || true
 git config --unset --global http.sslVerify || true
-git config --unset --global url."http://localhost:8080/".insteadOf || true
+git config --unset --global url."$GIT_PROXY".insteadOf || true
 
 #put in link to allow loading of iruby
 ln -s /usr/lib64/libzmq.so.5 /usr/lib64/libzmq.so
 dnf clean all
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
