@@ -16,16 +16,16 @@ max_parallel_downloads=15
 EOF
 
 source /tmp/proxy.sh
+dnf makecache
+dnf upgrade --best --nodocs --allowerasing --refresh -y
 
-dnf upgrade --best --nodocs --allowerasing -y
+# workaround bug RHEL #1765718
+dnf autoremove python3-dnf-plugins-core -y
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
-dnf shell -v -y --setopt=install_weak_deps=False <<EOF
-reinstall --best --nodocs --allowerasing locales locales-en glibc
-run
-EOF
-
+dnf reinstall -v -y --setopt=install_weak_deps=False --best --nodocs --allowerasing \
+    locales locales-en glibc
 
 #repeat packages in setup
 dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs \
