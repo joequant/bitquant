@@ -438,6 +438,9 @@ fi
 
 #Create rhea user to spawn jupyterhub
 useradd -r rhea -s /bin/false -M -G shadow
+cp /tmp/sudospawner-singleuser /bin
+chmod a+rx /bin/sudospawner-singleuser
+
 if [[ ! -z "$http_proxy" ]] ; then
     pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
     mv -f .yarnrc.dist .yarnrc

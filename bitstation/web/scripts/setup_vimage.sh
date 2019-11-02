@@ -33,11 +33,4 @@ pushd $SCRIPT_DIR > /dev/null
 $WEB_DIR/cgi-bin/bittrader/conf.sh /vimage
 popd
 
-rm -rf /etc/udev/rules.d/70-persistent-net.rules
-touch /etc/udev/rules.d/70-persistent-net.rules
-
-cat <<EOF >> /home/$USER/.bash_profile
-. $SCRIPT_DIR/login-message.sh
-EOF
-
 echo $config > /etc/hostname

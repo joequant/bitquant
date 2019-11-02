@@ -9,9 +9,9 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-dnf upgrade --best --nodocs --allowerasing -y
-
 source /tmp/proxy.sh
+dnf makecache
+dnf upgrade --best --nodocs --allowerasing -y
 
 if grep -q '^7 ' /etc/version
 then export RDKAFKA=
