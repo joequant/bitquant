@@ -5,24 +5,20 @@ set -e -v
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
 excludepkgs=filesystem,chkconfig
-max_parallel_downloads=15
+max_parallel_downloads=10
 EOF
 
-#dnf install -v -y \
-#     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
-#     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
+dnf install -v -y \
+     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
+     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
 
-urpmi.update -a
-urpmi -y mageia-repos-cauldron 'dnf-command(config-manager)'
 dnf shell -v -y  <<EOF
-config-manager --set-disabled mageia-x86_64 updates-x86_64
+config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_64
 config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
 EOF
 
-dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
-rm /etc/yum.repos.d/mageia-*
-dnf upgrade -v -y --allowerasing --best --nodocs --setopt=install_weak_deps=False
-
+#dnf config-manager --add-repo http://mirrors.kernel.org/mageia/distrib/cauldron/x86_64/media/core/release cauldron
+dnf upgrade -v -y --allowerasing --best --nodocs --refresh --setopt=install_weak_deps=False
 dnf autoremove -y urpmi
 dnf clean all
 
