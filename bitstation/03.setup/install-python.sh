@@ -40,11 +40,9 @@ pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
-     matplotlib pandas scipy pythreejs --prefix /usr
+     matplotlib pandas scipy numpy pythreejs --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
-
-"""
 pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
@@ -59,7 +57,6 @@ EOF
 
 pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
-"""
 
 # reinstall to get jupyter executable
 # force 4.4.0 to work around ijavascript install issue
