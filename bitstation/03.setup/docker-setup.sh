@@ -10,6 +10,7 @@ cd ~user
 mkdir git
 cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
+chown -R user:user .
 cd ~user/git/bitquant/bitstation/web/scripts
-./setup_vimage.sh bitstation
+./setup.sh bitstation
 su user -p -c "/tmp/bootstrap.sh"
