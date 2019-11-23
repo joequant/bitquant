@@ -71,15 +71,6 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
-# work around cython changes in 3.8
-pip3 download statsmodels
-tar xzf statsmodels-*.tar.gz
-pushd statsmodels-*/
-find -name "*.pyx" | sed -e 's!.pyx!.c!g' | xargs rm
-python3 setup.py install --prefix /usr
-popd
-rm -rf statsmodels-*/
-
 #install first
 cat <<EOF | xargs --max-args=5 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 h5py
@@ -96,6 +87,7 @@ git+https://github.com/joequant/OrderBook.git
 git+https://github.com/joequant/bitcoin-etl.git
 git+https://github.com/joequant/dynts.git
 git+https://github.com/pymc-devs/pymc3
+statsmodels
 sklearn
 Werkzeug
 dgl
@@ -275,6 +267,10 @@ perspective-python
 pulp
 tsfresh
 jupyterlab_code_formatter
+scaleogram
+pycwt
+enigma-catalyst
+quandl
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
