@@ -14,3 +14,7 @@ chown -R user:user .
 cd ~user/git/bitquant/bitstation/web/scripts
 ./setup.sh bitstation
 su user -p -c "/tmp/bootstrap.sh"
+
+sed -i '/ipv6/d' /etc/mongod.conf
+sed -i '/ipv6/d' /etc/mongos.conf
+chmod a+rwx /srv
