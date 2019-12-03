@@ -3,6 +3,7 @@
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/css/metro-bootstrap.css">
 <script src="/js/metro/metro.min.js"></script>
+<script src="/js/logout.js"></script>
 <link rel="stylesheet" href="/css/metro-dokuwiki.css">
 <div class="metro">
 <a class="button primary large" target="_blank"
@@ -18,5 +19,6 @@ href="doku.php?id=links">Links</a>
 <a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/pad">Pads</a><br><br>
 <a class="button" target="_blank" href="/webmin">Setup page</a>
+<a class="button" href="javascript:logout();location.reload();">Logout</a>
 </div>
 </html>
