@@ -271,6 +271,7 @@ scaleogram
 pycwt
 enigma-catalyst
 quandl
+kaggle
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
