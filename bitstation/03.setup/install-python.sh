@@ -272,12 +272,13 @@ pycwt
 enigma-catalyst
 quandl
 kaggle
+wget
+TA-Lib
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
 
 #broken
-#TA-Lib
 #pylantern
 #pytext-nlp
 #quandl
