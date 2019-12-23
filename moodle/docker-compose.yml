@@ -18,7 +18,7 @@ services:
       - ALLOW_EMPTY_PASSWORD=yes
     ports:
       - '82:80'
-      - '445:443'
+      - '4443:443'
     volumes:
       - 'moodle_data:/bitnami'
     depends_on:
