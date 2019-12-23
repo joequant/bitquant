@@ -6,7 +6,7 @@ services:
        context: 03.setup
        dockerfile: Dockerfile
        args:
-          base: "joequant/pkgs:7"
+          base: "joequant/pkgs:cauldron"
      stdin_open: true
      tty: true
      ports:
