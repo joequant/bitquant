@@ -74,7 +74,13 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=3 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 ipyleaflet
+beakerx
 h5py
+vispy
+itkwidgets
+ipygraphql
+ipycanvas
+ipydatetime
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -245,6 +251,7 @@ cppyy-cling
 modAL
 alipy
 mglearn
+ipymesh
 bitcoin-tools
 jupyter_dashboards
 tributary
@@ -274,6 +281,9 @@ quandl
 kaggle
 wget
 TA-Lib
+algorithmx
+ipyevents
+ipycanvas
 EOF
 
 python3 -m bash_kernel.install --sys-prefix
@@ -375,14 +385,27 @@ jupyterlab-hdf
 @lckr/jupyterlab_variableinspector
 @krassowski/jupyterlab_go_to_definition
 @jupyterlab/htmlviewer-extension
+@jupyter-widgets/jupyterlab-sidecar
+@lckr/jupyterlab_variableinspector
+@krassowski/jupyterlab_go_to_definition
+@jupyterlab/plotly-extension
+@enlznep/jupyterlab_shell_file
+@jupyterlab/dataregistry
+@jupyterlab/hdf5
+@illumidesk/jupyter-lti
+@hadim/jupyter-archive
+algorithmx-jupyter
+ipyevents
+beakerx-jupyterlab
+@aquirdturtle/collapsible_headings
+ipycanvas
+jupyterlab-datawidgets
+itkwidgets
+@frontierkz/jupyterlab-attachments
 EOF
 
 :'
-@enlznep/jupyterlab_shell_file
-@lckr/jupyterlab_variableinspector
 @agoose77/jupytreextlab-attachments
-@jupyterlab/plotly-extension
->>>>>>> 05097627978969f24871b43c65ada2b34cd44f41
 jupyter-leaflet
 nbdime-jupyterlab
 jupyterlab_voyager
@@ -393,8 +416,6 @@ jupyterlab-kernelspy
 @pyviz/jupyterlab_holoviews
 @candela/jupyterlab
 jupyterlab_iframe
-@jupyter-widgets/jupyterlab-sidecar
-@krassowski/jupyterlab_go_to_definition
 @lean-data-science/jupyterlab_credentialstore
 @hkjinlee/jupyterlab_gz
 @jupyterlab/vega2-extension
