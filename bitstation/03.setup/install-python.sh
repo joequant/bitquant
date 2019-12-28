@@ -72,7 +72,8 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 #install first
-cat <<EOF | xargs --max-args=5 --max-procs=$(nproc) pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+cat <<EOF | xargs --max-args=1 --max-procs=3 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+ipyleaflet
 h5py
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
@@ -171,7 +172,6 @@ pyfolio
 VisualPortfolio
 empyrical
 qfrm
-tradingWithPython
 trade
 chinesestockapi
 bizdays
@@ -281,9 +281,11 @@ python3 -m bash_kernel.install --sys-prefix
 #broken
 #pylantern
 #pytext-nlp
-#quandl
 #jupyterlab_iframe
-#ipyleaflet
+
+#broken
+# can't install cboe
+#tradingWithPython 
 
 # eventsourcing
 #git+https://github.com/joequant/quantdsl.git
