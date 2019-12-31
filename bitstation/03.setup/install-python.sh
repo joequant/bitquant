@@ -71,16 +71,23 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
+# run cytoolz for python 3.8 for cython
+pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+     git+https://github.com/pytoolz/cytoolz.git
+
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=3 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+ccxt
 ipyleaflet
 beakerx
 h5py
 vispy
+itk-meshtopolydata
 itkwidgets
 ipygraphql
 ipycanvas
 ipydatetime
+
 git+https://github.com/joequant/ethercalc-python.git
 git+https://github.com/joequant/spyre.git
 git+https://github.com/joequant/cryptoexchange.git
@@ -100,7 +107,6 @@ Werkzeug
 dgl
 Flask
 pyzmq
-ccxt
 jupyterlab
 ipympl
 import-ipynb
@@ -389,8 +395,6 @@ jupyterlab-hdf
 @lckr/jupyterlab_variableinspector
 @krassowski/jupyterlab_go_to_definition
 @jupyterlab/plotly-extension
-@enlznep/jupyterlab_shell_file
-@jupyterlab/dataregistry
 @jupyterlab/hdf5
 @illumidesk/jupyter-lti
 @hadim/jupyter-archive
@@ -403,6 +407,9 @@ jupyterlab-datawidgets
 itkwidgets
 @frontierkz/jupyterlab-attachments
 EOF
+
+# does not support current version of JupyterLab
+# @enlznep/jupyterlab_shell_file
 
 :'
 @agoose77/jupytreextlab-attachments
