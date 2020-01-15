@@ -43,6 +43,7 @@ pip3 install --upgrade numpy requests six python-dateutil \
      matplotlib pandas scipy numpy pythreejs --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
+pip3 install --upgrade mxnet --prefix /usr
 pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
@@ -76,7 +77,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      git+https://github.com/pytoolz/cytoolz.git
 
 #install first
-cat <<EOF | xargs --max-args=1 --max-procs=3 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 ccxt
 ipyleaflet
 beakerx
@@ -111,9 +112,9 @@ jupyterlab
 ipympl
 import-ipynb
 astropy
+sudospawner
 jupyterhub
 nbconvert
-sudospawner
 circuits
 dask
 xarray
@@ -385,7 +386,6 @@ jupyterlab_bokeh
 ipytree
 @jupyterlab/commenting-extension
 @jupyterlab/google-drive
-jupyterlab-hdf
 @jupyterlab/dataregistry-extension
 @finos/perspective-jupyterlab
 @lckr/jupyterlab_variableinspector
