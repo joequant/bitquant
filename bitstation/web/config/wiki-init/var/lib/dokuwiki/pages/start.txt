@@ -19,6 +19,7 @@ href="doku.php?id=links">Links</a>
 <a class="button primary large" target="_blank" href="/calc">Spreadsheet</a>
 <a class="button primary large" target="_blank" href="/pad">Pads</a><br><br>
 <a class="button" target="_blank" href="/webmin">Setup page</a>
+<a class="button" target="_blank" href="/cgi-bin/bittrader/model.py/passwd-form">Change password</a>
 <a class="button" href="javascript:logout();location.reload();">Logout</a>
 </div>
 </html>
