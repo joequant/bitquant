@@ -89,19 +89,19 @@ ipygraphql
 ipycanvas
 ipydatetime
 
-git+https://github.com/joequant/ethercalc-python.git
-git+https://github.com/joequant/spyre.git
-git+https://github.com/joequant/cryptoexchange.git
-git+https://github.com/joequant/algobroker.git
-git+https://github.com/joequant/bitcoin-price-api.git
-git+https://github.com/joequant/pythalesians.git
-git+https://github.com/quantopian/pyfolio.git
-git+https://github.com/ematvey/pybacktest.git
-git+https://github.com/bashtage/arch.git
-git+https://github.com/joequant/OrderBook.git
-git+https://github.com/joequant/bitcoin-etl.git
-git+https://github.com/joequant/dynts.git
-git+https://github.com/pymc-devs/pymc3
+https://github.com/joequant/ethercalc-python/tarball/master
+https://github.com/joequant/spyre/tarball/master
+https://github.com/joequant/cryptoexchange/tarball/master
+https://github.com/joequant/algobroker/tarball/master
+https://github.com/joequant/bitcoin-price-api/tarball/master
+https://github.com/joequant/pythalesians/tarball/master
+https://github.com/quantopian/pyfolio/tarball/master
+https://github.com/ematvey/pybacktest/tarball/master
+https://github.com/bashtage/arch/tarball/master
+https://github.com/joequant/OrderBook/tarball/master
+https://github.com/joequant/bitcoin-etl/tarball/master
+https://github.com/joequant/dynts/tarball/master
+https://github.com/pymc-devs/pymc3/tarball/master
 statsmodels
 sklearn
 Werkzeug
@@ -305,7 +305,7 @@ python3 -m bash_kernel.install --sys-prefix
 #tradingWithPython 
 
 # eventsourcing
-#git+https://github.com/joequant/quantdsl.git
+#git+https://github.com/joequant/quantdsl.git 
 
 #not instaled
 #pywwt
