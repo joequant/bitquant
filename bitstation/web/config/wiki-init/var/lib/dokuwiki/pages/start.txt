@@ -1,4 +1,3 @@
-User: @USER@
 <html>
 <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1.10/jquery.min.js"></script>
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
