@@ -18,6 +18,6 @@
 # upload 8
 # delete 16
 
-*               @ALL        1
-*               @users       15
+*               @ALL       31
+*               @users      31
 
