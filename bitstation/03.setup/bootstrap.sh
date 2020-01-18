@@ -24,9 +24,12 @@ fi
 echo "Installing R packages"
 /tmp/install-r-pkgs.sh
 
+#set httpd
+sudo /usr/share/bitquant/conf.sh /httpd-lock
+
 #set wiki conf
 echo "Set up wiki"
-sudo /usr/share/bitquant/conf.sh /wiki-unlock
+sudo /usr/share/bitquant/conf.sh /wiki-lock
 sudo /usr/share/bitquant/conf.sh /wiki-init
 
 echo "Set up ipython"

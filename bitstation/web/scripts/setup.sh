@@ -46,10 +46,6 @@ chmod a-w /bin/sudospawner-singleuser
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
 
-$WEB_DIR/cgi-bin/bittrader/conf.sh /default-init
-$WEB_DIR/cgi-bin/bittrader/conf.sh /httpd-lock
-$WEB_DIR/cgi-bin/bittrader/conf.sh /wiki-lock
-
 #systemctl daemon-reload
 #systemctl enable bitquant
 #systemctl restart bitquant
