@@ -7,3 +7,4 @@ function logout() {
 });
     });
     return false;
+}
