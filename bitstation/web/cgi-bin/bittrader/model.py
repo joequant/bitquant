@@ -62,19 +62,30 @@ def refresh_scripts():
             retval = retval + "copying " + file + "\n"
     return retval + "(done)"
 
+@app.route("/passwd-form")
+def passwd_form():
+   return """
+<div id="password-input">
+<h4>Password for (%s)</h4>
+<form action='/cgi-bin/bittrader/model.py/passwd' METHOD='POST'>
+New Password: <input name='newpass1' type='password' title='Please Enter Your Pa
+ssword' size='8' /><br />
+Confirm Password: <input name='newpass2' type='password' title='Please Enter You
+r Password' size='8' /><br />
+<input type='submit' target='log' value='SUBMIT' />
+</form>
+</div>
+""" % user()
+
 @app.route("/passwd", methods = ['POST'])
 def passwd():
     myuser = user()
-    if (not login.auth(myuser, default_password)):
-        return "Password not default"
     newpass1 = request.form['newpass1']
     newpass2 = request.form['newpass2']
-    timezone = request.form['timezone']
     if newpass1 != newpass2:
         return "passwords do not match"
-    return subprocess.check_output(["./timezone.sh", timezone]).decode("utf-8") + \
-           login.chpasswd(myuser, request.form['newpass1']) + "<br>\n" + \
-           login.chpasswd("root", request.form['newpass1']) + "\n"
+    else:
+        return login.chpasswd(myuser, request.form['newpass1']) + "<br>\n"
 
 @app.route("/setup", methods= ['POST'])
 def setup():
@@ -127,15 +138,12 @@ def version(tag=None):
     if tag == "version" or tag == None:
         retval['version'] = \
                           subprocess.check_output(["git", "rev-parse",
-                                                   "--short", "HEAD"]).strip();
+                               "--short", "HEAD"]).strip().decode('utf-8')
     if tag == "bootstrap_finished" or \
            tag == "bootstrap_status" or tag == None:
         retval['bootstrap_finished'] = True;
     if tag == "default_password" or tag == None:
         retval["default_password"] = login.auth(user(), default_password)
-    if tag == "bootstrap_running" or \
-           tag == "bootstrap_status" or tag == None:
-        retval['bootstrap_running'] = is_locked("bootstrap")
     if tag == "timezone" or tag == None:
         retval['timezone'] = subprocess.check_output(["grep",
                        "ZONE=",
