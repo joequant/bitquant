@@ -24,13 +24,6 @@ fi
 echo "Installing R packages"
 /tmp/install-r-pkgs.sh
 
-#set httpd
-sudo /usr/share/bitquant/conf.sh /httpd-lock
-
-#set wiki conf
-echo "Set up wiki"
-sudo /usr/share/bitquant/conf.sh /wiki-lock
-sudo /usr/share/bitquant/conf.sh /wiki-init
 
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
@@ -40,9 +33,3 @@ echo "Set up R"
 mkdir -p $MY_HOME/R
 cp -r $WEB_DIR/home/R/* $MY_HOME/R
 
-# Refresh configurations
-sudo /usr/share/bitquant/conf.sh /default-init
-
-# set webmin
-echo "Set up webmin"
-sudo /usr/share/bitquant/conf.sh /webmin-init

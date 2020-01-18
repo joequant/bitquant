@@ -15,6 +15,21 @@ cd ~user/git/bitquant/bitstation/web/scripts
 ./setup.sh bitstation
 su user -p -c "/tmp/bootstrap.sh"
 
+#set httpd
+/usr/share/bitquant/conf.sh /httpd-lock
+
+#set wiki conf
+echo "Set up wiki"
+/usr/share/bitquant/conf.sh /wiki-lock
+/usr/share/bitquant/conf.sh /wiki-init
+
+# Refresh configurations
+/usr/share/bitquant/conf.sh /default-init
+
+# set webmin
+echo "Set up webmin"
+/usr/share/bitquant/conf.sh /webmin-init
+
 sed -i '/ipv6/d' /etc/mongod.conf
 sed -i '/ipv6/d' /etc/mongos.conf
 chmod a+rwx /srv
