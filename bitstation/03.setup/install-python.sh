@@ -74,7 +74,7 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
 # run cytoolz for python 3.8 for cython
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     git+https://github.com/pytoolz/cytoolz.git
+     https://github.com/pytoolz/cytoolz/tarball/master
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
