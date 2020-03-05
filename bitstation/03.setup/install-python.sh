@@ -233,7 +233,7 @@ dm-sonnet
 tributary
 mpld3
 itkwidgets
-jupyterlab_templates
+
 Jupyter-Video-Widget
 pybrain
 ipyparallel
@@ -252,7 +252,6 @@ black
 yapf
 autopep8
 beakerx
-jupytext>=1.0.1
 jupyterlab_code_formatter
 cppyy-cling
 modAL
@@ -295,6 +294,12 @@ PyPortfolioOpt
 FinQuant
 pyswarm
 EOF
+
+#broken for jupyterlab 2.0
+:'
+jupyterlab_templates
+jupytext>=1.0.1
+'
 
 python3 -m bash_kernel.install --sys-prefix
 
@@ -359,31 +364,41 @@ EOF
     popd
 fi
 
-cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --dev-build=False
-@jupyterlab/git
-jupyterlab_tensorboard
+#while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
+cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --no-build
 jupyter-matplotlib
 jupyterlab_templates
 ipysheet
-jupyterlab-drawio
 jupyterlab-python-file
-jupyterlab-spreadsheet
-jupyterlab_filetree
-@jupyterlab/toc
 @jupyterlab/latex
 @jupyter-widgets/jupyterlab-manager
 bqplot-jupyterlab
-@mflevine/jupyterlab_html
 @jupyterlab/mathjax3-extension
-jupyterlab_autoversion
-@oriolmirosa/jupyterlab_materialdarker
 @ryantam626/jupyterlab_code_formatter
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
+@jupyterlab/htmlviewer-extension
+@jupyter-widgets/jupyterlab-sidecar
+ipyevents
+ipycanvas
+EOF
+
+jupyter lab build --dev-build=False
+
+# broken packages for jupyterlab 2.0
+:'
+@jupyterlab/git
+jupyterlab_tensorboard
+jupyterlab-drawio
+jupyterlab-spreadsheet
+@jupyterlab/toc
+jupyterlab_filetree
+@mflevine/jupyterlab_html
+jupyterlab_autoversion
+@oriolmirosa/jupyterlab_materialdarker
 @jupyterlab/katex-extension
 @jupyterlab/vega4-extension
 @jupyterlab/celltags
-@jupyterlab/git
 jupyterlab_bokeh
 @jupyter-voila/jupyterlab-preview
 ipytree
@@ -393,23 +408,18 @@ ipytree
 @finos/perspective-jupyterlab
 @lckr/jupyterlab_variableinspector
 @krassowski/jupyterlab_go_to_definition
-@jupyterlab/htmlviewer-extension
-@jupyter-widgets/jupyterlab-sidecar
-@lckr/jupyterlab_variableinspector
-@krassowski/jupyterlab_go_to_definition
 @jupyterlab/plotly-extension
 @jupyterlab/hdf5
 @illumidesk/jupyter-lti
 @hadim/jupyter-archive
-algorithmx-jupyter
-ipyevents
-beakerx-jupyterlab
 @aquirdturtle/collapsible_headings
-ipycanvas
+beakerx-jupyterlab
 jupyterlab-datawidgets
 itkwidgets
 @frontierkz/jupyterlab-attachments
-EOF
+'
+
+
 
 # does not support current version of JupyterLab
 # @enlznep/jupyterlab_shell_file
