@@ -1,4 +1,0 @@
-#!/bin/bash -l
-
-# Delegate the notebook server launch to the jupyter-labhub script.
-exec "jupyter-lab" $@
