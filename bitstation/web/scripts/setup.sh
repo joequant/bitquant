@@ -40,9 +40,6 @@ cp $WEB_DIR/scripts/*root*.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
-cp $WEB_DIR/scripts/sudospawner-singleuser /bin
-chown root:root /bin/sudospawner-singleuser
-chmod a-w /bin/sudospawner-singleuser
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
 
