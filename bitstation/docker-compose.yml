@@ -11,7 +11,7 @@ services:
      tty: true
      ports:
        - 80:80
-       - 4343:443
+       - 443:443
      volumes:
        - home:/home
        - dokuwiki:/var/lib/dokuwiki
