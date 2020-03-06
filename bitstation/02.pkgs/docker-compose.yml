@@ -1,8 +1,0 @@
-version:  '3'
-services:
-  pkgs:
-     image: "joequant/pkgs"
-     stdin_open: true
-     tty: true
-     command: "/bin/bash"
-
