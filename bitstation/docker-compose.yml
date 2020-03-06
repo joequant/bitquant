@@ -3,7 +3,7 @@ services:
   bitstation:
      image: "joequant/bitstation"
      build:
-       context: 03.setup
+       context: 02.setup
        dockerfile: Dockerfile
        args:
           base: "joequant/cauldron"
