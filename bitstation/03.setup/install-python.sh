@@ -367,7 +367,6 @@ fi
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
 cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --no-build
 jupyter-matplotlib
-jupyterlab_templates
 ipysheet
 jupyterlab-python-file
 @jupyterlab/latex
@@ -381,12 +380,15 @@ bqplot-jupyterlab
 @jupyter-widgets/jupyterlab-sidecar
 ipyevents
 ipycanvas
+@jupyterlab/celltags-extension
+@jupyterlab/debugger
 EOF
 
 jupyter lab build --dev-build=False
 
 # broken packages for jupyterlab 2.0
 :'
+jupyterlab_templates
 @jupyterlab/git
 jupyterlab_tensorboard
 jupyterlab-drawio
@@ -398,7 +400,6 @@ jupyterlab_autoversion
 @oriolmirosa/jupyterlab_materialdarker
 @jupyterlab/katex-extension
 @jupyterlab/vega4-extension
-@jupyterlab/celltags
 jupyterlab_bokeh
 @jupyter-voila/jupyterlab-preview
 ipytree
