@@ -233,7 +233,6 @@ dm-sonnet
 tributary
 mpld3
 itkwidgets
-
 Jupyter-Video-Widget
 pybrain
 ipyparallel
@@ -261,7 +260,6 @@ ipymesh
 bitcoin-tools
 jupyter_dashboards
 tributary
-jupyter-git
 cryptocompare
 coinmarketcap
 bitfinex-tencars
@@ -297,6 +295,7 @@ EOF
 
 #broken for jupyterlab 2.0
 :'
+jupyter-git
 jupyterlab_templates
 jupytext>=1.0.1
 '
