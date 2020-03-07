@@ -3,7 +3,7 @@ function logout() {
     jQuery.get(out).always(function() {
         jQuery.get('/jupyterhub/hub/logout').always(function () {});
     jQuery.get('/dokuwiki/doku.php?do=logout').always(function() {
-    window.location.assign('/dokuwiki'); reload(true);
+    window.location.assign('/'); reload(true);
 });
     });
     return false;
