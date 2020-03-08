@@ -4,10 +4,10 @@ set -e -v
 
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
-excludepkgs=filesystem,chkconfig
 max_parallel_downloads=10
 EOF
 
+dnf makecache
 dnf install -v -y \
      --setopt=install_weak_deps=False --nodocs --allowerasing --best \
      'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
@@ -17,8 +17,26 @@ config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_
 config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
 EOF
 
+dnf autoremove -y urpmi perl-URPM perl-Alien-Build \
+    perl-XML-LibXML \
+    perl-Alien-Libxml2 \
+    perl-MDV-Packdrakeng \
+    perl-Capture-Tiny \
+    perl-FFI-CheckLib \
+    perl-Config-IniFiles \
+    perl-File-Which \
+    perl-File-chdir \
+    perl-Path-Tiny \
+    perl-XML-SAX-Base \
+    perl-XML-NamespaceSupport \
+    perl-Time-ZoneInfo \
+    perl-Filesys-Df \
+    perl-IO-stringy \
+    perl-Locale-gettext
+
 dnf upgrade -v -y --allowerasing --best --nodocs --refresh --setopt=install_weak_deps=False
-dnf autoremove -y urpmi
+dnf autoremove -y \
+    `rpm -qa | grep mga7 | grep -v selinux | grep -v apache| grep -v filesystem`
 dnf clean all
 
 rm -f /var/log/*.log
@@ -26,6 +44,10 @@ rm -rf /var/cache/dnf/*
 rm -rf /usr/lib/udev
 rm -rf /usr/lib/.build-id
 rm -rf /code
+rm -rf /var/lib/urpmi
+rm -rf /usr/share/zoneinfo/right
+rm -rf /usr/lib/kbd
+rm -rf /etc/udev/hwdb.bin
 
 #remove systemd
 #Prevent systemd from starting unneeded services

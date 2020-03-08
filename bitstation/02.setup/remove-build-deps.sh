@@ -48,21 +48,11 @@ rm -f /lib/systemd/system/*journal*
 rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 rm -rf /usr/lib64/python*/test
-rm -rf /usr/lib64/python*/site-packages/pandas/tests
-rm -rf /usr/lib64/python*/site-packages/pandas/io/tests
-rm -rf /usr/lib64/python*/site-packages/pandas/tseries/tests
-rm -rf /usr/lib64/python*/site-packages/matplotlib/tests
-rm -rf /usr/lib64/python*/site-packages/mpl_toolkits/tests
-rm -rf /usr/lib64/python*/site-packages/numpy/core/tests
-rm -rf /usr/lib64/python*/site-packages/spacy/tests
-rm -rf /usr/lib/python*/site-packages/holoviews/examples
-rm -rf /usr/lib/python*/site-packages/pyspark/examples
-rm -rf /usr/lib/python*/site-packages/sonnet/examples
-rm -rf /usr/lib/python*/site-packages/allennlp/tests
-rm -rf /usr/lib/python*/site-packages/flask/testsuite
-rm -rf /usr/lib/python*/site-packages/jinja2/testsuite
-rm -rf /usr/lib/python*/site-packages/ggplot/tests
-rm -rf /usr/lib/python*/site-packages/sympy/*/tests
+
+find  /usr/lib*/python* -name tests | xargs rm -rf
+find  /usr/lib*/python* -name examples | xargs rm -rf
+find  /usr/lib*/python* -name testsuite | xargs rm -rf
+
 rm -rf /usr/share/doc
 rm -rf /usr/share/gems/doc
 rm -rf /home/user/git/shiny-server
@@ -72,6 +62,7 @@ rm -rf /home/user/.node-gyp
 rm -rf /root/.cache
 rm -rf /root/.node-gyp
 rm -rf /usr/local/share
+rm -rf /usr/lib/.build-id
 jupyter lab clean
 jlpm cache clean
 npm cache clean --force
