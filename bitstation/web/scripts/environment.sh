@@ -1,5 +1,7 @@
-ME=`stat -c "%U" ${BASH_SOURCE[0]}`
-GROUP=`stat -c "%G" ${BASH_SOURCE[0]}`
+# use ls because stat causes error on dockerhub
+ME=$(ls -ld ${BASH_SOURCE[0]} | awk '{print $3}')
+GROUP=$(ls -ld ${BASH_SOURCE[0]} | awk '{print $4}')
+
 if [[ $ME == "root" ]] ; then
 echo "Owner of environment.sh should not be root"
 exit 1

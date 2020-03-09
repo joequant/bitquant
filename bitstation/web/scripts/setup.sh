@@ -3,8 +3,10 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WEB_DIR=$SCRIPT_DIR/..
-ME=`stat -c "%U" $SCRIPT_DIR/setup.sh`
-GROUP=`stat -c "%G" $SCRIPT_DIR/setup.sh`
+
+# use ls because stat causes error on dockerhub
+ME=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $3}')
+GROUP=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $4}')
 
 pushd $SCRIPT_DIR > /dev/null
 . rootcheck.sh
