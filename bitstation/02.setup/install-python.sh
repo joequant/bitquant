@@ -294,7 +294,7 @@ pyswarm
 EOF
 
 #broken for jupyterlab 2.0
-:'
+: '
 jupyter-git
 jupyterlab_templates
 jupytext>=1.0.1
@@ -386,7 +386,7 @@ EOF
 jupyter lab build --dev-build=False
 
 # broken packages for jupyterlab 2.0
-:'
+: '
 jupyterlab_templates
 @jupyterlab/git
 jupyterlab_tensorboard
