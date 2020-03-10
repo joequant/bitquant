@@ -3,7 +3,6 @@
 
 echo "Running r installation"
 
-. norootcheck.sh
 # Without this the installation will try to put the R library in the
 # system directories where it does not have permissions
 
