@@ -102,6 +102,8 @@ https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
 https://github.com/pymc-devs/pymc3/tarball/master
+biopython
+cubes
 statsmodels
 sklearn
 Werkzeug
@@ -118,6 +120,7 @@ nbconvert
 circuits
 dask
 xarray
+deap
 networkx
 lightning-python
 vispy 
@@ -291,6 +294,13 @@ ipycanvas
 PyPortfolioOpt
 FinQuant
 pyswarm
+mlpy
+nilearn
+psychopy
+pipenv
+python-weka-wrapper
+scoop
+sunpy
 EOF
 
 #broken for jupyterlab 2.0
@@ -309,7 +319,8 @@ python3 -m bash_kernel.install --sys-prefix
 
 #broken
 # can't install cboe
-#tradingWithPython 
+#tradingWithPython
+#graphtool
 
 # eventsourcing
 #git+https://github.com/joequant/quantdsl.git 
