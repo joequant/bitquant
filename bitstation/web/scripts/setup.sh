@@ -9,13 +9,11 @@ ME=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $3}')
 GROUP=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $4}')
 
 pushd $SCRIPT_DIR > /dev/null
-. rootcheck.sh
-. configcheck.sh
 
 pushd /var/www/html > /dev/null
 rm -f *
-for i in $WEB_DIR/$config/*; do 
-ln -s -f  ../../..$WEB_DIR/$config/$(basename $i) $(basename $i)
+for i in $WEB_DIR/bitstation/*; do
+ln -s -f  ../../..$WEB_DIR/bitstation/$(basename $i) $(basename $i)
 done
 popd > /dev/null
 
