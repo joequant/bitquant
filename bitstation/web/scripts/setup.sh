@@ -5,8 +5,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WEB_DIR=$SCRIPT_DIR/..
 
 # use ls because stat causes error on dockerhub
-ME=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $3}')
-GROUP=$(ls -ld $SCRIPT_DIR/setup.sh` | awk '{print $4}')
+ME=$(ls -ld $SCRIPT_DIR/setup.sh | awk '{print $3}')
+GROUP=$(ls -ld $SCRIPT_DIR/setup.sh | awk '{print $4}')
 
 pushd $SCRIPT_DIR > /dev/null
 
