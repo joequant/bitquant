@@ -12,8 +12,8 @@ pushd $SCRIPT_DIR > /dev/null
 
 pushd /var/www/html > /dev/null
 rm -f *
-for i in $WEB_DIR/bitstation/*; do
-ln -s -f  ../../..$WEB_DIR/bitstation/$(basename $i) $(basename $i)
+for i in index.html css data fonts js ; do
+ln -s -f  ../../..$WEB_DIR/$i $i
 done
 popd > /dev/null
 
