@@ -1,6 +1,15 @@
 #!/bin/sh
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-. $SCRIPT_DIR/environment.sh
+ME=user
+GROUP=user
+MY_HOME=$(eval echo ~$ME)
+# needed for building ethercalc
+USERPROFILE=$MY_HOME
+export HOME=$MY_HOME
+GIT_DIR=$MY_HOME/git/bitquant
+WEB_DIR=$MY_HOME/git/bitquant/bitstation/web
+LOG_DIR=$WEB_DIR/log
+. /tmp/proxy.sh
 
 echo "Running from directory $GIT_DIR as user "`whoami`
 echo "Doing initial installation"
