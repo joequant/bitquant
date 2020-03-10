@@ -6,7 +6,6 @@ source /tmp/proxy.sh
 dnf -y \
       autoremove \
       cmake \
-      gcc-c++ \
       elfutils \
       dmsetup \
       lib64python2.7-stdlib \
