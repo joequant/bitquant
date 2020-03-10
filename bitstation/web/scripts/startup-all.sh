@@ -4,7 +4,6 @@ WEB_DIR=$SCRIPT_DIR/..
 GIT_DIR=$WEB_DIR/../..
 LOG_DIR=/var/log/bitquant
 cd $SCRIPT_DIR
-. rootcheck.sh
 
 mkdir -p $LOG_DIR
 chmod a+w $LOG_DIR
@@ -43,5 +42,5 @@ echo "Pulling git"
 pushd $WEB_DIR/..
 su user -c "git pull"
 popd
-su user -c ./startup.sh
+su user -c ./startup-user.sh
 while :; do sleep 2; done

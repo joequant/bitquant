@@ -4,7 +4,6 @@ WEB_DIR=$SCRIPT_DIR/..
 GIT_DIR=$WEB_DIR/../../..
 LOG_DIR=$WEB_DIR/log
 cd $SCRIPT_DIR
-. norootcheck.sh
 
 if [ -w /var/log/bitquant ] ; then
     LOG_DIR=/var/log/bitquant
