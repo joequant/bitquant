@@ -88,7 +88,7 @@ itkwidgets
 ipygraphql
 ipycanvas
 ipydatetime
-
+git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
