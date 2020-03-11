@@ -8,6 +8,8 @@ else
 LIBDIR="lib"
 fi
 
+pushd /home/user
+
 # Without this the installation will try to put the R library in the
 # system directories where it does not have permissions
 
@@ -43,4 +45,4 @@ chown shiny /var/log/shiny-server
 mkdir -p /etc/shiny-server
 cp -r /usr/$LIBDIR/R/library/shiny/examples/*  /var/www/shiny-server
 fi
-
+popd
