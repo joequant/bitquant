@@ -1,5 +1,6 @@
 #!/bin/bash
 
+pushd /home/user
 npm install -g node-gyp coffeescript
 
 # livescript
@@ -27,3 +28,4 @@ if [ -d /home/user/git/ethercalc ] ; then
     npm i -g --unsafe ethercalc
     popd
 fi
+popd
