@@ -3,6 +3,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ME=user
 GROUP=user
 MY_HOME=$(eval echo ~$ME)
+
+pushd $MY_HOME
 # needed for building ethercalc
 USERPROFILE=$MY_HOME
 export HOME=$MY_HOME
@@ -31,7 +33,7 @@ popd
 fi
 
 echo "Installing R packages"
-/tmp/install-r-pkgs.sh
+source /tmp/install-r-pkgs.sh
 
 
 echo "Set up ipython"
@@ -41,4 +43,4 @@ cp -r $WEB_DIR/home/examples $MY_HOME/examples
 echo "Set up R"
 mkdir -p $MY_HOME/R
 cp -r $WEB_DIR/home/R/* $MY_HOME/R
-
+popd
