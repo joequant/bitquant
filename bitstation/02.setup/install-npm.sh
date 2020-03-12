@@ -1,6 +1,13 @@
 #!/bin/bash
 
+
 pushd /home/user
+
+#see https://github.com/npm/npm/issues/3565#issuecomment-202473011
+# work around npm not working EPERM errors
+
+echo "int chown() { return 0; }" > preload.c && gcc -shared -o preload.so preload.c 
+
 npm install -g node-gyp coffeescript
 
 # livescript
@@ -25,7 +32,7 @@ mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
 
 if [ -d /home/user/git/ethercalc ] ; then
     pushd /home/user/git/ethercalc
-    npm i -g --unsafe ethercalc
+    LD_PRELOAD=/home/user/preload.so npm i -g --unsafe ethercalc
     popd
 fi
 popd
