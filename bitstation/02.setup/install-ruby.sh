@@ -1,6 +1,7 @@
 #!/bin/bash
 # TODO - fixes
 set -v
+pushd /home/user
 export CPPFLAGS="-Wno-error=deprecated-declarations"
 export JUPYTER_DATA_DIR=/usr/share/jupyter
 
@@ -14,3 +15,4 @@ iruby register --force
 #mv /root/.ipython/kernels/ruby /usr/share/jupyter/kernels
 
 # remember to link libzmq.so.5 to libzmq.so
+popd
