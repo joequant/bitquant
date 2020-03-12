@@ -11,7 +11,6 @@ set -e -v
 
 cat <<EOF >> /etc/dnf/dnf.conf
 fastestmirror=true
-excludepkgs=filesystem,chkconfig
 max_parallel_downloads=15
 EOF
 
