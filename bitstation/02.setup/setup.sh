@@ -1,14 +1,13 @@
 #!/bin/bash -v
 # Setup and configure website to use giving configuration
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WEB_DIR=$SCRIPT_DIR/..
+WEB_DIR=/home/user/git/bitquant/bitstation/web
 
 # use ls because stat causes error on dockerhub
 ME=user
 GROUP=user
 
-pushd $SCRIPT_DIR > /dev/null
+pushd $WEB_DIR > /dev/null
 
 pushd /var/www/html > /dev/null
 rm -f *
@@ -35,15 +34,8 @@ popd > /dev/null
 # Create root copy of scripts
 rm -rf /usr/share/bitquant
 mkdir -p /usr/share/bitquant
-cp $WEB_DIR/scripts/*-sudo.sh /usr/share/bitquant
-cp $WEB_DIR/scripts/*root*.sh /usr/share/bitquant
 cp $WEB_DIR/scripts/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
-
-#systemctl daemon-reload
-#systemctl enable bitquant
-#systemctl restart bitquant
-#systemctl reload httpd

@@ -11,8 +11,7 @@ mkdir git
 cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 chown -R user:user .
-cd ~user/git/bitquant/bitstation/web/scripts
-./setup.sh bitstation
+. /tmp/setup.sh
 su user -p -c "/tmp/bootstrap.sh"
 
 #set httpd
