@@ -13,7 +13,7 @@ npm install -g node-gyp coffeescript
 # livescript
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
-npm install -g --unsafe ijavascript configurable-http-proxy solc jp-coffeescript itypescript jp-babel modclean
+LD_PRELOAD=/home/user/preload.so npm install -g --unsafe ijavascript configurable-http-proxy solc jp-coffeescript itypescript jp-babel modclean
 
 #jp-livescript
 
