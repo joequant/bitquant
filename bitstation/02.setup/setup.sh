@@ -39,3 +39,4 @@ cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
+popd > /dev/null
