@@ -48,11 +48,16 @@ rm -rf /var/lib/urpmi
 rm -rf /usr/share/zoneinfo/right
 rm -rf /usr/lib/kbd
 rm -rf /etc/udev/hwdb.bin
+rm -rf /var/lib/rpm/__db.*
 
 #remove systemd
 #Prevent systemd from starting unneeded services
 rm -f /usr/etc/systemd/system/*.wants/*
 pushd /usr/lib/systemd
+rm -f /lib/systemd/systemd
+rm -f /lib/systemd/systemd-ac-power
+rm -f /lib/systemd/systemd-backlight
+rm -f /lib/systemd/systemd-fsck
 
 (cd system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done)
 rm -f system/multi-user.target.wants/*
