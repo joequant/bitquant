@@ -2,7 +2,7 @@
 # Setup and configure website to use giving configuration
 
 echo "Running r installation"
-pushd /home/user
+pushd /tmp
 
 # Without this the installation will try to put the R library in the
 # system directories where it does not have permissions
