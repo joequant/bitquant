@@ -32,9 +32,6 @@ fi
 popd
 fi
 
-echo "Installing R packages"
-source /tmp/install-r-pkgs.sh
-
 
 echo "Set up ipython"
 mkdir -p $MY_HOME/ipython
