@@ -1,3 +1,2 @@
 #!/bin/bash
-docker build --security-opt seccomp=unconfined \
-       --build-arg base=joequant/cauldron -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+docker build --build-arg base=joequant/cauldron -f $DOCKERFILE_PATH -t $IMAGE_NAME .
