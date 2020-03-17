@@ -14,15 +14,6 @@ pushd /home/user
 # system directories where it does not have permissions
 
 R_VERSION=$(R --version | head -1 | cut -d \  -f 3 | awk -F \. {'print $1"."$2'})
-LOCAL_R_DIR=/home/user/R/`uname -m`-mageia-linux-gnu-library/$R_VERSION
-
-echo "Installing new modules"
-pushd $LOCAL_R_DIR
-for i in */ ; do
-  rm -rf /usr/$LIBDIR/R/library/$i;
-  mv -f $i /usr/$LIBDIR/R/library ;
-done
-popd > /dev/null
 
 /usr/bin/R -e 'IRkernel::installspec(prefix="/usr", user=FALSE)'
 
