@@ -1,0 +1,12 @@
+version:  '3'
+services:
+  nextcloud:
+     image: "joequant/nextcloud"
+     build:
+       context: .
+       dockerfile: Dockerfile
+     stdin_open: true
+     tty: true
+     ports:
+       - 84:80
+       - 4345:443
