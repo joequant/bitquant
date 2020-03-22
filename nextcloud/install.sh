@@ -8,6 +8,8 @@ dnf upgrade --best --nodocs --allowerasing -y
 dnf --setopt=install_weak_deps=False --best install -v -y \
     --nodocs --allowerasing \
     nextcloud18-sqlite \
+    nextcloud18-postgresql \
+    nextcloud18-mysql \
     apache \
     sudo \
     apache-mod_proxy \
@@ -17,14 +19,20 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-pcntl \
     openssl
 
+
 cp /tmp/startup.sh /root
 cp /tmp/config.php /etc/nextcloud
 cp /tmp/nextcloud.inc /etc/httpd/conf/webapps.d
+cp /tmp/nextcloud.conf /etc/httpd/conf/webapps.d
 touch /etc/nextcloud/CAN_INSTALL
 
-cat <<EOF > /etc/php-fpm.d/mem-limit.conf
+cat <<EOF > /etc/php-fpm.d/nextcloud.conf
 [www]
+php_admin_value[upload_max_filesize] = 10G
+php_admin_value[post_max_size] = 10G
 php_admin_value[memory_limit] = 512M
+php_admin_value[max_input_time] = 86400
+php_admin_value[max_execution_time] = 86400
 EOF
 
 pushd /etc/httpd/conf
