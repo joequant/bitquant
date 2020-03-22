@@ -10,14 +10,16 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     nextcloud18-sqlite \
     apache \
     sudo \
-    apache-mod_php
-#
-#    apache-mod_proxy \
-#    php-fpm
+    apache-mod_proxy \
+    php-fpm \
+    php-cli \
+    php-intl \
+    php-pcntl \
+    openssl
 
 cp /tmp/startup.sh /root
 cp /tmp/config.php /etc/nextcloud
-#cp /tmp/nextcloud.inc /etc/httpd/conf/webapps.d
+cp /tmp/nextcloud.inc /etc/httpd/conf/webapps.d
 touch /etc/nextcloud/CAN_INSTALL
 
 pushd /etc/httpd/conf
