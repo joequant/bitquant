@@ -13,14 +13,19 @@ sudo -u apache php -d memory_limit=512M \
      --database-pass="mypass" --admin-user="admin" \
      --admin-pass="password" --data-dir="/var/lib/nextcloud/data"
 chown root:root -R /usr/share/nextcloud
-
 sudo -u apache php occ config:system:set \
      trusted_domains 1 "--value=*"
-sleep 10
+
 for app in \
 	onlyoffice \
 	calendar \
         maps \
+	contacts \
+	tasks \
+	mail \
+	notes \
+	deck \
+	text \
 	groupfolders \
 	sociallogin \
 	documentserver_community
