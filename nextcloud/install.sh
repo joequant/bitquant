@@ -16,8 +16,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-fpm \
     php-cli \
     php-intl \
-    php-pcntl \
-    openssl
+    php-pcntl
 
 cp /tmp/startup.sh /root
 cp /tmp/config.php /etc/nextcloud
