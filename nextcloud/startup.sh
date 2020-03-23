@@ -26,8 +26,11 @@ for app in \
 	notes \
 	deck \
 	text \
+	quicknotes \
 	groupfolders \
 	sociallogin \
+	files_markdown \
+	files_mindmap \
 	documentserver_community
 do
 sudo -u apache php -d memory_limit=512M \
@@ -36,20 +39,6 @@ done
 popd
 rm /etc/nextcloud/CAN_INSTALL
 fi
-
-: ' \
-	calendar \
-	maps \
-	contacts \
-	mail \
-	tasks \
-
-	files_markdown \
-	notes \
-	files_mindmap \
-	deck \
-'
-
 
 if [ -x /usr/sbin/php-fpm ] ; then
 echo "Restarting php-fpm"
