@@ -4,8 +4,8 @@
 	"build": "docker-compose build --no-cache nextcloud",
 	"start": "docker-compose up",
 	"stop": "docker-compose stop",
-	"shell": "docker exec -it nextcloud_nextcloud_1 /bin/bash",
+	"shell": " /bin/bash",
 	"clean": "docker rm nextcloud_nextcloud_1 nextcloud_db_1",
-	"clean-vols": "docker volume rm nextcloud_lib nextcloud_share nextcloud_db"
+	"clean-vols": "docker volume rm nextcloud_lib nextcloud_db"
     }
 }

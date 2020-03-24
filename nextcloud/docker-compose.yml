@@ -9,7 +9,6 @@ services:
        - 80:80
        - 443:443
      volumes:
-       - share:/usr/share/nextcloud
        - lib:/var/lib/nextcloud
   db:
       image: postgres:12-alpine
@@ -20,6 +19,5 @@ services:
        - db:/var/lib/pgsql
 
 volumes:
-   share:
    lib:
    db:
