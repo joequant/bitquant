@@ -1,10 +1,10 @@
 {
-    "name": "bitstation",
+    "name": "nextcloud",
     "scripts": {
 	"build": "docker-compose build --no-cache nextcloud",
 	"start": "docker-compose up",
 	"stop": "docker-compose stop",
-	"shell": " /bin/bash",
+	"shell": "docker exec -it nextcloud_nextcloud_1 /bin/bash",
 	"clean": "docker rm nextcloud_nextcloud_1 nextcloud_db_1",
 	"clean-vols": "docker volume rm nextcloud_lib nextcloud_db"
     }
