@@ -18,6 +18,10 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-intl \
     php-pcntl
 
+cat <<EOF > /etc/sudo.conf
+Set disable_coredump false
+EOF
+
 cp /tmp/startup.sh /root
 cp /tmp/config.php /etc/nextcloud
 touch /etc/nextcloud/CAN_INSTALL
