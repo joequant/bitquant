@@ -1,7 +1,8 @@
 #!/bin/bash
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+INSTALLED_FILE=/var/lib/nextcloud/data/installed
 
-if [ -e /etc/nextcloud/CAN_INSTALL ] ; then
+if [ ! -e $INSTALLED_FILE ] ; then
     echo "waiting..."
     sleep 10
 chown apache:apache -R /usr/share/nextcloud
@@ -37,7 +38,7 @@ sudo -u apache php -d memory_limit=512M \
      occ app:enable $app
 done
 popd
-rm /etc/nextcloud/CAN_INSTALL
+touch $INSTALLED_FILE
 fi
 
 if [ -x /usr/sbin/php-fpm ] ; then
