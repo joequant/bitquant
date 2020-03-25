@@ -6,7 +6,7 @@ services:
        context: .
        dockerfile: Dockerfile
      ports:
-       - 89:80
+       - 80:80
        - 443:443
      volumes:
        - lib:/var/lib/nextcloud
@@ -17,7 +17,7 @@ services:
       environment:
        - POSTGRES_PASSWORD:mypass
       volumes:
-       - db:/var/lib/pgsql
+       - db:/var/lib/postgresql/data
 
 volumes:
    lib:
