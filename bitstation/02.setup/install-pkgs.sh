@@ -31,7 +31,6 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       apache \
       apache-mod_suexec \
       apache-mod_proxy \
-      apache-mod_fcgid \
       php-fpm \
       apache-mod_authnz_external \
       apache-mod_ssl \
