@@ -19,6 +19,16 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-redis \
     php-apcu \
     sudo
+rpm --erase basesystem-minimal
+rpm --erase rootfiles passwd tcb nss_tcb \
+    diffutils pam_tcb etcskel tar \
+    rpm-plugin-syslog \
+    rpm-plugin-systemd-inhibit \
+    sash libutempter \
+    lsb-release mageia-release-common  mageia-release-Default \
+    mageia-repos mageia-repos-cauldron
+
+rpm --erase vim-minimal
 
 cat <<EOF > /etc/sudo.conf
 Set disable_coredump false
