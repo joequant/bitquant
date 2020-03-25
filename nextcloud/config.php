@@ -8,8 +8,7 @@ $CONFIG = array (
     "asset-pipeline.enabled" => false,
     "assetdirectory" => '/var/lib/nextcloud',
     "preview_libreoffice_path" => '/usr/bin/libreoffice',
-
-
+    'memcache.local' => '\OC\Memcache\APCu',
     "apps_paths" => array(
         0 =>
         array (

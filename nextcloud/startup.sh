@@ -5,6 +5,7 @@ INSTALLED_FILE=/var/lib/nextcloud/data/installed
 if [ ! -e $INSTALLED_FILE ] ; then
     echo "waiting..."
     sleep 10
+    touch /etc/nextcloud/CAN_INSTALL
 chown apache:apache -R /usr/share/nextcloud
 pushd /usr/share/nextcloud
 sudo -u apache php -d memory_limit=512M \
@@ -39,12 +40,11 @@ sudo -u apache php -d memory_limit=512M \
 done
 popd
 touch $INSTALLED_FILE
+    rm /etc/nextcloud/CAN_INSTALL
 fi
 
-if [ -x /usr/sbin/php-fpm ] ; then
 echo "Restarting php-fpm"
 /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> /var/log/php-fpm.log 2>&1 &
-fi
 /usr/sbin/httpd -DFOREGROUND
 
 
