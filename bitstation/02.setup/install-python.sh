@@ -20,7 +20,7 @@ fi
 if [[ ! -z "$NOAVX" ]] ; then
     export TENSORFLOW=http://github.com/evdcush/TensorFlow-wheels/releases/download/tf-1.13.1-py37-cpu-westmere/tensorflow-1.13.1-cp37-cp37m-linux_x86_64.whl
 else
-    export TENSORFLOW=tensorflow==2.0.0
+    export TENSORFLOW=tensorflow
 fi
 
 # see http://click.pocoo.org/5/python3/
@@ -66,7 +66,7 @@ pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
-pip3 install --upgrade git+https://github.com/ntucllab/libact.git --prefix /usr
+pip3 install --prefix /usr --global-option=build_ext --global-option="-I/usr/include/lapack" libact
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
@@ -75,6 +75,9 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 # run cytoolz for python 3.8 for cython
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      https://github.com/pytoolz/cytoolz/tarball/master
+
+pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+"git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE"
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
@@ -89,7 +92,6 @@ itkwidgets
 ipygraphql
 ipycanvas
 ipydatetime
-git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
