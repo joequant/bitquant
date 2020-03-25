@@ -6,15 +6,13 @@ source /tmp/proxy.sh
 dnf -y \
       autoremove \
       cmake \
-      elfutils \
-      dmsetup \
       lib64python2.7-stdlib \
       libtool \
       automake \
       autoconf \
       swig \
       protobuf-compiler \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt`
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v "gcc-c++"`
 
 dnf -y \
     autoremove \
