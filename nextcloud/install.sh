@@ -26,7 +26,7 @@ rpm --erase rootfiles passwd tcb nss_tcb \
     rpm-plugin-systemd-inhibit \
     sash libutempter \
     lsb-release mageia-release-common  mageia-release-Default \
-    mageia-repos mageia-repos-cauldron
+    mageia-repos mageia-repos-cauldron meta-task
 
 rpm --erase vim-minimal
 
