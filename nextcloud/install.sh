@@ -18,16 +18,6 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-redis \
     php-apcu \
     sudo
-rpm --erase basesystem-minimal
-rpm --erase rootfiles passwd tcb nss_tcb \
-    diffutils pam_tcb etcskel tar \
-    rpm-plugin-syslog \
-    rpm-plugin-systemd-inhibit \
-    sash libutempter \
-    lsb-release mageia-release-common  mageia-release-Default \
-    mageia-repos mageia-repos-cauldron meta-task
-
-rpm --erase vim-minimal
 
 cat <<EOF > /etc/sudo.conf
 Set disable_coredump false
@@ -37,3 +27,7 @@ cp /tmp/startup.sh /root
 cp /tmp/config.php /etc/nextcloud
 
 sed -i -e 's:120;:1200;:'  /usr/share/nextcloud/lib/private/Installer.php
+
+rm -rf /usr/lib/.build-id
+rm -rf /usr/lib/python3.7
+rm -rf /usr/lib/systemd
