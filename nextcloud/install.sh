@@ -9,7 +9,6 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     --nodocs --allowerasing \
     nextcloud18-sqlite \
     nextcloud18-postgresql \
-    nextcloud18-mysql \
     apache \
     apache-mod_proxy \
     php-fpm \
