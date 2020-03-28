@@ -11,7 +11,7 @@ pushd /usr/share/nextcloud
 sudo -u apache php -d memory_limit=512M \
      occ maintenance:install \
      --database="pgsql" --database-name="nextcloud" \
-     --database-host="db" --database-user="postgres" \
+     --database-host=${NEXTCLOUD_DB:-db} --database-user="postgres" \
      --database-pass="mypass" --admin-user="admin" \
      --admin-pass="password" --data-dir="/var/lib/nextcloud/data"
 chown root:root -R /usr/share/nextcloud
