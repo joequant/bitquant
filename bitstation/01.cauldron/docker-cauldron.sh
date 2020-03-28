@@ -8,15 +8,7 @@ max_parallel_downloads=10
 EOF
 
 dnf makecache
-dnf install -v -y \
-     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
-     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
-
-dnf shell -v -y  <<EOF
-config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_64
-config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
-EOF
-
+rpm --erase basesystem-minimal
 dnf autoremove -y urpmi perl-URPM perl-Alien-Build \
     perl-XML-LibXML \
     perl-Alien-Libxml2 \
@@ -32,12 +24,26 @@ dnf autoremove -y urpmi perl-URPM perl-Alien-Build \
     perl-Time-ZoneInfo \
     perl-Filesys-Df \
     perl-IO-stringy \
-    perl-Locale-gettext
+    perl-Locale-gettext \
+    gzip meta-task \
+    sash diffutils vim-minimal libutempter \
+    rootfiles diffutils tar
+
+dnf install -v -y \
+     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
+     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
+
+dnf shell -v -y  <<EOF
+config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_64
+config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
+EOF
 
 dnf upgrade -v -y --allowerasing --best --nodocs --refresh --setopt=install_weak_deps=False
 dnf autoremove -y \
     `rpm -qa | grep mga7 | grep -v selinux | grep -v apache| grep -v filesystem`
 dnf clean all
+
+
 
 rm -f /var/log/*.log
 rm -rf /var/cache/dnf/*
@@ -67,4 +73,7 @@ rm -f system/sockets.target.wants/*initctl*
 rm -f system/basic.target.wants/*
 rm -f system/anaconda.target.wants/*
 rm -f *udevd* *networkd* *machined* *coredump*
+pushd /usr/share/locale
+rm -rf `ls | grep -v ISO | grep -v UTF | grep -v en`
+popd
 popd
