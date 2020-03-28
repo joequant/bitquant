@@ -10,8 +10,6 @@
 set -e -v
 
 source /tmp/proxy.sh
-dnf makecache
-dnf upgrade --best --nodocs --allowerasing -y
 
 if grep -q '^7 ' /etc/version
 then export RDKAFKA=
@@ -83,7 +81,19 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       llvm \
       $RDKAFKA \
       libumfpack-devel \
-      hdf5-devel
+      hdf5-devel \
+      libxt-devel \
+      libmagick-devel \
+      cargo \
+      lib64git2-devel \
+      pybind11-devel \
+      gzip
+
+# cargo for gifski
+# libxt-devel for R cairo
+# libmagick-devel for R magick
+# git-devel for git2r
+# pybind11 for onnx
 
 # glpk for swiglpk
 # llvm-devel for pyfolio

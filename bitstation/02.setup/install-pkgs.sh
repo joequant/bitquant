@@ -16,7 +16,8 @@ EOF
 
 source /tmp/proxy.sh
 dnf makecache
-dnf upgrade --best --nodocs --allowerasing --refresh -y
+dnf upgrade --best --nodocs --allowerasing --refresh -y \
+    --setopt=install_weak_deps=False
 
 # workaround bug RHEL #1765718
 dnf autoremove python3-dnf-plugins-core -y
