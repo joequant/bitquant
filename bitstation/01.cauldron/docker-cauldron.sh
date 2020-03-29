@@ -8,6 +8,16 @@ max_parallel_downloads=10
 EOF
 
 dnf makecache
+dnf install -v -y \
+     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
+     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
+
+dnf shell -v -y  <<EOF
+config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_64
+config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
+EOF
+
+dnf upgrade -v -y --allowerasing --best --nodocs --refresh --setopt=install_weak_deps=False
 rpm --erase basesystem-minimal
 dnf autoremove -y urpmi perl-URPM perl-Alien-Build \
     perl-XML-LibXML \
@@ -27,23 +37,14 @@ dnf autoremove -y urpmi perl-URPM perl-Alien-Build \
     perl-Locale-gettext \
     gzip meta-task \
     sash diffutils vim-minimal libutempter \
-    rootfiles diffutils tar
+    rootfiles diffutils tar tcb
 
-dnf install -v -y \
-     --setopt=install_weak_deps=False --nodocs --allowerasing --best \
-     'dnf-command(config-manager)' mageia-repos-cauldron --nogpgcheck
-
-dnf shell -v -y  <<EOF
-config-manager --set-disabled mageia-x86_64 updates-x86_64 cauldron-updates-x86_64
-config-manager --set-enabled cauldron-x86_64 cauldron-x86_64-nonfree cauldron-x86_64-tainted
-EOF
-
-dnf upgrade -v -y --allowerasing --best --nodocs --refresh --setopt=install_weak_deps=False
 dnf autoremove -y \
-    `rpm -qa | grep mga7 | grep -v selinux | grep -v apache| grep -v filesystem`
+    `rpm -qa | grep mga7 | grep -v selinux | grep -v apache| grep -v filesystem | grep -v dnf`
 dnf clean all
 
-rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus
+rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus e2fsprogs \
+    ifmetric ipcalc ifplugd
 
 rm -f /var/log/*.log
 rm -rf /var/cache/dnf/*
