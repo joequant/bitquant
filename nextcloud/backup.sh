@@ -1,7 +1,7 @@
 #/bin/bash -f
 DATE=$(date -u +'%Y%m%d.%H%M%S')
-IMAGE=$($SUDO docker ps | tail -n +2 | grep nextcloud_db | awk '{print $NF}' )
+ID=nextcloud
 
-docker run -v nextcloud_lib:/volume --rm loomchild/volume-backup backup -c xz - > nextcloud_lib.$DATE.tar.xz
-docker run -v nextcloud_db:/volume --rm loomchild/volume-backup backup -c xz - > nextcloud_db.$DATE.tar.xz
-docker run -v nextcloud_etc:/volume --rm loomchild/volume-backup backup -c xz - > nextcloud_etc.$DATE.tar.xz
+docker run -v ${ID}_lib:/volume --rm loomchild/volume-backup backup -c xz - > ${ID}_lib.$DATE.tar.xz
+docker run -v ${ID}_db:/volume --rm loomchild/volume-backup backup -c xz - > ${ID}_db.$DATE.tar.xz
+docker run -v ${ID}_etc:/volume --rm loomchild/volume-backup backup -c xz - > ${ID}_etc.$DATE.tar.xz
