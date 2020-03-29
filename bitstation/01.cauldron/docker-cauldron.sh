@@ -43,7 +43,7 @@ dnf autoremove -y \
     `rpm -qa | grep mga7 | grep -v selinux | grep -v apache| grep -v filesystem`
 dnf clean all
 
-
+rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus
 
 rm -f /var/log/*.log
 rm -rf /var/cache/dnf/*
