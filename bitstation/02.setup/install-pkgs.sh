@@ -30,7 +30,6 @@ dnf reinstall -v -y --setopt=install_weak_deps=False --best --nodocs --alloweras
 #repeat packages in setup
 dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs \
       apache \
-      apache-mod_suexec \
       apache-mod_proxy \
       php-fpm \
       apache-mod_authnz_external \
