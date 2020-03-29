@@ -4,7 +4,7 @@
 	"build": "docker-compose build --no-cache bitstation",
 	"build-pkgs": "docker-compose build --no-cache cauldron",
 	"proxy-set": "cp proxy.sh 01.cauldron; cp proxy.sh 02.setup",
-	"start": "docker-compose up bitstation",
+	"start": "docker-compose up",
 	"stop": "docker-compose down",
 	"proxy-start": "./utils/proxy-start.sh",
 	"proxy-install": "./utils/proxy-install.sh",

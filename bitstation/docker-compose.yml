@@ -24,6 +24,7 @@ services:
   cauldron:
      image: "joequant/cauldron"
      build: 01.cauldron
+     entrypoint: ["echo", "Service cauldron disabled"]
 
 volumes:
    home:
