@@ -11,6 +11,9 @@ services:
      volumes:
        - lib:/var/lib/nextcloud
        - etc:/etc/nextcloud
+     restart: always
+     depends_on:
+       - db
   db:
       image: postgres:12-alpine
       restart: always
@@ -18,6 +21,7 @@ services:
        - POSTGRES_PASSWORD:mypass
       volumes:
        - db:/var/lib/postgresql/data
+      restart: always
 
 volumes:
    lib:
