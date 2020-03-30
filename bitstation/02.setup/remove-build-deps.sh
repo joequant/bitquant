@@ -76,3 +76,7 @@ git config --unset --global url."$GIT_PROXY".insteadOf || true
 #put in link to allow loading of iruby
 ln -s /usr/lib64/libzmq.so.5 /usr/lib64/libzmq.so
 dnf clean all
+
+pushd /usr/share/locale
+rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
+popd
