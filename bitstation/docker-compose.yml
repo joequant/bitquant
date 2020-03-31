@@ -10,7 +10,7 @@ services:
      stdin_open: true
      tty: true
      ports:
-       - 89:80
+       - 80:80
        - 443:443
      volumes:
        - home:/home
@@ -31,8 +31,8 @@ services:
        context: .
        dockerfile: Dockerfile
      volumes:
-       - lib:/var/lib/nextcloud
-       - etc-nextcloud:/etc/nextcloud
+       - nextcloud_lib:/var/lib/nextcloud
+       - nextcloud_etc:/etc/nextcloud
      restart: always
      depends_on:
        - db
@@ -42,7 +42,7 @@ services:
       environment:
        - POSTGRES_PASSWORD:mypass
       volumes:
-       - db:/var/lib/postgresql/data
+       - nextcloud_db:/var/lib/postgresql/data
       restart: always
 
 volumes:
@@ -54,6 +54,6 @@ volumes:
    log:
    etc:
    srv:
-   lib:
-   etc-nextcloud:
-   db:
+   nextcloud_lib:
+   nextcloud_etc:
+   nextcloud_db:

@@ -8,7 +8,7 @@
 	"stop": "docker-compose down",
 	"proxy-start": "./utils/proxy-start.sh",
 	"proxy-install": "./utils/proxy-install.sh",
-	"shell": "./utils/shell-server.sh bitstation",
+	"shell": "./utils/shell-server.sh bitstation_bitstation",
 	"clean-images": "./utils/rm-stopped-containers.sh ; ./utils/rm-untagged-images.sh",
 	"shell-base": "docker run -ti joequant/cauldron /bin/bash"
     }
