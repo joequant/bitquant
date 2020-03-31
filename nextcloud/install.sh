@@ -7,8 +7,8 @@ dnf upgrade --best --nodocs --allowerasing -y
 
 dnf --setopt=install_weak_deps=False --best install -v -y \
     --nodocs --allowerasing \
-    nextcloud18-sqlite \
-    nextcloud18-postgresql \
+    nextcloud-sqlite \
+    nextcloud-postgresql \
     apache \
     apache-mod_proxy \
     php-fpm \
