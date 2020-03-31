@@ -65,16 +65,13 @@ rm -f /lib/systemd/systemd
 rm -f /lib/systemd/systemd-ac-power
 rm -f /lib/systemd/systemd-backlight
 rm -f /lib/systemd/systemd-fsck
+rm -f /lib/systemd/systemd-*d
+rm -f /lib/systemd/systemd-*fs
 
-(cd system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done)
-rm -f system/multi-user.target.wants/*
-rm -f system/local-fs.target.wants/*
-rm -f system/sockets.target.wants/*udev*
-rm -f system/sockets.target.wants/*initctl*
-rm -f system/basic.target.wants/*
-rm -f system/anaconda.target.wants/*
+rm -rf system
 rm -f *udevd* *networkd* *machined* *coredump*
+popd
+
 pushd /usr/share/locale
 rm -rf `ls | grep -v ISO | grep -v UTF | grep -v en`
-popd
 popd
