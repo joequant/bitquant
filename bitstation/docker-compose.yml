@@ -25,25 +25,28 @@ services:
      image: "joequant/cauldron"
      build: 01.cauldron
      entrypoint: ["echo", "Service cauldron disabled"]
-#  nextcloud:
-#     image: "joequant/nextcloud"
-#     build:
-#       context: .
-#       dockerfile: Dockerfile
-#     volumes:
-#       - nextcloud_lib:/var/lib/nextcloud
-#       - nextcloud_etc:/etc/nextcloud
-#     restart: always
-#     depends_on:
-#       - db
-#  db:
-#      image: postgres:12-alpine
-#      restart: always
-#      environment:
-#       - POSTGRES_PASSWORD:mypass
-#      volumes:
-#       - nextcloud_db:/var/lib/postgresql/data
-#      restart: always
+  nextcloud:
+     image: "joequant/nextcloud"
+     build:
+       context: .
+       dockerfile: Dockerfile
+     ports:
+       - 84:80
+       - 4435:443
+     volumes:
+       - nextcloud_lib:/var/lib/nextcloud
+       - nextcloud_etc:/etc/nextcloud
+     restart: always
+     depends_on:
+       - db
+  db:
+      image: postgres:12-alpine
+      restart: always
+      environment:
+       - POSTGRES_PASSWORD:mypass
+      volumes:
+       - nextcloud_db:/var/lib/postgresql/data
+      restart: always
 
 volumes:
    home:
