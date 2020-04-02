@@ -18,6 +18,15 @@ chown root:root -R /usr/share/nextcloud
 sudo -u apache php occ config:system:set \
      trusted_domains 1 "--value=*"
 
+pushd /var/lib/nextcloud/apps
+curl -L https://github.com/nextcloud/files_texteditor/tarball/stable18 | tar xz
+mv nextcloud-files_texteditor-* files_texteditor
+pushd /usr/share/nextcloud
+sudo -u apache php -d memory_limit=512M \
+     occ app:enable files_texteditor
+popd
+popd
+
 for app in \
 	onlyoffice \
 	calendar \
@@ -33,12 +42,18 @@ for app in \
 	sociallogin \
 	files_markdown \
 	files_mindmap \
+	user_external \
+	ldap_write_support \
+	drawio \
+	cms_pico \
 	documentserver_community
 do
 sudo -u apache php -d memory_limit=512M \
      occ app:enable $app
 done
 popd
+
+
 touch $INSTALLED_FILE
     rm /etc/nextcloud/CAN_INSTALL
 fi
