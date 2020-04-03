@@ -17,13 +17,16 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-pcntl \
     php-redis \
     php-apcu \
-    sudo
+    sudo \
+    tar gzip
+
 
 cat <<EOF > /etc/sudo.conf
 Set disable_coredump false
 EOF
 
 cp /tmp/startup.sh /root
+cp /tmp/startup.sh /var/lib/nextcloud
 cp /tmp/config.php /etc/nextcloud
 
 sed -i -e 's:120;:1200;:'  /usr/share/nextcloud/lib/private/Installer.php
