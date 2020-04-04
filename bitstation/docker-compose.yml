@@ -30,9 +30,6 @@ services:
      build:
        context: .
        dockerfile: Dockerfile
-     ports:
-       - 84:80
-       - 4435:443
      volumes:
        - nextcloud_lib:/var/lib/nextcloud
        - nextcloud_etc:/etc/nextcloud
