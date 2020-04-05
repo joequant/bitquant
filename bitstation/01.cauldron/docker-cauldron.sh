@@ -76,6 +76,20 @@ rm -rf system
 rm -f *udevd* *networkd* *machined* *coredump*
 popd
 
+pushd /sbin
+rm -f swap*
+rm -f blk*
+rm -f fs*
+rm -f fdisk
+rm -f mkfs*
+rm -f mkswap
+popd
+
+pushd /bin
+rm -f systemd-analyze
+rm -f systemd-nspawn
+popd
+
 rm -f /var/lib/dnf/history*
 pushd /usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
