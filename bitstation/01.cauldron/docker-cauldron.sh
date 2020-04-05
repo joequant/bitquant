@@ -67,11 +67,18 @@ rm -f /lib/systemd/systemd-backlight
 rm -f /lib/systemd/systemd-fsck
 rm -f /lib/systemd/systemd-*d
 rm -f /lib/systemd/systemd-*fs
+rm -f /lib/systemd-homework
+rm -f /lib/systemd-journal-*
+rm -f /lib/systemd-user*
+rm -f /lib/fedora-*
 
 rm -rf system
 rm -f *udevd* *networkd* *machined* *coredump*
 popd
 
+rm -f /var/lib/dnf/history*
 pushd /usr/share/locale
-rm -rf `ls | grep -v ISO | grep -v UTF | grep -v en`
+rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
+rpm --rebuilddb
+rm -f /lib/*.so /lib/*.so.*
