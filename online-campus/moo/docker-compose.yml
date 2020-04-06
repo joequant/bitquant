@@ -1,0 +1,12 @@
+version:  '3'
+services:
+  moo:
+    image: "joequant/moo"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 7777:7777
+      - 7000:7000
+      - 8001:80
+    command: /home/user/startup.sh
