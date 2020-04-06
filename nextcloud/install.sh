@@ -18,8 +18,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-redis \
     php-apcu \
     sudo \
-    tar gzip
-
+    tar gzip \
+    redis
 
 cat <<EOF > /etc/sudo.conf
 Set disable_coredump false

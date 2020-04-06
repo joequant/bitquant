@@ -60,6 +60,7 @@ fi
 
 echo "Restarting php-fpm"
 /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> /var/log/php-fpm.log 2>&1 &
+sudo -u redis redis-server /etc/redis.conf --daemonize no >> /var/log/redis.log 2>&1 &
 /usr/sbin/httpd -DFOREGROUND
 
 
