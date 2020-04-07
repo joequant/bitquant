@@ -17,6 +17,7 @@ sudo -u apache php -d memory_limit=512M \
 chown root:root -R /usr/share/nextcloud
 sudo -u apache php occ config:system:set \
      trusted_domains 1 "--value=*"
+sudo -u apache php occ background:cron
 
 pushd /var/lib/nextcloud/apps
 curl -L https://github.com/nextcloud/files_texteditor/tarball/stable18 | tar xz
@@ -60,6 +61,7 @@ fi
 
 echo "Restarting php-fpm"
 /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> /var/log/php-fpm.log 2>&1 &
+crond &
 sudo -u redis redis-server /etc/redis.conf --daemonize no >> /var/log/redis.log 2>&1 &
 /usr/sbin/httpd -DFOREGROUND
 

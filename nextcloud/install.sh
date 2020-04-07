@@ -19,7 +19,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
     php-apcu \
     sudo \
     tar gzip \
-    redis
+    redis \
+    cronie
 
 cat <<EOF > /etc/sudo.conf
 Set disable_coredump false
@@ -28,6 +29,10 @@ EOF
 cp /tmp/startup.sh /root
 cp /tmp/startup.sh /var/lib/nextcloud
 cp /tmp/config.php /etc/nextcloud
+
+crontab -u apache - <<EOF
+*/1  *  *  *  * php -f /usr/share/nextcloud/cron.php
+EOF
 
 sed -i -e 's:120;:1200;:'  /usr/share/nextcloud/lib/private/Installer.php
 
