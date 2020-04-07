@@ -2,6 +2,9 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALLED_FILE=/var/lib/nextcloud/data/installed
 
+crond &
+sudo -u redis redis-server /etc/redis.conf --daemonize no >> /var/log/redis.log 2>&1 &
+
 if [ ! -e $INSTALLED_FILE ] ; then
     echo "waiting..."
     sleep 10
@@ -27,17 +30,15 @@ sudo -u apache php -d memory_limit=512M \
      occ app:enable files_texteditor
 popd
 popd
-
 for app in \
-	onlyoffice \
+    onlyoffice \
 	calendar \
-        maps \
+	maps \
 	contacts \
 	tasks \
 	mail \
 	notes \
 	deck \
-	text \
 	quicknotes \
 	groupfolders \
 	sociallogin \
@@ -61,8 +62,6 @@ fi
 
 echo "Restarting php-fpm"
 /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> /var/log/php-fpm.log 2>&1 &
-crond &
-sudo -u redis redis-server /etc/redis.conf --daemonize no >> /var/log/redis.log 2>&1 &
 /usr/sbin/httpd -DFOREGROUND
 
 
