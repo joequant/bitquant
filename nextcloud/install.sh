@@ -31,7 +31,8 @@ cp /tmp/startup.sh /var/lib/nextcloud
 cp /tmp/config.php /etc/nextcloud
 
 crontab -u apache - <<EOF
-*/1  *  *  *  * php -f /usr/share/nextcloud/cron.php
+*/1 * * * * php -f /usr/share/nextcloud/cron.php
+#*/1 * * * * php  -d memory_limit=512M /usr/share/nextcloud/occ documentserver:flush
 EOF
 
 sed -i -e 's:120;:1200;:'  /usr/share/nextcloud/lib/private/Installer.php
