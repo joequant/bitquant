@@ -60,6 +60,8 @@ rm -rf /root/.cache
 rm -rf /root/.node-gyp
 rm -rf /usr/local/share
 rm -rf /usr/lib/.build-id
+rm -rf /var/cache/*
+
 jupyter lab clean
 jlpm cache clean
 npm cache clean --force
@@ -80,3 +82,5 @@ dnf clean all
 pushd /usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
+rpm --rebuilddb
+rm -rf /var/cache/*
