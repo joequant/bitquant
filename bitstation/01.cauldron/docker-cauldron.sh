@@ -100,7 +100,8 @@ rm -f sln \
    clock \
    hwclock \
    halt \
-   if*
+   if* \
+   udevadm
 popd
 
 pushd /bin
@@ -123,7 +124,10 @@ rm -f lsblk \
    mknod \
    linux32 \
    linux64 \
-   setarch
+   setarch \
+   fragiso \
+   udevadm \
+   x86_64
 popd
 
 rm -f /var/lib/dnf/history*
