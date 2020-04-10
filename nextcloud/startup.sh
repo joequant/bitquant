@@ -48,6 +48,7 @@ for app in \
 	ldap_write_support \
 	drawio \
 	cms_pico \
+	occweb \
 	documentserver_community
 do
 sudo -u apache php -d memory_limit=512M \

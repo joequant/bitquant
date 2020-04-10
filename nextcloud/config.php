@@ -31,4 +31,10 @@ $CONFIG = array (
      'port' => 6379,
      'timeout' => 0.0,
       ),
+  'user_backends' => array(
+    array(
+        'class' => 'OC_User_BasicAuth',
+        'arguments' => array('http://bitstation/dokuwiki'),
+    ),
+),
 );
