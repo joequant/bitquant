@@ -44,7 +44,7 @@ dnf autoremove -y \
 dnf clean all
 
 rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus e2fsprogs \
-    ifmetric ipcalc ifplugd
+    ifmetric ipcalc ifplugd psmisc traceroute
 
 rm -f /var/log/*.log
 rm -rf /var/cache/dnf/*
@@ -83,11 +83,47 @@ rm -f fs*
 rm -f fdisk
 rm -f mkfs*
 rm -f mkswap
+rm -f losetup
+rm -f resizepart
+rm -f sfdisk
+rm -f sln \
+   telinit \
+   zramctl \
+   shutdown \
+   runlevel \
+   poweroff \
+   reboot \
+   addpart \
+   agetty \
+   blockdev \
+   cfdisk \
+   clock \
+   hwclock \
+   halt \
+   if*
 popd
 
 pushd /bin
 rm -f systemd-analyze
 rm -f systemd-nspawn
+rm -f lsblk \
+   lscpu \
+   lsipc \
+   lsmem \
+   partmon \
+   mount \
+   systemd-repart \
+   systemd-mount \
+   systemd-umount \
+   systemd-firstboot \
+   nl \
+   vdir \
+   code2color \
+   mkfifo \
+   mknod \
+   linux32 \
+   linux64 \
+   setarch
 popd
 
 rm -f /var/lib/dnf/history*
