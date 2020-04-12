@@ -1,11 +1,32 @@
 #!/bin/bash
 export LANG=C LC_ALL=C
 
+while getopts 'u:' OPTION; do
+  case "$OPTION" in
+    u)
+      user="$OPTARG"
+      ;;
+    ?)
+      echo "script usage: -u usernae image cmd" >&2
+      exit 1
+      ;;
+  esac
+done
+shift "$(($OPTIND -1))"
+
+args=()
+
 if [ $# -ge 1 ]; then
-    IMAGE=$($SUDO docker ps | tail -n +2 | grep $1 | awk '{print $NF}' )
-    echo $IMAGE
+    IMAGE=$(docker ps | awk 'FNR >=2 {print $NF}' | grep ^$1 | head -1)
 else 
-    IMAGE=$($SUDO docker ps | awk 'FNR==2 {print $NF}')
+    IMAGE=$(docker ps | awk 'FNR==2 {print $NF}')
+fi
+
+if [[ -z $IMAGE ]]; then
+    echo "image not found"
+    exit 1
+else
+    echo "Image: "$IMAGE
 fi
 
 if [ $# -ge 2 ]; then
@@ -14,4 +35,13 @@ else
     CMD=/bin/bash
 fi
 
-exec $SUDO docker exec -it $IMAGE $CMD
+if [[ ! -z $user ]]; then
+   args+=(-u)
+   args+=($user)
+fi
+
+args+=($IMAGE)
+args+=($CMD)
+
+echo "running '"docker exec -it ${args[@]}"'"
+exec docker exec -it ${args[@]}
