@@ -11,6 +11,6 @@
 	"shell": "./utils/shell-server.sh bitstation_bitstation",
 	"clean-images": "./utils/rm-stopped-containers.sh ; ./utils/rm-untagged-images.sh",
 	"shell-base": "docker run -ti joequant/cauldron /bin/bash",
-	"shell-nextcloud": "./utils/shell-server.sh bitstation_nextcloud"
+	"shell-nextcloud": "./utils/shell-server.sh -u apache bitstation_nextcloud"
     }
 }
