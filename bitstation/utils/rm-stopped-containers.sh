@@ -1,2 +1,3 @@
 #!/bin/bash
-$SUDO docker rm $($SUDO docker ps -a -q) 
+CMD=${1:-docker}
+$CMD rm $($CMD ps -a -q) 

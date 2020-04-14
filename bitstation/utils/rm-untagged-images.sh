@@ -1,2 +1,3 @@
 #!/bin/bash
-$SUDO docker rmi $($SUDO docker images | grep "^<none>" | awk '{print $3}')
+CMD=${1:-docker}
+$CMD rmi $($CMD images | grep "^<none>" | awk '{print $3}')
