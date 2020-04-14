@@ -12,13 +12,12 @@
 set -e
 
 mkimg="$(basename "$0")"
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 container=$(buildah from scratch)
 echo $container
 buildah config --label maintainer="Joseph C Wang <joequant@gmail.com>" $container
 mountpoint=$(buildah mount $container)
 rootfsDir=$mountpoint
-echo $rootfsDir
-
 
 usage() {
 	echo >&2 "usage: $mkimg --version=mageia_version [--mirror=url] [--package-manager=(dnf|microdnf|urpmi)] [--forcearch=ARCH] [--with-systemd] [--quiet]"
@@ -30,7 +29,11 @@ usage() {
 	exit 1
 }
 
-optTemp=$(getopt --options 'v:,p:,a:,s,q,h' --longoptions 'version:,mirror:,package-manager:,forcearch:,with-systemd,quiet,help' --name $mkimg -- "$@")
+if [ -e "$script_dir/proxy.sh" ]; then
+        . $script_dir/proxy.sh
+fi
+
+optTemp=$(getopt --options 'v:,p:,a:,s,q,h,n:' --longoptions 'version:,mirror:,package-manager:,forcearch:,with-systemd,quiet,help,name:' --name $mkimg -- "$@")
 eval set -- "$optTemp"
 unset optTemp
 
@@ -46,13 +49,14 @@ while true; do
                 -s|--with-systemd) systemd=true ; shift ;;
                 -q|--quiet) quiet=true ; shift ;;
                 -h|--help) usage ;;
+                -n|--name) name="$2" ; shift 2 ;;
                  --) shift ; break ;;
         esac
 done
 
-export LC_ALL=C.UTF-8
-export LANGUAGE=C.UTF-8
-export LANG=C.UTF-8
+export LC_ALL=C
+export LANGUAGE=C
+export LANG=C
 
 if [ ! -x /usr/bin/dnf ]; then
 	echo "Error: DNF is not installed!"
@@ -63,6 +67,10 @@ fi
 if [ ! -z "$buildarch" -a -z "$mirror" ]; then
 	echo "Error: Mirror must be specified when setting a specific architecture!"
 	exit 1
+fi
+
+if [ -z $name ]; then
+        name="cauldron"
 fi
 
 if [ -z $buildarch ]; then
@@ -85,13 +93,14 @@ if [ ! -z $buildarch ]; then
 fi
 
 if [ -z $releasever ]; then
+    releasever="cauldron"
         # Attempt to match host version
-        if [ -r /etc/mageia-release ]; then
-                releasever="$(sed 's/^[^0-9\]*\([0-9.]\+\).*$/\1/' /etc/mageia-release)"
-        else
-                echo "Error: no version supplied and unable to detect host mageia version"
-                exit 1
-        fi
+        #if [ -r /etc/mageia-release ]; then
+        #        releasever="$(sed 's/^[^0-9\]*\([0-9.]\+\).*$/\1/' /etc/mageia-release)"
+        #else
+        #        echo "Error: no version supplied and unable to detect host mageia version"
+        #        exit 1
+        #fi
 fi
 
 if [ ! -z $mirror ]; then
@@ -126,7 +135,7 @@ fi
 
 # Must be after the non-empty check or otherwise this will fail
 if [ -z $pkgmgr ]; then
-        pkgmgr="dnf urpmi"
+        pkgmgr="dnf"
 fi
 
 extrapkgs=""
@@ -154,7 +163,7 @@ fi
 )
 
 rpm --initdb  --root $rootfsDir
-rpm -Uvh --noscripts --nodeps filesystem-*.rpm  --root $rootfsDir
+rpm -Uvh --nodeps filesystem-*.rpm  --root $rootfsDir
 rpm -Uvh --noscripts --nodeps makedev-*.rpm  --root $rootfsDir
 rm -f filesystem-*.rpm  makedev-*.rpm
 
@@ -166,8 +175,8 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
-            install bash locales locales-en \
-	    ncurses $extrapkgs 
+            install basesystem-minimal locales locales-en \
+	    ncurses $extrapkgs $pkgmgr
 )
 
 # Make sure /etc/resolv.conf has something useful in it
@@ -187,10 +196,19 @@ if [[ $pkgmgr == *"urpmi"* ]]; then
 fi
 
 	cd "$rootfsDir"
+rpm --erase basesystem-minimal  --root $rootfsDir
+dnf autoremove -y \
+    --installroot="$rootfsDir" \
+    sash diffutils vim-minimal libutempter \
+    rootfiles diffutils tar tcb
 
+dnf clean all --installroot="$rootfsDir"
+
+rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus e2fsprogs \
+    ifmetric ipcalc ifplugd psmisc traceroute --root $rootfsDir
+	
 	# effectively: febootstrap-minimize --keep-zoneinfo --keep-rpmdb --keep-services "$target"
 	#  locales
-	rm -rf usr/{{lib,share}/locale,{lib,lib64}/gconv,bin/localedef,sbin/build-locale-archive}
 	#  docs
 	rm -rf usr/share/{man,doc,info,gnome/help}
 	#  cracklib
@@ -292,9 +310,14 @@ rm -f lsblk \
 popd
 
 rm -f var/lib/dnf/history*
+pushd usr/share/locale
+rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
+popd
+
 rpm --rebuilddb --root $rootfsDir
-rm -f lib/*.so lib/*.so.*
-	
+if [ "$buildarch" == "x85_64" ] ; then
+        rm -f lib/*.so lib/*.so.*
+fi	
 
 if [ -d "$rootfsDir/etc/sysconfig" ]; then
         # allow networking init scripts inside the container to work without extra steps
@@ -317,7 +340,5 @@ fi
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
 mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
-
-buildah config --entrypoint "/bin/bash" $container
-buildah commit --format docker $container joequant/cauldron
+buildah commit --format docker $container $name
 buildah unmount $container
