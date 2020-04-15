@@ -12,7 +12,7 @@ dnf -y \
       autoconf \
       swig \
       protobuf-compiler \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v "gcc-c++"`
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
 
 dnf -y \
     autoremove \
