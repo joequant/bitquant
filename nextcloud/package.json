@@ -1,7 +1,7 @@
 {
     "name": "nextcloud",
     "scripts": {
-	"build": "docker-compose build --no-cache nextcloud",
+	"build": "buildah unshare ./install.sh",
 	"up": "docker-compose up",
 	"down": "docker-compose down",
 	"shell": "docker exec -it nextcloud_nextcloud_1 /bin/bash",
