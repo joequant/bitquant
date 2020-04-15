@@ -2,7 +2,7 @@
     "name": "bitstation",
     "scripts": {
 	"build": "docker-compose build --no-cache bitstation",
-	"build-pkgs": "buildah unshare 01.cauldron/mkimage-buildah.sh && skopeo copy containers-storage:localhost/cauldron:latest docker-daemon:joequant/cauldron:latest",
+	"build-pkgs": "buildah unshare 01.cauldron/mkimage-buildah.sh -n joequant/cauldron ; buildah unshare 01.cauldron/mkimage-buildah-minimal.sh",
 	"proxy-set": "cp proxy.sh 01.cauldron; cp proxy.sh 02.setup",
 	"up": "docker-compose up",
 	"down": "docker-compose down",
