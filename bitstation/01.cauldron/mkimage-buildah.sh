@@ -70,7 +70,7 @@ if [ ! -z "$buildarch" -a -z "$mirror" ]; then
 fi
 
 if [ -z $name ]; then
-        name="cauldron"
+        name="joequant/cauldron"
 fi
 
 if [ -z $buildarch ]; then
@@ -119,7 +119,7 @@ if [ -z $mirror ]; then
 		exit 1
 	fi
         # If mirror is *not* provided, use mirrorlist
-        reposetup="--disablerepo=* --enablerepo=mageia-$buildarch --enablerepo=updates-$buildarch"
+        reposetup="--nogpgcheck --disablerepo=* --enablerepo=mageia-$buildarch --enablerepo=updates-$buildarch"
 fi
 
 if [ ! -z $pkgmgr ]; then
@@ -153,6 +153,10 @@ if [ ! -z $systemd ]; then
 fi
 (
     dnf \
+	--installroot="$rootfsDir" \
+	clean all
+
+    dnf \
             $reposetup \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
@@ -175,8 +179,8 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
-            install basesystem-minimal locales locales-en \
-	    ncurses $extrapkgs $pkgmgr
+            install basesystem-minimal-core locales locales-en \
+	    $extrapkgs $pkgmgr
 )
 
 # Make sure /etc/resolv.conf has something useful in it
@@ -196,16 +200,13 @@ if [[ $pkgmgr == *"urpmi"* ]]; then
 fi
 
 	cd "$rootfsDir"
-rpm --erase basesystem-minimal  --root $rootfsDir
+rpm --erase basesystem-minimal-core  --root $rootfsDir
 dnf autoremove -y \
     --installroot="$rootfsDir" \
     sash diffutils vim-minimal libutempter \
     rootfiles diffutils tar tcb
 
 dnf clean all --installroot="$rootfsDir"
-
-rpm --erase --nodeps iputils iproute2 ethtool info-install net-tools kmod dbus e2fsprogs \
-    ifmetric ipcalc ifplugd psmisc traceroute --root $rootfsDir
 	
 	# effectively: febootstrap-minimize --keep-zoneinfo --keep-rpmdb --keep-services "$target"
 	#  locales

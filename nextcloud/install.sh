@@ -28,6 +28,7 @@ dnf --installroot="$rootfsDir" \
     --setopt=install_weak_deps=False --best -v -y \
     --nodocs --allowerasing \
     --releasever="$releasever" \
+    --nogpgcheck \
     install \
     nextcloud-sqlite \
     nextcloud-postgresql \
@@ -46,9 +47,6 @@ dnf --installroot="$rootfsDir" \
     locales-en
 )
 
-
-rpm --erase --root $rootfsDir --nodeps rpm-helper
-dnf autoremove --installroot="$rootfsDir"
 cat <<EOF > $rootfsDir/etc/sudo.conf
 Set disable_coredump false
 EOF
