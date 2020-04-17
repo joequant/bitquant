@@ -9,7 +9,9 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-source /tmp/proxy.sh
+if [ -e /tmp/proxy.sh ]; then
+    source /tmp/proxy.sh
+fi
 
 if grep -q '^7 ' /etc/version
 then export RDKAFKA=
@@ -87,8 +89,12 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       cargo \
       lib64git2-devel \
       pybind11-devel \
-      gzip
+      gzip \
+      ncurses \
+      nss \
+      nspr
 
+# nss/nspr to prevent poppler from pulling in firefox
 # cargo for gifski
 # libxt-devel for R cairo
 # libmagick-devel for R magick
