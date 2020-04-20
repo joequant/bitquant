@@ -92,7 +92,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       gzip \
       ncurses \
       nss \
-      nspr
+      nspr \
+      passwd
 
 # nss/nspr to prevent poppler from pulling in firefox
 # cargo for gifski
