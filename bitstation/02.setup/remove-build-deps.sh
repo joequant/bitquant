@@ -16,7 +16,10 @@ dnf -y \
 
 dnf -y \
     autoremove \
-    `rpm -qa | grep openjdk`
+    `rpm -qa | grep openjdk` \
+    `rpm -qa | grep firefox` \
+    `rpm -qa | grep initscripts` \
+    `rpm -qa | grep qtbase5-common`
 
 dnf -y \
     install java-headless
