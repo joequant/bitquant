@@ -151,13 +151,18 @@ if [ ! -z $systemd ]; then
         echo -e "--------------------------------------\n"
         extrapkgs="$extrapkgs systemd"
 fi
+dnf \
+    $reposetup \
+    --nogpgcheck \
+    --forcearch="$buildarch" \
+    --installroot="$rootfsDir" \
+    --releasever="$releasever" \
+    makecache
+
 (
     dnf \
-	--installroot="$rootfsDir" \
-	clean all
-
-    dnf \
-            $reposetup \
+        $reposetup \
+	--nogpgcheck \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
@@ -173,13 +178,15 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 
 (
     dnf \
-            $reposetup \
+        $reposetup \
+            --nogpgcheck \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
             install basesystem-minimal-core locales locales-en \
+	    ncurses \
 	    $extrapkgs $pkgmgr
 )
 
@@ -203,8 +210,9 @@ fi
 rpm --erase basesystem-minimal-core  --root $rootfsDir
 dnf autoremove -y \
     --installroot="$rootfsDir" \
-    sash diffutils vim-minimal libutempter \
-    rootfiles diffutils tar tcb
+    diffutils vim-minimal \
+    rootfiles diffutils tar tcb \
+    passwd hostname which psmisc
 
 dnf clean all --installroot="$rootfsDir"
 	
