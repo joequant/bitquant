@@ -44,7 +44,8 @@ dnf --installroot="$rootfsDir" \
     tar gzip \
     redis \
     cronie \
-    locales-en
+    locales-en \
+    curl
 )
 
 cat <<EOF > $rootfsDir/etc/sudo.conf
