@@ -78,6 +78,8 @@ rm -rf usr/lib/python3.7
 rm -rf usr/lib/systemd
 rm -rf var/cache/*
 rm -f var/lib/dnf/history.*
+rm -f lib/*.so
+rm -f lib/*.so.*
 
 pushd usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
@@ -86,6 +88,7 @@ popd
 rpm --rebuilddb --root $rootfsDir
 
 buildah config --cmd "/var/lib/nextcloud/startup.sh" $container
+buildah config --user "root" $container
 buildah commit --format docker --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest
 
