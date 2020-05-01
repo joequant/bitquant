@@ -1,6 +1,6 @@
 ARG base
 FROM $base
-
+USER root
 LABEL maintainer="Joseph C Wang <joequant@gmail.com>"
 RUN mkdir -p /etc/sysusers.d
 COPY system.conf /etc/sysusers.d
