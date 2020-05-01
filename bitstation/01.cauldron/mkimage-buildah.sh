@@ -159,6 +159,9 @@ dnf \
     --releasever="$releasever" \
     makecache
 
+dnf config-manager --installroot="$rootfsDir" \
+    --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
+
 (
     dnf \
         $reposetup \
@@ -186,7 +189,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
             install basesystem-minimal-core locales locales-en \
-	    ncurses \
+	    ncurses sudo \
 	    $extrapkgs $pkgmgr
 )
 
@@ -215,6 +218,7 @@ dnf autoremove -y \
     passwd hostname which psmisc
 
 dnf clean all --installroot="$rootfsDir"
+
 	
 	# effectively: febootstrap-minimize --keep-zoneinfo --keep-rpmdb --keep-services "$target"
 	#  locales
@@ -349,6 +353,13 @@ fi
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
 mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
+/usr/sbin/useradd -G wheel -R $rootfsDir user
+cat <<EOF > $rootfsDir/etc/sudoers.d/user
+%wheel        ALL=(ALL)       NOPASSWD: ALL
+EOF
+buildah config --user "user" $container
+buildah config --cmd "/bin/bash" $container
+
 buildah commit --format docker --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest
 

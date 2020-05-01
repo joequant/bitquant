@@ -152,6 +152,17 @@ if [ ! -z $systemd ]; then
         extrapkgs="$extrapkgs systemd"
 fi
 
+dnf \
+    $reposetup \
+    --nogpgcheck \
+    --forcearch="$buildarch" \
+    --installroot="$rootfsDir" \
+    --releasever="$releasever" \
+    makecache
+
+dnf config-manager --installroot="$rootfsDir" \
+    --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
+
 (
     dnf \
             $reposetup \
