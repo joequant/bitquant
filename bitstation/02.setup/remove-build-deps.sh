@@ -12,6 +12,7 @@ dnf -y \
       autoconf \
       swig \
       protobuf-compiler \
+      cargo \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
 
 dnf -y \
@@ -81,6 +82,11 @@ git config --unset --global url."$GIT_PROXY".insteadOf || true
 #put in link to allow loading of iruby
 ln -s /usr/lib64/libzmq.so.5 /usr/lib64/libzmq.so
 dnf clean all
+
+# remove link that moves out of volume to allow running in podman
+rm -rf /etc/X11
+rm -rf /etc/alsa
+rm -rf /etc/fonts
 
 pushd /usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
