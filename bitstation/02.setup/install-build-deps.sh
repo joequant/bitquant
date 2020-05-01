@@ -93,7 +93,12 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       ncurses \
       nss \
       nspr \
-      passwd
+      passwd \
+      tar \
+      xeus-devel \
+      xtl-devel
+
+# xeus-devel for r juniper
 
 # nss/nspr to prevent poppler from pulling in firefox
 # cargo for gifski
