@@ -2,7 +2,8 @@
 set -e -v
 echo "ZONE=UTC" > /etc/sysconfig/clock
 export TZ="UTC"
-useradd user
+# user account may already exist
+useradd user || true
 chmod a+rx ~user
 echo 'cubswin:)' | passwd user --stdin
 echo 'cubswin:)' | passwd root --stdin
