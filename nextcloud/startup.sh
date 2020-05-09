@@ -58,7 +58,9 @@ popd
 
 
 touch $INSTALLED_FILE
-    rm /etc/nextcloud/CAN_INSTALL
+rm /etc/nextcloud/CAN_INSTALL
+echo "If you get a 'ONLYOFFICE cannot be contacted.  Please contact admin.' error"
+echo "Go into Setting > ONLYOFFICE and unset 'Document Editing Service address'"
 fi
 
 echo "Restarting php-fpm"
