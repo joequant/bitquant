@@ -2,7 +2,7 @@
     "name": "bitstation",
     "scripts": {
 	"build": "docker-compose build --no-cache bitstation",
-	"build-pkgs": "buildah unshare 01.cauldron/mkimage-buildah.sh -n joequant/cauldron ; buildah unshare 01.cauldron/mkimage-buildah-minimal.sh",
+	"build-base": "buildah unshare 01.cauldron/mkimage-buildah.sh -n joequant/cauldron ; buildah unshare 01.cauldron/mkimage-buildah-minimal.sh",
 	"build-podman": "podman build 02.setup -t joequant/bitstation --build-arg base=joequant/cauldron --no-cache",
 	"proxy-set": "cp proxy.sh 01.cauldron; cp proxy.sh 02.setup",
 	"up": "docker-compose up",
