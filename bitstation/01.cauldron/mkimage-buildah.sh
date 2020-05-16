@@ -337,18 +337,24 @@ if [ -d "$rootfsDir/etc/sysconfig" ]; then
         echo 'NETWORKING=yes' > "$rootfsDir/etc/sysconfig/network"
 fi
 
-if [ ! -z $systemd ]; then
-	#Prevent systemd from starting unneeded services
-	(cd $rootfsDir/lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-        rm -f $rootfsDir/lib/systemd/system/multi-user.target.wants/*;\
-        rm -f $rootfsDir/etc/systemd/system/*.wants/*;\
-        rm -f $rootfsDir/lib/systemd/system/local-fs.target.wants/*; \
-        rm -f $rootfsDir/lib/systemd/system/sockets.target.wants/*udev*; \
-        rm -f $rootfsDir/lib/systemd/system/sockets.target.wants/*initctl*; \
-        rm -f $rootfsDir/lib/systemd/system/basic.target.wants/*;\
-        rm -f $rootfsDir/lib/systemd/system/anaconda.target.wants/*;
-fi
-
+rm -rf $rootfsDir/lib/systemd/system
+rm -f $rootfsDir/lib/systemd/fedora-*
+rm -f $rootfsDir/lib/systemd/systemd-ac-power
+rm -f $rootfsDir/lib/systemd/systemd-backlight
+rm -f $rootfsDir/lib/systemd/systemd-coredump
+rm -f $rootfsDir/lib/systemd/systemd-cryptsetup
+rm -f $rootfsDir/lib/systemd/systemd-home*
+rm -f $rootfsDir/lib/systemd/systemd-journal*
+rm -f $rootfsDir/lib/systemd/systemd-localed
+rm -f $rootfsDir/lib/systemd/systemd-logind
+rm -f $rootfsDir/lib/systemd/systemd-machined
+rm -f $rootfsDir/lib/systemd/systemd-makefs
+rm -f $rootfsDir/lib/systemd/systemd-modules-load
+rm -f $rootfsDir/lib/systemd/systemd-network*
+rm -f $rootfsDir/lib/systemd/systemd-portabled
+rm -f $rootfsDir/lib/systemd/systemd-resolved
+rm -f $rootfsDir/lib/systemd/systemd-time*
+rm -f $rootfsDir/lib/systemd/systemd-udevd
 
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
