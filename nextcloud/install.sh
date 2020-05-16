@@ -23,12 +23,12 @@ reposetup="--disablerepo=* --enablerepo=mageia-$buildarch --enablerepo=updates-$
 #source $script_dir/proxy.sh
 (
 dnf --installroot="$rootfsDir" \
-    $reposetup \
     --forcearch="$buildarch" \
     --setopt=install_weak_deps=False --best -v -y \
     --nodocs --allowerasing \
     --releasever="$releasever" \
     --nogpgcheck \
+    --refresh \
     install \
     nextcloud-sqlite \
     nextcloud-postgresql \
@@ -45,7 +45,9 @@ dnf --installroot="$rootfsDir" \
     redis \
     cronie \
     locales-en \
-    curl
+    curl \
+    timezone \
+    psmisc
 )
 
 cat <<EOF > $rootfsDir/etc/sudo.conf
