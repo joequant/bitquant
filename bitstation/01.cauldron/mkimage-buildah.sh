@@ -337,8 +337,11 @@ if [ -d "$rootfsDir/etc/sysconfig" ]; then
         echo 'NETWORKING=yes' > "$rootfsDir/etc/sysconfig/network"
 fi
 
+rm -f $rootfsDir/lib/systemd/systemd
+rm -f $rootfsDir/bin/systemd
 rm -rf $rootfsDir/lib/systemd/system
 rm -f $rootfsDir/lib/systemd/fedora-*
+rm -rf $rootfsDir/lib/systemd/portable
 rm -f $rootfsDir/lib/systemd/systemd-ac-power
 rm -f $rootfsDir/lib/systemd/systemd-backlight
 rm -f $rootfsDir/lib/systemd/systemd-coredump
@@ -355,6 +358,7 @@ rm -f $rootfsDir/lib/systemd/systemd-portabled
 rm -f $rootfsDir/lib/systemd/systemd-resolved
 rm -f $rootfsDir/lib/systemd/systemd-time*
 rm -f $rootfsDir/lib/systemd/systemd-udevd
+rm -rf $rootfsDir/usr/local
 
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
