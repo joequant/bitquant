@@ -2,14 +2,12 @@ version:  '3'
 services:
   nextcloud:
      image: "joequant/nextcloud"
-     build:
-       context: .
-       dockerfile: Dockerfile
      ports:
        - 80:80
        - 443:443
      volumes:
-       - lib:/var/lib/nextcloud
+       - lib_apps:/var/lib/nextcloud/data
+       - lib_data:/var/lib/nextcloud/apps
        - etc:/etc/nextcloud
      restart: always
      depends_on:
@@ -24,6 +22,7 @@ services:
       restart: always
 
 volumes:
-   lib:
+   lib_apps:
+   lib_data:
    db:
    etc:
