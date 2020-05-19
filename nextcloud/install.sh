@@ -62,11 +62,13 @@ mv ca-bundle.crt.bak ca-bundle.crt
 popd
 
 pushd $rootfsDir
-cp $script_dir/startup.sh var/lib/nextcloud
+cp $script_dir/startup-nextcloud.sh sbin
 cp $script_dir/config.php etc/nextcloud
 cp $script_dir/00_mpm.conf etc/httpd/conf/modules.d
-chmod a+x var/lib/nextcloud/startup.sh
-chown apache:apache var/lib/nextcloud/startup.sh
+cp $script_dir/wait-for-it.sh sbin
+chmod a+x sbin/startup-nextcloud.sh
+chmod a+x sbin/wait-for-it.sh
+chown apache:apache sbin/startup-nextcloud.sh
 
 cat > var/spool/cron/apache - <<EOF
 */1 * * * * php -f /usr/share/nextcloud/cron.php
@@ -89,7 +91,7 @@ popd
 popd
 rpm --rebuilddb --root $rootfsDir
 
-buildah config --cmd "/var/lib/nextcloud/startup.sh" $container
+buildah config --cmd "/sbin/startup-nextcloud.sh" $container
 buildah config --user "root" $container
 buildah commit --format docker --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest

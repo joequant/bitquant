@@ -5,9 +5,11 @@ INSTALLED_FILE=/var/lib/nextcloud/data/installed
 crond &
 sudo -u redis redis-server /etc/redis.conf --daemonize no >> /var/log/redis.log 2>&1 &
 
+echo "waiting..."
+/sbin/wait-for-it.sh db:5432
+echo "connecting..."
+
 if [ ! -e $INSTALLED_FILE ] ; then
-    echo "waiting..."
-    sleep 10
     touch /etc/nextcloud/CAN_INSTALL
 chown apache:apache -R /usr/share/nextcloud
 pushd /usr/share/nextcloud
