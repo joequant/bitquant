@@ -360,6 +360,8 @@ rm -f $rootfsDir/lib/systemd/systemd-time*
 rm -f $rootfsDir/lib/systemd/systemd-udevd
 rm -rf $rootfsDir/usr/local
 
+find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
+
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
 mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
