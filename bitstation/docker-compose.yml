@@ -31,7 +31,8 @@ services:
        context: .
        dockerfile: Dockerfile
      volumes:
-       - nextcloud_lib:/var/lib/nextcloud
+       - nextcloud_lib_apps:/var/lib/nextcloud/apps
+       - nextcloud_lib_data:/var/lib/nextcloud/data
        - nextcloud_etc:/etc/nextcloud
      restart: always
      depends_on:
@@ -54,6 +55,7 @@ volumes:
    log:
    etc:
    srv:
-   nextcloud_lib:
+   nextcloud_lib_apps:
+   nextcloud_lib_data:
    nextcloud_etc:
    nextcloud_db:
