@@ -60,9 +60,7 @@ pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 
 # reinstall to get jupyter executable
-# force 4.4.0 to work around ijavascript install issue
-# https://github.com/n-riesco/ijavascript/issues/200
-pip3 install --upgrade --force-reinstall jupyter-core --prefix /usr
+pip3 install --upgrade jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
@@ -286,7 +284,7 @@ tsfresh
 jupyterlab_code_formatter
 scaleogram
 pycwt
-enigma-catalyst
+freqtrade
 quandl
 kaggle
 wget

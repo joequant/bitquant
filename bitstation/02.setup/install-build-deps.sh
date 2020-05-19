@@ -55,6 +55,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       python3-pyglet \
       python3-py4j \
       python3-mysql \
+      python3-wheel \
       curl-devel \
       icu-devel \
       libpcre-devel \
@@ -96,7 +97,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       passwd \
       tar \
       xeus-devel \
-      xtl-devel
+      xtl-devel \
+      'pkgconfig(Magick++)'
 
 # xeus-devel for r juniper
 
