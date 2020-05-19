@@ -89,6 +89,7 @@ pushd usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 popd
+find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 rpm --rebuilddb --root $rootfsDir
 
 buildah config --cmd "/sbin/startup-nextcloud.sh" $container
