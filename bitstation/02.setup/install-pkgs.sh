@@ -9,26 +9,26 @@
 # dokuwiki also needs to be in bootstrap for the same reasons
 set -e -v
 
-cat <<EOF >> /etc/dnf/dnf.conf
+cat <<EOF >> $rootfsDir/etc/dnf/dnf.conf
 fastestmirror=true
 max_parallel_downloads=15
 EOF
 
-source /tmp/proxy.sh
-dnf makecache
+source $rootfsDir/tmp/proxy.sh
+dnf makecache $rootfsArg
 dnf upgrade --best --nodocs --allowerasing --refresh -y \
-    --setopt=install_weak_deps=False
+    --setopt=install_weak_deps=False $rootfsArg
 
 # workaround bug RHEL #1765718
-dnf autoremove python3-dnf-plugins-core -y
+dnf autoremove python3-dnf-plugins-core -y $rootfsArg
 
 # Refresh locale and glibc for missing latin items
 # needed for R to build packages
 dnf reinstall -v -y --setopt=install_weak_deps=False --best --nodocs --allowerasing \
-    locales locales-en glibc
+    locales locales-en glibc $rootfsArg
 
 #repeat packages in setup
-dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs \
+dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs $rootfsArg \
       apache \
       apache-mod_proxy \
       php-fpm \
@@ -63,22 +63,21 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-cffi \
       python3-cython \
       python3-pexpect \
-      python2
+      R-Rcpp-devel \
+      root \
+      python3-jupyroot \
+      root-r
 
-chmod a+x /usr/lib64/R/bin/*
-dnf clean all
-npm install -g modclean
-rm -rf /var/log/*.log
-rm -rf /usr/share/gems/doc/*
-rm -rf /usr/lib/python3.5
-rm -rf /usr/lib64/python3.5
-pushd /usr/lib/node_modules
-modclean -r -f
-popd
+chmod a+x $rootfsDir/usr/lib64/R/bin/*
+dnf clean all $rootfsArg
+rm -rf $rootfsDir/var/log/*.log
+rm -rf $rootfsDir/usr/share/gems/doc/*
+rm -rf $rootfsDir/usr/lib/python3.5
+rm -rf $rootfsDir/usr/lib64/python3.5
 
-pushd /etc/httpd/conf
+pushd $rootfsDir/etc/httpd/conf
 rm -f conf.d/security.conf
-cp /tmp/00_mpm.conf modules.d
+cp $rootfsDir/tmp/00_mpm.conf modules.d
 if [ -e modules.d/00-php-fpm.conf ] ; then
     mv modules.d/00-php-fpm.conf modules.d/10-php-fpm.conf
 fi
