@@ -70,6 +70,8 @@ chmod a+x sbin/startup-nextcloud.sh
 chmod a+x sbin/wait-for-it.sh
 chown apache:apache sbin/startup-nextcloud.sh
 
+sed -i -e 's/Listen 80/Listen ${HTTP_PORT}/' etc/httpd/conf/httpd.conf
+
 cat > var/spool/cron/apache - <<EOF
 */1 * * * * php -f /usr/share/nextcloud/cron.php
 #*/1 * * * * php  -d memory_limit=512M /usr/share/nextcloud/occ documentserver:flush
@@ -90,10 +92,12 @@ rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 popd
 find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
+
 rpm --rebuilddb --root $rootfsDir
 
 buildah config --cmd "/sbin/startup-nextcloud.sh" $container
 buildah config --user "root" $container
+buildah config --env HTTP_PORT=80 $container
 buildah commit --format docker --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest
 
