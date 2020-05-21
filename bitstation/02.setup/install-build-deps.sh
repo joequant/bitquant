@@ -38,6 +38,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       python3-numpy \
       python3-numpy-devel \
       python3-tables \
+      python3-fs \
       python3-scipy \
       python3-qstk \
       python3-scikits-learn \
