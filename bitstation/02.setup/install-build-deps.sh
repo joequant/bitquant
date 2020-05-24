@@ -99,7 +99,9 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       tar \
       xeus-devel \
       xtl-devel \
-      'pkgconfig(Magick++)'
+      'pkgconfig(Magick++)' \
+      spack \
+      spack-repos
 
 # xeus-devel for r juniper
 
