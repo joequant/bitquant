@@ -13,8 +13,6 @@ cd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 chown -R user:user .
 . /tmp/setup.sh
-chmod a+x /tmp/bootstrap.sh
-su user -p -c "/bin/bash /tmp/bootstrap.sh"
 
 #set httpd
 /usr/share/bitquant/conf.sh /httpd-lock
