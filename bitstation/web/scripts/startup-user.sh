@@ -32,9 +32,9 @@ echo "Restarting configurable-http-proxy"
 configurable-http-proxy --port 9010 --api-port 9011 --no-include-prefix >> $LOG_DIR/configurable-http-proxy 2 >&1 &
 fi
 
-if [ -d $GIT_DIR/etherpad-lite ] ; then
+if [ -d /usr/share/bitquant/etherpad-lite ] ; then
 echo "Restarting etherpad"
-pushd $GIT_DIR/etherpad-lite > /dev/null
+pushd /usr/share/bitquant/etherpad-lite > /dev/null
 bin/run.sh >> $LOG_DIR/etherpad.log 2>&1 &
 popd > /dev/null
 fi
