@@ -1,4 +1,7 @@
-: '
+#: '
+timeout 1 bash -c 'cat < /dev/null > /dev/tcp/172.17.0.1/3128'
+if [ $? == 0 ] ; then
+    echo "running proxy"
 export http_proxy=http://172.17.0.1:3128/
 export https_proxy=http://172.17.0.1:3128/
 export ftp_proxy=http://172.17.0.1:3128/
@@ -10,4 +13,5 @@ export GIT_PROXY=http://127.0.0.1:8080/
 #cache with verdacchio
 export NPM_CONFIG_REGISTRY=http://127.0.0.1:4873/
 export YARN_REGISTRY=http://127.0.0.1:4873/
-'
+#'
+fi
