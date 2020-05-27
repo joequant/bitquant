@@ -365,6 +365,9 @@ find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 # Docker mounts tmpfs at /dev and procfs at /proc so we can remove them
 rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
 mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
+chmod 0755 $rootfsDir/dev
+chmod 0755 $rootfsDir/proc
+
 /usr/sbin/useradd -G wheel -R $rootfsDir user
 cat <<EOF > $rootfsDir/etc/sudoers.d/user
 %wheel        ALL=(ALL)       NOPASSWD: ALL
