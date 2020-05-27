@@ -65,6 +65,7 @@ rm -rf /root/.node-gyp
 rm -rf /usr/local/share
 rm -rf /usr/lib/.build-id
 rm -rf /var/cache/*
+rm -f /lib/*.so /lib/*.so.*
 
 jupyter lab clean
 jlpm cache clean
