@@ -40,15 +40,15 @@ chmod o-w /usr/share/bitquant/*.sh
 popd > /dev/null
 
 echo "Doing initial installation"
-pushd /usr/share/bitquant
+pushd /var/lib
 git clone --depth 1 https://github.com/joequant/etherpad-lite.git
 popd
 
 # install python first so that ijavascript dependencies
 # are met
 echo "Installing npm packages"
-if [ -d /usr/share/bitquant/etherpad-lite ] ; then
-pushd /usr/share/bitquant/etherpad-lite
+if [ -d /var/lib/etherpad-lite ] ; then
+pushd /var/lib/etherpad-lite
 make
 if [ -d src/node_modules ] ; then
 pushd src/node_modules
@@ -57,5 +57,5 @@ popd
 fi
 popd
 fi
-chown -R $ME:$GROUP /usr/share/bitquant/etherpad-lite
+chown -R $ME:$GROUP /var/lib/etherpad-lite
 
