@@ -32,19 +32,16 @@ fi
 popd > /dev/null
 
 # Create root copy of scripts
-rm -rf /usr/share/bitquant
-mkdir -p /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
 chown $ME:$GROUP /usr/share/bitquant/environment.sh
 chmod o-w /usr/share/bitquant/*.sh
-
 popd > /dev/null
 
 echo "Doing initial installation"
 pushd /usr/share/bitquant
-git clone https://github.com/joequant/etherpad-lite.git
+git clone --depth 1 https://github.com/joequant/etherpad-lite.git
 popd
 
 # install python first so that ijavascript dependencies
