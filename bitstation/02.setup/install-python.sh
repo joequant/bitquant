@@ -302,6 +302,8 @@ pipenv
 python-weka-wrapper
 scoop
 sunpy
+fs
+jupyter-fs
 EOF
 
 #broken for jupyterlab 2.0
