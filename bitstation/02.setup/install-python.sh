@@ -90,6 +90,7 @@ itkwidgets
 ipygraphql
 ipycanvas
 ipydatetime
+ipywebrtc
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
@@ -384,6 +385,8 @@ ipysheet
 jupyterlab-python-file
 @jupyterlab/latex
 @jupyter-widgets/jupyterlab-manager
+jupyter-webrtc
+jupyter-threejs
 bqplot-jupyterlab
 @jupyterlab/mathjax3-extension
 @ryantam626/jupyterlab_code_formatter
@@ -392,6 +395,7 @@ bqplot-jupyterlab
 @jupyterlab/htmlviewer-extension
 @jupyter-widgets/jupyterlab-sidecar
 ipyevents
+ipyvolume
 ipycanvas
 @jupyterlab/celltags-extension
 @jupyterlab/debugger
