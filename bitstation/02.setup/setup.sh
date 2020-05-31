@@ -32,6 +32,7 @@ fi
 popd > /dev/null
 
 # Create root copy of scripts
+mkdir -p /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/environment.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/conf.sh /usr/share/bitquant
 cp $WEB_DIR/cgi-bin/bittrader/timezone.sh /usr/share/bitquant
