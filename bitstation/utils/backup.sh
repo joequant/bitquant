@@ -1,4 +1,5 @@
-#/bin/bash -f
+#!/bin/bash -f
+
 DATE=$(date -u +'%Y%m%d.%H%M%S')
 CMD=docker
 dir=`pwd`
