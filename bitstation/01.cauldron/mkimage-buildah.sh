@@ -367,6 +367,8 @@ rm -rf "$rootfsDir/dev" "$rootfsDir/proc"
 mkdir -p "$rootfsDir/dev" "$rootfsDir/proc"
 chmod 0755 $rootfsDir/dev
 chmod 0755 $rootfsDir/proc
+chmod 0755 $rootfsDir/var/lib/rpm
+chmod 0644 $rootfsDir/var/lib/rpm/*
 
 /usr/sbin/useradd -G wheel -R $rootfsDir user
 cat <<EOF > $rootfsDir/etc/sudoers.d/user
