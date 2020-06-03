@@ -306,6 +306,7 @@ sunpy
 fs
 jupyter-fs
 xeus-python
+vpython
 EOF
 
 #broken for jupyterlab 2.0
