@@ -305,6 +305,7 @@ scoop
 sunpy
 fs
 jupyter-fs
+xeus-python
 EOF
 
 #broken for jupyterlab 2.0
