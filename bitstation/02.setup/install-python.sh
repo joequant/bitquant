@@ -397,7 +397,6 @@ bqplot-jupyterlab
 @jupyterlab/htmlviewer-extension
 @jupyter-widgets/jupyterlab-sidecar
 ipyevents
-ipyvolume
 ipycanvas
 @jupyterlab/celltags-extension
 @jupyterlab/debugger
