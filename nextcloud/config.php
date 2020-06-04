@@ -34,7 +34,7 @@ $CONFIG = array (
   'user_backends' => array(
     array(
         'class' => 'OC_User_BasicAuth',
-        'arguments' => array('http://bitstation/dokuwiki'),
+        'arguments' => array('http://bitstation/dokuwiki/'),
     ),
 ),
 );
