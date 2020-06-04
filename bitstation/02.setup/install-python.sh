@@ -403,6 +403,8 @@ ipycanvas
 @jupyterlab/debugger
 EOF
 
+cat /tmp/jupyterlab-debug*.log || true
+
 #jupyter lab build --dev-build=False
 
 # broken packages for jupyterlab 2.0
