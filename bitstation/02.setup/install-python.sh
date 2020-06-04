@@ -446,7 +446,7 @@ itkwidgets
 # does not support current version of JupyterLab
 # @enlznep/jupyterlab_shell_file
 
-:'
+: '
 @agoose77/jupytreextlab-attachments
 jupyter-leaflet
 nbdime-jupyterlab
