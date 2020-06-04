@@ -293,17 +293,21 @@ rm -f sln \
    hwclock \
    halt \
    if* \
-   udevadm
+   udevadm \
+   partx
 popd
 
 pushd bin
 rm -f systemd-analyze
-rm -f systemd-nspawn
+rm -f systemd-nspawn systemd-tty-ask-password-agent \
+   systemd-ask-password systemd-detect-virt
+rm -f halt poweroff
 rm -f lsblk \
    lscpu \
    lsipc \
    lsmem \
    partmon \
+   rfkill \
    mount \
    systemd-repart \
    systemd-mount \
