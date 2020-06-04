@@ -381,9 +381,10 @@ EOF
 fi
 
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
-cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --no-build
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 jupyter-matplotlib
 ipysheet
+ipyvolume
 jupyterlab-python-file
 @jupyterlab/latex
 @jupyter-widgets/jupyterlab-manager
@@ -402,7 +403,7 @@ ipycanvas
 @jupyterlab/debugger
 EOF
 
-jupyter lab build --dev-build=False
+#jupyter lab build --dev-build=False
 
 # broken packages for jupyterlab 2.0
 : '
