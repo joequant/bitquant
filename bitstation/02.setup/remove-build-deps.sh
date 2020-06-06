@@ -3,6 +3,7 @@
 
 set -e -v
 source /tmp/proxy.sh
+rpm --erase basesystem
 dnf -y -x dnf \
       autoremove \
       cmake \
