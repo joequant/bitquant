@@ -6,7 +6,6 @@ source /tmp/proxy.sh
 dnf -y \
       autoremove \
       cmake \
-      lib64python2.7-stdlib \
       libtool \
       automake \
       autoconf \
