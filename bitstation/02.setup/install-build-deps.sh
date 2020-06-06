@@ -101,7 +101,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       xtl-devel \
       'pkgconfig(Magick++)' \
       spack \
-      spack-repos
+      spack-repos \
+      basesystem
 
 # xeus-devel for r juniper
 

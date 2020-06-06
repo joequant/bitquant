@@ -3,7 +3,7 @@
 
 set -e -v
 source /tmp/proxy.sh
-dnf -y \
+dnf -y -x dnf \
       autoremove \
       cmake \
       libtool \
