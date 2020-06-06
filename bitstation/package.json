@@ -5,7 +5,7 @@
 	"build-podman": "podman-compose build --no-cache bitstation",
 	"build-base": "buildah unshare /bin/bash 01.cauldron/mkimage-buildah.sh -n joequant/cauldron ; buildah unshare /bin/bash 01.cauldron/mkimage-buildah-minimal.sh",
 	"build-podman": "podman build 02.setup -t joequant/bitstation --build-arg base=joequant/cauldron --no-cache",
-	"up": "docker-compose up",
+	"up": "docker-compose up >& bitstation.`date -u +%Y%m%d%H%M%S`.log &",
 	"down": "docker-compose down",
 	"proxy-start": "./utils/proxy-start.sh",
 	"proxy-install": "./utils/proxy-install.sh",
