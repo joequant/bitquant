@@ -1,8 +1,11 @@
 #!/bin/bash
 export LANG=C LC_ALL=C
-
-while getopts 'u:' OPTION; do
+CMD=docker
+while getopts 'c:u:' OPTION; do
   case "$OPTION" in
+    c)
+      CMD="$OPTARG"
+      ;;
     u)
       user="$OPTARG"
       ;;
@@ -17,9 +20,9 @@ shift "$(($OPTIND -1))"
 args=()
 
 if [ $# -ge 1 ]; then
-    IMAGE=$(docker ps | awk 'FNR >=2 {print $NF}' | grep ^$1 | head -1)
+    IMAGE=$($CMD ps | awk 'FNR >=2 {print $NF}' | grep ^$1 | head -1)
 else 
-    IMAGE=$(docker ps | awk 'FNR==2 {print $NF}')
+    IMAGE=$($CMD ps | awk 'FNR==2 {print $NF}')
 fi
 
 if [[ -z $IMAGE ]]; then
@@ -30,9 +33,9 @@ else
 fi
 
 if [ $# -ge 2 ]; then
-    CMD=$2
+    RCMD=$2
 else
-    CMD=/bin/bash
+    RCMD=/bin/bash
 fi
 
 if [[ ! -z $user ]]; then
@@ -41,7 +44,7 @@ if [[ ! -z $user ]]; then
 fi
 
 args+=($IMAGE)
-args+=($CMD)
+args+=($RCMD)
 
-echo "running '"docker exec -it ${args[@]}"'"
-exec docker exec -it ${args[@]}
+echo "running '"$CMD exec -it ${args[@]}"'"
+exec $CMD exec -it ${args[@]}
