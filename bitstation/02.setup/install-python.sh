@@ -381,12 +381,11 @@ EOF
 fi
 
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
+cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --no-build
 jupyter-matplotlib
 ipysheet
 ipyvolume
 jupyterlab-python-file
-@jupyterlab/latex
 @jupyter-widgets/jupyterlab-manager
 jupyter-webrtc
 jupyter-threejs
@@ -402,10 +401,13 @@ ipycanvas
 @jupyterlab/celltags-extension
 @jupyterlab/debugger
 EOF
+jupyter lab build --dev-build=False
 
-cat /tmp/jupyterlab-debug*.log || true
+# broken for now - see https://github.com/jupyterlab/jupyterlab-latex/issues/135
+: '
+@jupyterlab/latex
+'
 
-#jupyter lab build --dev-build=False
 
 # broken packages for jupyterlab 2.0
 : '
