@@ -1,4 +1,4 @@
-#/bin/bash -f
+#!/bin/bash -f
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 DATE=$(date -u +'%Y%m%d.%H%M%S')
 CMD=docker
