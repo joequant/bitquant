@@ -189,7 +189,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
             install basesystem-minimal-core locales locales-en \
-	    ncurses sudo \
+	    ncurses sudo dnf \
 	    $extrapkgs $pkgmgr
 )
 
