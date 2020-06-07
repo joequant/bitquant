@@ -32,6 +32,9 @@ else
     echo "Image: "$IMAGE
 fi
 
+if [ -t 1 ] ; then
+    args+=(-it)
+fi
 
 if [[ ! -z $user ]]; then
    args+=(-u)
@@ -50,5 +53,5 @@ fi
 
 
 
-echo "running '"$CMD exec -it ${args[@]}"'"
-exec $CMD exec -it ${args[@]}
+echo "running '"$CMD exec ${args[@]}"'"
+exec $CMD exec ${args[@]}
