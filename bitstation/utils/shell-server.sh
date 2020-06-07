@@ -1,7 +1,8 @@
 #!/bin/bash
 export LANG=C LC_ALL=C
 CMD=docker
-while getopts 'c:u:' OPTION; do
+VERBOSE=0
+while getopts 'c:u:v' OPTION; do
   case "$OPTION" in
     c)
       CMD="$OPTARG"
@@ -9,6 +10,9 @@ while getopts 'c:u:' OPTION; do
     u)
       user="$OPTARG"
       ;;
+    v)
+	VERBOSE=1
+	;;
     ?)
       echo "script usage: -u usernae image cmd" >&2
       exit 1
@@ -28,7 +32,7 @@ fi
 if [[ -z $IMAGE ]]; then
     echo "image not found"
     exit 1
-else
+elif [ $VERBOSE -eq 1 ] ; then
     echo "Image: "$IMAGE
 fi
 
@@ -52,6 +56,7 @@ fi
 
 
 
-
-echo "running '"$CMD exec ${args[@]}"'"
+if [ $VERBOSE -eq 1 ] ; then
+    echo "running '"$CMD exec ${args[@]}"'"
+fi
 exec $CMD exec ${args[@]}
