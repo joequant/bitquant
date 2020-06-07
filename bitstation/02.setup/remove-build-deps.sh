@@ -3,8 +3,14 @@
 
 set -e -v
 source /tmp/proxy.sh
+echo       cmake \
+      libtool \
+      protobuf-compiler \
+      cargo \
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
+
 dnf -y  \
-      remove \
+    autoremove \
       cmake \
       libtool \
       automake \
@@ -12,7 +18,7 @@ dnf -y  \
       swig \
       protobuf-compiler \
       cargo \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd  | grep -v ffi`
 
 dnf -y \
     autoremove \
