@@ -32,11 +32,6 @@ else
     echo "Image: "$IMAGE
 fi
 
-if [ $# -ge 2 ]; then
-    RCMD=$2
-else
-    RCMD=/bin/bash
-fi
 
 if [[ ! -z $user ]]; then
    args+=(-u)
@@ -44,7 +39,16 @@ if [[ ! -z $user ]]; then
 fi
 
 args+=($IMAGE)
-args+=($RCMD)
+
+if [ $# -ge 2 ]; then
+    shift
+    args+=($@)
+else
+    args+=("/bin/bash")
+fi
+
+
+
 
 echo "running '"$CMD exec -it ${args[@]}"'"
 exec $CMD exec -it ${args[@]}
