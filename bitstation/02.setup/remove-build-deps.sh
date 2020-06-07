@@ -4,7 +4,7 @@
 set -e -v
 source /tmp/proxy.sh
 dnf -y  \
-      autoremove \
+      remove \
       cmake \
       libtool \
       automake \
