@@ -18,7 +18,7 @@ dnf -y  \
       swig \
       protobuf-compiler \
       cargo \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd  | grep -v ffi`
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
 
 dnf -y \
     autoremove \

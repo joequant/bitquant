@@ -67,7 +67,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root \
       python3-jupyroot \
       root-r \
-      libglu-devel
+      libglu-devel \
+      rclone
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
 dnf clean all $rootfsArg
