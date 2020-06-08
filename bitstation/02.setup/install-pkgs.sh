@@ -68,7 +68,20 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-jupyroot \
       root-r \
       libglu-devel \
-      rclone
+      rclone \
+      root-physics \
+      root-fftw \
+      root-foam \
+      root-vecops \
+      root-tree \
+      root-tree-dataframe \
+      root-tree-viewer \
+      root-tree-ntuple \
+      root-graf \
+      root-graf-gpad \
+      root-graf-gpadv7 \
+      root-graf3d \
+      root-geom
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
 dnf clean all $rootfsArg
