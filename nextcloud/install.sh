@@ -30,8 +30,8 @@ dnf --installroot="$rootfsDir" \
     --nogpgcheck \
     --refresh \
     install \
-    nextcloud-sqlite \
-    nextcloud-postgresql \
+    nextcloud18-sqlite \
+    nextcloud18-postgresql \
     apache \
     apache-mod_proxy \
     php-fpm \
