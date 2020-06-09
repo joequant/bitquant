@@ -308,6 +308,7 @@ jupyter-fs
 xeus-python
 vpython
 bankroll[ibkr,schwab,fidelity]
+investpy
 EOF
 
 #broken for jupyterlab 2.0
