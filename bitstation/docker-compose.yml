@@ -12,6 +12,10 @@ services:
      ports:
        - 80:80
        - 443:443
+     devices:
+       - /dev/fuse:/dev/fuse
+     cap_add:
+       - SYS_ADMIN
      volumes:
        - home:/home
        - dokuwiki:/var/lib/dokuwiki
