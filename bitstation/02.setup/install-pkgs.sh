@@ -81,7 +81,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root-graf-gpad \
       root-graf-gpadv7 \
       root-graf3d \
-      root-geom
+      root-geom \
+      fuse
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
 dnf clean all $rootfsArg
