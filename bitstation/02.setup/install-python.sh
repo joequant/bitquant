@@ -40,7 +40,7 @@ pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
-     matplotlib pandas scipy numpy pythreejs --prefix /usr
+     matplotlib scipy numpy pythreejs --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
 pip3 install --upgrade mxnet --prefix /usr
@@ -164,7 +164,6 @@ holoviews
 bokeh
 fastcluster
 ib-api
-pandas-datareader
 blaze
 statsmodels
 redis

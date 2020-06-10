@@ -35,6 +35,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       readline-devel \
       lapack-devel \
       python3-pandas \
+      python3-pandas-datareader \
       python3-numpy \
       python3-numpy-devel \
       python3-tables \
