@@ -9,7 +9,8 @@ echo       cmake \
       cargo \
       `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
 
-dnf -y  \
+# don't remove scipy
+dnf -y \
     autoremove \
       cmake \
       libtool \
@@ -18,7 +19,13 @@ dnf -y  \
       swig \
       protobuf-compiler \
       cargo \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
+      `rpm -qa | grep devel | grep -v python | grep -v glibc | \
+grep -v xcrypt | \
+grep -v ^gcc | grep -v libstd | grep -v gettext | \
+grep -v acl | grep -v croco | grep -v ffi | grep -v blkid | \
+grep -v glib | grep -v lzma | grep -v zlib | grep -v xml | \
+grep -v mount | grep -v pcre | grep -v uuid | grep -v unistring | \
+grep -v ncurses`
 
 dnf -y \
     autoremove \
