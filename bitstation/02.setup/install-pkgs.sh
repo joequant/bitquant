@@ -71,17 +71,16 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       rclone \
       root-physics \
       root-fftw \
+      root-hist \
       root-foam \
       root-vecops \
-      root-tree \
-      root-tree-dataframe \
-      root-tree-viewer \
-      root-tree-ntuple \
       root-graf \
       root-graf-gpad \
       root-graf-gpadv7 \
       root-graf3d \
       root-geom \
+      root-graf-postscript \
+      root-graf-asimage \
       fuse
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
