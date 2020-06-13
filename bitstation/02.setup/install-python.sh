@@ -75,7 +75,10 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      https://github.com/pytoolz/cytoolz/tarball/master
 
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-"git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE"
+     "git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE"
+
+#https://github.com/maartenbreddels/ipyvolume/issues/295
+#https://github.com/conda-forge/ipyvolume-feedstock/pull/34
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
@@ -104,6 +107,7 @@ https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
 https://github.com/pymc-devs/pymc3/tarball/master
+https://github.com/maartenbreddels/ipyvolume/tarball/master
 biopython
 cubes
 statsmodels
@@ -128,7 +132,6 @@ lightning-python
 vispy 
 pyalgotrade 
 ipywidgets 
-ipyvolume
 jupyter_declarativewidgets 
 vega
 nbpresent
