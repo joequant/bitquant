@@ -381,8 +381,10 @@ EOF
     popd
 fi
 
+
+
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
-cat <<EOF | xargs --max-args=15 --max-procs=1 jupyter labextension install --no-build
+cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install --no-build
 jupyter-matplotlib
 ipysheet
 ipyvolume
