@@ -75,10 +75,21 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root-foam \
       root-vecops \
       root-graf \
+      root-graf-asimage \
       root-graf-gpad \
       root-graf-gpadv7 \
+      root-graf-gviz \
+      root-graf-postscript \
+      root-graf-primitives \
       root-graf3d \
       root-geom \
+      root-gui \
+      root-hist \
+      root-mathcore \
+      root-mathmore \
+      root-matrix \
+      root-minuit \
+      root-multiproc \
       root-graf-postscript \
       root-graf-asimage \
       fuse
