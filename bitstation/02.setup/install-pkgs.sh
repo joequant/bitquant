@@ -70,6 +70,7 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       libglu-devel \
       rclone \
       root-physics \
+      root-geom \
       root-fftw \
       root-hist \
       root-foam \
