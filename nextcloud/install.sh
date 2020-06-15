@@ -30,8 +30,8 @@ dnf --installroot="$rootfsDir" \
     --nogpgcheck \
     --refresh \
     install \
-    nextcloud18-sqlite \
-    nextcloud18-postgresql \
+    nextcloud-sqlite \
+    nextcloud-postgresql \
     apache \
     apache-mod_proxy \
     php-fpm \
@@ -56,9 +56,7 @@ EOF
 
 # prevent link from accessing outside
 pushd $rootfsDir/etc/nextcloud
-cp ca-bundle.crt ca-bundle.crt.bak
 rm ca-bundle.crt
-mv ca-bundle.crt.bak ca-bundle.crt
 popd
 
 pushd $rootfsDir
