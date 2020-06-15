@@ -4,7 +4,7 @@ set -v
 
 pushd /home/user
 
-npm install -g node-gyp coffeescript
+npm install -g node-gyp coffeescript typescript
 
 # livescript
 node-gyp -g install

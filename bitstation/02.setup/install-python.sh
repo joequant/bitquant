@@ -80,6 +80,9 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 #https://github.com/maartenbreddels/ipyvolume/issues/295
 #https://github.com/conda-forge/ipyvolume-feedstock/pull/34
 
+#install for ipyvolume
+npm install -g typescript
+
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 ccxt
