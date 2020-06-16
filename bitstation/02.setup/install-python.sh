@@ -110,7 +110,7 @@ https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
 https://github.com/pymc-devs/pymc3/tarball/master
-https://github.com/maartenbreddels/ipyvolume/tarball/master
+ipyvolume==0.6.0a6
 biopython
 cubes
 statsmodels
@@ -129,7 +129,6 @@ nbconvert
 circuits
 dask
 xarray
-deap
 networkx
 lightning-python
 vispy 
@@ -314,6 +313,7 @@ xeus-python
 vpython
 bankroll[ibkr,schwab,fidelity]
 investpy
+deap
 EOF
 
 #broken for jupyterlab 2.0
@@ -329,6 +329,7 @@ python3 -m bash_kernel.install --sys-prefix
 #pylantern
 #pytext-nlp
 #jupyterlab_iframe
+#
 
 #broken
 # can't install cboe
