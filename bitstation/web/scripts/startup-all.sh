@@ -40,6 +40,7 @@ fi
 
 echo "Pulling git"
 pushd $WEB_DIR/..
+su user -c "git config --global pull.rebase true"
 su user -c "git pull"
 popd
 su user -c ./startup-user.sh
