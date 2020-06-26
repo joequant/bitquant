@@ -49,6 +49,8 @@ for app in \
 	user_external \
 	ldap_write_support \
 	cms_pico \
+	sociallogin  \
+	drawio \
 	documentserver_community
 do
 sudo -u apache php -d memory_limit=512M \
@@ -57,8 +59,7 @@ done
 popd
 
 #update to nc19
-# sociallogin
-# drawio
+#
 # occweb
 
 touch $INSTALLED_FILE
