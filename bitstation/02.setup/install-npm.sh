@@ -10,7 +10,10 @@ npm install -g node-gyp coffeescript typescript
 node-gyp -g install
 # put yelp_uri in back to override downloaded version
 npm install -g --unsafe-perm=true ijavascript --zmq-external
-npm install -g --unsafe-perm=true itypescript --zmq-external
+
+# disable because of
+# https://github.com/nearbydelta/itypescript/issues/20
+#npm install -g --unsafe-perm=true itypescript --zmq-external
 npm install -g --unsafe-perm=true jp-coffeescript --zmq-external
 npm install -g --unsafe-perm=true jp-babel --zmq-external
 npm install -g --unsafe-perm=true configurable-http-proxy solc modclean
@@ -23,7 +26,7 @@ npm install -g --unsafe-perm=true configurable-http-proxy solc modclean
 # jp-livescript-install --install=global
 
 ijsinstall --install=global
-its --install=global
+#its --install=global
 jp-coffee-install --install=global
 jp-babel-install --install=global
 
