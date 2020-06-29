@@ -24,15 +24,6 @@ sudo -u apache php occ config:system:set \
      trusted_domains 1 "--value=*"
 sudo -u apache php occ background:cron
 
-pushd /var/lib/nextcloud/apps
-curl -L https://github.com/nextcloud/files_texteditor/tarball/stable18 | tar xz
-mv nextcloud-files_texteditor-* files_texteditor
-chown apache:apache -R files_texteditor
-pushd /usr/share/nextcloud
-sudo -u apache php -d memory_limit=512M \
-     occ app:enable files_texteditor
-popd
-popd
 for app in \
     onlyoffice \
 	calendar \
@@ -44,6 +35,7 @@ for app in \
 	deck \
 	quicknotes \
 	groupfolders \
+	files_texteditor \
 	files_markdown \
 	files_mindmap \
 	user_external \
