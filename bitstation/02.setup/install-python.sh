@@ -80,8 +80,11 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 #https://github.com/maartenbreddels/ipyvolume/issues/295
 #https://github.com/conda-forge/ipyvolume-feedstock/pull/34
 
-#install for ipyvolume
-npm install -g typescript
+#https://github.com/maartenbreddels/ipyvolume/issues/324
+npm install -g source-map
+pip3 install --upgrade bqplot --prefix /usr --no-cache-dir
+pip3 install --upgrade ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
+
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
@@ -110,7 +113,6 @@ https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
 https://github.com/pymc-devs/pymc3/tarball/master
-ipyvolume==0.6.0a6
 biopython
 cubes
 statsmodels
@@ -139,7 +141,6 @@ vega
 nbpresent
 jupyter_latex_envs
 jupyterlab_latex
-bqplot
 cookiecutter
 scikit-image
 patsy
@@ -395,6 +396,7 @@ cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 @jupyter-widgets/jupyterlab-manager
 jupyter-matplotlib
 ipysheet
+bqplot
 ipyvolume
 jupyterlab-python-file
 jupyter-webrtc
