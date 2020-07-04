@@ -401,7 +401,6 @@ ipyvolume
 jupyterlab-python-file
 jupyter-webrtc
 jupyter-threejs
-bqplot-jupyterlab
 @jupyterlab/mathjax3-extension
 @ryantam626/jupyterlab_code_formatter
 @jupyterlab/fasta-extension
