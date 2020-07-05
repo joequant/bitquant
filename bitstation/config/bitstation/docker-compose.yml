@@ -1,0 +1,56 @@
+version:  '3'
+services:
+  bitstation:
+     image: "joequant/bitstation:production"
+     stdin_open: true
+     tty: true
+     ports:
+       - 80:80
+       - 443:443
+     devices:
+       - /dev/fuse:/dev/fuse
+     cap_add:
+       - SYS_ADMIN
+     volumes:
+       - home:/home
+       - dokuwiki:/var/lib/dokuwiki
+       - mongodb:/var/lib/mongodb
+       - redis:/var/lib/redis
+       - bitcoin:/var/lib/bitcoin
+       - log:/var/log
+       - etc:/etc
+       - srv:/srv
+  cauldron:
+     image: "joequant/cauldron"
+     entrypoint: ["echo", "Service cauldron disabled"]
+  nextcloud:
+     image: "joequant/nextcloud"
+     volumes:
+       - nextcloud_lib_apps:/var/lib/nextcloud/apps
+       - nextcloud_lib_data:/var/lib/nextcloud/data
+       - nextcloud_etc:/etc/nextcloud
+     restart: always
+     depends_on:
+       - db
+  db:
+      image: postgres:12-alpine
+      restart: always
+      environment:
+       - POSTGRES_PASSWORD:mypass
+      volumes:
+       - nextcloud_db:/var/lib/postgresql/data
+      restart: always
+
+volumes:
+   home:
+   dokuwiki:
+   mongodb:
+   redis:
+   bitcoin:
+   log:
+   etc:
+   srv:
+   nextcloud_lib_apps:
+   nextcloud_lib_data:
+   nextcloud_etc:
+   nextcloud_db:
