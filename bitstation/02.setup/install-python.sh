@@ -389,15 +389,16 @@ EOF
     popd
 fi
 
-
+#https://github.com/maartenbreddels/ipyvolume/issues/324
+jupyter labextension install --dev-build=False bqplot
+jupyter labextension install --dev-build=False ipywidgets
+jupyter labextension install --dev-build=False ipyvolume
 
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
 cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 @jupyter-widgets/jupyterlab-manager
 jupyter-matplotlib
 ipysheet
-bqplot
-ipyvolume
 jupyterlab-python-file
 jupyter-webrtc
 jupyter-threejs
