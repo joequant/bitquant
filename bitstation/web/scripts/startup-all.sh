@@ -17,6 +17,13 @@ su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
     /etc/webmin/start
+elif [ -f /usr/share/webmin/postinstall.sh ] ; then
+    echo "Installing webmin"
+    /usr/share/webmin/postinstall.sh
+    if [ -f /etc/webmin/start ] ; then
+	echo "Start webmin"
+	/etc/webmin/start
+    fi
 fi
 
 if [ ! -f /etc/jupyterhub ] ; then
