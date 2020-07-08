@@ -21,6 +21,10 @@ elif [ -f /usr/share/webmin/postinstall.sh ] ; then
     echo "Installing webmin"
     /usr/share/webmin/postinstall.sh
     sed -i -e 's!ssl=1!ssl=0!' /etc/webmin/miniserv.conf
+    cat <<EOF >> /etc/webmin/config
+webprefix=/webmin
+webprefixnoredir=1
+EOF
     if [ -f /etc/webmin/start ] ; then
 	echo "Start webmin"
 	/etc/webmin/start
