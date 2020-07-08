@@ -25,15 +25,6 @@ echo "Set up wiki"
 # Refresh configurations
 /usr/share/bitquant/conf.sh /default-init
 
-# set webmin
-echo "Set up webmin"
-/usr/share/bitquant/conf.sh /webmin-init
-cat <<EOF > /etc/webmin/miniserv.users
-user:x:0
-EOF
-
-grep ^root: /etc/webmin/webmin.acl | sed -e s/root:/user:/ >> /etc/webmin/webmin.acl
-
 sed -i '/ipv6/d' /etc/mongod.conf
 sed -i '/ipv6/d' /etc/mongos.conf
 chmod a+rwx /srv
