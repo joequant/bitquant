@@ -86,7 +86,6 @@ pip3 install --upgrade bqplot --prefix /usr --no-cache-dir
 pip3 install --upgrade ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 pip3 install --upgrade --force-reinstall pyzmq --prefix /usr --no-cache-dir
 
-
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 ccxt
@@ -208,7 +207,6 @@ gym
 milk
 neurolab
 pyrenn
-jupyterlab_widgets
 jhub_remote_user_authenticator
 dash
 dash_renderer
@@ -250,7 +248,6 @@ pattern
 onnx
 tzlocal
 mypy
-sidecar
 black
 yapf
 autopep8
@@ -278,7 +275,6 @@ jupyterthemes
 perspective-python
 pulp
 tsfresh
-jupyterlab_code_formatter
 scaleogram
 pycwt
 freqtrade
@@ -306,6 +302,8 @@ EOF
 
 # moved out
 : '
+jupyterlab_widgets
+sidecar
 algorithmx
 jupyter-fs
 ipycanvas
@@ -422,7 +420,6 @@ EOF
 : '
 @jupyterlab/latex
 '
-
 
 # broken packages for jupyterlab 2.0
 : '
