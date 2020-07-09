@@ -84,22 +84,17 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 npm install -g source-map
 pip3 install --upgrade bqplot --prefix /usr --no-cache-dir
 pip3 install --upgrade ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
+pip3 install --upgrade --force-reinstall pyzmq --prefix /usr --no-cache-dir
 
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
 ccxt
 voila
-ipyleaflet
 beakerx
 h5py
 vispy
-itk-meshtopolydata
 itkwidgets
-ipygraphql
-ipycanvas
-ipydatetime
-ipywebrtc
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
@@ -120,7 +115,6 @@ sklearn
 Werkzeug
 dgl
 Flask
-pyzmq
 jupyterlab
 ipympl
 import-ipynb
@@ -266,7 +260,6 @@ cppyy-cling
 modAL
 alipy
 mglearn
-ipymesh
 bitcoin-tools
 jupyter_dashboards
 tributary
@@ -280,9 +273,7 @@ lolviz
 papermill
 ipytree
 apache-airflow
-jupyterlab-git
 cryptofeed
-jupyterlab-hdf
 jupyterthemes
 perspective-python
 pulp
@@ -295,9 +286,6 @@ quandl
 kaggle
 wget
 TA-Lib
-algorithmx
-ipyevents
-ipycanvas
 PyPortfolioOpt
 FinQuant
 pyswarm
@@ -309,13 +297,28 @@ python-weka-wrapper
 scoop
 sunpy
 fs
-jupyter-fs
 xeus-python
 vpython
 bankroll[ibkr,schwab,fidelity]
 investpy
 deap
 EOF
+
+# moved out
+: '
+algorithmx
+jupyter-fs
+ipycanvas
+ipygraphql
+ipyevents
+ipymesh
+ipyleaflet
+jupyterlab-git
+jupyterlab-hdf
+ipydatetime
+ipywebrtc
+itk-meshtopolydata
+'
 
 #broken for jupyterlab 2.0
 : '
@@ -390,12 +393,13 @@ EOF
 fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
-jupyter labextension install --dev-build=False @jupyter-widgets/jupyterlab-manager
-jupyter labextension install --dev-build=False bqplot
-jupyter labextension install --dev-build=False ipyvolume
+jupyter labextension install @jupyter-widgets/jupyterlab-manager
+jupyter labextension install bqplot
+jupyter labextension install ipyvolume
+jupyter labextension install jupyter-threejs
 
 #while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
-cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
+: 'cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
 jupyter-matplotlib
 ipysheet
 jupyterlab-python-file
@@ -412,6 +416,7 @@ ipycanvas
 @jupyterlab/celltags-extension
 @jupyterlab/debugger
 EOF
+'
 
 # broken for now - see https://github.com/jupyterlab/jupyterlab-latex/issues/135
 : '

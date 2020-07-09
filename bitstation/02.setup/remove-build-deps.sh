@@ -34,6 +34,7 @@ dnf -y \
     `rpm -qa | grep initscripts` \
     `rpm -qa | grep qtbase5-common`
 
+# add iproute2 for webmit
 dnf -y \
     install java-headless iproute2
 
