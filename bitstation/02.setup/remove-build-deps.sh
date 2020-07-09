@@ -35,7 +35,7 @@ dnf -y \
     `rpm -qa | grep qtbase5-common`
 
 dnf -y \
-    install java-headless
+    install java-headless iproute2
 
 dnf clean all
 #set default python to python3
