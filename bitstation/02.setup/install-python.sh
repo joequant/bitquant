@@ -40,7 +40,7 @@ pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
 pip3 install --upgrade numpy requests six python-dateutil \
-     matplotlib scipy numpy pythreejs --prefix /usr
+     matplotlib scipy --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
 pip3 install --upgrade mxnet --prefix /usr
@@ -82,9 +82,8 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324
 npm install -g source-map
-pip3 install --upgrade bqplot --prefix /usr --no-cache-dir
-pip3 install --upgrade ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
-pip3 install --upgrade --force-reinstall pyzmq --prefix /usr --no-cache-dir
+pip3 install bqplot --prefix /usr --no-cache-dir
+pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 
 #install first
 cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
@@ -93,7 +92,6 @@ voila
 beakerx
 h5py
 vispy
-itkwidgets
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
@@ -115,7 +113,6 @@ Werkzeug
 dgl
 Flask
 jupyterlab
-ipympl
 import-ipynb
 astropy
 sudospawner
@@ -128,7 +125,6 @@ networkx
 lightning-python
 vispy 
 pyalgotrade 
-ipywidgets 
 jupyter_declarativewidgets 
 vega
 nbpresent
@@ -234,7 +230,6 @@ opencv-python
 dm-sonnet
 tributary
 mpld3
-itkwidgets
 Jupyter-Video-Widget
 pybrain
 ipyparallel
@@ -268,7 +263,6 @@ voila
 RISE
 lolviz
 papermill
-ipytree
 apache-airflow
 cryptofeed
 jupyterthemes
@@ -302,6 +296,10 @@ EOF
 
 # moved out
 : '
+ipytree
+ipywidgets 
+ipympl
+itkwidgets
 jupyterlab_widgets
 sidecar
 algorithmx
