@@ -86,7 +86,7 @@ pip3 install bqplot --prefix /usr --no-cache-dir
 pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 
 #install first
-cat <<EOF | xargs --max-args=1 --max-procs=2 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir
+parallel -P2 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 ccxt
 voila
 beakerx
@@ -125,7 +125,6 @@ networkx
 lightning-python
 vispy 
 pyalgotrade 
-jupyter_declarativewidgets 
 vega
 nbpresent
 jupyter_latex_envs
@@ -228,7 +227,6 @@ web3
 py-solc
 opencv-python
 dm-sonnet
-tributary
 mpld3
 Jupyter-Video-Widget
 pybrain
@@ -254,7 +252,6 @@ alipy
 mglearn
 bitcoin-tools
 jupyter_dashboards
-tributary
 cryptocompare
 coinmarketcap
 bitfinex-tencars
@@ -292,10 +289,25 @@ vpython
 bankroll[ibkr,schwab,fidelity]
 investpy
 deap
+jupyterlab-git
+jupyterlab-latex
+jupyterlab-commenting-service
+itkwidgets
+ipywidgets
+jupyter-bokeh
+jupytext
+ipyevents
+ipylab
+algorithmx
+jupyter-fs
+ipycanvas
+ipydatetime
 EOF
 
 # moved out
 : '
+jupyter_declarativewidgets
+tributary
 ipytree
 ipywidgets 
 ipympl
@@ -389,19 +401,37 @@ EOF
 fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter labextension install bqplot
-jupyter labextension install ipyvolume
-jupyter labextension install jupyter-threejs
 
-#while read line; do echo $line ; jupyter labextension install --dev-build=False $line ; done <<EOF
-: 'cat <<EOF | xargs --max-args=1 --max-procs=1 jupyter labextension install
+parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
+@jupyter-widgets/jupyterlab-manager
+bqplot
+ipyvolume
+jupyter-threejs
+@jupyterlab/toc
+@jupyterlab/debugger
+@jupyterlab/celltags-extension
+@jupyterlab/mathjax3-extension
+@jupyterlab/github
+@jupyterlab/latex
+@jupyterlab/dataregistry-extension
+@jupyterlab/commenting-extension
+jupyterlab-datawidgets
+itkwidgets
+@bokeh/jupyter_bokeh
+jupyterlab-spreadsheet
+ipylab
+algorithmx-jupyter
+jupyterlab_filetree
+ipycanvas
+@lckr/jupyterlab_variableinspector
+EOF
+
+: '
 jupyter-matplotlib
 ipysheet
 jupyterlab-python-file
 jupyter-webrtc
 jupyter-threejs
-@jupyterlab/mathjax3-extension
 @ryantam626/jupyterlab_code_formatter
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
@@ -409,9 +439,6 @@ jupyter-threejs
 @jupyter-widgets/jupyterlab-sidecar
 ipyevents
 ipycanvas
-@jupyterlab/celltags-extension
-@jupyterlab/debugger
-EOF
 '
 
 # broken for now - see https://github.com/jupyterlab/jupyterlab-latex/issues/135
@@ -480,16 +507,19 @@ jupyterlab_iframe
 # pylantern
 #ipyaggrid
 
-#jupyter lab build --dev-build=False
+jupyter lab build --dev-build=False
+echo "Log jupyterlab"
+cat /tmp/jupyterlab-debug-*.log || true
+
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 #jupyter nbextension install --py --sys-prefix jpy_video --system
 #jupyter nbextension enable  --py --sys-prefix jpy_video --system
 #jupyter labextension install jupyter-video
-jupyter serverextension enable --py jupyterlab --sys-prefix
+#jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
-jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
-jupyter serverextension enable --py jupyterlab_git --sys-prefix
+#jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
+#jupyter serverextension enable --py jupyterlab_git --sys-prefix
 #jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
 #jupyter labextension disable ipysheet:renderer # for jupyter lab
 #jupyter serverextension enable --py jupyterlab_templates
