@@ -402,7 +402,7 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
+parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
@@ -412,10 +412,6 @@ jupyter-threejs
 @jupyterlab/celltags-extension
 @jupyterlab/mathjax3-extension
 @jupyterlab/github
-@jupyterlab/latex
-@jupyterlab/dataregistry-extension
-@jupyterlab/commenting-extension
-jupyterlab-datawidgets
 itkwidgets
 @bokeh/jupyter_bokeh
 jupyterlab-spreadsheet
@@ -427,6 +423,10 @@ ipycanvas
 EOF
 
 : '
+@jupyterlab/latex
+@jupyterlab/dataregistry-extension
+@jupyterlab/commenting-extension
+jupyterlab-datawidgets
 jupyter-matplotlib
 ipysheet
 jupyterlab-python-file
