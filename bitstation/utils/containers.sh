@@ -16,13 +16,12 @@ else
     images=$2
 fi
 
-if [ $CMD == "up" ] ; then
-    for f in $images; do
-	if [ -d "$f" ]; then
-	    docker-compose -f $f/docker-compose.yml up > $LOG_DIR/`basename $f`.$DATE.log &
-	fi
-    done
-elif [ $CMD == "down" ] ; then
+if [ $CMD != "up" ] && [ $CMD != "down" ] && [ $CMD != "restart" ] ; then
+    echo "unknown command: " $CMD
+    exit 1
+fi
+
+if [ $CMD == "down" ] || [ $CMD == "restart" ] ; then
     for f in $images; do
 	if [ -d "$f" ]; then
 	    docker-compose -f $f/docker-compose.yml down &
@@ -31,5 +30,13 @@ elif [ $CMD == "down" ] ; then
     for job in `jobs -p` ; do
 	echo $job
 	wait $job || let "FAIL+=1"
+    done
+fi
+
+if [ $CMD == "up" ] || [ $CMD == "restart" ] ; then
+    for f in $images; do
+	if [ -d "$f" ]; then
+	    docker-compose -f $f/docker-compose.yml up > $LOG_DIR/`basename $f`.$DATE.log &
+	fi
     done
 fi
