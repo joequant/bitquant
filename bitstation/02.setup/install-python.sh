@@ -91,7 +91,7 @@ pip3 install bqplot --prefix /usr --no-cache-dir
 pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 
 #install first
-parallel -P2 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+parallel -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 ccxt
 voila
 beakerx
@@ -409,7 +409,7 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
+parallel -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
