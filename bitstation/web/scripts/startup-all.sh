@@ -29,10 +29,9 @@ webprefix=/webmin
 webprefixnoredir=1
 EOF
     grep ^root: /etc/webmin/webmin.acl | sed -e s/root:/user:/ >> /etc/webmin/webmin.acl
-    if [ -f /usr/share/webmin/useradmin/config-mandrake-linux ] && \
-	     [ ! -f /usr/share/webmin/useradmin/config-mageia-linux ] ; then
-	sed -i -e 's!base_uid=500!base_uid=1000!' /usr/share/webmin/useradmin/config-mandrake-linux
-	sed -i -e 's!base_gid=500!base_gid=1000!' /usr/share/webmin/useradmin/config-mandrake-linux
+    if [ -f /etc/webmin/useradmin/config ] ; then
+	sed -i -e 's!base_uid=500!base_uid=1000!' /etc/webmin/useradmin/config
+	sed -i -e 's!base_gid=500!base_gid=1000!' /etc/webmin/useradmin/config
     fi
     if [ -f /etc/webmin/start ] ; then
 	echo "Start webmin"
