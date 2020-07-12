@@ -4,6 +4,11 @@
 set -v
 set +o errexit
 
+if [ -e $rootfsDir/tmp/proxy.sh ]; then
+    source $rootfsDir/tmp/proxy.sh
+    which cc
+fi
+
 echo "Running python installation"
 #PYTHON_ARGS=--upgrade
 #missing zipline since requirements installation causes issues
@@ -404,7 +409,7 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
+parallel -P1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
