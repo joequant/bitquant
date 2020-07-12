@@ -96,7 +96,9 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root-graf-postscript \
       root-graf-asimage \
       fuse \
-      parallel
+      parallel \
+      distcc \
+      distcc-server
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
 dnf clean all $rootfsArg
