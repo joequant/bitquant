@@ -302,6 +302,8 @@ algorithmx
 jupyter-fs
 ipycanvas
 ipydatetime
+gmaps
+ipycallback
 EOF
 
 # moved out
@@ -409,6 +411,10 @@ ipyvolume
 jupyter-threejs
 @jupyterlab/toc
 @jupyterlab/debugger
+@jupyterlab/celltags
+@jupyterlab/toc-extension
+@jupyterlab/commenting-extension
+@jupyterlab/pullrequests
 @jupyterlab/celltags-extension
 @jupyterlab/mathjax3-extension
 @jupyterlab/github
@@ -420,6 +426,8 @@ algorithmx-jupyter
 jupyterlab_filetree
 ipycanvas
 @lckr/jupyterlab_variableinspector
+jupyterlab-drawio
+jupyterlab-kernelspy
 EOF
 
 : '
