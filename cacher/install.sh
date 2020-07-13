@@ -35,13 +35,20 @@ dnf --installroot="$rootfsDir" \
     install \
     squid \
     openssl \
-    distcc-server \
     gcc-c++ \
     nodejs \
     ccache \
     python3-pip
-)
 
+dnf --installroot="$rootfsDir" \
+    --forcearch="$buildarch" \
+    --setopt=install_weak_deps=False --best -v -y \
+    --nodocs --allowerasing \
+    --releasever="$releasever" \
+    --nogpgcheck \
+    install \
+    distcc-server
+)
 
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
