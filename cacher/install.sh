@@ -48,9 +48,14 @@ buildah run $container -- npm install -g git-cache-http-server verdaccio
 
 buildah copy $container $scriptDir/squid.conf /etc/squid
 buildah copy $container $scriptDir/storeid.conf /etc/squid
+buildah copy $container $scriptDir/distccd-cmdlist /etc/sysconfig
 
 mkdir $rootfsDir/var/spool/ccache
 chmod a+rwx $rootfsDir/var/spool/ccache
+
+cat >> $rootfsDir/var/spool/ccache/ccache.conf <<EOF
+max_size = 35.0G
+EOF
 
 cat >> $rootfsDir/root/.bashrc <<EOF
 export CCACHE_DIR=/var/spool/ccache
