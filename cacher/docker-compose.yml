@@ -5,8 +5,11 @@ services:
      ports:
        - 3128:3128
        - 3632:3632
+       - 3633:3633
      volumes:
        - spool:/var/spool
+       - log:/var/log
 
 volumes:
       spool:
+      log:

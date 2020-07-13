@@ -3,11 +3,15 @@ echo "starting"
 
 mkdir -p /var/spool/squid
 chown -R squid:squid /var/spool/squid
+chown -R squid:squid /var/log/squid
+touch /var/log/squid/squid.log
+chmod a+rw /var/log/squid/squid.log
+
 if [ ! -d /var/spool/squid/00 ]; then
-    /sbin/squid -z -F --foreground >> /var/log/squid/squid.out 2>&1
+    /sbin/squid -z -F --foreground >> /var/log/squid/squid.log 2>&1
 fi
 
-/sbin/squid -N >> /var/log/squid/squid.out 2>&1 &
+/sbin/squid -N >> /var/log/squid/squid.log 2>&1 &
 
 mkdir -p /var/spool/ccache
 chmod -R a+rwx /var/spool/ccache
