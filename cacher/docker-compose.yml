@@ -1,0 +1,12 @@
+version:  '3'
+services:
+  cacher:
+     image: "joequant/cacher"
+     ports:
+       - 3128:3128
+       - 3632:3632
+     volumes:
+       - spool:/var/spool
+
+volumes:
+      spool:
