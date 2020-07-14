@@ -38,7 +38,8 @@ dnf --installroot="$rootfsDir" \
     gcc-c++ \
     nodejs \
     ccache \
-    python3-pip
+    python3-pip \
+    git
 
 dnf --installroot="$rootfsDir" \
     --forcearch="$buildarch" \
@@ -62,6 +63,10 @@ chmod a+rwx $rootfsDir/var/spool/ccache
 
 cat >> $rootfsDir/var/spool/ccache/ccache.conf <<EOF
 max_size = 35.0G
+# important for R CMD INSTALL *.tar.gz as tarballs are expanded freshly -> fresh ctime
+sloppiness = include_file_ctime
+# also important as the (temp.) directory name will differ
+hash_dir = false
 EOF
 
 cat >> $rootfsDir/root/.bashrc <<EOF
