@@ -97,8 +97,7 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root-graf-asimage \
       fuse \
       parallel \
-      distcc \
-      distcc-server
+      gcc-c++
 
 chmod a+x $rootfsDir/usr/lib64/R/bin/*
 dnf clean all $rootfsArg
@@ -122,8 +121,7 @@ fi
 
 
 dnf --setopt=install_weak_deps=False --best install -v -y \
-    --nodocs --allowerasing \
-      gcc-c++ \
+    --nodocs --allowerasing $rootfsArg \
       make \
       r-quantlib \
       pkgconfig\(libczmq\) \
@@ -205,7 +203,8 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       'pkgconfig(Magick++)' \
       spack \
       spack-repos \
-      dnf
+      distcc \
+      distcc-server
 
 # xeus-devel for r juniper
 
