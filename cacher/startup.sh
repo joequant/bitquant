@@ -38,7 +38,6 @@ if [ ! -d /var/spool/git ]; then
 fi
 chmod a+rw /var/log/git-cache-http-server.log
 chmod -R a+rw /var/spool/git
-git-cache-http-server -c /var/spool/git >> /var/log/git-cache-http-server.log 2>&1 &
 
 mkdir -p /var/spool/verdaccio
 chmod -R a+rw /var/spool/verdaccio
@@ -46,4 +45,6 @@ pushd /var/spool/verdaccio
 verdaccio >> /var/log/verdaccio.log 2>&1 &
 popd
 
-while :; do sleep 2073600; done
+while :; do
+git-cache-http-server -c /var/spool/git >> /var/log/git-cache-http-server.log 2>&1
+done
