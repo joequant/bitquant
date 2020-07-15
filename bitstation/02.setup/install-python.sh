@@ -6,7 +6,10 @@ set +o errexit
 
 if [ -e $rootfsDir/tmp/proxy.sh ]; then
     source $rootfsDir/tmp/proxy.sh
-    which cc
+fi
+
+if [ -e $rootfsDir/tmp/proxy-pump-start.sh ]; then
+    source $rootfsDir/tmp/proxy-pump-start.sh
 fi
 
 echo "Running python installation"
@@ -417,7 +420,6 @@ jupyter-threejs
 @jupyterlab/toc
 @jupyterlab/debugger
 @jupyterlab/celltags
-@jupyterlab/toc-extension
 @jupyterlab/commenting-extension
 @jupyterlab/pullrequests
 @jupyterlab/celltags-extension
@@ -436,6 +438,7 @@ jupyterlab-kernelspy
 EOF
 
 : '
+@jupyterlab/toc-extension
 @jupyterlab/latex
 @jupyterlab/dataregistry-extension
 @jupyterlab/commenting-extension
@@ -558,4 +561,8 @@ if [[ ! -z "$http_proxy" ]] ; then
     pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
     mv -f .yarnrc.dist .yarnrc
     popd
+fi
+
+if [ -e $rootfsDir/tmp/proxy-pump-stop.sh ]; then
+    source $rootfsDir/tmp/proxy-pump-stop.sh
 fi

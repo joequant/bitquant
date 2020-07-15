@@ -29,6 +29,14 @@ dnf autoremove python3-dnf-plugins-core -y $rootfsArg
 dnf reinstall -v -y --setopt=install_weak_deps=False --best --nodocs --allowerasing \
     locales locales-en glibc $rootfsArg
 
+#texlive needs to be run because it is not relocatable
+if [ ! -z $container ] ; then
+    if [ -z $releasever ]; then
+	releasever="cauldron"
+    fi
+buildah run $container -- dnf --setopt=install_weak_deps=False --best \
+	--allowerasing install -v -y --nodocs --releasever="$releasever" texlive 
+fi
 #repeat packages in setup
 dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodocs $rootfsArg \
       apache \
