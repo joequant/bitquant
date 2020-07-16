@@ -1,7 +1,7 @@
 {
     "name": "bitstation",
     "scripts": {
-	"build": "podman build 02.setup -t joequant/bitstation --build-arg base=joequant/cauldron --no-cache",
+	"build": "buildah unshare ./02.setup/mkimage-buildah.sh",
 	"build-docker": "docker-compose build --no-cache bitstation",
 	"build-podman": "podman build 02.setup -t joequant/bitstation --build-arg base=joequant/cauldron --no-cache",
 	"build-base": "buildah unshare /bin/bash 01.cauldron/mkimage-buildah.sh -n joequant/cauldron ; buildah unshare /bin/bash 01.cauldron/mkimage-buildah-minimal.sh",
