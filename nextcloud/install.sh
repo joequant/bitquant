@@ -50,6 +50,7 @@ dnf --installroot="$rootfsDir" \
     psmisc
 )
 
+rpm --erase --nodeps systemd --root $rootfsDir
 cat <<EOF > $rootfsDir/etc/sudo.conf
 Set disable_coredump false
 EOF
