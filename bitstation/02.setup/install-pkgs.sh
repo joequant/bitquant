@@ -114,19 +114,11 @@ rm -rf $rootfsDir/usr/share/gems/doc/*
 rm -rf $rootfsDir/usr/lib/python3.5
 rm -rf $rootfsDir/usr/lib64/python3.5
 
-pushd $rootfsDir/etc/httpd/conf
-rm -f conf.d/security.conf
-cp $rootfsDir/tmp/00_mpm.conf modules.d
-if [ -e modules.d/00-php-fpm.conf ] ; then
-    mv modules.d/00-php-fpm.conf modules.d/10-php-fpm.conf
-fi
-popd
 
 if grep -q '^7 ' /etc/version
 then export RDKAFKA=
 else  export RDKAFKA=librdkafka-devel
 fi
-
 
 dnf --setopt=install_weak_deps=False --best install -v -y \
     --nodocs --allowerasing $rootfsArg \

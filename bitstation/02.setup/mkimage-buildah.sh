@@ -22,6 +22,14 @@ chmod a+x $rootfsDir/tmp/*.sh
 systemd-sysusers --root=$rootfsDir $script_dir/system.conf
 source $script_dir/install-pkgs.sh
 
+pushd $rootfsDir/etc/httpd/conf
+rm -f conf.d/security.conf
+cp $script_dir/00_mpm.conf modules.d
+if [ -e modules.d/00-php-fpm.conf ] ; then
+    mv modules.d/00-php-fpm.conf modules.d/10-php-fpm.conf
+fi
+popd
+
 buildah run $container /tmp/mkimage-buildah-internal.sh
 rm -rf $rootfsDir/tmp/*
 

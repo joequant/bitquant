@@ -3,11 +3,6 @@
 
 set -e -v
 source /tmp/proxy.sh
-echo       cmake \
-      libtool \
-      protobuf-compiler \
-      cargo \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | grep -v xcrypt | grep -v ^gcc | grep -v libstd`
 
 # don't remove scipy
 dnf -y \
@@ -39,6 +34,8 @@ dnf -y \
     install java-headless iproute2
 
 dnf clean all
+rpm --erase --nodeps systemd
+
 #set default python to python3
 pushd /usr/bin
 ln -sf python3 python
@@ -48,18 +45,6 @@ rm -rf /root/.cache
 rm -rf /root/.npm
 rm -rf /root/.superset
 rm -rf /var/lib/mongodb/journal
-rm -f /lib/systemd/system/multi-user.target.wants/*
-rm -f /etc/systemd/system/*.wants/*
-rm -f /lib/systemd/system/local-fs.target.wants/*
-rm -f /lib/systemd/system/sockets.target.wants/*udev*
-rm -f /lib/systemd/system/sockets.target.wants/*initctl*
-rm -f /lib/systemd/system/basic.target.wants/*
-rm -f /lib/systemd/system/anaconda.target.wants/*
-rm -f /lib/systemd/system/*resolve1*
-rm -f /lib/systemd/system/*resolved*
-rm -f /lib/systemd/system/*udev*
-rm -f /lib/systemd/system/*journal*
-rm -f /lib/systemd/system/*networkd*
 rm -rf /etc/resolveconf /sbin/resolvconf /etc/rc.d/init.d/resolvconf
 rm -rf /usr/lib64/python*/test
 
