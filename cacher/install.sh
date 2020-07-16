@@ -2,7 +2,7 @@
 set -e -v
 
 scriptDir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-container=$(buildah from joequant/cauldron)
+container=$(buildah from joequant/cauldron-minimal)
 buildah config --label maintainer="Joseph C Wang <joequant@gmail.com>" $container
 buildah config --user root $container
 mountpoint=$(buildah mount $container)
@@ -51,6 +51,8 @@ dnf --installroot="$rootfsDir" \
     distcc-server
 )
 
+rpm --erase --nodeps --root $rootfsDir systemd
+
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
 
@@ -75,5 +77,10 @@ export PATH=/usr/lib64/ccache/bin:/bin:/sbin
 EOF
 
 rpm --rebuilddb --root $rootfsDir
+pushd $rootfsDir
+rm -rf var/cache/*
+rm -f lib/*.so lib/*.so.*
+popd
+
 buildah config --cmd "/sbin/startup.sh" $container
 buildah commit --format docker --rm $container $name

@@ -1,7 +1,7 @@
 # this is the location of the main server from a docker image
-cache_server=172.17.0.1
+export cache_server=172.17.0.1
 
-timeout 1 bash -c 'cat < /dev/null > /dev/tcp/$cache_server/3128'
+timeout 1 bash -c 'cat < /dev/null > /dev/tcp/'$cache_server'/3128'
 if [ $? == 0 ] ; then
     echo "running proxy"
 export http_proxy=http://$cache_server:3128/
