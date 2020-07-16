@@ -17,11 +17,9 @@ export LC_ALL=C
 export LANGUAGE=C
 export LANG=C
 name="joequant/bitstation"
-mkdir -p $rootfsDir/etc/sysusers.d
-cp $script_dir/system.conf $rootfsDir/etc/sysusers.d
-cp $script_dir/*.conf $script_dir/*.sh $rootfsDir/tmp
+cp $script_dir/*.sh $rootfsDir/tmp
 chmod a+x $rootfsDir/tmp/*.sh
-systemd-sysusers --root=$rootfsDir
+systemd-sysusers --root=$rootfsDir $script_dir/system.conf
 source $script_dir/install-pkgs.sh
 
 buildah run $container /tmp/mkimage-buildah-internal.sh
