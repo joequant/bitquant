@@ -213,10 +213,10 @@ fi
 rpm --erase basesystem-minimal-core  --root $rootfsDir
 dnf autoremove -y \
     --installroot="$rootfsDir" \
-    diffutils vim-minimal \
-    rootfiles diffutils tar tcb \
+    vim-minimal \
+    rootfiles tar tcb \
     passwd hostname which psmisc
-
+rpm --erase --nodeps systemd shared-mime-info  --root $rootfsDir
 dnf clean all --installroot="$rootfsDir"
 
 	
@@ -249,25 +249,6 @@ rm -rf usr/lib/kbd
 rm -rf etc/udev/hwdb.bin
 rm -rf var/lib/rpm/__db.*
 
-#remove systemd
-#Prevent systemd from starting unneeded services
-rm -f usr/etc/systemd/system/*.wants/*
-pushd usr/lib/systemd
-rm -f lib/systemd/systemd
-rm -f lib/systemd/systemd-ac-power
-rm -f lib/systemd/systemd-backlight
-rm -f lib/systemd/systemd-fsck
-rm -f lib/systemd/systemd-*d
-rm -f lib/systemd/systemd-*fs
-rm -f lib/systemd-homework
-rm -f lib/systemd-journal-*
-rm -f lib/systemd-user*
-rm -f lib/fedora-*
-
-rm -rf system
-rm -f *udevd* *networkd* *machined* *coredump*
-popd
-
 pushd sbin
 rm -f swap*
 rm -f blk*
@@ -298,9 +279,6 @@ rm -f sln \
 popd
 
 pushd bin
-rm -f systemd-analyze
-rm -f systemd-nspawn systemd-tty-ask-password-agent \
-   systemd-ask-password systemd-detect-virt
 rm -f halt poweroff
 rm -f lsblk \
    lscpu \
@@ -309,10 +287,6 @@ rm -f lsblk \
    partmon \
    rfkill \
    mount \
-   systemd-repart \
-   systemd-mount \
-   systemd-umount \
-   systemd-firstboot \
    nl \
    vdir \
    code2color \
@@ -340,29 +314,6 @@ if [ -d "$rootfsDir/etc/sysconfig" ]; then
         # allow networking init scripts inside the container to work without extra steps
         echo 'NETWORKING=yes' > "$rootfsDir/etc/sysconfig/network"
 fi
-
-rm -f $rootfsDir/lib/systemd/systemd
-rm -f $rootfsDir/bin/systemd
-rm -rf $rootfsDir/lib/systemd/system
-rm -f $rootfsDir/lib/systemd/fedora-*
-rm -rf $rootfsDir/lib/systemd/portable
-rm -f $rootfsDir/lib/systemd/systemd-ac-power
-rm -f $rootfsDir/lib/systemd/systemd-backlight
-rm -f $rootfsDir/lib/systemd/systemd-coredump
-rm -f $rootfsDir/lib/systemd/systemd-cryptsetup
-rm -f $rootfsDir/lib/systemd/systemd-home*
-rm -f $rootfsDir/lib/systemd/systemd-journal*
-rm -f $rootfsDir/lib/systemd/systemd-localed
-rm -f $rootfsDir/lib/systemd/systemd-logind
-rm -f $rootfsDir/lib/systemd/systemd-machined
-rm -f $rootfsDir/lib/systemd/systemd-makefs
-rm -f $rootfsDir/lib/systemd/systemd-modules-load
-rm -f $rootfsDir/lib/systemd/systemd-network*
-rm -f $rootfsDir/lib/systemd/systemd-portabled
-rm -f $rootfsDir/lib/systemd/systemd-resolved
-rm -f $rootfsDir/lib/systemd/systemd-time*
-rm -f $rootfsDir/lib/systemd/systemd-udevd
-rm -rf $rootfsDir/usr/local
 
 find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 
