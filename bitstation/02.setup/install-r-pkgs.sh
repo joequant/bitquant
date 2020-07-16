@@ -9,15 +9,7 @@ if [ -e $rootfsDir/tmp/proxy.sh ]; then
     source $rootfsDir/tmp/proxy.sh
 fi
 
-if [ -e $rootfsDir/tmp/proxy-pump-start.sh ]; then
-    source $rootfsDir/tmp/proxy-pump-start.sh
-fi
-
 echo "Generating new modules"
-/usr/bin/R -e "install.packages(c('stringi', 'magrittr', 'devtools', 'crayon', 'pbdZMQ', 'reticulate', 'shiny', 'Quandl','knitr', 'rzmq', 'rmarkdown', 'IRkernel'), repos='http://cran.r-project.org/', dependencies=TRUE)"
+R -e "install.packages(c('stringi', 'magrittr', 'devtools', 'crayon', 'pbdZMQ', 'reticulate', 'shiny', 'Quandl','knitr', 'rzmq', 'rmarkdown', 'IRkernel'), repos='http://cran.r-project.org/', dependencies=TRUE)"
 #/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.r-project.org/")); library(devtools) ; devtools::install_github("rstudio/rmarkdown")'
 #/usr/bin/R -e 'options(repos=c(CRAN = "http://cran.r-project.org/")); library(devtools) ; install_github("IRkernel/repr"); devtools::install_github("IRKernel/IRdisplay"); devtools::install_github("IRKernel/IRkernel")'
-
-if [ -e $rootfsDir/tmp/proxy-pump-stop.sh ]; then
-    source $rootfsDir/tmp/proxy-pump-stop.sh
-fi

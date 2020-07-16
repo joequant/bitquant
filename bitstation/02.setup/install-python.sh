@@ -8,10 +8,6 @@ if [ -e $rootfsDir/tmp/proxy.sh ]; then
     source $rootfsDir/tmp/proxy.sh
 fi
 
-if [ -e $rootfsDir/tmp/proxy-pump-start.sh ]; then
-    source $rootfsDir/tmp/proxy-pump-start.sh
-fi
-
 echo "Running python installation"
 #PYTHON_ARGS=--upgrade
 #missing zipline since requirements installation causes issues
@@ -298,7 +294,10 @@ bankroll[ibkr,schwab,fidelity]
 investpy
 deap
 jupyterlab-git
-jupyterlab-latex
+EOF
+
+# moved out
+: '
 jupyterlab-commenting-service
 itkwidgets
 ipywidgets
@@ -312,10 +311,7 @@ ipycanvas
 ipydatetime
 gmaps
 ipycallback
-EOF
-
-# moved out
-: '
+jupyterlab-latex
 jupyter_declarativewidgets
 tributary
 ipytree
@@ -417,6 +413,9 @@ parallel -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}'
 bqplot
 ipyvolume
 jupyter-threejs
+EOF
+
+: '
 @jupyterlab/toc
 @jupyterlab/debugger
 @jupyterlab/celltags
@@ -435,9 +434,7 @@ ipycanvas
 @lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 jupyterlab-kernelspy
-EOF
 
-: '
 @jupyterlab/toc-extension
 @jupyterlab/latex
 @jupyterlab/dataregistry-extension
@@ -561,8 +558,4 @@ if [[ ! -z "$http_proxy" ]] ; then
     pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
     mv -f .yarnrc.dist .yarnrc
     popd
-fi
-
-if [ -e $rootfsDir/tmp/proxy-pump-stop.sh ]; then
-    source $rootfsDir/tmp/proxy-pump-stop.sh
 fi

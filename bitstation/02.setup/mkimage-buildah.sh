@@ -24,12 +24,7 @@ chmod a+x $rootfsDir/tmp/*.sh
 systemd-sysusers --root=$rootfsDir
 source $script_dir/install-pkgs.sh
 
-buildah run $container -- parallel --tagstring '{}' --linebuffer /bin/bash '/tmp/{}' :::  install-r-pkgs.sh install-python.sh
-buildah run $container -- /bin/bash /tmp/proxy-pump-stop.sh
-buildah run $container -- /bin/bash /tmp/docker-setup.sh
-buildah run $container -- parallel --tagstring '{}' --linebuffer /bin/bash '/tmp/{}' :::  install-npm.sh install-ruby.sh install-r-pkgs-sudo.sh
-buildah run $container -- /bin/bash /tmp/remove-build-deps.sh
-buildah run $container -- /bin/bash /tmp/proxy-pump-stop.sh
+buildah run $container /tmp/mkimage-buildah-internal.sh
 rm -rf $rootfsDir/tmp/*
 
 buildah config --user "user" $container
