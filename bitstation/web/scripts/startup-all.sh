@@ -9,10 +9,10 @@ mkdir -p $LOG_DIR
 chmod a+w $LOG_DIR
 
 echo "Start redis"
-su redis -s "/bin/bash" -c "/usr/bin/redis-server /etc/redis.conf" &
+sudo -u redis /usr/bin/redis-server /etc/redis.conf &
 echo "Start mongo"
 chown -R mongod:mongod /var/lib/mongodb
-su mongod -s "/bin/bash" -c "/usr/bin/mongod --quiet -f /etc/mongod.conf" &
+sudo -u mongod /usr/bin/mongod --quiet -f /etc/mongod.conf &
 /usr/sbin/httpd -DFOREGROUND &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
