@@ -33,7 +33,7 @@ popd
 buildah run $container /tmp/mkimage-buildah-internal.sh
 rm -rf $rootfsDir/tmp/*
 
-buildah config --user "user" $container
+buildah config --user root $container
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 
 buildah commit --format docker --rm $container $name
