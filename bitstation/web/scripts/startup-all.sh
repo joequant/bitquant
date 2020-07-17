@@ -60,8 +60,8 @@ fi
 
 echo "Pulling git"
 pushd $WEB_DIR/..
-su user -c "git config --global pull.rebase true"
-su user -c "git pull"
+sudo -u user git config --global pull.rebase true
+sudo -u user git pull
 popd
-su user -c ./startup-user.sh
-while :; do sleep 2; done
+sudo -u user ./startup-user.sh
+while :; do sleep 20000; done
