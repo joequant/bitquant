@@ -13,9 +13,9 @@ npm install -g --unsafe-perm=true ijavascript --zmq-external
 
 # use git because of
 # https://github.com/nearbydelta/itypescript/issues/20
-npm install -g --unsafe-perm=true git+https://github.com/joequant/itypescript.git --zmq-external
+npm install -g --unsafe-perm=true git+http://github.com/joequant/itypescript.git --zmq-external
 npm install -g --unsafe-perm=true jp-coffeescript --zmq-external
-npm install -g --unsafe-perm=true git+https://github.com/joequant/jp-livescript.git --zmq-external
+npm install -g --unsafe-perm=true git+http://github.com/joequant/jp-livescript.git --zmq-external
 npm install -g --unsafe-perm=true jp-babel --zmq-external
 npm install -g --unsafe-perm=true configurable-http-proxy solc modclean
 
