@@ -85,3 +85,4 @@ popd
 buildah config --cmd "/sbin/startup.sh" $container
 buildah commit --format docker --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest
+pump --shutdown
