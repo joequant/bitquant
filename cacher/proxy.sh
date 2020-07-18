@@ -22,8 +22,16 @@ fi
 
 export timeout_exit=0
 timeout 1 bash -c 'cat < /dev/null > /dev/tcp/$cache_server/3632' || export timeout_exit=1
+: '
 if [ $timeout_exit == 0 ] ; then
     echo "running distcc"
     export PATH=/usr/lib64/distcc:$PATH
     export DISTCC_HOSTS="$cache_server"
+fi
+'
+if [ $timeout_exit == 0 ] ; then
+    echo "running distcc (pump mode)"
+    export PATH=/usr/lib64/distcc:$PATH
+    export DISTCC_HOSTS='172.17.0.1,cpp,lzo'
+    eval `pump --startup`
 fi
