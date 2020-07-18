@@ -1,6 +1,7 @@
 #!/bin/bash
 # TODO - fixes
 set -v
+source $rootfsDir/tmp/proxy.sh
 pushd /home/user
 export CPPFLAGS="-Wno-error=deprecated-declarations"
 export JUPYTER_DATA_DIR=/usr/share/jupyter
@@ -16,3 +17,4 @@ iruby register --force
 
 # remember to link libzmq.so.5 to libzmq.so
 popd
+pump --shutdown

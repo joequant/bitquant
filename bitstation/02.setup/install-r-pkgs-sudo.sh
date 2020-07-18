@@ -1,6 +1,8 @@
 #!/bin/bash
 # sudo portion of r package installations
 
+source $rootfsDir/tmp/proxy.sh
+
 echo "Running r installation"
 if [ `uname -m` = "x86_64" -o `uname -m` = " x86-64" ]; then
 LIBDIR="lib64"
@@ -37,3 +39,4 @@ mkdir -p /etc/shiny-server
 cp -r /usr/$LIBDIR/R/library/shiny/examples/*  /var/www/shiny-server
 fi
 popd
+pump --shutdown

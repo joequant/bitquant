@@ -258,3 +258,4 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
 # lxml for matta
 # zeromq-utils are necessary for IRkernel
 # pyasn1 for jupyter extensions
+pump --shutdown

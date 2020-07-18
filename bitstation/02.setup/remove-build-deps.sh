@@ -92,3 +92,4 @@ rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 rpm --rebuilddb
 rm -rf /var/cache/*
+pump --shutdown

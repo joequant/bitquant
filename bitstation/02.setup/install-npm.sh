@@ -2,6 +2,7 @@
 
 set -v
 
+source $rootfsDir/tmp/proxy.sh
 pushd /home/user
 
 npm install -g node-gyp coffeescript typescript
@@ -39,3 +40,5 @@ mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
 npm i -g --unsafe-perm=true ethercalc
 
 popd
+pump --shutdown
+

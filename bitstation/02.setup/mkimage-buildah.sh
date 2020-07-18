@@ -32,6 +32,12 @@ popd
 
 buildah run $container /tmp/mkimage-buildah-internal.sh
 rm -rf $rootfsDir/tmp/*
+
+cat > $rootfsDir/usr/share/bitquant/bitquant.conf <<EOF
+date='$(date)'
+commit_id=$(git rev-parse --verify HEAD)
+EOF
+
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 
 buildah commit --format docker --rm $container $name

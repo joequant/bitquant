@@ -4,10 +4,7 @@
 set -v
 set +o errexit
 
-if [ -e $rootfsDir/tmp/proxy.sh ]; then
-    source $rootfsDir/tmp/proxy.sh
-fi
-
+source $rootfsDir/tmp/proxy.sh
 echo "Running python installation"
 #PYTHON_ARGS=--upgrade
 #missing zipline since requirements installation causes issues
@@ -294,6 +291,10 @@ bankroll[ibkr,schwab,fidelity]
 investpy
 deap
 jupyterlab-git
+algorithmx
+itkwidgets
+jupyter_bokeh
+jupyterlab-commenting-service
 EOF
 
 # moved out
@@ -408,11 +409,26 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-parallel -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install {}' ::: <<EOF
+parallel -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
 jupyter-threejs
+algorithmx-jupyter
+jupyter-matplotlib
+jupyterlab-datawidgets
+itkwidgets
+@bokeh/jupyter_bokeh
+jupyterlab-spreadsheet
+@jupyterlab/mathjax3-extension
+@jupyterlab/vega2-extension
+@jupyterlab/vega3-extension
+@jupyterlab/katex-extension
+@jupyterlab/fasta-extension
+@jupyterlab/geojson-extension
+@jupyterlab/commenting-extension
+@jupyterlab/github
+@jupyterlab/toc
 EOF
 
 : '
@@ -422,11 +438,8 @@ EOF
 @jupyterlab/commenting-extension
 @jupyterlab/pullrequests
 @jupyterlab/celltags-extension
-@jupyterlab/mathjax3-extension
 @jupyterlab/github
 itkwidgets
-@bokeh/jupyter_bokeh
-jupyterlab-spreadsheet
 ipylab
 algorithmx-jupyter
 jupyterlab_filetree
@@ -434,7 +447,6 @@ ipycanvas
 @lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 jupyterlab-kernelspy
-
 @jupyterlab/toc-extension
 @jupyterlab/latex
 @jupyterlab/dataregistry-extension
@@ -559,3 +571,4 @@ if [[ ! -z "$http_proxy" ]] ; then
     mv -f .yarnrc.dist .yarnrc
     popd
 fi
+pump --shutdown
