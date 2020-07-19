@@ -429,6 +429,9 @@ jupyterlab-spreadsheet
 @jupyterlab/commenting-extension
 @jupyterlab/github
 @jupyterlab/toc
+@jupyter-voila/jupyterlab-preview
+@aquirdturtle/collapsible_headings
+@lckr/jupyterlab_variableinspector
 EOF
 
 : '
