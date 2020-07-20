@@ -3,7 +3,7 @@
     "scripts": {
 	"build": "buildah unshare ./install.sh",
 	"shell": "podman exec -ti cacher_cacher_1 /bin/bash",
-	"up": "podman-compose up",
+	"up": "nohup podman-compose up >> cacher.log &",
 	"down": "podman-compose down",
 	"ccache-stats": "podman exec -e CCACHE_DIR=/var/spool/ccache -ti cacher_cacher_1  ccache -s"
     }
