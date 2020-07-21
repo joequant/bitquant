@@ -10,8 +10,6 @@ else
 LIBDIR="lib"
 fi
 
-pushd /home/user
-
 # Without this the installation will try to put the R library in the
 # system directories where it does not have permissions
 
@@ -38,5 +36,16 @@ chown shiny /var/log/shiny-server
 mkdir -p /etc/shiny-server
 cp -r /usr/$LIBDIR/R/library/shiny/examples/*  /var/www/shiny-server
 fi
-popd
+
+#npm
+ijsinstall --install=global
+its --install=global
+jp-coffee-install --install=global
+jp-babel-install --install=global
+jp-livescript-install --install=global
+
+mkdir -p /usr/share/jupyter/kernels
+mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
+# ruby
+iruby register --force
 pump --shutdown

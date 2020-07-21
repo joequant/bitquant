@@ -295,6 +295,7 @@ algorithmx
 itkwidgets
 jupyter_bokeh
 jupyterlab-commenting-service
+jupytext
 EOF
 
 # moved out
@@ -559,6 +560,10 @@ superset db upgrade
 superset init
 superset load_examples
 '
+
+jupyter lab clean
+jlpm cache clean
+npm cache clean --force
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin

@@ -30,7 +30,10 @@ if [ -e modules.d/00-php-fpm.conf ] ; then
 fi
 popd
 
-buildah run $container /tmp/mkimage-buildah-internal.sh
+buildah run $container parallel --tagstring '{}' --linebuffer source '/tmp/{}' :::  install-r-pkgs.sh install-python.sh install-npm.sh install-ruby.sh
+buildah run $container /bin/bash /tmp/docker-setup.sh
+buildah run $container /bin/bash /tmp/install-jupyter.sh
+source $script_dir/remove-build-deps.sh
 rm -rf $rootfsDir/tmp/*
 
 cat > $rootfsDir/usr/share/bitquant/bitquant.conf <<EOF

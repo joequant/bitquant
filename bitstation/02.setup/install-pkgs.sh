@@ -105,23 +105,7 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       root-graf-asimage \
       fuse \
       parallel \
-      gcc-c++
-
-chmod a+x $rootfsDir/usr/lib64/R/bin/*
-dnf clean all $rootfsArg
-rm -rf $rootfsDir/var/log/*.log
-rm -rf $rootfsDir/usr/share/gems/doc/*
-rm -rf $rootfsDir/usr/lib/python3.5
-rm -rf $rootfsDir/usr/lib64/python3.5
-
-
-if grep -q '^7 ' /etc/version
-then export RDKAFKA=
-else  export RDKAFKA=librdkafka-devel
-fi
-
-dnf --setopt=install_weak_deps=False --best install -v -y \
-    --nodocs --allowerasing $rootfsArg \
+      gcc-c++ \
       make \
       r-quantlib \
       pkgconfig\(libczmq\) \
@@ -184,7 +168,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       glpk \
       llvm-devel \
       llvm \
-      $RDKAFKA \
+      librdkafka-devel \
       libumfpack-devel \
       hdf5-devel \
       libxt-devel \
@@ -204,7 +188,7 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
       spack \
       spack-repos \
       distcc \
-      distcc-server
+      julia
 
 # xeus-devel for r juniper
 
@@ -258,4 +242,10 @@ dnf --setopt=install_weak_deps=False --best install -v -y \
 # lxml for matta
 # zeromq-utils are necessary for IRkernel
 # pyasn1 for jupyter extensions
+chmod a+x $rootfsDir/usr/lib64/R/bin/*
+dnf clean all $rootfsArg
+rm -rf $rootfsDir/var/log/*.log
+rm -rf $rootfsDir/usr/share/gems/doc/*
+rm -rf $rootfsDir/usr/lib/python3.5
+rm -rf $rootfsDir/usr/lib64/python3.5
 pump --shutdown
