@@ -30,7 +30,7 @@ if [ ! -d /var/spool/devpi ]; then
 fi
 chmod a+rw /var/log/devpi-server.log
 chmod -R a+rw /var/spool/devpi
-devpi-server --serverdir /var/spool/devpi >> /var/log/devpi-server.log 2>&1 &
+su nobody -c "devpi-server --serverdir /var/spool/devpi >> /var/log/devpi-server.log 2>&1 &"
 
 if [ ! -d /var/spool/git ]; then
     mkdir -p /var/spool/git
@@ -44,9 +44,11 @@ chmod -R a+rw /var/spool/verdaccio
 pushd /var/spool/verdaccio
 mkdir -p /var/spool/verdaccio/storage
 mkdir -p /var/spool/verdaccio/plugins
-verdaccio -c /etc/verdaccio.yaml >> /var/log/verdaccio.log 2>&1 &
+su nobody -c "verdaccio -c /etc/verdaccio.yaml >> /var/log/verdaccio.log 2>&1 &"
 popd
 
-while :; do
-git-cache-http-server -c /var/spool/git >> /var/log/git-cache-http-server.log 2>&1
-done
+mkdir -p /var/spool/git
+chmod -R a+rw /var/spool/git
+
+su nobody -c "while :; do git-cache-http-server -c /var/spool/git >> /var/log/git-cache-http-server.log 2>&1 ; done &"
+while :; do sleep 200000; done
