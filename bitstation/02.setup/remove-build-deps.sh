@@ -35,6 +35,8 @@ dnf -y $rootfsArg \
 
 dnf clean all $rootfsArg
 rpm --erase --nodeps systemd $rootfsRpmArg
+rpm --erase --nodeps $rootfsRpmArg \
+    `rpm -qa $rootfsRpmArg | grep font | grep x11`
 
 #set default python to python3
 pushd $rootfsDir/usr/bin
