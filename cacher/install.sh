@@ -51,7 +51,8 @@ dnf --installroot="$rootfsDir" \
     distcc-server
 )
 
-rpm --erase --nodeps --root $rootfsDir systemd mesa
+rpm --erase --nodeps --root $rootfsDir systemd mesa \
+ `rpm -qa --root $rootfsDir | grep vulkan`
 
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
@@ -79,7 +80,9 @@ EOF
 rpm --rebuilddb --root $rootfsDir
 pushd $rootfsDir
 rm -rf var/cache/*
-rm -f lib/*.so lib/*.so.*
+rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a
+rm -rf usr/lib/.build-id usr/lib64/mesa
+rm -rf usr/local usr/games
 popd
 
 buildah config --cmd "/sbin/startup.sh" $container
