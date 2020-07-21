@@ -51,7 +51,7 @@ dnf --installroot="$rootfsDir" \
     distcc-server
 )
 
-rpm --erase --nodeps --root $rootfsDir systemd
+rpm --erase --nodeps --root $rootfsDir systemd mesa
 
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
