@@ -53,11 +53,10 @@ dnf --installroot="$rootfsDir" \
 )
 
 rpm --erase --nodeps --root $rootfsDir systemd mesa \
- `rpm -qa --root $rootfsDir | grep vulkan`
+ `rpm -qa --root $rootfsDir | grep vulkan` adwaita-icon-theme
 
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
-
 buildah copy $container $scriptDir/squid.conf /etc/squid
 buildah copy $container $scriptDir/storeid.conf /etc/squid
 buildah copy $container $scriptDir/distccd-cmdlist /etc/sysconfig

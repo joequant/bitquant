@@ -44,11 +44,12 @@ chmod -R a+rw /var/spool/verdaccio
 pushd /var/spool/verdaccio
 mkdir -p /var/spool/verdaccio/storage
 mkdir -p /var/spool/verdaccio/plugins
+chmod a+rw /var/log/verdaccio.log
 su nobody -c "verdaccio -c /etc/verdaccio.yaml >> /var/log/verdaccio.log 2>&1 &"
 popd
 
 mkdir -p /var/spool/git
 chmod -R a+rw /var/spool/git
-
+chmod a+rw /var/log/git-cache-http-server.log
 su nobody -c "while :; do git-cache-http-server -c /var/spool/git >> /var/log/git-cache-http-server.log 2>&1 ; done &"
 while :; do sleep 200000; done
