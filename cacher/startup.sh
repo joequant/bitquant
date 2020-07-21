@@ -42,7 +42,9 @@ chmod -R a+rw /var/spool/git
 mkdir -p /var/spool/verdaccio
 chmod -R a+rw /var/spool/verdaccio
 pushd /var/spool/verdaccio
-verdaccio >> /var/log/verdaccio.log 2>&1 &
+mkdir -p /var/spool/verdaccio/storage
+mkdir -p /var/spool/verdaccio/plugins
+verdaccio -c /etc/verdaccio.yaml >> /var/log/verdaccio.log 2>&1 &
 popd
 
 while :; do

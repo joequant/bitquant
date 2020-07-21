@@ -5,6 +5,7 @@
 	"shell": "podman exec -ti cacher_cacher_1 /bin/bash",
 	"up": "nohup podman-compose up >> cacher.log &",
 	"down": "podman-compose down",
+	"restart": "podman-compose down ; nohup podman-compose up >> cacher.log &",
 	"ccache-stats": "podman exec -e CCACHE_DIR=/var/spool/ccache -ti cacher_cacher_1  ccache -s"
     }
 }

@@ -39,7 +39,8 @@ dnf --installroot="$rootfsDir" \
     nodejs \
     ccache \
     python3-pip \
-    git
+    git \
+    procps-ng
 
 dnf --installroot="$rootfsDir" \
     --forcearch="$buildarch" \
@@ -61,8 +62,14 @@ buildah copy $container $scriptDir/squid.conf /etc/squid
 buildah copy $container $scriptDir/storeid.conf /etc/squid
 buildah copy $container $scriptDir/distccd-cmdlist /etc/sysconfig
 
-mkdir $rootfsDir/var/spool/ccache
+mkdir -p $rootfsDir/var/spool/ccache
 chmod a+rwx $rootfsDir/var/spool/ccache
+
+mkdir -p $rootfsDir/var/spool/verdaccio/storage
+mkdir -p $rootfsDir/var/spool/verdaccio/plugins
+cp $scriptDir/verdaccio.yaml $rootfsDir/etc
+chmod a+rwx $rootfsDir/var/spool/verdaccio
+
 
 cat >> $rootfsDir/var/spool/ccache/ccache.conf <<EOF
 max_size = 35.0G
