@@ -544,17 +544,7 @@ cat /tmp/jupyterlab-debug-*.log || true
 
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
-#jupyter nbextension install --py --sys-prefix jpy_video --system
-#jupyter nbextension enable  --py --sys-prefix jpy_video --system
-#jupyter labextension install jupyter-video
-#jupyter serverextension enable --py jupyterlab --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
-#jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
-#jupyter serverextension enable --py jupyterlab_git --sys-prefix
-#jupyter nbextension disable --py --sys-prefix ipysheet.renderer_nbext
-#jupyter labextension disable ipysheet:renderer # for jupyter lab
-#jupyter serverextension enable --py jupyterlab_templates
-#jupyter serverextension enable --py jupyterlab_iframe
 
 :'
 fabmanager create-admin --app superset
@@ -562,10 +552,6 @@ superset db upgrade
 superset init
 superset load_examples
 '
-
-jupyter lab clean
-jlpm cache clean
-npm cache clean --force
 
 if [ ! -e /usr/bin/ipython ] ; then
 pushd /usr/bin
