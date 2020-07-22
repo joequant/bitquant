@@ -53,8 +53,11 @@ dnf --installroot="$rootfsDir" \
 )
 
 rpm --erase --nodeps --root $rootfsDir systemd mesa \
-    `rpm -qa --root $rootfsDir | grep vulkan` adwaita-icon-theme \
-    lib64dri-drivers
+    `rpm -qa --root $rootfsDir | grep vulkan` \
+    `rpm -qa --root $rootfsDir | grep drm` \
+    `rpm -qa --root $rootfsDir | grep dri` \
+    `rpm -qa --root $rootfsDir | grep wayland` \
+    `rpm -qa --root $rootfsDir | grep adwaita`
 
 buildah run $container -- pip3 install devpi-server --prefix /usr
 buildah run $container -- npm install -g git-cache-http-server verdaccio
