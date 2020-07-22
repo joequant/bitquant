@@ -296,6 +296,7 @@ itkwidgets
 jupyter_bokeh
 jupyterlab-commenting-service
 jupytext
+ipylab
 EOF
 
 # moved out
@@ -433,6 +434,8 @@ jupyterlab-spreadsheet
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
+jupyterlab-drawio
+ipylab
 EOF
 
 : '
@@ -449,7 +452,6 @@ algorithmx-jupyter
 jupyterlab_filetree
 ipycanvas
 @lckr/jupyterlab_variableinspector
-jupyterlab-drawio
 jupyterlab-kernelspy
 @jupyterlab/toc-extension
 @jupyterlab/latex

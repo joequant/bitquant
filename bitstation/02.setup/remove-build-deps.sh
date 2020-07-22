@@ -29,14 +29,16 @@ dnf -y $rootfsArg \
     `rpm -qa | grep initscripts` \
     `rpm -qa | grep qtbase5-common`
 
-# add iproute2 for webmit
+# add iproute2 for webmin
 dnf -y $rootfsArg \
-    install java-headless iproute2
+    install java-headless iproute2 \
+    quantlib-devel
 
 dnf clean all $rootfsArg
-rpm --erase --nodeps systemd $rootfsRpmArg
+rpm --erase --nodeps systemd mesa $rootfsRpmArg
 rpm --erase --nodeps $rootfsRpmArg \
-    `rpm -qa $rootfsRpmArg | grep font | grep x11`
+    `rpm -qa $rootfsRpmArg | grep font | grep x11` \
+    `rpm -qa $rootfsRpmArg | grep vulkan` adwaita-icon-theme
 
 #set default python to python3
 pushd $rootfsDir/usr/bin
