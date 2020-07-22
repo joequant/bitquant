@@ -5,4 +5,8 @@ distcc/ccache - caches compiles
 git-cache-httpd-server - caches git downloads
 verdaccio - caches npm
 
-To run the cache source proxy.sh with the location of the cache server
+To run the cacher:
+Edit proxy.sh with location of cacher
+
+docker-compose up
+source proxy.sh
