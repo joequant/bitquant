@@ -20,7 +20,7 @@ name="joequant/bitstation"
 cp $script_dir/*.sh $rootfsDir/tmp
 chmod a+x $rootfsDir/tmp/*.sh
 systemd-sysusers --root=$rootfsDir $script_dir/system.conf
-source $script_dir/install-pkgs.sh
+source $script_dir/00-install-pkgs.sh
 
 pushd $rootfsDir/etc/httpd/conf
 rm -f conf.d/security.conf
@@ -30,10 +30,10 @@ if [ -e modules.d/00-php-fpm.conf ] ; then
 fi
 popd
 
-buildah run $container parallel --tagstring '{}' --linebuffer source '/tmp/{}' :::  install-r-pkgs.sh install-python.sh install-npm.sh install-ruby.sh
-buildah run $container /bin/bash /tmp/docker-setup.sh
-buildah run $container /bin/bash /tmp/install-jupyter.sh
-source $script_dir/remove-build-deps.sh
+buildah run $container parallel --tagstring '{}' --linebuffer source '/tmp/{}' :::  01-install-r-pkgs.sh 01-install-python.sh 01-install-npm.sh 01-install-ruby.sh
+buildah run $container /bin/bash /tmp/02-docker-setup.sh
+buildah run $container /bin/bash /tmp/03-install-jupyter.sh
+source $script_dir/04-remove-build-deps.sh
 rm -rf $rootfsDir/tmp/*
 
 cat > $rootfsDir/usr/share/bitquant/bitquant.conf <<EOF
