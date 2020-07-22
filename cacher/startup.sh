@@ -21,7 +21,7 @@ export DISTCC_CMDLIST=/etc/sysconfig/distccd-cmdlist
 
 touch /var/log/distccd.log
 chmod a+rw /var/log/distccd.log
-/usr/bin/distccd --verbose --allow 172.0.0.0/24 --allow 192.168.0.0/16 --allow 127.0.0.1 --allow 10.0.0.0/24 --stats --log-file /var/log/distccd.log
+/usr/bin/distccd --allow 172.0.0.0/24 --allow 192.168.0.0/16 --allow 127.0.0.1 --allow 10.0.0.0/24 --stats --log-file /var/log/distccd.log
 
 if [ ! -d /var/spool/devpi ]; then
     mkdir -p /var/spool/devpi
