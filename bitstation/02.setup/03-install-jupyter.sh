@@ -49,3 +49,10 @@ mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
 # ruby
 iruby register --force
 pump --shutdown
+
+#julia
+export JUPYTER=/usr/bin/jupyter
+julia -e 'empty!(DEPOT_PATH); push!(DEPOT_PATH, "/usr/share/julia"); using Pkg; Pkg.add("IJulia")'
+cp -r /root/.local/share/jupyter/kernels/julia-* /usr/share/jupyter/kernels/
+chmod -R +rx /usr/share/julia/
+chmod -R +rx /usr/share/jupyter/kernels/julia-*/
