@@ -52,7 +52,7 @@ dnf --installroot="$rootfsDir" \
     distcc-server
 )
 
-rpm --erase --nodeps --root $rootfsDir systemd mesa \
+rpm --erase --nodeps --root $rootfsDir systemd \
     `rpm -qa --root $rootfsDir | grep vulkan` \
     `rpm -qa --root $rootfsDir | grep drm` \
     `rpm -qa --root $rootfsDir | grep dri` \
