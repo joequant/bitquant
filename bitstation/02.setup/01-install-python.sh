@@ -298,7 +298,6 @@ jupyterlab-commenting-service
 jupytext
 ipylab
 ipyaggrid
-ipytree
 EOF
 
 # moved out
@@ -376,7 +375,7 @@ matplotlib
 xarray
 pandas
 jupyterlab_autoversion
-
+ipyaggrid
 EOF
 
 # Skip for llvm9
@@ -438,8 +437,7 @@ jupyterlab-spreadsheet
 @lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 ipylab
-ipytree
-qgrid2
+ipyaggrid
 EOF
 
 : '
