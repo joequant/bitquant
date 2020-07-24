@@ -252,4 +252,8 @@ rm -rf $rootfsDir/var/log/*.log
 rm -rf $rootfsDir/usr/share/gems/doc/*
 rm -rf $rootfsDir/usr/lib/python3.5
 rm -rf $rootfsDir/usr/lib64/python3.5
+# make sure that shared libraries are linked
+# this works around an issue where cppyy libraries
+# were not linked to python.
+ldconfig -r $rootfsDir
 pump --shutdown
