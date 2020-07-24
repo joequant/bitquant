@@ -1,5 +1,7 @@
 #!/bin/bash
 # sudo portion of r package installations
+set -v
+set +o errexit
 
 source $rootfsDir/tmp/proxy.sh
 
