@@ -255,5 +255,5 @@ rm -rf $rootfsDir/usr/lib64/python3.5
 # make sure that shared libraries are linked
 # this works around an issue where cppyy libraries
 # were not linked to python.
-ldconfig -r $rootfsDir
+/sbin/ldconfig -r $rootfsDir
 pump --shutdown
