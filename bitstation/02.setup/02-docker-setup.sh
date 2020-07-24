@@ -9,9 +9,10 @@ echo 'cubswin:)' | passwd user --stdin
 echo 'cubswin:)' | passwd root --stdin
 cd ~user
 mkdir git
-cd git
+pushd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
 chown -R user:user .
+popd
 
 WEB_DIR=/home/user/git/bitquant/bitstation/web
 ME=user
@@ -54,9 +55,6 @@ echo "Doing initial installation"
 pushd /var/lib
 git clone --depth 1 https://github.com/joequant/etherpad-lite.git
 popd
-
-# install python first so that ijavascript dependencies
-# are met
 echo "Installing npm packages"
 if [ -d /var/lib/etherpad-lite ] ; then
 pushd /var/lib/etherpad-lite
