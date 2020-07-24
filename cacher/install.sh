@@ -73,6 +73,7 @@ chmod a+rwx $rootfsDir/var/spool/ccache
 mkdir -p $rootfsDir/var/spool/verdaccio/storage
 mkdir -p $rootfsDir/var/spool/verdaccio/plugins
 cp $scriptDir/verdaccio.yaml $rootfsDir/etc
+chmod a+rw $rootfsDir/etc/verdaccio.yaml
 chmod a+rwx $rootfsDir/var/spool/verdaccio
 
 
