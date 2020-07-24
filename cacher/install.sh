@@ -97,6 +97,7 @@ rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a
 rm -rf usr/lib/.build-id usr/lib64/mesa
 rm -rf usr/local usr/games
 #modclean seems to interfere with verdaccio
+#https://github.com/verdaccio/verdaccio/issues/1883
 popd
 
 buildah config --cmd "/sbin/startup.sh" $container
