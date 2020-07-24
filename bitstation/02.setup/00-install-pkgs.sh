@@ -189,7 +189,10 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       spack \
       spack-repos \
       distcc \
-      julia
+      julia \
+      curl
+
+# install curl for julia
 
 # xeus-devel for r juniper
 
