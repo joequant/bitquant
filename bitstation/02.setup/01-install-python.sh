@@ -437,6 +437,7 @@ jupyterlab-spreadsheet
 @lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 ipylab
+ipyaggrid
 EOF
 
 : '
