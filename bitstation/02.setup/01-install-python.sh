@@ -297,7 +297,6 @@ jupyter_bokeh
 jupyterlab-commenting-service
 jupytext
 ipylab
-ipyaggrid
 EOF
 
 # moved out
@@ -437,7 +436,6 @@ jupyterlab-spreadsheet
 @lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 ipylab
-ipyaggrid
 EOF
 
 : '
