@@ -438,6 +438,7 @@ jupyterlab-spreadsheet
 jupyterlab-drawio
 ipylab
 ipyaggrid
+ipysheet
 EOF
 
 : '
