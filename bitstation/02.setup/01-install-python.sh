@@ -297,6 +297,7 @@ jupyter_bokeh
 jupyterlab-commenting-service
 jupytext
 ipylab
+ipyaggrid
 EOF
 
 # moved out
