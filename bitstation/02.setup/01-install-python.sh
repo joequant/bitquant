@@ -298,6 +298,9 @@ jupyterlab-commenting-service
 jupytext
 ipylab
 ipyaggrid
+black
+isort
+rpy2
 EOF
 
 # moved out
@@ -435,6 +438,7 @@ jupyterlab-spreadsheet
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
+@ryantam626/jupyterlab_code_formatter
 jupyterlab-drawio
 ipylab
 ipyaggrid
@@ -548,6 +552,7 @@ cat /tmp/jupyterlab-debug-*.log || true
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
+jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
 :'
 fabmanager create-admin --app superset
