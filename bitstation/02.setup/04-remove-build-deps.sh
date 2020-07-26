@@ -32,7 +32,7 @@ dnf -y $rootfsArg \
 # add iproute2 for webmin
 dnf -y $rootfsArg \
     install java-headless iproute2 \
-    quantlib-devel
+    quantlib-devel pybind11-devel
 
 dnf clean all $rootfsArg
 rpm --erase --nodeps systemd mesa $rootfsRpmArg
@@ -91,6 +91,7 @@ pushd usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 rpm --rebuilddb $rootfsRpmArg
+chmod -R a+rx var/lib/rpm var/lib/dnf
 rm -rf var/cache/*
 popd
 pump --shutdown
