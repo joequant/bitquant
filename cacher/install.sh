@@ -93,8 +93,8 @@ EOF
 rpm --rebuilddb --root $rootfsDir
 pushd $rootfsDir
 rm -rf var/cache/*
-rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a
-rm -rf usr/lib/.build-id usr/lib64/mesa
+rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
+rm -rf usr/lib/.build-id usr/lib64/mesa lib/gcc
 rm -rf usr/local usr/games
 #modclean seems to interfere with verdaccio
 #https://github.com/verdaccio/verdaccio/issues/1883
