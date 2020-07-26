@@ -74,7 +74,8 @@ rm -rf root/.node-gyp
 rm -rf usr/local/share
 rm -rf usr/lib/.build-id
 rm -rf var/cache/*
-rm -f lib/*.so lib/*.so.*
+rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
+rm -rf lib/gcc
 
 #put in link to allow loading of iruby
 pushd usr/lib64

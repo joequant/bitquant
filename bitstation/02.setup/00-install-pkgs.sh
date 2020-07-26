@@ -63,7 +63,6 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       mongodb-server \
       mongodb \
       mongo-tools \
-      bitcoind \
       java \
       texlive \
       vim-minimal \
