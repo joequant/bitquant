@@ -301,6 +301,7 @@ ipyaggrid
 black
 isort
 rpy2
+qgrid
 EOF
 
 # moved out
@@ -443,6 +444,7 @@ jupyterlab-drawio
 ipylab
 ipyaggrid
 ipysheet
+qgrid2
 EOF
 
 : '
