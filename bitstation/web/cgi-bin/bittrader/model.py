@@ -28,7 +28,7 @@ def test():
 
 @app.route('/user')
 def user():
-    return getpass.getuser()
+    return os.environ['REMOTE_USER']
 
 @app.route('/git-root')
 def git_root():
@@ -68,6 +68,7 @@ def passwd_form():
 <div id="password-input">
 <h4>Password for (%s)</h4>
 <form action='/cgi-bin/bittrader/model.py/passwd' METHOD='POST'>
+Old password: <input name='oldpass' type='password' title = 'Old password' size='24' /><br/>
 New Password: <input name='newpass1' type='password' title='Please Enter Your Pa
 ssword' size='8' /><br />
 Confirm Password: <input name='newpass2' type='password' title='Please Enter You
@@ -80,8 +81,11 @@ r Password' size='8' /><br />
 @app.route("/passwd", methods = ['POST'])
 def passwd():
     myuser = user()
+    oldpass = request.form['oldpass']
     newpass1 = request.form['newpass1']
     newpass2 = request.form['newpass2']
+    if not login.auth(myuser, oldpass):
+        return "old password not correct"
     if newpass1 != newpass2:
         return "passwords do not match"
     else:
