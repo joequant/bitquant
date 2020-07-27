@@ -32,13 +32,18 @@ dnf -y $rootfsArg \
 # add iproute2 for webmin
 dnf -y $rootfsArg \
     install java-headless iproute2 \
-    quantlib-devel pybind11-devel
+    quantlib-devel pybind11-devel \
+    xwidgets-devel
 
 dnf clean all $rootfsArg
 rpm --erase --nodeps systemd mesa $rootfsRpmArg
 rpm --erase --nodeps $rootfsRpmArg \
     `rpm -qa $rootfsRpmArg | grep font | grep x11` \
-    `rpm -qa $rootfsRpmArg | grep vulkan` adwaita-icon-theme
+    `rpm -qa $rootfsRpmArg | grep vulkan` \
+    `rpm -qa --root $rootfsDir | grep drm` \
+    `rpm -qa --root $rootfsDir | grep dri` \
+    `rpm -qa --root $rootfsDir | grep wayland` \
+    `rpm -qa --root $rootfsDir | grep adwaita`
 
 #set default python to python3
 pushd $rootfsDir/usr/bin
