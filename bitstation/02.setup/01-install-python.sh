@@ -65,7 +65,7 @@ pip3 install --upgrade jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
-pip3 install --prefix /usr --global-option=build_ext --global-option="-I/usr/include/lapack" libact
+pip3 install --prefix /usr --global-option=build_ext --global-option="-I/usr/include/lapacke" libact
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
