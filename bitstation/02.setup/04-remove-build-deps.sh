@@ -84,7 +84,9 @@ rm -rf lib/gcc
 
 #put in link to allow loading of iruby
 pushd usr/lib64
-ln -s libzmq.so.5 libzmq.so
+if [ ! -f libzmq.so  ] ; then
+    ln -s libzmq.so.5 libzmq.so
+fi
 popd
 dnf clean all $rootfsArg
 
