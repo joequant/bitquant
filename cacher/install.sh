@@ -94,8 +94,9 @@ rpm --rebuilddb --root $rootfsDir
 pushd $rootfsDir
 rm -rf var/cache/*
 rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
-rm -rf usr/lib/.build-id usr/lib64/mesa lib/gcc
+rm -rf usr/lib/.build-id usr/lib64/mesa
 rm -rf usr/local usr/games
+rm -rf usr/lib/gcc/*/*/32
 #modclean seems to interfere with verdaccio
 #https://github.com/verdaccio/verdaccio/issues/1883
 popd
