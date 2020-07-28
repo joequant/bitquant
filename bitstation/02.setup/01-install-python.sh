@@ -65,7 +65,7 @@ pip3 install --upgrade jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
-pip3 install --prefix /usr --global-option=build_ext --global-option="-I/usr/include/lapacke" libact
+pip3 install --prefix /usr --global-option=build_ext --global-option="-I/usr/include/lapack" libact
 
 PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 
@@ -298,10 +298,6 @@ jupyterlab-commenting-service
 jupytext
 ipylab
 ipyaggrid
-black
-isort
-rpy2
-qgrid
 EOF
 
 # moved out
@@ -439,12 +435,10 @@ jupyterlab-spreadsheet
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
-@ryantam626/jupyterlab_code_formatter
 jupyterlab-drawio
 ipylab
 ipyaggrid
 ipysheet
-qgrid2
 EOF
 
 : '
@@ -554,7 +548,6 @@ cat /tmp/jupyterlab-debug-*.log || true
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
-jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
 :'
 fabmanager create-admin --app superset
