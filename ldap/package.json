@@ -1,0 +1,10 @@
+{
+    "name": "cacher",
+    "scripts": {
+	"build": "buildah unshare ./install.sh",
+	"shell": "podman exec -ti ldap_ldap_1 /bin/bash",
+	"up": "nohup podman-compose up >> ldap.log &",
+	"down": "podman-compose down",
+	"restart": "podman-compose down ; nohup podman-compose up >> ldap.log &"
+    }
+}
