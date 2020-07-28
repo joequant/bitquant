@@ -31,6 +31,7 @@ dnf -y $rootfsArg \
 
 # add iproute2 for webmin
 dnf -y $rootfsArg \
+    --setopt=install_weak_deps=False --nodocs \
     install java-headless iproute2 \
     quantlib-devel pybind11-devel \
     xwidgets-devel
