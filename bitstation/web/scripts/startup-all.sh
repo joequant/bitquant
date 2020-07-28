@@ -8,7 +8,7 @@ cd $SCRIPT_DIR
 mkdir -p $LOG_DIR
 chmod a+w $LOG_DIR
 
-if [ -e /usr/share/bitquant/bitquant.sh ] ;
+if [ -e /usr/share/bitquant/bitquant.sh ] ; then
    source /usr/share/bitquant/bitquant.sh
    echo "Bitstation - build $build_date $commit_id"
 fi
