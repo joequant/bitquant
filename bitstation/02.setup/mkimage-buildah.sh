@@ -36,10 +36,12 @@ buildah run $container /bin/bash /tmp/03-install-jupyter.sh
 source $script_dir/04-remove-build-deps.sh
 rm -rf $rootfsDir/tmp/*
 
-cat > $rootfsDir/usr/share/bitquant/bitquant.conf <<EOF
-date='$(date)'
+cat > $rootfsDir/usr/share/bitquant/bitquant.sh <<EOF
+build_date='$(date)'
 commit_id=$(git rev-parse --verify HEAD)
 EOF
+
+rpm -qa | sort > $rootfsDir/usr/share/bitquant/rpm.log
 
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 

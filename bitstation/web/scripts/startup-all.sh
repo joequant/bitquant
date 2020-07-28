@@ -8,6 +8,10 @@ cd $SCRIPT_DIR
 mkdir -p $LOG_DIR
 chmod a+w $LOG_DIR
 
+if [ -e /usr/share/bitquant/bitquant.sh ] ;
+   source /usr/share/bitquant/bitquant.sh
+   echo "Bitstation - build $build_date $commit_id"
+fi
 echo "Start redis"
 sudo -u redis /usr/bin/redis-server /etc/redis.conf &
 echo "Start mongo"
