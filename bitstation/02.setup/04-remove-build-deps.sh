@@ -32,13 +32,15 @@ dnf -y $rootfsArg \
 # add iproute2 for webmin
 dnf -y $rootfsArg \
     install java-headless iproute2 \
-    quantlib-devel
+    quantlib-devel pybind11-devel \
+    xwidgets-devel
 
 dnf clean all $rootfsArg
-rpm --erase --nodeps systemd mesa $rootfsRpmArg
+# don't erase mesa as those are needed for
+# root cairo plotting
 rpm --erase --nodeps $rootfsRpmArg \
     `rpm -qa $rootfsRpmArg | grep font | grep x11` \
-    `rpm -qa $rootfsRpmArg | grep vulkan` adwaita-icon-theme
+    `rpm -qa --root $rootfsDir | grep adwaita`
 
 #set default python to python3
 pushd $rootfsDir/usr/bin
@@ -74,11 +76,13 @@ rm -rf root/.node-gyp
 rm -rf usr/local/share
 rm -rf usr/lib/.build-id
 rm -rf var/cache/*
-rm -f lib/*.so lib/*.so.*
+rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
+# remove 32 bit items
+rm -rf lib/gcc/x86_64-mageia-linux-gnu/*/32
 
 #put in link to allow loading of iruby
 pushd usr/lib64
-if [!-f libzmq.so ] ; then
+if [ ! -f libzmq.so  ] ; then
     ln -s libzmq.so.5 libzmq.so
 fi
 popd
@@ -88,10 +92,14 @@ dnf clean all $rootfsArg
 rm -rf etc/X11
 rm -rf etc/alsa
 
+# needs fonts for root plotting
+#rm -rf etc/fonts
+
 pushd usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 rpm --rebuilddb $rootfsRpmArg
+chmod -R a+rx var/lib/rpm var/lib/dnf
 rm -rf var/cache/*
 popd
 pump --shutdown
