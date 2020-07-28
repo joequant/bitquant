@@ -7,6 +7,8 @@ services:
      ports:
        - 80:80
        - 443:443
+     environment:
+       - "PS1=bitstation\\$$ "
      devices:
        - /dev/fuse:/dev/fuse
      cap_add:
@@ -36,7 +38,7 @@ services:
       image: postgres:12-alpine
       restart: always
       environment:
-       - POSTGRES_PASSWORD:mypass
+       - POSTGRES_PASSWORD=mypass
       volumes:
        - nextcloud_db:/var/lib/postgresql/data
       restart: always
