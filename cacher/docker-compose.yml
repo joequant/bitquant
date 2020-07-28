@@ -2,6 +2,8 @@ version:  '3'
 services:
   cacher:
      image: "joequant/cacher"
+     environment:
+       - DISTCCD_ARGS=-j12
      ports:
        - 3128:3128
        - 3632:3632
