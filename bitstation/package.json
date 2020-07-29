@@ -11,9 +11,9 @@
 	"down": "./utils/containers.sh down",
 	"restart": "./utils/containers.sh restart",
 	"proxy-start": "nohup podman-compose -f ../cacher/docker-compose.yml up >> proxy.out &",
-	"shell": "./utils/shell-server.sh bitstation_bitstation",
+	"shell": "./utils/containers-shell.sh bitstation_bitstation",
 	"clean-images": "./utils/rm-stopped-containers.sh ; ./utils/rm-untagged-images.sh",
 	"shell-base": "docker run -ti joequant/cauldron /bin/bash",
-	"shell-nextcloud": "./utils/shell-server.sh -u apache bitstation_nextcloud"
+	"shell-nextcloud": "./utils/containers-shell.sh -u apache bitstation_nextcloud"
     }
 }
