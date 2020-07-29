@@ -189,7 +189,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       spack-repos \
       distcc \
       julia \
-      curl
+      curl \
+      conda
 
 # install curl for julia
 
