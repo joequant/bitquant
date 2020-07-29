@@ -14,7 +14,7 @@ dnf -y $rootfsArg \
       swig \
       protobuf-compiler \
       cargo \
-      `rpm -qa | grep devel | grep -v python | grep -v glibc | \
+      `rpm -qa $rootfsRpmArg | grep devel | grep -v python | grep -v glibc | \
 grep -v xcrypt | \
 grep -v ^gcc | grep -v libstd | grep -v gettext | \
 grep -v acl | grep -v croco | grep -v ffi | grep -v blkid | \
@@ -24,10 +24,10 @@ grep -v ncurses`
 
 dnf -y $rootfsArg \
     autoremove \
-    `rpm -qa | grep openjdk` \
-    `rpm -qa | grep firefox` \
-    `rpm -qa | grep initscripts` \
-    `rpm -qa | grep qtbase5-common`
+    `rpm -qa $rootfsRpmArg | grep openjdk` \
+    `rpm -qa $rootfsRpmArg | grep firefox` \
+    `rpm -qa $rootfsRpmArg | grep initscripts` \
+    `rpm -qa $rootfsRpmArg | grep qtbase5-common`
 
 # add iproute2 for webmin
 dnf -y $rootfsArg \
@@ -41,7 +41,7 @@ dnf clean all $rootfsArg
 # root cairo plotting
 rpm --erase --nodeps $rootfsRpmArg \
     `rpm -qa $rootfsRpmArg | grep font | grep x11` \
-    `rpm -qa --root $rootfsDir | grep adwaita`
+    `rpm -qa $rootfsRpmArg | grep adwaita`
 
 #set default python to python3
 pushd $rootfsDir/usr/bin
