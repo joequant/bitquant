@@ -3,7 +3,7 @@ services:
    ldap:
      image: "joequant/ldap"
      ports:
-       - 389:389
+       - 3389:389
      volumes:
        - spool:/var/spool
        - log:/var/log

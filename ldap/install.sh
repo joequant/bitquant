@@ -33,7 +33,9 @@ dnf --installroot="$rootfsDir" \
     --nogpgcheck \
     --refresh \
     install \
-    389-ds
+    389-ds-base \
+    cockpit-389-ds \
+    cockpit
 )
 
 rpm --erase --nodeps --root $rootfsDir systemd \
