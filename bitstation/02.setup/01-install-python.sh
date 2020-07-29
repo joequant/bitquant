@@ -302,6 +302,8 @@ black
 isort
 rpy2
 qgrid
+ipycanvas
+ipyevents
 EOF
 
 # moved out
@@ -311,11 +313,11 @@ itkwidgets
 ipywidgets
 jupyter-bokeh
 jupytext
-ipyevents
+
 ipylab
 algorithmx
 jupyter-fs
-ipycanvas
+
 ipydatetime
 gmaps
 ipycallback
@@ -445,6 +447,9 @@ ipylab
 ipyaggrid
 ipysheet
 qgrid2
+jupyterlab-kernelspy
+ipycanvas
+ipyevents
 EOF
 
 : '
@@ -459,9 +464,7 @@ itkwidgets
 ipylab
 algorithmx-jupyter
 jupyterlab_filetree
-ipycanvas
 @lckr/jupyterlab_variableinspector
-jupyterlab-kernelspy
 @jupyterlab/toc-extension
 @jupyterlab/latex
 @jupyterlab/dataregistry-extension
@@ -477,7 +480,6 @@ jupyter-threejs
 @jupyterlab/geojson-extension
 @jupyterlab/htmlviewer-extension
 @jupyter-widgets/jupyterlab-sidecar
-ipyevents
 ipycanvas
 '
 
