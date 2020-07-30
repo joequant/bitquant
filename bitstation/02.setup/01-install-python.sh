@@ -429,10 +429,8 @@ jupyterlab-datawidgets
 itkwidgets
 @bokeh/jupyter_bokeh
 jupyterlab-spreadsheet
-@jupyterlab/mathjax3-extension
 @jupyterlab/vega2-extension
 @jupyterlab/vega3-extension
-@jupyterlab/katex-extension
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
 @jupyterlab/commenting-extension
@@ -452,6 +450,9 @@ ipycanvas
 ipyevents
 @pyviz/jupyterlab_pyviz
 EOF
+
+# remove mathjax3 and katex extensions as they are missing
+# mathjax3 features
 
 : '
 @jupyterlab/toc
