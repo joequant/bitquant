@@ -42,6 +42,7 @@ commit_id=$(git rev-parse --verify HEAD)
 EOF
 
 rpm -qa $rootfsRpmArg | sort > $rootfsDir/usr/share/bitquant/rpm.log
+chmod a+r $rootfsDir/usr/share/bitquant/*
 
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 
