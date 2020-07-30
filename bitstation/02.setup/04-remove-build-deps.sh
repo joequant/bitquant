@@ -34,7 +34,7 @@ dnf -y $rootfsArg \
     --setopt=install_weak_deps=False --nodocs \
     install java-headless iproute2 \
     quantlib-devel pybind11-devel \
-    xwidgets-devel
+    xwidgets-devel root-r
 
 dnf clean all $rootfsArg
 # don't erase mesa as those are needed for
