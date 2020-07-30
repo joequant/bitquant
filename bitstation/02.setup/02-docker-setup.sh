@@ -5,9 +5,10 @@ export TZ="UTC"
 # user account may already exist
 useradd user || true
 chmod a+rx ~user
-echo 'cubswin:)' | passwd user --stdin
-echo 'cubswin:)' | passwd root --stdin
+source /tmp/02-set-password.sh
 cd ~user
+git clone --single-branch --depth 1 https://github.com/joequant/example-notebooks.git
+chown -R user:user example-notebooks
 mkdir git
 pushd git
 git clone --single-branch --depth 1 https://github.com/joequant/bitquant.git
