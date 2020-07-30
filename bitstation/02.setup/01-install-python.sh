@@ -304,6 +304,9 @@ rpy2
 qgrid
 ipycanvas
 ipyevents
+gmaps
+jupyter-fs
+ipympl
 EOF
 
 # moved out
@@ -313,11 +316,8 @@ itkwidgets
 ipywidgets
 jupyter-bokeh
 jupytext
-
 ipylab
 algorithmx
-jupyter-fs
-
 ipydatetime
 gmaps
 ipycallback
@@ -450,6 +450,7 @@ qgrid2
 jupyterlab-kernelspy
 ipycanvas
 ipyevents
+@pyviz/jupyterlab_pyviz
 EOF
 
 : '
