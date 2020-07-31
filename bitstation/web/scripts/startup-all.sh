@@ -17,6 +17,10 @@ sudo -u redis /usr/bin/redis-server /etc/redis.conf &
 echo "Start mongo"
 chown -R mongod:mongod /var/lib/mongodb
 sudo -u mongod /usr/bin/mongod --quiet -f /etc/mongod.conf &
+echo "Starting httpd"
+if [ -z "${AUTH_NAME}" ] ; then
+    export AUTH_NAME="PAM Authentication"
+fi
 /usr/sbin/httpd -DFOREGROUND &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
