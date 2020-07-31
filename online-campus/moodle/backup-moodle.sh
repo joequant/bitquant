@@ -23,6 +23,6 @@ while getopts 'c:d:' OPTION; do
 done
 
 pushd $dir
-$SCRIPT_DIR/../../bitstation/utils/shell-server.sh -c $CMD moodle_mariadb 'mysqldump -A -u root --single-transaction' | xz > moodle-db.$DATE.dmp.xz
+$SCRIPT_DIR/../../bitstation/utils/containers-shell.sh -c $CMD moodle_mariadb 'mysqldump -A -u root --single-transaction' | xz > moodle-db.$DATE.dmp.xz
 $CMD run -v moodle_moodle_data:/volume --rm loomchild/volume-backup backup -c xz - > moodle-data.$DATE.tar.xz
 popd
