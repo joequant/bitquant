@@ -40,7 +40,7 @@ services:
       environment:
        - POSTGRES_PASSWORD=mypass
       volumes:
-       - nextcloud_db:/var/lib/postgresql/data
+       - db:/var/lib/postgresql/data
       restart: always
 
 volumes:
@@ -55,4 +55,4 @@ volumes:
    nextcloud_lib_apps:
    nextcloud_lib_data:
    nextcloud_etc:
-   nextcloud_db:
+   db:
