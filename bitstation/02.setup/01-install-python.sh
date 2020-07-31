@@ -87,7 +87,10 @@ pip3 install bqplot --prefix /usr --no-cache-dir
 pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 
 #install first
+# install special version of jupyterlab-sql that is built for v2
+
 parallel -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+git+https://github.com/jseabold/jupyterlab-sql.git@support-v2
 ccxt
 voila
 beakerx
@@ -307,6 +310,7 @@ ipyevents
 gmaps
 jupyter-fs
 ipympl
+sqlcell
 EOF
 
 # moved out
@@ -450,6 +454,7 @@ ipycanvas
 ipyevents
 @pyviz/jupyterlab_pyviz
 EOF
+
 
 # remove mathjax3 and katex extensions as they are missing
 # mathjax3 features
