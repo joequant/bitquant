@@ -557,7 +557,9 @@ jupyterlab_iframe
 # broken packages
 # pylantern
 #ipyaggrid
-jupyter serverextension enable jupyterlab_sql --py --sys-prefix
+
+#jupyter serverextension enable jupyterlab_sql --py --sys-prefix
+
 jupyter lab build --dev-build=False
 echo "Log jupyterlab"
 cat /tmp/jupyterlab-debug-*.log || true
