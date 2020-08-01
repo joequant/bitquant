@@ -20,7 +20,7 @@ grep -v ^gcc | grep -v libstd | grep -v gettext | \
 grep -v acl | grep -v croco | grep -v ffi | grep -v blkid | \
 grep -v glib | grep -v lzma | grep -v zlib | grep -v xml | \
 grep -v mount | grep -v pcre | grep -v uuid | grep -v unistring | \
-grep -v ncurses`
+grep -v ncurses | grep -v fftw`
 
 dnf -y $rootfsArg \
     autoremove \
