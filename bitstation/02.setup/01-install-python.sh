@@ -311,6 +311,7 @@ gmaps
 jupyter-fs
 ipympl
 sqlcell
+ipython-sql
 EOF
 
 # moved out
