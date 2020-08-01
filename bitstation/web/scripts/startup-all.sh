@@ -19,8 +19,19 @@ chown -R mongod:mongod /var/lib/mongodb
 sudo -u mongod /usr/bin/mongod --quiet -f /etc/mongod.conf &
 echo "Starting httpd"
 if [ -z "${AUTH_NAME}" ] ; then
-    export AUTH_NAME="PAM Authentication"
+    if [ ! -z "${INSTANCE_NAME}" ] ; then
+       export AUTH_NAME=${INSTANCE_NAME}
+    else
+       export AUTH_NAME="PAM Authentication"
+    fi
 fi
+
+if [ -z "${PS1}" ] ; then
+    if [ ! -z "${INSTANCE_NAME}" ] ; then
+       export PS1="${INSTANCE_NAME}\\$ "
+    fi
+fi
+
 /usr/sbin/httpd -DFOREGROUND &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
