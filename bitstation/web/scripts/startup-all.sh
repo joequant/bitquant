@@ -26,10 +26,8 @@ if [ -z "${AUTH_NAME}" ] ; then
     fi
 fi
 
-if [ -z "${PS1}" ] ; then
-    if [ ! -z "${INSTANCE_NAME}" ] ; then
-       export PS1="${INSTANCE_NAME}\\$ "
-    fi
+if [ ! -z "${INSTANCE_NAME}" ] ; then
+    export PS1="${INSTANCE_NAME}\\$ "
 fi
 
 /usr/sbin/httpd -DFOREGROUND &
