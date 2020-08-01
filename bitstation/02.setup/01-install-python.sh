@@ -312,7 +312,7 @@ jupyter-fs
 ipympl
 sqlcell
 ipython-sql
-psycopg2
+psycopg2-binary
 EOF
 
 # moved out
