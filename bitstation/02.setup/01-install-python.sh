@@ -310,7 +310,6 @@ ipyevents
 gmaps
 jupyter-fs
 ipympl
-sqlcell
 ipython-sql
 psycopg2-binary
 EOF
