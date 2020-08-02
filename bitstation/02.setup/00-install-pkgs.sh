@@ -190,7 +190,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       distcc \
       julia \
       curl \
-      conda
+      conda \
+      xeus-sqlite
 
 # install curl for julia
 
