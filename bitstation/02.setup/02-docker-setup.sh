@@ -7,7 +7,6 @@ pushd /etc/skel > /dev/null
 git clone --single-branch --depth 1 https://github.com/joequant/example-notebooks.git
 popd > /dev/null
 
-useradd user
 source /tmp/02-set-password.sh
 pushd ~user > /dev/null
 mkdir git
