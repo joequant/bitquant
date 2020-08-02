@@ -19,6 +19,7 @@ fi
 
 . $script_dir/proxy.sh
 
+systemd-sysusers --root=$rootfsDir $script_dir/system.conf
 reposetup="--disablerepo=* --enablerepo=mageia-$buildarch --enablerepo=updates-$buildarch"
 #source $script_dir/proxy.sh
 (
