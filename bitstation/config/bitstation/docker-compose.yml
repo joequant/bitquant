@@ -9,7 +9,7 @@ services:
        - 443:443
      environment:
        - INSTANCE_NAME=bitstation
-       - PS1="bitstation\\$$ "
+       - "PS1=bitstation\\$$ "
      devices:
        - /dev/fuse:/dev/fuse
      cap_add:
