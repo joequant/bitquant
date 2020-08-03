@@ -34,8 +34,12 @@ dnf --installroot="$rootfsDir" \
     --refresh \
     install \
     389-ds-base \
+    389-console \
     cockpit-389-ds \
-    cockpit
+    cockpit-ws \
+    cockpit-dashboard \
+    cockpit \
+    procps-ng
 )
 
 rpm --erase --nodeps --root $rootfsDir systemd \
