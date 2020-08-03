@@ -90,7 +90,7 @@ pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 # install special version of jupyterlab-sql that is built for v2
 
 parallel -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
-git+https://github.com/jseabold/jupyterlab-sql.git@support-v2
+git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
 beakerx
@@ -454,6 +454,7 @@ jupyterlab-kernelspy
 ipycanvas
 ipyevents
 @pyviz/jupyterlab_pyviz
+jupyterlab_filetree
 EOF
 
 
@@ -557,7 +558,7 @@ jupyterlab_iframe
 # pylantern
 #ipyaggrid
 
-#jupyter serverextension enable jupyterlab_sql --py --sys-prefix
+jupyter serverextension enable jupyterlab_sql --py --sys-prefix
 
 jupyter lab build --dev-build=False
 echo "Log jupyterlab"
