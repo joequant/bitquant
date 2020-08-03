@@ -312,6 +312,7 @@ jupyter-fs
 ipympl
 ipython-sql
 psycopg2-binary
+jupyter-pyfilesystem
 EOF
 
 # moved out
