@@ -313,6 +313,7 @@ ipympl
 ipython-sql
 psycopg2-binary
 jupyter-pyfilesystem
+spack-repos-k4
 EOF
 
 # moved out
@@ -456,6 +457,8 @@ ipycanvas
 ipyevents
 @pyviz/jupyterlab_pyviz
 jupyterlab_filetree
+jupyterlab-plotly
+plotlywidget
 EOF
 
 
