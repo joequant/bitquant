@@ -25,35 +25,22 @@ You can then connect to the system via the localhost port 80
 To build the image locally
 --------------------------
 
-    make
+  pnpm run build
 
-You may need to run make with "sudo make" if docker can only run under root
+The system uses a podman/buildah toolchain to build an image.
+However, right now there is a problem in using podman to run an image
+with volumes because podman doesn't handle symlinks that go outside a
+volume.
 
-Notes
------
-
-The docker script to build a base mageia image is
-
-https://raw.githubusercontent.com/joequant/docker-brew-mageia/master/mkimage-urpmi.sh
-
-Troubleshooting
----------------
-
-There appear to be some conflicts between docker networking and
-firewalls.  You should open the port 80 to the docker network before
-running docker.  Also you make have to restart the docker after
-resetting the firewall.
-
-The default build loads in tensorflow and so will die on a non-AVX
-machine.  You will need to set the environment variable NOAVX in 03.setup
-to install an image that will work for SSE4, AVX machines.
+See: https://github.com/containers/podman/issues/6003
 
 Proxy server
 ------------
-1) Uncomment the proxy items
-2) Run squid
-3) install and run devpi-server from pypi
-4) install git-cache-http-server with npm on squid server
+
+   There is a docker image called joequant/cacher which sets up a
+   caching server that includes squid and compile caching.  To run the
+   cacher go into the directory called cacher and do a docker-compose
+   up.
 
 License
 -------
