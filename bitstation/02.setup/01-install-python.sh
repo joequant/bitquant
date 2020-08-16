@@ -180,7 +180,7 @@ qgrid
 iminuit
 lmfit
 redis_kernel
-bash_kernel
+calysto_bash
 octave_kernel
 jupyter_nbextensions_configurator
 pyfolio
@@ -358,7 +358,8 @@ jupyterlab_templates
 jupytext>=1.0.1
 '
 
-python3 -m bash_kernel.install --sys-prefix
+# use calysto bash
+#python3 -m bash_kernel.install --sys-prefix
 
 #broken
 #pylantern
