@@ -191,7 +191,10 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       julia \
       curl \
       conda \
-      xeus-sqlite
+      xeus-sqlite \
+      which
+
+# which is needed for jupyterlab_code_formatter
 
 # install curl for julia
 
