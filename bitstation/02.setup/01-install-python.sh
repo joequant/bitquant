@@ -97,6 +97,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+vispy
 git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
@@ -134,7 +135,6 @@ dask
 xarray
 networkx
 lightning-python
-vispy
 pyalgotrade
 vega
 nbpresent
