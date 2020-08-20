@@ -108,7 +108,7 @@ https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
 https://github.com/joequant/algobroker/tarball/master
 https://github.com/joequant/bitcoin-price-api/tarball/master
-https://github.com/joequant/pythalesians/tarball/master
+finmarketpy
 https://github.com/quantopian/pyfolio/tarball/master
 https://github.com/ematvey/pybacktest/tarball/master
 https://github.com/bashtage/arch/tarball/master
