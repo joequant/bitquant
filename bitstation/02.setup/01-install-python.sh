@@ -218,7 +218,6 @@ dash
 dash_renderer
 dash_core_components
 dash_html_components
-py4j
 xgboost
 catboost
 lightgbm
