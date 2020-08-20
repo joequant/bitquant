@@ -96,7 +96,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      https://github.com/joequant/metakernel/tarball/master
 
 
-parallel -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
@@ -433,7 +433,7 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-parallel -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
+parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
