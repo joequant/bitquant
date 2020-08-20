@@ -40,7 +40,7 @@ echo "pip_index_url=" $PIP_INDEX_URL
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy requests six python-dateutil \
+pip3 install --upgrade numpy requests python-dateutil \
      matplotlib scipy --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
