@@ -192,7 +192,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       curl \
       conda \
       xeus-sqlite \
-      which
+      which \
+      jupyter-core
 
 # which is needed for jupyterlab_code_formatter
 
