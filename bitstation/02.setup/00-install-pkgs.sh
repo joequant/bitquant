@@ -193,7 +193,10 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       conda \
       xeus-sqlite \
       which \
-      jupyter-core
+      jupyter-core \
+      python3-qtpy
+
+#qtpy for vega
 
 # which is needed for jupyterlab_code_formatter
 
