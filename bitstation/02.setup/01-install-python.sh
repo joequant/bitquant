@@ -2,7 +2,7 @@
 # sudo portion of python package installations
 
 set -v
-set +o errexit
+set -o errexit
 
 source $rootfsDir/tmp/proxy.sh
 echo "Running python installation"
