@@ -92,7 +92,7 @@ pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 #install version of metakernel with python magics / ipywidgets kernel
 # #207 #208
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     https://github.com/Calysto/metakernel/tarball/master
+     https://github.com/joequant/metakernel/tarball/master
 
 
 parallel -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
