@@ -134,8 +134,8 @@ dask
 xarray
 networkx
 lightning-python
-vispy 
-pyalgotrade 
+vispy
+pyalgotrade
 vega
 nbpresent
 jupyter_latex_envs
