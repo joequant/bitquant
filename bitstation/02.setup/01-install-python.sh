@@ -473,6 +473,7 @@ ipyevents
 jupyterlab_filetree
 jupyterlab-plotly
 plotlywidget
+vispy
 EOF
 
 
