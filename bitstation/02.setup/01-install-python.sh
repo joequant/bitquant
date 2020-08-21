@@ -292,7 +292,6 @@ pyswarm
 nilearn
 psychopy
 pipenv
-python-weka-wrapper
 scoop
 sunpy
 fs
@@ -321,13 +320,11 @@ ipympl
 ipython-sql
 psycopg2-binary
 jupyter-pyfilesystem
-spack-repos-k4
 EOF
 
 # moved out
-#vispy
-#perspective-python
 #mlpy
+#python-weka-wrapper
 
 # moved out
 : '

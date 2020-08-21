@@ -188,6 +188,7 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       'pkgconfig(Magick++)' \
       spack \
       spack-repos \
+      spack-repos-k4 \
       distcc \
       julia \
       curl \
