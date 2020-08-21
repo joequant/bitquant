@@ -283,7 +283,6 @@ TA-Lib
 PyPortfolioOpt
 FinQuant
 pyswarm
-mlpy
 nilearn
 psychopy
 pipenv
@@ -322,6 +321,7 @@ EOF
 # moved out
 #vispy
 #perspective-python
+#mlpy
 
 # moved out
 : '
