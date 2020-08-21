@@ -99,13 +99,11 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 pyspark
 vega
-vispy
 git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
 beakerx
 h5py
-vispy
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
 https://github.com/joequant/cryptoexchange/tarball/master
@@ -321,6 +319,10 @@ psycopg2-binary
 jupyter-pyfilesystem
 spack-repos-k4
 EOF
+
+# moved out
+#vispy
+
 
 # moved out
 : '
