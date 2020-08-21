@@ -97,6 +97,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+perspective-python
 pyspark
 vega
 git+https://github.com/joequant/jupyterlab-sql.git@support-v2
@@ -271,7 +272,6 @@ papermill
 apache-airflow
 cryptofeed
 jupyterthemes
-perspective-python
 pulp
 tsfresh
 scaleogram

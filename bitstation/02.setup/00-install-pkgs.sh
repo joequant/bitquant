@@ -194,9 +194,11 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       xeus-sqlite \
       which \
       jupyter-core \
-      python3-qtpy
+      python3-qtpy \
+      boost-devel
 
 #qtpy for vega
+#boost-devel for perspective-python
 
 # which is needed for jupyterlab_code_formatter
 
