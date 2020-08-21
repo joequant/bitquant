@@ -392,7 +392,7 @@ jupytext>=1.0.1
 #jupytext 1.0.1 fixes issue #185
 # https://github.com/mwouts/jupytext/issues/185
 
-"""
+: '
 cat <<EOF > /tmp/constraints.txt
 numpy
 matplotlib
@@ -407,7 +407,7 @@ EOF
 
 pip3 install --no-deps mxnet nnabla allennlp pyquickhelper ipyleaflet $SUPERSET --prefix /usr
 pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET --prefix /usr -c /tmp/constraints.txt
-"""
+'
 
 # Set registry to non-ssl to allow caching
 echo "Installing webpack"
