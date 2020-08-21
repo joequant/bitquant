@@ -142,6 +142,7 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-mysql \
       python3-wheel \
       python3-quantlib \
+      python3-vispy \
       curl-devel \
       icu-devel \
       libpcre-devel \
