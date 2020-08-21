@@ -195,10 +195,11 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       which \
       jupyter-core \
       python3-qtpy \
-      boost-devel
+      boost-devel \
+      tbb-devel
 
 #qtpy for vega
-#boost-devel for perspective-python
+#boost-devel and tbb-devel for perspective-python
 
 # which is needed for jupyterlab_code_formatter
 
