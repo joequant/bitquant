@@ -585,7 +585,7 @@ jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
-:'
+: '
 fabmanager create-admin --app superset
 superset db upgrade
 superset init
