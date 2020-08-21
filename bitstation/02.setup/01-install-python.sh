@@ -95,6 +95,11 @@ pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      https://github.com/joequant/metakernel/tarball/master
 
+#install perspective-python - need pyarrow 0.16
+pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+     pyarrow==0.16.0
+pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+     perspective-python
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 ml-python
