@@ -320,6 +320,9 @@ ipympl
 ipython-sql
 psycopg2-binary
 jupyter-pyfilesystem
+hy
+https://github.com/ekaschalk/jedhy/tarball/master
+https://github.com/Calysto/calysto_hy/tarball/master
 EOF
 
 # moved out
@@ -370,6 +373,7 @@ jupytext>=1.0.1
 
 # use calysto bash
 #python3 -m bash_kernel.install --sys-prefix
+python3 -m calysto_hy install
 
 #broken
 #pylantern
