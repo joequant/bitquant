@@ -90,11 +90,6 @@ pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 #install first
 # install special version of jupyterlab-sql that is built for v2
 
-#install version of metakernel with python magics / ipywidgets kernel
-# #207 #208
-pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     https://github.com/joequant/metakernel/tarball/master
-
 #install perspective-python - need pyarrow 0.16
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      pyarrow==0.16.0
