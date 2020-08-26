@@ -196,7 +196,9 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-qtpy \
       boost-devel \
       tbb-devel \
-      pybind11-devel
+      pybind11-devel \
+      python3-metakernel-python \
+      python3-metakernel
 
 #qtpy for vega
 #boost-devel, tbb-devel, pybind11-devel for perspective-python
