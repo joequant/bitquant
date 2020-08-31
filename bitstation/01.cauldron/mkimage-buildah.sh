@@ -159,7 +159,7 @@ dnf \
     --releasever="$releasever" \
     makecache
 
-dnf config-manager --installroot="$rootfsDir" \
+dnf config-manager --setopt=reposdir=$rootfsDir/etc/yum.repos.d  \
     --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
 
 (
