@@ -152,14 +152,6 @@ if [ ! -z $systemd ]; then
         extrapkgs="$extrapkgs systemd"
 fi
 
-dnf \
-    $reposetup \
-    --nogpgcheck \
-    --forcearch="$buildarch" \
-    --installroot="$rootfsDir" \
-    --releasever="$releasever" \
-    makecache
-
 dnf config-manager --setopt=reposdir=$rootfsDir/etc/yum.repos.d  \
     --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
 
