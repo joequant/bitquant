@@ -151,13 +151,9 @@ if [ ! -z $systemd ]; then
         echo -e "--------------------------------------\n"
         extrapkgs="$extrapkgs systemd"
 fi
-
-dnf config-manager --setopt=reposdir=$rootfsDir/etc/yum.repos.d  \
-    --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
-
 (
     dnf \
-            $reposetup \
+	$reposetup \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
@@ -174,14 +170,12 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 
 (
     dnf \
-            $reposetup \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
             --nodocs --assumeyes ${quiet:\--quiet} \
             install bash ncurses coreutils \
-	    mageia-repos-cauldron \
 	    $extrapkgs
 )
 

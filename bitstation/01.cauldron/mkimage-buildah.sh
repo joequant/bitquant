@@ -152,12 +152,8 @@ if [ ! -z $systemd ]; then
         extrapkgs="$extrapkgs systemd"
 fi
 
-dnf config-manager --setopt=reposdir=$rootfsDir/etc/yum.repos.d  \
-    --add-repo http://distro.ibiblio.org/mageia/distrib/$releasever/$buildarch/media/core/release/
-
 (
     dnf \
-        $reposetup \
 	--nogpgcheck \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
@@ -174,7 +170,6 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 
 (
     dnf \
-        $reposetup \
             --nogpgcheck \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
