@@ -154,7 +154,7 @@ fi
 
 (
     dnf \
-	--nogpgcheck \
+	$reposetup \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
