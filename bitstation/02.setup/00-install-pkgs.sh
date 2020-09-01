@@ -198,7 +198,9 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       tbb-devel \
       pybind11-devel \
       python3-metakernel-python \
-      python3-metakernel
+      python3-metakernel \
+      jupyter-jupyterlab \
+      jupyter-jupyterlab-server
 
 #qtpy for vega
 #boost-devel, tbb-devel, pybind11-devel for perspective-python
