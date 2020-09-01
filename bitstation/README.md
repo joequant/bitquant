@@ -39,8 +39,10 @@ Proxy server
 
    There is a docker image called joequant/cacher which sets up a
    caching server that includes squid and compile caching.  To run the
-   cacher go into the directory called cacher and do a docker-compose
-   up.
+   cacher go to the repository joequant/cacher and run docker-compose.
+
+   Cacher sets up a number of proxy and distccd caches that speed up
+   compiles.
 
 License
 -------
