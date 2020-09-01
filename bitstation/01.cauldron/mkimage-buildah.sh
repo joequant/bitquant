@@ -112,6 +112,12 @@ if [ ! -z $mirror ]; then
         reposetup="--nogpgcheck --disablerepo=* --repofrompath=mgarel,$mirror/media/core/release/ --repofrompath=mgaup,$mirror/media/core/updates/ --enablerepo=mgarel --enablerepo=mgaup"
 fi
 
+if [ $releasever == "cauldron" ]; then
+    repo=cauldron-$buildarch
+else
+    repo=mageia-$buildarch
+fi
+
 if [ -z $mirror ]; then
 	# Ensure we are on a Mageia system when not specifying a mirror
 	if [ ! -e /etc/mageia-release ]; then
@@ -119,7 +125,7 @@ if [ -z $mirror ]; then
 		exit 1
 	fi
         # If mirror is *not* provided, use mirrorlist
-        reposetup="--nogpgcheck --disablerepo=* --enablerepo=mageia-$buildarch --enablerepo=updates-$buildarch"
+        reposetup="--nogpgcheck --disablerepo=* --enablerepo=$repo"
 fi
 
 if [ ! -z $pkgmgr ]; then
