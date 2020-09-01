@@ -75,6 +75,19 @@ echo "Restarting php-fpm"
 sudo -u apache /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> $LOG_DIR/php-fpm.log 2>&1 &
 fi
 
+if [ ! -e /etc/jupyter/jupyter_notebook_config.d/jupyter_notebook_config.json ] ; then
+   cat <<EOF > /etc/jupyter/jupyter_notebook_config.d/jupyter_notebook_config.json
+{
+  "NotebookApp": {
+    "contents_manager_class": "jupyterfs.metamanager.MetaManager",
+    "nbserver_extensions": {
+      "jupyterfs": true
+    }
+  }
+}
+EOF
+fi
+
 echo "Pulling git"
 pushd $WEB_DIR/..
 sudo -u user git config --global pull.rebase true
