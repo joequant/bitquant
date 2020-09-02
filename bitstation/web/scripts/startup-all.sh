@@ -76,6 +76,7 @@ sudo -u apache /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >>
 fi
 
 if [ ! -e /etc/jupyter/jupyter_notebook_config.d/jupyter_notebook_config.json ] ; then
+   mkdir -p /etc/jupyter/jupyter_notebook_config.d
    cat <<EOF > /etc/jupyter/jupyter_notebook_config.d/jupyter_notebook_config.json
 {
   "NotebookApp": {
