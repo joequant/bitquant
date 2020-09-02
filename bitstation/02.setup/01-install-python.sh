@@ -466,7 +466,6 @@ jupyterlab-kernelspy
 ipycanvas
 ipyevents
 @pyviz/jupyterlab_pyviz
-jupyterlab_filetree
 jupyterlab-plotly
 plotlywidget
 vispy
@@ -477,6 +476,7 @@ EOF
 # mathjax3 features
 
 : '
+jupyterlab_filetree
 @jupyterlab/toc
 @jupyterlab/debugger
 @jupyterlab/celltags
