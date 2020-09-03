@@ -318,6 +318,7 @@ jupyter-pyfilesystem
 hy
 https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
+mplfinance
 EOF
 
 # moved out
