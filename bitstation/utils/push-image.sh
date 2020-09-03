@@ -11,5 +11,6 @@ docker tag joequant/nextcloud:production joequant/nextcloud:latest
 ./rm-stopped-containers.sh
 ./rm-untagged-images.sh
 skopeo copy containers-storage:localhost/joequant/bitstation  docker-daemon:joequant/bitstation:latest
+skopeo copy containers-storage:localhost/joequant/nextcloud  docker-daemon:joequant/nextcloud:latest
 ./containers.sh up $IMAGES
 popd
