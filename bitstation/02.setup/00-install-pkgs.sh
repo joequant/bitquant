@@ -17,7 +17,6 @@ if [ -e $rootfsDir/tmp/proxy.sh ]; then
     source $rootfsDir/tmp/proxy.sh
 fi
 
-dnf makecache $rootfsArg
 dnf upgrade --best --nodocs --allowerasing --refresh -y \
     --setopt=install_weak_deps=False $rootfsArg
 
