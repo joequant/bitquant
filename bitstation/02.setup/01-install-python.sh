@@ -224,7 +224,7 @@ tensorly
 pyro-ppl
 torchvision
 gpytorch
-horovod
+horovod!=v0.20.0
 skflow
 pyomo
 jupyter-tensorboard
