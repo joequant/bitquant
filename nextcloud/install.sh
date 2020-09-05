@@ -47,7 +47,8 @@ dnf --installroot="$rootfsDir" \
     locales-en \
     curl \
     timezone \
-    psmisc
+    psmisc \
+    php-fpm-apache
 )
 
 rpm --erase --nodeps systemd --root $rootfsDir
