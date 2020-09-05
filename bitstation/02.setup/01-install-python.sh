@@ -314,7 +314,6 @@ jupyter-fs
 ipympl
 ipython-sql
 psycopg2-binary
-jupyter-pyfilesystem
 hy
 https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
@@ -359,6 +358,8 @@ ipydatetime
 ipywebrtc
 itk-meshtopolydata
 '
+
+# Remove pyfilesystem in favor of jupyter-fs
 
 #broken for jupyterlab 2.0
 : '
@@ -470,6 +471,7 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
+jupyterlab_filetree
 EOF
 
 
