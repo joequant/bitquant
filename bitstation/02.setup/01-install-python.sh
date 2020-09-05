@@ -587,6 +587,12 @@ jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
+#set up for jupyterfs
+cat <<EOF > /usr/etc/jupyter/jupyter_notebook_config.py
+# jupyterfs contents manager
+c.NotebookApp.contents_manager_class = "jupyterfs.metamanager.MetaManager"
+EOF
+
 : '
 fabmanager create-admin --app superset
 superset db upgrade
