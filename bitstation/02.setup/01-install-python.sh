@@ -310,13 +310,13 @@ qgrid
 ipycanvas
 ipyevents
 gmaps
-jupyter-fs
 ipympl
 ipython-sql
 psycopg2-binary
 hy
 https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
+https://github.com/joequant/jupyter-fs/tarball/master
 mplfinance
 EOF
 
@@ -471,7 +471,7 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
-jupyterlab_filetree
+https://github.com/joequant/jupyter_filetree.git
 EOF
 
 
@@ -589,12 +589,11 @@ jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
 #set up for jupyterfs
-: '
+
 cat <<EOF > /usr/etc/jupyter/jupyter_notebook_config.py
 # jupyterfs contents manager
 c.NotebookApp.contents_manager_class = "jupyterfs.metamanager.MetaManager"
 EOF
-'
 
 : '
 fabmanager create-admin --app superset
