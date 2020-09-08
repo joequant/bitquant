@@ -300,7 +300,6 @@ algorithmx
 itkwidgets
 jupyter_bokeh
 jupyterlab-commenting-service
-jupytext
 ipylab
 ipyaggrid
 black
@@ -319,6 +318,9 @@ https://github.com/Calysto/calysto_hy/tarball/master
 https://github.com/joequant/jupyter-fs/tarball/master
 mplfinance
 EOF
+
+
+#jupytext is not compatible with jupyter-fs
 
 # moved out
 #mlpy
@@ -577,7 +579,7 @@ jupyterlab_iframe
 #ipyaggrid
 
 jupyter serverextension enable jupyterlab_sql --py --sys-prefix
-jupyter serverextension enable jupytext --py --sys-prefix
+#jupyter serverextension enable jupytext --py --sys-prefix
 
 jupyter lab build --dev-build=False
 echo "Log jupyterlab"
