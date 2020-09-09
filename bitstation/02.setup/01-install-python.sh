@@ -473,7 +473,7 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
-https://github.com/joequant/jupyter_filetree.git
+https://github.com/joequant/jupyterlab_filetree.git
 EOF
 
 
