@@ -316,6 +316,7 @@ hy
 https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
 https://github.com/joequant/jupyter-fs/tarball/master
+https://github.com/joequant/webdavfs/tarball/master
 mplfinance
 EOF
 
