@@ -480,7 +480,7 @@ pushd /tmp
 git clone https://github.com/joequant/jupyterlab_filetree.git
 pushd jupyterlab_filetree
 npm install
-npm build
+npm run build
 jupyter labextension install .
 popd
 rm -rf jupyterlab_filetree
