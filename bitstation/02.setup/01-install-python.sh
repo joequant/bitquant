@@ -474,9 +474,17 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
-https://github.com/joequant/jupyterlab_filetree.git
 EOF
 
+pushd /tmp
+git clone https://github.com/joequant/jupyterlab_filetree.git
+pushd jupyterlab_filetree
+npm install
+npm build
+jupyter labextension install .
+popd
+rm -rf jupyterlab_filetree
+popd
 
 # remove mathjax3 and katex extensions as they are missing
 # mathjax3 features
