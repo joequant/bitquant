@@ -189,6 +189,8 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 [ibiblio]
 name=ibiblio
 baseurl=http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
 enabled=1
 EOF
 
