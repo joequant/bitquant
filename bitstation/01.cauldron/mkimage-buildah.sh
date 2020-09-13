@@ -160,7 +160,6 @@ fi
 
 (
     dnf \
-	$reposetup \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
