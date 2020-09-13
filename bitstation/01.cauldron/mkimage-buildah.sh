@@ -175,16 +175,23 @@ rpm -Uvh --noscripts --nodeps makedev-*.rpm  --root $rootfsDir
 rm -f filesystem-*.rpm  makedev-*.rpm
 
 (
-    dnf \
+
+        dnf \
             --nogpgcheck \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
-            --nodocs --assumeyes ${quiet:\--quiet} \
-            install basesystem-minimal-core locales locales-en \
-	    ncurses sudo dnf \
-	    $extrapkgs $pkgmgr
+            --nodocs --assumeyes install \
+            basesystem-minimal-core locales locales-en \
+	    ncurses sudo dnf
+	cat <<EOF > $rootfsDir/etc/yum.repos.d/ibiblio.repo
+[ibiblio]
+name=ibiblio
+baseurl=http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release/
+enabled=1
+EOF
+
 )
 
 # Make sure /etc/resolv.conf has something useful in it
