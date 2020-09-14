@@ -221,7 +221,7 @@ dnf autoremove -y \
     passwd hostname which psmisc
 rpm --erase --nodeps systemd shared-mime-info  --root $rootfsDir
 dnf clean all --installroot="$rootfsDir"
-
+rm etc/yum.repos.d/mageia*
 	
 	# effectively: febootstrap-minimize --keep-zoneinfo --keep-rpmdb --keep-services "$target"
 	#  locales
