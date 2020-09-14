@@ -188,7 +188,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 	cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
 [mirrors]
 name=mirrors
-baseurl=file:///etc/yum.repos.d/mirrorlist
+mirrorlist=file:///etc/yum.repos.d/mirrorlist
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
 enabled=1
