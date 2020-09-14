@@ -184,10 +184,11 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --nodocs --assumeyes install \
             basesystem-minimal-core locales locales-en \
 	    ncurses sudo dnf
-	cat <<EOF > $rootfsDir/etc/yum.repos.d/ibiblio.repo
-[ibiblio]
-name=ibiblio
-baseurl=http://distro.ibiblio.org/mageia/distrib/cauldron/x86_64/media/core/release/
+	cp $script_dir/mirrorlist $rootfsDir/etc.yum.repos.d
+	cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
+[mirrors]
+name=mirrors
+baseurl=file:///etc/yum.repos.d/mirrorlist
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
 enabled=1
