@@ -184,7 +184,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --nodocs --assumeyes install \
             basesystem-minimal-core locales locales-en \
 	    ncurses sudo dnf
-	cp $script_dir/mirrorlist $rootfsDir/etc.yum.repos.d
+	cp $script_dir/mirrorlist $rootfsDir/etc/yum.repos.d
 	cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
 [mirrors]
 name=mirrors
