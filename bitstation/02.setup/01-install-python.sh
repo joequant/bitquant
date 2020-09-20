@@ -295,7 +295,6 @@ vpython
 bankroll[ibkr,schwab,fidelity]
 investpy
 deap
-jupyterlab-git
 algorithmx
 itkwidgets
 jupyter_bokeh
@@ -318,6 +317,7 @@ https://github.com/Calysto/calysto_hy/tarball/master
 https://github.com/joequant/jupyter-fs/tarball/master
 https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
+https://github.com/jupyterlab/jupyterlab-git/tarball/master
 mplfinance
 EOF
 
