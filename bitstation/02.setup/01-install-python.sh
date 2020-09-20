@@ -317,7 +317,7 @@ https://github.com/Calysto/calysto_hy/tarball/master
 https://github.com/joequant/jupyter-fs/tarball/master
 https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
-https://github.com/jupyterlab/jupyterlab-git/tarball/master
+jupyterlab-git
 mplfinance
 EOF
 
@@ -589,7 +589,6 @@ jupyterlab_iframe
 #ipyaggrid
 
 jupyter serverextension enable jupyterlab_sql --py --sys-prefix
-jupyter serverextension enable jupyterlab_git --py --sys-prefix
 #jupyter serverextension enable jupytext --py --sys-prefix
 
 jupyter lab build --dev-build=False
