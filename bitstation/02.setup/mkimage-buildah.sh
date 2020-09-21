@@ -34,7 +34,6 @@ buildah run $container parallel --halt 2 --tagstring '{}' --linebuffer source '/
 buildah run $container /bin/bash /tmp/02-docker-setup.sh
 buildah run $container /bin/bash /tmp/03-install-jupyter.sh
 source $script_dir/04-remove-build-deps.sh
-rm -rf $rootfsDir/tmp/*
 
 cat > $rootfsDir/usr/share/bitquant/bitquant.sh <<EOF
 build_date='$(date)'
@@ -42,6 +41,7 @@ commit_id=$(git rev-parse --verify HEAD)
 EOF
 
 buildah run $container /bin/bash /tmp/05-log-items.sh
+rm -rf $rootfsDir/tmp/*
 
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 
