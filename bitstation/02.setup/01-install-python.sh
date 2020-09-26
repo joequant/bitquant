@@ -319,7 +319,7 @@ https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
 jupyterlab-git
 mplfinance
-https://github.com/joequant/horovod/tarball/master 
+https://github.com/joequant/horovod/tarball/master
 EOF
 
 #jupytext is not compatible with jupyter-fs
