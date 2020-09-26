@@ -319,9 +319,6 @@ https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
 jupyterlab-git
 mplfinance
-EOF
-
-parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 https://github.com/joequant/horovod/tarball/master 
 EOF
 
