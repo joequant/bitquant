@@ -96,6 +96,8 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      perspective-python
 
+
+
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 nbformat
 ml-python
@@ -321,7 +323,9 @@ jupyterlab-git
 mplfinance
 EOF
 
-#https://github.com/joequant/horovod/tarball/master
+HOROVOD_WITHOUT_GLOO=1 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+    https://github.com/joequant/horovod/tarball/master
+
 
 #jupytext is not compatible with jupyter-fs
 
