@@ -319,8 +319,9 @@ https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
 jupyterlab-git
 mplfinance
-https://github.com/joequant/horovod/tarball/master
 EOF
+
+#https://github.com/joequant/horovod/tarball/master
 
 #jupytext is not compatible with jupyter-fs
 
