@@ -323,6 +323,12 @@ jupyterlab-git
 mplfinance
 EOF
 
+
+pushd /tmp
+git clone https://github.com/yixuan/LBFGSpp.git
+cp -r LBFGSpp/include/* /usr/include
+popd
+
 HOROVOD_WITHOUT_GLOO=1 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
     https://github.com/joequant/horovod/tarball/master
 

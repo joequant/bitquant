@@ -199,10 +199,13 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-metakernel-python \
       python3-metakernel \
       jupyter-jupyterlab \
-      jupyter-jupyterlab-server
+      jupyter-jupyterlab-server \
+      flatbuffers-devel \
+      eigen3-devel
 
 #qtpy for vega
 #boost-devel, tbb-devel, pybind11-devel for perspective-python
+#flatbuffers and eigen3 for horvod
 
 # which is needed for jupyterlab_code_formatter
 
