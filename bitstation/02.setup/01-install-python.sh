@@ -321,6 +321,7 @@ https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
 jupyterlab-git
 mplfinance
+jupyter_telemetry
 EOF
 
 
@@ -470,6 +471,7 @@ jupyterlab-spreadsheet
 @jupyterlab/commenting-extension
 @jupyterlab/github
 @jupyterlab/toc
+@jupyterlab/latex
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
@@ -616,6 +618,7 @@ jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 cat <<EOF > /usr/etc/jupyter/jupyter_notebook_config.py
 # jupyterfs contents manager
 c.NotebookApp.contents_manager_class = "jupyterfs.metamanager.MetaManager"
+c.LatexConfig.latex_command = 'pdflatex'
 EOF
 
 : '
