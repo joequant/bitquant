@@ -201,7 +201,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       jupyter-jupyterlab \
       jupyter-jupyterlab-server \
       flatbuffers-devel \
-      eigen3-devel
+      eigen3-devel \
+      texlive-dist
 
 #qtpy for vega
 #boost-devel, tbb-devel, pybind11-devel for perspective-python
