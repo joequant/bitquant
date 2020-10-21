@@ -45,6 +45,6 @@ rm -rf $rootfsDir/tmp/*
 
 buildah config --cmd  "/home/user/git/bitquant/bitstation/web/scripts/startup-all.sh" $container
 
-buildah commit --format docker --rm $container $name
+buildah commit --format docker --squash --rm $container $name
 buildah push $name:latest docker-daemon:$name:latest
 
