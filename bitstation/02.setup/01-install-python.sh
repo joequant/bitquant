@@ -142,7 +142,6 @@ lightning-python
 pyalgotrade
 nbpresent
 jupyter_latex_envs
-jupyterlab_latex
 cookiecutter
 scikit-image
 patsy
@@ -320,6 +319,7 @@ https://github.com/joequant/jupyter-fs/tarball/master
 https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
 https://github.com/joequant/jupytext/tarball/master
+https://github.com/joequant/jupyterlab-latex/tarball/master
 jupyterlab-git
 mplfinance
 jupyter_telemetry
