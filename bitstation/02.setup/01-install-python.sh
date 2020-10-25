@@ -472,7 +472,6 @@ jupyterlab-spreadsheet
 @jupyterlab/commenting-extension
 @jupyterlab/github
 @jupyterlab/toc
-@jupyterlab/latex
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
@@ -491,15 +490,22 @@ plotlywidget
 vispy
 EOF
 
+do_github_install () {
 pushd /tmp
-git clone https://github.com/joequant/jupyterlab_filetree.git
-pushd jupyterlab_filetree
-npm install
-npm run build
-jupyter labextension install .
+git clone $1
+pushd `basename $1 .git`
+jlpm
+jlpm run build
+jupyter labextension install --no-build .
 popd
-rm -rf jupyterlab_filetree
+rm -rf `basename $1 .git` 
 popd
+}
+
+parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'do_github_install {}' ::: <<EOF
+https://github.com/joequant/jupyterlab_filetree.git
+https://github.com/joequant/jupyterlab-latex.git
+EOF
 
 # remove mathjax3 and katex extensions as they are missing
 # mathjax3 features
