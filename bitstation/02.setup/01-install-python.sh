@@ -502,6 +502,8 @@ rm -rf `basename $1 .git`
 popd
 }
 
+export -f do_github_install
+
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'do_github_install {}' ::: <<EOF
 https://github.com/joequant/jupyterlab_filetree.git
 https://github.com/joequant/jupyterlab-latex.git
