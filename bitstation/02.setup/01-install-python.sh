@@ -495,7 +495,6 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
-@mflevine/jupyterlab_html
 EOF
 
 do_github_install () {
