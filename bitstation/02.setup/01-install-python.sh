@@ -329,6 +329,7 @@ hyperopt
 pySOT
 pymoo
 Platypus-Opt
+jupyter-dash
 EOF
 
 
@@ -494,6 +495,7 @@ ipyevents
 jupyterlab-plotly
 plotlywidget
 vispy
+@mflevine/jupyterlab_html
 EOF
 
 do_github_install () {
@@ -564,7 +566,6 @@ jupyterlab-drawio
 jupyterlab-spreadsheet
 @jupyterlab/toc
 jupyterlab_filetree
-@mflevine/jupyterlab_html
 jupyterlab_autoversion
 @oriolmirosa/jupyterlab_materialdarker
 @jupyterlab/katex-extension
