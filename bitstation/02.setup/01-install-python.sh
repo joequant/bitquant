@@ -323,6 +323,12 @@ https://github.com/joequant/jupyterlab-latex/tarball/master
 jupyterlab-git
 mplfinance
 jupyter_telemetry
+ax-platform
+optuna
+hyperopt
+pySOT
+pymoo
+Platypus-Opt
 EOF
 
 
