@@ -30,7 +30,7 @@ if [ -e modules.d/00-php-fpm.conf ] ; then
 fi
 popd
 
-buildah run $container parallel --halt 2 --tagstring '{}' --linebuffer source '/tmp/{}' :::  01-install-r-pkgs.sh 01-install-python.sh 01-install-npm.sh 01-install-ruby.sh
+buildah run $container parallel --halt 2 --tagstring '{}' --linebuffer source '/tmp/{}' :::  01-install-r-pkgs.sh 01-install-python.sh 01-install-npm.sh 01-install-ruby.sh 01-install-dlang.sh
 buildah run $container /bin/bash /tmp/02-docker-setup.sh
 buildah run $container /bin/bash /tmp/03-install-jupyter.sh
 source $script_dir/04-remove-build-deps.sh
