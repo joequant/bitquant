@@ -40,7 +40,7 @@ echo "pip_index_url=" $PIP_INDEX_URL
 pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
-pip3 install --upgrade numpy requests python-dateutil \
+pip3 install --upgrade numpy python-dateutil \
      matplotlib scipy --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
@@ -51,7 +51,6 @@ pip3 install --upgrade torch --prefix /usr
 pip3 install --upgrade pycryptodome --prefix /usr
 cat <<EOF > /tmp/constraints.es.txt
 six
-requests
 pycrypto
 pycryptodome
 python-dateutil
