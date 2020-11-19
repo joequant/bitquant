@@ -204,7 +204,9 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       eigen3-devel \
       texlive-dist \
       dmd \
-      dub
+      dub \
+      phobos-devel \
+      phobos-static-devel
 
 #qtpy for vega
 #boost-devel, tbb-devel, pybind11-devel for perspective-python
