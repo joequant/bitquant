@@ -35,8 +35,7 @@ dnf -y $rootfsArg \
     install java-headless iproute2 \
     quantlib-devel pybind11-devel \
     xwidgets-devel root-r \
-    phobos-devel \
-    phobos-static-devel
+    phobos-devel
 
 dnf clean all $rootfsArg
 # don't erase mesa as those are needed for
@@ -82,6 +81,11 @@ rm -rf var/cache/*
 rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
 # remove 32 bit items
 rm -rf lib/gcc/x86_64-mageia-linux-gnu/*/32
+
+# add .a files for dlang
+dnf -y $rootfsArg \
+    --setopt=install_weak_deps=False --nodocs \
+    install phobos-static-devel
 
 #put in link to allow loading of iruby
 pushd usr/lib64
