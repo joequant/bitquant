@@ -1,7 +1,7 @@
 #!/bin/bash
 
 set -v
-set +o errexit
+set -o errexit
 
 source $rootfsDir/tmp/proxy.sh
 pushd $rootfsDir/tmp
