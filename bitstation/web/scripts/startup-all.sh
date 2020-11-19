@@ -73,10 +73,10 @@ if [ ! -f /etc/dmd.conf ] ; then
 ;
 
 [Environment32]
-DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib -L--export-dynamic -fPIC
+DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib -L--export-dynamic -fPIC -defaultlib=phobos2 -debuglib=phobos2
 
 [Environment64]
-DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib64 -L--export-dynamic -fPIC
+DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib64 -L--export-dynamic -fPIC -defaultlib=phobos2 -debuglib=phobos2
 EOF
 fi
 
