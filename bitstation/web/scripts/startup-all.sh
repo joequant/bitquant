@@ -56,6 +56,30 @@ EOF
     fi
 fi
 
+if [ ! -f /etc/dmd.conf ] ; then
+    cat <<EOF > /etc/dmd.conf
+;
+; dmd.conf file for dmd
+;
+; dmd will look for dmd.conf in the following sequence of directories:
+;   - current working directory
+;   - directory specified by the HOME environment variable
+;   - directory dmd resides in
+;   - /etc directory
+;
+; Names enclosed by %% are searched for in the existing environment and inserted
+;
+; The special name %@P% is replaced with the path to this file
+;
+
+[Environment32]
+DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib -L--export-dynamic -fPIC
+
+[Environment64]
+DFLAGS=-I/usr/include/dlang/dmd -L-L/usr/lib64 -L--export-dynamic -fPIC
+EOF
+fi
+
 if [ ! -f /etc/jupyterhub ] ; then
     echo "Create jupyterhub"
     mkdir -p /etc/jupyterhub
