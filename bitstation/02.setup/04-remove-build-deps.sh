@@ -78,7 +78,8 @@ rm -rf root/.node-gyp
 rm -rf usr/local/share
 rm -rf usr/lib/.build-id
 rm -rf var/cache/*
-rm -f lib/*.so lib/*.so.* lib64/*.a lib/*.a lib/*.o
+# need to keep archive for dmd
+rm -f lib/*.so lib/*.so.* lib/*.a lib/*.o
 # remove 32 bit items
 rm -rf lib/gcc/x86_64-mageia-linux-gnu/*/32
 
