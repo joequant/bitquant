@@ -41,9 +41,6 @@ pip3 install --upgrade pip --prefix /usr
 #remove to avoid attribute error
 pip3 uninstall numpy -y
 
-#needed to remove 2.24.0
-touch /usr/lib/python3.8/site-packages/requests-2.24.0.dist-info/RECORD
-
 pip3 install --upgrade numpy python-dateutil requests \
      matplotlib scipy --prefix /usr
 
