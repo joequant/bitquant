@@ -105,4 +105,5 @@ rpm --rebuilddb $rootfsRpmArg
 chmod -R a+rx var/lib/rpm var/lib/dnf
 rm -rf var/cache/*
 popd
+ldconfig $rootfsLdconfigArg
 pump --shutdown

@@ -13,6 +13,7 @@ mountpoint=$(buildah mount $container)
 export rootfsDir=$mountpoint
 export rootfsArg="--installroot=$mountpoint"
 export rootfsRpmArg="--root $mountpoint"
+export rootfsLdconfigArg="-r $mountpoint"
 export LC_ALL=C
 export LANGUAGE=C
 export LANG=C
