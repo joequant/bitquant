@@ -72,35 +72,8 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-cython \
       python3-pexpect \
       R-Rcpp-devel \
-      root \
-      python3-jupyroot \
-      root-r \
       libglu-devel \
       rclone \
-      root-physics \
-      root-geom \
-      root-fftw \
-      root-hist \
-      root-foam \
-      root-vecops \
-      root-graf \
-      root-graf-asimage \
-      root-graf-gpad \
-      root-graf-gpadv7 \
-      root-graf-gviz \
-      root-graf-postscript \
-      root-graf-primitives \
-      root-graf3d \
-      root-geom \
-      root-gui \
-      root-hist \
-      root-mathcore \
-      root-mathmore \
-      root-matrix \
-      root-minuit \
-      root-multiproc \
-      root-graf-postscript \
-      root-graf-asimage \
       fuse \
       parallel \
       gcc-c++ \

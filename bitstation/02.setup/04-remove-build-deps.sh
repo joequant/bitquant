@@ -35,7 +35,33 @@ dnf -y $rootfsArg \
     install java-headless iproute2 \
     quantlib-devel pybind11-devel \
     xwidgets-devel root-r \
-    phobos-devel
+    phobos-devel \
+    python3-jupyroot \
+    root \
+      root-physics \
+      root-geom \
+      root-fftw \
+      root-hist \
+      root-foam \
+      root-vecops \
+      root-graf \
+      root-graf-asimage \
+      root-graf-gpad \
+      root-graf-gpadv7 \
+      root-graf-gviz \
+      root-graf-postscript \
+      root-graf-primitives \
+      root-graf3d \
+      root-geom \
+      root-gui \
+      root-hist \
+      root-mathcore \
+      root-mathmore \
+      root-matrix \
+      root-minuit \
+      root-multiproc \
+      root-graf-postscript \
+      root-graf-asimage
 
 dnf clean all $rootfsArg
 # don't erase mesa as those are needed for
