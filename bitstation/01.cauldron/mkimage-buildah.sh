@@ -214,11 +214,11 @@ fi
 
 	cd "$rootfsDir"
 rpm --erase basesystem-minimal-core  --root $rootfsDir
-dnf autoremove -y \
-    --installroot="$rootfsDir" \
-    vim-minimal \
-    rootfiles tar tcb \
-    passwd hostname which psmisc
+#dnf autoremove -y \
+#    --installroot="$rootfsDir" \
+#    vim-minimal \
+#    rootfiles tar tcb \
+#    passwd hostname which psmisc
 rpm --erase --nodeps systemd shared-mime-info  --root $rootfsDir
 dnf clean all --installroot="$rootfsDir"
 rm etc/yum.repos.d/mageia*
