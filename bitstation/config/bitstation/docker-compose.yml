@@ -27,7 +27,7 @@ services:
      image: "joequant/cauldron"
      entrypoint: ["echo", "Service cauldron disabled"]
   nextcloud:
-     image: "joequant/nextcloud"
+     image: "joequant/nextcloud:production"
      volumes:
        - nextcloud_lib_apps:/var/lib/nextcloud/apps
        - nextcloud_lib_data:/var/lib/nextcloud/data
