@@ -218,7 +218,7 @@ dnf autoremove -y \
     --installroot="$rootfsDir" \
     vim-minimal \
     rootfiles tar tcb \
-    passwd which psmisc
+    passwd which psmisc hostname
 rpm --erase --nodeps systemd shared-mime-info  --root $rootfsDir
 dnf clean all --installroot="$rootfsDir"
 rm etc/yum.repos.d/mageia*
