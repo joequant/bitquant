@@ -469,6 +469,7 @@ parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension in
 bqplot
 ipyvolume
 jupyter-threejs
+algorithmx
 algorithmx-jupyter
 jupyter-matplotlib
 jupyterlab-datawidgets
@@ -622,7 +623,7 @@ jupyterlab_iframe
 jupyter serverextension enable jupyterlab_sql --py --sys-prefix
 jupyter serverextension enable jupytext --sys-prefix
 
-jupyter lab build --dev-build=False
+jupyter lab build
 echo "Log jupyterlab"
 cat /tmp/jupyterlab-debug-*.log || true
 
