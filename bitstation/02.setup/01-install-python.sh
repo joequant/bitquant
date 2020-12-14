@@ -311,7 +311,6 @@ rpy2
 qgrid
 ipycanvas
 ipyevents
-gmaps
 ipympl
 ipython-sql
 psycopg2-binary
@@ -335,6 +334,7 @@ Platypus-Opt
 jupyter-dash
 EOF
 
+# disable gmaps because it causes all widgets to disappear
 
 pushd /tmp
 git clone https://github.com/yixuan/LBFGSpp.git
