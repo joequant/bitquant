@@ -465,7 +465,7 @@ fi
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
-@jupyter-widgets/jupyterlab-manager
+@jupyter-widgets/jupyterlab-manager@2
 bqplot
 ipyvolume
 jupyter-threejs
