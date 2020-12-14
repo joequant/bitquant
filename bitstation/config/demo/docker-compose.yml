@@ -1,7 +1,7 @@
 version:  '3'
 services:
   bitstation:
-     image: "joequant/bitstation:latest"
+     image: "joequant/bitstation"
      stdin_open: true
      tty: true
      ports:
@@ -22,7 +22,7 @@ services:
      image: "joequant/cauldron"
      entrypoint: ["echo", "Service cauldron disabled"]
   nextcloud:
-     image: "joequant/nextcloud:latest"
+     image: "joequant/nextcloud:20"
      volumes:
        - nextcloud_lib_apps:/var/lib/nextcloud/apps
        - nextcloud_lib_data:/var/lib/nextcloud/data
