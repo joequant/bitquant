@@ -48,7 +48,9 @@ dnf --installroot="$rootfsDir" \
     curl \
     timezone \
     psmisc \
-    php-fpm-apache
+    php-fpm-apache \
+    nodejs \
+    git
 )
 
 rpm --erase --nodeps systemd --root $rootfsDir
@@ -69,6 +71,11 @@ cp $script_dir/wait-for-it.sh sbin
 chmod a+x sbin/startup-nextcloud.sh
 chmod a+x sbin/wait-for-it.sh
 chown apache:apache sbin/startup-nextcloud.sh
+
+buildah run $container sudo /usr/sbin/nextcloud-install.sh
+
+dnf --installroot="$rootfsDir" -y \
+    autoremove nodejs git
 
 sed -i -e 's/Listen 80/Listen ${HTTP_PORT}/' etc/httpd/conf/httpd.conf
 
@@ -94,6 +101,7 @@ popd
 find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 
 rpm --rebuilddb --root $rootfsDir
+
 
 buildah config --cmd "/sbin/startup-nextcloud.sh" $container
 buildah config --user "root" $container
