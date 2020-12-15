@@ -257,7 +257,6 @@ mypy
 black
 yapf
 autopep8
-beakerx
 jupyterlab_code_formatter
 cppyy-cling
 modAL
