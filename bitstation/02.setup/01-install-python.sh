@@ -99,7 +99,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
      perspective-python
 
-
+pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 nbformat
@@ -109,7 +109,6 @@ vega
 git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
-beakerx
 h5py
 https://github.com/joequant/ethercalc-python/tarball/master
 https://github.com/joequant/spyre/tarball/master
