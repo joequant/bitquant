@@ -30,6 +30,11 @@ if [ ! -z "${INSTANCE_NAME}" ] ; then
     export PS1="${INSTANCE_NAME}\\$ "
 fi
 
+if [ ! -d /var/lib/dokuwiki/log ] ; then
+    mkdir -p /var/lib/dokuwiki/log
+    chown apache:apache /var/lib/dokuwiki/log
+fi
+
 /usr/sbin/httpd -DFOREGROUND &
 if [ -f /etc/webmin/start ] ; then
     echo "Start webmin"
