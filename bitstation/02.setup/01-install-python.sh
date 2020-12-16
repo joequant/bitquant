@@ -502,7 +502,7 @@ EOF
 
 do_github_install () {
 pushd /tmp
-git clone $1
+git clone --depth=1 $1
 pushd `basename $1 .git`
 jlpm
 jlpm run build
