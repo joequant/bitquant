@@ -123,6 +123,7 @@ https://github.com/bashtage/arch/tarball/master
 https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
+https://github.com/joequant/gmaps/tarball/master
 https://github.com/pymc-devs/pymc3/tarball/master
 biopython
 cubes
