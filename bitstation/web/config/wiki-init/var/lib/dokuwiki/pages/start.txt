@@ -16,7 +16,7 @@ href="doku.php?id=scratchpad">Scratchpad</a>
 href="doku.php?id=links">Links</a>
 <br><br>
 <a class="button primary large" target="_blank"
-href="/jupyterhub">Calculation Engine</a>
+href="/jupyterhub">Calculation engine</a>
 <a class="button primary large" target="_blank"
 href="/nextcloud/index.php/app/files/">Document management</a>
 <br><br>
