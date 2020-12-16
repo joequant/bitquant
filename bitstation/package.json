@@ -4,16 +4,16 @@
 	"build": "buildah unshare /bin/bash ./02.setup/mkimage-buildah.sh",
 	"build-base": "buildah unshare /bin/bash 01.cauldron/mkimage-buildah.sh",
 	"build-base-minimal": "buildah unshare /bin/bash 01.cauldron/mkimage-buildah-minimal.sh",
-	"docker-push": "skopeo copy containers-storage:localhost/joequant/bitstation  docker-daemon:joequant/bitstation:latest  ; ./utils/containers.sh restart",
-	"production-revert": "docker tag joequant/bitstation:production joequant/bitstation:latest ; docker tag joequant/nextcloud:production joequant/nextcloud:latest ; ./utils/containers.sh restart",
-	"production-tag": "docker tag joequant/bitstation:latest joequant/bitstation:production ; docker tag joequant/nextcloud:latest joequant/nextcloud:production ; ./utils/containers.sh restart",
-	"up": "./utils/containers.sh up",
-	"down": "./utils/containers.sh down",
-	"restart": "./utils/containers.sh restart",
+	"docker-push": "skopeo copy containers-storage:localhost/joequant/bitstation  docker-daemon:joequant/bitstation:latest  ; ./util/containers.sh restart",
+	"production-revert": "docker tag joequant/bitstation:production joequant/bitstation:latest ; docker tag joequant/nextcloud:production joequant/nextcloud:latest ; ./util/containers.sh restart",
+	"production-tag": "docker tag joequant/bitstation:latest joequant/bitstation:production ; docker tag joequant/nextcloud:latest joequant/nextcloud:production ; ./util/containers.sh restart",
+	"up": "./util/containers.sh up",
+	"down": "./util/containers.sh down",
+	"restart": "./util/containers.sh restart",
 	"proxy-start": "nohup podman-compose -f ../cacher/docker-compose.yml up >> proxy.out &",
-	"shell": "./utils/containers-shell.sh bitstation_bitstation",
-	"clean-images": "./utils/rm-stopped-containers.sh ; ./utils/rm-untagged-images.sh",
+	"shell": "./util/containers-shell.sh bitstation_bitstation",
+	"clean-images": "./util/rm-stopped-containers.sh ; ./util/rm-untagged-images.sh",
 	"shell-base": "docker run -ti joequant/cauldron /bin/bash",
-	"shell-nextcloud": "./utils/containers-shell.sh -u apache bitstation_nextcloud"
+	"shell-nextcloud": "./util/containers-shell.sh -u apache bitstation_nextcloud"
     }
 }
