@@ -3,7 +3,7 @@
 set -v
 set -o errexit
 
-if [-f $rootfsDir/tmp/proxy.sh ] ; then
+if [ -f $rootfsDir/tmp/proxy.sh ] ; then
     source $rootfsDir/tmp/proxy.sh
 fi
 pushd $rootfsDir/tmp
