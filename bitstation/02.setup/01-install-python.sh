@@ -38,13 +38,11 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 echo "pip_index_url=" $PIP_INDEX_URL
 
 pip3 install --upgrade pip --prefix /usr
-#remove to avoid attribute error
-pip3 uninstall numpy -y
 
 #needed to remove requests to reinstall with requests
 rm -rf /usr/lib/python3.8/site-packages/requests*
 
-pip3 install --upgrade numpy python-dateutil requests \
+pip3 install --upgrade python-dateutil requests \
      matplotlib scipy --prefix /usr
 
 pip3 install --upgrade $TENSORFLOW --prefix /usr
