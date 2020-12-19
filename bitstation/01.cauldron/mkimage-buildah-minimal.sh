@@ -182,6 +182,16 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --nodocs --assumeyes ${quiet:\--quiet} \
             install bash ncurses coreutils \
 	    $extrapkgs
+    cp $script_dir/mirrorlist $rootfsDir/etc/yum.repos.d
+    cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
+[mirrors]
+name=mirrors
+mirrorlist=file:///etc/yum.repos.d/mirrorlist
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
+enabled=1
+EOF
+    rm $rootfsDir/etc/yum.repos.d/cauldron*
 )
 
 # Make sure /etc/resolv.conf has something useful in it
