@@ -184,6 +184,17 @@ rm -f filesystem-*.rpm  makedev-*.rpm
 	    $extrapkgs
 )
 
+mkdir $rootfsDir/etc/yum.repos.d
+cp $script_dir/mirrorlist $rootfsDir/etc/yum.repos.d
+cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
+[mirrors]
+name=mirrors
+mirrorlist=file:///etc/yum.repos.d/mirrorlist
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Mageia
+enabled=1
+EOF
+
 # Make sure /etc/resolv.conf has something useful in it
 # This is being done before urpmi.addmedia call to ensure
 # that will work from within the chroot...
