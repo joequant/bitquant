@@ -9,7 +9,7 @@
 #
 #
 
-set -e
+set -e -x
 
 mkimg="$(basename "$0")"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
