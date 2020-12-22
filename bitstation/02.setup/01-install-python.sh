@@ -102,7 +102,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
 
 #pyspark
-
+npm install -g webpack
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 nbformat
 ml-python
@@ -361,7 +361,6 @@ jupytext
 ipylab
 algorithmx
 ipydatetime
-gmaps
 ipycallback
 jupyterlab-latex
 jupyter_declarativewidgets
