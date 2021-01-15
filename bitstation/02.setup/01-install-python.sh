@@ -62,7 +62,7 @@ pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
 
 # reinstall to get jupyter executable
-pip3 install --upgrade jupyter-core --prefix /usr
+#pip3 install --upgrade jupyter-core --prefix /usr
 pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
@@ -86,7 +86,7 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
 #https://github.com/maartenbreddels/ipyvolume/issues/324
 npm install -g source-map
 pip3 install bqplot --prefix /usr --no-cache-dir
-pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
+#pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
 
 #install first
 # install special version of jupyterlab-sql that is built for v2
@@ -101,12 +101,12 @@ pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
 
 #https://github.com/joequant/gmaps/tarball/master
 #pyspark
-npm install -g webpack webpack-cli
+#npm install -g webpack webpack-cli
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
+jupyterlab
 nbformat
 ml-python
 vega
-git+https://github.com/joequant/jupyterlab-sql.git@support-v2
 ccxt
 voila
 h5py
@@ -130,7 +130,6 @@ sklearn
 Werkzeug
 dgl
 Flask
-jupyterlab
 import-ipynb
 astropy
 sudospawner
@@ -256,7 +255,7 @@ mypy
 black
 yapf
 autopep8
-jupyterlab_code_formatter
+jupyterlab-kernelspy
 cppyy-cling
 modAL
 alipy
@@ -315,12 +314,9 @@ psycopg2-binary
 hy
 https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
-https://github.com/joequant/jupyter-fs/tarball/master
 https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
-https://github.com/joequant/jupytext/tarball/master
 https://github.com/joequant/jupyterlab-latex/tarball/master
-jupyterlab-git
 mplfinance
 jupyter_telemetry
 ax-platform
@@ -329,7 +325,8 @@ hyperopt
 pySOT
 pymoo
 Platypus-Opt
-jupyter-dash
+uproot
+awkward
 EOF
 
 # disable gmaps because it causes all widgets to disappear
@@ -342,6 +339,7 @@ popd
 HOROVOD_WITHOUT_GLOO=1 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
     https://github.com/joequant/horovod/tarball/master
 
+#jupyterlab_code_formatter will pull in jupyter 3.0
 
 #jupytext is not compatible with jupyter-fs
 
@@ -437,7 +435,7 @@ pip3 install --upgrade mxnet allennlp nnabla pyquickhelper ipyleaflet $SUPERSET 
 # Set registry to non-ssl to allow caching
 echo "Installing webpack"
 
-npm install -g --unsafe webpack webpack-command
+npm install -g --unsafe webpack
 
 #link staging jupyterlab yarn to system yarn
 #pushd $(python3 -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")/jupyterlab/staging
@@ -461,6 +459,7 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
+: '
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
 @jupyter-widgets/jupyterlab-manager
 bqplot
@@ -483,7 +482,6 @@ jupyterlab-spreadsheet
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
 @lckr/jupyterlab_variableinspector
-@ryantam626/jupyterlab_code_formatter
 jupyterlab-drawio
 ipylab
 ipyaggrid
@@ -497,6 +495,7 @@ jupyterlab-plotly
 plotlywidget
 vispy
 EOF
+'
 
 do_github_install () {
 pushd /tmp
@@ -544,7 +543,6 @@ ipysheet
 jupyterlab-python-file
 jupyter-webrtc
 jupyter-threejs
-@ryantam626/jupyterlab_code_formatter
 @jupyterlab/fasta-extension
 @jupyterlab/geojson-extension
 @jupyterlab/htmlviewer-extension
@@ -617,8 +615,8 @@ jupyterlab_iframe
 # pylantern
 #ipyaggrid
 
-jupyter serverextension enable jupyterlab_sql --py --sys-prefix
-jupyter serverextension enable jupytext --sys-prefix
+#jupyter serverextension enable jupyterlab_sql --py --sys-prefix
+#jupyter serverextension enable jupytext --sys-prefix
 
 jupyter lab build
 echo "Log jupyterlab"
@@ -627,13 +625,13 @@ cat /tmp/jupyterlab-debug-*.log || true
 jupyter dashboards quick-setup --sys-prefix
 jupyter nbextensions_configurator enable --sys-prefix
 jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
-jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
+#jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
 #set up for jupyterfs
 
 cat <<EOF > /usr/etc/jupyter/jupyter_notebook_config.py
 # jupyterfs contents manager
-c.NotebookApp.contents_manager_class = "jupyterfs.metamanager.MetaManager"
+#c.NotebookApp.contents_manager_class = "jupyterfs.metamanager.MetaManager"
 c.LatexConfig.latex_command = 'pdflatex'
 EOF
 
