@@ -81,6 +81,6 @@ echo "Set up wiki"
 # Refresh configurations
 /usr/share/bitquant/conf.sh /default-init
 
-sed -i '/ipv6/d' /etc/mongod.conf
-sed -i '/ipv6/d' /etc/mongos.conf
+# sed -i '/ipv6/d' /etc/mongod.conf
+# sed -i '/ipv6/d' /etc/mongos.conf
 chmod a+rwx /srv

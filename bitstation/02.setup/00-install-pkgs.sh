@@ -59,9 +59,6 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       octave \
       redis \
       unzip \
-      mongodb-server \
-      mongodb \
-      mongo-tools \
       java \
       texlive \
       vim-minimal \
@@ -93,7 +90,6 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       python3-pandas-datareader \
       python3-numpy \
       python3-numpy-devel \
-      python3-tables \
       python3-fs \
       python3-scipy \
       python3-qstk \
