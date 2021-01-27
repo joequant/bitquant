@@ -72,7 +72,7 @@ chmod a+x sbin/startup-nextcloud.sh
 chmod a+x sbin/wait-for-it.sh
 chown apache:apache sbin/startup-nextcloud.sh
 
-buildah run $container sudo /usr/sbin/nextcloud-install.sh
+#buildah run $container sudo /usr/sbin/nextcloud-install.sh
 
 dnf --installroot="$rootfsDir" -y \
     autoremove nodejs git
