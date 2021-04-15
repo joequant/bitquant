@@ -100,7 +100,7 @@ popd
 popd
 find $rootfsDir/usr -regex '^.*\(__pycache__\|\.py[co]\)$' -delete
 
-rpm --rebuilddb --root $rootfsDir
+#rpm --rebuilddb --root $rootfsDir
 
 
 buildah config --cmd "/sbin/startup-nextcloud.sh" $container
