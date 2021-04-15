@@ -9,7 +9,7 @@
 #
 #
 
-set -e -x
+
 
 mkimg="$(basename "$0")"
 script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -32,6 +32,7 @@ usage() {
 if [ -e "$script_dir/proxy.sh" ]; then
         . $script_dir/proxy.sh
 fi
+set -e -x
 
 optTemp=$(getopt --options 'v:,p:,a:,s,q,h,n:' --longoptions 'version:,mirror:,package-manager:,forcearch:,with-systemd,quiet,help,name:' --name $mkimg -- "$@")
 eval set -- "$optTemp"
