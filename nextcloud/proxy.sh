@@ -1,6 +1,6 @@
 #: '
-timeout 1 bash -c 'cat < /dev/null > /dev/tcp/172.17.0.1/3128'
-if [ $? == 0 ] ; then
+
+if timeout 1 bash -c 'cat < /dev/null > /dev/tcp/172.17.0.1/3128' ; then
     echo "running proxy"
 export http_proxy=http://172.17.0.1:3128/
 export https_proxy=http://172.17.0.1:3128/
