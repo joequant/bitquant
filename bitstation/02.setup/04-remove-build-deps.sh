@@ -127,7 +127,6 @@ rm -rf etc/alsa
 pushd usr/share/locale
 rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
-rpm --rebuilddb $rootfsRpmArg
 chmod -R a+rx var/lib/rpm var/lib/dnf
 rm -rf var/cache/*
 popd

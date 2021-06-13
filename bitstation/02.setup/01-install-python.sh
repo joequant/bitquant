@@ -92,10 +92,10 @@ pip3 install bqplot --prefix /usr --no-cache-dir
 # install special version of jupyterlab-sql that is built for v2
 
 #install perspective-python - need pyarrow 0.16
-pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     pyarrow==0.16.0
-pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     perspective-python
+#pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+#     pyarrow==0.16.0
+#pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+#     perspective-python
 
 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
 
@@ -118,11 +118,11 @@ https://github.com/joequant/bitcoin-price-api/tarball/master
 finmarketpy
 https://github.com/quantopian/pyfolio/tarball/master
 https://github.com/ematvey/pybacktest/tarball/master
-https://github.com/bashtage/arch/tarball/master
+https://github.com/bashtage/arch/tarball/main
 https://github.com/joequant/OrderBook/tarball/master
 https://github.com/joequant/bitcoin-etl/tarball/master
 https://github.com/joequant/dynts/tarball/master
-https://github.com/pymc-devs/pymc3/tarball/master
+https://github.com/pymc-devs/pymc3/tarball/main
 biopython
 cubes
 statsmodels
@@ -327,6 +327,9 @@ pymoo
 Platypus-Opt
 uproot
 awkward
+pythreejs
+ipyvolume
+jupyterlab-drawio
 EOF
 
 # disable gmaps because it causes all widgets to disappear
@@ -459,8 +462,11 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-: '
+
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
+jupyterlab-spreadsheet
+EOF
+: '
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
@@ -471,7 +477,6 @@ jupyter-matplotlib
 jupyterlab-datawidgets
 itkwidgets
 @bokeh/jupyter_bokeh
-jupyterlab-spreadsheet
 @jupyterlab/vega2-extension
 @jupyterlab/vega3-extension
 @jupyterlab/fasta-extension
