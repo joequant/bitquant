@@ -462,7 +462,6 @@ fi
 
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
-
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
 jupyterlab-spreadsheet
 EOF

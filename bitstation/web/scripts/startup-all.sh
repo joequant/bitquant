@@ -12,6 +12,8 @@ if [ -e /usr/share/bitquant/bitquant.sh ] ; then
    source /usr/share/bitquant/bitquant.sh
    echo "Bitstation - build $build_date $commit_id"
 fi
+echo "Create tmpfiles"
+systemd-tmpfiles --create
 echo "Start redis"
 sudo -u redis /usr/bin/redis-server /etc/redis.conf &
 echo "Start mongo"
