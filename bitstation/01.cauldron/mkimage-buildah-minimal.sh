@@ -320,7 +320,7 @@ rm -rf `ls | grep -v "^ISO" | grep -v "^UTF" | grep -v "^en" | grep -v "^C.UTF"`
 popd
 
 rpm --rebuilddb --root $rootfsDir
-if [ "$buildarch" == "x85_64" ] ; then
+if [ "$buildarch" == "x86_64" ] ; then
         rm -f lib/*.so lib/*.so.*
 fi	
 

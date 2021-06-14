@@ -330,6 +330,8 @@ awkward
 pythreejs
 ipyvolume
 jupyterlab-drawio
+jupyterlab-spreadsheet-editor
+jupyter-fs
 EOF
 
 # disable gmaps because it causes all widgets to disappear
