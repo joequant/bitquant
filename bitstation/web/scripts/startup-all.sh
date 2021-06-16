@@ -93,6 +93,25 @@ if [ ! -f /etc/jupyterhub ] ; then
     chown -R rhea:rhea /etc/jupyterhub
 fi
 
+if [ ! -f /etc/jupyter/jupyter_server_config.d ] ; then
+    mkdir -p /etc/jupyter/jupyter_server_config.d
+    echo <<EOF > /etc/jupyter/jupyter_server_config.d/jupyterlab.json
+{
+  "ServerApp": {
+    "jpserver_extensions": {
+      "jupyterlab": true
+    }
+  }
+}
+EOF
+    mkdir -p /etc/jupyter
+    echo <<EOF > /etc/jupyter/jupyter_server_config.py
+# Extra static path for JupyROOT - start - do not remove this line
+c.ServerApp.extra_static_paths.append('/usr/share/root/notebook')
+# Extra static path for JupyROOT - end - do not remove this line
+EOF
+fi
+
 if [ -x /usr/bin/jupyterhub ] ; then
     echo "Start jupyterhub"
     pushd /etc/jupyterhub
