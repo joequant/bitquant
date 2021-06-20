@@ -40,6 +40,7 @@ dnf --installroot="$rootfsDir" \
     php-pcntl \
     php-redis \
     php-apcu \
+    php-posix\
     sudo \
     tar gzip \
     redis \

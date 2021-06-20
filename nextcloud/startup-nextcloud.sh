@@ -9,6 +9,10 @@ echo "waiting..."
 /sbin/wait-for-it.sh db:5432
 echo "connecting..."
 
+mkdir -p /run/httpd
+mkdir -p /run/php-fpm
+chown apache:apache /run/php-fpm
+
 if [ ! -e $INSTALLED_FILE ] ; then
     touch /etc/nextcloud/CAN_INSTALL
 chown apache:apache -R /usr/share/nextcloud
@@ -19,7 +23,6 @@ sudo -u apache php -d memory_limit=512M \
      --database-host=${NEXTCLOUD_DB:-db} --database-user="postgres" \
      --database-pass="mypass" --admin-user="user" \
      --admin-pass="cubswin:)" --data-dir="/var/lib/nextcloud/data"
-chown root:root -R /usr/share/nextcloud
 sudo -u apache php occ config:system:set \
      trusted_domains 1 "--value=*"
 sudo -u apache php occ background:cron

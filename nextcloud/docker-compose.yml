@@ -3,8 +3,8 @@ services:
   nextcloud:
      image: "joequant/nextcloud"
      ports:
-       - 80:80
-       - 443:443
+       - 8081:80
+       - 4433:443
      volumes:
        - lib_apps:/var/lib/nextcloud/data
        - lib_data:/var/lib/nextcloud/apps

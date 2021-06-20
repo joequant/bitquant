@@ -1,7 +1,7 @@
 <?php
 $CONFIG = array (
     "log_type" => "file",
-    "logfile" => "/var/lib/nextcloud/data/nextcloud.log",
+    "logfile" => "/var/log/httpd/nextcloud.log",
     "datadirectory" => "/var/lib/nextcloud/data",
     "updatechecker" => false,
     "check_for_working_htaccess" => false,
