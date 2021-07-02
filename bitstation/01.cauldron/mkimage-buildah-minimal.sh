@@ -182,7 +182,6 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             install bash ncurses coreutils \
 	    $extrapkgs
 )
-
 mkdir $rootfsDir/etc/yum.repos.d
 cp $script_dir/mirrorlist $rootfsDir/etc/yum.repos.d
 cat <<EOF > $rootfsDir/etc/yum.repos.d/mirrors.repo
