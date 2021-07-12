@@ -40,21 +40,36 @@ cp -r /usr/$LIBDIR/R/library/shiny/examples/*  /var/www/shiny-server
 fi
 
 #npm
-ijsinstall --install=global
-its --install=global
-jp-coffee-install --install=global
-jp-babel-install --install=global
-jp-livescript-install --install=global
+if [ -x /usr/bin/npm ] ; then
+    ijsinstall --install=global
+    its --install=global
+    jp-coffee-install --install=global
+    jp-babel-install --install=global
+    jp-livescript-install --install=global
+fi
 
 mkdir -p /usr/share/jupyter/kernels
 mv /usr/local/share/jupyter/kernels/* /usr/share/jupyter/kernels
 # ruby
-iruby register --force
+if [ -x /usr/bin/iruby ] ; then
+    iruby register --force
+fi
 pump --shutdown
 
 #julia
 export JUPYTER=/usr/bin/jupyter
+# unset git proxies
+git config --global --unset http.proxy
+git config --global --unset url."$GIT_PROXY".insteadOf
+git config --global --unset http.sslVerify
 julia -e 'empty!(DEPOT_PATH); push!(DEPOT_PATH, "/usr/share/julia"); using Pkg; Pkg.add("IJulia")'
 cp -r /root/.local/share/jupyter/kernels/julia-* /usr/share/jupyter/kernels/
 chmod -R +rx /usr/share/julia/
 chmod -R +rx /usr/share/jupyter/kernels/julia-*/
+if [[ ! -z "$http_proxy" ]] ; then
+    git config --global http.proxy $http_proxy
+    if [[ ! -z "$GIT_PROXY" ]] ; then
+	git config --global url."$GIT_PROXY".insteadOf https://
+    fi
+    git config --global http.sslVerify false
+fi
