@@ -167,8 +167,6 @@ dnf --setopt=install_weak_deps=False --best --allowerasing install -v -y --nodoc
       pybind11-devel \
       python3-metakernel-python \
       python3-metakernel \
-      jupyter-jupyterlab \
-      jupyter-jupyterlab-server \
       flatbuffers-devel \
       eigen3-devel \
       texlive-dist \

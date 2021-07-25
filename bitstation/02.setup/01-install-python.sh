@@ -37,20 +37,18 @@ SUPERSET=git+https://github.com/apache/incubator-superset.git
 
 echo "pip_index_url=" $PIP_INDEX_URL
 
-pip3 install --upgrade pip --prefix /usr
+#pip3 install --upgrade pip --prefix /usr
+#pip3 install --upgrade python-dateutil requests \
+#     matplotlib scipy --prefix /usr
 
-#needed to remove requests to reinstall with requests
-rm -rf /usr/lib/python3.8/site-packages/requests*
-
-pip3 install --upgrade python-dateutil requests \
-     matplotlib scipy --prefix /usr
-
-pip3 install --upgrade $TENSORFLOW --prefix /usr
-pip3 install --upgrade mxnet --prefix /usr
-pip3 install --upgrade torch --prefix /usr
+#pip3 install --upgrade $TENSORFLOW --prefix /usr
+#pip3 install --upgrade mxnet --prefix /usr
+#pip3 install --upgrade torch --prefix /usr
 
 # Fix for eventsourcing
-pip3 install --upgrade pycryptodome --prefix /usr
+: '
+pip3 install --upgrade pycryptodome eventsourcing --prefix /usr
+
 cat <<EOF > /tmp/constraints.es.txt
 six
 pycrypto
@@ -60,10 +58,11 @@ EOF
 
 pip3 install --no-deps eventsourcing --prefix /usr
 pip3 install --upgrade eventsourcing --prefix /usr -c /tmp/constraints.es.txt
+'
 
 # reinstall to get jupyter executable
 #pip3 install --upgrade jupyter-core --prefix /usr
-pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
+#pip3 install --upgrade $PYTHON_ARGS entrypoints --prefix /usr
 
 # get fix for libpacke
 # don't install because it needs old scikit-learn
@@ -74,36 +73,45 @@ PYCURL_SSL_LIBRARY=openssl pip3 install pycurl --prefix /usr
 #Use tf-nightly-gpu instead of tensorflow to get python 3.7
 
 # run cytoolz for python 3.8 for cython
-pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-     https://github.com/pytoolz/cytoolz/tarball/master
 
 #pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-#     "git+https://github.com/cchuang2009/PySDE.git#subdirectory=Python3&egg=PyS3DE"
+#     https://github.com/pytoolz/cytoolz/tarball/master
 
-#https://github.com/maartenbreddels/ipyvolume/issues/295
-#https://github.com/conda-forge/ipyvolume-feedstock/pull/34
-
-#https://github.com/maartenbreddels/ipyvolume/issues/324
-npm install -g source-map
-pip3 install bqplot --prefix /usr --no-cache-dir
-#pip3 install ipyvolume==0.6.0a6 --prefix /usr --no-cache-dir
-
-#install first
-# install special version of jupyterlab-sql that is built for v2
-
-#install perspective-python - need pyarrow 0.16
-#pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-#     pyarrow==0.16.0
-#pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-#     perspective-python
-
-pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
+#pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir beakerx
 
 #https://github.com/joequant/gmaps/tarball/master
 #pyspark
 #npm install -g webpack webpack-cli
+
+# bqplot is having compatibility issues with ipympl
+
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' "pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir '{}'" ::: <<EOF
 jupyterlab
+jupyterhub
+sudospawner
+jupyter-fs
+jhub_remote_user_authenticator
+ipywidgets
+ipycanvas
+orjson
+ipympl
+rpy2
+seaborn
+https://github.com/jupyterlab/jupyterlab-latex/tarball/master
+jupyter_latex_envs
+fs.webdavfs
+qgrid
+jupyter_bokeh
+ipython-sql
+jupyterlab-drawio
+jupyterlab-spreadsheet-editor
+calysto_bash
+octave_kernel
+https://github.com/Calysto/calysto_hy/tarball/master
+mpmath
+rpy2
+ccxt
+qgrid
 nbformat
 ml-python
 vega
@@ -132,7 +140,6 @@ dgl
 Flask
 import-ipynb
 astropy
-sudospawner
 jupyterhub
 nbconvert
 circuits
@@ -192,7 +199,6 @@ lmfit
 redis_kernel
 calysto_bash
 octave_kernel
-jupyter_nbextensions_configurator
 pyfolio
 VisualPortfolio
 empyrical
@@ -293,10 +299,8 @@ sunpy
 fs
 xeus-python
 vpython
-bankroll[ibkr,schwab,fidelity]
 investpy
 deap
-algorithmx
 itkwidgets
 jupyter_bokeh
 jupyterlab-commenting-service
@@ -316,10 +320,9 @@ https://github.com/ekaschalk/jedhy/tarball/master
 https://github.com/Calysto/calysto_hy/tarball/master
 https://github.com/joequant/webdavfs/tarball/master
 https://github.com/joequant/PySDE/tarball/master
-https://github.com/joequant/jupyterlab-latex/tarball/master
+https://github.com/maartenbreddels/ipyvolume/tarball/master
 mplfinance
 jupyter_telemetry
-ax-platform
 optuna
 hyperopt
 pySOT
@@ -328,11 +331,42 @@ Platypus-Opt
 uproot
 awkward
 pythreejs
+aquirdturtle_collapsible_headings
+panel
+algorithmx
+pyviz_comms
+lckr-jupyterlab-variableinspector
+jupyterlab-git
+ipygany
+ipydrawio
+ipydrawio-export
+EOF
+
+#panel fails validation
+
+: '
+ax-platform
+algorithmx
+ipysheet
+'
+: '
+EOF
+'
+#ipyvolume
+#pythreejs
+
+: '
+jupyterlab
 ipyvolume
 jupyterlab-drawio
 jupyterlab-spreadsheet-editor
 jupyter-fs
+bqplot
 EOF
+'
+
+# remove because its got an old pandas
+# bankroll[ibkr,schwab,fidelity]
 
 # disable gmaps because it causes all widgets to disappear
 
@@ -341,8 +375,8 @@ git clone https://github.com/yixuan/LBFGSpp.git
 cp -r LBFGSpp/include/* /usr/include
 popd
 
-HOROVOD_WITHOUT_GLOO=1 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
-    https://github.com/joequant/horovod/tarball/master
+#HOROVOD_WITHOUT_GLOO=1 pip3 install --upgrade $PYTHON_ARGS --prefix /usr --no-cache-dir \
+#    https://github.com/joequant/horovod/tarball/master
 
 #jupyterlab_code_formatter will pull in jupyter 3.0
 
@@ -397,7 +431,7 @@ jupytext>=1.0.1
 
 # use calysto bash
 #python3 -m bash_kernel.install --sys-prefix
-python3 -m calysto_hy install
+#python3 -m calysto_hy install
 
 #broken
 #pylantern
@@ -465,9 +499,19 @@ fi
 #https://github.com/maartenbreddels/ipyvolume/issues/324\
 
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'jupyter labextension install --no-build {}' ::: <<EOF
-jupyterlab-spreadsheet
+@jupyterlab/vega2-extension
+@jupyterlab/vega3-extension
+@jupyterlab/fasta-extension
+@jupyterlab/geojson-extension
+@jupyterlab/latex
+@jupyterlab/translation
+@hadim/jupyter-archive
 EOF
 : '
+ipyvolume
+jupyter-threejs
+@lckr/jupyterlab_variableinspector
+
 @jupyter-widgets/jupyterlab-manager
 bqplot
 ipyvolume
@@ -478,16 +522,10 @@ jupyter-matplotlib
 jupyterlab-datawidgets
 itkwidgets
 @bokeh/jupyter_bokeh
-@jupyterlab/vega2-extension
-@jupyterlab/vega3-extension
-@jupyterlab/fasta-extension
-@jupyterlab/geojson-extension
 @jupyterlab/commenting-extension
-@jupyterlab/github
 @jupyterlab/toc
 @jupyter-voila/jupyterlab-preview
 @aquirdturtle/collapsible_headings
-@lckr/jupyterlab_variableinspector
 jupyterlab-drawio
 ipylab
 ipyaggrid
@@ -509,18 +547,18 @@ git clone --depth=1 $1
 pushd `basename $1 .git`
 jlpm
 jlpm run build
-jupyter labextension install --no-build .
 popd
 rm -rf `basename $1 .git` 
 popd
 }
 
 export -f do_github_install
-
+: '
 parallel --halt 2 -j1 -n1 --linebuffer --tagstring '{}' 'do_github_install {}' ::: <<EOF
 https://github.com/joequant/jupyterlab_filetree.git
 https://github.com/joequant/jupyterlab-latex.git
 EOF
+'
 
 # remove mathjax3 and katex extensions as they are missing
 # mathjax3 features
@@ -628,9 +666,10 @@ jupyter lab build
 echo "Log jupyterlab"
 cat /tmp/jupyterlab-debug-*.log || true
 
-jupyter dashboards quick-setup --sys-prefix
-jupyter nbextensions_configurator enable --sys-prefix
-jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
+jupyter nbextension enable --py --sys-prefix ipygany
+#jupyter dashboards quick-setup --sys-prefix
+#jupyter nbextensions_configurator enable --sys-prefix
+#jupyter serverextension enable --py jupyter_tensorboard --sys-prefix
 #jupyter serverextension enable --py jupyterlab_code_formatter --sys-prefix
 
 #set up for jupyterfs
