@@ -64,7 +64,7 @@ chown apache:apache -R /usr/share/nextcloud /var/lib/nextcloud /etc/nextcloud
 
 echo "Restarting php-fpm"
 /usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf >> /var/log/php-fpm.log 2>&1 &
-mkdir -p /run/httpd
+mkdir -p /run/httpd /run/php-fpm
 /usr/sbin/httpd -DFOREGROUND
 
 
