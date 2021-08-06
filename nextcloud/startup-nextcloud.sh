@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 INSTALLED_FILE=/var/lib/nextcloud/data/installed
 
@@ -12,7 +13,13 @@ echo "connecting..."
 if [ ! -e $INSTALLED_FILE ] ; then
     touch /etc/nextcloud/CAN_INSTALL
 chown apache:apache -R /usr/share/nextcloud
+chown apache:apache -R /var/lib/nextcloud
+chown apache:apache -R /etc/nextcloud
 pushd /usr/share/nextcloud
+cat <<EOF >> /etc/php.d/99_apcu.ini
+apc.enable_cli=1
+EOF
+
 sudo -u apache php -d memory_limit=512M \
      occ maintenance:install \
      --database="pgsql" --database-name="nextcloud" \
@@ -39,7 +46,6 @@ for app in \
 	files_markdown \
 	files_mindmap \
 	user_external \
-	ldap_write_support \
 	cms_pico \
 	sociallogin  \
 	drawio \
@@ -50,6 +56,7 @@ sudo -u apache php -d memory_limit=512M \
 done
 popd
 
+# 	ldap_write_support
 #update to nc19
 #
 # occweb
