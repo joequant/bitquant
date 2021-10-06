@@ -22,6 +22,7 @@ cp $script_dir/*.sh $rootfsDir/tmp
 chmod a+x $rootfsDir/tmp/*.sh
 systemd-sysusers --root=$rootfsDir $script_dir/system.conf
 source $script_dir/00-install-pkgs.sh
+cp $script_dir/openssl.cnf $rootfsDir/etc/pki/tls
 
 pushd $rootfsDir/etc/httpd/conf
 rm -f conf.d/security.conf
