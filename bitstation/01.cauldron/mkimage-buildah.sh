@@ -331,6 +331,7 @@ chmod 0644 $rootfsDir/var/lib/rpm/*
 cat <<EOF > $rootfsDir/etc/sudoers.d/user
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 EOF
+chmod 0755 $rootfsDir/home/user
 buildah config --user "user" $container
 buildah config --cmd "/bin/bash" $container
 
