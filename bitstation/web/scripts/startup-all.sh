@@ -7,6 +7,7 @@ cd $SCRIPT_DIR
 
 mkdir -p $LOG_DIR
 chmod a+w $LOG_DIR
+chmod a+rx /home/user
 
 if [ -e /usr/share/bitquant/bitquant.sh ] ; then
    source /usr/share/bitquant/bitquant.sh
