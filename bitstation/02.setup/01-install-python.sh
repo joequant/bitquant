@@ -223,6 +223,7 @@ neurolab
 pyrenn
 jhub_remote_user_authenticator
 dash
+dask-labextension
 dash_renderer
 dash_core_components
 dash_html_components
