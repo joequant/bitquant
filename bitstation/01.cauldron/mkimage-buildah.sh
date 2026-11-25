@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -v
 #
 # Script to create Mageia official base images for integration with stackbrew
 # library.
@@ -157,13 +157,14 @@ if [ ! -z $systemd ]; then
         echo -e "--------------------------------------\n"
         extrapkgs="$extrapkgs systemd"
 fi
-
+echo "$rootfsDir"
 (
     dnf \
             --forcearch="$buildarch" \
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
+	    --setopt=reposdir=/etc/yum.repos.d \
             --nodocs --assumeyes ${quiet:\--quiet} \
             download makedev filesystem
 )
@@ -181,6 +182,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
+	    --setopt=reposdir=/etc/yum.repos.d \
             --nodocs --assumeyes install \
             basesystem-minimal-core locales locales-en \
 	    ncurses sudo dnf
@@ -216,14 +218,18 @@ fi
 
 	cd "$rootfsDir"
 rpm --erase basesystem-minimal-core  --root $rootfsDir
-dnf autoremove -y \
+dnf remove -y \
     --installroot="$rootfsDir" \
     vim-minimal \
     rootfiles tar tcb \
     passwd which psmisc
+
+dnf autoremove -y \
+    --installroot="$rootfsDir"
+
 rpm --erase --nodeps systemd shared-mime-info  --root $rootfsDir
 dnf clean all --installroot="$rootfsDir"
-rm etc/yum.repos.d/mageia*
+rm -f etc/yum.repos.d/mageia*
 	
 	# effectively: febootstrap-minimize --keep-zoneinfo --keep-rpmdb --keep-services "$target"
 	#  locales

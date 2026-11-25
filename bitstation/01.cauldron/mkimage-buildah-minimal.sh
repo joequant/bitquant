@@ -162,6 +162,7 @@ fi
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
+    	    --setopt=reposdir=/etc/yum.repos.d \
             --nodocs --assumeyes ${quiet:\--quiet} \
             download makedev filesystem
 )
@@ -178,6 +179,7 @@ rm -f filesystem-*.rpm  makedev-*.rpm
             --installroot="$rootfsDir" \
             --releasever="$releasever" \
             --setopt=install_weak_deps=False \
+    	    --setopt=reposdir=/etc/yum.repos.d \
             --nodocs --assumeyes ${quiet:\--quiet} \
             install bash ncurses coreutils \
 	    $extrapkgs
